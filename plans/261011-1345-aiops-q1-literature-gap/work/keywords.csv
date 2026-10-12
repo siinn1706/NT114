@@ -1,0 +1,35 @@
+group,term,variants,proposal_source
+C1,microservice,microservices|micro-service|microservice architecture|microservice system,P0003 P0008
+C1,cloud-native,cloud native|cloud-native application,P0008
+C1,Kubernetes,container orchestration|containerized,P0003 P0026
+C1,cloud service,online service system|cloud system|large-scale cloud|distributed system,P0008
+C2,multimodal telemetry,multi-source data|multimodal data|metrics logs traces|heterogeneous monitoring data,P0012 P0030-P0033
+C2,metric,KPI|time series|performance metric,P0032
+C2,log,system log|log data,P0031
+C2,trace,distributed tracing|span|call trace,P0033
+C2,observability,OpenTelemetry|monitoring,P0045
+C3,anomaly detection,outlier detection|Isolation Forest,P0013 P0049-P0052
+C3,incident detection,failure detection|fault detection,P0021
+C4,root cause analysis,RCA|root cause localization|root cause identification,P0003 P0022
+C4,fault localization,failure localization|fault diagnosis|failure diagnosis,P0016 P0022
+C4,fault type classification,failure type|failure classification|fault classification,P0022 P0040
+C5,large language model,LLM|LLMs|language model,P0009 P0016 P0076
+C5,LLM agent,agent|multi-agent|agentic,P0009
+C5,AIOps,IT operations|incident management,P0009
+C5,fine-tuning,LoRA|parameter-efficient fine-tuning|instruction tuning,P0076
+C6,retrieval-augmented generation,RAG|retrieval augmented,P0015 P0071
+C6,hybrid retrieval,BM25|dense retrieval|sparse retrieval|reciprocal rank fusion|hybrid search,P0015 P0065-P0070
+C6,historical incidents,similar incidents|case-based reasoning|knowledge base|runbook|troubleshooting guide,P0064
+C7,log parsing,log template|Drain|log parser,P0056
+C7,context compression,summarization|token budget|context window|prompt compression,P0014 P0054 P0059
+C7,feature selection,metric reduction|dimensionality reduction,P0055 P0058
+C8,explainability,explainable|interpretable|interpretability|explanation,P0017 P0023 P0119
+C8,faithfulness,hallucination|grounded|evidence|citation,P0041 P0120
+C8,LLM-as-a-judge,LLM as a judge|LLM evaluator|human evaluation,P0121
+C8,uncertainty,confidence|calibration|trustworthy,note-29-9 line 9
+C9,fault propagation,failure propagation|anomaly propagation|error propagation,P0057; note-29-9 line 4
+C9,dependency graph,call graph|service dependency|topology,P0057
+C9,causal inference,causal discovery|causality|causal graph,P0147
+C10,MLOps,reproducibility|continuous evaluation,P0018 P0078
+C10,benchmark,dataset|empirical study|evaluation framework,P0025
+C10,chaos engineering,fault injection,P0026 P0082

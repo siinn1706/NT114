@@ -1,0 +1,133 @@
+read_id,doi,version,url,result,bytes
+P01,10.1145/3746635,publisher,https://dl.acm.org/doi/pdf/10.1145/3746635,error 403,0
+P01,10.1145/3746635,publisher,https://dl.acm.org/doi/pdf/10.1145/3746635,error 403,0
+P01,10.1145/3746635,arxiv-preprint,https://arxiv.org/pdf/2507.12472v1,ok,1108667
+P02,10.1145/3701740,publisher,https://dl.acm.org/doi/pdf/10.1145/3701740,error 403,0
+P02,10.1145/3701740,arxiv-search,,no title match,0
+P03,10.14778/3675034.3675043,arxiv-preprint,https://arxiv.org/pdf/2312.01454v2,ok,5318778
+P04,10.1145/3736755,publisher,https://dl.acm.org/doi/pdf/10.1145/3736755,error 403,0
+P04,10.1145/3736755,publisher,https://dl.acm.org/doi/pdf/10.1145/3736755,error 403,0
+P04,10.1145/3736755,arxiv-search,,no title match,0
+P05,10.1145/3715005,publisher,https://dl.acm.org/doi/pdf/10.1145/3715005,error 403,0
+P05,10.1145/3715005,arxiv-preprint,https://arxiv.org/pdf/2407.01710v2,ok,997264
+P06,10.1145/3501297,submittedVersion,https://arxiv.org/pdf/2105.12378,ok,568663
+P07,10.1109/tsc.2025.3629066,arxiv-preprint,https://arxiv.org/pdf/2504.20462v5,ok,7446170
+P08,10.1145/3695999,publisher,https://dl.acm.org/doi/pdf/10.1145/3695999,error 403,0
+P08,10.1145/3695999,arxiv-search,,no title match,0
+P09,10.1145/3789262,submittedVersion,https://arxiv.org/pdf/2504.18776,ok,1526754
+P10,10.1145/3714466,publisher,https://dl.acm.org/doi/pdf/10.1145/3714466,error 403,0
+P10,10.1145/3714466,arxiv-search,,no title match,0
+P11,10.1109/mwc.2026.3734923,submittedVersion,https://arxiv.org/pdf/2609.02805,ok,4064826
+P12,10.1145/3771283,publisher,https://dl.acm.org/doi/pdf/10.1145/3771283,error 403,0
+P12,10.1145/3771283,submittedVersion,https://arxiv.org/pdf/2406.07467,ok,1998798
+P13,10.1016/j.cosrev.2026.101075,submittedVersion,https://repositum.tuwien.at/bitstream/20.500.12708/229494/1/Bilal-2026-Large%20Language%20Models%20for%20Agentic%20NetOps%20and%20AIOps%20Architectu...-smur.pdf,error <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>,0
+P13,10.1016/j.cosrev.2026.101075,arxiv-preprint,https://arxiv.org/pdf/2605.12729v4,ok,2017400
+P14,10.1109/tkde.2026.3722256,arxiv-search,,no title match,0
+P15,10.1109/tccn.2026.3715900,arxiv-search,,no title match,0
+P16,10.1109/tdsc.2026.3732582,arxiv-search,,no title match,0
+P17,10.1109/tdsc.2026.3687558,arxiv-search,,no title match,0
+P18,10.1109/tdsc.2026.3706572,arxiv-search,,no title match,0
+P19,10.1109/tsc.2025.3622122,arxiv-search,,no title match,0
+P20,10.1145/3806200,publisher,https://dl.acm.org/doi/pdf/10.1145/3806200,error 403,0
+P20,10.1145/3806200,arxiv-search,,no title match,0
+P21,10.1109/tcc.2024.3358823,arxiv-search,,no title match,0
+P22,10.1109/tsc.2026.3672587,arxiv-search,,no title match,0
+P23,10.1109/tsc.2025.3646329,arxiv-search,,no title match,0
+P24,10.1109/tsc.2026.3676262,arxiv-search,,no title match,0
+P25,10.1109/access.2025.3565220,acceptedVersion,https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.174016565.57888427/v1,error 403,0
+P25,10.1109/access.2025.3565220,arxiv-search,,no title match,0
+P26,10.1109/tnsm.2024.3387552,arxiv-search,,no title match,0
+P27,10.1016/j.eswa.2024.124679,arxiv-search,,no title match,0
+P28,10.1145/3777375,publisher,https://dl.acm.org/doi/pdf/10.1145/3777375,error 403,0
+P28,10.1145/3777375,publisher,https://dl.acm.org/doi/pdf/10.1145/3777375,error 403,0
+P28,10.1145/3777375,arxiv-preprint,https://arxiv.org/pdf/2412.01416v2,ok,2623062
+P29,10.1145/3796706,publisher,https://dl.acm.org/doi/pdf/10.1145/3796706,error 403,0
+P29,10.1145/3796706,arxiv-search,,no title match,0
+P30,10.1145/3842744,publisher,https://dl.acm.org/doi/pdf/10.1145/3842744,error 403,0
+P30,10.1145/3842744,arxiv-search,,no title match,0
+P31,10.1007/s40747-025-02096-0,publisher,https://link.springer.com/content/pdf/10.1007/s40747-025-02096-0.pdf,not pdf (text/html; charset=utf-8),3038
+P31,10.1007/s40747-025-02096-0,arxiv-search,,no title match,0
+P32,10.1016/j.knosys.2025.114064,arxiv-search,,no title match,0
+P33,10.1109/tse.2026.3715410,arxiv-search,,no title match,0
+P34,10.1016/j.future.2026.108757,arxiv-search,,no title match,0
+P35,10.1016/j.inffus.2025.103017,arxiv-search,,no title match,0
+P36,10.1109/tsc.2024.3411481,arxiv-search,,no title match,0
+P37,10.1007/s44443-026-01193-5,publisher,https://link.springer.com/content/pdf/10.1007/s44443-026-01193-5.pdf,not pdf (text/html; charset=utf-8),3038
+P37,10.1007/s44443-026-01193-5,arxiv-search,,no title match,0
+P38,10.1109/jiot.2025.3573056,arxiv-search,,no title match,0
+P39,10.1016/j.ipm.2024.104013,arxiv-search,,no title match,0
+P40,10.1109/tdsc.2024.3363902,arxiv-search,,no title match,0
+P41,10.1016/j.engappai.2024.108613,arxiv-search,,no title match,0
+P42,10.1016/j.rineng.2026.110491,arxiv-search,,no title match,0
+P43,10.1109/access.2026.3658655,submittedVersion,https://arxiv.org/pdf/2604.06171,ok,3268481
+P44,10.1007/s10994-026-07121-y,publisher,https://link.springer.com/content/pdf/10.1007/s10994-026-07121-y.pdf,not pdf (text/html; charset=utf-8),3038
+P44,10.1007/s10994-026-07121-y,submittedVersion,https://ricerca.sns.it/bitstream/11384/169383/1/draft.pdf,error <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>,0
+P44,10.1007/s10994-026-07121-y,arxiv-search,,no title match,0
+P45,10.1145/3828675,publisher,https://dl.acm.org/doi/pdf/10.1145/3828675,error 403,0
+P45,10.1145/3828675,arxiv-search,,no title match,0
+P46,10.1109/access.2026.3688834,arxiv-search,,no title match,0
+P47,10.1109/access.2026.3710824,arxiv-search,,no title match,0
+P48,10.1109/access.2026.3675074,arxiv-search,,no title match,0
+P49,10.1080/08839514.2026.2684312,publisher,https://www.tandfonline.com/doi/pdf/10.1080/08839514.2026.2684312?needAccess=true,error 403,0
+P49,10.1080/08839514.2026.2684312,arxiv-search,,no title match,0
+P50,10.1016/j.rineng.2026.113136,arxiv-search,,no title match,0
+P37,10.1007/s44443-026-01193-5,"publisher (OA, found via Google Scholar)",https://link.springer.com/content/pdf/10.1007/s44443-026-01193-5.pdf,ok,2263260
+P44,10.1007/s10994-026-07121-y,"publisher (OA, found via Google Scholar)",https://link.springer.com/content/pdf/10.1007/s10994-026-07121-y.pdf,ok,1393781
+P31,10.1007/s40747-025-02096-0,publisher (OA),https://link.springer.com/content/pdf/10.1007/s40747-025-02096-0.pdf,ok,1308104
+P49,10.1080/08839514.2026.2684312,"publisher (OA, found via Google Scholar)",https://www.tandfonline.com/doi/pdf/10.1080/08839514.2026.2684312,curl blocked (no response); try Chrome HTML,0
+P14,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P15,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P16,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P17,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P19,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P21,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P22,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P24,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P26,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P27,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P32,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P33,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P35,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P36,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P38,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P39,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P40,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P41,,google-scholar,scholar.google.com,no public PDF/author version listed in top results,0
+P18,,google-scholar,ieeexplore.ieee.org (PDF link),IEEE link only; skipped per user decision (no IEEE),0
+P23,,google-scholar,ieeexplore.ieee.org (PDF link),IEEE link only; skipped per user decision (no IEEE),0
+P34,10.1016/j.future.2026.108757,google-scholar,www.sciencedirect.com (HTML OA),read via Chrome HTML,0
+P18,10.1109/tdsc.2026.3706572,arxiv-preprint,https://arxiv.org/pdf/2605.14866v1,ok (loose title match 0.82),0
+P41,10.1016/j.engappai.2024.108613,arxiv-preprint,https://arxiv.org/pdf/2311.05160v1,"ok (RAPID preprint, title differs; loose match 0.62, same method)",0
+P51,10.14778/3797919.3797937,arxiv-submitted (replacement B3),https://arxiv.org/pdf/2508.01136,ok,1273866
+P58,10.1186/s13677-024-00666-0,publisher PDF OA (replacement B2),https://doi.org/10.1186/s13677-024-00666-0,ok,2635358
+P62,10.1186/s13677-025-00766-5,publisher PDF OA (replacement B1),https://doi.org/10.1186/s13677-025-00766-5,ok,4515585
+P65,10.1186/s13677-022-00296-4,publisher PDF OA (replacement B1),https://doi.org/10.1186/s13677-022-00296-4,ok,2752829
+P66,10.1007/s40747-024-01659-x,publisher PDF OA (replacement B1),https://doi.org/10.1007/s40747-024-01659-x,ok,2053600
+P70,10.37965/jdmd.2026.1505,publisher PDF OA (replacement B5),https://doi.org/10.37965/jdmd.2026.1505,ok,3264287
+P42,10.1016/j.rineng.2026.110491,publisher HTML OA via Chrome,https://www.sciencedirect.com/science/article/pii/S2590123026015252,read via Chrome HTML (user passed CAPTCHA),0
+P50,10.1016/j.rineng.2026.113136,publisher HTML OA via Chrome,https://www.sciencedirect.com/science/article/pii/S2590123026041472,read via Chrome HTML,0
+P02,10.1145/3701740,publisher HTML via Chrome,https://dl.acm.org/doi/full/10.1145/3701740,read via Chrome HTML,0
+P08,10.1145/3695999,publisher HTML via Chrome,https://dl.acm.org/doi/full/10.1145/3695999,read via Chrome HTML,0
+P10,10.1145/3714466,publisher HTML via Chrome,https://dl.acm.org/doi/full/10.1145/3714466,read via Chrome HTML,0
+P29,10.1145/3796706,publisher HTML via Chrome,https://dl.acm.org/doi/full/10.1145/3796706,read via Chrome HTML,0
+P45,10.1145/3828675,publisher HTML via Chrome,https://dl.acm.org/doi/full/10.1145/3828675,read via Chrome HTML,0
+P20,10.1145/3806200,"publisher PDF via Chrome (pdf.js text, not saved)",https://dl.acm.org/doi/pdf/10.1145/3806200,read in browser,0
+P68,10.1145/3801747,"publisher PDF via Chrome (pdf.js text, not saved)",https://dl.acm.org/doi/pdf/10.1145/3801747,read in browser (Just Accepted),0
+P49,10.1080/08839514.2026.2684312,publisher HTML OA via Chrome,https://www.tandfonline.com/doi/full/10.1080/08839514.2026.2684312,read via Chrome HTML,0
+P53,10.1016/j.future.2025.108185,publisher HTML via Chrome (replacement B3),https://www.sciencedirect.com/science/article/pii/S0167739X25004790,read via Chrome HTML,0
+P55,10.1145/3797910,publisher HTML via Chrome (replacement B3),https://dl.acm.org/doi/full/10.1145/3797910,read via Chrome HTML,0
+P56,10.1145/3674726,publisher HTML via Chrome (replacement B2),https://dl.acm.org/doi/full/10.1145/3674726,read via Chrome HTML,0
+P57,10.1145/3734868,publisher HTML via Chrome (replacement B2),https://dl.acm.org/doi/full/10.1145/3734868,read via Chrome HTML,0
+P59,10.1145/3392149,"publisher PDF via Chrome (pdf.js text, not saved; replacement B2)",https://dl.acm.org/doi/pdf/10.1145/3392149,read in browser,0
+P63,10.1145/3801729,publisher HTML via Chrome (replacement B1),https://dl.acm.org/doi/full/10.1145/3801729,read via Chrome HTML,0
+P64,10.1145/3702978,publisher HTML via Chrome (replacement B1),https://dl.acm.org/doi/full/10.1145/3702978,read via Chrome HTML,0
+P67,10.1145/3749840,publisher HTML via Chrome (replacement B4),https://dl.acm.org/doi/full/10.1145/3749840,read via Chrome HTML,0
+P69,10.1145/3830238,"publisher PDF via Chrome (pdf.js text, not saved; replacement B5)",https://dl.acm.org/doi/pdf/10.1145/3830238,read in browser (Just Accepted),0
+P71,10.1145/3700436,"publisher PDF via Chrome (pdf.js text, not saved; replacement B6)",https://dl.acm.org/doi/pdf/10.1145/3700436,read in browser,0
+P73,10.1016/j.mlwa.2024.100570,publisher HTML OA via Chrome (replacement B3),https://www.sciencedirect.com/science/article/pii/S266682702400046X,read via Chrome HTML,0
+P74,10.1016/j.iswa.2025.200608,publisher HTML OA via Chrome (replacement SV),https://www.sciencedirect.com/science/article/pii/S2667305325001346,read via Chrome HTML,0
+P72,10.1038/s41598-026-71757-y,publisher HTML via Chrome (candidate B5),https://www.nature.com/articles/s41598-026-71757-y,abstract only (early-access page); education domain; dropped,0
+P52,,institutional repository (candidate B3),orca.cardiff.ac.uk,connection failed; dropped,0
+P54,,publisher (candidate),sciencedirect,dropped earlier (not accessible at the time),0
+P60,,institutional repository (candidate),dynamic page,dropped (dynamic repository page),0
+P61,,institutional repository (candidate),dynamic page,dropped (dynamic repository page),0

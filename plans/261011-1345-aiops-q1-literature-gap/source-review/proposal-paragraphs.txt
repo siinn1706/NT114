@@ -1,0 +1,197 @@
+P0001 TRƯỜNG ĐẠI HỌC CÔNG NGHỆ THÔNG TIN, ĐHQG-HCM
+P0002 ĐỀ XUẤT HƯỚNG THỰC HIỆN ĐỀ TÀI
+P0003 Phát triển hệ thống phát hiện sự cố và phân tích nguyên nhân gốc cho microservices trên Kubernetes sử dụng truy xuất lai và mô hình ngôn ngữ lớn
+P0004 Sinh viên
+P0005 Nguyễn Văn Nam – MSSV: 24521120Hoàng Xuân Minh Trí – MSSV: 24521829
+P0007 1. Đặt vấn đề
+P0008 Các hệ thống phần mềm hiện nay thường được xây dựng theo kiến trúc microservice và vận hành trên Kubernetes, trong đó một chức năng của người dùng có thể đi qua nhiều dịch vụ khác nhau. Khi xảy ra sự cố, biểu hiện lỗi không nhất thiết xuất hiện ngay tại thành phần gây ra vấn đề mà có thể lan sang các dịch vụ liên quan. Người vận hành vừa phải phát hiện kịp thời rằng hệ thống đang có sự cố, vừa phải xác định dịch vụ nào cần kiểm tra trước trong khi đồng thời theo dõi log, metric và trace. Công việc này tốn nhiều thời gian và phụ thuộc vào kinh nghiệm.
+P0009 Đề tài hướng tới một hệ thống AIOps hỗ trợ người vận hành trong hai bước: (1) phát hiện sự cố từ dữ liệu telemetry, và (2) phân tích nguyên nhân gốc, tức xếp hạng các dịch vụ nghi ngờ, dự đoán loại lỗi và sinh giải thích có dẫn bằng chứng. Phần phân tích kết hợp truy xuất lai (Hybrid Retrieval) trên tri thức vận hành và sự cố tương tự với mô hình ngôn ngữ lớn (LLM) open-weight, tiếp nối hướng dùng LLM cho phân tích sự cố như RCACopilot [6]. Hệ thống đóng vai trò hỗ trợ ra quyết định, không đặt mục tiêu thay thế hoàn toàn quy trình điều tra hay tự động khắc phục sự cố.
+P0010 2. Mục tiêu của đề tài
+P0011 Mục tiêu chung là xây dựng và đánh giá định lượng một hệ thống phát hiện sự cố và phân tích nguyên nhân gốc cho microservices trên Kubernetes, sử dụng truy xuất lai và LLM. Cụ thể:
+P0012 Khảo sát đặc điểm của dữ liệu log, metric và trace trong bài toán phát hiện và phân tích sự cố microservice.
+P0013 Xây dựng bộ phát hiện sự cố chi phí thấp theo cửa sổ thời gian, chỉ kích hoạt bước phân tích bằng LLM khi có sự cố.
+P0014 Xây dựng chiến lược nén, tổng hợp và biến đổi telemetry thành một bản tóm tắt có cấu trúc (incident card) với ngân sách token cố định, để không vượt cửa sổ ngữ cảnh và giảm chi phí suy luận.
+P0015 Xây dựng cơ chế Hybrid Retrieval kết hợp BM25 và tìm kiếm ngữ nghĩa bằng embedding, dùng thuật toán Reciprocal Rank Fusion, để cung cấp runbook và sự cố tương tự cho LLM.
+P0016 Dùng LLM open-weight để định vị dịch vụ gốc, phân loại loại lỗi và sinh giải thích có trích dẫn bằng chứng.
+P0017 Đánh giá định lượng bằng các độ đo cụ thể: phát hiện (Precision, Recall, F1), định vị (Top-1/3/5 Accuracy, MRR, MAP), truy hồi (Recall@k, nDCG@k) và khung đánh giá giải thích hai tầng (LLM-as-a-Judge và chuyên gia).
+P0018 Đóng gói hệ thống theo quy trình MLOps/DevOps (DVC, MLflow, Docker, GitHub Actions) và triển khai demo end-to-end trên cụm Kubernetes.
+P0019 3. Phạm vi và đối tượng nghiên cứu
+P0020 Đề tài giải quyết ba bài toán liên tiếp trên cùng một luồng xử lý:
+P0021 Phát hiện sự cố: xác định một cửa sổ thời gian có sự cố hay không (đầu ra “none” khi hệ thống bình thường).
+P0022 Định vị và phân loại: xếp hạng các dịch vụ có khả năng là nguyên nhân gốc (service localization) và dự đoán loại lỗi của dịch vụ đứng đầu.
+P0023 Giải thích: sinh phần giải thích ngắn, mỗi nhận định đều trích dẫn bằng chứng quan sát được.
+P0024 Đề tài không đặt yêu cầu chứng minh toàn bộ chuỗi nhân quả và không tự động thực hiện thao tác khắc phục trên hệ thống.
+P0025 Dữ liệu đánh giá định lượng: subset RE2-OB của bộ benchmark RCAEval [1] (công bố trên Hugging Face). RE2-OB gồm 90 sự cố trên hệ Online Boutique, tức 5 dịch vụ × 6 loại lỗi (cpu, mem, disk, socket, delay, loss) × 3 lần lặp. Mỗi sự cố có 69–77 chuỗi metric, log, trace và thời điểm tiêm lỗi, cùng nhãn dịch vụ gốc và loại lỗi.
+P0026 Môi trường hệ thống: Online Boutique [17] được triển khai trên cụm Kubernetes cục bộ (kind/minikube), có bộ thu thập telemetry và công cụ tiêm lỗi Chaos Mesh [20]. Môi trường này dùng để chạy demo end-to-end và có thể sinh thêm một ít dữ liệu bổ sung.
+P0027 Đối tượng nghiên cứu: dữ liệu telemetry (metric, log, trace) của microservices; tài liệu vận hành và runbook; các kỹ thuật truy xuất thông tin; LLM open-weight; phương pháp đánh giá hệ thống AIOps.
+P0028 4. Đầu vào và đầu ra dự kiến
+P0029 4.1. Đầu vào
+P0030 Đầu vào chính là dữ liệu telemetry của hệ thống microservice trong một cửa sổ thời gian:
+P0031 Log: nội dung sự kiện và thông báo do từng dịch vụ ghi lại.
+P0032 Metric: các chỉ số tài nguyên và vận hành như CPU, bộ nhớ, độ trễ, tỷ lệ lỗi, tải hệ thống.
+P0033 Trace: thông tin về luồng gọi giữa các dịch vụ trong một request.
+P0034 Tài liệu bổ trợ: mô tả kiến trúc, runbook theo loại lỗi và kho sự cố lịch sử, được truy hồi bằng Hybrid Retrieval (mục 5.4).
+P0035 Telemetry thô không được đưa trực tiếp vào LLM. Dữ liệu được biến đổi thành một incident card có cấu trúc và giới hạn token, theo mục 5.3.
+P0036 4.2. Đầu ra
+P0037 Đầu ra là “none” nếu không phát hiện sự cố. Nếu có sự cố, hệ thống trả về một đối tượng JSON gồm:
+P0038 Danh sách dịch vụ: các dịch vụ ứng viên có khả năng phát sinh hoặc liên quan trực tiếp đến sự cố.
+P0039 Rank và score: mỗi dịch vụ có một điểm và được sắp xếp theo thứ tự ưu tiên kiểm tra. Thứ hạng được đánh giá bằng Top-k Accuracy, MRR và MAP (mục 6.3).
+P0040 Fault: loại lỗi dự đoán cho dịch vụ đứng đầu, thuộc một trong các lớp cpu, mem, disk, socket, delay, loss.
+P0041 Explain và evidence_ids: phần giải thích ngắn kèm danh sách mã bằng chứng được trích dẫn, ví dụ metric:cartservice.cpu hoặc log:T12. Nhờ các mã này, có thể kiểm tra tự động xem giải thích có bám vào dữ liệu thật hay không (mục 6.5).
+P0042 {"services": [{"name": "cartservice", "rank": 1, "score": 0.82}, ...], "fault": "mem", "explain": "Bộ nhớ cartservice tăng đột biến (z=7.4) ngay sau t0 ...", "evidence_ids": ["metric:cartservice.mem", "trace:frontend->cartservice"]}
+P0043 5. Hướng tiếp cận và phương pháp
+P0044 5.1. Kiến trúc tổng thể
+P0045 Hệ thống gồm hai lớp (Hình 1). Lớp dữ liệu thu telemetry từ cụm Kubernetes, gồm Prometheus cho metric, Loki cho log và Jaeger/OpenTelemetry cho trace. Ở chế độ offline, lớp này đọc trực tiếp dữ liệu RE2-OB. Lớp phân tích gồm Detector chạy liên tục và Analyzer chỉ chạy khi có sự cố. Analyzer thực hiện ba bước: nén telemetry, Hybrid Retrieval, rồi gọi LLM open-weight để sinh kết quả có cấu trúc. Toàn bộ được quản lý bằng quy trình MLOps/DevOps.
+P0047 Hình 1. Kiến trúc tổng thể của hệ thống
+P0048 5.2. Phát hiện sự cố
+P0049 Detector xử lý theo cửa sổ trượt (ví dụ độ dài 1 phút, bước 30 giây) và so sánh hai phương pháp:
+P0050 Thống kê (baseline): tính robust z-score cho các metric chính (độ trễ, tỷ lệ lỗi, CPU, bộ nhớ) của từng dịch vụ. Báo có sự cố khi ít nhất m đặc trưng có |z| > τ trong ít nhất c cửa sổ liên tiếp, để giảm báo động giả. Các tham số τ, m, c được tinh chỉnh trên tập validation.
+P0051 Isolation Forest [8]: mô hình học không giám sát trên vector đặc trưng của cửa sổ, chỉ huấn luyện bằng dữ liệu bình thường.
+P0052 LLM không được dùng ở bước phát hiện vì chạy liên tục sẽ rất tốn kém. LLM chỉ được gọi khi Detector đã báo sự cố, đây là điểm giúp tiết kiệm chi phí tính toán. Với RE2-OB, cửa sổ trước thời điểm tiêm lỗi là mẫu âm và cửa sổ sau thời điểm tiêm lỗi là mẫu dương.
+P0053 5.3. Tiền xử lý, nén và biến đổi telemetry
+P0054 Một sự cố trong RE2-OB có hàng chục chuỗi metric, hàng nghìn dòng log và rất nhiều span trace. Nếu đưa trực tiếp vào LLM, dữ liệu sẽ vượt giới hạn cửa sổ ngữ cảnh và làm chi phí tăng mạnh. Nhóm áp dụng chiến lược nén nhiều bước để biến dữ liệu thô thành một incident card (Hình 2). Cửa sổ phân tích là [t₀ − W_n, t₀ + W_a], trong đó t₀ là thời điểm phát hiện hoặc tiêm lỗi; đoạn trước t₀ đóng vai trò baseline. Giá trị mặc định là W_n = 10 phút và W_a = 5 phút, sẽ tinh chỉnh trên tập validation.
+P0055 Metric → đặc trưng bất thường: với mỗi cặp (dịch vụ, metric), tính robust z-score so với baseline, z = (x − median) / (1,4826 · MAD). Mỗi chuỗi thời gian được tóm thành max|z|, thời điểm bắt đầu bất thường, hướng tăng/giảm và phần trăm thay đổi. Chỉ giữ K = 5 metric bất thường nhất cho mỗi dịch vụ.
+P0056 Log → template: dùng Drain [7] (thư viện Drain3) để gom các dòng log gần giống nhau thành template. So sánh tần suất template giữa baseline và cửa sổ bất thường, rồi giữ các template mới xuất hiện, tăng đột biến, hoặc có mức ERROR/WARN/exception. Mỗi template chỉ giữ một dòng ví dụ, tối đa N = 5 template cho mỗi dịch vụ.
+P0057 Trace → đồ thị gọi: gộp các span thành cạnh caller → callee, mỗi cạnh có số lần gọi, tỷ lệ lỗi và độ trễ p50/p95/p99 cùng mức thay đổi so với baseline. Chỉ giữ các cạnh thay đổi lớn, và đánh dấu dịch vụ nằm ở đầu chuỗi lan truyền, tức dịch vụ bất thường mà các callee phía sau của nó vẫn bình thường.
+P0058 Lọc trước ứng viên (pre-ranking): điểm bất thường tổng hợp của mỗi dịch vụ là tổng có trọng số của ba nguồn trên. Chỉ M = 5 dịch vụ có điểm cao nhất được mô tả chi tiết; các dịch vụ còn lại chỉ có một dòng tóm tắt.
+P0059 Incident card và ngân sách token: định dạng JSON gọn, gồm summary, services[], call_graph và timeline, với ngân sách cứng khoảng 4.000 token. Token được chia theo thứ hạng: dịch vụ xếp hạng cao được nhiều token hơn. Khi vượt ngân sách, cắt bớt từ dịch vụ có hạng thấp nhất. Mỗi bằng chứng có một mã (evidence id) để LLM trích dẫn.
+P0061 Hình 2. Quy trình nén và biến đổi telemetry thành incident card
+P0062 Hiệu quả nén được đo bằng số token trung bình, tỷ lệ nén (token thô / token sau nén), thời gian xử lý và chi phí suy luận cho mỗi sự cố. Nhóm cũng đo độ phủ của bước pre-ranking, tức tỷ lệ sự cố mà dịch vụ gốc vẫn nằm trong top-M; đây là giới hạn trên của các bước phía sau. Ablation gồm bỏ lần lượt từng nguồn dữ liệu và thay đổi ngân sách token (1k/2k/4k/8k), rồi so sánh AC@k.
+P0063 5.4. Cơ chế Hybrid Retrieval
+P0064 Corpus truy hồi gồm hai phần: (i) tài liệu vận hành, tức mô tả kiến trúc Online Boutique, vai trò và phụ thuộc của từng dịch vụ, và runbook viết theo từng loại lỗi, không gắn với dịch vụ cụ thể để tránh lộ đáp án; (ii) kho sự cố lịch sử, tức các incident card của tập huấn luyện kèm nhãn, dùng làm ví dụ few-shot theo kiểu suy luận dựa trên tình huống (case-based reasoning). Để tránh rò rỉ nhãn, dữ liệu được chia 3 fold theo lần lặp, và sự cố đang đánh giá không bao giờ có mặt trong kho truy hồi. Truy vấn được sinh từ incident card, gồm tên dịch vụ, metric bất thường, template log lỗi và cạnh trace bất thường.
+P0065 Nhánh từ khóa (sparse): BM25 [9] với k₁ = 1,2 và b = 0,75. Tokenizer giữ nguyên tên dịch vụ, mã lỗi và tên metric. Nhánh này mạnh khi cần khớp chính xác các định danh như cartservice, OOMKilled, gRPC UNAVAILABLE.
+P0066 Nhánh ngữ nghĩa (dense): mã hóa theo hướng dense retrieval [10] bằng mô hình embedding open-weight bge-m3 [11], chuẩn hóa L2, đo độ tương đồng cosine và tìm kiếm bằng FAISS (IndexFlatIP, vì corpus nhỏ). Nhánh này mạnh khi cùng một triệu chứng được diễn đạt khác nhau, ví dụ “latency tăng” và “slow response”.
+P0067 Thuật toán kết hợp: mỗi nhánh lấy top-50, sau đó hợp nhất bằng Reciprocal Rank Fusion (RRF) [12]. RRF không cần chuẩn hóa điểm giữa hai nhánh và được chọn làm mặc định:
+P0068 score_RRF(d) = Σ_{r ∈ {BM25, dense}} 1 / (k + rank_r(d)),   k = 60
+P0069 Phương án so sánh là kết hợp tuyến tính sau khi chuẩn hóa min-max, với α ∈ [0, 1] được chọn bằng grid search trên fold validation:
+P0070 score_W(d) = α · norm(s_BM25(d)) + (1 − α) · norm(s_dense(d))
+P0071 Xếp hạng lại (tùy chọn): dùng một cross-encoder open-weight để xếp lại top-20 sau fusion. Bước này chỉ được giữ nếu cải thiện nDCG@5 đủ lớn so với chi phí thêm vào. Cuối cùng, top-5 tài liệu được đưa vào prompt của LLM theo mô hình RAG [13].
+P0073 Hình 3. Cơ chế Hybrid Retrieval
+P0074 Ablation bắt buộc gồm: không dùng retrieval, chỉ BM25, chỉ dense, Hybrid-RRF, Hybrid-weighted và Hybrid kèm rerank. Nhóm đo cả chất lượng truy hồi (mục 6.4) và ảnh hưởng của truy hồi đến kết quả định vị (mục 6.3).
+P0075 5.5. Mô hình ngôn ngữ và sinh kết quả
+P0076 Đề tài chỉ dùng LLM open-weight để có thể chạy trên Kaggle/Colab hoặc máy cá nhân, không phụ thuộc API trả phí. Mô hình sinh dự kiến thuộc cỡ 7–8B, lượng tử hóa 4-bit, ví dụ Qwen2.5-7B-Instruct [16], và được phục vụ bằng vLLM hoặc Ollama. Prompt gồm incident card, các tài liệu đã truy hồi và lược đồ JSON đầu ra. Đầu ra được kiểm tra theo lược đồ và được sinh lại nếu sai định dạng. Nếu mô hình nền chưa đạt yêu cầu, nhóm thử tinh chỉnh nhẹ bằng LoRA [15] trên fold huấn luyện; đây là thành phần tùy chọn. Nhóm bắt đầu từ các baseline đơn giản để tách bạch phần cải thiện đến từ dữ liệu, từ truy hồi hay từ mô hình sinh.
+P0077 5.6. Quy trình MLOps/DevOps và triển khai trên Kubernetes
+P0078 DVC [19]: quản lý phiên bản dữ liệu RE2-OB, incident card và chỉ mục truy hồi. Pipeline được khai báo trong dvc.yaml gồm các stage preprocess → build_index → infer → evaluate, nên có thể tái lập toàn bộ thí nghiệm bằng lệnh dvc repro.
+P0079 MLflow [18]: mỗi lần chạy ghi lại tham số (mô hình, phiên bản prompt, W/K/N/M, ngân sách token, cấu hình fusion, có dùng rerank hay không), độ đo (các độ đo ở mục 6, số token, độ trễ) và artifact (file dự đoán, confusion matrix). Nếu có fine-tune thì dùng thêm Model Registry để quản lý adapter LoRA.
+P0080 API suy luận và Docker: FastAPI cung cấp endpoint POST /analyze, trả về JSON như mục 4.2, và được đóng gói thành Docker image.
+P0081 GitHub Actions: chạy lint và unit test cho phần tiền xử lý và hàm tính độ đo; chạy đánh giá hồi quy trên tập nhỏ (khoảng 5 sự cố, dùng output đã cache) với điều kiện AC@3 không giảm; build image và đẩy lên GHCR khi merge vào nhánh main.
+P0082 Kubernetes: Detector và Analyzer được triển khai bằng manifest hoặc Helm trên cụm kind/minikube chạy Online Boutique. Nếu cụm không có GPU, LLM chạy ở một máy có GPU và Analyzer gọi tới qua endpoint cấu hình được. Nhóm dùng Chaos Mesh để tiêm 2–3 loại lỗi (CPU, memory, network delay) và demo toàn bộ luồng phát hiện → phân tích → kết quả.
+P0083 5.7. Công nghệ sử dụng
+P0084 Thành phần
+P0085 Công nghệ
+P0086 Xử lý dữ liệu
+P0087 Python, pandas, NumPy, Drain3, scikit-learn (Isolation Forest)
+P0088 Truy hồi
+P0089 bm25s / rank_bm25, bge-m3, FAISS, cross-encoder (tùy chọn)
+P0090 LLM
+P0091 Mô hình open-weight 7–8B (ví dụ Qwen2.5-7B-Instruct), vLLM/Ollama, PEFT-LoRA (tùy chọn)
+P0092 MLOps/DevOps
+P0093 DVC, MLflow, FastAPI, Docker, GitHub Actions
+P0094 Hạ tầng
+P0095 Kubernetes (kind/minikube), Prometheus, Loki, Jaeger/OpenTelemetry, Chaos Mesh
+P0096 Môi trường tính toán
+P0097 Máy cá nhân, Kaggle/Colab GPU
+P0099 6. Cách đánh giá
+P0100 6.1. Thiết lập thực nghiệm
+P0101 Dữ liệu RE2-OB được chia 3 fold theo lần lặp: mỗi fold dùng hai lần lặp để tinh chỉnh và làm kho truy hồi, lần lặp còn lại để kiểm tra. Kết quả là trung bình của 3 fold. Mọi lần chạy đều được ghi vào MLflow.
+P0102 6.2. Phát hiện sự cố
+P0103 Nhóm báo cáo Precision, Recall, F1 và tỷ lệ báo động giả (FPR) trên tập cửa sổ bình thường và bất thường, cùng thời gian phát hiện là khoảng cách từ thời điểm tiêm lỗi đến lúc Detector báo. Hai phương pháp z-score và Isolation Forest được so sánh với nhau.
+P0104 6.3. Định vị dịch vụ gốc và phân loại lỗi
+P0105 Ký hiệu N là số sự cố; với sự cố i, R_i là tập dịch vụ gốc thật và rank_i(s) là thứ hạng hệ thống gán cho dịch vụ s. Các độ đo gồm:
+P0106 Top-k Accuracy (AC@k), với k ∈ {1, 3, 5}: tỷ lệ sự cố có dịch vụ gốc nằm trong top-k.
+P0107 AC@k = (1/N) · Σᵢ 𝟙[∃ s ∈ Rᵢ : rankᵢ(s) ≤ k]
+P0108 Avg@5: trung bình AC@1 đến AC@5. Đây là độ đo tổng hợp mà RCAEval sử dụng, giúp so sánh trực tiếp với các baseline của benchmark.
+P0109 Avg@5 = (1/5) · Σ_{k=1..5} AC@k
+P0110 Mean Reciprocal Rank (MRR): trung bình nghịch đảo thứ hạng của dịch vụ gốc đầu tiên; bằng 0 nếu dịch vụ gốc không có trong danh sách.
+P0111 MRR = (1/N) · Σᵢ 1 / min_{s ∈ Rᵢ} rankᵢ(s)
+P0112 Mean Average Precision (MAP):
+P0113 MAP = (1/N) · Σᵢ APᵢ,   APᵢ = (1/|Rᵢ|) · Σ_{s ∈ Rᵢ} Precision@rankᵢ(s)
+P0114 Mỗi sự cố của RE2-OB chỉ có một dịch vụ gốc (|R_i| = 1), khi đó AP_i = 1/rank_i và MAP trùng với MRR. MAP vẫn được báo cáo để dùng khi mở rộng sang sự cố có nhiều dịch vụ liên quan, và để đánh giá bước truy hồi, nơi mỗi truy vấn có nhiều tài liệu liên quan.
+P0115 Phân loại lỗi: Accuracy và macro-F1 trên 6 lớp, kèm confusion matrix.
+P0116 Chi phí: độ trễ và số token cho mỗi sự cố.
+P0117 6.4. Chất lượng truy hồi
+P0118 Nhóm dùng Recall@5, MRR và nDCG@5. Một tài liệu được xem là liên quan nếu đó là runbook đúng loại lỗi, hoặc là sự cố lịch sử có cùng dịch vụ gốc hoặc cùng loại lỗi. Nhãn liên quan được suy ra tự động từ nhãn của dataset, nên không cần gán nhãn thủ công.
+P0119 6.5. Khung đánh giá giải thích hai tầng
+P0120 Trước khi chấm, một bước kiểm tra tất định xác nhận rằng mọi evidence id được trích dẫn đều tồn tại trong incident card hoặc trong tài liệu đã truy hồi. Tỷ lệ trích dẫn hợp lệ là một chỉ số riêng. Sau đó, kết quả đi qua hai tầng (Hình 4).
+P0121 Tầng 1 – LLM-as-a-Judge [14]: chấm toàn bộ giải thích theo rubric có trọng số (Bảng 1), mỗi tiêu chí trên thang 1–5. Điểm tổng S = Σ w_j · s_j được chuẩn hóa về [0, 1]. Judge là một mô hình open-weight khác họ với mô hình sinh (ví dụ Llama-3.1-8B-Instruct) để tránh thiên lệch tự ưu tiên. Prompt của judge có rubric và ví dụ neo cho từng mức điểm, yêu cầu viết lập luận trước khi cho điểm, và mỗi giải thích được chấm 3 lần với temperature > 0. Độ tin cậy của kết quả được ước lượng từ độ lệch chuẩn giữa 3 lần chấm.
+P0122 Tiêu chí
+P0123 Mô tả
+P0124 Trọng số
+P0125 Faithfulness
+P0126 Mọi nhận định đều có trong bằng chứng đầu vào
+P0127 0,35
+P0128 Correctness
+P0129 Lập luận nhất quán với dịch vụ gốc và loại lỗi thật
+P0130 0,25
+P0131 Evidence completeness
+P0132 Nêu đủ các tín hiệu chính từ metric, log và trace
+P0133 0,20
+P0134 Actionability
+P0135 Gợi ý bước kiểm tra tiếp theo hợp lý
+P0136 0,10
+P0137 Clarity
+P0138 Ngắn gọn, dễ hiểu với người vận hành
+P0139 0,10
+P0141 Bảng 1. Rubric đánh giá giải thích
+P0142 Quy tắc chuyển sang tầng 2: một kết quả được chuyển khi thỏa một trong bốn điều kiện: (a) độ lệch chuẩn của S giữa 3 lần chấm lớn hơn 0,15; (b) S nằm trong vùng biên [0,4; 0,6]; (c) judge chấm Faithfulness cao nhưng bước kiểm tra tất định phát hiện trích dẫn không hợp lệ; (d) kết quả thuộc mẫu ngẫu nhiên 15% dùng để hiệu chỉnh judge, bao gồm cả những ca judge rất tự tin.
+P0143 Tầng 2 – Chuyên gia thẩm định: giảng viên hướng dẫn và 1–2 người có kinh nghiệm vận hành chấm theo đúng rubric trên. Người chấm không biết điểm của judge và không biết kết quả đến từ phương pháp nào (chấm mù). Tầng 2 giới hạn khoảng 30 ca. Điểm của chuyên gia thay thế điểm của judge ở các ca được chuyển. Độ đồng thuận giữa các chuyên gia được đo bằng Cohen’s κ, giữa judge và chuyên gia bằng Spearman ρ và κ; nếu κ < 0,4 thì nhóm hiệu chỉnh prompt hoặc rubric và báo cáo đây là một phát hiện. Do judge open-weight cỡ nhỏ có thể kém tin cậy hơn các mô hình lớn, tầng 2 đóng vai trò kiểm soát chất lượng quan trọng.
+P0145 Hình 4. Khung đánh giá giải thích hai tầng
+P0146 6.6. Baseline, kiểm định thống kê và phân tích lỗi
+P0147 Baseline: các phương pháp RCA đa nguồn có sẵn trong RCAEval (Multi-source BARO [2], RCD [4], CIRCA [5]; xem thêm khảo sát [3]), một heuristic xếp hạng theo max|z|, và LLM không dùng truy hồi.
+P0148 Kiểm định: vì chỉ có 90 sự cố, nhóm báo khoảng tin cậy 95% bằng bootstrap (1.000 lần lấy mẫu lại) và so sánh từng cặp phương pháp bằng paired bootstrap hoặc kiểm định McNemar cho AC@1.
+P0149 Phân tích lỗi: các ca sai được phân loại theo nguyên nhân: thiếu dữ liệu, triệu chứng lan truyền, nén làm mất bằng chứng, truy hồi sai, hoặc LLM suy luận sai.
+P0150 7. Kết quả dự kiến
+P0151 Pipeline phát hiện sự cố và nén telemetry có thể tái sử dụng, được quản lý phiên bản bằng DVC.
+P0152 Hệ thống phân tích nguyên nhân gốc dùng Hybrid Retrieval và LLM open-weight, trả về danh sách dịch vụ xếp hạng, loại lỗi và giải thích có dẫn bằng chứng.
+P0153 Bảng kết quả định lượng: phát hiện, định vị (AC@1/3/5, Avg@5, MRR, MAP), truy hồi, giải thích hai tầng, cùng các ablation về nén và truy hồi và so sánh với baseline của RCAEval.
+P0154 API suy luận đóng gói Docker, CI bằng GitHub Actions, lịch sử thí nghiệm trên MLflow, và demo end-to-end trên cụm Kubernetes với Chaos Mesh.
+P0155 Phân tích ưu điểm, hạn chế và các trường hợp thất bại.
+P0156 Mức tối thiểu cần đạt: toàn bộ phần đánh giá offline trên RE2-OB, gồm phát hiện, định vị, truy hồi và tầng 1 của đánh giá giải thích. Demo Kubernetes và fine-tune LoRA là các phần có thể thu hẹp nếu thiếu thời gian.
+P0157 8. Các điểm đã điều chỉnh theo góp ý của giảng viên
+P0158 Góp ý
+P0159 Nội dung đã bổ sung
+P0160 Mục
+P0161 Chiến lược nén/tổng hợp telemetry trước khi đưa vào tìm kiếm/LLM
+P0162 Incident card: z-score, Drain template, đồ thị gọi, pre-ranking top-M, ngân sách ~4k token; đo tỷ lệ nén và ablation
+P0163 5.3
+P0164 Kỹ thuật kết hợp tìm kiếm từ khóa và ngữ nghĩa
+P0165 BM25 + bge-m3/FAISS, hợp nhất bằng RRF (k = 60) hoặc kết hợp tuyến tính α, rerank tùy chọn, ablation
+P0166 5.4, 6.4
+P0167 Độ đo cụ thể cho service localization
+P0168 AC@1/3/5, Avg@5, MRR, MAP kèm công thức; bootstrap CI
+P0169 6.3, 6.6
+P0170 Khung đánh giá giải thích định lượng đa tầng
+P0171 Tầng 1 LLM-as-a-Judge với rubric có trọng số; quy tắc chuyển tầng; tầng 2 chuyên gia; Cohen’s κ
+P0172 6.5
+P0173 Tích hợp DevOps/MLOps
+P0174 DVC, MLflow, FastAPI + Docker, GitHub Actions, triển khai trên Kubernetes
+P0175 5.6, 9
+P0177 Nhóm mong được giảng viên góp ý thêm về mức độ cần thiết của fine-tuning so với chỉ dùng Hybrid Retrieval, và về ngưỡng kết quả tối thiểu phù hợp với thời lượng đề tài.
+P0178 9. Hướng mở rộng
+P0179 Triển khai trên cụm Kubernetes nhiều node hoặc trên cloud, với workflow CD tự động triển khai và Analyzer được kích hoạt từ Alertmanager để phân tích sự cố online.
+P0180 Mở rộng sang các hệ thống và dataset khác của RCAEval (Sock Shop, Train Ticket) và các sự cố có nhiều dịch vụ gốc.
+P0181 Theo dõi drift và đánh giá lại định kỳ trên các sự cố mới (continuous evaluation).
+P0182 Tài liệu tham khảo
+P0183 [1]L. Pham, H. Zhang, H. Ha, F. Salim, and X. Zhang, “RCAEval: A benchmark for root cause analysis of microservice systems with telemetry data,” in Companion Proc. ACM Web Conf. 2025 (WWW Companion ’25), 2025, pp. 777–780, doi: 10.1145/3701716.3715290.
+P0184 [2]L. Pham, H. Ha, and H. Zhang, “BARO: Robust root cause analysis for microservices via multivariate Bayesian online change point detection,” Proc. ACM Softw. Eng., vol. 1, no. FSE, pp. 2214–2237, 2024, doi: 10.1145/3660805.
+P0185 [3]L. Pham, H. Ha, and H. Zhang, “Root cause analysis for microservice system based on causal inference: How far are we?,” in Proc. 39th IEEE/ACM Int. Conf. Automated Softw. Eng. (ASE), 2024, pp. 706–715, doi: 10.1145/3691620.3695065.
+P0186 [4]A. Ikram, S. Chakraborty, S. Mitra, S. Saini, S. Bagchi, and M. Kocaoglu, “Root cause analysis of failures in microservices through causal discovery,” in Adv. Neural Inf. Process. Syst. (NeurIPS), vol. 35, 2022, pp. 31158–31170.
+P0187 [5]M. Li, Z. Li, K. Yin, X. Nie, W. Zhang, K. Sui, and D. Pei, “Causal inference-based root cause analysis for online service systems with intervention recognition,” in Proc. 28th ACM SIGKDD Conf. Knowl. Discov. Data Min. (KDD), 2022, pp. 3230–3240, doi: 10.1145/3534678.3539041.
+P0188 [6]Y. Chen et al., “Automatic root cause analysis via large language models for cloud incidents,” in Proc. 19th Eur. Conf. Comput. Syst. (EuroSys), 2024, pp. 674–688, doi: 10.1145/3627703.3629553.
+P0189 [7]P. He, J. Zhu, Z. Zheng, and M. R. Lyu, “Drain: An online log parsing approach with fixed depth tree,” in Proc. IEEE Int. Conf. Web Services (ICWS), 2017, pp. 33–40, doi: 10.1109/ICWS.2017.13.
+P0190 [8]F. T. Liu, K. M. Ting, and Z.-H. Zhou, “Isolation forest,” in Proc. 8th IEEE Int. Conf. Data Mining (ICDM), 2008, pp. 413–422, doi: 10.1109/ICDM.2008.17.
+P0191 [9]S. Robertson and H. Zaragoza, “The probabilistic relevance framework: BM25 and beyond,” Found. Trends Inf. Retr., vol. 3, no. 4, pp. 333–389, 2009, doi: 10.1561/1500000019.
+P0192 [10]V. Karpukhin et al., “Dense passage retrieval for open-domain question answering,” in Proc. Conf. Empirical Methods Natural Lang. Process. (EMNLP), 2020, pp. 6769–6781, doi: 10.18653/v1/2020.emnlp-main.550.
+P0193 [11]J. Chen, S. Xiao, P. Zhang, K. Luo, D. Lian, and Z. Liu, “M3-Embedding: Multi-linguality, multi-functionality, multi-granularity text embeddings through self-knowledge distillation,” 2024, arXiv:2402.03216.
+P0194 [12]G. V. Cormack, C. L. A. Clarke, and S. Buettcher, “Reciprocal rank fusion outperforms Condorcet and individual rank learning methods,” in Proc. 32nd Int. ACM SIGIR Conf. Res. Develop. Inf. Retr., 2009, pp. 758–759, doi: 10.1145/1571941.1572114.
+P0195 [13]P. Lewis et al., “Retrieval-augmented generation for knowledge-intensive NLP tasks,” in Adv. Neural Inf. Process. Syst. (NeurIPS), vol. 33, 2020, pp. 9459–9474.
+P0196 [14]L. Zheng et al., “Judging LLM-as-a-judge with MT-Bench and Chatbot Arena,” in Adv. Neural Inf. Process. Syst. (NeurIPS), vol. 36, 2023, pp. 46595–46623.
+P0197 [15]E. J. Hu et al., “LoRA: Low-rank adaptation of large language models,” in Proc. Int. Conf. Learn. Represent. (ICLR), 2022, arXiv:2106.09685.
+P0198 [16]Qwen Team, “Qwen2.5 technical report,” 2024, arXiv:2412.15115.
+P0199 [17]Google Cloud Platform, “Online Boutique (microservices-demo),” GitHub. Accessed: Sep. 29, 2026. [Online]. Available: https://github.com/GoogleCloudPlatform/microservices-demo
+P0200 [18]MLflow Project, “MLflow documentation.” Accessed: Sep. 29, 2026. [Online]. Available: https://mlflow.org/docs/latest/
+P0201 [19]Iterative, “DVC documentation.” Accessed: Sep. 29, 2026. [Online]. Available: https://dvc.org/doc
+P0202 [20]Chaos Mesh Authors, “Chaos Mesh documentation.” Accessed: Sep. 29, 2026. [Online]. Available: https://chaos-mesh.org/docs/
+MEDIA word/media/image1.png:128163, word/media/image2.png:94588, word/media/image3.png:74925, word/media/image4.png:86976
+COMMENTS False
+TRACKED_CHANGES 0

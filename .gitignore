@@ -1,0 +1,7 @@
+# Full-text PDFs are copyrighted; keep them local only.
+private/
+# Regenerable OpenAlex/Crossref/arXiv response caches (they echo the mailto address).
+plans/*/work/raw/
+__pycache__/
+*.pyc
+~$*

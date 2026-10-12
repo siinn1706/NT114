@@ -1,0 +1,43 @@
+direction_id,criterion,score,reason,sources,scorer
+DA,novelty,5,"Two confirmed gaps (G2, N2) combined; no Q1 or arXiv hit gates retrieval by confidence for microservice RCA","gaps.csv G2 N2 G3; falsification-log.csv G2 N2",claude-draft
+DA,feasibility,4,"7-8B model + BM25/dense index on CPU/Kaggle GPU; cost grows with sampling for confidence (I07)","ideas25.csv I02 I07; P0063-P0076",claude-draft
+DA,evaluability,4,"RCAEval gives AC@k labels on 3 systems; case base for retrieval must be derived by 50/50 split (I04)","ideas25.csv I04; P0100-P0101",claude-draft
+DA,proposal_reuse,5,"Reuses hybrid retrieval 5.4, LLM 5.5, retrieval metrics 6.4 and explanation evaluation 6.5 directly","P0063-P0076; P0117-P0145",claude-draft
+DA,supervisor_fit,4,"3 systems with comparison table; confidence answers 'why this number'; propagation origin not the core","note-29-9.txt lines 1-2, 8; ideas25.csv I06",claude-draft
+DA,q1_publishability,4,"Same-type Q1 papers in corpus: P31 (Complex and Intelligent Systems), P42 and P50 (Results in Engineering), P49 (Applied Artificial Intelligence)","concept-matrix.csv P31 P42 P49 P50; SJR 2025 Q1",claude-draft
+DB,novelty,4,"G2 confirmed but an analogous ablation exists in another domain (P50), so novelty is narrower","gaps.csv G2; P50 Sec 3",claude-draft
+DB,feasibility,5,"Only retrieval configs and one LLM; no training","ideas25.csv I02",claude-draft
+DB,evaluability,5,"AC@k on RCAEval + McNemar on paired cases","ideas25.csv I02 I13",claude-draft
+DB,proposal_reuse,5,"Exactly Proposal 5.4 and 6.4","P0063-P0074; P0117-P0118",claude-draft
+DB,supervisor_fit,3,"Gives % on 3 systems but not 'why diagnosed this way'","note-29-9.txt",claude-draft
+DB,q1_publishability,3,"Empirical-only RCA retrieval study; Q1 precedent P49 (AAI) and P50 (RinE) are benchmark papers","concept-matrix.csv P49 P50",claude-draft
+DC,novelty,3,"G3 partially-filled by P42 (ECE, coverage); difference only in model type and number of systems","gaps.csv G3; P42 Sec 3.3",claude-draft
+DC,feasibility,4,"Post-hoc calibration cheap; multi-sample confidence costs extra calls","ideas25.csv I06 I07",claude-draft
+DC,evaluability,5,"ECE, coverage, selective accuracy are standard and computable from RCAEval labels","ideas25.csv I06",claude-draft
+DC,proposal_reuse,4,"Extends 5.5 and 6.3/6.5; retrieval part of Proposal unused","P0075-P0076; P0104-P0145",claude-draft
+DC,supervisor_fit,5,"Directly answers 'accuracy how many %, why this diagnosis, why this number' on 3 systems","note-29-9.txt line 8",claude-draft
+DC,q1_publishability,4,"P42 (Results in Engineering) and ChatRCA P30 (TOSEM) published trust-oriented RCA","concept-matrix.csv P30 P42",claude-draft
+DD,novelty,4,"N1 confirmed in Q1 for LLM-RCA; non-LLM ARMOR on arXiv and P63 for anomaly detection narrow it","gaps.csv N1",claude-draft
+DD,feasibility,5,"Drop modalities from RCAEval files; no new data","ideas25.csv I11 I22",claude-draft
+DD,evaluability,5,"Same AC@k labels; degradation curves vs missing rate","ideas25.csv I22",claude-draft
+DD,proposal_reuse,3,"Touches 5.3 and 6.6 only","P0053-P0062; P0146-P0149",claude-draft
+DD,supervisor_fit,3,"3 systems and %; does not explain why","note-29-9.txt",claude-draft
+DD,q1_publishability,3,"Precedent P63 (ACM TWEB) is non-LLM anomaly detection","concept-matrix.csv P63",claude-draft
+DE,novelty,3,"N3 and G4 partially-filled; P67 cascade for logs, P18/P45 report cost","gaps.csv N3 G4",claude-draft
+DE,feasibility,4,"Cheap stage can be an existing RCAEval baseline; RL fine-tuning (I15) optional and expensive","ideas25.csv I08 I15",claude-draft
+DE,evaluability,4,"AC@k plus tokens/latency; cost accounting must be defined","ideas25.csv I13",claude-draft
+DE,proposal_reuse,3,"Uses 5.5 and 5.3; retrieval and explanation parts secondary","P0053-P0076",claude-draft
+DE,supervisor_fit,3,"Gives % and cost on 3 systems; little on why","note-29-9.txt",claude-draft
+DE,q1_publishability,4,"Precedent P67 and P09 in TOSEM","concept-matrix.csv P09 P67",claude-draft
+DF,novelty,3,"G7 partially-filled (P45, P30; arXiv JustDiag, OpsCortex)","gaps.csv G7",claude-draft
+DF,feasibility,3,"Needs human raters and agreement study","ideas25.csv I14 I16",claude-draft
+DF,evaluability,2,"No public ground truth for explanations in RCAEval; labels must be created","ideas25.csv I12 I26",claude-draft
+DF,proposal_reuse,4,"Proposal 6.5 already designs a two-tier explanation evaluation","P0119-P0145",claude-draft
+DF,supervisor_fit,4,"Answers 'why diagnosed this way'","note-29-9.txt line 8",claude-draft
+DF,q1_publishability,3,"Precedent P45 (PACMPL) is a DSL paper, not an evaluation paper","concept-matrix.csv P45",claude-draft
+DG,novelty,3,"G6 partially-filled and only abstract-level for the key Q1 paper (UDA-RCL)","gaps.csv G6",claude-draft
+DG,feasibility,3,"Needs tuning per system; few cases per system in RCAEval","ideas25.csv I04 I15",claude-draft
+DG,evaluability,4,"Train-A/test-B splits on RCAEval are well defined","gaps.csv G6",claude-draft
+DG,proposal_reuse,2,"Proposal does not plan cross-system tuning","proposal-paragraphs.txt 5.2-6.6",claude-draft
+DG,supervisor_fit,4,"Directly compares 2-3 applications","note-29-9.txt line 1",claude-draft
+DG,q1_publishability,3,"UDA-RCL in IEEE TSC (abstract only)","gaps.csv G6",claude-draft

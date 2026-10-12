@@ -1,0 +1,470 @@
+arity,combination,n_primary_papers,paper_ids
+1,microservice,18,P07 P08 P09 P10 P18 P29 P30 P31 P37 P42 P45 P55 P56 P57 P58 P63 P65 P71
+1,rca,22,P03 P07 P08 P09 P10 P11 P18 P20 P29 P30 P31 P37 P42 P43 P45 P49 P50 P56 P57 P59 P69 P70
+1,multimodal,16,P07 P08 P09 P18 P20 P29 P30 P31 P37 P42 P45 P51 P55 P56 P57 P63
+1,llm_generative,22,P03 P07 P09 P11 P12 P18 P30 P31 P34 P42 P43 P44 P45 P50 P51 P53 P55 P67 P68 P69 P70 P73
+1,open_weight_llm,14,P03 P09 P11 P12 P31 P34 P44 P50 P51 P53 P55 P67 P68 P69
+1,retrieval,16,P03 P12 P30 P31 P41 P43 P44 P49 P50 P51 P53 P55 P67 P68 P69 P70
+1,retrieval_variants_compared,4,P44 P49 P50 P70
+1,propagation,17,P07 P08 P09 P10 P18 P20 P29 P37 P42 P49 P51 P57 P58 P62 P63 P66 P71
+1,calibrated_confidence,2,P42 P67
+1,explanation_evaluated,9,P03 P30 P43 P44 P45 P50 P51 P68 P70
+1,cost_reported,28,P03 P07 P08 P09 P10 P12 P18 P20 P29 P31 P34 P41 P42 P43 P44 P45 P49 P50 P53 P56 P57 P59 P63 P64 P66 P67 P68 P69
+1,multi_system_2plus,11,P07 P10 P18 P29 P30 P31 P37 P42 P56 P57 P63
+1,rcaeval,2,P18 P45
+1,public_artifact,14,P03 P08 P09 P10 P29 P30 P49 P51 P55 P64 P67 P68 P69 P71
+2,microservice & rca,13,P07 P08 P09 P10 P18 P29 P30 P31 P37 P42 P45 P56 P57
+2,microservice & multimodal,14,P07 P08 P09 P18 P29 P30 P31 P37 P42 P45 P55 P56 P57 P63
+2,microservice & llm_generative,8,P07 P09 P18 P30 P31 P42 P45 P55
+2,microservice & open_weight_llm,3,P09 P31 P55
+2,microservice & retrieval,3,P30 P31 P55
+2,microservice & retrieval_variants_compared,0,
+2,microservice & propagation,12,P07 P08 P09 P10 P18 P29 P37 P42 P57 P58 P63 P71
+2,microservice & calibrated_confidence,1,P42
+2,microservice & explanation_evaluated,2,P30 P45
+2,microservice & cost_reported,12,P07 P08 P09 P10 P18 P29 P31 P42 P45 P56 P57 P63
+2,microservice & multi_system_2plus,11,P07 P10 P18 P29 P30 P31 P37 P42 P56 P57 P63
+2,microservice & rcaeval,2,P18 P45
+2,microservice & public_artifact,7,P08 P09 P10 P29 P30 P55 P71
+2,rca & multimodal,13,P07 P08 P09 P18 P20 P29 P30 P31 P37 P42 P45 P56 P57
+2,rca & llm_generative,13,P03 P07 P09 P11 P18 P30 P31 P42 P43 P45 P50 P69 P70
+2,rca & open_weight_llm,6,P03 P09 P11 P31 P50 P69
+2,rca & retrieval,8,P03 P30 P31 P43 P49 P50 P69 P70
+2,rca & retrieval_variants_compared,3,P49 P50 P70
+2,rca & propagation,11,P07 P08 P09 P10 P18 P20 P29 P37 P42 P49 P57
+2,rca & calibrated_confidence,1,P42
+2,rca & explanation_evaluated,6,P03 P30 P43 P45 P50 P70
+2,rca & cost_reported,18,P03 P07 P08 P09 P10 P18 P20 P29 P31 P42 P43 P45 P49 P50 P56 P57 P59 P69
+2,rca & multi_system_2plus,10,P07 P10 P18 P29 P30 P31 P37 P42 P56 P57
+2,rca & rcaeval,2,P18 P45
+2,rca & public_artifact,8,P03 P08 P09 P10 P29 P30 P49 P69
+2,multimodal & llm_generative,9,P07 P09 P18 P30 P31 P42 P45 P51 P55
+2,multimodal & open_weight_llm,4,P09 P31 P51 P55
+2,multimodal & retrieval,4,P30 P31 P51 P55
+2,multimodal & retrieval_variants_compared,0,
+2,multimodal & propagation,11,P07 P08 P09 P18 P20 P29 P37 P42 P51 P57 P63
+2,multimodal & calibrated_confidence,1,P42
+2,multimodal & explanation_evaluated,3,P30 P45 P51
+2,multimodal & cost_reported,12,P07 P08 P09 P18 P20 P29 P31 P42 P45 P56 P57 P63
+2,multimodal & multi_system_2plus,10,P07 P18 P29 P30 P31 P37 P42 P56 P57 P63
+2,multimodal & rcaeval,2,P18 P45
+2,multimodal & public_artifact,6,P08 P09 P29 P30 P51 P55
+2,llm_generative & open_weight_llm,14,P03 P09 P11 P12 P31 P34 P44 P50 P51 P53 P55 P67 P68 P69
+2,llm_generative & retrieval,14,P03 P12 P30 P31 P43 P44 P50 P51 P53 P55 P67 P68 P69 P70
+2,llm_generative & retrieval_variants_compared,3,P44 P50 P70
+2,llm_generative & propagation,5,P07 P09 P18 P42 P51
+2,llm_generative & calibrated_confidence,2,P42 P67
+2,llm_generative & explanation_evaluated,9,P03 P30 P43 P44 P45 P50 P51 P68 P70
+2,llm_generative & cost_reported,16,P03 P07 P09 P12 P18 P31 P34 P42 P43 P44 P45 P50 P53 P67 P68 P69
+2,llm_generative & multi_system_2plus,5,P07 P18 P30 P31 P42
+2,llm_generative & rcaeval,2,P18 P45
+2,llm_generative & public_artifact,8,P03 P09 P30 P51 P55 P67 P68 P69
+2,open_weight_llm & retrieval,11,P03 P12 P31 P44 P50 P51 P53 P55 P67 P68 P69
+2,open_weight_llm & retrieval_variants_compared,2,P44 P50
+2,open_weight_llm & propagation,2,P09 P51
+2,open_weight_llm & calibrated_confidence,1,P67
+2,open_weight_llm & explanation_evaluated,5,P03 P44 P50 P51 P68
+2,open_weight_llm & cost_reported,11,P03 P09 P12 P31 P34 P44 P50 P53 P67 P68 P69
+2,open_weight_llm & multi_system_2plus,1,P31
+2,open_weight_llm & rcaeval,0,
+2,open_weight_llm & public_artifact,7,P03 P09 P51 P55 P67 P68 P69
+2,retrieval & retrieval_variants_compared,4,P44 P49 P50 P70
+2,retrieval & propagation,2,P49 P51
+2,retrieval & calibrated_confidence,1,P67
+2,retrieval & explanation_evaluated,8,P03 P30 P43 P44 P50 P51 P68 P70
+2,retrieval & cost_reported,12,P03 P12 P31 P41 P43 P44 P49 P50 P53 P67 P68 P69
+2,retrieval & multi_system_2plus,2,P30 P31
+2,retrieval & rcaeval,0,
+2,retrieval & public_artifact,8,P03 P30 P49 P51 P55 P67 P68 P69
+2,retrieval_variants_compared & propagation,1,P49
+2,retrieval_variants_compared & calibrated_confidence,0,
+2,retrieval_variants_compared & explanation_evaluated,3,P44 P50 P70
+2,retrieval_variants_compared & cost_reported,3,P44 P49 P50
+2,retrieval_variants_compared & multi_system_2plus,0,
+2,retrieval_variants_compared & rcaeval,0,
+2,retrieval_variants_compared & public_artifact,1,P49
+2,propagation & calibrated_confidence,1,P42
+2,propagation & explanation_evaluated,1,P51
+2,propagation & cost_reported,12,P07 P08 P09 P10 P18 P20 P29 P42 P49 P57 P63 P66
+2,propagation & multi_system_2plus,8,P07 P10 P18 P29 P37 P42 P57 P63
+2,propagation & rcaeval,1,P18
+2,propagation & public_artifact,7,P08 P09 P10 P29 P49 P51 P71
+2,calibrated_confidence & explanation_evaluated,0,
+2,calibrated_confidence & cost_reported,2,P42 P67
+2,calibrated_confidence & multi_system_2plus,1,P42
+2,calibrated_confidence & rcaeval,0,
+2,calibrated_confidence & public_artifact,1,P67
+2,explanation_evaluated & cost_reported,6,P03 P43 P44 P45 P50 P68
+2,explanation_evaluated & multi_system_2plus,1,P30
+2,explanation_evaluated & rcaeval,1,P45
+2,explanation_evaluated & public_artifact,4,P03 P30 P51 P68
+2,cost_reported & multi_system_2plus,9,P07 P10 P18 P29 P31 P42 P56 P57 P63
+2,cost_reported & rcaeval,2,P18 P45
+2,cost_reported & public_artifact,10,P03 P08 P09 P10 P29 P49 P64 P67 P68 P69
+2,multi_system_2plus & rcaeval,1,P18
+2,multi_system_2plus & public_artifact,3,P10 P29 P30
+2,rcaeval & public_artifact,0,
+3,microservice & rca & multimodal,12,P07 P08 P09 P18 P29 P30 P31 P37 P42 P45 P56 P57
+3,microservice & rca & llm_generative,7,P07 P09 P18 P30 P31 P42 P45
+3,microservice & rca & open_weight_llm,2,P09 P31
+3,microservice & rca & retrieval,2,P30 P31
+3,microservice & rca & retrieval_variants_compared,0,
+3,microservice & rca & propagation,9,P07 P08 P09 P10 P18 P29 P37 P42 P57
+3,microservice & rca & calibrated_confidence,1,P42
+3,microservice & rca & explanation_evaluated,2,P30 P45
+3,microservice & rca & cost_reported,11,P07 P08 P09 P10 P18 P29 P31 P42 P45 P56 P57
+3,microservice & rca & multi_system_2plus,10,P07 P10 P18 P29 P30 P31 P37 P42 P56 P57
+3,microservice & rca & rcaeval,2,P18 P45
+3,microservice & rca & public_artifact,5,P08 P09 P10 P29 P30
+3,microservice & multimodal & llm_generative,8,P07 P09 P18 P30 P31 P42 P45 P55
+3,microservice & multimodal & open_weight_llm,3,P09 P31 P55
+3,microservice & multimodal & retrieval,3,P30 P31 P55
+3,microservice & multimodal & retrieval_variants_compared,0,
+3,microservice & multimodal & propagation,9,P07 P08 P09 P18 P29 P37 P42 P57 P63
+3,microservice & multimodal & calibrated_confidence,1,P42
+3,microservice & multimodal & explanation_evaluated,2,P30 P45
+3,microservice & multimodal & cost_reported,11,P07 P08 P09 P18 P29 P31 P42 P45 P56 P57 P63
+3,microservice & multimodal & multi_system_2plus,10,P07 P18 P29 P30 P31 P37 P42 P56 P57 P63
+3,microservice & multimodal & rcaeval,2,P18 P45
+3,microservice & multimodal & public_artifact,5,P08 P09 P29 P30 P55
+3,microservice & llm_generative & open_weight_llm,3,P09 P31 P55
+3,microservice & llm_generative & retrieval,3,P30 P31 P55
+3,microservice & llm_generative & retrieval_variants_compared,0,
+3,microservice & llm_generative & propagation,4,P07 P09 P18 P42
+3,microservice & llm_generative & calibrated_confidence,1,P42
+3,microservice & llm_generative & explanation_evaluated,2,P30 P45
+3,microservice & llm_generative & cost_reported,6,P07 P09 P18 P31 P42 P45
+3,microservice & llm_generative & multi_system_2plus,5,P07 P18 P30 P31 P42
+3,microservice & llm_generative & rcaeval,2,P18 P45
+3,microservice & llm_generative & public_artifact,3,P09 P30 P55
+3,microservice & open_weight_llm & retrieval,2,P31 P55
+3,microservice & open_weight_llm & retrieval_variants_compared,0,
+3,microservice & open_weight_llm & propagation,1,P09
+3,microservice & open_weight_llm & calibrated_confidence,0,
+3,microservice & open_weight_llm & explanation_evaluated,0,
+3,microservice & open_weight_llm & cost_reported,2,P09 P31
+3,microservice & open_weight_llm & multi_system_2plus,1,P31
+3,microservice & open_weight_llm & rcaeval,0,
+3,microservice & open_weight_llm & public_artifact,2,P09 P55
+3,microservice & retrieval & retrieval_variants_compared,0,
+3,microservice & retrieval & propagation,0,
+3,microservice & retrieval & calibrated_confidence,0,
+3,microservice & retrieval & explanation_evaluated,1,P30
+3,microservice & retrieval & cost_reported,1,P31
+3,microservice & retrieval & multi_system_2plus,2,P30 P31
+3,microservice & retrieval & rcaeval,0,
+3,microservice & retrieval & public_artifact,2,P30 P55
+3,microservice & retrieval_variants_compared & propagation,0,
+3,microservice & retrieval_variants_compared & calibrated_confidence,0,
+3,microservice & retrieval_variants_compared & explanation_evaluated,0,
+3,microservice & retrieval_variants_compared & cost_reported,0,
+3,microservice & retrieval_variants_compared & multi_system_2plus,0,
+3,microservice & retrieval_variants_compared & rcaeval,0,
+3,microservice & retrieval_variants_compared & public_artifact,0,
+3,microservice & propagation & calibrated_confidence,1,P42
+3,microservice & propagation & explanation_evaluated,0,
+3,microservice & propagation & cost_reported,9,P07 P08 P09 P10 P18 P29 P42 P57 P63
+3,microservice & propagation & multi_system_2plus,8,P07 P10 P18 P29 P37 P42 P57 P63
+3,microservice & propagation & rcaeval,1,P18
+3,microservice & propagation & public_artifact,5,P08 P09 P10 P29 P71
+3,microservice & calibrated_confidence & explanation_evaluated,0,
+3,microservice & calibrated_confidence & cost_reported,1,P42
+3,microservice & calibrated_confidence & multi_system_2plus,1,P42
+3,microservice & calibrated_confidence & rcaeval,0,
+3,microservice & calibrated_confidence & public_artifact,0,
+3,microservice & explanation_evaluated & cost_reported,1,P45
+3,microservice & explanation_evaluated & multi_system_2plus,1,P30
+3,microservice & explanation_evaluated & rcaeval,1,P45
+3,microservice & explanation_evaluated & public_artifact,1,P30
+3,microservice & cost_reported & multi_system_2plus,9,P07 P10 P18 P29 P31 P42 P56 P57 P63
+3,microservice & cost_reported & rcaeval,2,P18 P45
+3,microservice & cost_reported & public_artifact,4,P08 P09 P10 P29
+3,microservice & multi_system_2plus & rcaeval,1,P18
+3,microservice & multi_system_2plus & public_artifact,3,P10 P29 P30
+3,microservice & rcaeval & public_artifact,0,
+3,rca & multimodal & llm_generative,7,P07 P09 P18 P30 P31 P42 P45
+3,rca & multimodal & open_weight_llm,2,P09 P31
+3,rca & multimodal & retrieval,2,P30 P31
+3,rca & multimodal & retrieval_variants_compared,0,
+3,rca & multimodal & propagation,9,P07 P08 P09 P18 P20 P29 P37 P42 P57
+3,rca & multimodal & calibrated_confidence,1,P42
+3,rca & multimodal & explanation_evaluated,2,P30 P45
+3,rca & multimodal & cost_reported,11,P07 P08 P09 P18 P20 P29 P31 P42 P45 P56 P57
+3,rca & multimodal & multi_system_2plus,9,P07 P18 P29 P30 P31 P37 P42 P56 P57
+3,rca & multimodal & rcaeval,2,P18 P45
+3,rca & multimodal & public_artifact,4,P08 P09 P29 P30
+3,rca & llm_generative & open_weight_llm,6,P03 P09 P11 P31 P50 P69
+3,rca & llm_generative & retrieval,7,P03 P30 P31 P43 P50 P69 P70
+3,rca & llm_generative & retrieval_variants_compared,2,P50 P70
+3,rca & llm_generative & propagation,4,P07 P09 P18 P42
+3,rca & llm_generative & calibrated_confidence,1,P42
+3,rca & llm_generative & explanation_evaluated,6,P03 P30 P43 P45 P50 P70
+3,rca & llm_generative & cost_reported,10,P03 P07 P09 P18 P31 P42 P43 P45 P50 P69
+3,rca & llm_generative & multi_system_2plus,5,P07 P18 P30 P31 P42
+3,rca & llm_generative & rcaeval,2,P18 P45
+3,rca & llm_generative & public_artifact,4,P03 P09 P30 P69
+3,rca & open_weight_llm & retrieval,4,P03 P31 P50 P69
+3,rca & open_weight_llm & retrieval_variants_compared,1,P50
+3,rca & open_weight_llm & propagation,1,P09
+3,rca & open_weight_llm & calibrated_confidence,0,
+3,rca & open_weight_llm & explanation_evaluated,2,P03 P50
+3,rca & open_weight_llm & cost_reported,5,P03 P09 P31 P50 P69
+3,rca & open_weight_llm & multi_system_2plus,1,P31
+3,rca & open_weight_llm & rcaeval,0,
+3,rca & open_weight_llm & public_artifact,3,P03 P09 P69
+3,rca & retrieval & retrieval_variants_compared,3,P49 P50 P70
+3,rca & retrieval & propagation,1,P49
+3,rca & retrieval & calibrated_confidence,0,
+3,rca & retrieval & explanation_evaluated,5,P03 P30 P43 P50 P70
+3,rca & retrieval & cost_reported,6,P03 P31 P43 P49 P50 P69
+3,rca & retrieval & multi_system_2plus,2,P30 P31
+3,rca & retrieval & rcaeval,0,
+3,rca & retrieval & public_artifact,4,P03 P30 P49 P69
+3,rca & retrieval_variants_compared & propagation,1,P49
+3,rca & retrieval_variants_compared & calibrated_confidence,0,
+3,rca & retrieval_variants_compared & explanation_evaluated,2,P50 P70
+3,rca & retrieval_variants_compared & cost_reported,2,P49 P50
+3,rca & retrieval_variants_compared & multi_system_2plus,0,
+3,rca & retrieval_variants_compared & rcaeval,0,
+3,rca & retrieval_variants_compared & public_artifact,1,P49
+3,rca & propagation & calibrated_confidence,1,P42
+3,rca & propagation & explanation_evaluated,0,
+3,rca & propagation & cost_reported,10,P07 P08 P09 P10 P18 P20 P29 P42 P49 P57
+3,rca & propagation & multi_system_2plus,7,P07 P10 P18 P29 P37 P42 P57
+3,rca & propagation & rcaeval,1,P18
+3,rca & propagation & public_artifact,5,P08 P09 P10 P29 P49
+3,rca & calibrated_confidence & explanation_evaluated,0,
+3,rca & calibrated_confidence & cost_reported,1,P42
+3,rca & calibrated_confidence & multi_system_2plus,1,P42
+3,rca & calibrated_confidence & rcaeval,0,
+3,rca & calibrated_confidence & public_artifact,0,
+3,rca & explanation_evaluated & cost_reported,4,P03 P43 P45 P50
+3,rca & explanation_evaluated & multi_system_2plus,1,P30
+3,rca & explanation_evaluated & rcaeval,1,P45
+3,rca & explanation_evaluated & public_artifact,2,P03 P30
+3,rca & cost_reported & multi_system_2plus,8,P07 P10 P18 P29 P31 P42 P56 P57
+3,rca & cost_reported & rcaeval,2,P18 P45
+3,rca & cost_reported & public_artifact,7,P03 P08 P09 P10 P29 P49 P69
+3,rca & multi_system_2plus & rcaeval,1,P18
+3,rca & multi_system_2plus & public_artifact,3,P10 P29 P30
+3,rca & rcaeval & public_artifact,0,
+3,multimodal & llm_generative & open_weight_llm,4,P09 P31 P51 P55
+3,multimodal & llm_generative & retrieval,4,P30 P31 P51 P55
+3,multimodal & llm_generative & retrieval_variants_compared,0,
+3,multimodal & llm_generative & propagation,5,P07 P09 P18 P42 P51
+3,multimodal & llm_generative & calibrated_confidence,1,P42
+3,multimodal & llm_generative & explanation_evaluated,3,P30 P45 P51
+3,multimodal & llm_generative & cost_reported,6,P07 P09 P18 P31 P42 P45
+3,multimodal & llm_generative & multi_system_2plus,5,P07 P18 P30 P31 P42
+3,multimodal & llm_generative & rcaeval,2,P18 P45
+3,multimodal & llm_generative & public_artifact,4,P09 P30 P51 P55
+3,multimodal & open_weight_llm & retrieval,3,P31 P51 P55
+3,multimodal & open_weight_llm & retrieval_variants_compared,0,
+3,multimodal & open_weight_llm & propagation,2,P09 P51
+3,multimodal & open_weight_llm & calibrated_confidence,0,
+3,multimodal & open_weight_llm & explanation_evaluated,1,P51
+3,multimodal & open_weight_llm & cost_reported,2,P09 P31
+3,multimodal & open_weight_llm & multi_system_2plus,1,P31
+3,multimodal & open_weight_llm & rcaeval,0,
+3,multimodal & open_weight_llm & public_artifact,3,P09 P51 P55
+3,multimodal & retrieval & retrieval_variants_compared,0,
+3,multimodal & retrieval & propagation,1,P51
+3,multimodal & retrieval & calibrated_confidence,0,
+3,multimodal & retrieval & explanation_evaluated,2,P30 P51
+3,multimodal & retrieval & cost_reported,1,P31
+3,multimodal & retrieval & multi_system_2plus,2,P30 P31
+3,multimodal & retrieval & rcaeval,0,
+3,multimodal & retrieval & public_artifact,3,P30 P51 P55
+3,multimodal & retrieval_variants_compared & propagation,0,
+3,multimodal & retrieval_variants_compared & calibrated_confidence,0,
+3,multimodal & retrieval_variants_compared & explanation_evaluated,0,
+3,multimodal & retrieval_variants_compared & cost_reported,0,
+3,multimodal & retrieval_variants_compared & multi_system_2plus,0,
+3,multimodal & retrieval_variants_compared & rcaeval,0,
+3,multimodal & retrieval_variants_compared & public_artifact,0,
+3,multimodal & propagation & calibrated_confidence,1,P42
+3,multimodal & propagation & explanation_evaluated,1,P51
+3,multimodal & propagation & cost_reported,9,P07 P08 P09 P18 P20 P29 P42 P57 P63
+3,multimodal & propagation & multi_system_2plus,7,P07 P18 P29 P37 P42 P57 P63
+3,multimodal & propagation & rcaeval,1,P18
+3,multimodal & propagation & public_artifact,4,P08 P09 P29 P51
+3,multimodal & calibrated_confidence & explanation_evaluated,0,
+3,multimodal & calibrated_confidence & cost_reported,1,P42
+3,multimodal & calibrated_confidence & multi_system_2plus,1,P42
+3,multimodal & calibrated_confidence & rcaeval,0,
+3,multimodal & calibrated_confidence & public_artifact,0,
+3,multimodal & explanation_evaluated & cost_reported,1,P45
+3,multimodal & explanation_evaluated & multi_system_2plus,1,P30
+3,multimodal & explanation_evaluated & rcaeval,1,P45
+3,multimodal & explanation_evaluated & public_artifact,2,P30 P51
+3,multimodal & cost_reported & multi_system_2plus,8,P07 P18 P29 P31 P42 P56 P57 P63
+3,multimodal & cost_reported & rcaeval,2,P18 P45
+3,multimodal & cost_reported & public_artifact,3,P08 P09 P29
+3,multimodal & multi_system_2plus & rcaeval,1,P18
+3,multimodal & multi_system_2plus & public_artifact,2,P29 P30
+3,multimodal & rcaeval & public_artifact,0,
+3,llm_generative & open_weight_llm & retrieval,11,P03 P12 P31 P44 P50 P51 P53 P55 P67 P68 P69
+3,llm_generative & open_weight_llm & retrieval_variants_compared,2,P44 P50
+3,llm_generative & open_weight_llm & propagation,2,P09 P51
+3,llm_generative & open_weight_llm & calibrated_confidence,1,P67
+3,llm_generative & open_weight_llm & explanation_evaluated,5,P03 P44 P50 P51 P68
+3,llm_generative & open_weight_llm & cost_reported,11,P03 P09 P12 P31 P34 P44 P50 P53 P67 P68 P69
+3,llm_generative & open_weight_llm & multi_system_2plus,1,P31
+3,llm_generative & open_weight_llm & rcaeval,0,
+3,llm_generative & open_weight_llm & public_artifact,7,P03 P09 P51 P55 P67 P68 P69
+3,llm_generative & retrieval & retrieval_variants_compared,3,P44 P50 P70
+3,llm_generative & retrieval & propagation,1,P51
+3,llm_generative & retrieval & calibrated_confidence,1,P67
+3,llm_generative & retrieval & explanation_evaluated,8,P03 P30 P43 P44 P50 P51 P68 P70
+3,llm_generative & retrieval & cost_reported,10,P03 P12 P31 P43 P44 P50 P53 P67 P68 P69
+3,llm_generative & retrieval & multi_system_2plus,2,P30 P31
+3,llm_generative & retrieval & rcaeval,0,
+3,llm_generative & retrieval & public_artifact,7,P03 P30 P51 P55 P67 P68 P69
+3,llm_generative & retrieval_variants_compared & propagation,0,
+3,llm_generative & retrieval_variants_compared & calibrated_confidence,0,
+3,llm_generative & retrieval_variants_compared & explanation_evaluated,3,P44 P50 P70
+3,llm_generative & retrieval_variants_compared & cost_reported,2,P44 P50
+3,llm_generative & retrieval_variants_compared & multi_system_2plus,0,
+3,llm_generative & retrieval_variants_compared & rcaeval,0,
+3,llm_generative & retrieval_variants_compared & public_artifact,0,
+3,llm_generative & propagation & calibrated_confidence,1,P42
+3,llm_generative & propagation & explanation_evaluated,1,P51
+3,llm_generative & propagation & cost_reported,4,P07 P09 P18 P42
+3,llm_generative & propagation & multi_system_2plus,3,P07 P18 P42
+3,llm_generative & propagation & rcaeval,1,P18
+3,llm_generative & propagation & public_artifact,2,P09 P51
+3,llm_generative & calibrated_confidence & explanation_evaluated,0,
+3,llm_generative & calibrated_confidence & cost_reported,2,P42 P67
+3,llm_generative & calibrated_confidence & multi_system_2plus,1,P42
+3,llm_generative & calibrated_confidence & rcaeval,0,
+3,llm_generative & calibrated_confidence & public_artifact,1,P67
+3,llm_generative & explanation_evaluated & cost_reported,6,P03 P43 P44 P45 P50 P68
+3,llm_generative & explanation_evaluated & multi_system_2plus,1,P30
+3,llm_generative & explanation_evaluated & rcaeval,1,P45
+3,llm_generative & explanation_evaluated & public_artifact,4,P03 P30 P51 P68
+3,llm_generative & cost_reported & multi_system_2plus,4,P07 P18 P31 P42
+3,llm_generative & cost_reported & rcaeval,2,P18 P45
+3,llm_generative & cost_reported & public_artifact,5,P03 P09 P67 P68 P69
+3,llm_generative & multi_system_2plus & rcaeval,1,P18
+3,llm_generative & multi_system_2plus & public_artifact,1,P30
+3,llm_generative & rcaeval & public_artifact,0,
+3,open_weight_llm & retrieval & retrieval_variants_compared,2,P44 P50
+3,open_weight_llm & retrieval & propagation,1,P51
+3,open_weight_llm & retrieval & calibrated_confidence,1,P67
+3,open_weight_llm & retrieval & explanation_evaluated,5,P03 P44 P50 P51 P68
+3,open_weight_llm & retrieval & cost_reported,9,P03 P12 P31 P44 P50 P53 P67 P68 P69
+3,open_weight_llm & retrieval & multi_system_2plus,1,P31
+3,open_weight_llm & retrieval & rcaeval,0,
+3,open_weight_llm & retrieval & public_artifact,6,P03 P51 P55 P67 P68 P69
+3,open_weight_llm & retrieval_variants_compared & propagation,0,
+3,open_weight_llm & retrieval_variants_compared & calibrated_confidence,0,
+3,open_weight_llm & retrieval_variants_compared & explanation_evaluated,2,P44 P50
+3,open_weight_llm & retrieval_variants_compared & cost_reported,2,P44 P50
+3,open_weight_llm & retrieval_variants_compared & multi_system_2plus,0,
+3,open_weight_llm & retrieval_variants_compared & rcaeval,0,
+3,open_weight_llm & retrieval_variants_compared & public_artifact,0,
+3,open_weight_llm & propagation & calibrated_confidence,0,
+3,open_weight_llm & propagation & explanation_evaluated,1,P51
+3,open_weight_llm & propagation & cost_reported,1,P09
+3,open_weight_llm & propagation & multi_system_2plus,0,
+3,open_weight_llm & propagation & rcaeval,0,
+3,open_weight_llm & propagation & public_artifact,2,P09 P51
+3,open_weight_llm & calibrated_confidence & explanation_evaluated,0,
+3,open_weight_llm & calibrated_confidence & cost_reported,1,P67
+3,open_weight_llm & calibrated_confidence & multi_system_2plus,0,
+3,open_weight_llm & calibrated_confidence & rcaeval,0,
+3,open_weight_llm & calibrated_confidence & public_artifact,1,P67
+3,open_weight_llm & explanation_evaluated & cost_reported,4,P03 P44 P50 P68
+3,open_weight_llm & explanation_evaluated & multi_system_2plus,0,
+3,open_weight_llm & explanation_evaluated & rcaeval,0,
+3,open_weight_llm & explanation_evaluated & public_artifact,3,P03 P51 P68
+3,open_weight_llm & cost_reported & multi_system_2plus,1,P31
+3,open_weight_llm & cost_reported & rcaeval,0,
+3,open_weight_llm & cost_reported & public_artifact,5,P03 P09 P67 P68 P69
+3,open_weight_llm & multi_system_2plus & rcaeval,0,
+3,open_weight_llm & multi_system_2plus & public_artifact,0,
+3,open_weight_llm & rcaeval & public_artifact,0,
+3,retrieval & retrieval_variants_compared & propagation,1,P49
+3,retrieval & retrieval_variants_compared & calibrated_confidence,0,
+3,retrieval & retrieval_variants_compared & explanation_evaluated,3,P44 P50 P70
+3,retrieval & retrieval_variants_compared & cost_reported,3,P44 P49 P50
+3,retrieval & retrieval_variants_compared & multi_system_2plus,0,
+3,retrieval & retrieval_variants_compared & rcaeval,0,
+3,retrieval & retrieval_variants_compared & public_artifact,1,P49
+3,retrieval & propagation & calibrated_confidence,0,
+3,retrieval & propagation & explanation_evaluated,1,P51
+3,retrieval & propagation & cost_reported,1,P49
+3,retrieval & propagation & multi_system_2plus,0,
+3,retrieval & propagation & rcaeval,0,
+3,retrieval & propagation & public_artifact,2,P49 P51
+3,retrieval & calibrated_confidence & explanation_evaluated,0,
+3,retrieval & calibrated_confidence & cost_reported,1,P67
+3,retrieval & calibrated_confidence & multi_system_2plus,0,
+3,retrieval & calibrated_confidence & rcaeval,0,
+3,retrieval & calibrated_confidence & public_artifact,1,P67
+3,retrieval & explanation_evaluated & cost_reported,5,P03 P43 P44 P50 P68
+3,retrieval & explanation_evaluated & multi_system_2plus,1,P30
+3,retrieval & explanation_evaluated & rcaeval,0,
+3,retrieval & explanation_evaluated & public_artifact,4,P03 P30 P51 P68
+3,retrieval & cost_reported & multi_system_2plus,1,P31
+3,retrieval & cost_reported & rcaeval,0,
+3,retrieval & cost_reported & public_artifact,5,P03 P49 P67 P68 P69
+3,retrieval & multi_system_2plus & rcaeval,0,
+3,retrieval & multi_system_2plus & public_artifact,1,P30
+3,retrieval & rcaeval & public_artifact,0,
+3,retrieval_variants_compared & propagation & calibrated_confidence,0,
+3,retrieval_variants_compared & propagation & explanation_evaluated,0,
+3,retrieval_variants_compared & propagation & cost_reported,1,P49
+3,retrieval_variants_compared & propagation & multi_system_2plus,0,
+3,retrieval_variants_compared & propagation & rcaeval,0,
+3,retrieval_variants_compared & propagation & public_artifact,1,P49
+3,retrieval_variants_compared & calibrated_confidence & explanation_evaluated,0,
+3,retrieval_variants_compared & calibrated_confidence & cost_reported,0,
+3,retrieval_variants_compared & calibrated_confidence & multi_system_2plus,0,
+3,retrieval_variants_compared & calibrated_confidence & rcaeval,0,
+3,retrieval_variants_compared & calibrated_confidence & public_artifact,0,
+3,retrieval_variants_compared & explanation_evaluated & cost_reported,2,P44 P50
+3,retrieval_variants_compared & explanation_evaluated & multi_system_2plus,0,
+3,retrieval_variants_compared & explanation_evaluated & rcaeval,0,
+3,retrieval_variants_compared & explanation_evaluated & public_artifact,0,
+3,retrieval_variants_compared & cost_reported & multi_system_2plus,0,
+3,retrieval_variants_compared & cost_reported & rcaeval,0,
+3,retrieval_variants_compared & cost_reported & public_artifact,1,P49
+3,retrieval_variants_compared & multi_system_2plus & rcaeval,0,
+3,retrieval_variants_compared & multi_system_2plus & public_artifact,0,
+3,retrieval_variants_compared & rcaeval & public_artifact,0,
+3,propagation & calibrated_confidence & explanation_evaluated,0,
+3,propagation & calibrated_confidence & cost_reported,1,P42
+3,propagation & calibrated_confidence & multi_system_2plus,1,P42
+3,propagation & calibrated_confidence & rcaeval,0,
+3,propagation & calibrated_confidence & public_artifact,0,
+3,propagation & explanation_evaluated & cost_reported,0,
+3,propagation & explanation_evaluated & multi_system_2plus,0,
+3,propagation & explanation_evaluated & rcaeval,0,
+3,propagation & explanation_evaluated & public_artifact,1,P51
+3,propagation & cost_reported & multi_system_2plus,7,P07 P10 P18 P29 P42 P57 P63
+3,propagation & cost_reported & rcaeval,1,P18
+3,propagation & cost_reported & public_artifact,5,P08 P09 P10 P29 P49
+3,propagation & multi_system_2plus & rcaeval,1,P18
+3,propagation & multi_system_2plus & public_artifact,2,P10 P29
+3,propagation & rcaeval & public_artifact,0,
+3,calibrated_confidence & explanation_evaluated & cost_reported,0,
+3,calibrated_confidence & explanation_evaluated & multi_system_2plus,0,
+3,calibrated_confidence & explanation_evaluated & rcaeval,0,
+3,calibrated_confidence & explanation_evaluated & public_artifact,0,
+3,calibrated_confidence & cost_reported & multi_system_2plus,1,P42
+3,calibrated_confidence & cost_reported & rcaeval,0,
+3,calibrated_confidence & cost_reported & public_artifact,1,P67
+3,calibrated_confidence & multi_system_2plus & rcaeval,0,
+3,calibrated_confidence & multi_system_2plus & public_artifact,0,
+3,calibrated_confidence & rcaeval & public_artifact,0,
+3,explanation_evaluated & cost_reported & multi_system_2plus,0,
+3,explanation_evaluated & cost_reported & rcaeval,1,P45
+3,explanation_evaluated & cost_reported & public_artifact,2,P03 P68
+3,explanation_evaluated & multi_system_2plus & rcaeval,0,
+3,explanation_evaluated & multi_system_2plus & public_artifact,1,P30
+3,explanation_evaluated & rcaeval & public_artifact,0,
+3,cost_reported & multi_system_2plus & rcaeval,1,P18
+3,cost_reported & multi_system_2plus & public_artifact,2,P10 P29
+3,cost_reported & rcaeval & public_artifact,0,
+3,multi_system_2plus & rcaeval & public_artifact,0,

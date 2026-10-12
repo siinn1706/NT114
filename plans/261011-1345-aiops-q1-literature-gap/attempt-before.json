@@ -1,0 +1,150 @@
+{
+  "files": {
+    "Proposal.docx": {
+      "bom": "none",
+      "eol": "mixed",
+      "sha256": "70be642e12b318693cd09864b80ed980e0e7bfdc7291fc8e79c11b7795f026a6",
+      "size": 3250589
+    },
+    "figures/hinh-1-kien-truc-tong-the.png": {
+      "bom": "none",
+      "eol": "mixed",
+      "sha256": "ae06317a2b3f1d5511c3d40e9f1548cb279fc869dedcf0da2dbbb1b5e487bc1b",
+      "size": 128163
+    },
+    "figures/hinh-2-nen-telemetry.png": {
+      "bom": "none",
+      "eol": "mixed",
+      "sha256": "acd1c28b66597ff3950fc8f25c5119b0f284e879d484dea2262a9a28d04d85ad",
+      "size": 94588
+    },
+    "figures/hinh-3-hybrid-retrieval.png": {
+      "bom": "none",
+      "eol": "mixed",
+      "sha256": "e50dc5656e3889d1fc6e78d37565ab289632bf7caf8f1d8b3963769f022086a7",
+      "size": 74925
+    },
+    "figures/hinh-4-danh-gia-giai-thich.png": {
+      "bom": "none",
+      "eol": "mixed",
+      "sha256": "7cde6753fe5c1e6124083b7752d8cf37d868ea2b837843dafa0a19e7f3c1ffde",
+      "size": 86976
+    },
+    "note/note-29-9.txt": {
+      "bom": "none",
+      "eol": "crlf",
+      "sha256": "13c549f6e04f75db5b3e6f9cd47587501a8fa0d57658e87bb435ef3caf7d0d84",
+      "size": 476
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-01-telemetry-compression.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "94bf59f7380eb82abc4c3d5e75cb52b650d8f99cbf3d24cf2dceed7cf6a0aba1",
+      "size": 4737
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-02-hybrid-retrieval.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "4009f9486d88e5698e1c5892e2a3715caeba4ab27f81dc146286e9a5478451e9",
+      "size": 4249
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-03-localization-metrics.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "2e7bf9cdbd8a9d26a96dcd63ef7264ba5cfa5635f36911edc3c6ee18d913f9e9",
+      "size": 3255
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-04-explanation-eval-framework.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "0b81f924de9446662b9d2dc367f69367ba10590b3101fa8089cc6ab6e25470c6",
+      "size": 4721
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-05-devops-mlops.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "96cbcd3a1647ef52e023a3004eadbf495856384f9a869ac98d8a84cb75cfd8a4",
+      "size": 3761
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-06-update-proposal-docx.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "35ed76cc9ed5434b72e1a1940241bd315b5bee2b4bb7e6349a779b1f12a098d5",
+      "size": 2928
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-07-fill-de-cuong-nt114.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "bb0a4c9e3df60c3ce96a2025832276107ad2926634c8e33810dd85132d02be35",
+      "size": 4984
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/phase-08-detection-and-k8s-system.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "64e3e85ea93f1deb6988809f03d3f03e863b8dd140586a1356e3e599707b8304",
+      "size": 4049
+    },
+    "plans/260929-1754-cap-nhat-de-xuat-theo-gop-y-gvhd/plan.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "e3212705917bb652661ff2b0e902d8fa3f52d1448713fb5b45fe9bf3b18a68de",
+      "size": 7571
+    },
+    "plans/261005-0008-nckh-q1-rca-lan-truyen-tin-cay/phase-01-khao-sat-va-ho-so-bai.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "ad43116193710156370417bbb3b67f817b87a2e832d3ad45267817e6e2b7c1a1",
+      "size": 3066
+    },
+    "plans/261005-0008-nckh-q1-rca-lan-truyen-tin-cay/phase-02-chay-khung-baseline.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "7e9c3a254be5a610b986b4a122f330a32bae33fe735f20160600d5d649b12319",
+      "size": 2315
+    },
+    "plans/261005-0008-nckh-q1-rca-lan-truyen-tin-cay/phase-03-dinh-vi-theo-lan-truyen.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "0f711e1d31f8f9ab8b804ac968faf5574e1dc4f3462e35a23a015949242b5a9e",
+      "size": 2039
+    },
+    "plans/261005-0008-nckh-q1-rca-lan-truyen-tin-cay/phase-04-do-tin-cay-va-bang-chung.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "2d3b2e7574781e263e955ee27118e248a518d24c5d9da698380dc8f03477b395",
+      "size": 2188
+    },
+    "plans/261005-0008-nckh-q1-rca-lan-truyen-tin-cay/phase-05-thuc-nghiem-day-du.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "e8f38d975a24be55927138e6bcca83a6fdf9c9b07738432b6851834f3ac9bd1c",
+      "size": 1264
+    },
+    "plans/261005-0008-nckh-q1-rca-lan-truyen-tin-cay/phase-06-viet-bai-va-ra-soat.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "9eef0bf68fb5b23d9c12ee39d066e1b3f2dc0d6e938f8a071be7192d6182bcc2",
+      "size": 1218
+    },
+    "plans/261005-0008-nckh-q1-rca-lan-truyen-tin-cay/plan.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "1b81ecbfa042dfa6c68073744ff66494ea47aa2a6bfb3946d32b2bd1e0656ae9",
+      "size": 7229
+    },
+    "plans/reports/research-261005-0008-ban-do-mang-tiem-nang.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "30f6ffa5b774f681467414019a803fd5fda2e0965731aa5b04446131feae96e2",
+      "size": 10252
+    },
+    "plans/reports/research-261005-2138-q1-research-gap.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "4b3de51000647701a36492bd66f8074046114fd4b79becfbeee71b14ecff76b9",
+      "size": 16972
+    }
+  },
+  "links": [],
+  "schema_version": 1
+}

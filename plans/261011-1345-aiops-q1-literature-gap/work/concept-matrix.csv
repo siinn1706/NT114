@@ -1,0 +1,48 @@
+id,venue,year,read_level,survey,metrics,logs,traces,microservice,rca,multimodal,llm_generative,open_weight_llm,retrieval,retrieval_variants_compared,propagation,calibrated_confidence,explanation_evaluated,cost_reported,multi_system_2plus,rcaeval,public_artifact,systems
+P01,ACM Computing Surveys,2025,"targeted-sections (1, 2, 4 overview, 6, ",1,1,1,1,0,0,1,1,0,1,0,0,0,1,1,0,0,0,
+P02,ACM Computing Surveys,2025,"full-text HTML (ACM DL, open access), Se",1,1,1,1,0,0,1,0,0,0,0,1,1,0,1,0,0,0,
+P03,Proceedings of the VLDB Endowment,2024,"targeted-sections (abstract, 1, 5.1, 7, ",0,1,0,0,0,1,0,1,1,1,0,0,0,1,1,0,0,1,
+P04,ACM Computing Surveys,2025,"full (HTML, ACM DL free access; sections",1,1,1,1,1,1,1,0,0,0,0,1,0,0,1,1,0,0,DejaVu|HotelReservation|SockShop|TrainTicket
+P05,ACM Transactions on Software Engineering and Methodology,2025,"targeted-sections (1, 2.1, 5.1-5.5, 6.1 ",1,1,1,1,1,1,1,1,0,1,0,1,0,0,1,0,0,0,AIOpsChallenge
+P06,ACM Computing Surveys,2022,"targeted-sections (abstract, 3.4.2-3.4.4",1,1,1,1,1,1,1,0,0,1,0,1,0,0,1,0,0,0,
+P07,IEEE Transactions on Services Computing,2025,"targeted-sections (abstract, contributio",0,1,1,1,1,1,1,1,0,0,0,1,0,0,1,1,0,0,AIOpsChallenge|OnlineBoutique|SocialNetwork
+P08,ACM Transactions on Software Engineering and Methodology,2025,"full-text HTML (ACM DL, free access), se",0,1,1,1,1,1,1,0,0,0,0,1,0,0,1,0,0,1,AIOpsChallenge
+P09,ACM Transactions on Software Engineering and Methodology,2026,"targeted-sections (abstract, 1, contribu",0,1,0,1,1,1,1,1,1,0,0,1,0,0,1,0,0,1,AIOpsChallenge
+P10,ACM Transactions on Software Engineering and Methodology,2025,"full-text HTML (ACM DL), sections 1, 4, ",0,1,0,0,1,1,0,0,0,0,0,1,0,0,1,1,0,1,DejaVu|TrainTicket
+P11,IEEE Wireless Communications,2026,"targeted-sections (abstract, I, II start",0,1,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,
+P12,ACM Transactions on Software Engineering and Methodology,2025,"targeted-sections (abstract, 3.3, 4.2, 5",0,0,1,0,0,0,0,1,1,1,0,0,0,0,1,0,0,0,
+P13,Computer Science Review,2026,"targeted-sections (abstract, section map",1,1,0,0,1,0,0,1,0,1,0,0,1,0,1,0,0,0,
+P18,IEEE Transactions on Dependable and Secure Computing,2026,"targeted-sections (abstract, contributio",0,1,1,1,1,1,1,1,0,0,0,1,0,0,1,1,1,0,AIOpsChallenge|OnlineBoutique|RCAEval|TrainTicket
+P20,ACM Transactions on Software Engineering and Methodology,2026,"full-text PDF via browser (ACM DL, pdf.j",0,1,1,1,0,1,1,0,0,0,0,1,0,0,1,0,0,0,
+P28,ACM Computing Surveys,2025,"targeted-sections (intro/abstract area, ",1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,
+P29,ACM Transactions on Software Engineering and Methodology,2026,"full-text HTML (ACM DL, open access), se",0,1,1,1,1,1,1,0,0,0,0,1,0,0,1,1,0,1,SocialNetwork|TrainTicket
+P30,ACM Transactions on Software Engineering and Methodology,2026,"targeted-sections (abstract, 1, 5.2-5.5,",0,1,1,1,1,1,1,1,0,1,0,0,0,1,0,1,0,1,GAIA|TrainTicket
+P31,Complex & Intelligent Systems,2025,"targeted-sections (abstract, contributio",0,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,OnlineBoutique|TrainTicket
+P34,Future Generation Computer Systems,2026,"targeted-sections (abstract, section map",0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,
+P37,Journal of King Saud University - Computer and Information Sciences,2026,"targeted-sections (abstract, 1, 5.1-5.2,",0,1,1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,AIOpsChallenge|TrainTicket
+P41,Engineering Applications of Artificial Intelligence,2024,"targeted-sections (abstract, 4.2, 5.3 RQ",0,0,1,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,
+P42,Results in Engineering,2026,"full-text HTML (ScienceDirect OA), targe",0,1,1,1,1,1,1,1,0,0,0,1,1,0,1,1,0,0,AIOpsChallenge|TrainTicket
+P43,IEEE Access,2026,"targeted-sections (abstract, I, experime",0,0,1,0,0,1,0,1,0,1,0,0,0,1,1,0,0,0,
+P44,Machine Learning,2026,"targeted-sections (abstract, 1, 2 start,",0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,0,0,0,
+P45,Proceedings of the ACM on Programming Languages,2026,"full-text HTML (ACM DL, open access), ab",0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,1,0,RCAEval
+P49,Applied Artificial Intelligence,2026,full-text HTML (Taylor & Francis OA via ,0,0,1,0,0,1,0,0,0,1,1,1,0,0,1,0,0,1,
+P50,Results in Engineering,2026,"full-text HTML (ScienceDirect OA), secti",0,0,0,0,0,1,0,1,1,1,1,0,0,1,1,0,0,0,
+P51,Proceedings of the VLDB Endowment,2026,"targeted-sections (abstract, 7.1, Table ",0,1,1,0,0,0,1,1,1,1,0,1,0,1,0,0,0,1,
+P53,Future Generation Computer Systems,2025,full-text HTML (ScienceDirect via browse,0,1,0,0,0,0,0,1,1,1,0,0,0,0,1,0,0,0,
+P55,ACM Transactions on Software Engineering and Methodology,2026,"full-text HTML (ACM DL), Sec 3.4, 4.1-4.",0,1,0,1,1,0,1,1,1,1,0,0,0,0,0,0,0,1,TrainTicket
+P56,ACM Transactions on Software Engineering and Methodology,2024,"full-text HTML (ACM DL), abstract, Sec 4",0,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,0,0,SocialNetwork|TrainTicket
+P57,ACM Transactions on Software Engineering and Methodology,2026,"full-text HTML (ACM DL), abstract, Sec 5",0,1,1,1,1,1,1,0,0,0,0,1,0,0,1,1,0,0,AIOpsChallenge|GAIA|HotelReservation|SockShop
+P58,Journal of Cloud Computing,2024,"targeted-sections (abstract, baseline di",0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,SockShop
+P59,Proceedings of the ACM on Measurement and Analysis of Computing Systems,2020,"full-text PDF via browser (ACM DL, pdf.j",0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,
+P62,Journal of Cloud Computing,2025,"targeted-sections (abstract, dataset lis",0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,
+P63,ACM Transactions on the Web,2026,"full-text HTML (ACM DL), abstract, Sec 3",0,1,1,1,1,0,1,0,0,0,0,1,0,0,1,1,0,0,GAIA|SocialNetwork|TrainTicket
+P64,ACM Transactions on Software Engineering and Methodology,2025,"full-text HTML (ACM DL), abstract, Sec 4",0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,
+P65,Journal of Cloud Computing,2022,"targeted-sections (abstract, conclusion)",0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+P66,Complex & Intelligent Systems,2024,"targeted-sections (abstract, sensitivity",0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,
+P67,ACM Transactions on Software Engineering and Methodology,2026,"full-text HTML (ACM DL), abstract, Sec 3",0,0,1,0,0,0,0,1,1,1,0,0,1,0,1,0,0,1,
+P68,ACM Transactions on Software Engineering and Methodology,2026,full-text PDF via browser (ACM DL Just A,0,0,1,0,0,0,0,1,1,1,0,0,0,1,1,0,0,1,
+P69,ACM Transactions on Software Engineering and Methodology,2026,full-text PDF via browser (ACM DL Just A,0,0,0,0,0,1,0,1,1,1,0,0,0,0,1,0,0,1,
+P70,"Journal of Dynamics, Monitoring and Diagnostics",2026,"targeted-sections (abstract, embedding s",0,0,0,0,0,1,0,1,0,1,1,0,0,1,0,0,0,0,
+P71,Proceedings of the ACM on Measurement and Analysis of Computing Systems,2024,full-text PDF via browser (ACM DL open a,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,1,
+P73,Machine Learning with Applications,2024,full-text HTML (ScienceDirect OA via bro,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+P74,Intelligent Systems with Applications,2025,full-text HTML (ScienceDirect OA via bro,1,0,1,0,0,0,0,1,0,1,1,0,0,0,1,0,0,0,

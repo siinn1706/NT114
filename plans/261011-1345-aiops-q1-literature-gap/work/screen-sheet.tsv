@@ -1,0 +1,602 @@
+idx	core	hint	year	venue	title
+61	2	SYS,DET,RCA,LLM,RET,TEL,EXP,PROP	2025	Complex & Intelligent Systems	Leveraging multi-agent framework for root cause analysis
+155	2	SYS,DET,RCA,LLM,RET,TEL,EXP	2026	ACM Transactions on Software Engineering	LLM4Log: A Systematic Review of Large Language Model-based Log Analysis
+263	2	SYS,DET,RCA,LLM,RET,TEL,EXP	2026	IEEE Transactions on Industrial Informat	Traceability for Autonomous Systems: A Standardized Blockchain-Based Black Box
+8	2	SYS,DET,RCA,TEL,EXP,PROP	2020	IEEE Transactions on Services Computing	Self-Adaptive Root Cause Diagnosis for Large-Scale Microservice Architecture
+35	2	SYS,DET,RCA,TEL,EXP,PROP	2026	ACM Transactions on Software Engineering	CRFD: Causal and Interpretable Fault Diagnosis Using Counterfactual Reasoning for Microservices on Multi-source Observability Data
+65	2	SYS,RCA,LLM,TEL,EXP,PROP	2026	Results in Engineering	Trustworthy root cause analysis for distributed systems via neurosymbolic fusion
+68	2	SYS,RCA,LLM,TEL,EXP,PROP	2025	IEEE Transactions on Industrial Informat	PV-MLLM: A Generalized Intelligent Framework for Zero-Shot Photovoltaic Fault Diagnosis
+82	2	SYS,RCA,LLM,TEL,EXP,PROP	2026	IEEE Access	CausalOpsBench: A Reproducible Interventional-Replay Benchmark for Topology-Aware Operational Incident Response
+154	2	SYS,RCA,LLM,TEL,EXP,PROP	2026	PLOS Digital Health	Augmenting patient safety surveillance in radiation oncology with large language model-based root cause analysis: A proof-of-concept study
+180	2	SYS,DET,LLM,RET,TEL,EXP	2025	Intelligent Systems with Applications	AIOps for log anomaly detection in the era of LLMs: A systematic literature review
+221	2	SYS,DET,RCA,LLM,TEL,PROP	2026	IEEE Access	Breaking the Observability Tax: Dynamic Resolution Anomaly Detection via Topology-Aware Active LLM Agents
+223	2	SYS,DET,RCA,LLM,RET,TEL	2026	Proceedings of the VLDB Endowment	DBAIOps: A Reasoning LLM-Enhanced Database Operation and Maintenance System using Knowledge Graphs
+395	2	SYS,DET,LLM,RET,TEL,EXP	2026	IEEE Open Journal of the Communications 	LLM-Driven Security and Resilience in 6G Mission-Critical Communication Networks
+4	2	SYS,RCA,TEL,EXP,PROP	2024	ACM Transactions on Software Engineering	Interpretable Failure Localization for Microservice Systems Based on Graph Autoencoder
+6	2	SYS,DET,RCA,EXP,PROP	2021	IEEE Transactions on Dependable and Secu	ServiceRank: Root Cause Identification of Anomaly in Large-Scale Microservice Architectures
+7	2	SYS,DET,RCA,LLM,TEL	2025	IEEE Access	Anomaly Detection and Root Cause Analysis in Cloud-Native Environments Using Large Language Models and Bayesian Networks
+10	2	SYS,DET,RCA,TEL,EXP	2026	Cluster Computing	Anomaly detection and root-cause identification in microservices: a survey
+12	2	SYS,DET,RCA,TEL,PROP	2023	Journal of Systems and Software	CausalRCA: Causal inference based precise fine-grained root cause localization for microservice applications
+13	2	SYS,DET,RCA,TEL,PROP	2024	ACM Transactions on Software Engineering	HeMiRCA: Fine-Grained Root Cause Analysis for Microservices with Heterogeneous Data Sources
+25	2	SYS,RCA,LLM,TEL,EXP	2026	IEEE Transactions on Services Computing	LLM-Enhanced Failure Localization in Microservices: Integrating Multi-Modal Data and Expert Interpretation
+28	2	SYS,DET,RCA,TEL,PROP	2025	Journal of Systems and Software	Multivariate anomaly detection and root cause analysis of energy issues in microservice-based systems
+29	2	SYS,DET,RCA,TEL,PROP	2023	IEEE Transactions on Software Engineerin	TrinityRCL: Multi-Granular and Code-Level Root Cause Localization Using Multiple Types of Telemetry Data in Microservice Systems
+33	2	SYS,DET,RCA,TEL,PROP	2025	IEEE Transactions on Services Computing	UDA-RCL: Unsupervised Domain Adaptation for Microservice Root Cause Localization Utilizing Multimodal Data
+38	2	SYS,DET,RCA,TEL,PROP	2026	Journal of King Saud University - Comput	Topo-MFP: Topology-aware multimodal propagation learning for fault detection and root cause localization in microservice systems
+52	2	SYS,DET,RCA,TEL,EXP	2024	Journal of Cloud Computing Advances Syst	MTG_CD: Multi-scale learnable transformation graph for fault classification and diagnosis in microservices
+53	2	SYS,RCA,LLM,TEL,EXP	2026	IEEE Transactions on Services Computing	ORACL : Optimized Reasoning for Autoscaling via Chain of Thought With LLMs for Microservices
+58	2	SYS,DET,RCA,TEL,PROP	2025	IEEE Transactions on Services Computing	HG-PAD: Heterogeneous Graph Structure Learning Aided Performance Anomaly Diagnosis in Microservice Systems
+63	2	SYS,DET,RCA,TEL,PROP	2026	Journal of Artificial Intelligence and S	Graflow: A Microservice Anomaly Detection Method Based on Cross-Modal Feature Fusion and Multi-Scale Graph Attention Networks
+66	2	SYS,DET,RCA,TEL,PROP	2025	IEEE Transactions on Software Engineerin	CARE: Context Aware Root Cause Identification Using Distributed Traces and Profiling Metrics
+73	2	SYS,DET,RCA,LLM,EXP	2024	IEEE Communications Magazine	On Combining XAI and LLMs for Trustworthy Zero-Touch Network and Service Management in 6G
+75	2	SYS,DET,RCA,LLM,TEL	2026	Journal of Systems and Software	LMAT: An adaptive tracing approach based on efficient system behavior analysis using language models
+79	2	SYS,DET,RCA,TEL,PROP	2026	ACM Transactions on Software Engineering	AutoScope: Code Knowledge Enhanced Span-level Sampling for Distributed Tracing
+131	2	SYS,RCA,LLM,TEL,EXP	2026	Machine Learning with Applications	Performance evaluation of large language models for automated knowledge graph generation
+141	2	SYS,RCA,LLM,RET,PROP	2025	Journal of Loss Prevention in the Proces	Domain-augmented large language models for automated root cause classification of offshore process incidents
+162	2	SYS,RCA,LLM,RET,TEL	2026	Meta-Radiology	Applications of Large Language Models in Radiation Oncology: From Workflow Automation to Clinical Intelligence
+192	2	SYS,DET,RCA,LLM,EXP	2026	ACM Transactions on Software Engineering	ChatRCA: A Root Cause Analysis Method via LLMs-based Multi-Agent with Human-in-the-Loop
+210	2	SYS,RCA,LLM,TEL,EXP	2026	Proceedings of the ACM on Programming La	RunbookFX: Type- and Effect-Safe LLM Synthesis for Executable Incident Diagnosis and Mitigation
+211	2	SYS,RCA,LLM,TEL,EXP	2025	IEEE Transactions on Software Engineerin	TARGET: Traffic Rule-Based Test Generation for Autonomous Driving via Validated LLM-Guided Knowledge Extraction
+264	2	SYS,RCA,LLM,TEL,EXP	2024	Pain	AI and the ethics of techno-solutionism in pain management
+343	2	SYS,DET,RCA,RET,TEL	2026	Applied Artificial Intelligence	Quality–Latency Benchmarking of Log-Template Retrieval for GenAI-Assisted Operational RCA
+478	2	SYS,DET,RCA,TEL,PROP	2026	IEEE Access	LogHyper-IB: Spatio-Temporal Hypergraph Representation Learning via Information Bottleneck for Anomaly Detection in Distributed Systems
+1	2	SYS,RCA,TEL,PROP	2023	IEEE Transactions on Services Computing	Robust Failure Diagnosis of Microservice System Through Multimodal Data
+5	2	SYS,DET,RCA,TEL	2020	IEEE Transactions on Network and Service	Workflow-Aware Automatic Fault Diagnosis for Microservice-Based Applications With Statistics
+14	2	SYS,DET,RCA,PROP	2024	IEEE Transactions on Network and Service	MicroNet: Operation Aware Root Cause Identification of Microservice System Anomalies
+17	2	SYS,RCA,TEL,PROP	2025	IEEE Transactions on Services Computing	CIRCA: A Framework for Collaborative Identification of Root Cause Analysis in IoT Microservices
+18	2	SYS,DET,RCA,TEL	2024	IEEE Transactions on Services Computing	No More Data Silos: Unified Microservice Failure Diagnosis With Temporal Knowledge Graph
+19	2	SYS,DET,RCA,TEL	2024	IEEE Transactions on Services Computing	DGERCL: A Dynamic Graph Embedding Approach for Root Cause Localization in Microservice Systems
+22	2	SYS,DET,RCA,TEL	2026	IEEE Access	QROOT: Quantum-Assisted Root Cause Analysis for Enhanced Observability in Microservice Architectures
+26	2	SYS,RCA,TEL,PROP	2026	IEEE Transactions on Big Data	CHASE: A Causal Hypergraph based Framework for Root Cause Analysis in Multimodal Microservice Systems
+30	2	SYS,RCA,LLM,PROP	2026	Expert Systems with Applications	CausaLM-Net: An LLM-guided causal graph and state-space learning framework for fault diagnosis in cloud native 5G base stations
+34	2	SYS,RCA,TEL,PROP	2023	IEEE Transactions on Consumer Electronic	Heterogeneous Data-Driven Failure Diagnosis for Microservice-Based Industrial Clouds Toward Consumer Digital Ecosystems
+42	2	SYS,RCA,TEL,EXP	2026	IEEE Transactions on Dependable and Secu	Separating the Wheat from the Chaff: A Robust Failure Diagnosis for Microservice Systems via Uncertainty-Aware Multimodal Fusion
+43	2	SYS,RCA,EXP,PROP	2026	ACM Transactions on Software Engineering	Fuzzing Microservices in Face of Intrinsic Uncertainties
+44	2	SYS,DET,RCA,TEL	2024	IEEE Transactions on Reliability	Multilayered Fault Detection and Localization With Transformer for Microservice Systems
+45	2	SYS,DET,RCA,TEL	2025	Sustainable Computing Informatics and Sy	An extensible lightweight framework for distributed telemetry of microservices
+46	2	SYS,RCA,TEL,PROP	2026	Scientific Reports	Artificial intelligence enabled behavior modeling and dual-task performance analysis of cloud-native software with fused multi-source heterogeneous da
+47	2	SYS,DET,RCA,PROP	2020	IEEE Access	An Anomaly Detection Algorithm for Microservice Architecture Based on Robust Principal Component Analysis
+48	2	SYS,DET,RCA,TEL	2022	Journal of Cloud Computing Advances Syst	Anomaly detection in microservice environments using distributed tracing data analysis and NLP
+54	2	SYS,DET,RCA,TEL	2022	ACM Computing Surveys	Anomaly Detection and Failure Root Cause Analysis in (Micro) Service-Based Cloud Applications: A Survey
+55	2	SYS,RCA,EXP,PROP	2026	IEEE Access	Semi-Supervised and Disentangled Causal Discovery for Analyzing Fault Propagation in Microservices
+64	2	SYS,DET,RCA,PROP	2026	IEEE Transactions on Services Computing	A Decentralized Root Cause Localization Approach for Edge Computing Environments
+67	2	SYS,DET,RCA,TEL	2025	IEEE Access	Smarter Root Cause Analysis: Enhancing BARO With Outlier Filtering and Ranking Refinement
+71	2	SYS,RCA,LLM,TEL	2025	IEEE Transactions on Services Computing	Surveying Root Cause Analysis Techniques: A Comprehensive Review of Aspects for Multi-Service Applications
+74	2	SYS,DET,RCA,PROP	2025	IEEE Transactions on Cloud Computing	Dynamic QoS-Driven Framework for Co-Scheduling of Distributed Long-Running Applications on Shared Clusters
+76	2	SYS,DET,RCA,TEL	2025	IEEE Communications Magazine	Advanced AI-Driven Automation for Smarter Networks: The Modern Observability Advantage
+78	2	SYS,RCA,LLM,EXP	2025	IEEE Internet of Things Journal	ARM: Autonomous Remediation and Management With LLM Agents for Intent-Driven Control
+89	2	SYS,DET,TEL,PROP	2024	IEEE Access	LMGD: Log-Metric Combined Microservice Anomaly Detection Through Graph-Based Deep Learning
+92	2	SYS,DET,TEL,EXP	2026	IEEE Transactions on Services Computing	Uncertainty-Aware Multimodal Anomaly Detection for Microservice Systems With Active Learning
+93	2	SYS,DET,TEL,PROP	2026	Scientific Reports	Unsupervised learning enables instance-level microservice fault detection using traces and resource metrics
+96	2	SYS,DET,RET,TEL	2026	IEEE Transactions on Services Computing	Multimodal Anomaly Detection for Microservice Systems via Grassmann Manifolds-Based Graph Fusion
+97	2	SYS,DET,TEL,PROP	2025	Journal of Network and Systems Managemen	KANAD: Topologically Adaptive Graph Feature Learning for Multimodal Anomaly Detection in Microservice Systems
+103	2	SYS,DET,TEL,PROP	2026	IEEE Transactions on Services Computing	Microservices Anomaly Detection Based on Adaptive Wavelet Convolutional Networks and Transformer
+104	2	SYS,DET,TEL,PROP	2025	IEEE Transactions on Machine Learning in	Asynchronous Real-Time Federated Learning for Anomaly Detection in Microservice Cloud Applications
+108	2	SYS,DET,TEL,PROP	2024	IEEE Transactions on Software Engineerin	iTCRL: Causal-Intervention-Based Trace Contrastive Representation Learning for Microservice Systems
+110	2	SYS,DET,TEL,EXP	2026	Cybersecurity	Cross: a cloud-native approach to automated remediation and self-healing in cyber-physical systems
+117	2	SYS,DET,TEL,PROP	2020	IEEE Transactions on Neural Networks and	A Spatiotemporal Deep Learning Approach for Unsupervised Anomaly Detection in Cloud Systems
+118	2	SYS,DET,TEL,PROP	2026	ACM Transactions on Software Engineering	Adaptive Anomaly Detection for Multi-Dimensional Issue Reports
+123	2	SYS,DET,LLM,TEL	2026	IEEE Access	Bridging Observability and Security: A Graph-Based Arbitration and Adaptive Sensing Approach via eBPF
+126	2	SYS,DET,TEL,EXP	2026	IEEE Access	AI-Driven Analysis and Mitigation of Control-Plane Signaling Anomalies in Next-Generation Mobile Networks
+134	2	SYS,DET,LLM,TEL	2026	ACM Transactions on Software Engineering	Scalable and Adaptive Log-based Anomaly Detection: A Synergistic Approach
+135	2	SYS,DET,LLM,EXP	2025	Internet of Things	Collective intelligence-based service migration enabling zoom-in functionality within industry 5.0
+244	2	SYS,DET,LLM,EXP	2025	IEEE Access	Multi-Modal Autonomous Drone System for Real-Time Highway Incident Detection and Analysis
+246	2	SYS,RCA,LLM,PROP	2026	ACM Transactions on Internet Technology	Inferring Causality Between Entities and Events from CTI Reports
+421	2	SYS,DET,RET,TEL	2026	Cybersecurity	FusionITD: enhanced cross-modal insider threat perception framework via behavior-semantic fusion
+460	2	SYS,RCA,TEL,EXP	2025	ACM Transactions on Software Engineering	Making Fault Localization in Online Service Systems More Actionable and Interpretable
+466	2	SYS,DET,LLM,EXP	2021	IEEE Transactions on Network and Service	Self-Healing Dilemmas in Distributed Systems: Fault Correction vs. Fault Tolerance
+477	2	SYS,DET,RCA,TEL	2025	IEEE Access	Leveraging Deep Learning for Fault Detection and Localization in Distributed Systems
+481	2	SYS,DET,EXP,PROP	2026	Computers & Electrical Engineering	A multi-stage framework for scalable and context-aware intrusion detection in IoT-cloud systems using deep latent modeling and graph-based attack clas
+537	2	SYS,RCA,LLM,TEL	2025	Journal of Optical Communications and Ne	Experimental demonstration of local AI-Agents for lifecycle management and control automation of optical networks
+598	2	SYS,DET,RCA,TEL	2025	IEEE Transactions on Sustainable Computi	Unsupervised Multi-Target Cross-Service Log Anomaly Detection
+0	2	SYS,RCA,PROP	2024	IEEE Transactions on Cloud Computing	Root Cause Analysis for Cloud-Native Applications
+2	2	SYS,RCA,TEL	2025	ACM Transactions on Software Engineering	Failure Diagnosis in Microservice Systems: A Comprehensive Survey and Analysis
+3	2	SYS,RCA,TEL	2024	IEEE Transactions on Services Computing	Holistic Root Cause Analysis for Failures in Cloud-Native Systems Through Observability Data
+11	2	SYS,RCA,TEL	2025	ACM Computing Surveys	Intelligent Root Cause Localization in MicroService Systems: A Survey and New Perspectives
+15	2	SYS,RCA,PROP	2026	IEEE Transactions on Software Engineerin	TCRCA: Topology-Guided Causal Inference for Root Cause Analysis in Microservices
+16	2	SYS,RCA,TEL	2026	IEEE Transactions on Services Computing	MicroInspect: A Progressive Framework for Metric-Level Root Cause Localization in Microservices
+20	2	SYS,RCA,LLM	2026	IEEE Transactions on Dependable and Secu	Toward In-Depth Root Cause Localization for Microservices With Multi-Agent Recursion-of-Thought
+21	2	SYS,RCA,PROP	2022	Information and Software Technology	FRL-MFPG: Propagation-aware fault root cause location for microservice intelligent operation and maintenance
+23	2	SYS,RCA,LLM	2025	IEEE Transactions on Services Computing	TAMO:Fine-Grained Root Cause Analysis via Tool-Assisted LLM Agent With Multi-Modality Observation Data in Cloud-Native Systems
+24	2	SYS,RCA,LLM	2026	ACM Transactions on Software Engineering	ThinkFL: Self-Refining Failure Localization for Microservice Systems via Reinforcement Fine-Tuning
+31	2	SYS,DET,TEL	2020	Future Generation Computer Systems	Detecting anomalies in microservices with execution trace comparison
+32	2	SYS,RCA,TEL	2025	ACM Transactions on Software Engineering	TVDiag: A Task-oriented and View-invariant Failure Diagnosis Framework for Microservice-based Systems with Multimodal Data
+36	2	SYS,RCA,PROP	2026	IEEE Transactions on Emerging Topics in 	CARAF: Root Cause Analysis Through Granger Causal Graphs With Ambiguous Residual Factors in Microservice Systems
+37	2	SYS,RCA,LLM	2026	IEEE Transactions on Cognitive Communica	Hyperbolic Spatio-Temporal Graph Learning With Agent Reasoning for Root Cause Localization in Cloud-Edge Microservices
+40	2	SYS,RCA,TEL	2026	IEEE Transactions on Reliability	FD-TE Diagnosis: Enhancing Microservice Fault Diagnosis With Frequency Domain Features and Centrality-Aware Time Encoding
+41	2	SYS,RCA,TEL	2025	Cluster Computing	Optimized intention-adaptive graph neural network for robust failure diagnosis of microservice system using multimodal data
+50	2	SYS,RCA,PROP	2024	IEEE Transactions on Services Computing	Diagnosing Performance Issues for Large-Scale Microservice Systems With Heterogeneous Graph
+60	2	SYS,DET,TEL	2025	Journal of Systems and Software	A failure analysis framework to provide pure anomalous data using multi-source data of fault-sensitive microservices
+70	2	SYS,RCA,PROP	2026	Journal of Systems and Software	C-ADL: A causal architecture description language for design-time root cause analysis and counterfactual reasoning in distributed systems
+77	2	SYS,RCA,TEL	2026	Journal of Systems and Software	DTraComp: Comparing distributed execution traces for understanding intermittent latency sources
+80	2	SYS,RCA,PROP	2021	Journal of Responsible Technology	Causality-based accountability mechanisms for socio-technical systems
+81	2	SYS,RCA,PROP	2024	Information and Software Technology	Causal reasoning in Software Quality Assurance: A systematic review
+83	2	SYS,RCA,TEL	2022	Information and Software Technology	Trace visualization within the Software City metaphor: Controlled experiments on program comprehension
+86	2	SYS,DET,TEL	2023	Journal of Systems and Software	ServiceAnomaly: An anomaly detection approach in microservices using distributed traces and profiling metrics
+87	2	SYS,DET,TEL	2026	ACM Transactions on the Web	ADmM: Anomaly Detection for Microservice Systems with Incomplete Metrics
+88	2	SYS,DET,TEL	2023	Computer Communications	TraceGra: A trace-based anomaly detection for microservice using graph deep learning
+90	2	SYS,DET,TEL	2025	Computers & Security	End-to-end anomaly detection of service function chain through multi-source data in cloud-native systems
+91	2	SYS,DET,TEL	2022	Journal of Network and Computer Applicat	Micro2vec: Anomaly detection in microservices systems by mining numeric representations of computer logs
+94	2	SYS,DET,TEL	2025	Information Fusion	Anomaly detection for microservice system via augmented multimodal data and hybrid graph representations
+95	2	SYS,DET,TEL	2025	IEEE Transactions on Network and Service	TraceDAE: Trace-Based Anomaly Detection in Microservice Systems via Dual Autoencoder
+98	2	SYS,DET,TEL	2024	Engineering Applications of Artificial I	An effective failure detection method for microservice-based systems using distributed tracing data
+99	2	SYS,DET,TEL	2026	IEEE Access	Evaluating ML-Based Anomaly Detection on Unified OpenTelemetry Telemetry: An Empirical Study Across Traces, Metrics, and Logs
+100	2	SYS,DET,TEL	2026	IEEE Transactions on Dependable and Secu	TraceDiff: Anomaly Detection on Microservice Traces Through Frequency-Aware Conditional Diffusion Model
+101	2	SYS,DET,TEL	2026	IEEE Transactions on Services Computing	TraceHG: An Unsupervised Dual-View Framework for Microservice Anomaly Detection
+102	2	SYS,DET,TEL	2020	IEEE Access	A Framework of Virtual War Room and Matrix Sketch-Based Streaming Anomaly Detection for Microservice Systems
+109	2	SYS,DET,TEL	2023	Proceedings of the VLDB Endowment	Lindorm TSDB: A Cloud-Native Time-Series Database for Large-Scale Monitoring Systems
+111	2	SYS,DET,TEL	2024	Babylonian Journal of Machine Learning	AI-Powered Anomaly Detection for Kubernetes Security: A Systematic Approach to Identifying Threats
+112	2	SYS,DET,TEL	2025	IEEE Transactions on Services Computing	DALAD: Unsupervised Detection of Global and Local Anomalies in Microservice Systems
+113	2	SYS,DET,TEL	2025	IEEE Transactions on Services Computing	A Comprehensive Benchmark and Empirical Study of Trace Anomaly Detection
+115	2	SYS,DET,TEL	2022	Computers & Security	Anomalous distributed traffic: Detecting cyber security attacks amongst microservices using graph convolutional networks
+116	2	SYS,DET,TEL	2020	Journal of Systems and Software	Scalability Assessment of Microservice Architecture Deployment Configurations: A Domain-based Approach Leveraging Operational Profiles and Load Tests
+119	2	SYS,DET,TEL	2024	IEEE Access	Probabilistic Temporal Fusion Transformers for Large-Scale KPI Anomaly Detection
+120	2	SYS,DET,TEL	2025	Frontiers in Artificial Intelligence	Autonomous cyber-physical security middleware for IoT: anomaly detection and adaptive response in hybrid environments
+121	2	SYS,DET,TEL	2026	Scientific Reports	Optimization of hospital resource scheduling efficiency based on dynamic weighted distance anomaly detection algorithm
+122	2	SYS,DET,TEL	2026	IEEE Access	AutoScaleAI: An AI-Powered Framework for Cloud Resource Optimization Using Telemetry Analytics
+124	2	SYS,DET,TEL	2023	Computational Urban Science	Understanding Policy and Technical Aspects of AI-enabled Smart Video Surveillance to Address Public Safety
+128	2	SYS,DET,TEL	2024	ACM Transactions on Software Engineering	Identifying Performance Issues in Cloud Service Systems Based on Relational-Temporal Features
+130	2	SYS,DET,TEL	2026	Frontiers in Artificial Intelligence	AI-based secure event-driven serverless architecture for scalable digital civic participation platform
+191	2	SYS,RCA,LLM	2026	International Journal of Radiation Oncol	Quantitative Risk Assessment in Radiation Oncology via LLM-Powered Root Cause Analysis of Incident Reports
+265	2	SYS,RCA,LLM	2026	Orthodontics and Craniofacial Research	Patient Harm From Orthodontic Care (Part II): Incident Analysis of Contributory Factors and Perceived Avoidability of Harm
+458	2	SYS,RCA,TEL	2020	IEEE Transactions on Cloud Computing	Automatic Database Troubleshooting of Azure SQL Databases
+461	2	SYS,DET,RCA	2025	Empirical Software Engineering	KPIRoot+: An efficient integrated framework for anomaly detection and root cause analysis in large-scale cloud systems
+462	2	SYS,DET,PROP	2025	Engineering Applications of Artificial I	Anomaly detection in distributed systems based on Spatio-Temporal Causal Inference
+464	2	SYS,DET,TEL	2022	IEEE Transactions on Network and Service	Semi-Supervised Range-Based Anomaly Detection for Cloud Systems
+465	2	SYS,DET,EXP	2023	IEEE Access	Anomaly Detection Using Ensemble Classification and Evidence Theory
+467	2	SYS,DET,EXP	2024	Energy Conversion and Management	Leveraging dynamic power benchmarks and CUSUM charts for enhanced fault detection in distributed PV systems
+468	2	SYS,DET,EXP	2026	Journal of Cloud Computing Advances Syst	An integrated methodology for intrusion detection and mitigation to optimize cloud security
+479	2	SYS,DET,TEL	2022	IEEE Transactions on Dependable and Secu	SwissLog: Robust Anomaly Detection and Localization for Interleaved Unstructured Logs
+579	2	SYS,DET,PROP	2026	IEEE Transactions on Network and Service	Toward Context-Aware Anomaly Detection for AIOps in Microservices Using Dynamic Knowledge Graphs
+595	2	SYS,DET,EXP	2026	IEEE Communications Magazine	Anomalies Detection in Cloud-Native Architectures: Background, State-of-the-Art, and Research Directions
+9	2	SYS,RCA	2024	Journal of Systems and Software	MicroIRC: Instance-level Root Cause Localization for Microservice Systems
+27	2	SYS,RCA	2025	Information and Software Technology	MHP-RCA: Multivariate Hawkes Process-based Root Cause Analysis in microservice systems
+56	2	SYS,DET	2026	Journal of Systems and Software	MODIFy : A multi-modal anomaly diagnosis framework with diffusion-enhanced adaptive fusion in microservices
+69	2	SYS,RCA	2025	Journal of Systems and Software	Overcoming the research-practice gap: Root cause analysis and topics of practical relevance in software architecture and distributed systems
+72	2	SYS,RCA	2022	IEEE Micro	Practical and Scalable ML-Driven Cloud Performance Debugging With Sage
+85	2	SYS,RCA	2024	IEEE Open Journal of the Communications 	In-Sender Reordering Compensation for RACK in Container Overlay Networks
+105	2	SYS,DET	2024	Information Processing & Management	Unsupervised microservice system anomaly detection via contrastive multi-modal representation clustering
+106	2	SYS,DET	2024	Neural Computing and Applications	MADMM: microservice system anomaly detection via multi-modal data and multi-feature extraction
+107	2	SYS,DET	2023	Computer Networks	Graph neural network based robust anomaly detection at service level in SDN driven microservice system
+129	2	SYS,DET	2026	Journal of Intelligent Decision Making a	Design and Implementation of an AI/ML-Enabled Azure Orchestration Framework for Regulated Enterprise Workflows
+133	2	SYS,DET	2025	Neural Networks	Manod: A multi-modal anomaly detection framework for distributed system
+482	2	SYS,DET	2026	IEEE Access	S-Edge: A Multi-Region Edge Computing Framework With Adaptive Data Compression and Dynamic Load Balancing
+483	2	SYS,DET	2025	IEEE Access	Enhancing Predictive Maintenance in Mining Mobile Machinery Through a Hierarchical Inference Network
+597	2	SYS,DET	2023	ACM Transactions on Software Engineering	White-Box Fuzzing RPC-Based APIs with EvoMaster: An Industrial Case Study
+152	1	DET,RCA,LLM,TEL,EXP,PROP	2025	IEEE Internet of Things Journal	Graph Structure-Enhanced Large Language Model for Optical Network Fault Diagnosis: An Explainable Alarm Root Cause Localization Approach
+383	1	DET,LLM,RET,TEL,EXP,PROP	2026	Frontiers in Artificial Intelligence	Eco-FinOps: a causal-agentic framework for energy-efficient and explainable cloud cost optimization
+137	1	RCA,LLM,RET,TEL,EXP	2026	National Science Review	Advancing battery failure diagnosis by knowledge-augmented large language models
+138	1	SYS,LLM,RET,TEL,EXP	2026	Computer Science Review	Large language models for agentic NetOps and AIOps: Architectures, evaluation, and safety
+142	1	RCA,LLM,RET,TEL,EXP	2026	IEEE Wireless Communications	Large Language Models (LLMs) for Telecom Root Cause Analysis (RCA): A Structured Reasoning Framework for Evidence-Grounded Diagnosis
+151	1	RCA,LLM,RET,EXP,PROP	2026	Discover Artificial Intelligence	Interpretable root-cause analysis of construction defects via knowledge-enhanced causal reasoning with large language models
+178	1	RCA,LLM,TEL,EXP,PROP	2026	Engineering Applications of Artificial I	Dynamic knowledge graph enhanced large language model with cascade relation extraction optimized for aviation equipment fault diagnosis
+188	1	DET,RCA,LLM,TEL,PROP	2025	IEEE Internet of Things Journal	A Root Cause Analysis Framework for IoT Based on Dynamic Causal Graphs Assisted by LLMs
+189	1	RCA,LLM,RET,TEL,PROP	2026	ACM Transactions on Software Engineering	LLMRCA: Multilevel Root Cause Analysis for LLM Applications Using Multimodal Observability Data
+208	1	RCA,LLM,TEL,EXP,PROP	2026	Computer Graphics Forum	When the Chain Breaks: Interactive Diagnosis of LLM Chain‐of‐Thought Reasoning Errors
+215	1	RCA,LLM,RET,EXP,PROP	2025	Information Systems Frontiers	Automatic Generation of Job Safety Reports with Explainable RAG-Based LLMs
+218	1	DET,RCA,LLM,TEL,EXP	2026	IEEE Access	Power-Q: A Hybrid Screener-Analyst Framework Using LLM Agents for Real-Time Grid Monitoring and Diagnostics
+278	1	RCA,LLM,TEL,EXP,PROP	2023	Academic Medicine	Foreword: The Next Era of Assessment and Precision Education
+300	1	DET,RCA,LLM,RET,EXP	2026	Chinese Journal of Mechanical Engineerin	Knowledge extraction and retrieval-augmented generation for intelligent maintenance of wind power equipment based on graph attention networks
+314	1	DET,LLM,RET,TEL,EXP	2026	Results in Engineering	Silent-failure detection in RAG pipelines: A controlled fault-injection study of multi-layer quality gates
+423	1	DET,LLM,RET,TEL,EXP	2026	Frontiers in Remote Sensing	Leveraging large language models (LLMs) for GeoAI-enabled digital agro-advisory
+470	1	SYS,LLM,RET,TEL,EXP	2026	JMIR Medical Informatics	Analysis Model for Infant Incubator Adverse Events Using Retrieval-Augmented Generation Combined With Dual-Adapter Fine-Tuning: Development and Evalua
+474	1	SYS,LLM,RET,TEL,EXP	2026	Process Safety and Environmental Protect	Knowledge-augmented large language models to support automated HAZOP report generation
+476	1	SYS,LLM,RET,TEL,EXP	2025	Frontiers in Medicine	Large language models and the future of gastroenterology: dissecting the biopolitics of data in a global health ecosystem
+510	1	DET,RCA,LLM,TEL,EXP	2026	ACM Transactions on Software Engineering	LogReasoner: Empowering LLMs with Expert-like Coarse-to-Fine Reasoning for Automated Log Analysis
+144	1	SYS,LLM,RET,EXP	2026	Transportation Research Part C Emerging 	ELSSA: Explainable large language model-based decision support for public transit incident management
+145	1	DET,RCA,LLM,RET	2024	Proceedings of the VLDB Endowment	D-Bot: Database Diagnosis System using Large Language Models
+161	1	DET,RCA,LLM,TEL	2024	Journal of Optical Communications and Ne	Large language model-based optical network log analysis using LLaMA2 with instruction tuning
+169	1	RCA,LLM,TEL,EXP	2026	Tsinghua Science & Technology	Large Language Model-Driven Symbolic Planning for Long-Horizon Robotic Manipulation Tasks
+172	1	RCA,LLM,TEL,PROP	2025	IEEE Network	ForenSiX: Automated Network Forensics and Diagnostics for Beyond-5G and 6G Networks Using Large Language Models
+181	1	RCA,LLM,RET,TEL	2026	IEEE Access	LLM-Augmented Knowledge Base Construction for Root Cause Analysis
+183	1	DET,LLM,EXP,PROP	2026	Journal of Intelligent Manufacturing	KDACL: A knowledge-data fusion-driven method for interpretable anomaly causal chain construction in process industries using large language models
+187	1	RCA,LLM,RET,TEL	2026	IEEE Access	FlowFixer-EDA: A Tool-Feedback-Augmented Large Language Model Agent for Automated Diagnosis and Repair of Open-Source RTL-to-GDS Design Flow Failures
+190	1	RCA,LLM,RET,TEL	2026	ACM Transactions on Software Engineering	Arash : Token-Efficient LLM-Assisted Crash Root Cause Analysis in Fuzz Driver Generation
+209	1	DET,RCA,LLM,PROP	2026	IEEE Access	Contextualizing Timed Automata via Knowledge Graphs for Agentic LLM-Based Fault Diagnosis
+217	1	RCA,LLM,RET,TEL	2025	Journal of Computing in Civil Engineerin	Using an LLM-Powered Framework for Automatic Risk Identification and Mitigation from Past Claims and Supplemental Agreements
+219	1	RCA,LLM,TEL,PROP	2026	Technological Forecasting and Social Cha	Identifying technological problems and exploring potential solutions to support R&D: Tech-mining with multi-LLM applications
+220	1	RCA,LLM,TEL,PROP	2026	IEEE Transactions on Automation Science 	LLM-Enhanced Intent-Aware for Proactive Decision Support Services in Industrial Activities
+222	1	RCA,LLM,TEL,PROP	2026	Scientific Reports	Causal-aware training with counterfactual supervision and structural causal models improves the robustness of LLM-based vulnerability detection
+232	1	DET,RCA,LLM,EXP	2026	IEEE Transactions on Software Engineerin	Agent System Operations: Categorization, Challenges, and Future Directions
+247	1	RCA,LLM,RET,PROP	2026	ACM Transactions on Software Engineering	BLAgent : Agentic RAG for File-Level Bug Localization
+250	1	RCA,LLM,EXP,PROP	2026	Engineering Construction & Architectural	Understanding the causal dynamics of risk factors in sustainable urban–rural integration: a stage-dependent fuzzy analysis approach
+253	1	DET,RCA,LLM,EXP	2026	IEEE Transactions on Network Science and	Large Models Empowered End-to-End AI for Split Learning in Native AI Future Networks
+256	1	RCA,LLM,TEL,EXP	2025	IEEE Transactions on Software Engineerin	Malo in the Code Jungle: Explainable Fault Localization for Decentralized Applications
+260	1	SYS,LLM,TEL,EXP	2026	Scientific Reports	Overcoming the data desert: generative AI techniques for synthesising anonymised deployment logs in regulated public sectors
+261	1	RCA,LLM,RET,TEL	2026	Developments in the Built Environment	Integrated environmental information system for damp and mould prevention
+266	1	DET,RCA,TEL,EXP	2026	Journal of Systems and Software	InterpLog: Interpretable log-based anomaly detection assisting troubleshooting for system reliability
+271	1	RCA,LLM,TEL,PROP	2026	Frontiers in Bioinformatics	SHACLens: a visualization workflow for SHACL violation exploration in knowledge graphs
+276	1	RCA,LLM,TEL,PROP	2025	Frontiers in Psychology	Psychology's Questionable Research Fundamentals (QRFs): Key problems in quantitative psychology and psychological measurement beyond Questionable Rese
+324	1	SYS,LLM,RET,TEL	2026	Smart Agricultural Technology	An agent-Based service architecture for smart greenhouses: Telemetry analytics and decision support with RAG-grounded LLM agents
+335	1	SYS,LLM,RET,EXP	2026	ACM Transactions on Internet Technology	A Unified Framework for Human–AI Collaboration in Security Operations Centers with Trusted Autonomy
+411	1	SYS,RET,TEL,EXP	2026	IEEE Systems Journal	LandExplorer-CL: An Integrated Vehicle–UAV–Cloud System for Monitoring and Verifying Suspected Illegal Cultivated Land Occupation
+420	1	DET,LLM,RET,TEL	2026	Energy and AI	An open-weight Large Language Model agent for condition monitoring and predictive maintenance in wind energy systems
+469	1	SYS,LLM,RET,EXP	2026	Expert Systems with Applications	DriveLegal: Toward legally compliant driving via trustworthy hybrid retrieval-augmented LLMs
+471	1	SYS,RET,TEL,EXP	2026	IEEE Access	CyberFluxAI: A GenAI-Powered System for Rapid and Explainable Cybersecurity Incident Response
+473	1	SYS,LLM,RET,EXP	2026	Prehospital Emergency Care	Can a Large Language Model Grounded in Text-Based Agency-Specific Prehospital Protocols Provide Accurate Care Recommendations?
+475	1	SYS,RET,TEL,EXP	2026	Frontiers in Built Environment	BuildSafe: a generative AI framework for joint construction safety, permit, and community-impact reasoning from linked NYC DOB-OSHA-311 data
+487	1	DET,LLM,TEL,EXP	2025	Journal of Optical Communications and Ne	Zero-shot forecasting of optical network telemetry using large language models
+490	1	DET,RCA,LLM,TEL	2026	IEEE Transactions on Software Engineerin	LogLLM: Log-based Anomaly Detection Using Large Language Models
+494	1	RCA,LLM,RET,TEL	2026	IEEE Transactions on Network Science and	V2LLM: A Digital-Twin-Aware Retrieval-Augmented Large Language Model for Resilient Telemetry Recovery and Fault Diagnosis in V2X
+518	1	SYS,LLM,TEL,EXP	2025	IEEE Network	LLM-Driven Adaptive Security for the Internet of Energy (IoE)
+521	1	DET,LLM,TEL,EXP	2026	IEEE Internet of Things Journal	LLMEdgeSec: LLM-Enabled Log Reasoning for Zero-Day IoT Threat Detection
+525	1	DET,LLM,TEL,EXP	2025	Proceedings of the VLDB Endowment	LLMLog: Advanced Log Template Generation via LLM-Driven Multi-Round Annotation
+534	1	DET,LLM,TEL,EXP	2026	Cybersecurity	LogLAA: an adaptive integrated log anomaly analysis framework
+538	1	DET,LLM,TEL,EXP	2026	IEEE Transactions on Computers	RELog: Robust and Efficient Anomaly Detection Based on Complete Logs for Large-Scale Systems
+564	1	SYS,LLM,TEL,EXP	2026	Proceedings of the VLDB Endowment	DBAgent: An RL-Based Agent for Autonomous Database Operations and Maintenance
+566	1	RCA,LLM,TEL,EXP	2026	IEEE Access	ANVIL-FL: Runtime-Aware Fault Localization for Code Generation and Debugging
+84	1	DET,LLM,EXP	2026	World Wide Web	DAIMS: a distributed multi-agent framework for explainable anomaly detection in web services using machine learning and semantic reasoning
+146	1	RCA,LLM,EXP	2026	The International Journal of Advanced Ma	Large language models in manufacturing: a comprehensive review
+147	1	RCA,LLM,TEL	2026	Accident Analysis & Prevention	Crash root-cause identification via trace-rewarded causation chain reasoning large language model
+149	1	DET,LLM,EXP	2025	Computers & Chemical Engineering	FaultExplainer: Leveraging large language models for interpretable fault detection and diagnosis
+150	1	RCA,LLM,PROP	2026	Computers & Electrical Engineering	Research on wind turbine fault root cause localization method integrating large language models and causal hypergraphs
+153	1	DET,RCA,LLM	2025	Autonomous Intelligent Systems	Large language models for PHM: a review of optimization techniques and applications
+156	1	RCA,LLM,EXP	2026	IEEE Transactions on Computational Socia	Loki’s Dance of Illusions: A Comprehensive Survey of Hallucination in Large Language Models
+171	1	RCA,LLM,PROP	2026	Chinese Journal of Mechanical Engineerin	Fault inference diagnosis based on causal network and large language model-enhanced knowledge graph network
+179	1	SYS,LLM,RET	2026	IEEE Journal on Selected Areas in Commun	Leveraging LLM for Enhanced Incident Management in Wireless Networks
+193	1	RCA,LLM,EXP	2026	Blockchain Research and Applications	A Learning Framework for Smart Contract Vulnerability and Root Cause Detection
+196	1	RCA,LLM,RET	2026	Results in Engineering	When RAG hurts: Retrieval-augmented generation degrades performance in metallurgical root cause analysis
+199	1	RCA,LLM,TEL	2025	IEEE Transactions on Knowledge and Data 	A Survey of Text-to-SQL in the Era of LLMs: Where Are We, and Where Are We Going?
+203	1	DET,RCA,RET	2026	Journal of Environmental Management	AI-enabled root-cause diagnosis of water quality anomalies in continuous monitoring networks using a retrieval-augmented generation (RAG) approach
+207	1	RCA,LLM,TEL	2026	IEEE Access	Fault Localization Using LLMs With Line-by-Line Program Execution Traces
+213	1	RCA,LLM,RET	2026	ACM Transactions on Software Engineering	vul-rag : Enhancing LLM-based Vulnerability Detection via Knowledge-level RAG
+224	1	RCA,LLM,TEL	2026	Proceedings of the ACM on Programming La	InspectCoder: Dynamic Analysis-Driven Self Repair through Interactive LLM-Debugger Collaboration
+227	1	RCA,LLM,PROP	2026	Journal of Manufacturing Systems	Long causal chain-of-thought for compound fault diagnosis: enhancing hypergraph-based Causal-LLM intervention reasoning
+230	1	RCA,LLM,EXP	2024	ACM Transactions on Software Engineering	When ChatGPT Meets Smart Contract Vulnerability Detection: How Far Are We?
+233	1	SYS,LLM,TEL	2025	IEEE Transactions on Software Engineerin	SemanticLog: Towards Effective and Efficient Large-Scale Semantic Log Parsing
+248	1	RCA,LLM,PROP	2026	Journal of Safety Science and Resilience	Accident causality chain mining: A collaborative multi-agent framework enhanced by knowledge-guided and counterfactual reasoning
+251	1	RCA,LLM,PROP	2026	ACM Transactions on Software Engineering	Understanding Bugs in Model Context Protocol Development Frameworks: An Empirical Study
+254	1	RCA,LLM,EXP	2026	ACM Transactions on Software Engineering	A Unified Framework for Function-Level Vulnerability Detection and Explanation in Smart Contracts
+258	1	RCA,LLM,RET	2026	IEEE Access	Template-to-Text: Hierarchical Structure-Aware Retrieval for Controllable Document Generation
+268	1	RCA,LLM,EXP	2026	Journal of the Association for Informati	Behavioral Deviations in Delivery Delays: Physical and Communication States Modelling in Last-Mile Logistics
+269	1	RCA,LLM,TEL	2026	ACM Transactions on Software Engineering	GHA-Agent: A Multi-Agent Framework for GitHub Actions Log Parsing
+291	1	SYS,LLM,RET	2025	Journal of Computing in Civil Engineerin	Safety Consultation for Prefabricated Construction: A Localized Retrieval-Augmented Generative Question-Answering System
+297	1	SYS,LLM,RET	2025	Journal of Chemical Information and Mode	Materials Dual-Source Knowledge Retrieval-Augmented Generation for Local Large Language Models in Photocatalysts
+309	1	RCA,RET,EXP	2026	Journal of Dynamics Monitoring and Diagn	A Fault Diagnosis-Oriented Data-Driven Embedding Fine-Tuning and Domain-Aware Hybrid Retrieval Method for Intelligent Operation and Maintenance
+313	1	SYS,LLM,RET	2025	IEEE Access	Aligning DevOps and Microservice Architecture: Empirical Mapping, Taxonomy, and RAG-Based Decision Support
+317	1	SYS,RET,EXP	2026	IEEE Transactions on Computers	No Atomics, No Problem. Developing a RAG Pipeline for Shared CXL Memory
+329	1	SYS,LLM,RET	2026	IEEE Access	CarbonWise CX: An Agentic AI Framework for Carbon-Aware Customer Support Analytics Using RAG and LLM-Based Code Generation
+353	1	DET,LLM,RET	2026	CSEE Journal of Power and Energy Systems	Enhancing Information Sensing of Load Forecasting in Cyber-Physical-Social Systems: An Approach with Large Language Model
+364	1	SYS,LLM,RET	2026	Proceedings of the VLDB Endowment	SOS: A High-Performance Distributed Key-Value Store for Large-Scale Online Services
+399	1	SYS,LLM,RET	2025	Journal of Intelligent Transportation Sy	TransitTalk: Large language model-based digital assistants for enhancing transit customer experience and staff performance
+416	1	DET,RET,EXP	2026	IEEE Access	Handover-Induced Risk Peaks in Naval O&M: A CRI-Based Scenario Analysis
+437	1	RCA,TEL,EXP	2025	IEEE Sensors Journal	An Enhanced Digital Twin-Driven Fault Diagnosis Approach Based on Deep Multimodal Information Fusion for Marine Machinery
+488	1	SYS,LLM,TEL	2025	International Journal of Information Sec	Using large language models for template detection from security event logs
+492	1	RCA,LLM,TEL	2025	IEEE Transactions on Software Engineerin	LUK: Empowering Log Understanding With Expert Knowledge From Large Language Models
+509	1	DET,LLM,TEL	2026	Neurocomputing	LogPhi: A multi-level anomaly detection method for heterogeneous logs using large language models and dynamic domain knowledge
+516	1	DET,LLM,TEL	2026	IEEE Transactions on Network Science and	LLM-HGAN: LLM-Enhanced Heterogeneous Graph Attention Networks for Advanced Persistent Threat Detection
+517	1	DET,LLM,TEL	2025	IEEE Access	Telemetry and Agentic AI: Foundations for Optical Network Automation
+524	1	SYS,LLM,TEL	2026	IEEE Access	Decision Accountability in LLM-Driven UAVs: A Privacy-Preserving Forensic Logging Framework
+529	1	DET,LLM,TEL	2026	Journal of Lightwave Technology	Prompt Once, Manage All: A Unified LLM Framework for Multi-Task Optical Link Management
+535	1	DET,LLM,TEL	2025	Information and Software Technology	SemiRALD: A semi-supervised hybrid language model for robust Anomalous Log Detection
+539	1	DET,LLM,TEL	2025	Information and Software Technology	SemiSMAC: A semi-supervised framework for log anomaly detection with automated hyperparameter tuning
+543	1	DET,LLM,TEL	2026	Scientific Reports	Tri-stream multi-model architecture for real-time detection of BeiDou signal manipulation in UAV swarms
+545	1	SYS,LLM,TEL	2026	IEEE Transactions on Mobile Computing	AutoRAN: Automated and Zero-Touch Open RAN Systems
+571	1	RCA,LLM,TEL	2026	Critical Care Nurse	Introducing Technology for Bedside Nurses: A New Department for Critical Care Practice
+49	1	SYS,TEL	2026	Journal of Systems and Software	Microservice logs analysis employing AI: A systematic literature review
+114	1	DET,TEL	2026	Engineering Applications of Artificial I	A lightweight machine learning method for real-time log anomaly detection
+136	1	SYS,LLM	2025	ACM Computing Surveys	A Survey of AIOps in the Era of Large Language Models
+139	1	RCA,LLM	2024	Journal of Intelligent Construction	Automatic Construction Accident Report Analysis Using Large Language Models (LLMs)
+143	1	RCA,LLM	2026	Information and Software Technology	LLMCloc: Compiler bug localization via large language model-based root cause analysis
+148	1	RCA,LLM	2026	International Journal of Radiation Oncol	Augmenting Patient Safety Surveillance in Radiation Oncology with Large Language Model-Based Root Cause Analysis
+157	1	SYS,LLM	2025	ACM Transactions on Software Engineering	Assessing and Advancing Benchmarks for Evaluating Large Language Models in Software Engineering Tasks
+159	1	RCA,LLM	2025	PNAS Nexus	Measuring gender and racial biases in large language models: Intersectional evidence from automated resume evaluation
+164	1	RCA,LLM	2026	Neurocomputing	RePaCA: Leveraging reasoning large language models for static automated patch correctness assessment
+165	1	RCA,LLM	2024	IEEE Transactions on Software Engineerin	FlakyFix: Using Large Language Models for Predicting Flaky Test Fix Categories and Test Code Repair
+166	1	RCA,LLM	2026	ACM Transactions on Software Engineering	Exploring Large Language Models in Resolving Environment-Related Crash Bugs: Localizing and Repairing
+167	1	RCA,LLM	2026	Ground Water	Knowledge‐Augmented Large Language Model for Autonomous MODFLOW 6 Input File Generation
+173	1	SYS,LLM	2025	International Journal of Information Sec	Analysing the role of LLMs in cybersecurity incident management
+174	1	RCA,LLM	2024	Journal of Medical Internet Research	Using Large Language Models to Detect and Understand Drug Discontinuation Events in Web-Based Forums: Development and Validation Study
+175	1	RCA,LLM	2026	IEEE Transactions on Computational Socia	SF-QC: Explore the Selection Bias of Large Language Models in Zero-Shot Out-of-Distribution Intent Detection
+177	1	RCA,LLM	2025	IEEE Journal of Biomedical and Health In	DruGNNosis-MoA: Elucidating Drug Mechanisms as Etiological or Palliative With Graph Neural Networks Employing a Large Language Model
+184	1	RCA,LLM	2026	Engineering Structures	Digital twin-driven intelligent structural fault diagnosis and decision-making for earth-rock dams using large language models
+186	1	RCA,LLM	2025	Digital Scholarship in the Humanities	From Confucius to computational linguistics: quantifying cross-linguistic semantic similarity and semantic fidelity using large language models
+194	1	RCA,LLM	2025	ACM Transactions on Software Engineering	False-Positive Bug Reports in Deep Learning Compilers: Stages, Root Causes, and Mitigation
+197	1	RCA,LLM	2025	IEEE Internet of Things Journal	LLM-Assisted Security Vulnerability Analysis for Educational Websites: Risk Identification via LLM-EduAttackGraph
+198	1	RCA,LLM	2026	ACM Transactions on Software Engineering	A First Look at Bugs in LLM Inference Engines
+202	1	RCA,LLM	2026	Transactions of the Association for Comp	From Belief Entrenchment to Robust Reasoning in LLM Agents
+225	1	RCA,LLM	2026	Computers & Industrial Engineering	Industrial knowledge-enhanced fault diagnosis method: Integrating LLM and knowledge graph for fault reasoning and maintenance recommendation in CNC ma
+228	1	RCA,LLM	2025	ACM Transactions on Software Engineering	ContrastRepair : Enhancing Conversation-Based Automated Program Repair via Contrastive Test Case Pairs
+231	1	DET,RET	2026	Computers & Industrial Engineering	GUIDE: A knowledge-unified framework for assembly anomaly diagnosis via graph-enhanced retrieval-augmented generation
+234	1	RCA,LLM	2026	Decision Analytics Journal	An integrated analytics method for structured accident analysis and safety decision support in construction
+235	1	RCA,LLM	2026	Production Planning & Control	Harnessing Generative Artificial Intelligence for predictive maintenance: a case study in the tyre manufacturing industry
+237	1	SYS,LLM	2026	Safety Science	Identification of hierarchical causation networks for power system security incidents: a feedback-driven multi-agent framework
+238	1	RCA,LLM	2025	AI Open	Optimal RoPE extension via Bayesian Optimization for training-free length generalization
+239	1	RCA,LLM	2025	IEEE Transactions on Biomedical Engineer	Keeping Medical AI Healthy and Trustworthy: A Review of Detection and Correction Methods for System Degradation
+240	1	RCA,LLM	2026	IEEE Consumer Electronics Magazine	Constrained Hybrid AI for Smart Classroom Audiovisual Diagnosis
+241	1	SYS,LLM	2026	Journal of Network and Computer Applicat	Data centers in the age of AI: A tutorial survey on infrastructure, sustainability, and emerging challenges
+242	1	RCA,LLM	2025	IEEE Transactions on Software Engineerin	Evaluating and Improving GPT-Based Expansion of Abbreviations
+245	1	RCA,LLM	2025	IEEE Robotics and Automation Letters	Generative AI for Intelligent Manufacturing Virtual Assistants in the Semiconductor Industry
+255	1	RCA,LLM	2025	IEEE Transactions on Reliability	Insights From Bugs in FPGA High-Level Synthesis Tools: An Empirical Study of Bambu Bugs
+257	1	RCA,LLM	2023	JMIR Medical Education	Assessment of Resident and AI Chatbot Performance on the University of Toronto Family Medicine Residency Progress Test: Comparative Study
+259	1	RCA,LLM	2026	Forest Policy and Economics	Why forest fire management is contested: Global drivers of social conflict
+267	1	RCA,LLM	2026	Galactica Media Journal of Media Studies	Posthuman Sociality of AI-Simulacrum
+270	1	RCA,LLM	2024	ACM Transactions on Software Engineering	History-Driven Fuzzing for Deep Learning Libraries
+277	1	RCA,LLM	2025	Journal of Clinical Oncology	Analysis of data-driven physician engagement and effects on patient recruitment for clinical trial targeting rare gene mutations.
+284	1	SYS,RET	2025	Expert Systems with Applications	Towards enterprise-specific question-answering for IT operations and maintenance based on retrieval-augmented generation mechanism
+292	1	SYS,RET	2025	IEEE Transactions on Software Engineerin	Retrieval-Augmented Fine-Tuning for Improving Retrieve-and-Edit Based Assertion Generation
+296	1	SYS,RET	2026	IEEE Access	GenPdM: A Predictive-to-Decision Framework Integrating LSTM-Based Time-to-Next-Incident Forecasting and Retrieval-Augmented Generation for IT Service 
+391	1	DET,RET	2025	IEEE Transactions on Circuits and System	Delving Into Instance Modeling for Weakly Supervised Video Anomaly Detection
+422	1	DET,RET	2024	Oeconomia Copernicana	Enterprise generative artificial intelligence technologies, Internet of Things and blockchain-based fintech management, and digital twin industrial me
+480	1	DET,TEL	2023	Expert Systems with Applications	Multi-source data based anomaly detection through temporal and spatial characteristics
+498	1	DET,LLM	2025	Journal of Information Security and Appl	Anomaly detection for blockchain nodes based on eBPF and fine-tuning large language model
+569	1	DET,TEL	2026	Future Generation Computer Systems	A Green Hybrid Transformer-based System Log Anomaly Detection Framework for System Security
+574	1	SYS,EXP	2024	IEEE Transactions on Dependable and Secu	MicroFI: Non-Intrusive and Prioritized Request-Level Fault Injection for Microservice Applications
+581	1	SYS,LLM	2026	IEEE Internet Computing	Ten Years of Chaos Engineering … Now What?
+585	1	SYS,TEL	2024	Information and Software Technology	Towards antifragility of cloud systems: An adaptive chaos driven framework
+39	1	SYS	2023	Future Generation Computer Systems	Autonomous selection of the fault classification models for diagnosing microservice applications
+51	1	SYS	2025	Future Generation Computer Systems	Adaptively diagnosing system faults in microservice architecture: An autonomous predictive model construction framework
+57	1	RCA	2024	Expert Systems with Applications	KGroot: A knowledge graph-enhanced method for root cause analysis
+59	1	SYS	2026	Information Processing & Management	Learning general-purpose and robust representations of microservice system states from multi-modal data
+195	1	RCA	2024	Journal of Intelligent Manufacturing	Big GCVAE: decision-making with adaptive transformer model for failure root cause analysis in semiconductor industry
+384	1	RCA	2026	Sustainable Energy Technologies and Asse	A hybrid expert system for photovoltaic fault diagnosis: combining high-precision object detection and knowledge-driven decision support
+403	1	DET	2026	Energy and Buildings	Spatio-temporal detection of building carbon emission anomalies using adaptive encoder-decoder deep learning
+463	1	DET	2026	Measurement	Cross-scale information fusion for fault detection and hierarchical localization of distributed parameter systems
+572	1	SYS	2022	IEEE Access	A Study on the Aging and Fault Tolerance of Microservices in Kubernetes
+573	1	SYS	2025	Cluster Computing	Resilient microservices: an investigation into Istio effectiveness in Kubernetes
+575	1	SYS	2025	IEEE Transactions on Services Computing	A Systematic Literature Review on Fault Injection Testing of Microservice Systems
+576	1	SYS	2026	ACM Transactions on Software Engineering	FastFI: Enhancing API Call-Site Robustness in Microservice-Based Systems with Fault Injection
+577	1	SYS	2025	Computer Standards & Interfaces	Chaos experiments in microservice architectures: A systematic literature review
+578	1	SYS	2021	International Journal of Innovation Stud	ARCHITECTURAL TRADE-OFFS BETWEEN STATELESS AND STATEFUL MICROSERVICES IN LARGE-SCALE CLOUD SYSTEMS
+580	1	SYS	2025	ACM Computing Surveys	Chaos Engineering: A Multi-Vocal Literature Review
+582	1	SYS	2026	PLoS ONE	Microservice architecture based self-service drone aerial photography system for smart cultural tourism: Design and implementation
+583	1	SYS	2023	IEEE Transactions on Software Engineerin	Enhancing Fault Injection Testing of Service Systems via Fault-Tolerance Bottleneck
+584	1	SYS	2026	Journal of Cloud Computing Advances Syst	Empirical chaos-driven approach for cloud resilience and scalability under HTTP DDoS attacks
+588	1	SYS	2021	ACM Transactions on Intelligent Systems 	A Survey of AIOps Methods for Failure Management
+589	1	SYS	2023	ACM Computing Surveys	A Joint Study of the Challenges, Opportunities, and Roadmap of MLOps and AIOps: A Systematic Survey
+596	1	SYS	2025	Cluster Computing	Full stack optimization of microservice architecture: systematic review and research opportunity
+315	0	LLM,RET,TEL,EXP,PROP	2026	IEEE Transactions on Fuzzy Systems	LLM-Driven Multimodal Knowledge Graph Construction for Industrial Process With Prompt Optimization and Fuzzy RAG
+356	0	LLM,RET,TEL,EXP,PROP	2026	IEEE Access	Multimodal Vision–Language Models in Medical Imaging: A Survey of Retrieval, Interpretability, and Trust
+312	0	LLM,RET,TEL,EXP	2025	IEEE Access	KAQG: A Knowledge-Graph-Enhanced RAG for Difficulty-Controlled Question Generation
+322	0	LLM,RET,TEL,PROP	2026	IEEE Access	Standardization and Extreme Boundary Adjustment of Power System Interface Limit Information Using RAG and Large Language Models
+348	0	LLM,RET,TEL,EXP	2026	Journal of Construction Engineering and 	Construction Safety Knowledge Reasoning-Capable Large Language Model for Hydropower and Water Conservancy Engineering
+355	0	LLM,RET,EXP,PROP	2026	Applied Energy	An LLM-driven adaptive scheduling framework for fuel cell cogeneration-based integrated energy systems under source-load uncertainty
+360	0	LLM,RET,TEL,EXP	2026	IEEE Access	Activity-Based Costing Framework for Total Cost of Ownership Analysis of LLM Services
+363	0	LLM,RET,TEL,EXP	2026	Advanced Engineering Informatics	LLMs in industrial domains: A systematic review of adaptation techniques and applications from the product lifecycle perspective
+368	0	LLM,RET,TEL,EXP	2026	ACM Transactions on Internet Technology	Seek and You Shall SOC: Blending Human Expertise with Multimodal Generative AI for Scalable Threat Prevention
+372	0	LLM,RET,TEL,EXP	2026	Smart Agricultural Technology	Hybrid Large Language Model-quantitative model fusion framework for consistency tuning of open-field white radish planting-to-harvesting
+378	0	LLM,RET,TEL,EXP	2025	Computer Networks	Design and evaluation of an Autonomous Cyber Defence agent using DRL and an augmented LLM
+404	0	LLM,RET,TEL,EXP	2026	IEEE Access	Sleipnir: Multi-agent based stock operator framework with interpretability
+405	0	LLM,RET,TEL,EXP	2026	Knowledge-Based Systems	Addressing hallucinations in generative AI agents using observability and dual memory knowledge graphs
+435	0	LLM,RET,TEL,EXP	2024	IEEE Access	Transparent, Low Resource, and Context-Aware Information Retrieval From a Closed Domain Knowledge Base
+443	0	LLM,RET,TEL,EXP	2026	International Journal of Sustainability 	EDuBot: a sustainable and integrated AI-driven chatbot for advising in higher education
+453	0	LLM,RET,TEL,EXP	2024	Intelligent Transportation Infrastructur	Large models in transportation infrastructure: a perspective
+454	0	LLM,RET,TEL,EXP	2024	Clinical Pharmacology & Therapeutics	Unlocking the Capabilities of Large Language Models for Accelerating Drug Development
+503	0	LLM,TEL,EXP,PROP	2026	Discover Artificial Intelligence	Design of an integrated federated large language models for semantic reasoning and self-organizing 6G networks
+519	0	LLM,RET,TEL,EXP	2025	Data & Policy	The Attribution Crisis in LLM Search Results: Estimating Ecosystem Exploitation
+527	0	LLM,TEL,EXP,PROP	2026	IEEE Transactions on Cognitive Communica	Workflow-Aware Expert Routing for Distributed LLM Serving Over the Edge-Cloud Continuum
+532	0	LLM,RET,TEL,EXP	2026	International Journal of Educational Tec	What students ask matters: LLM interaction depth, task quality, and immediate recall in higher education
+546	0	LLM,RET,TEL,EXP	2025	Future Generation Computer Systems	EXASAGE: The first data center operational data analysis assistant
+555	0	LLM,RET,TEL,EXP	2025	IEEE Open Journal of the Communications 	A Holistic Review of Fuzzing for Vulnerability Assessment in Industrial Network Protocols
+280	0	LLM,RET,TEL	2026	CAAI Transactions on Intelligence Techno	RAGLRO: Retrieval‐Augmented Generation With Large Language Models for Robotic Operations
+293	0	LLM,RET,TEL	2026	Scientific Reports	Hierarchical multi-agent reinforcement learning for retrieval-augmented industrial document question answering
+301	0	LLM,RET,TEL	2025	IEEE Network	Federated Retrieval-Augmented Generation-Based LLM for Enhanced Cyber Threat Detection in the Internet-of-Energy
+304	0	LLM,RET,EXP	2026	IEEE Wireless Communications	Enhancing Large Language Models (LLMs) for Telecom Using Dynamic Knowledge Graphs and Explainable Retrieval-Augmented Generation
+311	0	LLM,RET,EXP	2026	IEEE Journal of Oceanic Engineering	RAG-Semantic Integration for Adaptive Multiagent Underwater Autonomy
+319	0	LLM,RET,TEL	2025	Advances in Applied Energy	A RAG data pipeline transforming heterogeneous data into AI-ready format for autonomous building performance discovery
+320	0	LLM,RET,TEL	2025	IEEE Access	AI-Driven Post-Earthquake Emergency Material Demand Prediction: Integrating RAG With Reasoning Large Language Model
+323	0	LLM,RET,TEL	2026	International Journal of Human-Computer 	Human-Centered AI for EcoMuseum Experience Enhancement: A RAG and UGC-Based Cultural Tour Chatbot Design
+340	0	LLM,TEL,EXP	2026	Advanced Engineering Informatics	Worker intent recognition for human-crane collaboration: an uncertainty-aware and interpretable multimodal large language model
+345	0	LLM,RET,TEL	2025	Science Progress	Intelligent Condition Monitoring of High-Formwork Support Systems: A Hybrid FEM-Deep Learning Approach with Large Language Model Integration
+347	0	LLM,RET,EXP	2026	IEEE Transactions on Energy Conversion	Li-Ion Battery Doctor: A Fine-Tuned and Explainable Large-Language Model for Health Prognosis
+357	0	LLM,RET,EXP	2026	IEEE Access	AI-Powered Standard Operating Procedure Generation and Optimization Using Large Language Models for Chemical Laboratory Applications
+359	0	LLM,RET,TEL	2026	Information Processing & Management	Large language models for business and management applications: A review
+374	0	LLM,RET,EXP	2026	International Journal of Precision Engin	A Review of Knowledge Base Construction Strategies for LLM-based Intelligent Decision Support System in Material Selection and Process Planning
+380	0	LLM,RET,TEL	2026	Archives of Computational Methods in Eng	A Holistic Review of Agentic AI Frameworks, Applications, and Research Trajectories
+381	0	LLM,RET,TEL	2026	Data & Policy	AIMS-QA: a framework for scaling the assessment of corporate modern slavery statements beyond compliance with AI-driven question answering
+388	0	LLM,RET,TEL	2024	Arthroscopy The Journal of Arthroscopic 	Large Language Models Applied to Health Care Tasks May Improve Clinical Efficiency, Value of Care Rendered, Research, and Medical Education
+389	0	LLM,RET,EXP	2026	Scientific Reports	AIDx: a locally deployable AI system for physician clinical decision support
+390	0	LLM,RET,TEL	2026	The Lancet Regional Health - Europe	Real-world use and evaluation of a generative AI chatbot for Parkinson's disease information: a prospective observational study
+394	0	LLM,RET,EXP	2025	Journal of Information Security and Appl	DroidTTP: Mapping android applications with TTP for Cyber Threat Intelligence
+398	0	LLM,RET,TEL	2024	Petroleum Exploration and Development	Research status and application of artificial intelligence large models in the oil and gas industry
+406	0	RET,TEL,EXP	2026	F1000Research	Assessing the Impact of AI-Augmented DevSecOps on Lead Time in Agile Release Management
+417	0	RET,TEL,PROP	2026	IEEE Open Journal of the Communications 	Multi-Modal Foundation Models for Space-Air-Ground Integrated 6G and Beyond Networks: A Survey and Tutorial
+430	0	LLM,RET,EXP	2026	Neural Computing and Applications	Ontology-guided neuro-symbolic GraphRAG for grounded query answering
+438	0	LLM,RET,TEL	2026	Energy Reports	ElectriQ: LLM dialogue benchmark for electric power marketing in renewable-integrated power systems
+440	0	LLM,RET,EXP	2020	ACS Applied Polymer Materials	Modeling the Reactivity of Aged Paper with Aminoalkylalkoxysilanes as Strengthening and Deacidification Agents
+456	0	LLM,TEL,EXP	2026	Animal Frontiers	Toward smart health monitoring: multimodal sensing and intelligent disease diagnosis in poultry and livestock
+486	0	LLM,RET,TEL	2026	ACM Transactions on Software Engineering	Unsupervised, Accurate, and Efficient Log Parsing Using Smaller Open Source Large Language Models
+493	0	LLM,TEL,EXP	2025	IEEE Access	A Multi-Agent System for Cybersecurity Threat Detection and Correlation Using Large Language Models
+495	0	LLM,TEL,EXP	2026	IEEE Transactions on Cognitive Communica	Multimodal Large Language Model-Enabled Robust Beamforming for HAP Downlink Communications
+497	0	LLM,TEL,EXP	2026	Journal Of Big Data	Security risk management in the digital enterprise: enhancing cyber defense with large language models
+499	0	LLM,TEL,PROP	2026	Information Processing & Management	CausalLog: Log parsing using LLMs with causal intervention for bias mitigation
+500	0	LLM,TEL,EXP	2026	Renewable and Sustainable Energy Reviews	Harnessing AI-driven large language models (LLMs) for enhanced forecasting and optimisation of wind and solar energy generation and load demand profil
+501	0	LLM,TEL,EXP	2025	ACM Transactions on Internet of Things	LUMEN: Enhancing IoT System Observability with Multi-Agent Large Language Models and Knowledge Graphs
+514	0	LLM,TEL,EXP	2025	ACM Transactions on Software Engineering	AdaptiveLog: An Adaptive Log Analysis Framework with the Collaboration of Large and Small Language Model
+515	0	LLM,TEL,PROP	2026	Scientific Reports	Structural optimization principles for edge AI in motorsport telemetry
+526	0	LLM,RET,TEL	2026	CAAI Transactions on Intelligence Techno	From Ambiguous Queries to Verifiable Insights: A Task‐Driven Framework for LLM‐Powered SOC Analysis ⋆
+536	0	LLM,TEL,EXP	2026	International Journal of Information Sec	CAM-LDS: cyber attack manifestations for automatic interpretation of system logs and security alerts
+540	0	LLM,RET,TEL	2026	Transportation Research Interdisciplinar	An end-to-end conversational AI coach for heavy-duty eco-driving: An industrial case study
+541	0	LLM,RET,TEL	2026	IEEE Access	AegisGuard: A Context-Aware Framework for Semantic Vulnerability Detection and Risk Stratification
+544	0	LLM,TEL,EXP	2026	IEEE Internet of Things Journal	A Semantic Digital Twin Framework for Predictive Failure Analytics in IoT
+547	0	LLM,RET,TEL	2026	Frontiers in Digital Health	An agentic AI- and n8n automation-powered maternal care framework with predictive pregnancy monitoring and continuous learning
+549	0	LLM,TEL,EXP	2026	IEEE Network	Conversational Orchestration for Organic 6G
+550	0	LLM,TEL,EXP	2026	Frontiers in Digital Health	A testable framework linking diagnostic AI contribution to outcome measurement in clinical decision support
+551	0	LLM,RET,TEL	2026	IEEE Internet of Things Journal	From Digital Twins to Autonomous Local Agents: Rethinking AI for Smart Water Networks
+557	0	LLM,TEL,EXP	2026	Clinical Kidney Journal	Transforming nephrology through artificial intelligence: a state-of-the-art roadmap for clinical integration
+559	0	LLM,TEL,PROP	2026	Smart Agricultural Technology	Farming of Things
+560	0	LLM,TEL,EXP	2026	PLoS ONE	Advanced persistent threat detection through multi-modal behavioral analysis
+561	0	LLM,TEL,EXP	2026	Interactive Technology and Smart Educati	From cognitive offloading to algorithmic discernment: a grounded theory inquiry into generative AI’s shifting impact on university students’ critical 
+140	0	LLM,EXP	2026	Computer Science Review	Large language models hallucination: A comprehensive survey
+160	0	LLM,TEL	2026	Computer Networks	The application of Large Language Model in system log analysis: A literature review
+176	0	LLM,PROP	2026	Ocean Engineering	Large language model-enhanced causal Bayesian network: An intelligent modeling approach to maritime accident risk analysis
+185	0	LLM,RET	2026	Advanced Engineering Informatics	Intelligent defect‑detection framework integrating a modified YOLO algorithm, a domain knowledge graph, and RAG‑enabled large language model
+200	0	LLM,TEL	2025	Empirical Software Engineering	LogEval: A comprehensive benchmark suite for LLMs in log analysis
+204	0	LLM,TEL	2026	Journal of Systems and Software	LogNER: Enhancing log semantics with LLM-driven entity recognition
+206	0	LLM,TEL	2026	Journal of Systems and Software	SCULP: An unsupervised LLM-based log parser with self-correcting capabilities
+212	0	LLM,EXP	2026	Information and Software Technology	Template-guided interpretable reasoning with execution feedback for LLM-based program repair
+281	0	LLM,RET	2025	Computers & Chemical Engineering	Oscillation analysis using Retrieval-Augmented Generation
+282	0	LLM,RET	2025	Neurocomputing	Adaptive iterative retrieval for enhanced retrieval-augmented generation
+283	0	LLM,RET	2025	Journal of Systems and Software	RAGVA: Engineering retrieval augmented generation-based virtual assistants in practice
+286	0	RET,TEL	2026	IEEE Robotics and Automation Letters	HiMRAG: Hierarchical Multimodal Retrieval-Augmented Generation for Robot Task Planning
+287	0	LLM,RET	2025	World Wide Web	ELISAR: A Multi-Agent cybersecurity framework integrating retrieval-augmented generation for Blue, Red, and GRC operations
+289	0	LLM,RET	2026	Journal of Manufacturing Systems	A Multi-Agent and synergistic Knowledge Graph retrieval-augmented generation framework for intelligent maintenance
+290	0	LLM,RET	2026	Journal of Building Engineering	Co-LLM: A retrieval-augmented language model framework for chiller optimization control
+298	0	LLM,RET	2025	Building and Environment	BuildingGPT: Query building semantic data using large language models and vector-graph retrieval-augmented generation
+299	0	LLM,RET	2026	Energy and AI	Power system operational reliability evaluation with retrieval-augmented generation enhanced large language model
+303	0	LLM,RET	2026	Bioinformatics Advances	RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support
+305	0	RET,PROP	2026	Process Safety and Environmental Protect	A topological-graph and regulation-constrained retrieval-augmented generation method for refinery and petrochemical pipeline maintenance plan generati
+306	0	RET,TEL	2026	IEEE Transactions on Reliability	Improving the Reliability of Port Equipment Maintenance Decision Support via Context-Aware Knowledge Graph Retrieval-Augmented Generation
+307	0	LLM,RET	2026	Automation in Construction	Lightweight graph retrieval-augmented generation agent for safety monitoring digital twins in small- and medium-scale hydropower projects
+310	0	LLM,RET	2026	Computer Applications in Engineering Edu	RAG ‘n’ Roll Industrial Management Game: Building and Testing a Large Language Model Assistant for Operations Education
+316	0	LLM,RET	2025	IEEE Access	Leveraging RAG and LLMs for Access Control Policy Extraction From User Stories in Agile Software Development
+318	0	LLM,RET	2026	Smart Agricultural Technology	An integrated computer vision and RAG-based decision support system for stage-specific environmental control in strawberry greenhouses
+321	0	LLM,RET	2026	IEEE Access	Multi-Strategy RAG With ATT&CK STIX Metadata-Enriched Embeddings for Technique Extraction
+337	0	LLM,RET	2026	Journal of Safety Science and Resilience	Intelligent risk identification and assessment for hazardous operations on construction sites: A novel approach integrating knowledge graph and large 
+339	0	LLM,RET	2025	Scientific Reports	BioAgents: Bridging the gap in bioinformatics analysis with multi-agent systems
+341	0	LLM,TEL	2026	Information Fusion	iGeo-LLM: Identification of geological features using multi-source data based on LLM during shield tunnelling
+342	0	LLM,RET	2025	Journal of Chemical Information and Mode	SpeLL: An Agent for Natural Language-Driven Intelligent Spectral Modeling
+346	0	LLM,RET	2024	Journal of the American Medical Informat	Evaluating the accuracy of a state-of-the-art large language model for prediction of admissions from the emergency room
+349	0	RET,TEL	2025	Pattern Recognition	MGRAG: MultiModal grid-aware retrieval augmentation generation framework for power grid work tickets
+351	0	LLM,RET	2026	IEEE Communications Magazine	Toward Cognitive Autonomy in UAV Networks: Empowering Intelligence with Multi-Modal Large Language Models
+352	0	LLM,RET	2025	Engineering	Knowledge-Enhanced Industrial Question-Answering Using Large Language Models
+354	0	LLM,RET	2025	MethodsX	AgCV: An Agentic framework for automating computer vision application
+358	0	LLM,RET	2026	IEEE Internet of Things Journal	LLMind 2.0: Distributed IoT Automation with Natural Language M2M Communication and Lightweight LLM Agents
+361	0	LLM,RET	2025	IEEE Access	Large Language Models for Semantic Join: A Comprehensive Survey
+367	0	LLM,RET	2026	Building and Environment	Addressing data sparsity in thermal comfort evaluation: A dynamic constraint relaxation framework using large language models
+371	0	LLM,RET	2026	Digital Chemical Engineering	Natural-language interfaces to a process-aware, graph-based ELN: An UV coatings case study
+375	0	RET,EXP	2025	Вестник Пермского университета История	DIGITAL HERMENEUTICS OF HISTORICAL SOURCE: FORMALIZATION AS INTERPRETATION
+376	0	LLM,RET	2024	IEEE Transactions on Computational Socia	Conversational Crowdsensing in the Age of Industry 5.0: A Parallel Intelligence and Large Models Powered Novel Sensing Approach
+377	0	LLM,PROP	2026	Advanced Engineering Informatics	Orchestrating large language models with an expert-driven knowledge graph for causal reasoning and management of construction project risks
+386	0	RET,EXP	2026	IEEE Communications Magazine	Reasoning-Enhanced GraphRAG-Based Large and Small AI Model Collaboration: A Unified 6G Network Management Approach
+393	0	LLM,RET	2025	IEEE Network	Generative AI in Data Center Networking: Fundamentals, Perspectives, and Case Study
+400	0	LLM,RET	2022	ACM Transactions on the Web	ColBERT-PRF: Semantic Pseudo-Relevance Feedback for Dense Passage and Document Retrieval
+402	0	LLM,RET	2026	Journal of the Operational Research Soci	Integrating digitally enhanced data extraction and simulation modelling for AI-driven supply chain resilience: an operational research framework for s
+408	0	LLM,RET	2025	IEEE Access	On-Device Intent Reasoning for Smart Home Agents Via Ontology-Augmented sLLMs
+409	0	LLM,RET	2026	EClinicalMedicine	Artificial intelligence in clinical trials—state of the evidence, gaps, and next steps
+410	0	LLM,RET	2026	Frontiers in Public Health	The role of digital pharmaceutical governance in alleviating health inequality: a case study of the “Sanya Model” for centralized regional prescriptio
+414	0	LLM,RET	2026	Frontiers in Medicine	Development and validation of an artificial intelligence proof-of-concept tool for risk-based quality assessment of generic medicines: a South African
+418	0	LLM,RET	2024	ACM Transactions on Information Systems	An Analysis on Matching Mechanisms and Token Pruning for Late-interaction Models
+426	0	LLM,RET	2026	Computers and Electronics in Agriculture	Agentic AI for Livestock Housing Management: Applications, Benchmarking, and Readiness Assessment
+427	0	LLM,RET	2026	Energy and AI	Tool-augmented vs. autonomous LLM agents for building energy model modifications: A comparative study using NECB compliance models
+432	0	RET,PROP	2026	Proceedings of the VLDB Endowment	CONDA: A Connectivity-Aware Dynamic Index for Approximate Nearest Neighbor Search over Evolving Data
+434	0	TEL,EXP	2025	Biomedical Signal Processing and Control	Manual acupuncture manipulation recognition model with a multimodal fusion of tactile and visual features
+441	0	LLM,RET	2025	International Journal of Social Robotics	UJI-Butler: A Symbolic/Non-symbolic Robotic System that Learns Through Multi-modal Interaction
+445	0	RET,TEL	2025	IEEE Internet of Things Journal	Devolution: A Symbiotic Cloud–Edge Framework for Real-Time Multimodal Retrieval in 6G-Based Surveillance IoT System
+447	0	LLM,TEL	2026	Journal of Manufacturing Systems	Vision language model-enhanced embodied intelligence for AR-assisted HRC assembly: Multimodal cognition, task reasoning, and autonomous execution
+448	0	RET,TEL	2021	Energy & Fuels	Understanding the Properties of Bitumen Froth from Oil Sands Surface Mining and Treatment of Water-in-Oil Emulsions
+450	0	RET,TEL	2025	Machine Learning with Applications	Generating impossible queries
+455	0	RET,TEL	2020	Neuro-Oncology	Highlights from the Literature
+484	0	LLM,TEL	2024	Journal of Network and Systems Managemen	Benchmarking Large Language Models for Log Analysis, Security, and Interpretation
+489	0	LLM,TEL	2026	IEEE Transactions on Networking	Distilling Large Language Models for Network Active Queue Management
+496	0	LLM,TEL	2025	IEEE Transactions on Network and Service	Domain Tailored Large Language Models for Log Mask Prediction in Cellular Network Diagnostics
+502	0	LLM,TEL	2026	IEEE Access	Context-Aware Autoscaling for Cost-Efficient Large Language Model Inference With Prefix Cache Integration
+505	0	LLM,TEL	2026	ACM Transactions on Software Engineering	SLOPE: Fine-Grained Log Parser Combining Syntax with LLM-Distilled Semantic
+508	0	LLM,TEL	2025	Journal of Vascular Surgery	Large language models accurately extract aortic information from abdominal imaging reports in a large, real-world database
+511	0	LLM,TEL	2026	IEEE Internet of Things Journal	Telemetry Degradation and Sequential Stability in LLM-Integrated IoT Decision Systems
+512	0	LLM,TEL	2026	IEEE Transactions on Services Computing	LogInstruct: Knowledge-Driven Instruction Synthesis for Enhancing LLM-Based Log Analysis
+513	0	LLM,TEL	2026	IEEE Access	Lightweight Edge Intelligence: Adapting 1.5B LLM via LoRA for Log Analysis in Campus Networks
+520	0	LLM,TEL	2026	IEEE Transactions on Machine Learning in	LLM-Driven Alert Correlation and Lifecycle Prediction With Threat Intelligence for Attack Forensics
+522	0	LLM,TEL	2025	IEEE Internet of Things Journal	A Novel Stateful Authentication Framework Approach With LLM-Based IDS for MQTT Security
+528	0	LLM,TEL	2026	IEEE Access	Executing Signal Control From Text: LLM Fidelity on a CV Platoon-Based Optimization Algorithm
+530	0	LLM,TEL	2026	IEEE Transactions on Cognitive Communica	TrustPKBG: Trustworthy Protocol Knowledge Blueprints Generation via LLM for Low-Altitude AAV Networks
+542	0	LLM,TEL	2026	IEEE Access	AGORA: Agentic Green Orchestration Architecture for Beyond 5G Networks
+548	0	LLM,TEL	2026	IEEE Open Journal of the Communications 	A Tutorial on Cognitive Biases in Agentic AI-Driven 6G Autonomous Networks
+552	0	LLM,TEL	2026	International Journal of Information Sec	From logs to tactics: unsupervised reconstruction of APT campaigns with MITRE-enriched meta-alerts
+553	0	LLM,TEL	2026	IEEE Network	Toward Autonomous O-RAN: A Multi-Scale Agentic AI Framework for Real-Time Network Control and Management
+554	0	LLM,TEL	2025	Journal of Educational Measurement	Using Keystroke Dynamics to Detect Nonoriginal Text
+563	0	LLM,TEL	2025	IEEE Transactions on Network and Service	Mapping the Landscape of Generative AI in Network Monitoring and Management
+565	0	LLM,TEL	2026	IEEE Micro	MLPerf Power: Addressing the AI Power Wall
+567	0	LLM,TEL	2026	IEEE Open Journal of the Communications 	Lightweight Adaptation of Foundation Models for Optical Network Failure Management
+62	0	LLM	2021	Computer Communications	Reinforcement learning multi-agent system for faults diagnosis of mircoservices in industrial settings
+125	0	LLM	2026	Journal of Geochemical Exploration	Design and implementation of an intelligent mineral prospecting system integrating large language models: GoldMiner-AI
+132	0	LLM	2026	Empirical Software Engineering	Evaluating LLMs in ROS robotic software code generation
+158	0	LLM	2026	Science China Information Sciences	What is wrong with your code generated by large language models? An extensive study
+163	0	LLM	2024	Journal of Manufacturing Systems	ProcessCarbonAgent: A large language models-empowered autonomous agent for decision-making in manufacturing carbon emission management
+168	0	LLM	2025	Journal of Systems and Software	Sóley: Automated detection of logic vulnerabilities in Ethereum smart contracts using large language models
+170	0	LLM	2025	Journal of Industrial Information Integr	Analysis of causes of welding defects in bridge weathering steel based on large language models
+182	0	LLM	2025	Reliability Engineering & System Safety	Risk source identification and prevention for metro driven by large language models: A new approach to enhancing system reliability and safety
+201	0	LLM	2025	Expert Systems with Applications	Reasoning or not? A comprehensive evaluation of reasoning LLMs for dialogue summarization
+205	0	LLM	2025	Resources Conservation and Recycling	Monitoring street-level improper dumpsites via a multi-modal and LLM-based framework
+214	0	LLM	2026	Expert Systems with Applications	Intention-behavior consistency-based automated failure attribution for LLM-driven multi-agent systems
+216	0	LLM	2026	Journal of Loss Prevention in the Proces	Data-driven human factor analysis for oil pipeline accidents using LLM and Bayesian network
+226	0	LLM	2025	Advanced Engineering Informatics	Probing a novel machine tool fault reasoning and maintenance service recommendation approach through data-knowledge empowered LLMs integrated with AR-
+236	0	PROP	2026	Empirical Software Engineering	CGARF: a causality-guided framework for reliable automated program repair
+272	0	PROP	2025	Advanced Engineering Informatics	Multi-modal causal hypergraph reasoning for enhancing collaborative diagnosis of equipment composite failures
+274	0	LLM	2025	Frontiers in Education	Addressing student use of generative AI in schools and universities through academic integrity reporting
+275	0	LLM	2026	Journal of Business Research	Enhancing global value chain transparency: A multi-agent AI framework for detecting ESG greenwashing with open-source innovations
+279	0	RET	2025	Journal of Building Engineering	Improving knowledge management in building engineering with hybrid retrieval-augmented generation framework
+285	0	RET	2025	Engineering Applications of Artificial I	Retrieval-augmented visual parcel invoice understanding transformer for address correction
+288	0	RET	2026	Knowledge-Based Systems	RAQAG : A framework for automatically generating Q&A datasets with retrieval-augmented generation
+294	0	RET	2026	Energy and AI	Query-adaptive graph retrieval-augmented generation for traceable power-quality knowledge reasoning
+295	0	RET	2026	Applied Soft Computing	PhysDiffWind: A physics-constrained retrieval-augmented diffusion framework for offshore wind speed forecasting
+302	0	RET	2026	Machine Learning	Transforming Customer Support in a Startup Environment: From Machine Learning Classification to Retrieval-Augmented Generation
+308	0	RET	2026	Advanced Engineering Informatics	GCF-RAG: Graph context fusion-based RAG framework for industrial equipment operation and maintenance
+325	0	LLM	2025	Energy and Buildings	A large language model-based building operation and maintenance information query
+327	0	RET	2024	ACS Omega	Investigation of Unresolved Interface “Rag Layer” in Athabasca Oil Sand Bitumen In Situ Recovery
+328	0	RET	2026	Knowledge-Based Systems	Scrum-guided development of an intelligent payroll management system with rule-based automation and RAG chatbot support
+330	0	LLM	2025	Water Resources Management	A Multi-Agent and GraphRAG-Based Framework for Operation and Management Decision-Making in Hydraulic Projects
+331	0	LLM	2026	Neurocomputing	The double-edged sword: LLM operations (LLMOps) security in the cloud- a comprehensive review
+332	0	LLM	2026	Expert Systems with Applications	Power ops agent: A knowledge and data dual-driven multi-agent framework for substation operation and maintenance
+338	0	LLM	2024	Joule	Exploring the capabilities and limitations of large language models in the electric energy sector
+344	0	RET	2025	Proceedings of the VLDB Endowment	Beyond Compression: A Comprehensive Evaluation of Lossless Floating-Point Compression
+350	0	LLM	2026	Automation in Construction	LLM-based multi-agent system for dam structural health monitoring
+362	0	LLM	2026	Journal of Systems Architecture	A survey of edge–cloud collaborative large language models for discrete manufacturing: Architectures, technologies, and applications
+365	0	LLM	2026	Knowledge-Based Systems	Integrating information flow-knowledge graphs and fine-tuning LLM for knowledge-guided process engineering in domain-specific task
+366	0	LLM	2026	Ocean Engineering	LLM-agent-based cooperative collision avoidance decision-making for multi-ship encounters in confluence waters
+369	0	LLM	2025	Journal of Imaging Informatics in Medici	Personalized CT Protocol Recommendation via Large Language Model: Enabling Fully Automated CT Scanning Workflows
+370	0	RET	2026	International Journal of Production Econ	Managing geopolitical risk in global supply chains: A qualitative study of European multinational enterprises
+373	0	LLM	2025	Advanced Engineering Informatics	AviationCopilot: Building a reliable LLM-based Aviation Copilot inspired by human pilot training
+379	0	LLM	2024	Energy and Buildings	Data-driven building load prediction and large language models: Comprehensive overview
+385	0	RET	2026	IEEE Transactions on Very Large Scale In	Processing-in-Memory Architecture for In-Storage Information Retrieval on 3-D NAND Flash Solid-State Drives
+397	0	LLM	2025	Building and Environment	Graph-constrained association rule mining-based energy efficiency diagnosis method for HVAC systems with knowledge-enhanced large language model
+401	0	LLM	2026	Robotics and Computer-Integrated Manufac	Dynamic reconfiguration in multi-robot agent systems using embedded language models
+407	0	LLM	2025	Advanced Engineering Informatics	AirfoilAgent: Airfoil aerodynamics optimization design via large language model multi-agent collaborations
+412	0	RET	2026	Proceedings of the VLDB Endowment	HEXA: A Disjoint-Subgraph-Based Indexing Framework for Approximate Nearest Neighbor Search at Billion Scale
+415	0	LLM	2026	Internet of Things	An Agentic AI Framework with Large Language Models and Chain-of-Thought for UAV-Assisted Logistics Scheduling with Mobile Edge Computing
+419	0	RET	2024	Applied Artificial Intelligence	Knowledge Graphs to Accumulate and Convey Knowledge from Past Experiences in Search and Rescue Planning and Resource Allocation
+424	0	LLM	2026	Building and Environment	AI agent-enhanced energy-use behavior detection in residential buildings
+428	0	RET	2024	ACS Omega	Forecasting the Problem of Excessive Oil Entrainment in a Desalter Using Spinning Drop Method
+429	0	RET	2022	World Journal of Surgical Oncology	Comparison of short-term outcomes between robotic-assisted and laparoscopic gastrectomy guided by carbon nanoparticle suspension injection in gastric 
+431	0	RET	2025	Journal of Construction Engineering and 	Unraveling Safety Risk Coupling in Prefabricated Steel Construction via Data Mining
+433	0	LLM	2026	Journal of Manufacturing Systems	SEIT-Agent: An experience memory enhanced inspection and testing agent for high-safety special equipment with risk-aware LLM evaluation
+436	0	RET	2024	IEEE Transactions on Automation Science 	Meta Reinforcement Learning of Locomotion Policy for Quadruped Robots With Motor Stuck
+442	0	RET	2021	Women a Cultural Review	Purpose, Power and Profit in Feminist Publishing: An Introduction
+444	0	EXP	2021	Frontiers in Bioengineering and Biotechn	Treatment of the Supernatant of Anaerobically Digested Organic Fraction of Municipal Solid Waste in a Demo-Scale Mesophilic External Anaerobic Membran
+449	0	RET	2020	Energy & Fuels	Extraction of Vanadium and Nickel from Diluted Bitumen and Partially Deasphalted Oil Using Ionic Liquids
+452	0	RET	2021	Theory & Event	Transhumusians: On The Jurisography of the Corpus Iuris
+485	0	LLM	2024	Computers & Security	A survey of large language models for cyber threat detection
+491	0	LLM	2025	Engineering Applications of Artificial I	Generative Agent-Based Modeling with Large Language Models for insider threat detection
+504	0	LLM	2026	Computers & Industrial Engineering	Cross-domain digital twin architecture for predictive maintenance via machine learning and Large Language Models
+506	0	LLM	2026	Journal of Energy Storage	A large language model approach with physics-guided data augmentation for early warning of battery thermal runaway
+507	0	LLM	2026	Computer Methods and Programs in Biomedi	SPELL: A scalable NLP method using regular expressions and large language models for clinical information extraction
+523	0	LLM	2026	Expert Systems with Applications	UFA: An LLM-driven UAV forensic intelligent agent for low-altitude public security
+531	0	LLM	2026	Sustainable Computing Informatics and Sy	A forecasting-based perception layer for energy-aware resource management in LLM serving deployed on high-performance computing clusters
+533	0	LLM	2025	Sustainable Energy Grids and Networks	LLM-powered threat intelligence: Proactive detection of zero-day attacks in electric vehicle cyber-physical systems
+558	0	LLM	2025	Computer Networks	AGORAN: An agentic open marketplace for 6G RAN automation
+127	0		2025	Empirical Software Engineering	eBPF-Guard: a detection method for container escape via multi-level monitoring and enhanced analysis model
+229	0		2025	International Journal of Hospitality Man	Unveiling negative memorable experiences of hotel guests: An innovative algorithmic analysis
+243	0		2026	Empirical Software Engineering	Performance analysis of AI-generated code: A case study of Copilot, Copilot Chat, CodeLlaMa, and DeepSeek-Coder models
+249	0		2026	Robotics and Computer-Integrated Manufac	Leveraging large and small model collaboration for advanced automation in smart manufacturing
+252	0		2026	Journal of the American College of Radio	ACR’s Assess-AI: A Registry for Real-World Performance Monitoring of Clinical Imaging Artificial Intelligence
+262	0		2026	Information and Software Technology	CAMP: Cognition-Aligned Multi-stage Automated Program Repair
+273	0		2025	Robotics and Computer-Integrated Manufac	Target-oriented collision-free robot grasping using task-attendance teachers-student knowledge distillation for various dense-clutter scenarios
+326	0		2025	Computer Networks	Leveraging generative AI for intent-based networking operations in network slices
+333	0		2025	Applied Energy	Customized large-scale model for human-AI collaborative operation and maintenance management of building energy systems
+334	0		2026	Expert Systems with Applications	Evidence-verifiable intelligent interaction system and defect knowledge graph for operation-and-maintenance diagnosis of high-speed railway infrastruc
+336	0		2023	Annals of Operations Research	RETRACTED ARTICLE: Nonlinear interactions via machine learning: Input factor orchestration in sustainable operations
+382	0		2026	Cytotherapy	AI-ENABLED DATA HARMONIZATION AND PREDICTIVE MODELING FOR SCALABLE CELL THERAPY MANUFACTURING
+387	0		2026	Technovation	Designing educational chatbots in resource-constrained environments: A design science approach
+392	0		2026	Advanced Engineering Informatics	From product specifications to smart manufacturing: Generative AI-driven process innovation for BOM digitization and its applications
+396	0		2026	Expert Systems with Applications	A tiered expert system for evidence-grounded warehouse assistance and robot dispatch
+413	0		2026	Robotics and Computer-Integrated Manufac	Artificial Intelligence enhanced smart welding islands: Foundation models revolutionizing manufacturing
+425	0		2022	Applied Ergonomics	Effects of different tools and working height on physical workload in vertical cleaning tasks applying ambient control techniques
+439	0		2025	Journal of Dentistry	The effect of novel solvent formula of primer containing functional monomer on improving the durability of dentin adhesion
+446	0		2026	Safety Science	A resilience and safety climate analysis of cabin crew members
+451	0		2020	Renewable Energy	Understanding the possibility of material release from end-of-life solar modules: A study based on literature review and survey analysis
+457	0		2020	Journal of Language Evolution	Biting into evolution of language
+459	0		2026	Empirical Software Engineering	Rethinking software misconfigurations in the real world: an empirical study and literature analysis
+472	0		2025	Expert Systems with Applications	ICSThreatQA: A knowledge-graph enhanced question answering model for industrial control system threat intelligence
+556	0		2026	International Journal of Information Man	Architecting knowledge through AI-enhanced observability: A design science approach to enterprise architecture as a knowledge discipline
+562	0		2025	Engineering Applications of Artificial I	What artificial intelligence can do for high-performance computing systems?
+568	0		2026	Journal of Systems Architecture	Foundations, vulnerabilities, and GenAI-driven defenses in Cognitive Internet of Medical Things systems
+570	0		2024	The American Journal of Medicine	The Irony of Having All the Information You Need at Your Fingertips, and Not Accessing It
+586	0		2025	Computers & Security	A review of major ICT failures and recovery strategies: Strengthening digital resilience
+587	0		2024	Information Fusion	Artificial intelligence for production, operations and logistics management in modular construction industry: A systematic literature review
+590	0		2025	Journal of the Operational Research Soci	The use of Generative Artificial Intelligence (GenAI) in operations research: review and future research agenda
+591	0		2025	Journal of Air Transport Management	Passenger perceptions of Artificial Intelligence in airline operations: Implications for air transport management
+592	0		2025	The International Journal of Advanced Ma	Integrating industry 4.0 technologies and maintenance 4.0 for sustainable manufacturing: a systematic literature review
+593	0		2025	Career Development International	Artificial intelligence opportunity perception and career sustainability: the mediating role of personal knowledge management
+594	0		2026	Corporate Social Responsibility and Envi	Bridging Digital Responsibility and Sustainable Development: How Corporate AI Ethics and International Innovation Drive ESG Performance
+599	0		2021	Journal of Systems and Software	Improving observability in Event Sourcing systems
+600	0		2022	Empirical Software Engineering	Towards understanding bugs in Python interpreters
