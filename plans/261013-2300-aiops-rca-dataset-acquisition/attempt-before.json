@@ -1,0 +1,108 @@
+{
+  "files": {
+    ".gitignore": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "9c81c847692616fd268f92faccc81ccaf0b42d2667ddaa65b5c0ea6ef26f4790",
+      "size": 71
+    },
+    "README.md": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "a75a4f304a6d6626b58df061bf003d13cd41ad18ecd27026328d63f7df43c56d",
+      "size": 5308
+    },
+    "configs/pilot.yaml": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "f587c4e61a83f752f397ea762ee6ff1a5a217ac7dcb01f07a4daacd3a1423cb7",
+      "size": 942
+    },
+    "configs/synthetic.yaml": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "4fa923b375516373c664307ecb50f592ae93769bfa73c2d318dbf5bc167b281c",
+      "size": 911
+    },
+    "requirements.txt": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "c7457d911bfc5b8c2c5c867fa215f39f7ec6394272452f8794c82e3fbbd537e9",
+      "size": 237
+    },
+    "scripts/make_synthetic.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "db439a5d319632d453a418a12ce4bcfd4d375344bf91f8cf6c1e4bda2869003c",
+      "size": 5165
+    },
+    "src/rca/__init__.py": {
+      "bom": "none",
+      "eol": "none",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "src/rca/ablate.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "03c4d262c712149e807efbf55877eebe39393602bc7314e84b32abc371618f39",
+      "size": 1702
+    },
+    "src/rca/analyze.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "bfd1713d5229337511cd4ae334fee0a9109d177f5c17642330b5a73730db4e8e",
+      "size": 4355
+    },
+    "src/rca/data.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "d5f4dec755797227835f5776968bbd223eb7edc07cfcee40fc914857efbd92da",
+      "size": 6027
+    },
+    "src/rca/evidence.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "1239c45c3b75e46e9330bb525a677ebfc2b4b380a4ce2db35275f6afa10ecd4d",
+      "size": 9833
+    },
+    "src/rca/gate.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "32cc9ae5c49a6b6f8e7469d7dc6afb369f7920b51b9613070a6c9127b83a9a69",
+      "size": 9512
+    },
+    "src/rca/llm.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "074781fd5b2eacde953b574108a2d8bdd433b30a09b925bc2c2ca0cfadedb710",
+      "size": 7789
+    },
+    "src/rca/metrics.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "c2ba8cbe5e504bbad988bd1f583315a1e6670799717a25e142ed3fcb79e0ce0e",
+      "size": 3123
+    },
+    "src/rca/retrieve.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "5aeb9720286c33f8f36bc5c1135eccc3e218a7f24b21c46cefd95fa342026281",
+      "size": 4968
+    },
+    "src/rca/run_grid.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "7119bfeb0be5203c462eb1a8787385974bf14d0f2380f77c1ec24886081ea324",
+      "size": 6640
+    },
+    "tests/test_pipeline.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "ad012ae0e76f861ffcf9774f54d1fe09c4323967e649b98b24b30eb1cfefb930",
+      "size": 3607
+    }
+  },
+  "links": [],
+  "schema_version": 1
+}

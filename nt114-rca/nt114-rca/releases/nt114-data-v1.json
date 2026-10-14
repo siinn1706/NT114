@@ -1,0 +1,112 @@
+{
+  "release": "nt114-data-v1",
+  "bundle_id": "nt114-data-v1-20261014-6fdd9835",
+  "created": "2026-10-14T14:39:44Z",
+  "schema_version": "1.0.0",
+  "code": {
+    "git_commit": "cd96e9e8dc1906ee287cc54e9f02fe4b6b75a55e",
+    "git_dirty": false,
+    "lock_sha256": "0db90dc34b62f9d6fce4f226ff3d3ff4c55bc48e4456b3f7852d3c0729e64db0"
+  },
+  "checksums": {
+    "MANIFEST.sha256": "1a51a7c5e2e611aeb6a2ce1dd88267e03f03357db94eccdd5544cca4345a5712",
+    "bundle.json": "26d10fa7707715769f0c430e4b3bca1024b6500bcd680fe01eeef7c22f3ac7ae"
+  },
+  "bytes": 10673010725,
+  "files": 3263,
+  "builds": {
+    "aiops2025": {
+      "build_id": "aiops2025-40efa9b2d22f",
+      "adapter": {
+        "name": "aiops2025",
+        "version": "1.0.1"
+      },
+      "config_hash": "b89f4cb875cd017cf84a2549f816afb1c27811080d7b14748c0766525ce035b4",
+      "dataset_digest": "1bb0da61d69f9c38aefd8b505ded97b8c274a9f21b74ea8dafda7e52a6f62aad",
+      "states": {
+        "ACCEPT": 381,
+        "ACCEPT_WITH_WARNINGS": 19
+      }
+    },
+    "nezha": {
+      "build_id": "nezha-ea30424eba55",
+      "adapter": {
+        "name": "nezha",
+        "version": "1.0.3"
+      },
+      "config_hash": "b89f4cb875cd017cf84a2549f816afb1c27811080d7b14748c0766525ce035b4",
+      "dataset_digest": "56ec3db8aef93edca59346ad82b3e09f81a024cb7ed7b6c4ae80267f166c8217",
+      "states": {
+        "ACCEPT_WITH_WARNINGS": 101
+      }
+    },
+    "rca100": {
+      "build_id": "rca100-430dfff49e51",
+      "adapter": {
+        "name": "rca100",
+        "version": "1.0.2"
+      },
+      "config_hash": "b89f4cb875cd017cf84a2549f816afb1c27811080d7b14748c0766525ce035b4",
+      "dataset_digest": "64b40b1d199c45d438eee2ef68d55b84d655d2c1d6a7dcba73571d8c8f92cf92",
+      "states": {
+        "ACCEPT": 9,
+        "ACCEPT_WITH_WARNINGS": 94
+      }
+    },
+    "rcaeval": {
+      "build_id": "rcaeval-2f4bf056cb8a",
+      "adapter": {
+        "name": "rcaeval",
+        "version": "1.0.1"
+      },
+      "config_hash": "b89f4cb875cd017cf84a2549f816afb1c27811080d7b14748c0766525ce035b4",
+      "dataset_digest": "e9b84d790de8be8ae1cd42123ccc073e678a5dca3af475301386b55aa6ae1b44",
+      "states": {
+        "ACCEPT": 703,
+        "ACCEPT_WITH_WARNINGS": 32,
+        "REJECT": 1
+      }
+    }
+  },
+  "splits": [
+    "eval-only-aiops2025-0-f92dd409",
+    "eval-only-nezha-0-38cde4e0",
+    "eval-only-rca100-0-b8a32300",
+    "eval-only-rcaeval-0-87d5bcc3",
+    "loso-rcaeval-online-boutique-0-17c12b9c",
+    "loso-rcaeval-sock-shop-0-1cf7f474",
+    "loso-rcaeval-train-ticket-0-066d5f53",
+    "within-aiops2025-grouped-0-f92dd409",
+    "within-aiops2025-retrieval-0-bb231eaa",
+    "within-rca100-grouped-0-753fb47c",
+    "within-rca100-retrieval-0-3bfc8743",
+    "within-rcaeval-grouped-0-e9b2c81c",
+    "within-rcaeval-retrieval-0-45ef97c3",
+    "xdata-rcaeval-to-aiops2025-0-730c1c48",
+    "xdata-rcaeval-to-nezha-0-28246781",
+    "xdata-rcaeval-to-rca100-0-a2a83b78"
+  ],
+  "licences": {
+    "agenticopseval": {
+      "license": {
+        "AIOps2025": "CC BY-NC 4.0 (README)",
+        "RCA100": "CC BY-NC-SA 4.0 (RCA100/LICENSE)"
+      },
+      "note": "private transfer only"
+    },
+    "nezha": {
+      "license": "MIT",
+      "note": null
+    },
+    "rcaeval-zenodo": {
+      "license": "CC-BY-4.0 (Zenodo record)",
+      "note": null
+    }
+  },
+  "storage": {
+    "hf_dataset_repo": "siinn1706/nt114-rca-data",
+    "hf_commit": "c5c4a6dc455cac5d0545b98d8d40266b2bbdaa05",
+    "visibility": "private",
+    "path_in_repo": "nt114-data-v1-20261014-6fdd9835"
+  }
+}

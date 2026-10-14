@@ -1,0 +1,64 @@
+{
+  "title": "LEMMA-RCA: A Large Multi-modal Multi-domain Dataset for Root Cause Analysis",
+  "version": "1.0.0",
+  "resource_type": "dataset",
+  "doi": "https://doi.org/10.5281/zenodo.20516735",
+  "project_website": "https://www.lemmarca.info",
+  "creators": [
+    {
+      "name": "Zheng, Lecheng"
+    },
+    {
+      "name": "Chen, Zhengzhang"
+    },
+    {
+      "name": "Wang, Dongjie"
+    },
+    {
+      "name": "Deng, Chengyuan"
+    },
+    {
+      "name": "Matsuoka, Reon"
+    },
+    {
+      "name": "Chen, Haifeng"
+    }
+  ],
+  "description": "LEMMA-RCA is a large multi-modal, multi-domain dataset for root cause analysis, covering IT and OT systems with metrics, logs or log-derived features, KPIs, fault timestamps, and root-cause labels.",
+  "keywords": [
+    "root cause analysis",
+    "AIOps",
+    "microservices",
+    "anomaly detection",
+    "multimodal data",
+    "time series",
+    "system logs",
+    "operational technology",
+    "SWaT",
+    "WADI"
+  ],
+  "subdatasets": [
+    {
+      "name": "Product Review",
+      "domain": "IT / microservices",
+      "access": "project website"
+    },
+    {
+      "name": "Cloud Computing",
+      "domain": "IT / cloud systems",
+      "access": "project website"
+    },
+    {
+      "name": "SWaT",
+      "domain": "OT / water treatment",
+      "access": "project website and original provider terms"
+    },
+    {
+      "name": "WADI",
+      "domain": "OT / water distribution",
+      "access": "project website and original provider terms"
+    }
+  ],
+  "canonical_access_point": "https://www.lemmarca.info",
+  "date_created": "2026-06-02"
+}

@@ -1,0 +1,3108 @@
+{
+  "version": "1.1",
+  "layout": "blind",
+  "n_tasks": 103,
+  "type_record_counts": {
+    "metrics": 8862111,
+    "logs": 53563314,
+    "traces": 51054269,
+    "events": 22762,
+    "alerts": 3134
+  },
+  "total_bytes": 3682521875,
+  "total_human": "3.43 GB",
+  "per_case": {
+    "t001": {
+      "files": {
+        "metrics": {
+          "rows": 92155,
+          "bytes": 388424
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8499175
+        },
+        "traces": {
+          "rows": 510000,
+          "bytes": 26159836
+        },
+        "events": {
+          "rows": 449,
+          "bytes": 38570
+        },
+        "alerts": {
+          "rows": 10,
+          "bytes": 24770
+        },
+        "task": {
+          "bytes": 1396
+        },
+        "topology": {
+          "bytes": 184494
+        }
+      }
+    },
+    "t002": {
+      "files": {
+        "metrics": {
+          "rows": 87064,
+          "bytes": 364214
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9379413
+        },
+        "traces": {
+          "rows": 699000,
+          "bytes": 36689698
+        },
+        "events": {
+          "rows": 392,
+          "bytes": 40075
+        },
+        "alerts": {
+          "rows": 9,
+          "bytes": 26431
+        },
+        "task": {
+          "bytes": 1614
+        },
+        "topology": {
+          "bytes": 207323
+        }
+      }
+    },
+    "t003": {
+      "files": {
+        "metrics": {
+          "rows": 83206,
+          "bytes": 338462
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9553215
+        },
+        "traces": {
+          "rows": 409500,
+          "bytes": 20978724
+        },
+        "events": {
+          "rows": 157,
+          "bytes": 23080
+        },
+        "alerts": {
+          "rows": 12,
+          "bytes": 26120
+        },
+        "task": {
+          "bytes": 1345
+        },
+        "topology": {
+          "bytes": 178642
+        }
+      }
+    },
+    "t004": {
+      "files": {
+        "metrics": {
+          "rows": 87453,
+          "bytes": 352305
+        },
+        "logs": {
+          "rows": 480000,
+          "bytes": 7883190
+        },
+        "traces": {
+          "rows": 440014,
+          "bytes": 22816323
+        },
+        "events": {
+          "rows": 380,
+          "bytes": 31873
+        },
+        "alerts": {
+          "rows": 12,
+          "bytes": 30648
+        },
+        "task": {
+          "bytes": 1403
+        },
+        "topology": {
+          "bytes": 187277
+        }
+      }
+    },
+    "t005": {
+      "files": {
+        "metrics": {
+          "rows": 92650,
+          "bytes": 377557
+        },
+        "logs": {
+          "rows": 340000,
+          "bytes": 5612532
+        },
+        "traces": {
+          "rows": 699500,
+          "bytes": 36686715
+        },
+        "events": {
+          "rows": 88,
+          "bytes": 15255
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25696
+        },
+        "task": {
+          "bytes": 1308
+        },
+        "topology": {
+          "bytes": 195213
+        }
+      }
+    },
+    "t006": {
+      "files": {
+        "metrics": {
+          "rows": 87177,
+          "bytes": 363877
+        },
+        "logs": {
+          "rows": 430054,
+          "bytes": 6942895
+        },
+        "traces": {
+          "rows": 574509,
+          "bytes": 31078564
+        },
+        "events": {
+          "rows": 273,
+          "bytes": 27145
+        },
+        "alerts": {
+          "rows": 25,
+          "bytes": 26714
+        },
+        "task": {
+          "bytes": 1288
+        },
+        "topology": {
+          "bytes": 183660
+        }
+      }
+    },
+    "t007": {
+      "files": {
+        "metrics": {
+          "rows": 89071,
+          "bytes": 382352
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8926550
+        },
+        "traces": {
+          "rows": 478000,
+          "bytes": 24396012
+        },
+        "events": {
+          "rows": 459,
+          "bytes": 43995
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25924
+        },
+        "task": {
+          "bytes": 1340
+        },
+        "topology": {
+          "bytes": 238316
+        }
+      }
+    },
+    "t008": {
+      "files": {
+        "metrics": {
+          "rows": 84699,
+          "bytes": 327034
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 10589652
+        },
+        "traces": {
+          "rows": 499514,
+          "bytes": 26922700
+        },
+        "events": {
+          "rows": 101,
+          "bytes": 15747
+        },
+        "alerts": {
+          "rows": 20,
+          "bytes": 30791
+        },
+        "task": {
+          "bytes": 1360
+        },
+        "topology": {
+          "bytes": 175823
+        }
+      }
+    },
+    "t009": {
+      "files": {
+        "metrics": {
+          "rows": 84897,
+          "bytes": 354524
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8024487
+        },
+        "traces": {
+          "rows": 500009,
+          "bytes": 25939675
+        },
+        "events": {
+          "rows": 264,
+          "bytes": 26141
+        },
+        "alerts": {
+          "rows": 44,
+          "bytes": 29569
+        },
+        "task": {
+          "bytes": 1397
+        },
+        "topology": {
+          "bytes": 187563
+        }
+      }
+    },
+    "t010": {
+      "files": {
+        "metrics": {
+          "rows": 84746,
+          "bytes": 343272
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 9338337
+        },
+        "traces": {
+          "rows": 518000,
+          "bytes": 26854381
+        },
+        "events": {
+          "rows": 361,
+          "bytes": 32428
+        },
+        "alerts": {
+          "rows": 17,
+          "bytes": 25128
+        },
+        "task": {
+          "bytes": 1450
+        },
+        "topology": {
+          "bytes": 203021
+        }
+      }
+    },
+    "t011": {
+      "files": {
+        "metrics": {
+          "rows": 86481,
+          "bytes": 355736
+        },
+        "logs": {
+          "rows": 481000,
+          "bytes": 7098273
+        },
+        "traces": {
+          "rows": 440018,
+          "bytes": 23077667
+        },
+        "events": {
+          "rows": 66,
+          "bytes": 13576
+        },
+        "alerts": {
+          "rows": 27,
+          "bytes": 26014
+        },
+        "task": {
+          "bytes": 1288
+        },
+        "topology": {
+          "bytes": 810546
+        }
+      }
+    },
+    "t012": {
+      "files": {
+        "metrics": {
+          "rows": 83507,
+          "bytes": 343329
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8025403
+        },
+        "traces": {
+          "rows": 470000,
+          "bytes": 24179379
+        },
+        "events": {
+          "rows": 86,
+          "bytes": 15814
+        },
+        "alerts": {
+          "rows": 4,
+          "bytes": 23276
+        },
+        "task": {
+          "bytes": 1315
+        },
+        "topology": {
+          "bytes": 180138
+        }
+      }
+    },
+    "t013": {
+      "files": {
+        "metrics": {
+          "rows": 85325,
+          "bytes": 343420
+        },
+        "logs": {
+          "rows": 467000,
+          "bytes": 7391815
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 30971959
+        },
+        "events": {
+          "rows": 329,
+          "bytes": 27718
+        },
+        "alerts": {
+          "rows": 33,
+          "bytes": 26051
+        },
+        "task": {
+          "bytes": 1327
+        },
+        "topology": {
+          "bytes": 185473
+        }
+      }
+    },
+    "t014": {
+      "files": {
+        "metrics": {
+          "rows": 91265,
+          "bytes": 376946
+        },
+        "logs": {
+          "rows": 700000,
+          "bytes": 10928268
+        },
+        "traces": {
+          "rows": 410000,
+          "bytes": 21711992
+        },
+        "events": {
+          "rows": 430,
+          "bytes": 34298
+        },
+        "alerts": {
+          "rows": 6,
+          "bytes": 24355
+        },
+        "task": {
+          "bytes": 1560
+        },
+        "topology": {
+          "bytes": 181382
+        }
+      }
+    },
+    "t015": {
+      "files": {
+        "metrics": {
+          "rows": 79087,
+          "bytes": 313737
+        },
+        "logs": {
+          "rows": 500989,
+          "bytes": 7634214
+        },
+        "traces": {
+          "rows": 500688,
+          "bytes": 33365176
+        },
+        "events": {
+          "rows": 233,
+          "bytes": 26356
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 24972
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 171712
+        }
+      }
+    },
+    "t016": {
+      "files": {
+        "metrics": {
+          "rows": 91960,
+          "bytes": 384206
+        },
+        "logs": {
+          "rows": 700000,
+          "bytes": 11560631
+        },
+        "traces": {
+          "rows": 510000,
+          "bytes": 27983747
+        },
+        "events": {
+          "rows": 268,
+          "bytes": 26802
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 25995
+        },
+        "task": {
+          "bytes": 1387
+        },
+        "topology": {
+          "bytes": 179058
+        }
+      }
+    },
+    "t017": {
+      "files": {
+        "metrics": {
+          "rows": 83670,
+          "bytes": 344395
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8078636
+        },
+        "traces": {
+          "rows": 420000,
+          "bytes": 21815138
+        },
+        "events": {
+          "rows": 64,
+          "bytes": 13260
+        },
+        "alerts": {
+          "rows": 10,
+          "bytes": 23817
+        },
+        "task": {
+          "bytes": 1361
+        },
+        "topology": {
+          "bytes": 201331
+        }
+      }
+    },
+    "t018": {
+      "files": {
+        "metrics": {
+          "rows": 92553,
+          "bytes": 380878
+        },
+        "logs": {
+          "rows": 533500,
+          "bytes": 9813817
+        },
+        "traces": {
+          "rows": 531000,
+          "bytes": 28214041
+        },
+        "events": {
+          "rows": 450,
+          "bytes": 37438
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 25394
+        },
+        "task": {
+          "bytes": 1372
+        },
+        "topology": {
+          "bytes": 204464
+        }
+      }
+    },
+    "t019": {
+      "files": {
+        "metrics": {
+          "rows": 90258,
+          "bytes": 359342
+        },
+        "logs": {
+          "rows": 540000,
+          "bytes": 9070799
+        },
+        "traces": {
+          "rows": 501926,
+          "bytes": 26256545
+        },
+        "events": {
+          "rows": 116,
+          "bytes": 17672
+        },
+        "alerts": {
+          "rows": 27,
+          "bytes": 25855
+        },
+        "task": {
+          "bytes": 1325
+        },
+        "topology": {
+          "bytes": 179908
+        }
+      }
+    },
+    "t020": {
+      "files": {
+        "metrics": {
+          "rows": 79876,
+          "bytes": 315413
+        },
+        "logs": {
+          "rows": 518347,
+          "bytes": 8149861
+        },
+        "traces": {
+          "rows": 519474,
+          "bytes": 35169251
+        },
+        "events": {
+          "rows": 145,
+          "bytes": 21712
+        },
+        "alerts": {
+          "rows": 50,
+          "bytes": 26703
+        },
+        "task": {
+          "bytes": 1308
+        },
+        "topology": {
+          "bytes": 171036
+        }
+      }
+    },
+    "t021": {
+      "files": {
+        "metrics": {
+          "rows": 81389,
+          "bytes": 315477
+        },
+        "logs": {
+          "rows": 432875,
+          "bytes": 9007141
+        },
+        "traces": {
+          "rows": 392831,
+          "bytes": 25061684
+        },
+        "events": {
+          "rows": 93,
+          "bytes": 15855
+        },
+        "alerts": {
+          "rows": 18,
+          "bytes": 25888
+        },
+        "task": {
+          "bytes": 1344
+        },
+        "topology": {
+          "bytes": 174168
+        }
+      }
+    },
+    "t022": {
+      "files": {
+        "metrics": {
+          "rows": 88179,
+          "bytes": 351615
+        },
+        "logs": {
+          "rows": 524000,
+          "bytes": 8890396
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 32023667
+        },
+        "events": {
+          "rows": 112,
+          "bytes": 17211
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 24917
+        },
+        "task": {
+          "bytes": 1375
+        },
+        "topology": {
+          "bytes": 177865
+        }
+      }
+    },
+    "t023": {
+      "files": {
+        "metrics": {
+          "rows": 87453,
+          "bytes": 354746
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9927742
+        },
+        "traces": {
+          "rows": 510028,
+          "bytes": 26084488
+        },
+        "events": {
+          "rows": 380,
+          "bytes": 31873
+        },
+        "alerts": {
+          "rows": 24,
+          "bytes": 26270
+        },
+        "task": {
+          "bytes": 1403
+        },
+        "topology": {
+          "bytes": 187277
+        }
+      }
+    },
+    "t024": {
+      "files": {
+        "metrics": {
+          "rows": 88725,
+          "bytes": 364069
+        },
+        "logs": {
+          "rows": 430000,
+          "bytes": 6789394
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 31166767
+        },
+        "events": {
+          "rows": 234,
+          "bytes": 23200
+        },
+        "alerts": {
+          "rows": 20,
+          "bytes": 23117
+        },
+        "task": {
+          "bytes": 1364
+        },
+        "topology": {
+          "bytes": 169785
+        }
+      }
+    },
+    "t025": {
+      "files": {
+        "metrics": {
+          "rows": 79087,
+          "bytes": 313631
+        },
+        "logs": {
+          "rows": 507354,
+          "bytes": 7724416
+        },
+        "traces": {
+          "rows": 371516,
+          "bytes": 25246895
+        },
+        "events": {
+          "rows": 233,
+          "bytes": 26356
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 25891
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 171712
+        }
+      }
+    },
+    "t026": {
+      "files": {
+        "metrics": {
+          "rows": 89183,
+          "bytes": 375431
+        },
+        "logs": {
+          "rows": 529000,
+          "bytes": 6501296
+        },
+        "traces": {
+          "rows": 440041,
+          "bytes": 23609494
+        },
+        "events": {
+          "rows": 447,
+          "bytes": 36994
+        },
+        "alerts": {
+          "rows": 2,
+          "bytes": 23478
+        },
+        "task": {
+          "bytes": 1413
+        },
+        "topology": {
+          "bytes": 192666
+        }
+      }
+    },
+    "t027": {
+      "files": {
+        "metrics": {
+          "rows": 86325,
+          "bytes": 357975
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8841411
+        },
+        "traces": {
+          "rows": 550000,
+          "bytes": 28621983
+        },
+        "events": {
+          "rows": 277,
+          "bytes": 25695
+        },
+        "alerts": {
+          "rows": 9,
+          "bytes": 25341
+        },
+        "task": {
+          "bytes": 1348
+        },
+        "topology": {
+          "bytes": 186042
+        }
+      }
+    },
+    "t028": {
+      "files": {
+        "metrics": {
+          "rows": 84628,
+          "bytes": 345316
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7980729
+        },
+        "traces": {
+          "rows": 500010,
+          "bytes": 26047305
+        },
+        "events": {
+          "rows": 135,
+          "bytes": 19411
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 24955
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 195688
+        }
+      }
+    },
+    "t029": {
+      "files": {
+        "metrics": {
+          "rows": 84022,
+          "bytes": 345990
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7652742
+        },
+        "traces": {
+          "rows": 410000,
+          "bytes": 21705215
+        },
+        "events": {
+          "rows": 78,
+          "bytes": 14656
+        },
+        "alerts": {
+          "rows": 15,
+          "bytes": 23835
+        },
+        "task": {
+          "bytes": 1361
+        },
+        "topology": {
+          "bytes": 181966
+        }
+      }
+    },
+    "t030": {
+      "files": {
+        "metrics": {
+          "rows": 81549,
+          "bytes": 321592
+        },
+        "logs": {
+          "rows": 546317,
+          "bytes": 10835950
+        },
+        "traces": {
+          "rows": 358256,
+          "bytes": 23013196
+        },
+        "events": {
+          "rows": 259,
+          "bytes": 28592
+        },
+        "alerts": {
+          "rows": 8,
+          "bytes": 26331
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 172755
+        }
+      }
+    },
+    "t031": {
+      "files": {
+        "metrics": {
+          "rows": 85689,
+          "bytes": 340186
+        },
+        "logs": {
+          "rows": 449596,
+          "bytes": 7016910
+        },
+        "traces": {
+          "rows": 531682,
+          "bytes": 27706657
+        },
+        "events": {
+          "rows": 109,
+          "bytes": 16751
+        },
+        "alerts": {
+          "rows": 10,
+          "bytes": 24234
+        },
+        "task": {
+          "bytes": 1450
+        },
+        "topology": {
+          "bytes": 183691
+        }
+      }
+    },
+    "t032": {
+      "files": {
+        "metrics": {
+          "rows": 78675,
+          "bytes": 310555
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7776638
+        },
+        "traces": {
+          "rows": 498000,
+          "bytes": 33794157
+        },
+        "events": {
+          "rows": 145,
+          "bytes": 21712
+        },
+        "alerts": {
+          "rows": 14,
+          "bytes": 23848
+        },
+        "task": {
+          "bytes": 1361
+        },
+        "topology": {
+          "bytes": 171036
+        }
+      }
+    },
+    "t033": {
+      "files": {
+        "metrics": {
+          "rows": 83557,
+          "bytes": 327289
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 10683139
+        },
+        "traces": {
+          "rows": 454500,
+          "bytes": 29960919
+        },
+        "events": {
+          "rows": 88,
+          "bytes": 15981
+        },
+        "alerts": {
+          "rows": 4,
+          "bytes": 24090
+        },
+        "task": {
+          "bytes": 1422
+        },
+        "topology": {
+          "bytes": 170403
+        }
+      }
+    },
+    "t034": {
+      "files": {
+        "metrics": {
+          "rows": 85017,
+          "bytes": 348455
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8135921
+        },
+        "traces": {
+          "rows": 594500,
+          "bytes": 31153059
+        },
+        "events": {
+          "rows": 122,
+          "bytes": 18109
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25923
+        },
+        "task": {
+          "bytes": 1308
+        },
+        "topology": {
+          "bytes": 193095
+        }
+      }
+    },
+    "t035": {
+      "files": {
+        "metrics": {
+          "rows": 87867,
+          "bytes": 359464
+        },
+        "logs": {
+          "rows": 410000,
+          "bytes": 5743305
+        },
+        "traces": {
+          "rows": 500000,
+          "bytes": 26661764
+        },
+        "events": {
+          "rows": 79,
+          "bytes": 14684
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 24922
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 181966
+        }
+      }
+    },
+    "t036": {
+      "files": {
+        "metrics": {
+          "rows": 84699,
+          "bytes": 327012
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8738065
+        },
+        "traces": {
+          "rows": 598500,
+          "bytes": 32278277
+        },
+        "events": {
+          "rows": 101,
+          "bytes": 15747
+        },
+        "alerts": {
+          "rows": 20,
+          "bytes": 25867
+        },
+        "task": {
+          "bytes": 1360
+        },
+        "topology": {
+          "bytes": 175823
+        }
+      }
+    },
+    "t037": {
+      "files": {
+        "metrics": {
+          "rows": 90342,
+          "bytes": 371952
+        },
+        "logs": {
+          "rows": 539500,
+          "bytes": 8597739
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 31568899
+        },
+        "events": {
+          "rows": 216,
+          "bytes": 25972
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 24932
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 198601
+        }
+      }
+    },
+    "t038": {
+      "files": {
+        "metrics": {
+          "rows": 84710,
+          "bytes": 332199
+        },
+        "logs": {
+          "rows": 490000,
+          "bytes": 8491296
+        },
+        "traces": {
+          "rows": 509500,
+          "bytes": 27436479
+        },
+        "events": {
+          "rows": 103,
+          "bytes": 15907
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 25820
+        },
+        "task": {
+          "bytes": 1360
+        },
+        "topology": {
+          "bytes": 174256
+        }
+      }
+    },
+    "t039": {
+      "files": {
+        "metrics": {
+          "rows": 91162,
+          "bytes": 380393
+        },
+        "logs": {
+          "rows": 616778,
+          "bytes": 8354801
+        },
+        "traces": {
+          "rows": 447541,
+          "bytes": 23793635
+        },
+        "events": {
+          "rows": 450,
+          "bytes": 43694
+        },
+        "alerts": {
+          "rows": 12,
+          "bytes": 24807
+        },
+        "task": {
+          "bytes": 1588
+        },
+        "topology": {
+          "bytes": 198144
+        }
+      }
+    },
+    "t040": {
+      "files": {
+        "metrics": {
+          "rows": 83801,
+          "bytes": 351421
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8182365
+        },
+        "traces": {
+          "rows": 500000,
+          "bytes": 25987094
+        },
+        "events": {
+          "rows": 226,
+          "bytes": 22206
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 26032
+        },
+        "task": {
+          "bytes": 1317
+        },
+        "topology": {
+          "bytes": 192856
+        }
+      }
+    },
+    "t041": {
+      "files": {
+        "metrics": {
+          "rows": 84405,
+          "bytes": 345284
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8713068
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 30723311
+        },
+        "events": {
+          "rows": 183,
+          "bytes": 19816
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 27154
+        },
+        "task": {
+          "bytes": 1396
+        },
+        "topology": {
+          "bytes": 192670
+        }
+      }
+    },
+    "t042": {
+      "files": {
+        "metrics": {
+          "rows": 84891,
+          "bytes": 343667
+        },
+        "logs": {
+          "rows": 497973,
+          "bytes": 8295262
+        },
+        "traces": {
+          "rows": 499357,
+          "bytes": 25684093
+        },
+        "events": {
+          "rows": 371,
+          "bytes": 31227
+        },
+        "alerts": {
+          "rows": 14,
+          "bytes": 23410
+        },
+        "task": {
+          "bytes": 1354
+        },
+        "topology": {
+          "bytes": 187245
+        }
+      }
+    },
+    "t043": {
+      "files": {
+        "metrics": {
+          "rows": 92077,
+          "bytes": 385075
+        },
+        "logs": {
+          "rows": 700000,
+          "bytes": 11459549
+        },
+        "traces": {
+          "rows": 680049,
+          "bytes": 36553477
+        },
+        "events": {
+          "rows": 253,
+          "bytes": 25470
+        },
+        "alerts": {
+          "rows": 9,
+          "bytes": 25498
+        },
+        "task": {
+          "bytes": 1402
+        },
+        "topology": {
+          "bytes": 178498
+        }
+      }
+    },
+    "t044": {
+      "files": {
+        "metrics": {
+          "rows": 86748,
+          "bytes": 355490
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7275257
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 31166767
+        },
+        "events": {
+          "rows": 224,
+          "bytes": 22843
+        },
+        "alerts": {
+          "rows": 249,
+          "bytes": 27993
+        },
+        "task": {
+          "bytes": 1344
+        },
+        "topology": {
+          "bytes": 169789
+        }
+      }
+    },
+    "t045": {
+      "files": {
+        "metrics": {
+          "rows": 96123,
+          "bytes": 407958
+        },
+        "logs": {
+          "rows": 580000,
+          "bytes": 8317057
+        },
+        "traces": {
+          "rows": 559500,
+          "bytes": 30155570
+        },
+        "events": {
+          "rows": 449,
+          "bytes": 39625
+        },
+        "alerts": {
+          "rows": 12,
+          "bytes": 23831
+        },
+        "task": {
+          "bytes": 1373
+        },
+        "topology": {
+          "bytes": 206453
+        }
+      }
+    },
+    "t046": {
+      "files": {
+        "metrics": {
+          "rows": 92786,
+          "bytes": 388031
+        },
+        "logs": {
+          "rows": 640000,
+          "bytes": 9397992
+        },
+        "traces": {
+          "rows": 550024,
+          "bytes": 28348643
+        },
+        "events": {
+          "rows": 439,
+          "bytes": 37047
+        },
+        "alerts": {
+          "rows": 2,
+          "bytes": 23928
+        },
+        "task": {
+          "bytes": 1416
+        },
+        "topology": {
+          "bytes": 182815
+        }
+      }
+    },
+    "t047": {
+      "files": {
+        "metrics": {
+          "rows": 86072,
+          "bytes": 352938
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8840387
+        },
+        "traces": {
+          "rows": 410000,
+          "bytes": 21352073
+        },
+        "events": {
+          "rows": 219,
+          "bytes": 22672
+        },
+        "alerts": {
+          "rows": 114,
+          "bytes": 31560
+        },
+        "task": {
+          "bytes": 1338
+        },
+        "topology": {
+          "bytes": 169062
+        }
+      }
+    },
+    "t048": {
+      "files": {
+        "metrics": {
+          "rows": 89486,
+          "bytes": 360937
+        },
+        "logs": {
+          "rows": 644156,
+          "bytes": 10144933
+        },
+        "traces": {
+          "rows": 648694,
+          "bytes": 33359400
+        },
+        "events": {
+          "rows": 82,
+          "bytes": 14987
+        },
+        "alerts": {
+          "rows": 2,
+          "bytes": 23398
+        },
+        "task": {
+          "bytes": 1414
+        },
+        "topology": {
+          "bytes": 177682
+        }
+      }
+    },
+    "t049": {
+      "files": {
+        "metrics": {
+          "rows": 87028,
+          "bytes": 348798
+        },
+        "logs": {
+          "rows": 322500,
+          "bytes": 5286803
+        },
+        "traces": {
+          "rows": 450000,
+          "bytes": 23068510
+        },
+        "events": {
+          "rows": 321,
+          "bytes": 28497
+        },
+        "alerts": {
+          "rows": 30,
+          "bytes": 30888
+        },
+        "task": {
+          "bytes": 1403
+        },
+        "topology": {
+          "bytes": 189309
+        }
+      }
+    },
+    "t050": {
+      "files": {
+        "metrics": {
+          "rows": 85327,
+          "bytes": 349659
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8768872
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 31870095
+        },
+        "events": {
+          "rows": 78,
+          "bytes": 14656
+        },
+        "alerts": {
+          "rows": 51,
+          "bytes": 26665
+        },
+        "task": {
+          "bytes": 1288
+        },
+        "topology": {
+          "bytes": 181966
+        }
+      }
+    },
+    "t051": {
+      "files": {
+        "metrics": {
+          "rows": 82874,
+          "bytes": 340399
+        },
+        "logs": {
+          "rows": 370000,
+          "bytes": 5158078
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 30941676
+        },
+        "events": {
+          "rows": 390,
+          "bytes": 34004
+        },
+        "alerts": {
+          "rows": 9,
+          "bytes": 26415
+        },
+        "task": {
+          "bytes": 1364
+        },
+        "topology": {
+          "bytes": 170769
+        }
+      }
+    },
+    "t052": {
+      "files": {
+        "metrics": {
+          "rows": 84453,
+          "bytes": 353103
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8160974
+        },
+        "traces": {
+          "rows": 500024,
+          "bytes": 25721304
+        },
+        "events": {
+          "rows": 438,
+          "bytes": 39499
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25980
+        },
+        "task": {
+          "bytes": 1357
+        },
+        "topology": {
+          "bytes": 189592
+        }
+      }
+    },
+    "t053": {
+      "files": {
+        "metrics": {
+          "rows": 85899,
+          "bytes": 355101
+        },
+        "logs": {
+          "rows": 420000,
+          "bytes": 7154256
+        },
+        "traces": {
+          "rows": 460009,
+          "bytes": 29864147
+        },
+        "events": {
+          "rows": 226,
+          "bytes": 23275
+        },
+        "alerts": {
+          "rows": 40,
+          "bytes": 29208
+        },
+        "task": {
+          "bytes": 1396
+        },
+        "topology": {
+          "bytes": 180525
+        }
+      }
+    },
+    "t054": {
+      "files": {
+        "metrics": {
+          "rows": 84988,
+          "bytes": 343010
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9538249
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 30995439
+        },
+        "events": {
+          "rows": 325,
+          "bytes": 27619
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25981
+        },
+        "task": {
+          "bytes": 1347
+        },
+        "topology": {
+          "bytes": 185847
+        }
+      }
+    },
+    "t055": {
+      "files": {
+        "metrics": {
+          "rows": 83482,
+          "bytes": 335209
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8178801
+        },
+        "traces": {
+          "rows": 500000,
+          "bytes": 25807732
+        },
+        "events": {
+          "rows": 207,
+          "bytes": 22455
+        },
+        "alerts": {
+          "rows": 118,
+          "bytes": 27188
+        },
+        "task": {
+          "bytes": 1392
+        },
+        "topology": {
+          "bytes": 186440
+        }
+      }
+    },
+    "t056": {
+      "files": {
+        "metrics": {
+          "rows": 83920,
+          "bytes": 348023
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8094480
+        },
+        "traces": {
+          "rows": 400000,
+          "bytes": 20897356
+        },
+        "events": {
+          "rows": 70,
+          "bytes": 14339
+        },
+        "alerts": {
+          "rows": 4,
+          "bytes": 23588
+        },
+        "task": {
+          "bytes": 1361
+        },
+        "topology": {
+          "bytes": 189290
+        }
+      }
+    },
+    "t057": {
+      "files": {
+        "metrics": {
+          "rows": 86072,
+          "bytes": 353418
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7319369
+        },
+        "traces": {
+          "rows": 310018,
+          "bytes": 15952496
+        },
+        "events": {
+          "rows": 219,
+          "bytes": 22672
+        },
+        "alerts": {
+          "rows": 114,
+          "bytes": 26693
+        },
+        "task": {
+          "bytes": 1338
+        },
+        "topology": {
+          "bytes": 169062
+        }
+      }
+    },
+    "t058": {
+      "files": {
+        "metrics": {
+          "rows": 83516,
+          "bytes": 336026
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 10387671
+        },
+        "traces": {
+          "rows": 500000,
+          "bytes": 32571992
+        },
+        "events": {
+          "rows": 120,
+          "bytes": 18185
+        },
+        "alerts": {
+          "rows": 6,
+          "bytes": 23352
+        },
+        "task": {
+          "bytes": 1307
+        },
+        "topology": {
+          "bytes": 195373
+        }
+      }
+    },
+    "t059": {
+      "files": {
+        "metrics": {
+          "rows": 83349,
+          "bytes": 340829
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8608437
+        },
+        "traces": {
+          "rows": 410000,
+          "bytes": 22467687
+        },
+        "events": {
+          "rows": 209,
+          "bytes": 25525
+        },
+        "alerts": {
+          "rows": 15,
+          "bytes": 26049
+        },
+        "task": {
+          "bytes": 1387
+        },
+        "topology": {
+          "bytes": 199307
+        }
+      }
+    },
+    "t060": {
+      "files": {
+        "metrics": {
+          "rows": 82213,
+          "bytes": 314243
+        },
+        "logs": {
+          "rows": 354023,
+          "bytes": 7496874
+        },
+        "traces": {
+          "rows": 309641,
+          "bytes": 17082514
+        },
+        "events": {
+          "rows": 103,
+          "bytes": 16579
+        },
+        "alerts": {
+          "rows": 7,
+          "bytes": 23393
+        },
+        "task": {
+          "bytes": 1414
+        },
+        "topology": {
+          "bytes": 174970
+        }
+      }
+    },
+    "t061": {
+      "files": {
+        "metrics": {
+          "rows": 86072,
+          "bytes": 353940
+        },
+        "logs": {
+          "rows": 560000,
+          "bytes": 8317789
+        },
+        "traces": {
+          "rows": 520000,
+          "bytes": 26767304
+        },
+        "events": {
+          "rows": 219,
+          "bytes": 22672
+        },
+        "alerts": {
+          "rows": 276,
+          "bytes": 27633
+        },
+        "task": {
+          "bytes": 1332
+        },
+        "topology": {
+          "bytes": 169062
+        }
+      }
+    },
+    "t062": {
+      "files": {
+        "metrics": {
+          "rows": 95799,
+          "bytes": 385981
+        },
+        "logs": {
+          "rows": 610000,
+          "bytes": 9495889
+        },
+        "traces": {
+          "rows": 800000,
+          "bytes": 41006288
+        },
+        "events": {
+          "rows": 337,
+          "bytes": 31690
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 26400
+        },
+        "task": {
+          "bytes": 1373
+        },
+        "topology": {
+          "bytes": 189760
+        }
+      }
+    },
+    "t063": {
+      "files": {
+        "metrics": {
+          "rows": 85945,
+          "bytes": 355430
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8784704
+        },
+        "traces": {
+          "rows": 500000,
+          "bytes": 25944719
+        },
+        "events": {
+          "rows": 275,
+          "bytes": 27337
+        },
+        "alerts": {
+          "rows": 9,
+          "bytes": 25463
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 181979
+        }
+      }
+    },
+    "t064": {
+      "files": {
+        "metrics": {
+          "rows": 86509,
+          "bytes": 358327
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8841411
+        },
+        "traces": {
+          "rows": 596500,
+          "bytes": 30909188
+        },
+        "events": {
+          "rows": 277,
+          "bytes": 25695
+        },
+        "alerts": {
+          "rows": 48,
+          "bytes": 29041
+        },
+        "task": {
+          "bytes": 1322
+        },
+        "topology": {
+          "bytes": 186494
+        }
+      }
+    },
+    "t065": {
+      "files": {
+        "metrics": {
+          "rows": 79415,
+          "bytes": 311026
+        },
+        "logs": {
+          "rows": 376287,
+          "bytes": 6521016
+        },
+        "traces": {
+          "rows": 297592,
+          "bytes": 17082038
+        },
+        "events": {
+          "rows": 134,
+          "bytes": 20229
+        },
+        "alerts": {
+          "rows": 218,
+          "bytes": 32866
+        },
+        "task": {
+          "bytes": 1316
+        },
+        "topology": {
+          "bytes": 180138
+        }
+      }
+    },
+    "t066": {
+      "files": {
+        "metrics": {
+          "rows": 87810,
+          "bytes": 381372
+        },
+        "logs": {
+          "rows": 479000,
+          "bytes": 7067378
+        },
+        "traces": {
+          "rows": 338023,
+          "bytes": 19056918
+        },
+        "events": {
+          "rows": 200,
+          "bytes": 26976
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 24636
+        },
+        "task": {
+          "bytes": 1440
+        },
+        "topology": {
+          "bytes": 198064
+        }
+      }
+    },
+    "t067": {
+      "files": {
+        "metrics": {
+          "rows": 87641,
+          "bytes": 363681
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7161627
+        },
+        "traces": {
+          "rows": 596009,
+          "bytes": 30916404
+        },
+        "events": {
+          "rows": 279,
+          "bytes": 25762
+        },
+        "alerts": {
+          "rows": 44,
+          "bytes": 29185
+        },
+        "task": {
+          "bytes": 1308
+        },
+        "topology": {
+          "bytes": 186042
+        }
+      }
+    },
+    "t068": {
+      "files": {
+        "metrics": {
+          "rows": 86129,
+          "bytes": 359426
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8635323
+        },
+        "traces": {
+          "rows": 490009,
+          "bytes": 25205338
+        },
+        "events": {
+          "rows": 264,
+          "bytes": 26141
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 26806
+        },
+        "task": {
+          "bytes": 1364
+        },
+        "topology": {
+          "bytes": 187093
+        }
+      }
+    },
+    "t069": {
+      "files": {
+        "metrics": {
+          "rows": 85978,
+          "bytes": 341138
+        },
+        "logs": {
+          "rows": 540000,
+          "bytes": 9935698
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 32911019
+        },
+        "events": {
+          "rows": 98,
+          "bytes": 15931
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 23432
+        },
+        "task": {
+          "bytes": 1418
+        },
+        "topology": {
+          "bytes": 189587
+        }
+      }
+    },
+    "t070": {
+      "files": {
+        "metrics": {
+          "rows": 79904,
+          "bytes": 308090
+        },
+        "logs": {
+          "rows": 544282,
+          "bytes": 11310103
+        },
+        "traces": {
+          "rows": 380000,
+          "bytes": 24415877
+        },
+        "events": {
+          "rows": 49,
+          "bytes": 11303
+        },
+        "alerts": {
+          "rows": 58,
+          "bytes": 27656
+        },
+        "task": {
+          "bytes": 1352
+        },
+        "topology": {
+          "bytes": 173301
+        }
+      }
+    },
+    "t071": {
+      "files": {
+        "metrics": {
+          "rows": 86325,
+          "bytes": 358772
+        },
+        "logs": {
+          "rows": 430000,
+          "bytes": 6080074
+        },
+        "traces": {
+          "rows": 600009,
+          "bytes": 31121225
+        },
+        "events": {
+          "rows": 277,
+          "bytes": 25695
+        },
+        "alerts": {
+          "rows": 29,
+          "bytes": 28254
+        },
+        "task": {
+          "bytes": 1314
+        },
+        "topology": {
+          "bytes": 186042
+        }
+      }
+    },
+    "t072": {
+      "files": {
+        "metrics": {
+          "rows": 84743,
+          "bytes": 347840
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8840387
+        },
+        "traces": {
+          "rows": 310018,
+          "bytes": 16220599
+        },
+        "events": {
+          "rows": 214,
+          "bytes": 22495
+        },
+        "alerts": {
+          "rows": 115,
+          "bytes": 25719
+        },
+        "task": {
+          "bytes": 1348
+        },
+        "topology": {
+          "bytes": 169062
+        }
+      }
+    },
+    "t073": {
+      "files": {
+        "metrics": {
+          "rows": 82030,
+          "bytes": 326505
+        },
+        "logs": {
+          "rows": 310000,
+          "bytes": 5053467
+        },
+        "traces": {
+          "rows": 400000,
+          "bytes": 20467091
+        },
+        "events": {
+          "rows": 198,
+          "bytes": 23006
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 24915
+        },
+        "task": {
+          "bytes": 1420
+        },
+        "topology": {
+          "bytes": 175741
+        }
+      }
+    },
+    "t074": {
+      "files": {
+        "metrics": {
+          "rows": 90037,
+          "bytes": 380351
+        },
+        "logs": {
+          "rows": 632020,
+          "bytes": 8659661
+        },
+        "traces": {
+          "rows": 460000,
+          "bytes": 23265284
+        },
+        "events": {
+          "rows": 475,
+          "bytes": 38455
+        },
+        "alerts": {
+          "rows": 25,
+          "bytes": 26198
+        },
+        "task": {
+          "bytes": 1651
+        },
+        "topology": {
+          "bytes": 202718
+        }
+      }
+    },
+    "t075": {
+      "files": {
+        "metrics": {
+          "rows": 85166,
+          "bytes": 351211
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7846363
+        },
+        "traces": {
+          "rows": 369000,
+          "bytes": 19480619
+        },
+        "events": {
+          "rows": 66,
+          "bytes": 13576
+        },
+        "alerts": {
+          "rows": 10,
+          "bytes": 24985
+        },
+        "task": {
+          "bytes": 1379
+        },
+        "topology": {
+          "bytes": 682156
+        }
+      }
+    },
+    "t076": {
+      "files": {
+        "metrics": {
+          "rows": 82989,
+          "bytes": 343082
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 5962146
+        },
+        "traces": {
+          "rows": 500000,
+          "bytes": 26461202
+        },
+        "events": {
+          "rows": 331,
+          "bytes": 28868
+        },
+        "alerts": {
+          "rows": 4,
+          "bytes": 24144
+        },
+        "task": {
+          "bytes": 1412
+        },
+        "topology": {
+          "bytes": 183308
+        }
+      }
+    },
+    "t077": {
+      "files": {
+        "metrics": {
+          "rows": 85014,
+          "bytes": 350898
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9734287
+        },
+        "traces": {
+          "rows": 600010,
+          "bytes": 31550793
+        },
+        "events": {
+          "rows": 64,
+          "bytes": 13260
+        },
+        "alerts": {
+          "rows": 28,
+          "bytes": 25991
+        },
+        "task": {
+          "bytes": 1288
+        },
+        "topology": {
+          "bytes": 201331
+        }
+      }
+    },
+    "t078": {
+      "files": {
+        "metrics": {
+          "rows": 79458,
+          "bytes": 310390
+        },
+        "logs": {
+          "rows": 310000,
+          "bytes": 6243183
+        },
+        "traces": {
+          "rows": 524682,
+          "bytes": 33781765
+        },
+        "events": {
+          "rows": 68,
+          "bytes": 13022
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25967
+        },
+        "task": {
+          "bytes": 1316
+        },
+        "topology": {
+          "bytes": 168057
+        }
+      }
+    },
+    "t079": {
+      "files": {
+        "metrics": {
+          "rows": 83191,
+          "bytes": 344891
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 8434724
+        },
+        "traces": {
+          "rows": 340000,
+          "bytes": 18494549
+        },
+        "events": {
+          "rows": 342,
+          "bytes": 36131
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 24841
+        },
+        "task": {
+          "bytes": 1378
+        },
+        "topology": {
+          "bytes": 222367
+        }
+      }
+    },
+    "t080": {
+      "files": {
+        "metrics": {
+          "rows": 89533,
+          "bytes": 366146
+        },
+        "logs": {
+          "rows": 229000,
+          "bytes": 3705096
+        },
+        "traces": {
+          "rows": 570037,
+          "bytes": 29935199
+        },
+        "events": {
+          "rows": 87,
+          "bytes": 15227
+        },
+        "alerts": {
+          "rows": 10,
+          "bytes": 24935
+        },
+        "task": {
+          "bytes": 1375
+        },
+        "topology": {
+          "bytes": 195213
+        }
+      }
+    },
+    "t081": {
+      "files": {
+        "metrics": {
+          "rows": 81761,
+          "bytes": 330840
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7816753
+        },
+        "traces": {
+          "rows": 498000,
+          "bytes": 26786629
+        },
+        "events": {
+          "rows": 100,
+          "bytes": 17581
+        },
+        "alerts": {
+          "rows": 4,
+          "bytes": 23782
+        },
+        "task": {
+          "bytes": 1373
+        },
+        "topology": {
+          "bytes": 183178
+        }
+      }
+    },
+    "t082": {
+      "files": {
+        "metrics": {
+          "rows": 84272,
+          "bytes": 339224
+        },
+        "logs": {
+          "rows": 590000,
+          "bytes": 9951618
+        },
+        "traces": {
+          "rows": 390000,
+          "bytes": 20819733
+        },
+        "events": {
+          "rows": 113,
+          "bytes": 17604
+        },
+        "alerts": {
+          "rows": 6,
+          "bytes": 23702
+        },
+        "task": {
+          "bytes": 1418
+        },
+        "topology": {
+          "bytes": 178715
+        }
+      }
+    },
+    "t083": {
+      "files": {
+        "metrics": {
+          "rows": 85585,
+          "bytes": 345671
+        },
+        "logs": {
+          "rows": 535627,
+          "bytes": 10782217
+        },
+        "traces": {
+          "rows": 539451,
+          "bytes": 34170285
+        },
+        "events": {
+          "rows": 73,
+          "bytes": 13774
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25972
+        },
+        "task": {
+          "bytes": 1287
+        },
+        "topology": {
+          "bytes": 178978
+        }
+      }
+    },
+    "t084": {
+      "files": {
+        "metrics": {
+          "rows": 92538,
+          "bytes": 379896
+        },
+        "logs": {
+          "rows": 342728,
+          "bytes": 5757343
+        },
+        "traces": {
+          "rows": 254831,
+          "bytes": 14432053
+        },
+        "events": {
+          "rows": 450,
+          "bytes": 44338
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 25938
+        },
+        "task": {
+          "bytes": 1403
+        },
+        "topology": {
+          "bytes": 281763
+        }
+      }
+    },
+    "t085": {
+      "files": {
+        "metrics": {
+          "rows": 83677,
+          "bytes": 335567
+        },
+        "logs": {
+          "rows": 373500,
+          "bytes": 5942065
+        },
+        "traces": {
+          "rows": 371515,
+          "bytes": 19053629
+        },
+        "events": {
+          "rows": 213,
+          "bytes": 25187
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 24976
+        },
+        "task": {
+          "bytes": 1382
+        },
+        "topology": {
+          "bytes": 196705
+        }
+      }
+    },
+    "t086": {
+      "files": {
+        "metrics": {
+          "rows": 86325,
+          "bytes": 360537
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8841411
+        },
+        "traces": {
+          "rows": 250018,
+          "bytes": 13039395
+        },
+        "events": {
+          "rows": 277,
+          "bytes": 25695
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 26801
+        },
+        "task": {
+          "bytes": 1338
+        },
+        "topology": {
+          "bytes": 186042
+        }
+      }
+    },
+    "t087": {
+      "files": {
+        "metrics": {
+          "rows": 90362,
+          "bytes": 399886
+        },
+        "logs": {
+          "rows": 521226,
+          "bytes": 6667261
+        },
+        "traces": {
+          "rows": 463446,
+          "bytes": 24316636
+        },
+        "events": {
+          "rows": 315,
+          "bytes": 35366
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 24665
+        },
+        "task": {
+          "bytes": 1438
+        },
+        "topology": {
+          "bytes": 274507
+        }
+      }
+    },
+    "t088": {
+      "files": {
+        "metrics": {
+          "rows": 87028,
+          "bytes": 348072
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9730655
+        },
+        "traces": {
+          "rows": 350000,
+          "bytes": 17845380
+        },
+        "events": {
+          "rows": 321,
+          "bytes": 28497
+        },
+        "alerts": {
+          "rows": 30,
+          "bytes": 26058
+        },
+        "task": {
+          "bytes": 1403
+        },
+        "topology": {
+          "bytes": 189309
+        }
+      }
+    },
+    "t089": {
+      "files": {
+        "metrics": {
+          "rows": 83901,
+          "bytes": 349597
+        },
+        "logs": {
+          "rows": 390000,
+          "bytes": 6218866
+        },
+        "traces": {
+          "rows": 498010,
+          "bytes": 25915572
+        },
+        "events": {
+          "rows": 214,
+          "bytes": 25733
+        },
+        "alerts": {
+          "rows": 12,
+          "bytes": 23962
+        },
+        "task": {
+          "bytes": 1361
+        },
+        "topology": {
+          "bytes": 198601
+        }
+      }
+    },
+    "t090": {
+      "files": {
+        "metrics": {
+          "rows": 91119,
+          "bytes": 370276
+        },
+        "logs": {
+          "rows": 700000,
+          "bytes": 11089323
+        },
+        "traces": {
+          "rows": 510000,
+          "bytes": 26150795
+        },
+        "events": {
+          "rows": 110,
+          "bytes": 17240
+        },
+        "alerts": {
+          "rows": 2,
+          "bytes": 23445
+        },
+        "task": {
+          "bytes": 1418
+        },
+        "topology": {
+          "bytes": 176202
+        }
+      }
+    },
+    "t091": {
+      "files": {
+        "metrics": {
+          "rows": 86777,
+          "bytes": 358516
+        },
+        "logs": {
+          "rows": 530000,
+          "bytes": 8792045
+        },
+        "traces": {
+          "rows": 360000,
+          "bytes": 18782893
+        },
+        "events": {
+          "rows": 89,
+          "bytes": 15129
+        },
+        "alerts": {
+          "rows": 2,
+          "bytes": 23301
+        },
+        "task": {
+          "bytes": 1418
+        },
+        "topology": {
+          "bytes": 188905
+        }
+      }
+    },
+    "t092": {
+      "files": {
+        "metrics": {
+          "rows": 89473,
+          "bytes": 351618
+        },
+        "logs": {
+          "rows": 651988,
+          "bytes": 11896944
+        },
+        "traces": {
+          "rows": 670506,
+          "bytes": 37054966
+        },
+        "events": {
+          "rows": 101,
+          "bytes": 15890
+        },
+        "alerts": {
+          "rows": 24,
+          "bytes": 26123
+        },
+        "task": {
+          "bytes": 1360
+        },
+        "topology": {
+          "bytes": 189583
+        }
+      }
+    },
+    "t093": {
+      "files": {
+        "metrics": {
+          "rows": 90288,
+          "bytes": 373606
+        },
+        "logs": {
+          "rows": 470000,
+          "bytes": 6756034
+        },
+        "traces": {
+          "rows": 446509,
+          "bytes": 23261195
+        },
+        "events": {
+          "rows": 293,
+          "bytes": 26916
+        },
+        "alerts": {
+          "rows": 17,
+          "bytes": 25383
+        },
+        "task": {
+          "bytes": 1338
+        },
+        "topology": {
+          "bytes": 186042
+        }
+      }
+    },
+    "t094": {
+      "files": {
+        "metrics": {
+          "rows": 83442,
+          "bytes": 342067
+        },
+        "logs": {
+          "rows": 341500,
+          "bytes": 5391229
+        },
+        "traces": {
+          "rows": 320500,
+          "bytes": 16464017
+        },
+        "events": {
+          "rows": 200,
+          "bytes": 21637
+        },
+        "alerts": {
+          "rows": 393,
+          "bytes": 29701
+        },
+        "task": {
+          "bytes": 1366
+        },
+        "topology": {
+          "bytes": 170259
+        }
+      }
+    },
+    "t095": {
+      "files": {
+        "metrics": {
+          "rows": 87984,
+          "bytes": 380207
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 7779505
+        },
+        "traces": {
+          "rows": 599000,
+          "bytes": 31297369
+        },
+        "events": {
+          "rows": 138,
+          "bytes": 18999
+        },
+        "alerts": {
+          "rows": 13,
+          "bytes": 25093
+        },
+        "task": {
+          "bytes": 1465
+        },
+        "topology": {
+          "bytes": 193187
+        }
+      }
+    },
+    "t096": {
+      "files": {
+        "metrics": {
+          "rows": 86233,
+          "bytes": 355519
+        },
+        "logs": {
+          "rows": 450000,
+          "bytes": 6577151
+        },
+        "traces": {
+          "rows": 600009,
+          "bytes": 31197074
+        },
+        "events": {
+          "rows": 180,
+          "bytes": 21871
+        },
+        "alerts": {
+          "rows": 50,
+          "bytes": 28776
+        },
+        "task": {
+          "bytes": 1396
+        },
+        "topology": {
+          "bytes": 181654
+        }
+      }
+    },
+    "t097": {
+      "files": {
+        "metrics": {
+          "rows": 84988,
+          "bytes": 325840
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 12626902
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 37725218
+        },
+        "events": {
+          "rows": 102,
+          "bytes": 16682
+        },
+        "alerts": {
+          "rows": 3,
+          "bytes": 23899
+        },
+        "task": {
+          "bytes": 1422
+        },
+        "topology": {
+          "bytes": 174168
+        }
+      }
+    },
+    "t098": {
+      "files": {
+        "metrics": {
+          "rows": 84946,
+          "bytes": 349651
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9752594
+        },
+        "traces": {
+          "rows": 600010,
+          "bytes": 31768591
+        },
+        "events": {
+          "rows": 70,
+          "bytes": 14241
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25977
+        },
+        "task": {
+          "bytes": 1288
+        },
+        "topology": {
+          "bytes": 178207
+        }
+      }
+    },
+    "t099": {
+      "files": {
+        "metrics": {
+          "rows": 85178,
+          "bytes": 354507
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 9917961
+        },
+        "traces": {
+          "rows": 599010,
+          "bytes": 32263273
+        },
+        "events": {
+          "rows": 91,
+          "bytes": 16508
+        },
+        "alerts": {
+          "rows": 16,
+          "bytes": 25923
+        },
+        "task": {
+          "bytes": 1308
+        },
+        "topology": {
+          "bytes": 182254
+        }
+      }
+    },
+    "t100": {
+      "files": {
+        "metrics": {
+          "rows": 79506,
+          "bytes": 313212
+        },
+        "logs": {
+          "rows": 534194,
+          "bytes": 9914944
+        },
+        "traces": {
+          "rows": 527692,
+          "bytes": 34174028
+        },
+        "events": {
+          "rows": 87,
+          "bytes": 15950
+        },
+        "alerts": {
+          "rows": 46,
+          "bytes": 26886
+        },
+        "task": {
+          "bytes": 1316
+        },
+        "topology": {
+          "bytes": 170403
+        }
+      }
+    },
+    "t101": {
+      "files": {
+        "metrics": {
+          "rows": 85738,
+          "bytes": 343435
+        },
+        "logs": {
+          "rows": 417000,
+          "bytes": 6805355
+        },
+        "traces": {
+          "rows": 448500,
+          "bytes": 23090730
+        },
+        "events": {
+          "rows": 321,
+          "bytes": 28497
+        },
+        "alerts": {
+          "rows": 30,
+          "bytes": 24991
+        },
+        "task": {
+          "bytes": 1418
+        },
+        "topology": {
+          "bytes": 189309
+        }
+      }
+    },
+    "t102": {
+      "files": {
+        "metrics": {
+          "rows": 87459,
+          "bytes": 365987
+        },
+        "logs": {
+          "rows": 600000,
+          "bytes": 8635323
+        },
+        "traces": {
+          "rows": 600000,
+          "bytes": 30920051
+        },
+        "events": {
+          "rows": 267,
+          "bytes": 26255
+        },
+        "alerts": {
+          "rows": 41,
+          "bytes": 28327
+        },
+        "task": {
+          "bytes": 1355
+        },
+        "topology": {
+          "bytes": 187093
+        }
+      }
+    },
+    "t103": {
+      "files": {
+        "metrics": {
+          "rows": 84975,
+          "bytes": 357961
+        },
+        "logs": {
+          "rows": 500000,
+          "bytes": 7946316
+        },
+        "traces": {
+          "rows": 380000,
+          "bytes": 19171184
+        },
+        "events": {
+          "rows": 459,
+          "bytes": 39874
+        },
+        "alerts": {
+          "rows": 5,
+          "bytes": 25103
+        },
+        "task": {
+          "bytes": 1433
+        },
+        "topology": {
+          "bytes": 198252
+        }
+      }
+    }
+  },
+  "generated_at": "2026-07-01",
+  "notes": "Blind layout. Task IDs t001..t103 are opaque. Original case_id mapping available in answer_key/ (restricted). | v1.1: metrics backfill entity_id/name; topology ReplicaSet mislabel fix; task alert_entity normalization; redact Aliyun-PTS + allspark-SNAPSHOT; canonical filenames match v1.0 schema."
+}

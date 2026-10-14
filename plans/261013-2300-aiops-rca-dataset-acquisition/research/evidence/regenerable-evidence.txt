@@ -1,0 +1,9 @@
+# Large regenerable API responses removed from the plan directory; hashes as measured 2026-10-13
+192dfc7abbb1eb34f6616554957cc6c1714ef7247bad6e5d7046e0519dfa20da *gh-cloudopsbench-tree.json
+1a5efce9b6e4dfd701b440cad0c18bf9bda73724a6a56857647e191d511118ad *hf-LLM4Ops_Cloud-OpsBench.json
+b6341a25006d08a5598ca6fbb1cac072ab92a21084764fd47f30f317458f60a7 *hf-Shra9701_RCAEval.json
+6a8de5604709f87ff900dd791634943e70e1d7c2579054a10ec841edcb30e83f *hf-rcaeval.json
+e0b6f9a4c7540a62d78f6ffbc60cb241307b83b6298fe367672b9c9c565df38d *rcaeval-zenodo-cd.json
+# Regenerate: gh api 'repos/LLM4Ops/Cloud-OpsBench/git/trees/ea05dafbc87b5985df8721622d63d4229c2b4224?recursive=1'
+#             curl 'https://huggingface.co/api/datasets/<repo>?blobs=true' (repo pinned by the sha field)
+#             python -I remote-zip-list.py out.json https://zenodo.org/api/records/14590730/files/<RE*-*.zip>/content

@@ -1,0 +1,1343 @@
+{
+ "schema_version": 2,
+ "id": "cook-261013-2300-aiops-rca-dataset-acquisition-20261014",
+ "evidence_class": "deterministic",
+ "host": "Claude Code CLI on win32 (Windows 11), Git Bash + Python 3.12.10",
+ "surface": "local workspace nt114-rca/nt114-rca",
+ "version": "plan revision 2 (2026-10-13 23:32)",
+ "logical_entrypoint": "/nckh-cook plans/261013-2300-aiops-rca-dataset-acquisition/plan.md --auto",
+ "mode": "auto",
+ "actual_invocation": "acquire.py / lineage.py / provenance.py via recorded argv (commands.jsonl)",
+ "requested_model": "unknown (no native evidence)",
+ "resolved_model": "claude-opus-5-5 (system prompt)",
+ "effective_model": "unknown (no native evidence)",
+ "requested_effort": "unknown (no native evidence)",
+ "resolved_effort": "unknown (no native evidence)",
+ "effective_effort": "unknown (no native evidence)",
+ "permission_mode": "auto",
+ "sandbox": "none (local host)",
+ "tool_trace_reference": "plans/261013-2300-aiops-rca-dataset-acquisition/work/raw/attempts/commands.jsonl",
+ "egress_trace_reference": "data/manifests/download_manifest.jsonl",
+ "exit_status": "completed with expected nonzero exits (4, 1, 5) handled",
+ "output_status": "ready-for-review; owner review pending-personal-review",
+ "cost_coverage": "none",
+ "cost": "unknown",
+ "as_of": "2026-10-14T03:35+07:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "f587c4e61a83f752f397ea762ee6ff1a5a217ac7dcb01f07a4daacd3a1423cb7",
+  "4fa923b375516373c664307ecb50f592ae93769bfa73c2d318dbf5bc167b281c",
+  "c7457d911bfc5b8c2c5c867fa215f39f7ec6394272452f8794c82e3fbbd537e9",
+  "db439a5d319632d453a418a12ce4bcfd4d375344bf91f8cf6c1e4bda2869003c",
+  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "03c4d262c712149e807efbf55877eebe39393602bc7314e84b32abc371618f39",
+  "bfd1713d5229337511cd4ae334fee0a9109d177f5c17642330b5a73730db4e8e",
+  "d5f4dec755797227835f5776968bbd223eb7edc07cfcee40fc914857efbd92da",
+  "1239c45c3b75e46e9330bb525a677ebfc2b4b380a4ce2db35275f6afa10ecd4d",
+  "32cc9ae5c49a6b6f8e7469d7dc6afb369f7920b51b9613070a6c9127b83a9a69",
+  "074781fd5b2eacde953b574108a2d8bdd433b30a09b925bc2c2ca0cfadedb710",
+  "c2ba8cbe5e504bbad988bd1f583315a1e6670799717a25e142ed3fcb79e0ce0e",
+  "5aeb9720286c33f8f36bc5c1135eccc3e218a7f24b21c46cefd95fa342026281",
+  "7119bfeb0be5203c462eb1a8787385974bf14d0f2380f77c1ec24886081ea324",
+  "ad012ae0e76f861ffcf9774f54d1fe09c4323967e649b98b24b30eb1cfefb930",
+  "9c81c847692616fd268f92faccc81ccaf0b42d2667ddaa65b5c0ea6ef26f4790",
+  "a75a4f304a6d6626b58df061bf003d13cd41ad18ecd27026328d63f7df43c56d"
+ ],
+ "output_hashes": [
+  "8fb65fc93cf0cfc992a1ec2e3042bdc8a11271929f607ee77ea24b2f605ea246",
+  "938d660466228a1cd0febe586979efa6962205eab172651950f1ca37d35f5975",
+  "4afca88abbdf6c51e92a19480020b9150b414b88380ae4568138a78e4efa93bd",
+  "b6dfa4da0354125d6f61d5be8695e7449bb763218cb4b94be69e1a11fcd8d07f",
+  "c3ca92b0006b2770fe213827a6ffeb658617ceef2acdfbaf1a6329ef07e77d93",
+  "3be33f219a0c95bb2d231d36fd745600ebb45b73cdb67fab8fecced54d6e1d47",
+  "726adf6dbb29d9d1db71ec78495e90d015711b186528721356ec69b67fbc8f62",
+  "df64798596ba60743fdc2776d3df87b4738159f81298777541458de5e2c5f976",
+  "8b59c833541b82e0afc3f201e3774dbaa81363d77a147ed69c2f917ac7afb658",
+  "55d66289306263c7d55c52e9611a467e21d1a86382abc4d285f304699c48b036",
+  "b1f2a16a4ff9cf61ef4fa728945d993c5e6f27c27f3024203aa58168908893d7",
+  "090a4784d2ecf66eb2b03708617b986b48b8bd04a0cebbfb10e2e159eb47f2d4",
+  "4de463ce6357d4b7e2fbd3a83e92872dc5678f4ba78c7dcdc071e1a77c145149",
+  "525af26f5ac21afa4a1e3f72077c3095f33ed0b49eb2478268f662344855332f",
+  "c94656a773299af9f10495a0177c179334025f3e31dcbb99406bc919b9d4ede3",
+  "8e1eace0f404b474eaf82712379248b82725c047457927956c0612d44a97b972",
+  "ba73f9fde37af3ebafd22e7b41babde2fca4e98800028b8520d73c910549f78d",
+  "fe52368a0f4fe9ab5b889477a0c2b67f71076210fdefa3f143f17b4ab047bc21",
+  "74f316e81f8c1fe8a6e5ed17051b058f1c9610d78f10d6a7ebf6b7270da95ab6",
+  "50eee0cec82c308f58f44d1cfac2c3004624c52c0fb7555293cf0d62f3686f8b",
+  "65c58542bcedb7a97b7c1816f0d906f5e9057a353c78cf8ccec345ded6974ec9",
+  "933e7a2555219b3b71153fde473d15deea223fdb47f10fc6f30c8d1f90cb398f",
+  "0e39d24e8947755fcf0fc5c9c95414c3f24b12e9ac575a7ad92b390a1a0868e9",
+  "141386738620e5de17d91c9e9c33e081c488d3ad8e354bf8f25b64e6e257fab3",
+  "1860ebd85c0041f77e56adee448fd61686245f337d978d334a0a733f80b019e0",
+  "76f7ed0bf9b087c83a9645d1ec7f9a0ce0b70e4475eff362eed9116849f5cd0d",
+  "425263b982128fb2a367f0509c0be6394c86daa965d9f85cecd59d7fb86c450a",
+  "e6d36dcbe83e7d6c04fe1a66186ade16b1e55b4380aba2827b16506e47a474a7",
+  "280a65c1d0f119483ff170ca3bff7bcfa85293dd7214a507e6222230c1a59697",
+  "2b9689a651198a1fd6456d239890e2ad198fd08a61d0344b8b55f9a651496fb8",
+  "995cf55be1541d6f1d59d4c4c0c708a209dce59823cbfeb695ac411fb3696efb",
+  "194c8f9d5c04a2b8604fe6921dcab7edbfdf583dc13c0224a8e77f1a22a22a57",
+  "d11600fd748c20120cb1b3791772ae0d93368ac6b9e7674a4544f68bd911fe83",
+  "ca158f329c2ba74141fd62ce701b4d917998b277304e633490ac5d38a5e655b1",
+  "cfecfc72ae5c7780d363f520afbec7d2ad7f5149041c01144561b7e2f4a7895c",
+  "95a61c1d1c95362a2c9ce90c3e033af0c2f6629341d4903c37e2429ad283ba81",
+  "3639f152fb0dafbad7cbcb2bfb893390250d26a90995136df6906d9a560342c5",
+  "292aa98fe0b7bf77da6f1f99742d7635dc0a0f4d8abf4f6f4176d5c7b94bedac",
+  "eaaddf82968b837af2b1c2ede4f2dc5421ada99dd870250f385dd32523c10840",
+  "c48866d97b2267948c534e3af6fce5bd1658a8e5e29d1fdea9131455a880f194",
+  "12b052c1eac01fdc53fd911c1d00260797a10da0a5053c994961ae7d6fdc239a",
+  "efee1fa30a81d51bd5ae99b613841bed9dab5953bb391eb56ab38105b391663e",
+  "e3a1d163e4db38e51897df773532464ef136ee01a0d291185f8c053128dc19ee",
+  "748c03ab23e99471fe84bdea3743d207583f411f0dc1ded2df1a95f79cc030d1",
+  "ba499cdd4140ef44aaebb85895a2ce2f924c44cbee77583e76be3c39ec18487e",
+  "7e72b38196f2757041554771faee9c9efab7249ec44efae69c49bd9c31ef1782",
+  "85dbe01b6a476b2ee422f982e7e58a8c71aa9b416e6e2169d91146ceee145428",
+  "3ee8bb6fbe7f1d52b49561024a5332109d33bc417e0d17428b688936284dce92",
+  "a0b7d25aec9767420788de267a0c108b5f3e07b54db590bb80e03392446122e1",
+  "98f2a1026082b32f2ac0f1bb26811360b3faff90956d464bd618c92515bf2aba",
+  "a918e1867e5bd6c907fbb38771115d948024725f2b94aa35dded5dcc00162a66",
+  "5b4ff6126a9c2498fcaa490deca7429501ec801ca7b5952d8389293d0d36996a",
+  "b37f12cd19cbd90ce77faab73a3853edd3fb3f338b932f75108127a7ce222594",
+  "c8394944ceb90aa454f180ae00faa03a27d0b2a844d786f2def2ca580dd4c80a",
+  "77e1473264b0cde4421f27712807bc41fc5003841928a3c785bb55bcbb76e886",
+  "6375a4a8e073117b129e13bb6694d2e8c41a9962f549c6fb7ef966c67f59b154",
+  "08e1dd58055b80a5f4266ab6f6e5b5d4660e2f2733635d4d77e7882fd3fe7f40",
+  "2a3a28951d5ad48ee8c6bf8ae5bf9667f11e452837ed6c6de3c9d889d05622d7",
+  "0ca65a98f52f3bfae993675328eaefefa8771fcaa41147c13449c2a22d9cdab9",
+  "c8c41003d3ba4f2ce7cfd2bff0033c18c434b64d3a34f51853c53a365eebc4fb"
+ ],
+ "checks": [
+  "unit tests: python -I tests/test_datasets_acquire.py -> 16 tests OK (exit 0)",
+  "verify: 10 sources VERIFIED, anchor_mismatch 0, missing 0, lfs_pointers 0; nezha git fsck 0, HEAD pinned",
+  "sha256sum -c data/manifests/checksums.sha256 -> exit 0, 31,495 files",
+  "audit-archives: 0 unsafe, 0 encrypted, 0 errors on every verified source; nothing extracted",
+  "idempotency: re-fetch of 10 verified sources transferred 0 B; checksums.sha256 and checksums-levels.tsv byte-identical (work/raw/attempts/idempotency-20261014.json)",
+  "reproducibility dry run from a clean copy without data/raw: urls_sha256/files/bytes equal for 10/10 sources (work/raw/attempts/repro-dry-run-20261014.json)",
+  "lineage.py twice -> incidents.jsonl byte-identical (sha256 4de463ce...)",
+  "git check-ignore: raw/state/venv ignored (exit 0); manifests/provenance trackable (exit 1); outer git status lists 0 files under data/raw, data/.state, .venv-acquire",
+  "docs: 51 relative links, 0 broken; 6/6 spot-checked claims match artefacts",
+  "src/, configs/, tests/test_pipeline.py unchanged (input_files mutation none)"
+ ],
+ "limitations": [
+  "openrca PENDING:drive-quota: 3 archives refused by Google Drive; only AppTelecomDeploymentList.xlsx (local-only) present",
+  "first openrca fetch (6 attempts/file, 1 h backoff) was stopped by the operator before its exit was observed: interrupted-unknown, no exit recorded",
+  "first Zenodo driver (unsegmented) was stopped by the operator: interrupted-unknown; its work was resumed by the segmented run",
+  "phase-01/02 checks (inventory, check-metadata, drift probes) ran in the agent shell; their exits were observed in-session but are not in commands.jsonl",
+  "labels of rcabench-fse26, anomod, dejavu, msds not parsed; incident counts UNVERIFIED for them",
+  "DejaVu split raw archive (.zip.001-.007) not audited and not joined",
+  "owner acceptance pending-personal-review"
+ ],
+ "closure_hash": "7549f527379355678f1b9e43df894db6855f112c89263af52fc4f43fa04286e9",
+ "command_results": [
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source petshop",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "d90a5700216eff1811407c9d8fb10c365a80c009a12f1396a2dc15eabf6f5756",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source petshop",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "29e7d0f502eeee6b80e4286065795bf0ced055e468e158627391a3328f61d5b8",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source petshop",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "dd5736f6db27def6b20c74574af31b97dde6d2cf1711bae2f1118b770c4aa7a2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source petshop",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "a2aff717745f96906bf809c0dce9d5b17c3642478df116259bb369fe2bee57b5",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source anomod",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "9a676076290e684b5106251f7a5bf5d3a8e1723c383f2da8e868be32b3d7add3",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source openrca",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "fac6b993a090d8100339e8c225569fdbe665b54b690fa0a4e2c7384ef874601c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source anomod",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "902b10197807d302a211f53eedb022e2d3ace43b857729af1f9a589d9dd7da3c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source aiops2020-upstream",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "085f58340f32f39052c836e5ac0a71f3445334a2a6a0a0f20e84122dc3cb06cb",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source aiops2020-upstream",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 4,
+   "stdout_sha256": "7add3e62ad981676bda873eaaa29a993dba5df560057c1619a69f640eb1705c2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": true
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source aiops2021-upstream",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "878a05e9682d1a1403a48d47631c3b9a3d88f561dcd4d4aed596445db3c2fc95",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source aiops2021-upstream",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 4,
+   "stdout_sha256": "8c2343197f7cc79282cc390c57e5458205a184aec19f234f776a31fa8230e060",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": true
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source rcaeval-hf",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "160fdda7874ceae97613fc839681f1ba1a61a407c6f8e96e8a0305a8509161a7",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source rcaeval-hf --workers 6 --segments 4",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "92d59f439657ca640ef174108a2e01fac6b1fec783825e2ee11372ba1856781b",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source rcaeval-hf",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "8d016f208f3b35f6e2f242d9b43be8531efe9fb6a9b0edf6c93af730707ed061",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source rcaeval-hf",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "a2aff717745f96906bf809c0dce9d5b17c3642478df116259bb369fe2bee57b5",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source nezha",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "4bc65d18f1ec6ff202ce3f3564071dbd33abf3da2342478fc33a7aa351450792",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source anomod --workers 2 --segments 8",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "d5c2d853e701d3c679a21843418e210aca54572ae2690ec9e916f24b0c10d716",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source anomod",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "3ed05fae117954e0aace7aaa89c9746b44bef0fac62d0f3417a926eb9c92329e",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source anomod",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "1a080da08c2703cefb091ca102803778cf520eece2378499691c93117aeacde3",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source msds",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "2d97f676143015f65b8e2e3515a837685932867d403a9351460505a282596cda",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source nezha",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "c8d3d147fc65c95cbf0b1d71106061c756b68386d9d58fa0237fa5b0625dd635",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source nezha",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e4bf6e40b7d291b5e1a9b5225fe40df23ad25e2873bfc4a6ee1a18815b3df677",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source nezha",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "a2aff717745f96906bf809c0dce9d5b17c3642478df116259bb369fe2bee57b5",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source cloud-opsbench",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "791a1d4d60758b8562c88c5c21573da7fb67e8573bf769ba7550e2ac84c20b64",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source msds --workers 2 --segments 8",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "95ad24626f9583640a93b8e1bd33473d97583597b69b637348b4c2baf1007f25",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source msds",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "ed4afd897016c57438fc538daa3ce6f284017901e7bbaf4f8480c6cdbd45ced5",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source msds",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "78348b0aaa32fa6689bad5f49dd6473fdacb350d546f4569b9befb8b9deca525",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source rcaeval-zenodo",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "8f869b2d5892d2be7a6263737fb8cc2dc661dfd4774b25fed8cf2cbd07eb9d06",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source rcaeval-zenodo --workers 2 --segments 8",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e8c662a449940c94c483f237693d2bb6bb2ec750f057c32ec3940827bb55c141",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source rcaeval-zenodo",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5a96e483cb0266aba7cc806a45b6f12aedd412b84210229381de990bfc5da277",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source rcaeval-zenodo",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5593e4ea8183cea1ce24b1eef139bfc13ee3babe53a83027f1918a7052680f09",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source dejavu",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "2e0b9d26fa8a27da1193b4c8685fdf41d599e9a1093abce540226cf3e4cbdc1c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source dejavu --workers 2 --segments 8",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "37c448bb704c67d1438e314b2efad645dcb34c47f1d0826389cae0bcdcf7b1c6",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source dejavu",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "a542fabad046371221f452179d2c5b09284c1ee94e1487492a67e8050c1ca2d4",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source dejavu",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "9ae2e8fc4f662e9ade5874c7a04dfed918845041f63d429b23390b38f049932c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source rcabench-fse26",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "04184c3a4364c6c254e91f3fc4d389645587408cf33f8fbe4820aad4047f2b6e",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source cloud-opsbench --workers 6 --segments 4",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 1,
+   "stdout_sha256": "07414ccca5bb14fbae62c2229d7d53cd0c698bc18740459511913e0bea456165",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": true
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source cloud-opsbench --workers 6 --segments 4",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "ad2af15cd7bdf2202499d56f3b085fd78837703ebf3845ac2db3a0aa3751e442",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source cloud-opsbench",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "6264ff97da5dd9460f2e56c51c5848253ab8c7731fb66d8689983e49bb56cfdc",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source cloud-opsbench",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "a2aff717745f96906bf809c0dce9d5b17c3642478df116259bb369fe2bee57b5",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source agenticopseval",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "0dac0a57906ad95f9ce6e2d4fb888aec71de82e807c60d880c666494771fc921",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source agenticopseval --workers 6 --segments 4",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "dcd7c3c3d8a86947352803122962521fd34ef92febc66763ecaca47e4347df82",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source agenticopseval",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e70b63f96455d2268da02ad29ba81c3686ef5c0c9663104e4d05d722b2458b0c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source agenticopseval",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "dbd9e3d9174f84dca9a7cf12ada2fd08d6d434c212d2b574c8b123691632b13b",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source openrca",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "df2f6d5505d66eb0a0d21a23e0fe7c76959d3f96437a39cdff2b8f834f343c57",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" plan --source openrca",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "a06700cd0ece20bc35d79b9df31b42f11c5dca04e6c407a12c5d3b0efc42326a",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source openrca --gdown \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\.venv-acquire\\Scripts\\gdown.exe\" --retries 2",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 5,
+   "stdout_sha256": "e8bff5389a1494ec34d24cd5401a061b97ddc081042a9eef77724120bef45e36",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": true
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source rcabench-fse26 --workers 2 --segments 8",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "fb45d66911a747db3cbc1e06f3a0cf2d9380ebb03e11711880a296135d8bc6f6",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source rcabench-fse26",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "60548a5e97663991f85d6f99c92ba6789da7d590d6b63ee302f79e41fd87b7ba",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" audit-archives --source rcabench-fse26",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "82dec7c1ac6e5b1dd65f48287261848a9e2ebfb89d689afd57870bc11803d92b",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" catalog",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "1f2897b3a300604ea071645a706706042adb5d7a7eccca2edf57c8f41e4d4ff2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source petshop",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source petshop",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "dd5736f6db27def6b20c74574af31b97dde6d2cf1711bae2f1118b770c4aa7a2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source anomod",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source anomod",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "3ed05fae117954e0aace7aaa89c9746b44bef0fac62d0f3417a926eb9c92329e",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source msds",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source msds",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "ed4afd897016c57438fc538daa3ce6f284017901e7bbaf4f8480c6cdbd45ced5",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source rcaeval-zenodo",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source rcaeval-zenodo",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5a96e483cb0266aba7cc806a45b6f12aedd412b84210229381de990bfc5da277",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source rcaeval-hf",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source rcaeval-hf",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "8d016f208f3b35f6e2f242d9b43be8531efe9fb6a9b0edf6c93af730707ed061",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source nezha",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source nezha",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e4bf6e40b7d291b5e1a9b5225fe40df23ad25e2873bfc4a6ee1a18815b3df677",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source cloud-opsbench",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source cloud-opsbench",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "6264ff97da5dd9460f2e56c51c5848253ab8c7731fb66d8689983e49bb56cfdc",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source agenticopseval",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source agenticopseval",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e70b63f96455d2268da02ad29ba81c3686ef5c0c9663104e4d05d722b2458b0c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source dejavu",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source dejavu",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "a542fabad046371221f452179d2c5b09284c1ee94e1487492a67e8050c1ca2d4",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" fetch --source rcabench-fse26",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "5dd139cc11ff81684b8bb38ba983bd9e6c9532f1058457bc1e734ffe2dbb2913",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" verify --source rcabench-fse26",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "60548a5e97663991f85d6f99c92ba6789da7d590d6b63ee302f79e41fd87b7ba",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "-X utf8 -I \"F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca\\scripts\\datasets\\acquire.py\" catalog",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "1f2897b3a300604ea071645a706706042adb5d7a7eccca2edf57c8f41e4d4ff2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/provenance.py",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e38b5fe04c71cbe97e4d73e9af9361e8a4166a29b9de6a85d73b72a07302c6a4",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/acquire.py catalog",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "1f2897b3a300604ea071645a706706042adb5d7a7eccca2edf57c8f41e4d4ff2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/acquire.py status",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "9c2d22eed5fc12d17b4c51f0d878591ffc353a1b7d22ec107cd85fa54cc3e955",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/provenance.py",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e38b5fe04c71cbe97e4d73e9af9361e8a4166a29b9de6a85d73b72a07302c6a4",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/acquire.py catalog",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "1f2897b3a300604ea071645a706706042adb5d7a7eccca2edf57c8f41e4d4ff2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/acquire.py status",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "9c2d22eed5fc12d17b4c51f0d878591ffc353a1b7d22ec107cd85fa54cc3e955",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I C:\\Users\\Siinn\\AppData\\Local\\Temp\\claude\\F--Nam-UIT-NT114---NCKH\\2a5c7194-cfa6-4c8d-8ce1-3858c1e9e447\\scratchpad\\repro-dry-run.py \"F:\\Nam\\UIT\\NT114 - NCKH\\plans\\261013-2300-aiops-rca-dataset-acquisition\\work\\raw\\attempts\\repro-dry-run-20261014.json\"",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "44c69dd5b1028b8f441eb4f0dfa4d21449e8421ff9db6fe95ab9ecf17f138be2",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -I tests/test_datasets_acquire.py",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "f883c9ef46b4a2c3089365d9458a377cb74112eece23e301a4c10d2cc857a795",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/lineage.py",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "819628fe8aa06c115f95ba93a8f65c5be8db8e145c81158f881a7d29f7f1abfc",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I scripts/datasets/lineage.py",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "819628fe8aa06c115f95ba93a8f65c5be8db8e145c81158f881a7d29f7f1abfc",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "\"C:\\Program Files\\Git\\cmd\\git.exe\" check-ignore -v data/raw/x data/.state/x .venv-acquire/x",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "4f50dd9d5d8cb59b9c32eb654f0f3b312382682cff43239b4049067acaf14ed0",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  },
+  {
+   "command": "\"C:\\Program Files\\Git\\cmd\\git.exe\" check-ignore -v data/manifests/x data/provenance/x.json",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 1,
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": true
+  },
+  {
+   "command": "\"C:\\Program Files\\Git\\usr\\bin\\sha256sum.exe\" -c --quiet data/manifests/checksums.sha256",
+   "shell": "none (subprocess argv, shell=False)",
+   "cwd": "F:\\Nam\\UIT\\NT114 - NCKH\\nt114-rca\\nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "configs/pilot.yaml",
+   "sha256_before": "f587c4e61a83f752f397ea762ee6ff1a5a217ac7dcb01f07a4daacd3a1423cb7",
+   "sha256_after": "f587c4e61a83f752f397ea762ee6ff1a5a217ac7dcb01f07a4daacd3a1423cb7",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "configs/synthetic.yaml",
+   "sha256_before": "4fa923b375516373c664307ecb50f592ae93769bfa73c2d318dbf5bc167b281c",
+   "sha256_after": "4fa923b375516373c664307ecb50f592ae93769bfa73c2d318dbf5bc167b281c",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "requirements.txt",
+   "sha256_before": "c7457d911bfc5b8c2c5c867fa215f39f7ec6394272452f8794c82e3fbbd537e9",
+   "sha256_after": "c7457d911bfc5b8c2c5c867fa215f39f7ec6394272452f8794c82e3fbbd537e9",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "scripts/make_synthetic.py",
+   "sha256_before": "db439a5d319632d453a418a12ce4bcfd4d375344bf91f8cf6c1e4bda2869003c",
+   "sha256_after": "db439a5d319632d453a418a12ce4bcfd4d375344bf91f8cf6c1e4bda2869003c",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/__init__.py",
+   "sha256_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "sha256_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "eol_before": "none",
+   "eol_after": "none",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/ablate.py",
+   "sha256_before": "03c4d262c712149e807efbf55877eebe39393602bc7314e84b32abc371618f39",
+   "sha256_after": "03c4d262c712149e807efbf55877eebe39393602bc7314e84b32abc371618f39",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/analyze.py",
+   "sha256_before": "bfd1713d5229337511cd4ae334fee0a9109d177f5c17642330b5a73730db4e8e",
+   "sha256_after": "bfd1713d5229337511cd4ae334fee0a9109d177f5c17642330b5a73730db4e8e",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/data.py",
+   "sha256_before": "d5f4dec755797227835f5776968bbd223eb7edc07cfcee40fc914857efbd92da",
+   "sha256_after": "d5f4dec755797227835f5776968bbd223eb7edc07cfcee40fc914857efbd92da",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/evidence.py",
+   "sha256_before": "1239c45c3b75e46e9330bb525a677ebfc2b4b380a4ce2db35275f6afa10ecd4d",
+   "sha256_after": "1239c45c3b75e46e9330bb525a677ebfc2b4b380a4ce2db35275f6afa10ecd4d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/gate.py",
+   "sha256_before": "32cc9ae5c49a6b6f8e7469d7dc6afb369f7920b51b9613070a6c9127b83a9a69",
+   "sha256_after": "32cc9ae5c49a6b6f8e7469d7dc6afb369f7920b51b9613070a6c9127b83a9a69",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/llm.py",
+   "sha256_before": "074781fd5b2eacde953b574108a2d8bdd433b30a09b925bc2c2ca0cfadedb710",
+   "sha256_after": "074781fd5b2eacde953b574108a2d8bdd433b30a09b925bc2c2ca0cfadedb710",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/metrics.py",
+   "sha256_before": "c2ba8cbe5e504bbad988bd1f583315a1e6670799717a25e142ed3fcb79e0ce0e",
+   "sha256_after": "c2ba8cbe5e504bbad988bd1f583315a1e6670799717a25e142ed3fcb79e0ce0e",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/retrieve.py",
+   "sha256_before": "5aeb9720286c33f8f36bc5c1135eccc3e218a7f24b21c46cefd95fa342026281",
+   "sha256_after": "5aeb9720286c33f8f36bc5c1135eccc3e218a7f24b21c46cefd95fa342026281",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "src/rca/run_grid.py",
+   "sha256_before": "7119bfeb0be5203c462eb1a8787385974bf14d0f2380f77c1ec24886081ea324",
+   "sha256_after": "7119bfeb0be5203c462eb1a8787385974bf14d0f2380f77c1ec24886081ea324",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "tests/test_pipeline.py",
+   "sha256_before": "ad012ae0e76f861ffcf9774f54d1fe09c4323967e649b98b24b30eb1cfefb930",
+   "sha256_after": "ad012ae0e76f861ffcf9774f54d1fe09c4323967e649b98b24b30eb1cfefb930",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": ".gitignore",
+   "sha256_before": "9c81c847692616fd268f92faccc81ccaf0b42d2667ddaa65b5c0ea6ef26f4790",
+   "sha256_after": "4de4dc18e6dafb9a5082934ff1da912329b2f4c61388642f177519ec06a59115",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "authorized-with-preimage",
+   "preimage_path": "data/.state/preimages/gitignore.preimage"
+  },
+  {
+   "path": "README.md",
+   "sha256_before": "a75a4f304a6d6626b58df061bf003d13cd41ad18ecd27026328d63f7df43c56d",
+   "sha256_after": "8bf547b21ed692b32b1379399346458cb0189a1b4901bd6aca2496ae3f35f7dc",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "authorized-with-preimage",
+   "preimage_path": "data/.state/preimages/README.md.preimage"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "scripts/datasets/acquire.py",
+   "sha256": "8fb65fc93cf0cfc992a1ec2e3042bdc8a11271929f607ee77ea24b2f605ea246",
+   "created_this_attempt": true
+  },
+  {
+   "path": "scripts/datasets/lineage.py",
+   "sha256": "938d660466228a1cd0febe586979efa6962205eab172651950f1ca37d35f5975",
+   "created_this_attempt": true
+  },
+  {
+   "path": "scripts/datasets/provenance.py",
+   "sha256": "4afca88abbdf6c51e92a19480020b9150b414b88380ae4568138a78e4efa93bd",
+   "created_this_attempt": true
+  },
+  {
+   "path": "scripts/datasets/sources.json",
+   "sha256": "b6dfa4da0354125d6f61d5be8695e7449bb763218cb4b94be69e1a11fcd8d07f",
+   "created_this_attempt": true
+  },
+  {
+   "path": "docs/acquisition_plan.md",
+   "sha256": "c3ca92b0006b2770fe213827a6ffeb658617ceef2acdfbaf1a6329ef07e77d93",
+   "created_this_attempt": true
+  },
+  {
+   "path": "docs/dataset_discovery.md",
+   "sha256": "3be33f219a0c95bb2d231d36fd745600ebb45b73cdb67fab8fecced54d6e1d47",
+   "created_this_attempt": true
+  },
+  {
+   "path": "docs/dataset_provenance.md",
+   "sha256": "726adf6dbb29d9d1db71ec78495e90d015711b186528721356ec69b67fbc8f62",
+   "created_this_attempt": true
+  },
+  {
+   "path": "docs/dataset_quality_audit.md",
+   "sha256": "df64798596ba60743fdc2776d3df87b4738159f81298777541458de5e2c5f976",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/checksums-levels.tsv",
+   "sha256": "8b59c833541b82e0afc3f201e3774dbaa81363d77a147ed69c2f917ac7afb658",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/checksums.sha256",
+   "sha256": "55d66289306263c7d55c52e9611a467e21d1a86382abc4d285f304699c48b036",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/dataset_catalog.json",
+   "sha256": "b1f2a16a4ff9cf61ef4fa728945d993c5e6f27c27f3024203aa58168908893d7",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/download_manifest.jsonl",
+   "sha256": "090a4784d2ecf66eb2b03708617b986b48b8bd04a0cebbfb10e2e159eb47f2d4",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/incidents.jsonl",
+   "sha256": "4de463ce6357d4b7e2fbd3a83e92872dc5678f4ba78c7dcdc071e1a77c145149",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/lineage-report.json",
+   "sha256": "525af26f5ac21afa4a1e3f72077c3095f33ed0b49eb2478268f662344855332f",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/mirror-completeness-cloud-opsbench.json",
+   "sha256": "c94656a773299af9f10495a0177c179334025f3e31dcbb99406bc919b9d4ede3",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/mirror-completeness-rcaeval.json",
+   "sha256": "8e1eace0f404b474eaf82712379248b82725c047457927956c0612d44a97b972",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/not-acquired.json",
+   "sha256": "ba73f9fde37af3ebafd22e7b41babde2fca4e98800028b8520d73c910549f78d",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/run-context.json",
+   "sha256": "fe52368a0f4fe9ab5b889477a0c2b67f71076210fdefa3f143f17b4ab047bc21",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/agenticopseval.json",
+   "sha256": "74f316e81f8c1fe8a6e5ed17051b058f1c9610d78f10d6a7ebf6b7270da95ab6",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/aiops2020-upstream.json",
+   "sha256": "50eee0cec82c308f58f44d1cfac2c3004624c52c0fb7555293cf0d62f3686f8b",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/aiops2021-upstream.json",
+   "sha256": "65c58542bcedb7a97b7c1816f0d906f5e9057a353c78cf8ccec345ded6974ec9",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/anomod.json",
+   "sha256": "933e7a2555219b3b71153fde473d15deea223fdb47f10fc6f30c8d1f90cb398f",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/cloud-opsbench.json",
+   "sha256": "0e39d24e8947755fcf0fc5c9c95414c3f24b12e9ac575a7ad92b390a1a0868e9",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/dejavu.json",
+   "sha256": "141386738620e5de17d91c9e9c33e081c488d3ad8e354bf8f25b64e6e257fab3",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/eadro.json",
+   "sha256": "1860ebd85c0041f77e56adee448fd61686245f337d978d334a0a733f80b019e0",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/gaia.json",
+   "sha256": "76f7ed0bf9b087c83a9645d1ec7f9a0ce0b70e4475eff362eed9116849f5cd0d",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/lemma-rca-cloud-computing.json",
+   "sha256": "425263b982128fb2a367f0509c0be6394c86daa965d9f85cecd59d7fb86c450a",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/lemma-rca-product-review.json",
+   "sha256": "e6d36dcbe83e7d6c04fe1a66186ade16b1e55b4380aba2827b16506e47a474a7",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/lo2v2.json",
+   "sha256": "280a65c1d0f119483ff170ca3bff7bcfa85293dd7214a507e6222230c1a59697",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/msds.json",
+   "sha256": "2b9689a651198a1fd6456d239890e2ad198fd08a61d0344b8b55f9a651496fb8",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/nezha.json",
+   "sha256": "995cf55be1541d6f1d59d4c4c0c708a209dce59823cbfeb695ac411fb3696efb",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/openrca.json",
+   "sha256": "194c8f9d5c04a2b8604fe6921dcab7edbfdf583dc13c0224a8e77f1a22a22a57",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/petshop.json",
+   "sha256": "d11600fd748c20120cb1b3791772ae0d93368ac6b9e7674a4544f68bd911fe83",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/rcabench-fse26.json",
+   "sha256": "ca158f329c2ba74141fd62ce701b4d917998b277304e633490ac5d38a5e655b1",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/rcaeval-hf.json",
+   "sha256": "cfecfc72ae5c7780d363f520afbec7d2ad7f5149041c01144561b7e2f4a7895c",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/manifests/filelists/rcaeval-zenodo.json",
+   "sha256": "95a61c1d1c95362a2c9ce90c3e033af0c2f6629341d4903c37e2429ad283ba81",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/_aiops-upstream-file-metadata-20261014.json",
+   "sha256": "3639f152fb0dafbad7cbcb2bfb893390250d26a90995136df6906d9a560342c5",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/_metadata-recheck-20261014.json",
+   "sha256": "292aa98fe0b7bf77da6f1f99742d7635dc0a0f4d8abf4f6f4176d5c7b94bedac",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/agenticopseval.json",
+   "sha256": "eaaddf82968b837af2b1c2ede4f2dc5421ada99dd870250f385dd32523c10840",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/aiops2020-upstream.json",
+   "sha256": "c48866d97b2267948c534e3af6fce5bd1658a8e5e29d1fdea9131455a880f194",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/aiops2021-upstream.json",
+   "sha256": "12b052c1eac01fdc53fd911c1d00260797a10da0a5053c994961ae7d6fdc239a",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/anomod.json",
+   "sha256": "efee1fa30a81d51bd5ae99b613841bed9dab5953bb391eb56ab38105b391663e",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/cloud-opsbench.json",
+   "sha256": "e3a1d163e4db38e51897df773532464ef136ee01a0d291185f8c053128dc19ee",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/dejavu.json",
+   "sha256": "748c03ab23e99471fe84bdea3743d207583f411f0dc1ded2df1a95f79cc030d1",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/eadro.json",
+   "sha256": "ba499cdd4140ef44aaebb85895a2ce2f924c44cbee77583e76be3c39ec18487e",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/gaia.json",
+   "sha256": "7e72b38196f2757041554771faee9c9efab7249ec44efae69c49bd9c31ef1782",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/lemma-rca-cloud-computing.json",
+   "sha256": "85dbe01b6a476b2ee422f982e7e58a8c71aa9b416e6e2169d91146ceee145428",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/lemma-rca-product-review.json",
+   "sha256": "3ee8bb6fbe7f1d52b49561024a5332109d33bc417e0d17428b688936284dce92",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/lo2v2.json",
+   "sha256": "a0b7d25aec9767420788de267a0c108b5f3e07b54db590bb80e03392446122e1",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/msds.json",
+   "sha256": "98f2a1026082b32f2ac0f1bb26811360b3faff90956d464bd618c92515bf2aba",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/nezha.json",
+   "sha256": "a918e1867e5bd6c907fbb38771115d948024725f2b94aa35dded5dcc00162a66",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/openrca.json",
+   "sha256": "5b4ff6126a9c2498fcaa490deca7429501ec801ca7b5952d8389293d0d36996a",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/petshop.json",
+   "sha256": "b37f12cd19cbd90ce77faab73a3853edd3fb3f338b932f75108127a7ce222594",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/rcabench-fse26.json",
+   "sha256": "c8394944ceb90aa454f180ae00faa03a27d0b2a844d786f2def2ca580dd4c80a",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/rcaeval-hf.json",
+   "sha256": "77e1473264b0cde4421f27712807bc41fc5003841928a3c785bb55bcbb76e886",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/rcaeval-zenodo.json",
+   "sha256": "6375a4a8e073117b129e13bb6694d2e8c41a9962f549c6fb7ef966c67f59b154",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/evidence/lemma-rca-github-io-20261014.html",
+   "sha256": "08e1dd58055b80a5f4266ab6f6e5b5d4660e2f2733635d4d77e7882fd3fe7f40",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/evidence/lemmarca-info-expired-20261014.html",
+   "sha256": "2a3a28951d5ad48ee8c6bf8ae5bf9667f11e452837ed6c6de3c9d889d05622d7",
+   "created_this_attempt": true
+  },
+  {
+   "path": "data/provenance/evidence/openrca-drive-folder-20261014.html",
+   "sha256": "0ca65a98f52f3bfae993675328eaefefa8771fcaa41147c13449c2a22d9cdab9",
+   "created_this_attempt": true
+  },
+  {
+   "path": "tests/test_datasets_acquire.py",
+   "sha256": "c8c41003d3ba4f2ce7cfd2bff0033c18c434b64d3a34f51853c53a365eebc4fb",
+   "created_this_attempt": true
+  }
+ ]
+}

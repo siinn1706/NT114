@@ -1,0 +1,19 @@
+zenodo cases 735 hf cases 735 common 732
+only zenodo ['re3tt_ts-route-service_f3_1_1', 're3tt_ts-route-service_f3_1_2', 're3tt_ts-route-service_f3_1_3']
+only hf ['re3tt_ts-route-service_f3_4', 're3tt_ts-route-service_f3_5', 're3tt_ts-route-service_f3_6']
+modality mismatches 14
+  ('re2tt_ts-auth-service_cpu_1', ['cluster_info.json', 'inject_time.txt', 'logs.csv', 'logts.csv', 'metrics.csv', 'metrics_postprocess.log', 'pod-node-1.csv', 'pod-node-2.csv', 'simple_metrics.csv', 'traces.csv', 'tracets_err.csv', 'tracets_lat.csv'], ['inject_time.txt', 'metrics.parquet', 'traces.parquet'])
+  ('re3ss_carts_f1_3', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_carts_f3_3', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_carts_f4_3', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_front-end_f1_3', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_front-end_f2_3', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_front-end_f3_1', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_front-end_f3_2', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_front-end_f3_3', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+  ('re3ss_orders_f1_1', ['inject_time.txt', 'logs.csv', 'metrics.csv', 'metrics.png', 'metrics_postprocess.log', 'simple_metrics.csv', 'traces.csv'], ['inject_time.txt', 'logs.parquet', 'metrics.parquet'])
+hf cases without logs among re2/re3: ['re2tt_ts-auth-service_cpu_1']
+zenodo cases without logs among re2/re3: []
+hf root_cause.txt: ['re3ss_carts_f1_1', 're3ss_carts_f1_2', 're3ss_carts_f3_1', 're3ss_carts_f3_2', 're3ss_front-end_f1_1', 're3ss_front-end_f1_2', 're3ss_front-end_f2_1', 're3ss_front-end_f2_2']
+zenodo extra file types: [('inject_time.txt', 735), ('data.csv', 375), ('simple_metrics.csv', 360), ('logs.csv', 360), ('metrics_postprocess.log', 360), ('metrics.csv', 360), ('pod-node-2.csv', 270), ('pod-node-1.csv', 270), ('logts.csv', 270), ('cluster_info.json', 270), ('traces.csv', 253), ('simple_data.csv', 250), ('tracets_lat.csv', 180), ('tracets_err.csv', 180), ('metrics.png', 60)]
+unsafe members 0 []
