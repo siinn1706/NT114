@@ -15,7 +15,7 @@ The machine-readable record is `nt114-rca/nt114-rca/releases/nt114-data-v1.json`
 | Item | Value |
 |---|---|
 | Code commit (bundle `code.git_commit`) | `cd96e9e8dc1906ee287cc54e9f02fe4b6b75a55e`, `git_dirty: false` |
-| GitHub | `siinn1706/NT114` (private), branch `release/nt114-data-v1` |
+| GitHub | `siinn1706/NT114` (private), `main` (fast-forward merged from `release/nt114-data-v1`, since deleted) |
 | Hugging Face | `siinn1706/nt114-rca-data` (private dataset), path `nt114-data-v1-20261014-6fdd9835/`, commit `c5c4a6dc455cac5d0545b98d8d40266b2bbdaa05`; 3,265/3,265 remote files match the local bundle (3,098 by LFS sha256, the rest by git blob hash) |
 | `requirements-lock.txt` sha256 | `0db90dc34b62f9d6fce4f226ff3d3ff4c55bc48e4456b3f7852d3c0729e64db0` |
 
@@ -69,7 +69,7 @@ cluster bootstrap and majority-class/alert-entity baselines.
 ## Linux verification (GPU machine)
 
 ```bash
-git clone -b release/nt114-data-v1 https://github.com/siinn1706/NT114.git && cd NT114/nt114-rca/nt114-rca
+git clone https://github.com/siinn1706/NT114.git && cd NT114/nt114-rca/nt114-rca
 python3.12 -m venv .venv && . .venv/bin/activate && pip install -r requirements-lock.txt
 hf auth login   # account with access to the private dataset
 hf download siinn1706/nt114-rca-data --repo-type dataset --local-dir ~/nt114-rca-data

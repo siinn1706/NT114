@@ -137,7 +137,7 @@ The LLM, confidence and Jev boxes belong to the next plan; this plan fixes their
 
 **Status 2026-10-14.** M1 and M2 are delivered on the prep machine: phases 01–07 and 09–11
 completed, phase 12 bundle exported and verified on Windows. Release `nt114-data-v1`: code
-commit `cd96e9e` on GitHub branch `release/nt114-data-v1`, bundle
+commit `cd96e9e` on GitHub `main` (merged from the now-deleted `release/nt114-data-v1`), bundle
 `nt114-data-v1-20261014-6fdd9835` in the private HF dataset `siinn1706/nt114-rca-data`. M1/M2
 acceptance and phase 12 stay in progress until `scripts/verify_portability.sh` passes on the GPU
 machine (Linux); the owner skipped a local Docker preflight. Phase 08 (M3) is deferred by owner
