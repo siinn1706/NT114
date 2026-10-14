@@ -1,0 +1,65 @@
+{
+ "archive_audit": {
+  "archives": 0,
+  "at": "2026-10-13T17:31:46Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/rcaeval-hf.json",
+ "artefact_url_example": "https://huggingface.co/datasets/phamquiluan/RCAEval/resolve/afeacb11bcc94dadfd1c8f483ee4377b2b8b614e/.gitattributes",
+ "canonical_source_url": "https://huggingface.co/datasets/phamquiluan/RCAEval",
+ "category": "A-derived-copy",
+ "decisions": "acquire",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 2080,
+  "verified": 2080
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "last_modified": "2026-08-02T04:39:00.000Z",
+  "license": "mit"
+ },
+ "id": "rcaeval-hf",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "huggingface-dataset",
+ "known_limitations": [
+  "derived parquet copy; incomplete vs Zenodo (see mirror-completeness-rcaeval.json)"
+ ],
+ "labels": "as rcaeval-zenodo (+8 root_cause.txt)",
+ "license": "MIT (HF card)",
+ "license_evidence": "HF card license (mit)",
+ "lineage_edges": {
+  "copy_of": "rcaeval-zenodo"
+ },
+ "lineage_group": "L1",
+ "lineage_group_counts": {
+  "copies": 735,
+  "independent_incidents": 735,
+  "rows": 1470,
+  "sources": [
+   "rcaeval-hf",
+   "rcaeval-zenodo"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:15:24Z",
+ "modalities": [
+  "metrics",
+  "logs",
+  "traces"
+ ],
+ "next_action": null,
+ "publication": "as rcaeval-zenodo",
+ "publisher_or_maintainer": "RCAEval first author (HF)",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:18:29Z",
+ "revision_or_version": "afeacb11bcc94dadfd1c8f483ee4377b2b8b614e",
+ "state": "VERIFIED",
+ "state_file": "data/.state/rcaeval-hf.json (git-ignored)",
+ "total_bytes": {
+  "expected": 3442007684,
+  "verified": 3442007684
+ }
+}

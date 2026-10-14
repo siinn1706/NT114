@@ -1,0 +1,87 @@
+{
+ "assignments_sha256": "bb231eaa1bca8f67f9b18867ca1168128ad488f6a9aa019e7c3322af645a77d3",
+ "builds": [
+  {
+   "build_id": "aiops2025-40efa9b2d22f",
+   "dataset_digest": "1bb0da61d69f9c38aefd8b505ded97b8c274a9f21b74ea8dafda7e52a6f62aad",
+   "dataset_id": "aiops2025"
+  }
+ ],
+ "counts": {
+  "incidents_in_whole_test_strata": 112,
+  "test": {
+   "by_stratum": {
+    "hipstershop|code-defect": 16,
+    "hipstershop|config": 14,
+    "hipstershop|cpu": 10,
+    "hipstershop|disk-io": 26,
+    "hipstershop|dns": 18,
+    "hipstershop|jvm": 13,
+    "hipstershop|memory": 8,
+    "hipstershop|network-delay": 13,
+    "hipstershop|network-loss": 11,
+    "hipstershop|network-other": 13,
+    "hipstershop|pod-lifecycle": 28
+   },
+   "total": 170
+  },
+  "tier_b_dropped_held_out_group": 53,
+  "train": {
+   "by_stratum": {
+    "hipstershop|code-defect": 2,
+    "hipstershop|config": 2,
+    "hipstershop|cpu": 10,
+    "hipstershop|disk-io": 2,
+    "hipstershop|dns": 3,
+    "hipstershop|jvm": 32,
+    "hipstershop|memory": 10,
+    "hipstershop|network-delay": 9,
+    "hipstershop|network-loss": 6,
+    "hipstershop|network-other": 11,
+    "hipstershop|node": 29,
+    "hipstershop|pod-lifecycle": 25
+   },
+   "total": 141
+  },
+  "val": {
+   "by_stratum": {
+    "hipstershop|code-defect": 3,
+    "hipstershop|config": 2,
+    "hipstershop|cpu": 2,
+    "hipstershop|jvm": 10,
+    "hipstershop|memory": 2,
+    "hipstershop|network-delay": 3,
+    "hipstershop|network-loss": 4,
+    "hipstershop|network-other": 3,
+    "hipstershop|pod-lifecycle": 7
+   },
+   "total": 36
+  }
+ },
+ "created": "2026-10-14T11:21:18Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 24,
+  "n_groups": 17,
+  "rule": "physical",
+  "singletons": 0,
+  "test_share": 0.4899
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fractions": {
+   "test": 0.2,
+   "train": 0.6,
+   "val": 0.2
+  },
+  "min_groups_per_stratum": 3,
+  "rule": "physical",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "within-aiops2025-retrieval",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

@@ -1,0 +1,33 @@
+{
+ "archive": "AnoMod.zip",
+ "elapsed_s": 0.9,
+ "experiment_examples": [
+  "Code_Stop_MediaService_20251104_024819_coverage_2025-11-04_03-21-39",
+  "Code_Stop_MediaService_20251104_024819_logs_2025-11-04_03-21-39",
+  "Code_Stop_MediaService_20251104_024819_metrics_2025-11-04_03-21-39",
+  "Code_Stop_MediaService_20251104_024819_traces_2025-11-04_03-21-39",
+  "Code_Stop_TextService_20251104_022416_coverage_2025-11-04_02-45-14",
+  "Code_Stop_TextService_20251104_022416_logs_2025-11-04_02-45-14",
+  "Code_Stop_TextService_20251104_022416_metrics_2025-11-04_02-45-14",
+  "Code_Stop_TextService_20251104_022416_traces_2025-11-04_02-45-14",
+  "Code_Stop_UserService_20251104_020019_coverage_2025-11-04_02-21-10",
+  "Code_Stop_UserService_20251104_020019_logs_2025-11-04_02-21-10",
+  "Code_Stop_UserService_20251104_020019_metrics_2025-11-04_02-21-10",
+  "Code_Stop_UserService_20251104_020019_traces_2025-11-04_02-21-10"
+ ],
+ "experiment_name_encodes_fault": true,
+ "experiments": 67,
+ "gate": "fail",
+ "gate_reason": "no machine-readable root-cause service label; the fault is encoded only in experiment directory names, and the name-matched members are trace/event/API telemetry files",
+ "label_like": 4,
+ "label_like_examples": [
+  "TT_data/trace_data/Lv_C_exception_injection_20251103T185917Z_em/Lv_C_exception_injection_20251103T185917Z_em_skywalking_traces_20251103_192217.json",
+  "TT_data/log_data/Lv_C_exception_injection_20251103T185917Z_em/kubernetes_events_20251103_192140.json",
+  "TT_data/log_data/Lv_C_exception_injection_20251103T185917Z_em/log_collection_report_20251103_192140.json",
+  "TT_data/api_responses/Lv_C_exception_injection_20251103T185917Z_em/20251103/api_responses.jsonl"
+ ],
+ "members": 44291,
+ "profiled_at": "2026-10-14T02:28:44Z",
+ "samples": {},
+ "source_id": "anomod"
+}

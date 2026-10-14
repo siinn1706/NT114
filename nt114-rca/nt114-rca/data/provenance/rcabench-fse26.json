@@ -1,0 +1,56 @@
+{
+ "archive_audit": {
+  "archives": 3,
+  "at": "2026-10-13T20:14:49Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/rcabench-fse26.json",
+ "artefact_url_example": "https://zenodo.org/api/records/17105974/files/rcabench-platform-feat-fse26.zip/content",
+ "canonical_source_url": "https://zenodo.org/records/17105974",
+ "category": "A",
+ "decisions": "acquire",
+ "doi": "10.5281/zenodo.17105974",
+ "file_count": {
+  "expected": 3,
+  "verified": 3
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "doi": "10.5281/zenodo.17105974",
+  "license": "cc-by-4.0",
+  "title": "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark",
+  "updated": "2025-09-12T11:24:37.091786+00:00",
+  "version": null
+ },
+ "id": "rcabench-fse26",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "zenodo-record",
+ "known_limitations": [
+  "Zenodo creator field is a placeholder; authenticity via arXiv DOI link",
+  "platform zips archived, never executed",
+  "Zenodo creator field is a placeholder; authenticity via arXiv 2510.04711 DOI link"
+ ],
+ "labels": "UNKNOWN",
+ "license": "CC-BY-4.0",
+ "license_evidence": "Zenodo record license field (cc-by-4.0)",
+ "lineage_edges": {},
+ "lineage_group": "L11",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:15:30Z",
+ "modalities": "UNKNOWN",
+ "next_action": null,
+ "publication": "arXiv 2510.04711 (FSE'26)",
+ "publisher_or_maintainer": "RCABench authors",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:24:15Z",
+ "revision_or_version": "17105974",
+ "state": "VERIFIED",
+ "state_file": "data/.state/rcabench-fse26.json (git-ignored)",
+ "total_bytes": {
+  "expected": 13446969567,
+  "verified": 13446969567
+ }
+}

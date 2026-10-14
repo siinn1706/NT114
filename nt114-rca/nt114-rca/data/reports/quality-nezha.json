@@ -1,0 +1,89 @@
+{
+ "by_subset_system_state": [
+  {
+   "n": 24,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "2022-08-22",
+   "system": "online-boutique"
+  },
+  {
+   "n": 32,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "2022-08-23",
+   "system": "online-boutique"
+  },
+  {
+   "n": 28,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "2023-01-29",
+   "system": "train-ticket"
+  },
+  {
+   "n": 17,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "2023-01-30",
+   "system": "train-ticket"
+  }
+ ],
+ "dataset_id": "nezha",
+ "findings": [
+  {
+   "code": "ANCHOR_FIELD_DISAGREE",
+   "n": 29,
+   "severity": "info"
+  },
+  {
+   "code": "BASELINE_CONTAMINATED",
+   "n": 86,
+   "severity": "warn"
+  },
+  {
+   "code": "LABEL_ARTIFACT_PRESENT",
+   "n": 101,
+   "severity": "info"
+  },
+  {
+   "code": "LOW_COVERAGE",
+   "n": 66,
+   "severity": "warn"
+  },
+  {
+   "code": "METRIC_NONFINITE",
+   "n": 78,
+   "severity": "info"
+  },
+  {
+   "code": "PARSE_ERROR",
+   "n": 10,
+   "severity": "warn"
+  },
+  {
+   "code": "PRE_WINDOW_SHORT",
+   "n": 4,
+   "severity": "warn"
+  },
+  {
+   "code": "TRACE_ORPHAN_SPANS",
+   "n": 3,
+   "severity": "info"
+  },
+  {
+   "code": "TS_COLUMN_OFFSET",
+   "n": 45,
+   "severity": "info"
+  },
+  {
+   "code": "WINDOW_CLIPPED",
+   "n": 16,
+   "severity": "warn"
+  }
+ ],
+ "incidents": 101,
+ "invariant_error_count": 0,
+ "invariant_errors": [],
+ "quarantined": [],
+ "rejected": [],
+ "states": {
+  "ACCEPT_WITH_WARNINGS": 101
+ }
+}

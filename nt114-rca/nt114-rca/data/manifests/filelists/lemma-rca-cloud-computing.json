@@ -1,0 +1,99 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "HF git blob id",
+    "value": "28df5f900b358436f0267334b3e3e9af33f917ba"
+   },
+   "integrity_level": "publisher-hash",
+   "path": ".gitattributes",
+   "size": 2307,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/.gitattributes"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "4cb0d2c6ea84a256c567aa0b7ad5f2bfffdb0272caa0cba31dd5654e227a17b3"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20231207.zip",
+   "size": 1397313780,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/20231207.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "b57c2a9386e74d8015df3a42b7fc8284cd0dc43ee173f135fe091a67c7d1e314"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20231221.zip",
+   "size": 11862407960,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/20231221.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "32a097aa3dc9112716427d439838c0fee744d708484a9be5fd118686819ec768"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20240115.zip",
+   "size": 15017523286,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/20240115.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "0f37d3100fea852565d98e120dce19b908f5661df1c8bc60f2e31d0c870974af"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20240124.zip",
+   "size": 698928495,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/20240124.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "8338b98633d0c75968b53f5f8fe46c8066c3dec24ea570a60ca13c0fcd99d228"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20240207.zip",
+   "size": 3353720843,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/20240207.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "4137ba1dde704173d8c6ef25a1966238b860b5b5634528d997f8c041a1d80212"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20240215.zip",
+   "size": 672237705,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/20240215.zip"
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "HF git blob id",
+    "value": "550566aba7c4d95af1d412a8c00797266fb90ef9"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "README.md",
+   "size": 874,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/README.md"
+  }
+ ],
+ "host_meta": {
+  "last_modified": "2025-05-17T17:46:24.000Z",
+  "license": "cc-by-nc-4.0"
+ },
+ "id": "lemma-rca-cloud-computing",
+ "kind": "huggingface-dataset",
+ "pinned_at": "2026-10-13T17:17:55Z"
+}

@@ -1,0 +1,17 @@
+data/*
+!data/manifests/
+!data/provenance/
+!data/reports/
+!data/splits/
+data_synth/
+results/
+results_synth/
+*.sqlite
+__pycache__/
+.venv/
+.venv-acquire/
+# Evaluation-only label content stays out of git (it travels only in the private data bundle):
+# the lineage registry holds every source's ground truth, condition matrices hold label-derived
+# masking targets (regenerate with `prep conditions`).
+data/manifests/incidents.jsonl
+data/reports/condition-matrix-*.json

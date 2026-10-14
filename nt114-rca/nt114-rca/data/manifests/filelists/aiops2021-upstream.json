@@ -1,0 +1,34 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "23b321a7a937ce885e88987f6e23cf2cd2860a3b"
+   },
+   "git_blob": "23b321a7a937ce885e88987f6e23cf2cd2860a3b",
+   "integrity_level": "publisher-hash",
+   "path": "README.md",
+   "size": null,
+   "url": "https://www.aiops.cn/gitlab/aiops-nankai/data/trace/aiops2021/-/raw/cdd0861dd999b2ed998e73d0abec4566d3d1422f/README.md"
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2c5c1756fdc7bc224210ae57249137879749629f"
+   },
+   "git_blob": "2c5c1756fdc7bc224210ae57249137879749629f",
+   "integrity_level": "publisher-hash",
+   "path": "aiops21_groundtruth.csv",
+   "size": null,
+   "url": "https://www.aiops.cn/gitlab/aiops-nankai/data/trace/aiops2021/-/raw/cdd0861dd999b2ed998e73d0abec4566d3d1422f/aiops21_groundtruth.csv"
+  }
+ ],
+ "host_meta": {
+  "tree_blobs": 2
+ },
+ "id": "aiops2021-upstream",
+ "kind": "gitlab-raw",
+ "pinned_at": "2026-10-13T17:15:32Z"
+}

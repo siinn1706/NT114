@@ -1,0 +1,9 @@
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+pyyaml>=6.0
+pyarrow>=14        # đọc bản parquet của RCAEval trên Hugging Face
+sentence-transformers>=3.0   # truy hồi dense; thiếu thì tự dùng TF-IDF + SVD
+pytest>=8
+jsonschema>=4.21

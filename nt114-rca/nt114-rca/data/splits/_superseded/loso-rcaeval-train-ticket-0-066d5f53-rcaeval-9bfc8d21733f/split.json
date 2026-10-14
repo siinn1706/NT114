@@ -1,0 +1,67 @@
+{
+ "assignments_sha256": "066d5f5372438ed3ad2c42ef33f517778a1a26983800ed880a77dddbb9130105",
+ "builds": [
+  {
+   "build_id": "rcaeval-9bfc8d21733f",
+   "dataset_digest": "014ce4af3f276ccb75cbc8b32ca1a536cdce3087918fb4c54331790e39379a36",
+   "dataset_id": "rcaeval"
+  }
+ ],
+ "counts": {
+  "test": {
+   "by_stratum": {
+    "train-ticket|code-defect": 30,
+    "train-ticket|cpu": 40,
+    "train-ticket|disk-io": 40,
+    "train-ticket|memory": 40,
+    "train-ticket|network-delay": 40,
+    "train-ticket|network-loss": 40,
+    "train-ticket|socket": 15
+   },
+   "total": 245
+  },
+  "test_system": "train-ticket",
+  "train": {
+   "by_stratum": {
+    "online-boutique|code-defect": 30,
+    "online-boutique|cpu": 40,
+    "online-boutique|disk-io": 40,
+    "online-boutique|memory": 40,
+    "online-boutique|network-delay": 40,
+    "online-boutique|network-loss": 40,
+    "online-boutique|socket": 15,
+    "sock-shop|code-defect": 30,
+    "sock-shop|cpu": 40,
+    "sock-shop|disk-io": 40,
+    "sock-shop|memory": 40,
+    "sock-shop|network-delay": 40,
+    "sock-shop|network-loss": 40,
+    "sock-shop|socket": 15
+   },
+   "total": 490
+  }
+ },
+ "created": "2026-10-14T02:48:03Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 40,
+  "n_groups": 91,
+  "rule": "cell",
+  "singletons": 0,
+  "test_share": 0.3333
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fold": "train-ticket",
+  "fractions": null,
+  "min_groups_per_stratum": 3,
+  "rule": "cell",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "loso-rcaeval",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

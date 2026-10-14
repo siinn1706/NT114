@@ -1,0 +1,50 @@
+{
+ "assignments_sha256": "f92dd409eaca1080b7fed700a9b38db88210b91946ad56aa58e0166ff5bd5c8f",
+ "builds": [
+  {
+   "build_id": "aiops2025-40efa9b2d22f",
+   "dataset_digest": "1bb0da61d69f9c38aefd8b505ded97b8c274a9f21b74ea8dafda7e52a6f62aad",
+   "dataset_id": "aiops2025"
+  }
+ ],
+ "counts": {
+  "test": {
+   "by_stratum": {
+    "hipstershop|code-defect": 21,
+    "hipstershop|config": 18,
+    "hipstershop|cpu": 22,
+    "hipstershop|disk-io": 28,
+    "hipstershop|dns": 21,
+    "hipstershop|jvm": 55,
+    "hipstershop|memory": 20,
+    "hipstershop|network-delay": 25,
+    "hipstershop|network-loss": 21,
+    "hipstershop|network-other": 27,
+    "hipstershop|pod-lifecycle": 60
+   },
+   "total": 318
+  }
+ },
+ "created": "2026-10-14T11:20:14Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 400,
+  "n_groups": 1,
+  "rule": "cell",
+  "singletons": 0,
+  "test_share": 1.0
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fractions": null,
+  "min_groups_per_stratum": 3,
+  "rule": "cell",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "eval-only-aiops2025",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

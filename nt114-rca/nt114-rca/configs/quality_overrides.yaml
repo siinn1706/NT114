@@ -1,0 +1,9 @@
+# Reviewed manual quality decisions. Rule findings stay in quality.jsonl; only the state changes.
+# Each entry needs every field; `rca.prep validate` refuses the file otherwise.
+#
+#   - incident_uid: rcaeval.0123456789abcdef
+#     state: ACCEPT_WITH_WARNINGS        # ACCEPT | ACCEPT_WITH_WARNINGS | QUARANTINE | REJECT
+#     reason: why the rule outcome is wrong for this incident, with the evidence checked
+#     initials: NN
+#     date: 2026-10-14
+overrides: []

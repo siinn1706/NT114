@@ -1,0 +1,28 @@
+# Pilot on canonical RCAEval RE2+RE3 (test role of the cell-grouped split), 10 incidents per system.
+# Prerequisites (once): rca.prep normalize/validate/conditions/split on the real data home (data/).
+#   vllm serve Qwen/Qwen2.5-7B-Instruct-AWQ --quantization awq --max-model-len 16384 \
+#        --gpu-memory-utilization 0.85 --port 8000
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/canonical_pilot.yaml
+#   PYTHONPATH=src python -m rca.run_grid run     configs/canonical_pilot.yaml
+# Retrieval experiments use the physically grouped split instead (split: within-rcaeval-retrieval-0).
+source: canonical
+data_home: null                         # null: $RCA_DATA_HOME, else <repo>/data (on the GPU machine: <bundle>/parts)
+canonical_datasets: [rcaeval]
+subsets: [RE2, RE3]
+split: within-rcaeval-grouped-0
+split_role: test
+systems: [online-boutique, sock-shop, train-ticket]
+limit_per_system: 10
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot]
+retrieval: [none, bm25, dense, hybrid]
+store_modes: [precedent, no_precedent]
+top_k: 3
+n_samples: 5
+temperature: 0.7
+seed: 0
+embedder: BAAI/bge-small-en-v1.5
+evidence_dir: results/canonical_pilot/evidence
+cache: results/llm_cache.sqlite
+out: results/canonical_pilot/pilot.jsonl
+models:
+  - {name: Qwen/Qwen2.5-7B-Instruct-AWQ, base_url: "http://localhost:8000/v1", backend: vllm}

@@ -1,0 +1,112 @@
+{
+ "assignments_sha256": "e9b2c81c96cee6064bf2ca43c20d37d3a9890944cae26695458192b8e0eb5902",
+ "builds": [
+  {
+   "build_id": "rcaeval-2f4bf056cb8a",
+   "dataset_digest": "e9b84d790de8be8ae1cd42123ccc073e678a5dca3af475301386b55aa6ae1b44",
+   "dataset_id": "rcaeval"
+  }
+ ],
+ "counts": {
+  "incidents_in_whole_test_strata": 94,
+  "test": {
+   "by_stratum": {
+    "online-boutique|cpu": 11,
+    "online-boutique|disk-io": 3,
+    "online-boutique|memory": 8,
+    "online-boutique|network-delay": 13,
+    "online-boutique|network-loss": 8,
+    "online-boutique|socket": 3,
+    "sock-shop|cpu": 8,
+    "sock-shop|disk-io": 40,
+    "sock-shop|memory": 8,
+    "sock-shop|network-delay": 24,
+    "sock-shop|network-loss": 16,
+    "sock-shop|socket": 3,
+    "train-ticket|code-defect": 30,
+    "train-ticket|cpu": 8,
+    "train-ticket|disk-io": 8,
+    "train-ticket|memory": 8,
+    "train-ticket|network-delay": 8,
+    "train-ticket|network-loss": 8,
+    "train-ticket|socket": 3
+   },
+   "total": 218
+  },
+  "tier_b_dropped_held_out_group": 0,
+  "train": {
+   "by_stratum": {
+    "online-boutique|code-defect": 15,
+    "online-boutique|cpu": 21,
+    "online-boutique|disk-io": 34,
+    "online-boutique|memory": 24,
+    "online-boutique|network-delay": 19,
+    "online-boutique|network-loss": 21,
+    "online-boutique|socket": 9,
+    "sock-shop|code-defect": 21,
+    "sock-shop|cpu": 24,
+    "sock-shop|memory": 24,
+    "sock-shop|network-delay": 8,
+    "sock-shop|network-loss": 16,
+    "sock-shop|socket": 9,
+    "train-ticket|cpu": 24,
+    "train-ticket|disk-io": 24,
+    "train-ticket|memory": 24,
+    "train-ticket|network-delay": 24,
+    "train-ticket|network-loss": 24,
+    "train-ticket|socket": 9
+   },
+   "total": 374
+  },
+  "val": {
+   "by_stratum": {
+    "online-boutique|code-defect": 15,
+    "online-boutique|cpu": 8,
+    "online-boutique|disk-io": 3,
+    "online-boutique|memory": 8,
+    "online-boutique|network-delay": 8,
+    "online-boutique|network-loss": 11,
+    "online-boutique|socket": 3,
+    "sock-shop|code-defect": 9,
+    "sock-shop|cpu": 8,
+    "sock-shop|memory": 8,
+    "sock-shop|network-delay": 8,
+    "sock-shop|network-loss": 8,
+    "sock-shop|socket": 3,
+    "train-ticket|cpu": 8,
+    "train-ticket|disk-io": 8,
+    "train-ticket|memory": 8,
+    "train-ticket|network-delay": 8,
+    "train-ticket|network-loss": 8,
+    "train-ticket|socket": 3
+   },
+   "total": 143
+  }
+ },
+ "created": "2026-10-14T11:32:38Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 40,
+  "n_groups": 91,
+  "rule": "cell",
+  "singletons": 0,
+  "test_share": 0.2966
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fractions": {
+   "test": 0.2,
+   "train": 0.6,
+   "val": 0.2
+  },
+  "min_groups_per_stratum": 3,
+  "rule": "cell",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "within-rcaeval-grouped",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

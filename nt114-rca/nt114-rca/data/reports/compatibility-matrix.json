@@ -1,0 +1,160 @@
+{
+ "generated_at": "2026-10-14T02:30:50Z",
+ "profiles": {
+  "agenticopseval": "2026-10-14T02:27:52Z",
+  "anomod": "2026-10-14T02:28:44Z",
+  "cloud-opsbench": "2026-10-14T02:29:11Z",
+  "dejavu": "2026-10-14T01:33:55Z",
+  "msds": "2026-10-14T01:33:57Z",
+  "nezha": "2026-10-14T02:28:43Z",
+  "petshop": "2026-10-14T01:33:54Z",
+  "rcabench-fse26": "2026-10-14T02:30:16Z",
+  "rcaeval-zenodo": "2026-10-14T01:37:20Z"
+ },
+ "rows": [
+  {
+   "evidence": "data/reports/profile/rcaeval-zenodo.json#/zips",
+   "gate": "not-applicable",
+   "incidents": 361,
+   "reason": "reference: injected service in the case path; M L T on OB/TT, natural T absence on SS; duplicate RE2-OB.zip!RE2-OB/checkoutservice_cpu/multi-source-data rejected",
+   "source_id": "rcaeval-zenodo",
+   "subset": "RE2+RE3",
+   "tier": "A"
+  },
+  {
+   "evidence": "data/reports/profile/rcaeval-zenodo.json#/zips",
+   "gate": "not-applicable",
+   "incidents": 375,
+   "reason": "natural metric-only stratum, descriptive only",
+   "source_id": "rcaeval-zenodo",
+   "subset": "RE1",
+   "tier": "A"
+  },
+  {
+   "evidence": "data/reports/profile/nezha.json#/gate",
+   "gate": "pass",
+   "incidents": 101,
+   "reason": "metrics aligned by the Time string; 101/101 incidents have M, L and T rows in [t-600 s, t+300 s]; split protocols: eval-only (too few groups for grouped splits)",
+   "source_id": "nezha",
+   "subset": null,
+   "tier": "A"
+  },
+  {
+   "evidence": "data/reports/profile/agenticopseval.json#/AIOps2025/gate",
+   "gate": "pass",
+   "incidents": 318,
+   "reason": "archive hour names are UTC+8 h; 358 windows covered, 42 natural_absent (REJECT NO_TELEMETRY), counted over all 400",
+   "source_id": "agenticopseval",
+   "subset": "AIOps2025 service+pod",
+   "tier": "A"
+  },
+  {
+   "evidence": "data/reports/profile/agenticopseval.json#/AIOps2025/instance_type",
+   "gate": "not-applicable",
+   "incidents": 82,
+   "reason": "node-level labels",
+   "source_id": "agenticopseval",
+   "subset": "AIOps2025 node",
+   "tier": "B"
+  },
+  {
+   "evidence": "data/reports/profile/agenticopseval.json#/RCA100/service_resolvable_share",
+   "gate": "pass",
+   "incidents": 103,
+   "reason": "83/103 cases resolve to a topology service (threshold 0.8); the other cases are not service-level (eval_tier per incident)",
+   "source_id": "agenticopseval",
+   "subset": "RCA100",
+   "tier": "A"
+  },
+  {
+   "evidence": "data/reports/profile/rcabench-fse26.json#/gate",
+   "gate": "pass",
+   "incidents": 1422,
+   "reason": "1422/1422 cases have telemetry Parquet and an injection point ({'service_pair': 254, 'single_service': 1168}); service pairs and non-service sources (e.g. mysql) need a per-incident rule; no adapter yet",
+   "source_id": "rcabench-fse26",
+   "subset": null,
+   "tier": "A"
+  },
+  {
+   "evidence": "data/reports/profile/cloud-opsbench.json#/fault_object_kinds",
+   "gate": "not-applicable",
+   "incidents": 754,
+   "reason": "configuration/lifecycle faults; natural_absent (no trace files); metrics CSV in 170 cases",
+   "source_id": "cloud-opsbench",
+   "subset": null,
+   "tier": "B"
+  },
+  {
+   "evidence": "data/reports/profile/petshop.json#/root_cause_nodes",
+   "gate": "not-applicable",
+   "incidents": 68,
+   "reason": "metric-only; root causes are AWS resources, not services",
+   "source_id": "petshop",
+   "subset": null,
+   "tier": "B"
+  },
+  {
+   "evidence": "data/reports/profile/dejavu.json#/sets",
+   "gate": "not-applicable",
+   "incidents": 601,
+   "reason": "metric-only; root causes are docker/db/os nodes",
+   "source_id": "dejavu",
+   "subset": null,
+   "tier": "B"
+  },
+  {
+   "evidence": "data/reports/profile/anomod.json#/gate_reason",
+   "gate": "fail",
+   "incidents": 67,
+   "reason": "no machine-readable root-cause service label; the fault is encoded only in experiment directory names, and the name-matched members are trace/event/API telemetry files",
+   "source_id": "anomod",
+   "subset": null,
+   "tier": "C"
+  },
+  {
+   "evidence": "data/reports/profile/msds.json#/gate_reason",
+   "gate": "fail",
+   "incidents": null,
+   "reason": "experiment start/end times only; no per-incident root-cause service label",
+   "source_id": "msds",
+   "subset": null,
+   "tier": "C"
+  },
+  {
+   "evidence": "data/manifests/lineage-report.json",
+   "gate": "not-applicable",
+   "incidents": 735,
+   "reason": "copy of the Zenodo release (735 cases, truncated inject_time); cross-check only (tests/test_realdata_samples.py)",
+   "source_id": "rcaeval-hf",
+   "subset": null,
+   "tier": "C"
+  },
+  {
+   "evidence": "data/provenance/openrca.json",
+   "gate": "not-applicable",
+   "incidents": null,
+   "reason": "not acquired (Google Drive quota); adapter spec reserved",
+   "source_id": "openrca",
+   "subset": null,
+   "tier": "C"
+  },
+  {
+   "evidence": "data/manifests/lineage-report.json",
+   "gate": "not-applicable",
+   "incidents": null,
+   "reason": "label files only, no telemetry; lineage metadata",
+   "source_id": "aiops2020-2021",
+   "subset": null,
+   "tier": "C"
+  },
+  {
+   "evidence": null,
+   "gate": "not-applicable",
+   "incidents": null,
+   "reason": "not acquired (licence or acquisition decision)",
+   "source_id": "gaia,eadro,lemma,lo2",
+   "subset": null,
+   "tier": "C"
+  }
+ ]
+}

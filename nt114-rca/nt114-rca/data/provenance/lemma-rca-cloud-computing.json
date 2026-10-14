@@ -1,0 +1,46 @@
+{
+ "archive_audit": null,
+ "artefact_list": "data/manifests/filelists/lemma-rca-cloud-computing.json",
+ "artefact_url_example": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original/resolve/9e5ad23fa390f6b596f41be014233fe446679bcd/.gitattributes",
+ "canonical_source_url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Cloud_Computing_Original",
+ "category": "B",
+ "decisions": "deferred",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 8,
+  "verified": 0
+ },
+ "hash_list": null,
+ "host_metadata": {
+  "last_modified": "2025-05-17T17:46:24.000Z",
+  "license": "cc-by-nc-4.0"
+ },
+ "id": "lemma-rca-cloud-computing",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "huggingface-dataset",
+ "known_limitations": [
+  "~10 incidents across both LEMMA IT datasets"
+ ],
+ "labels": "UNKNOWN",
+ "license": "CONFLICT: as above",
+ "license_evidence": "as lemma-rca-product-review",
+ "lineage_edges": {},
+ "lineage_group": "L8",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:17:55Z",
+ "modalities": "UNKNOWN",
+ "next_action": "ask the authors which licence governs: lemmarca.info has expired (2026-10-14) and lemma-rca.github.io states CC BY-ND 4.0, conflicting with the HF cards (CC-BY-NC-4.0)",
+ "publication": "UNKNOWN",
+ "publisher_or_maintainer": "NEC Labs (LEMMA-RCA)",
+ "reason": "owner decision D3: licence conflict (Zenodo CC-BY-ND-4.0 vs HF CC-BY-NC-4.0); ~10 incidents for 86.6 GB",
+ "retrieved_at": null,
+ "revision_or_version": "9e5ad23fa390f6b596f41be014233fe446679bcd",
+ "state": "PENDING:deferred",
+ "state_file": "data/.state/lemma-rca-cloud-computing.json (git-ignored)",
+ "total_bytes": {
+  "expected": 33002135250,
+  "verified": 0
+ }
+}

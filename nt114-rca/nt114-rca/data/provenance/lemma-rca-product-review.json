@@ -1,0 +1,46 @@
+{
+ "archive_audit": null,
+ "artefact_list": "data/manifests/filelists/lemma-rca-product-review.json",
+ "artefact_url_example": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original/resolve/63aa4abe7dd7217d9b0b108894c7d893e2b29aef/.gitattributes",
+ "canonical_source_url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original",
+ "category": "B",
+ "decisions": "deferred",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 6,
+  "verified": 0
+ },
+ "hash_list": null,
+ "host_metadata": {
+  "last_modified": "2025-05-17T17:46:05.000Z",
+  "license": "cc-by-nc-4.0"
+ },
+ "id": "lemma-rca-product-review",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "huggingface-dataset",
+ "known_limitations": [
+  "~10 incidents for 53.6 GB"
+ ],
+ "labels": "UNKNOWN",
+ "license": "CONFLICT: Zenodo 20516735 cc-by-nd-4.0; HF cc-by-nc-4.0",
+ "license_evidence": "HF card cc-by-nc-4.0; Zenodo 20516735 cc-by-nd-4.0; data/provenance/evidence/lemma-rca-github-io-20261014.html (CC BY-ND 4.0); lemmarca.info domain expired (evidence/lemmarca-info-expired-20261014.html)",
+ "lineage_edges": {},
+ "lineage_group": "L8",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:17:54Z",
+ "modalities": "UNKNOWN",
+ "next_action": "ask the authors which licence governs: lemmarca.info has expired (2026-10-14) and lemma-rca.github.io states CC BY-ND 4.0, conflicting with the HF cards (CC-BY-NC-4.0)",
+ "publication": "UNKNOWN",
+ "publisher_or_maintainer": "NEC Labs (LEMMA-RCA)",
+ "reason": "owner decision D3: licence conflict (Zenodo CC-BY-ND-4.0 vs HF CC-BY-NC-4.0); ~10 incidents for 86.6 GB",
+ "retrieved_at": null,
+ "revision_or_version": "63aa4abe7dd7217d9b0b108894c7d893e2b29aef",
+ "state": "PENDING:deferred",
+ "state_file": "data/.state/lemma-rca-product-review.json (git-ignored)",
+ "total_bytes": {
+  "expected": 53633812085,
+  "verified": 0
+ }
+}

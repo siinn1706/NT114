@@ -1,0 +1,75 @@
+{
+ "generated_at": "2026-10-13T20:25:04Z",
+ "sources": [
+  {
+   "expected": {
+    "incidents": 335,
+    "uncompressed_bytes_paper": "68.5G"
+   },
+   "id": "openrca",
+   "next_action": "rerun fetch after the Drive quota window (~24 h); never with cookies",
+   "reason": "Drive refused all 3 downloads (quota/interstitial)",
+   "state": "PENDING:drive-quota"
+  },
+  {
+   "expected": {
+    "blob_bytes": 5786350112
+   },
+   "id": "gaia",
+   "next_action": "owner acknowledges licence conflict (plan question 1), then fetch",
+   "reason": "licence conflict: LICENSE file GPL-2.0 vs README Apache-2.0",
+   "state": "PENDING:decision"
+  },
+  {
+   "expected": null,
+   "id": "eadro",
+   "next_action": "find a licence in the ICSE'23 artefact or ask the authors",
+   "reason": "Zenodo record has no licence",
+   "state": "PENDING:license"
+  },
+  {
+   "expected": {
+    "bytes": 53633812085,
+    "files": 6
+   },
+   "id": "lemma-rca-product-review",
+   "next_action": "ask the authors which licence governs: lemmarca.info has expired (2026-10-14) and lemma-rca.github.io states CC BY-ND 4.0, conflicting with the HF cards (CC-BY-NC-4.0)",
+   "reason": "owner decision D3: licence conflict (Zenodo CC-BY-ND-4.0 vs HF CC-BY-NC-4.0); ~10 incidents for 86.6 GB",
+   "state": "PENDING:deferred"
+  },
+  {
+   "expected": {
+    "bytes": 33002135250,
+    "files": 8
+   },
+   "id": "lemma-rca-cloud-computing",
+   "next_action": "ask the authors which licence governs: lemmarca.info has expired (2026-10-14) and lemma-rca.github.io states CC BY-ND 4.0, conflicting with the HF cards (CC-BY-NC-4.0)",
+   "reason": "owner decision D3: licence conflict (Zenodo CC-BY-ND-4.0 vs HF CC-BY-NC-4.0); ~10 incidents for 86.6 GB",
+   "state": "PENDING:deferred"
+  },
+  {
+   "expected": null,
+   "id": "aiops2020-upstream",
+   "next_action": "archives need a separate owner request",
+   "reason": "allowed small files verified (publisher-hash); archives not acquired (owner decision D4)",
+   "state": "PENDING:metadata-only"
+  },
+  {
+   "expected": null,
+   "id": "aiops2021-upstream",
+   "next_action": "archives need a separate owner request",
+   "reason": "allowed small files verified (publisher-hash); archives not acquired (owner decision D4)",
+   "state": "PENDING:metadata-only"
+  },
+  {
+   "expected": {
+    "bytes": 69963617238,
+    "files": 6
+   },
+   "id": "lo2v2",
+   "next_action": "owner decides whether an auxiliary anomaly dataset of ~70 GB is wanted; fits the remaining budget",
+   "reason": "found in the phase-01 saturation round (2026-10-14); OAuth2 microservice logs/metrics/traces with Locust-scenario anomaly labels, not root-cause labels; 69,963,617,238 B",
+   "state": "PENDING:decision"
+  }
+ ]
+}

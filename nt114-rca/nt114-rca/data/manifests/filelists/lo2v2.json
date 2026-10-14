@@ -1,0 +1,80 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "056aeac14eedc2cb67f1b527e1a08512"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "LO2v2-metrics.zip",
+   "size": 1317357774,
+   "url": "https://zenodo.org/api/records/18937117/files/LO2v2-metrics.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "0be676a80f33e9a3cd51971a974682e4"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "light-oauth2-logs.zip",
+   "size": 2904270326,
+   "url": "https://zenodo.org/api/records/18937117/files/light-oauth2-logs.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "19fd02bd7410759ed8d33ae078cee746"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "light-oauth2.zip",
+   "size": 19732211,
+   "url": "https://zenodo.org/api/records/18937117/files/light-oauth2.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "2fe6548d1ad9115ad37e7663015b907c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "light-oauth2-metrics.zip",
+   "size": 77564351,
+   "url": "https://zenodo.org/api/records/18937117/files/light-oauth2-metrics.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "51f8a675dfd5d174eda20dba5fa21feb"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "LO2v2.zip",
+   "size": 65613664046,
+   "url": "https://zenodo.org/api/records/18937117/files/LO2v2.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "2efcff67820ba1df40fae362919271eb"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "LO2v2_index.json",
+   "size": 31028530,
+   "url": "https://zenodo.org/api/records/18937117/files/LO2v2_index.json/content"
+  }
+ ],
+ "host_meta": {
+  "doi": "10.5281/zenodo.18937117",
+  "license": "cc-by-4.0",
+  "title": "LO2v2: An Updated and Improved Microservice Dataset of Logs and Metrics",
+  "updated": "2026-03-10T11:24:54.469781+00:00",
+  "version": null
+ },
+ "id": "lo2v2",
+ "kind": "zenodo-record",
+ "pinned_at": "2026-10-13T17:18:57Z"
+}

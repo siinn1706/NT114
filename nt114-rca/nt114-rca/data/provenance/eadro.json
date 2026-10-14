@@ -1,0 +1,53 @@
+{
+ "archive_audit": null,
+ "artefact_list": "data/manifests/filelists/eadro.json",
+ "artefact_url_example": "https://zenodo.org/api/records/7615394/files/SN%20Dataset.zip/content",
+ "canonical_source_url": "https://zenodo.org/records/7615394",
+ "category": "A-pending",
+ "decisions": "pending-license",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 2,
+  "verified": 0
+ },
+ "hash_list": null,
+ "host_metadata": {
+  "doi": "10.5281/zenodo.7615394",
+  "license": null,
+  "title": "Traces, Metrics, and Logs for Anomaly Detection and Root Cause Localization in Microservices",
+  "updated": "2023-10-24T15:16:48.465036+00:00",
+  "version": null
+ },
+ "id": "eadro",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "zenodo-record",
+ "known_limitations": [
+  "no licence"
+ ],
+ "labels": "UNKNOWN",
+ "license": "UNKNOWN",
+ "license_evidence": "Zenodo record license field is null",
+ "lineage_edges": {},
+ "lineage_group": "L6",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:17:54Z",
+ "modalities": [
+  "metrics",
+  "logs",
+  "traces"
+ ],
+ "next_action": "find a licence in the ICSE'23 artefact or ask the authors",
+ "publication": "UNKNOWN",
+ "publisher_or_maintainer": "Eadro authors (ICSE'23)",
+ "reason": "Zenodo record has no licence",
+ "retrieved_at": null,
+ "revision_or_version": "7615394",
+ "state": "PENDING:license",
+ "state_file": "data/.state/eadro.json (git-ignored)",
+ "total_bytes": {
+  "expected": 127676922,
+  "verified": 0
+ }
+}

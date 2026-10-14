@@ -1,0 +1,1353 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "a246017b368f26f2c07150396d792e0f898cc65c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": ".gitattributes",
+   "size": 145,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "79b5594df7fa295b000b84210837761e854c61ee"
+   },
+   "integrity_level": "publisher-hash",
+   "path": ".gitignore",
+   "size": 13,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "238f90081767654e45b68786378769c1104426fb"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "Companion_Data/log.zip",
+   "size": 7906721,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "055d5ce134a4dc6649d8a760e7b358ad4356cc32"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "Companion_Data/metric_detection.zip",
+   "size": 12811586,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "a2b2eb361484251c56ff7c05e1b10211af5ed5fa"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "Companion_Data/metric_forecast.zip",
+   "size": 6249310,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "d159169d1050894d3ea3b98e1c965c4058208fe1"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "LICENSE",
+   "size": 18092,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2c413c3471c9b467f8e5aed6fa686e81ce4ebf96"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/MicroSS system description.docx",
+   "size": 258606,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "1cba38cffff03048484de3589c12c940760673e3"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z01",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "69a6b90189239d11e036950e9cc6fdec0f70004c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z02",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "e7248a74cafd968eda9bd503fdc2ffce974b96e7"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z03",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "b8f2896e3cc69536eb03951b70bff52ba2b9ba61"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z04",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "37a058f4e2642c48ad02623a638a0c21d42ad2e5"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z05",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "287e69e153d4503eb8f476f3ebd4d4b821bf478c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z06",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "4423ee4dca11cba77ef96eb90d8513541706b83a"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z07",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "6d214a6ee3821c64d61c8bb73a76f6e00b670876"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z08",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "7cb2c824297d3c49abd3678dc4d778829a9a32ad"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z09",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "3acd40983aacc8ad396434b86c334735fa775cbe"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z10",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "5d4346a3c40e765592cf04eb00e605f5c6ae2c80"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z11",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "46885974abfde1849ac65c4338b46eed7934b231"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z12",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "17b5b8b51aeb8e3c9767ac63d6c2eea1ec76506c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z13",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "cd1e164ccfc4d7fb5a213a33fc7461d39717d5be"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z14",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "e8ff207a1a97547b1cbe33d4dbd5b62988db1104"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z15",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9b21f156345c11b4d0b83c6195d56deef55f1397"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z16",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "4990f57008800e0b6f9ce0f5ded5624bd28d51de"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z17",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "25f408f807a23bcaf1315cbf298c0dd25fe1317c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z18",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "d0e5d0578a4ac343f6e426654645f16d2585c437"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z19",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "167212f54d3f3132e70bb7fa84d7edfc4e64f8bd"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z20",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "6808db7e204f34366fd1b61d917c871fc0ed388b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z21",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "f43a5a2f5e0dfa95630f31120cfc7a205fdb2708"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z22",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9190393c3acce556ddd62a2ae466804fd0316e0e"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z23",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "c6570413ebb2052866e25e00301e925dc2868899"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z24",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "818a445552ff6ea7e68cfa092dba6bb1fc8f120a"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z25",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "988af4303b83635193ac85fd288daf77ff1ab8ca"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z26",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "7cc1ecbfd4ac7e88d51f3fec9ca4330944f2f16e"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z27",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "1e26c8cde18385ccae80606507586a72e4fb7b6d"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z28",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9ef4c584bd07ede9ad86cf8995a87cd619b95dc2"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z29",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "f83c1ac0bc8fb1aed185cd24c60fc6bc07a979ad"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z30",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "90399390d545f9431498ac932677f009b480d573"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z31",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "c8bd429876f9599ef58aa9edae4dae4db1e95e33"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z32",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "341da235fb44913d659ef510ca8aee89e437abc7"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z33",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "035b612e7a230f9092cfac7ee2b12fad72be6597"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z34",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "f9ad26e4d33d526b7b37eba90430e0a6fb529c59"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z35",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "38911bd7d468e75046d92f30c45c10dc69354a4f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z36",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "7c6a5cab879200461e58a83dc9670a594a7e6f2f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z37",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "7ebcbcd83e8c2fe7061a8659ade956b7eed5a521"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z38",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2a188368f5649c854616657c96b59580557e2d46"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z39",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "806b3058f66bf79891e517e75ff896ecc95dccc3"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z40",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "a3078325f5f23854e57829f8e0e0a525d93b7afb"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z41",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9b50c1222ca875c2dc79f84b5d6b65baf7abfda3"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z42",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "bd8a0ff1a8a7878755f2002bcf8fd1f60d0519fe"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z43",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "f15885d68a94c34b05cdd5dc88ed1ed941ec9932"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z44",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "d0ba780db356b7b5fe089d5349829be7c1322d3c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.z45",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "93c1d1d9a85610ae212f0ecf2f0e31626f76b4d4"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/business/business_split.zip",
+   "size": 47714171,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "8e4b7129588f8fac52fa224a3978cf21a24a5159"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z01",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "6009422227f6363d1e5484690990711e39a4aebc"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z02",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "ffdde2d2bd4698753a3eb7bf61875f481890391b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z03",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "c08e7ded089eaeb470ca690c1ca4acc34d214764"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z04",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "f841b2cda719514ea3bff5036bae3186258d596a"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z05",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "086188e44833e857f321d4e4a497f2c752eb5a05"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z06",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2aef654f7dda95858e632fd71e5fd59fc6ca690f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z07",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "8351d502e219c8998a9727c6c0ef51d68a6ada20"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z08",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "b8c4b8b9ad2292b9d78ae1126a20a8cefaa367f1"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z09",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "fd0ecd17a762795ac3a311ec794420a77b28be9f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z10",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9c77040ef8e08596870b45b53ef6759fb896ea3f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z11",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "1e73a69b5167bc221f40eb18840aa0fd51ee860c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z12",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "c823cbbfbbcb4ae68004d1b2ac733eb2a0c1e6e4"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z13",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "7840a73862e31ce3155f4bbd3b6dada648d16137"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z14",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "386d425b39ca787c7f4fb4b77d0abfc88ae22deb"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z15",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "42fc41b07e89a4f113757510ad8413f98e46e043"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z16",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "1baf62033eae884dee7bf6ea43e19c832cd8d892"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z17",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "991ffd36d751b8026c7eedfddf79a978cec5667f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z18",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "85e2fdff033763843bea398970793f723a662310"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z19",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "43aec8883413bc3aff1668eee9034f7106e4759c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z20",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "25bf34889cea3d41175b2dd5a02b913b329b2719"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z21",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "e3d079f53cd885477f525c9016ae66c025f1bee0"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z22",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "ebab8dacd58499422c17d0e331f88d04a7084cad"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z23",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "262e6f5ba3fe53d349abbaec0f0abab84c96a55c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z24",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "30f983c8871166356b27fe927bed434b60b81651"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z25",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "0a00048a59fc3eeac9f55231e498b9cb3e8d9bb1"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z26",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2a2291b23d06b8dc0a25686428c33cd5f16a54d1"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z27",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "759026dc38b5d5234e429ea2b0b0243fb0c04bd9"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z28",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "ad048d28bf06b6bafdde75948b7a73a23cd90b7a"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z29",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "e6d2ee564d92c810b8aa671ebcbee3197aca8375"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z30",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2111c514439e909456783f4ebc729d366b1b7392"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z31",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9651aeaa5d71c97d8b384f560a05a0d506b1898c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z32",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "66921518813a9fa00122c77681842331b7acaaed"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z33",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "4345bd3afbc68e4e3eae730c3ace8d99bd811eb2"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.z34",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "0caf2724fdc04816c4af90484f219b470e73bab6"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/metric/metric_split.zip",
+   "size": 41429279,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "c7d0e0136137f2e3e05a4473b9632f11d74f15f8"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/run/run.zip",
+   "size": 823135,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "ccb2fbc584e8a4a5c22dd1b1ac7f6a55ad892091"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z01",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "690c427b89168655cdd938e00812eb26f14fff0c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z02",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "0c3e89ca155845ea4d5f001fcaf74616fc286745"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z03",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9384929554f8855a403a67745b03680f15712807"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z04",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "10705ab226a5b15d6648a2eaad0f92e964e93c24"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z05",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2ebb3d7315f1c492ceb3833262fd52cfc64d5312"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z06",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "33fad11f826dddc2e6a26fe2b0baf427df5cb987"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z07",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "9f0c75e8712f855273f20370a0758004ce618c52"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z08",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "ba76b182f6ad57f30506e10abc1be0be7aa441df"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z09",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "32b4a4aecb9e72a21f87e9ebac74c0d592308885"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z10",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "0cbaec2d1ae4f6685d9c6e4930d0c4e53937b6f1"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z11",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "b7541c5055ca6dda934ea5c21c3dc7655daf2fe7"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z12",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "991c7c90a85adcf9ce4e430307ed9131b16f7756"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z13",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "cd841f87fdae9eacabcc24586324e25614dfa287"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z14",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "2b4f284d8e85f54f6762a8a43b5eb210d502c4fe"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z15",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "15fe64793a71a500c46a080d3cd590413c0669c7"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z16",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "ba738b956fbc4feeec9dc8298f488d1153265aa5"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z17",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "c1ac8495a54b4362de83861cfd9b433e25ddbbdd"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z18",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "54d8fc59f3605632be3c11c11aaf908ef02f3149"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z19",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "1b8ab9d466bb6d043409730e514f796c016debe2"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z20",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "f3fde660e7c367f814d93da21d584b9b8ba896a9"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z21",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "fa26221b23246be5d438083d82b391b2caf4e037"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z22",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "67981f4d63998eae0098a415b1efc3a744796627"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z23",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "4c7453821f4e4a5f9e4bb9890230797ce603647d"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z24",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "3e8bde2c705cc1ccd799b75e8c023d11a2dfc63b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z25",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "cf997cf0da389994ffbfbff79ca4ed167746a7a2"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z26",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "d84e373585ad4dabd413fd2145b07e6e1cc5b66a"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z27",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "6282842178b7b8de8faf782a1b2fec5a908b1ee3"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z28",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "4cbb8cf4dc11fd188d1ba64c37c7876f6f39a981"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z29",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "03e08667eedd5add4d349aab12629d18d3fcb014"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z30",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "82794ef3a0c37df708f869badd6e6f07bf6e79fb"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.z31",
+   "size": 51380224,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "3548f43634c218932b6b0c7f6061aece5d5a068e"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "MicroSS/trace/trace_split.zip",
+   "size": 17304861,
+   "url": null
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "0958b15be8893c901734c1585112af30d863d074"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "README.md",
+   "size": 9711,
+   "url": null
+  }
+ ],
+ "host_meta": {
+  "submodules": 0,
+  "tree_entries": 128
+ },
+ "id": "gaia",
+ "kind": "github-git",
+ "pinned_at": "2026-10-13T17:17:53Z"
+}

@@ -1,0 +1,57 @@
+{
+ "archive_audit": {
+  "archives": 0,
+  "at": "2026-10-13T17:26:36Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/aiops2021-upstream.json",
+ "artefact_url_example": "https://www.aiops.cn/gitlab/aiops-nankai/data/trace/aiops2021/-/raw/cdd0861dd999b2ed998e73d0abec4566d3d1422f/README.md",
+ "canonical_source_url": "aiops.cn project 83 (mirror); original organiser release UNKNOWN",
+ "category": "B-lineage",
+ "decisions": "metadata-only",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 2,
+  "verified": 2
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "tree_blobs": 2
+ },
+ "id": "aiops2021-upstream",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "gitlab-raw",
+ "known_limitations": [
+  "AIOps2021.zip not acquired (D4); size UNKNOWN (files API HEAD 500)"
+ ],
+ "labels": "aiops21_groundtruth.csv: 159 records (multi-line CSV fields)",
+ "license": "CC BY-NC 4.0 (mirror README)",
+ "license_evidence": "mirror README (CC BY-NC 4.0)",
+ "lineage_edges": {},
+ "lineage_group": "L5",
+ "lineage_group_counts": {
+  "copies": 0,
+  "independent_incidents": 159,
+  "rows": 159,
+  "sources": [
+   "aiops2021-upstream"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:15:32Z",
+ "modalities": "UNKNOWN",
+ "next_action": "archives need a separate owner request",
+ "publication": "UNKNOWN",
+ "publisher_or_maintainer": "AIOps Challenge 2021 organisers",
+ "reason": "allowed small files verified (publisher-hash); archives not acquired (owner decision D4)",
+ "retrieved_at": "2026-10-13T17:26:36Z",
+ "revision_or_version": "cdd0861dd999b2ed998e73d0abec4566d3d1422f",
+ "state": "PENDING:metadata-only",
+ "state_file": "data/.state/aiops2021-upstream.json (git-ignored)",
+ "total_bytes": {
+  "expected": 0,
+  "verified": 20581
+ }
+}

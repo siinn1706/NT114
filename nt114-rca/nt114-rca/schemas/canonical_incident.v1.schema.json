@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nt114-rca.local/schemas/canonical_incident.v1.schema.json",
+  "title": "NT114-RCA canonical incident records, schema v1",
+  "description": "Record types of the canonical store. Cross-field invariants are checked by rca.schema.validate_dataset.",
+  "$defs": {
+    "uid": {"type": "string", "pattern": "^[a-z0-9-]+\\.[0-9a-f]{16}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "relpath": {"type": "string", "maxLength": 180, "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*(^|/)\\.\\.(/|$)).+$"},
+    "ns": {"type": "integer"},
+    "ModalityInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "path", "rows", "services", "t_min_ns", "t_max_ns", "coverage", "metric_sets", "content_sha256", "notes"],
+      "properties": {
+        "status": {"enum": ["present", "natural_absent", "empty", "corrupted"]},
+        "path": {"anyOf": [{"$ref": "#/$defs/relpath"}, {"type": "null"}]},
+        "rows": {"type": "integer", "minimum": 0},
+        "services": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "t_min_ns": {"type": ["integer", "null"]},
+        "t_max_ns": {"type": ["integer", "null"]},
+        "coverage": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "metric_sets": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "content_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "IncidentRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "incident_uid", "dataset_id", "dataset_subset", "dataset_version", "source_id", "lineage_group", "system", "time", "candidates", "telemetry", "context", "repro", "quality_state"],
+      "properties": {
+        "schema_version": {"type": "string", "pattern": "^1\\.\\d+\\.\\d+$"},
+        "incident_uid": {"$ref": "#/$defs/uid"},
+        "dataset_id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "dataset_subset": {"type": ["string", "null"]},
+        "dataset_version": {"type": "string"},
+        "source_id": {"type": "string"},
+        "lineage_group": {"type": "string"},
+        "system": {"type": "string"},
+        "time": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["anchor_ns", "anchor_kind", "anchor_original", "end_ns", "window"],
+          "properties": {
+            "anchor_ns": {"$ref": "#/$defs/ns"},
+            "anchor_kind": {"enum": ["injection", "alert", "window_start"]},
+            "anchor_original": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["value", "unit", "tz"],
+              "properties": {
+                "value": {"type": "string"},
+                "unit": {"enum": ["s", "ms", "us", "ns", "iso8601"]},
+                "tz": {"type": "string"}
+              }
+            },
+            "end_ns": {"type": ["integer", "null"]},
+            "window": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["start_ns", "end_ns", "clipped_start", "clipped_end"],
+              "properties": {
+                "start_ns": {"type": ["integer", "null"]},
+                "end_ns": {"type": ["integer", "null"]},
+                "clipped_start": {"type": "boolean"},
+                "clipped_end": {"type": "boolean"}
+              }
+            }
+          }
+        },
+        "candidates": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["services", "source"],
+          "properties": {
+            "services": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "source": {"enum": ["telemetry", "topology", "telemetry+topology"]}
+          }
+        },
+        "telemetry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["metrics", "logs", "traces"],
+          "properties": {
+            "metrics": {"$ref": "#/$defs/ModalityInfo"},
+            "logs": {"$ref": "#/$defs/ModalityInfo"},
+            "traces": {"$ref": "#/$defs/ModalityInfo"}
+          }
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["visible_text"],
+          "properties": {"visible_text": {"type": ["string", "null"]}}
+        },
+        "repro": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["adapter", "build_id", "config_hash", "input_digest"],
+          "properties": {
+            "adapter": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "version"],
+              "properties": {"name": {"type": "string"}, "version": {"type": "string"}}
+            },
+            "build_id": {"type": "string"},
+            "config_hash": {"$ref": "#/$defs/sha256"},
+            "input_digest": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "quality_state": {"enum": ["ACCEPT", "ACCEPT_WITH_WARNINGS", "QUARANTINE", "REJECT"]}
+      }
+    },
+    "Entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw", "kind", "service_id"],
+      "properties": {
+        "raw": {"type": "string"},
+        "kind": {"enum": ["service", "pod", "container", "node", "namespace", "operation", "resource", "unknown"]},
+        "service_id": {"type": ["string", "null"]}
+      }
+    },
+    "LabelRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["incident_uid", "source_incident_id", "root_cause", "fault", "label_source", "injection_kind", "label_validity", "validity_notes", "eval_tier", "eval_tier_reason", "group", "label_artifacts", "truth_time"],
+      "properties": {
+        "incident_uid": {"$ref": "#/$defs/uid"},
+        "source_incident_id": {"type": "string"},
+        "root_cause": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["original", "entities", "root_service_ids", "primary_root_service", "label_granularity"],
+          "properties": {
+            "original": {},
+            "entities": {"type": "array", "items": {"$ref": "#/$defs/Entity"}},
+            "root_service_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "primary_root_service": {"type": ["string", "null"]},
+            "label_granularity": {"enum": ["service", "pod", "node", "multi-service", "operation", "resource", "config"]}
+          }
+        },
+        "fault": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type_raw", "family"],
+          "properties": {
+            "type_raw": {"type": "string"},
+            "family": {"enum": ["cpu", "memory", "disk-io", "network-delay", "network-loss", "network-other", "socket", "code-defect", "config", "pod-lifecycle", "node", "dns", "jvm", "other", "unknown"]}
+          }
+        },
+        "label_source": {"enum": ["path", "label-file", "path+label-file"]},
+        "injection_kind": {"enum": ["injected", "natural", "unknown"]},
+        "label_validity": {"enum": ["valid", "ambiguous", "invalid"]},
+        "validity_notes": {"type": "array", "items": {"type": "string"}},
+        "eval_tier": {"enum": ["A", "B", "excluded"]},
+        "eval_tier_reason": {"type": "string"},
+        "group": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fault_cell", "copy_of", "duplicate_of", "group_id"],
+          "properties": {
+            "fault_cell": {"type": "string"},
+            "copy_of": {"type": ["string", "null"]},
+            "duplicate_of": {"type": ["string", "null"]},
+            "group_id": {"type": ["string", "null"]}
+          }
+        },
+        "label_artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "ref"],
+            "properties": {"kind": {"type": "string"}, "ref": {"type": "string"}}
+          }
+        },
+        "truth_time": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["end_ns"],
+          "properties": {"end_ns": {"type": ["integer", "null"]}}
+        }
+      }
+    },
+    "Finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "severity", "modality", "detail", "evidence_ref"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^[A-Z_]+$"},
+        "severity": {"enum": ["info", "warn", "quarantine", "reject"]},
+        "modality": {"type": ["string", "null"]},
+        "detail": {"type": "string"},
+        "evidence_ref": {"type": ["string", "null"]}
+      }
+    },
+    "QualityRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["incident_uid", "state", "findings", "validator_version", "decided_by", "override_reason"],
+      "properties": {
+        "incident_uid": {"$ref": "#/$defs/uid"},
+        "state": {"enum": ["ACCEPT", "ACCEPT_WITH_WARNINGS", "QUARANTINE", "REJECT"]},
+        "findings": {"type": "array", "items": {"$ref": "#/$defs/Finding"}},
+        "validator_version": {"type": "string"},
+        "decided_by": {"type": "string", "pattern": "^(rule|manual:[A-Za-z]+:\\d{4}-\\d{2}-\\d{2})$"},
+        "override_reason": {"type": ["string", "null"]}
+      }
+    },
+    "SourceIndexRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["incident_uid", "source_incident_id", "source_incident_key", "members", "label_files"],
+      "properties": {
+        "incident_uid": {"$ref": "#/$defs/uid"},
+        "source_incident_id": {"type": "string"},
+        "source_incident_key": {"type": "string"},
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["role", "source_id", "member", "sha256", "size"],
+            "properties": {
+              "role": {"type": "string"},
+              "source_id": {"type": "string"},
+              "member": {"type": "string"},
+              "sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+              "size": {"type": ["integer", "null"]}
+            }
+          }
+        },
+        "label_files": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "BuildReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "dataset_id", "build_id", "adapter", "config_hash", "package_versions", "input_digests", "counts", "started", "finished", "dataset_digest"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "dataset_id": {"type": "string"},
+        "build_id": {"type": "string"},
+        "adapter": {"type": "object", "required": ["name", "version"]},
+        "config_hash": {"$ref": "#/$defs/sha256"},
+        "package_versions": {"type": "object"},
+        "input_digests": {"type": "object"},
+        "counts": {"type": "object"},
+        "started": {"type": "string"},
+        "finished": {"type": "string"},
+        "dataset_digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "SplitManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol", "seed", "params", "schema_version", "builds", "counts", "groups", "created", "assignments_sha256"],
+      "properties": {
+        "protocol": {"type": "string"},
+        "seed": {"type": "integer"},
+        "params": {"type": "object"},
+        "schema_version": {"type": "string"},
+        "builds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["dataset_id", "build_id", "dataset_digest"],
+            "properties": {"dataset_id": {"type": "string"}, "build_id": {"type": "string"}, "dataset_digest": {"$ref": "#/$defs/sha256"}}
+          }
+        },
+        "counts": {"type": "object"},
+        "groups": {"type": "object"},
+        "created": {"type": "string"},
+        "assignments_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

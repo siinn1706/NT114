@@ -1,0 +1,121 @@
+{
+ "date": "2026-10-14",
+ "method": "acquire.py check-metadata per source (pins data/manifests/filelists/<id>.json) plus gh/curl drift probes",
+ "sources": {
+  "petshop": {
+   "status": "match",
+   "files": 164,
+   "bytes": 18712735,
+   "note": "dataset/ 144 files 18,609,770 B, 68 target.json as planned; HEAD still 2e96f937"
+  },
+  "anomod": {
+   "status": "match",
+   "files": 1,
+   "bytes": 201917396
+  },
+  "msds": {
+   "status": "match",
+   "files": 2,
+   "bytes": 650495000
+  },
+  "rcaeval-zenodo": {
+   "status": "match",
+   "files": 9,
+   "bytes": 5161758943,
+   "note": "all 9 MD5 equal seed"
+  },
+  "rcaeval-hf": {
+   "status": "match",
+   "files": 2080,
+   "bytes": 3442007684
+  },
+  "nezha": {
+   "status": "match",
+   "files": 1252,
+   "bytes": 3042817082,
+   "note": "HEAD still d8140101"
+  },
+  "cloud-opsbench": {
+   "status": "match",
+   "files": 27110,
+   "bytes": 3840845678,
+   "drift": "GitHub main now 6b986be4 (source commit pin ea05dafb kept; HF revision pinned)"
+  },
+  "agenticopseval": {
+   "status": "match",
+   "files": 857,
+   "bytes_lfs": 13403947520,
+   "upgrade": "RCA100 parquet files are Git LFS objects; the committed pointers give SHA-256 anchors, so RCA100 is publisher-hash, not publisher-size as planned (515 LFS files, 3,661,986,433 B; 324 non-LFS files anchored by git blob id)"
+  },
+  "dejavu": {
+   "status": "match",
+   "files": 12,
+   "bytes": 4545204660
+  },
+  "rcabench-fse26": {
+   "status": "match",
+   "files": 3,
+   "bytes": 13446969567
+  },
+  "openrca": {
+   "status": "match",
+   "note": "Drive folder lists the same 4 names and IDs; microsoft/OpenRCA main still c1bd4af7 and README links folder 1wGiEnu4OkWrjPxfx5ZTROnU37-5UDoPM; gate passes"
+  },
+  "gaia": {
+   "status": "match",
+   "files": 122,
+   "bytes": 5786350270,
+   "note": "seed said 5,786,350,112 B (blob bytes); git tree API sum is 158 B larger; HEAD still 238a9e24"
+  },
+  "eadro": {
+   "status": "match",
+   "files": 2,
+   "bytes": 127676922,
+   "license": null
+  },
+  "lemma-rca-product-review": {
+   "status": "match",
+   "files": 6,
+   "bytes": 53633812085,
+   "license_hf": "cc-by-nc-4.0"
+  },
+  "lemma-rca-cloud-computing": {
+   "status": "match",
+   "files": 8,
+   "bytes": 33002135250,
+   "license_hf": "cc-by-nc-4.0"
+  },
+  "aiops2020-upstream": {
+   "status": "match",
+   "files_allowed": 3
+  },
+  "aiops2021-upstream": {
+   "status": "match",
+   "files_allowed": 2
+  }
+ },
+ "zenodo_backoff": "not needed: every Zenodo record answered on the first attempt on 2026-10-14",
+ "saturation_round": {
+  "query": "OpenAlex works search 'root cause analysis microservice dataset benchmark' from 2024-01-01 (1893 hits, top 40 read); Zenodo records search 'LO2 microservice API anomaly' and '\"root cause\" microservice dataset'",
+  "new_families": [
+   {
+    "id": "lo2v2",
+    "record": "zenodo 18937117",
+    "license": "cc-by-4.0",
+    "bytes": 69963617238,
+    "decision": "PENDING:decision (anomaly labels, not root-cause labels; ~70 GB)"
+   }
+  ],
+  "rejected": [
+   {
+    "doi": "10.25439/rmt.33274566",
+    "reason": "PhD thesis, 'All rights reserved', not a dataset"
+   }
+  ],
+  "still_pending_discovery": [
+   "TrainTicketTrace",
+   "TraceRCA",
+   "AIOps Challenge 2022 raw"
+  ]
+ }
+}

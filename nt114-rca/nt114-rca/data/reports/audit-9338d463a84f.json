@@ -1,0 +1,4273 @@
+{
+ "builds": {
+  "aiops2025": {
+   "build_id": "aiops2025-40efa9b2d22f",
+   "dataset_digest": "1bb0da61d69f9c38aefd8b505ded97b8c274a9f21b74ea8dafda7e52a6f62aad",
+   "states": {
+    "ACCEPT": 381,
+    "ACCEPT_WITH_WARNINGS": 19
+   }
+  },
+  "nezha": {
+   "build_id": "nezha-ea30424eba55",
+   "dataset_digest": "56ec3db8aef93edca59346ad82b3e09f81a024cb7ed7b6c4ae80267f166c8217",
+   "states": {
+    "ACCEPT_WITH_WARNINGS": 101
+   }
+  },
+  "rca100": {
+   "build_id": "rca100-430dfff49e51",
+   "dataset_digest": "64b40b1d199c45d438eee2ef68d55b84d655d2c1d6a7dcba73571d8c8f92cf92",
+   "states": {
+    "ACCEPT": 9,
+    "ACCEPT_WITH_WARNINGS": 94
+   }
+  },
+  "rcaeval": {
+   "build_id": "rcaeval-2f4bf056cb8a",
+   "dataset_digest": "e9b84d790de8be8ae1cd42123ccc073e678a5dca3af475301386b55aa6ae1b44",
+   "states": {
+    "ACCEPT": 703,
+    "ACCEPT_WITH_WARNINGS": 32,
+    "REJECT": 1
+   }
+  }
+ },
+ "created": "2026-10-14T11:37:34Z",
+ "duplicates": {
+  "content": [
+   {
+    "datasets": [
+     "rca100"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rca100.1c666bc057b504fc",
+     "rca100.81c3089efcd8e1b3"
+    ],
+    "key": "logs:6a11d494a3f7ab316c1d33fa076b1bc9f9da11171f1494872173d2b1a52f9af4"
+   },
+   {
+    "datasets": [
+     "rca100"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rca100.1322f3bd92326c01",
+     "rca100.e842f421bfb6205b"
+    ],
+    "key": "logs:7a3627a88c1beae4ac2b5f58e1c0afede8b157fc59dcac56fe0b70029ec4b1d8"
+   },
+   {
+    "datasets": [
+     "rca100"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rca100.1512224a04b6690e",
+     "rca100.61440c0ac1cb76f5"
+    ],
+    "key": "logs:9152b7d4fa064e04ed42abef90a7e5c58ef2c021a167c876f49486c1ea4072ca"
+   }
+  ],
+  "cross_dataset": 0,
+  "fingerprint": [
+   {
+    "datasets": [
+     "rcaeval"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rcaeval.24e078fc27784c41",
+     "rcaeval.2bfb7e2fe0813f3e"
+    ],
+    "key": "online-boutique|1705354566|checkout|cpu"
+   },
+   {
+    "datasets": [
+     "rca100"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rca100.70b6f75a631bc6d0",
+     "rca100.dcb779108c86d019",
+     "rca100.e662212bc02c67a8"
+    ],
+    "key": "otel-demo|1775313663|inventory|memory"
+   },
+   {
+    "datasets": [
+     "rca100"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rca100.ba70d6acfbb59d85",
+     "rca100.e0e39d0ebc424e9b"
+    ],
+    "key": "otel-demo|1776025563||node"
+   },
+   {
+    "datasets": [
+     "rca100"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rca100.ab62b90692d4b1f5",
+     "rca100.bf4dd0e57dcea9c1"
+    ],
+    "key": "otel-demo|1776301683|inventory|other"
+   },
+   {
+    "datasets": [
+     "rca100"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rca100.c9dd72704f3b7d48",
+     "rca100.de2c60c4e8e6c112"
+    ],
+    "key": "otel-demo|1776302823|checkout|other"
+   }
+  ],
+  "unexplained": 0
+ },
+ "imbalance": {
+  "aiops2025": [
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14,
+     "min": 14,
+     "n": 21
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.7097,
+      "n": 21
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.6774,
+      "n": 21
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.9677,
+      "n": 19
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 21,
+    "modality_status": {
+     "logs": {
+      "present": 21
+     },
+     "metrics": {
+      "present": 21
+     },
+     "traces": {
+      "natural_absent": 2,
+      "present": 19
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 14,
+      "median": 13,
+      "min": 7,
+      "n": 21
+     },
+     "metric_rank_1": 6,
+     "n": 21,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 20,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14.0,
+     "min": 14,
+     "n": 18
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.9677,
+      "n": 17
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 18
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.9677,
+      "n": 15
+     }
+    },
+    "fault_family": "config",
+    "incidents": 18,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 1,
+      "present": 17
+     },
+     "metrics": {
+      "present": 18
+     },
+     "traces": {
+      "empty": 1,
+      "natural_absent": 2,
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 13,
+      "median": 10.5,
+      "min": 6,
+      "n": 18
+     },
+     "metric_rank_1": 0,
+     "n": 18,
+     "root_not_flagged": 1,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 18
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14.0,
+     "min": 14,
+     "n": 22
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.2903,
+      "n": 20
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.6774,
+      "n": 22
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.7097,
+      "n": 18
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 22,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 2,
+      "present": 20
+     },
+     "metrics": {
+      "present": 22
+     },
+     "traces": {
+      "empty": 1,
+      "natural_absent": 3,
+      "present": 18
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 14,
+      "median": 11.0,
+      "min": 8,
+      "n": 22
+     },
+     "metric_rank_1": 7,
+     "n": 22,
+     "root_not_flagged": 1,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 18,
+     "ACCEPT_WITH_WARNINGS": 4
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14.0,
+     "min": 14,
+     "n": 28
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.6774,
+      "n": 27
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.6774,
+      "n": 28
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.6452,
+      "n": 26
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 28,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 1,
+      "present": 27
+     },
+     "metrics": {
+      "present": 28
+     },
+     "traces": {
+      "natural_absent": 2,
+      "present": 26
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 12,
+      "median": 9.0,
+      "min": 6,
+      "n": 28
+     },
+     "metric_rank_1": 0,
+     "n": 28,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 27,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14,
+     "min": 14,
+     "n": 21
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 20
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 21
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.1613,
+      "n": 20
+     }
+    },
+    "fault_family": "dns",
+    "incidents": 21,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 1,
+      "present": 20
+     },
+     "metrics": {
+      "present": 21
+     },
+     "traces": {
+      "natural_absent": 1,
+      "present": 20
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 14,
+      "median": 11,
+      "min": 7,
+      "n": 21
+     },
+     "metric_rank_1": 1,
+     "n": 21,
+     "root_not_flagged": 1,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 19,
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14,
+     "min": 14,
+     "n": 55
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.3226,
+      "n": 53
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 55
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.129,
+      "n": 46
+     }
+    },
+    "fault_family": "jvm",
+    "incidents": 55,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 2,
+      "present": 53
+     },
+     "metrics": {
+      "present": 55
+     },
+     "traces": {
+      "empty": 1,
+      "natural_absent": 8,
+      "present": 46
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 14,
+      "median": 10,
+      "min": 6,
+      "n": 55
+     },
+     "metric_rank_1": 14,
+     "n": 55,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 53,
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14.0,
+     "min": 14,
+     "n": 20
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.3226,
+      "n": 18
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 20
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.9677,
+      "n": 16
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 20,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 2,
+      "present": 18
+     },
+     "metrics": {
+      "present": 20
+     },
+     "traces": {
+      "natural_absent": 4,
+      "present": 16
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 14,
+      "median": 11.0,
+      "min": 9,
+      "n": 20
+     },
+     "metric_rank_1": 6,
+     "n": 20,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 19,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14,
+     "min": 14,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.9677,
+      "n": 24
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 25
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.0323,
+      "n": 24
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 1,
+      "present": 24
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 1,
+      "present": 24
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "n": 0
+     },
+     "metric_rank_1": 0,
+     "n": 0,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 23,
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14,
+     "min": 14,
+     "n": 21
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.9677,
+      "n": 21
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 21
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.6774,
+      "n": 20
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 21,
+    "modality_status": {
+     "logs": {
+      "present": 21
+     },
+     "metrics": {
+      "present": 21
+     },
+     "traces": {
+      "natural_absent": 1,
+      "present": 20
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "n": 0
+     },
+     "metric_rank_1": 0,
+     "n": 0,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 21
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14,
+     "min": 14,
+     "n": 27
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.9677,
+      "n": 26
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 27
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.6452,
+      "n": 25
+     }
+    },
+    "fault_family": "network-other",
+    "incidents": 27,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 1,
+      "present": 26
+     },
+     "metrics": {
+      "present": 27
+     },
+     "traces": {
+      "natural_absent": 2,
+      "present": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "n": 0
+     },
+     "metric_rank_1": 0,
+     "n": 0,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 27
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14.0,
+     "min": 14,
+     "n": 82
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.7097,
+      "n": 80
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.3226,
+      "n": 82
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.129,
+      "n": 78
+     }
+    },
+    "fault_family": "node",
+    "incidents": 82,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 2,
+      "present": 80
+     },
+     "metrics": {
+      "present": 82
+     },
+     "traces": {
+      "empty": 1,
+      "natural_absent": 3,
+      "present": 78
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "n": 0
+     },
+     "metric_rank_1": 0,
+     "n": 0,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 79,
+     "ACCEPT_WITH_WARNINGS": 3
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   },
+   {
+    "candidates": {
+     "max": 14,
+     "median": 14.0,
+     "min": 14,
+     "n": 60
+    },
+    "coverage": {
+     "logs": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.7097,
+      "n": 57
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.6774,
+      "n": 60
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.2258,
+      "n": 54
+     }
+    },
+    "fault_family": "pod-lifecycle",
+    "incidents": 60,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 3,
+      "present": 57
+     },
+     "metrics": {
+      "present": 60
+     },
+     "traces": {
+      "empty": 1,
+      "natural_absent": 5,
+      "present": 54
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 14,
+      "median": 13.0,
+      "min": 7,
+      "n": 60
+     },
+     "metric_rank_1": 3,
+     "n": 60,
+     "root_not_flagged": 10,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 57,
+     "ACCEPT_WITH_WARNINGS": 3
+    },
+    "subset": "AIOps2025",
+    "system": "hipstershop"
+   }
+  ],
+  "nezha": [
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10.0,
+     "min": 10,
+     "n": 6
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3478,
+      "n": 6
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.95,
+      "n": 6
+     },
+     "traces": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3478,
+      "n": 6
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 6,
+    "modality_status": {
+     "logs": {
+      "present": 6
+     },
+     "metrics": {
+      "present": 6
+     },
+     "traces": {
+      "present": 6
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 10,
+      "median": 8.5,
+      "min": 2,
+      "n": 6
+     },
+     "metric_rank_1": 1,
+     "n": 6,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 6
+    },
+    "subset": "2022-08-22",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 11
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5484,
+      "median": 0.5161,
+      "min": 0.129,
+      "n": 11
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 11
+     },
+     "traces": {
+      "max": 0.5484,
+      "median": 0.5161,
+      "min": 0.129,
+      "n": 11
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 11,
+    "modality_status": {
+     "logs": {
+      "present": 11
+     },
+     "metrics": {
+      "present": 11
+     },
+     "traces": {
+      "present": 11
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 10,
+      "median": 9,
+      "min": 1,
+      "n": 11
+     },
+     "metric_rank_1": 5,
+     "n": 11,
+     "root_not_flagged": 0,
+     "root_only_flagged": 1
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 11
+    },
+    "subset": "2022-08-22",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 7
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 7
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 7
+     },
+     "traces": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 7
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 7,
+    "modality_status": {
+     "logs": {
+      "present": 7
+     },
+     "metrics": {
+      "present": 7
+     },
+     "traces": {
+      "present": 7
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 9,
+      "median": 9,
+      "min": 4,
+      "n": 7
+     },
+     "metric_rank_1": 0,
+     "n": 7,
+     "root_not_flagged": 1,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 7
+    },
+    "subset": "2022-08-22",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10.0,
+     "min": 10,
+     "n": 8
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 8
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.95,
+      "n": 8
+     },
+     "traces": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 8
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 8,
+    "modality_status": {
+     "logs": {
+      "present": 8
+     },
+     "metrics": {
+      "present": 8
+     },
+     "traces": {
+      "present": 8
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 10,
+      "median": 9.0,
+      "min": 6,
+      "n": 8
+     },
+     "metric_rank_1": 2,
+     "n": 8,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 8
+    },
+    "subset": "2022-08-23",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5455,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 15
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9091,
+      "n": 15
+     },
+     "traces": {
+      "max": 0.5455,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 15
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 10,
+      "median": 9,
+      "min": 1,
+      "n": 15
+     },
+     "metric_rank_1": 9,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 1
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 15
+    },
+    "subset": "2022-08-23",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 9
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 9
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 9
+     },
+     "traces": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 9
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 9,
+    "modality_status": {
+     "logs": {
+      "present": 9
+     },
+     "metrics": {
+      "present": 9
+     },
+     "traces": {
+      "present": 9
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 10,
+      "median": 8,
+      "min": 7,
+      "n": 9
+     },
+     "metric_rank_1": 1,
+     "n": 9,
+     "root_not_flagged": 1,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 9
+    },
+    "subset": "2022-08-23",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46.0,
+     "min": 46,
+     "n": 24
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.6774,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 24
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9091,
+      "n": 24
+     },
+     "traces": {
+      "max": 0.6774,
+      "median": 0.5161,
+      "min": 0.3548,
+      "n": 24
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 24,
+    "modality_status": {
+     "logs": {
+      "present": 24
+     },
+     "metrics": {
+      "present": 24
+     },
+     "traces": {
+      "present": 24
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 46,
+      "median": 44.5,
+      "min": 7,
+      "n": 24
+     },
+     "metric_rank_1": 1,
+     "n": 24,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 24
+    },
+    "subset": "2023-01-29",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46.0,
+     "min": 46,
+     "n": 4
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.1739,
+      "median": 0.129,
+      "min": 0.129,
+      "n": 4
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 4
+     },
+     "traces": {
+      "max": 0.1739,
+      "median": 0.129,
+      "min": 0.129,
+      "n": 4
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 4,
+    "modality_status": {
+     "logs": {
+      "present": 4
+     },
+     "metrics": {
+      "present": 4
+     },
+     "traces": {
+      "present": 4
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 44,
+      "median": 44.0,
+      "min": 41,
+      "n": 4
+     },
+     "metric_rank_1": 1,
+     "n": 4,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 4
+    },
+    "subset": "2023-01-29",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46,
+     "min": 46,
+     "n": 3
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5789,
+      "median": 0.5161,
+      "min": 0.4839,
+      "n": 3
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9474,
+      "n": 3
+     },
+     "traces": {
+      "max": 0.5789,
+      "median": 0.5161,
+      "min": 0.4839,
+      "n": 3
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 3,
+    "modality_status": {
+     "logs": {
+      "present": 3
+     },
+     "metrics": {
+      "present": 3
+     },
+     "traces": {
+      "present": 3
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 45,
+      "median": 41,
+      "min": 41,
+      "n": 3
+     },
+     "metric_rank_1": 0,
+     "n": 3,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 3
+    },
+    "subset": "2023-01-30",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46.0,
+     "min": 46,
+     "n": 14
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.6364,
+      "median": 0.5161,
+      "min": 0.3548,
+      "n": 14
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9091,
+      "n": 14
+     },
+     "traces": {
+      "max": 0.6364,
+      "median": 0.5161,
+      "min": 0.3548,
+      "n": 14
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 14,
+    "modality_status": {
+     "logs": {
+      "present": 14
+     },
+     "metrics": {
+      "present": 14
+     },
+     "traces": {
+      "present": 14
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 46,
+      "median": 44.0,
+      "min": 8,
+      "n": 14
+     },
+     "metric_rank_1": 0,
+     "n": 14,
+     "root_not_flagged": 1,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 14
+    },
+    "subset": "2023-01-30",
+    "system": "train-ticket"
+   }
+  ],
+  "rca100": [
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18.0,
+     "min": 18,
+     "n": 16
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.8333,
+      "median": 0.19445,
+      "min": 0.1667,
+      "n": 16
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 16
+     },
+     "traces": {
+      "max": 0.7222,
+      "median": 0.25,
+      "min": 0.1667,
+      "n": 16
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 16,
+    "modality_status": {
+     "logs": {
+      "present": 16
+     },
+     "metrics": {
+      "present": 16
+     },
+     "traces": {
+      "present": 16
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 17,
+      "median": 12.0,
+      "min": 4,
+      "n": 16
+     },
+     "metric_rank_1": 4,
+     "n": 16,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 1,
+     "ACCEPT_WITH_WARNINGS": 15
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18.0,
+     "min": 18,
+     "n": 12
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.7778,
+      "median": 0.1667,
+      "min": 0.1667,
+      "n": 12
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 12
+     },
+     "traces": {
+      "max": 0.8333,
+      "median": 0.2222,
+      "min": 0.1667,
+      "n": 12
+     }
+    },
+    "fault_family": "config",
+    "incidents": 12,
+    "modality_status": {
+     "logs": {
+      "present": 12
+     },
+     "metrics": {
+      "present": 12
+     },
+     "traces": {
+      "present": 12
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 15,
+      "median": 9,
+      "min": 6,
+      "n": 11
+     },
+     "metric_rank_1": 1,
+     "n": 11,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 2,
+     "ACCEPT_WITH_WARNINGS": 10
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18,
+     "min": 18,
+     "n": 9
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5556,
+      "median": 0.3889,
+      "min": 0.1111,
+      "n": 9
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 9
+     },
+     "traces": {
+      "max": 0.7778,
+      "median": 0.3889,
+      "min": 0.1667,
+      "n": 9
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 9,
+    "modality_status": {
+     "logs": {
+      "present": 9
+     },
+     "metrics": {
+      "present": 9
+     },
+     "traces": {
+      "present": 9
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 17,
+      "median": 17,
+      "min": 7,
+      "n": 9
+     },
+     "metric_rank_1": 9,
+     "n": 9,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 9
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18,
+     "min": 18,
+     "n": 1
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.3333,
+      "median": 0.3333,
+      "min": 0.3333,
+      "n": 1
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 1
+     },
+     "traces": {
+      "max": 0.2778,
+      "median": 0.2778,
+      "min": 0.2778,
+      "n": 1
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 1,
+    "modality_status": {
+     "logs": {
+      "present": 1
+     },
+     "metrics": {
+      "present": 1
+     },
+     "traces": {
+      "present": 1
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "n": 0
+     },
+     "metric_rank_1": 0,
+     "n": 0,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18,
+     "min": 18,
+     "n": 1
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.1111,
+      "median": 0.1111,
+      "min": 0.1111,
+      "n": 1
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 1
+     },
+     "traces": {
+      "max": 0.1667,
+      "median": 0.1667,
+      "min": 0.1667,
+      "n": 1
+     }
+    },
+    "fault_family": "dns",
+    "incidents": 1,
+    "modality_status": {
+     "logs": {
+      "present": 1
+     },
+     "metrics": {
+      "present": 1
+     },
+     "traces": {
+      "present": 1
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 18,
+      "median": 18,
+      "min": 18,
+      "n": 1
+     },
+     "metric_rank_1": 0,
+     "n": 1,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18.0,
+     "min": 18,
+     "n": 2
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.3333,
+      "median": 0.25,
+      "min": 0.1667,
+      "n": 2
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 2
+     },
+     "traces": {
+      "max": 0.2778,
+      "median": 0.22225,
+      "min": 0.1667,
+      "n": 2
+     }
+    },
+    "fault_family": "jvm",
+    "incidents": 2,
+    "modality_status": {
+     "logs": {
+      "present": 2
+     },
+     "metrics": {
+      "present": 2
+     },
+     "traces": {
+      "present": 2
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 7,
+      "median": 6.0,
+      "min": 5,
+      "n": 2
+     },
+     "metric_rank_1": 1,
+     "n": 2,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18.0,
+     "min": 18,
+     "n": 12
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.4444,
+      "median": 0.1667,
+      "min": 0.1111,
+      "n": 12
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 12
+     },
+     "traces": {
+      "max": 0.5,
+      "median": 0.2778,
+      "min": 0.1667,
+      "n": 12
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 12,
+    "modality_status": {
+     "logs": {
+      "present": 12
+     },
+     "metrics": {
+      "present": 12
+     },
+     "traces": {
+      "present": 12
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 18,
+      "median": 17.0,
+      "min": 7,
+      "n": 12
+     },
+     "metric_rank_1": 12,
+     "n": 12,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 12
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18.0,
+     "min": 18,
+     "n": 2
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.7778,
+      "median": 0.7778,
+      "min": 0.7778,
+      "n": 2
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 2
+     },
+     "traces": {
+      "max": 0.8333,
+      "median": 0.7777499999999999,
+      "min": 0.7222,
+      "n": 2
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 2,
+    "modality_status": {
+     "logs": {
+      "present": 2
+     },
+     "metrics": {
+      "present": 2
+     },
+     "traces": {
+      "present": 2
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 18,
+      "median": 18.0,
+      "min": 18,
+      "n": 2
+     },
+     "metric_rank_1": 0,
+     "n": 2,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 1,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18,
+     "min": 18,
+     "n": 1
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.3333,
+      "median": 0.3333,
+      "min": 0.3333,
+      "n": 1
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 1
+     },
+     "traces": {
+      "max": 0.6111,
+      "median": 0.6111,
+      "min": 0.6111,
+      "n": 1
+     }
+    },
+    "fault_family": "network-other",
+    "incidents": 1,
+    "modality_status": {
+     "logs": {
+      "present": 1
+     },
+     "metrics": {
+      "present": 1
+     },
+     "traces": {
+      "present": 1
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 17,
+      "median": 17,
+      "min": 17,
+      "n": 1
+     },
+     "metric_rank_1": 0,
+     "n": 1,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18.0,
+     "min": 18,
+     "n": 14
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.7778,
+      "median": 0.3333,
+      "min": 0.0556,
+      "n": 14
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 14
+     },
+     "traces": {
+      "max": 0.5556,
+      "median": 0.3333,
+      "min": 0.1111,
+      "n": 14
+     }
+    },
+    "fault_family": "node",
+    "incidents": 14,
+    "modality_status": {
+     "logs": {
+      "present": 14
+     },
+     "metrics": {
+      "present": 14
+     },
+     "traces": {
+      "present": 14
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "n": 0
+     },
+     "metric_rank_1": 0,
+     "n": 0,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 2,
+     "ACCEPT_WITH_WARNINGS": 12
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18.0,
+     "min": 18,
+     "n": 24
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.8889,
+      "median": 0.2778,
+      "min": 0.1111,
+      "n": 24
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 24
+     },
+     "traces": {
+      "max": 0.8889,
+      "median": 0.3611,
+      "min": 0.1111,
+      "n": 24
+     }
+    },
+    "fault_family": "other",
+    "incidents": 24,
+    "modality_status": {
+     "logs": {
+      "present": 24
+     },
+     "metrics": {
+      "present": 24
+     },
+     "traces": {
+      "present": 24
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 18,
+      "median": 15.0,
+      "min": 4,
+      "n": 24
+     },
+     "metric_rank_1": 15,
+     "n": 24,
+     "root_not_flagged": 2,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 1,
+     "ACCEPT_WITH_WARNINGS": 23
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   },
+   {
+    "candidates": {
+     "max": 18,
+     "median": 18,
+     "min": 18,
+     "n": 9
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.8889,
+      "median": 0.3333,
+      "min": 0.1667,
+      "n": 9
+     },
+     "metrics": {
+      "max": 0.9444,
+      "median": 0.9444,
+      "min": 0.9444,
+      "n": 9
+     },
+     "traces": {
+      "max": 0.8889,
+      "median": 0.3889,
+      "min": 0.1667,
+      "n": 9
+     }
+    },
+    "fault_family": "pod-lifecycle",
+    "incidents": 9,
+    "modality_status": {
+     "logs": {
+      "present": 9
+     },
+     "metrics": {
+      "present": 9
+     },
+     "traces": {
+      "present": 9
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 17,
+      "median": 14.0,
+      "min": 5,
+      "n": 8
+     },
+     "metric_rank_1": 1,
+     "n": 8,
+     "root_not_flagged": 3,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 2,
+     "ACCEPT_WITH_WARNINGS": 7
+    },
+    "subset": "RCA100",
+    "system": "otel-demo"
+   }
+  ],
+  "rcaeval": [
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 8,
+      "min": 4,
+      "n": 25
+     },
+     "metric_rank_1": 24,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 21,
+     "ACCEPT_WITH_WARNINGS": 4
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 13,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 12,
+      "median": 9,
+      "min": 5,
+      "n": 25
+     },
+     "metric_rank_1": 23,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 13,
+      "median": 10,
+      "min": 6,
+      "n": 25
+     },
+     "metric_rank_1": 25,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 9,
+      "min": 4,
+      "n": 25
+     },
+     "metric_rank_1": 19,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 12,
+      "median": 9,
+      "min": 4,
+      "n": 25
+     },
+     "metric_rank_1": 9,
+     "n": 25,
+     "root_not_flagged": 2,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 18,
+      "median": 15,
+      "min": 10,
+      "n": 25
+     },
+     "metric_rank_1": 24,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 20,
+      "median": 15,
+      "min": 12,
+      "n": 25
+     },
+     "metric_rank_1": 20,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 23,
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 23,
+      "median": 18,
+      "min": 12,
+      "n": 25
+     },
+     "metric_rank_1": 24,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 24,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 21,
+      "median": 18,
+      "min": 13,
+      "n": 25
+     },
+     "metric_rank_1": 9,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 19,
+      "median": 16,
+      "min": 11,
+      "n": 25
+     },
+     "metric_rank_1": 15,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 61,
+      "median": 54,
+      "min": 46,
+      "n": 25
+     },
+     "metric_rank_1": 25,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 65,
+      "median": 58,
+      "min": 51,
+      "n": 25
+     },
+     "metric_rank_1": 11,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 63,
+      "median": 57,
+      "min": 52,
+      "n": 25
+     },
+     "metric_rank_1": 25,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 24,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 63,
+      "median": 54,
+      "min": 42,
+      "n": 25
+     },
+     "metric_rank_1": 3,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 61,
+      "median": 56,
+      "min": 50,
+      "n": 25
+     },
+     "metric_rank_1": 5,
+     "n": 25,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12.0,
+     "min": 12,
+     "n": 16
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.9375,
+      "n": 16
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 16
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.8125,
+      "n": 16
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 16,
+    "modality_status": {
+     "logs": {
+      "present": 16
+     },
+     "metrics": {
+      "present": 16
+     },
+     "traces": {
+      "present": 16
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 12,
+      "median": 5,
+      "min": 2,
+      "n": 15
+     },
+     "metric_rank_1": 12,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1,
+     "REJECT": 1
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 11,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.88,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.88,
+      "n": 15
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 10,
+      "median": 6,
+      "min": 3,
+      "n": 15
+     },
+     "metric_rank_1": 15,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.85,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.85,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 8,
+      "min": 4,
+      "n": 15
+     },
+     "metric_rank_1": 13,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 7,
+      "min": 3,
+      "n": 15
+     },
+     "metric_rank_1": 11,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 13,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 12,
+      "median": 11,
+      "min": 3,
+      "n": 15
+     },
+     "metric_rank_1": 11,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.76,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "socket",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 9,
+      "median": 6,
+      "min": 2,
+      "n": 15
+     },
+     "metric_rank_1": 14,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 8,
+      "min": 2,
+      "n": 15
+     },
+     "metric_rank_1": 15,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.92,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 15,
+      "median": 8,
+      "min": 5,
+      "n": 15
+     },
+     "metric_rank_1": 15,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 13,
+      "median": 10,
+      "min": 7,
+      "n": 15
+     },
+     "metric_rank_1": 15,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 7,
+      "min": 4,
+      "n": 15
+     },
+     "metric_rank_1": 10,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 15,
+      "median": 10,
+      "min": 7,
+      "n": 15
+     },
+     "metric_rank_1": 7,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "socket",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 9,
+      "min": 4,
+      "n": 15
+     },
+     "metric_rank_1": 12,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.92,
+      "n": 15
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 53,
+      "median": 37,
+      "min": 20,
+      "n": 15
+     },
+     "metric_rank_1": 11,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 48,
+      "median": 40,
+      "min": 29,
+      "n": 15
+     },
+     "metric_rank_1": 15,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 49,
+      "median": 42,
+      "min": 29,
+      "n": 15
+     },
+     "metric_rank_1": 14,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.6,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.8,
+      "n": 15
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 49,
+      "median": 36,
+      "min": 26,
+      "n": 15
+     },
+     "metric_rank_1": 8,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.8,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 46,
+      "median": 38,
+      "min": 23,
+      "n": 15
+     },
+     "metric_rank_1": 8,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.4,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "socket",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 44,
+      "median": 35,
+      "min": 24,
+      "n": 15
+     },
+     "metric_rank_1": 11,
+     "n": 15,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 13,
+     "median": 12.0,
+     "min": 12,
+     "n": 30
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 30
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 30
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 30
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 30,
+    "modality_status": {
+     "logs": {
+      "present": 30
+     },
+     "metrics": {
+      "present": 30
+     },
+     "traces": {
+      "present": 30
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 11,
+      "median": 5.0,
+      "min": 2,
+      "n": 30
+     },
+     "metric_rank_1": 25,
+     "n": 30,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 28,
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "RE3",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15.0,
+     "min": 15,
+     "n": 30
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 30
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 30
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 30,
+    "modality_status": {
+     "logs": {
+      "present": 30
+     },
+     "metrics": {
+      "present": 30
+     },
+     "traces": {
+      "empty": 13,
+      "natural_absent": 17
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 14,
+      "median": 10.5,
+      "min": 6,
+      "n": 30
+     },
+     "metric_rank_1": 25,
+     "n": 30,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 29,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE3",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68.0,
+     "min": 68,
+     "n": 30
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 30
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 30
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 30
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 30,
+    "modality_status": {
+     "logs": {
+      "present": 30
+     },
+     "metrics": {
+      "present": 30
+     },
+     "traces": {
+      "present": 30
+     }
+    },
+    "root_position": {
+     "flagged_services": {
+      "max": 56,
+      "median": 49.5,
+      "min": 38,
+      "n": 30
+     },
+     "metric_rank_1": 4,
+     "n": 30,
+     "root_not_flagged": 0,
+     "root_only_flagged": 0
+    },
+    "states": {
+     "ACCEPT": 16,
+     "ACCEPT_WITH_WARNINGS": 14
+    },
+    "subset": "RE3",
+    "system": "train-ticket"
+   }
+  ]
+ },
+ "leakage": {
+  "aiops2025": {
+   "artefact_hits": [],
+   "denylist_hits": [],
+   "label_texts_checked": 96,
+   "path_hits": [],
+   "total_hits": 0
+  },
+  "nezha": {
+   "artefact_hits": [],
+   "denylist_hits": [],
+   "label_texts_checked": 46,
+   "path_hits": [],
+   "total_hits": 0
+  },
+  "rca100": {
+   "artefact_hits": [],
+   "denylist_hits": [],
+   "label_texts_checked": 640,
+   "path_hits": [],
+   "total_hits": 0
+  },
+  "rcaeval": {
+   "artefact_hits": [],
+   "denylist_hits": [],
+   "label_texts_checked": 7,
+   "path_hits": [],
+   "total_hits": 0
+  }
+ },
+ "lineage": {
+  "datasets": {
+   "aiops2025": {
+    "anchor_differences": [],
+    "anchor_differences_explained": {
+     "registry used inject_timestamp": 0
+    },
+    "canonical": 400,
+    "label_differences": {},
+    "matched_one_to_one": 400,
+    "multiple_registry_rows": [],
+    "not_in_registry": [],
+    "registry_only": [],
+    "registry_only_count": 0,
+    "registry_rows": 400,
+    "unexplained": 0
+   },
+   "nezha": {
+    "anchor_differences": [],
+    "anchor_differences_explained": {
+     "registry used inject_timestamp": 29
+    },
+    "canonical": 101,
+    "label_differences": {},
+    "matched_one_to_one": 101,
+    "multiple_registry_rows": [],
+    "not_in_registry": [],
+    "registry_only": [],
+    "registry_only_count": 0,
+    "registry_rows": 101,
+    "unexplained": 0
+   },
+   "rca100": {
+    "anchor_differences": [],
+    "anchor_differences_explained": {
+     "registry used inject_timestamp": 0,
+     "registry window start precedes the alert anchor": 103
+    },
+    "canonical": 103,
+    "label_differences": {
+     "registry fault without the taxonomy id prefix": 103
+    },
+    "matched_one_to_one": 103,
+    "multiple_registry_rows": [],
+    "not_in_registry": [],
+    "registry_only": [],
+    "registry_only_count": 0,
+    "registry_rows": 103,
+    "unexplained": 0
+   },
+   "rcaeval": {
+    "anchor_differences": [],
+    "anchor_differences_explained": {
+     "registry used inject_timestamp": 0
+    },
+    "canonical": 736,
+    "label_differences": {
+     "registry splits the batch cell at its last underscore (root and fault shifted)": 3
+    },
+    "matched_one_to_one": 735,
+    "multiple_registry_rows": [],
+    "not_in_registry": [
+     {
+      "explanation": "duplicate of a registered incident",
+      "incident_uid": "rcaeval.24e078fc27784c41",
+      "source_incident_id": "rcaeval:re2ob_checkoutservice_cpu_multi-source-data"
+     }
+    ],
+    "registry_only": [],
+    "registry_only_count": 0,
+    "registry_rows": 735,
+    "unexplained": 0
+   }
+  },
+  "lineage_report_groups": {
+   "L1": 735,
+   "L10": 68,
+   "L2+L3": 503,
+   "L4": 101,
+   "L5": 159,
+   "L9": 754
+  },
+  "unexplained": 0
+ },
+ "splits": {
+  "eval-only-aiops2025-0-f92dd409": [],
+  "eval-only-nezha-0-38cde4e0": [],
+  "eval-only-rca100-0-b8a32300": [],
+  "eval-only-rcaeval-0-87d5bcc3": [],
+  "loso-rcaeval-online-boutique-0-17c12b9c": [],
+  "loso-rcaeval-sock-shop-0-1cf7f474": [],
+  "loso-rcaeval-train-ticket-0-066d5f53": [],
+  "within-aiops2025-grouped-0-f92dd409": [],
+  "within-aiops2025-retrieval-0-bb231eaa": [],
+  "within-rca100-grouped-0-753fb47c": [],
+  "within-rca100-retrieval-0-3bfc8743": [],
+  "within-rcaeval-grouped-0-e9b2c81c": [],
+  "within-rcaeval-retrieval-0-45ef97c3": [],
+  "xdata-rcaeval-to-aiops2025-0-730c1c48": [],
+  "xdata-rcaeval-to-nezha-0-28246781": [],
+  "xdata-rcaeval-to-rca100-0-a2a83b78": []
+ },
+ "summary": {
+  "cross_dataset_overlaps": 0,
+  "incidents": 1340,
+  "leakage_hits": 0,
+  "lineage_unexplained": 0,
+  "split_errors": 0,
+  "unexplained_duplicates": 0
+ }
+}

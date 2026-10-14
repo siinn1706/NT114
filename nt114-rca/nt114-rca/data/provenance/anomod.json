@@ -1,0 +1,54 @@
+{
+ "archive_audit": {
+  "archives": 1,
+  "at": "2026-10-13T17:32:27Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/anomod.json",
+ "artefact_url_example": "https://zenodo.org/api/records/18342898/files/AnoMod.zip/content",
+ "canonical_source_url": "https://zenodo.org/records/18342898",
+ "category": "A",
+ "decisions": "acquire",
+ "doi": "10.5281/zenodo.18342898",
+ "file_count": {
+  "expected": 1,
+  "verified": 1
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "doi": "10.5281/zenodo.18342898",
+  "license": "cc-by-4.0",
+  "title": "AnoMod: A Dataset for Anomaly Detection and Root Cause Analysis in Microservice Systems",
+  "updated": "2026-01-23T07:56:22.794999+00:00",
+  "version": null
+ },
+ "id": "anomod",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "zenodo-record",
+ "known_limitations": [
+  "label format not parsed in this attempt"
+ ],
+ "labels": "UNKNOWN",
+ "license": "CC-BY-4.0",
+ "license_evidence": "Zenodo record license field (cc-by-4.0)",
+ "lineage_edges": {},
+ "lineage_group": "L12",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:15:21Z",
+ "modalities": "UNKNOWN",
+ "next_action": null,
+ "publication": "doi:10.1145/3793302.3793324 (MSR 2026); arXiv 2601.22881",
+ "publisher_or_maintainer": "AnoMod authors (Zenodo)",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:17:13Z",
+ "revision_or_version": "18342898",
+ "state": "VERIFIED",
+ "state_file": "data/.state/anomod.json (git-ignored)",
+ "total_bytes": {
+  "expected": 201917396,
+  "verified": 201917396
+ }
+}

@@ -1,0 +1,63 @@
+{
+ "archive_audit": {
+  "archives": 0,
+  "at": "2026-10-13T17:33:03Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/nezha.json",
+ "artefact_url_example": null,
+ "canonical_source_url": "https://github.com/IntelligentDDS/Nezha",
+ "category": "A",
+ "decisions": "acquire",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 1252,
+  "verified": 1252
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "submodules": 0,
+  "tree_entries": 1297
+ },
+ "id": "nezha",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "github-git",
+ "known_limitations": [
+  "README links 2022-01-29-fault_list but data dirs are 2023-01-29 (path defect)",
+  "README links 2022-01-29-fault_list but data dirs are 2023-01-29"
+ ],
+ "labels": "rca_data/<date>/<date>-fault_list.json: inject_pod, inject_type, inject_time (gold)",
+ "license": "MIT",
+ "license_evidence": "repo LICENSE (MIT)",
+ "lineage_edges": {},
+ "lineage_group": "L4",
+ "lineage_group_counts": {
+  "copies": 0,
+  "independent_incidents": 101,
+  "rows": 101,
+  "sources": [
+   "nezha"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:15:26Z",
+ "modalities": [
+  "metrics",
+  "logs",
+  "traces"
+ ],
+ "next_action": null,
+ "publication": "Nezha, ESEC/FSE 2023 (FSE2023_Nezha.pdf in repo)",
+ "publisher_or_maintainer": "IntelligentDDS (SYSU)",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:19:17Z",
+ "revision_or_version": "d8140101fdb4e7dfb60d3ef9f64706f382b68470",
+ "state": "VERIFIED",
+ "state_file": "data/.state/nezha.json (git-ignored)",
+ "total_bytes": {
+  "expected": 3042817082,
+  "verified": 3042817082
+ }
+}

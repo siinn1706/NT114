@@ -1,0 +1,68 @@
+{
+ "archive_audit": {
+  "archives": 9,
+  "at": "2026-10-13T18:21:02Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/rcaeval-zenodo.json",
+ "artefact_url_example": "https://zenodo.org/api/records/14590730/files/RE1-SS.zip/content",
+ "canonical_source_url": "https://zenodo.org/records/14590730",
+ "category": "A",
+ "decisions": "acquire",
+ "doi": "10.5281/zenodo.14590730",
+ "file_count": {
+  "expected": 9,
+  "verified": 9
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "doi": "10.5281/zenodo.14590730",
+  "license": "cc-by-4.0",
+  "title": "RCAEval: A Benchmark for Root Cause Analysis of Microservice Systems",
+  "updated": "2025-01-04T11:14:17.514705+00:00",
+  "version": null
+ },
+ "id": "rcaeval-zenodo",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "zenodo-record",
+ "known_limitations": [
+  "RE1 metric-only",
+  "fault cells repeated (5 or 3 reps)",
+  "label is in the directory name"
+ ],
+ "labels": "fault injection: service+fault in path, inject_time.txt per case (gold)",
+ "license": "CC-BY-4.0 (Zenodo record)",
+ "license_evidence": "Zenodo record license field (cc-by-4.0)",
+ "lineage_edges": {},
+ "lineage_group": "L1",
+ "lineage_group_counts": {
+  "copies": 735,
+  "independent_incidents": 735,
+  "rows": 1470,
+  "sources": [
+   "rcaeval-hf",
+   "rcaeval-zenodo"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:15:23Z",
+ "modalities": [
+  "metrics",
+  "logs",
+  "traces"
+ ],
+ "next_action": null,
+ "publication": "doi:10.1145/3701716.3715290 (WWW'25 companion); arXiv 2412.17015",
+ "publisher_or_maintainer": "RCAEval authors (Pham et al.)",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:17:51Z",
+ "revision_or_version": "14590730",
+ "state": "VERIFIED",
+ "state_file": "data/.state/rcaeval-zenodo.json (git-ignored)",
+ "total_bytes": {
+  "expected": 5161758943,
+  "verified": 5161758943
+ }
+}

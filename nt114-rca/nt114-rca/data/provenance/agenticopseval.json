@@ -1,0 +1,67 @@
+{
+ "archive_audit": {
+  "archives": 18,
+  "at": "2026-10-13T19:29:46Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/agenticopseval.json",
+ "artefact_url_example": "https://www.aiops.cn/gitlab/aiops-live-benchmark/agenticopseval/-/raw/69cf36430b43024d02530c610b1a4738b5c9a7fb/.gitattributes",
+ "canonical_source_url": "https://www.aiops.cn/gitlab/aiops-live-benchmark/agenticopseval",
+ "category": "A",
+ "decisions": "acquire",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 857,
+  "verified": 857
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "tree_blobs": 857
+ },
+ "id": "agenticopseval",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "gitlab-raw",
+ "known_limitations": [
+  "non-commercial licences",
+  "RCA100 is blind layout; answer key separate"
+ ],
+ "labels": "AIOps2025/groundtruth.jsonl (400); RCA100/answer_key/*.gt.json (103)",
+ "license": {
+  "AIOps2025": "CC BY-NC 4.0 (README)",
+  "RCA100": "CC BY-NC-SA 4.0 (RCA100/LICENSE)"
+ },
+ "license_evidence": "README (AIOps2025 CC BY-NC 4.0); RCA100/LICENSE (CC BY-NC-SA 4.0)",
+ "lineage_edges": {},
+ "lineage_group": "L2+L3",
+ "lineage_group_counts": {
+  "copies": 0,
+  "independent_incidents": 503,
+  "rows": 503,
+  "sources": [
+   "agenticopseval"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:17:32Z",
+ "modalities": [
+  "metrics",
+  "logs",
+  "traces",
+  "events",
+  "alerts"
+ ],
+ "next_action": null,
+ "publication": "arXiv 2606.29193",
+ "publisher_or_maintainer": "aiops.cn AIOps live benchmark",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:22:32Z",
+ "revision_or_version": "69cf36430b43024d02530c610b1a4738b5c9a7fb",
+ "state": "VERIFIED",
+ "state_file": "data/.state/agenticopseval.json (git-ignored)",
+ "total_bytes": {
+  "expected": 13403947520,
+  "verified": 13426756118
+ }
+}

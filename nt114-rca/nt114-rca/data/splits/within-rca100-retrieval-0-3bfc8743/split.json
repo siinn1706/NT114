@@ -1,0 +1,77 @@
+{
+ "assignments_sha256": "3bfc87438f8c25ab2c88ecfe4686688b6a6de4b6588a69e27912509ebcfc250e",
+ "builds": [
+  {
+   "build_id": "rca100-430dfff49e51",
+   "dataset_digest": "64b40b1d199c45d438eee2ef68d55b84d655d2c1d6a7dcba73571d8c8f92cf92",
+   "dataset_id": "rca100"
+  }
+ ],
+ "counts": {
+  "incidents_in_whole_test_strata": 6,
+  "test": {
+   "by_stratum": {
+    "otel-demo|code-defect": 3,
+    "otel-demo|config": 3,
+    "otel-demo|dns": 1,
+    "otel-demo|jvm": 2,
+    "otel-demo|memory": 1,
+    "otel-demo|network-delay": 2,
+    "otel-demo|network-other": 1,
+    "otel-demo|other": 5,
+    "otel-demo|pod-lifecycle": 1
+   },
+   "total": 19
+  },
+  "tier_b_dropped_held_out_group": 0,
+  "train": {
+   "by_stratum": {
+    "otel-demo|code-defect": 10,
+    "otel-demo|config": 7,
+    "otel-demo|cpu": 9,
+    "otel-demo|disk-io": 1,
+    "otel-demo|memory": 7,
+    "otel-demo|node": 14,
+    "otel-demo|other": 14,
+    "otel-demo|pod-lifecycle": 7
+   },
+   "total": 69
+  },
+  "val": {
+   "by_stratum": {
+    "otel-demo|code-defect": 3,
+    "otel-demo|config": 2,
+    "otel-demo|memory": 4,
+    "otel-demo|other": 5,
+    "otel-demo|pod-lifecycle": 1
+   },
+   "total": 15
+  }
+ },
+ "created": "2026-10-14T11:36:53Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 7,
+  "n_groups": 72,
+  "rule": "physical",
+  "singletons": 54,
+  "test_share": 0.1845
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fractions": {
+   "test": 0.2,
+   "train": 0.6,
+   "val": 0.2
+  },
+  "min_groups_per_stratum": 3,
+  "rule": "physical",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "within-rca100-retrieval",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

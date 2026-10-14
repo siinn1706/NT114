@@ -1,0 +1,60 @@
+{
+ "archive_audit": {
+  "archives": 2,
+  "at": "2026-10-13T17:35:03Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/msds.json",
+ "artefact_url_example": "https://zenodo.org/api/records/3549604/files/sequential_data.zip/content",
+ "canonical_source_url": "https://zenodo.org/records/3549604",
+ "category": "B-auxiliary",
+ "decisions": "acquire",
+ "doi": "10.5281/zenodo.3549604",
+ "file_count": {
+  "expected": 2,
+  "verified": 2
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "doi": "10.5281/zenodo.3549604",
+  "license": "cc-by-4.0",
+  "title": "Multi-Source Distributed System Data for AI-powered Analytics",
+  "updated": "2022-11-10T13:49:22.424628+00:00",
+  "version": "1.1"
+ },
+ "id": "msds",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "zenodo-record",
+ "known_limitations": [
+  "B auxiliary: not gold RCA",
+  "OpenStack, not microservices",
+  "root-cause label granularity UNVERIFIED; not gold"
+ ],
+ "labels": "UNVERIFIED root-cause granularity (auxiliary)",
+ "license": "CC-BY-4.0",
+ "license_evidence": "Zenodo record license field (cc-by-4.0)",
+ "lineage_edges": {},
+ "lineage_group": "L14",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:15:22Z",
+ "modalities": [
+  "metrics",
+  "logs",
+  "traces"
+ ],
+ "next_action": null,
+ "publication": "UNKNOWN",
+ "publisher_or_maintainer": "MSDS authors (Zenodo)",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:17:20Z",
+ "revision_or_version": "3549604",
+ "state": "VERIFIED",
+ "state_file": "data/.state/msds.json (git-ignored)",
+ "total_bytes": {
+  "expected": 650495000,
+  "verified": 650495000
+ }
+}

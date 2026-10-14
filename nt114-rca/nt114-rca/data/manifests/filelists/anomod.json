@@ -1,0 +1,25 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "30c5835190c3550c5efc34d6be4f9238"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "AnoMod.zip",
+   "size": 201917396,
+   "url": "https://zenodo.org/api/records/18342898/files/AnoMod.zip/content"
+  }
+ ],
+ "host_meta": {
+  "doi": "10.5281/zenodo.18342898",
+  "license": "cc-by-4.0",
+  "title": "AnoMod: A Dataset for Anomaly Detection and Root Cause Analysis in Microservice Systems",
+  "updated": "2026-01-23T07:56:22.794999+00:00",
+  "version": null
+ },
+ "id": "anomod",
+ "kind": "zenodo-record",
+ "pinned_at": "2026-10-13T17:15:21Z"
+}

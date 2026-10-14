@@ -1,0 +1,56 @@
+{
+ "archive_audit": null,
+ "artefact_list": "data/manifests/filelists/lo2v2.json",
+ "artefact_url_example": "https://zenodo.org/api/records/18937117/files/LO2v2-metrics.zip/content",
+ "canonical_source_url": "https://zenodo.org/records/18937117",
+ "category": "B-auxiliary",
+ "decisions": "decision",
+ "doi": "10.5281/zenodo.18937117",
+ "file_count": {
+  "expected": 6,
+  "verified": 0
+ },
+ "hash_list": null,
+ "host_metadata": {
+  "doi": "10.5281/zenodo.18937117",
+  "license": "cc-by-4.0",
+  "title": "LO2v2: An Updated and Improved Microservice Dataset of Logs and Metrics",
+  "updated": "2026-03-10T11:24:54.469781+00:00",
+  "version": null
+ },
+ "id": "lo2v2",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "zenodo-record",
+ "known_limitations": [
+  "anomaly labels only",
+  "~70 GB"
+ ],
+ "labels": "Locust test-scenario anomaly labels (not root-cause)",
+ "license": "CC-BY-4.0 (Zenodo record)",
+ "license_evidence": "Zenodo record license field (cc-by-4.0)",
+ "lineage_edges": {
+  "supersedes": "10.5281/zenodo.14938118 (LO2v1, 47,555,233,881 B, PROMISE'25 doi 10.1145/3727582.3728682)"
+ },
+ "lineage_group": "L15",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:18:57Z",
+ "modalities": [
+  "logs",
+  "metrics",
+  "traces"
+ ],
+ "next_action": "owner decides whether an auxiliary anomaly dataset of ~70 GB is wanted; fits the remaining budget",
+ "publication": "LO2 v1: doi:10.1145/3727582.3728682 (PROMISE'25); v2: IEEE Data Descriptions",
+ "publisher_or_maintainer": "Univ. Oulu M3S / Univ. Helsinki",
+ "reason": "found in the phase-01 saturation round (2026-10-14); OAuth2 microservice logs/metrics/traces with Locust-scenario anomaly labels, not root-cause labels; 69,963,617,238 B",
+ "retrieved_at": null,
+ "revision_or_version": "18937117",
+ "state": "PENDING:decision",
+ "state_file": "data/.state/lo2v2.json (git-ignored)",
+ "total_bytes": {
+  "expected": 69963617238,
+  "verified": 0
+ }
+}

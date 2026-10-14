@@ -1,0 +1,126 @@
+{
+ "elapsed_s": 0.1,
+ "incidents": 601,
+ "profiled_at": "2026-10-14T01:33:55Z",
+ "sets": {
+  "A1": {
+   "checkpoint_files_ignored": [],
+   "columns": [
+    "timestamp",
+    "object",
+    "fault_description",
+    "kpi",
+    "name",
+    "node_type",
+    "root_cause_node"
+   ],
+   "incidents": 78,
+   "node_types": {
+    "DB Session": 7,
+    "DB State": 5,
+    "Docker": 30,
+    "Docker CPU": 19,
+    "OS Network": 17
+   }
+  },
+  "A2": {
+   "checkpoint_files_ignored": [],
+   "columns": [
+    "timestamp",
+    "object",
+    "fault_description",
+    "kpi",
+    "name",
+    "node_type",
+    "root_cause_node"
+   ],
+   "incidents": 110,
+   "node_types": {
+    "DB Session": 10,
+    "DB Session;DB Session": 2,
+    "DB State": 12,
+    "DB State;DB State": 2,
+    "Docker": 48,
+    "Docker CPU": 16,
+    "Docker;Docker": 2,
+    "OS Network": 18
+   }
+  },
+  "B": {
+   "checkpoint_files_ignored": [],
+   "columns": [
+    "date",
+    "timestamp",
+    "kpi",
+    "root_cause_node",
+    "node_type"
+   ],
+   "incidents": 158,
+   "node_types": {
+    "JVM CPU;OS CPU": 1,
+    "JVM Memory;JVM CPU": 1,
+    "JVM Memory;JVM CPU;OS Memory": 1,
+    "OS CPU": 36,
+    "OS CPU;JVM CPU": 2,
+    "OS Disk": 30,
+    "OS Memory": 19,
+    "OS Memory;JVM Memory;JVM CPU": 2,
+    "OS Network": 63,
+    "OS Network;OS CPU": 2,
+    "Tomcat Memory;OS Memory": 1
+   }
+  },
+  "C": {
+   "checkpoint_files_ignored": [],
+   "columns": [
+    "timestamp",
+    "entity",
+    "metric",
+    "root_cause_node",
+    "node_type",
+    "original_timestamp"
+   ],
+   "incidents": 99,
+   "node_types": {
+    "ASM Control File": 1,
+    "CacheLock": 2,
+    "Contention": 8,
+    "Contention;LogFile": 1,
+    "Contention;Row Lock Contention": 1,
+    "DBFile;DBFile;DBFile": 1,
+    "DBFile;LogFile": 8,
+    "Disk": 2,
+    "Execution": 15,
+    "Execution;DBFile;DBFile": 1,
+    "Execution;Execution": 5,
+    "Execution;Execution;Contention": 1,
+    "Execution;Index Contention;LogFile": 1,
+    "Global Cache Block": 1,
+    "Global Cache Buffer Busy": 12,
+    "Global Cache Buffer Busy;LogFile": 1,
+    "Index Contention": 7,
+    "Index Contention;Execution": 1,
+    "LogFile": 21,
+    "LogFile;DBFile": 1,
+    "Memory": 2,
+    "Parse": 1,
+    "Row Lock Contention": 5
+   }
+  },
+  "D": {
+   "checkpoint_files_ignored": [
+    "D/.ipynb_checkpoints/",
+    "D/.ipynb_checkpoints/faults-checkpoint.csv"
+   ],
+   "columns": [
+    "timestamp",
+    "duration",
+    "root_cause_node",
+    "experiment_type"
+   ],
+   "incidents": 156,
+   "node_types": null
+  }
+ },
+ "source_id": "dejavu"
+}

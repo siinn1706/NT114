@@ -1,0 +1,83 @@
+{
+ "assignments_sha256": "28246781e1728ee2b5961a75b7f0eb1a08e2d8614721eb83267d2649d1446138",
+ "builds": [
+  {
+   "build_id": "rcaeval-2f4bf056cb8a",
+   "dataset_digest": "e9b84d790de8be8ae1cd42123ccc073e678a5dca3af475301386b55aa6ae1b44",
+   "dataset_id": "rcaeval"
+  },
+  {
+   "build_id": "nezha-ea30424eba55",
+   "dataset_digest": "56ec3db8aef93edca59346ad82b3e09f81a024cb7ed7b6c4ae80267f166c8217",
+   "dataset_id": "nezha"
+  }
+ ],
+ "counts": {
+  "shared_systems": [
+   "online-boutique",
+   "train-ticket"
+  ],
+  "test": {
+   "by_stratum": {
+    "online-boutique|code-defect": 14,
+    "online-boutique|cpu": 26,
+    "online-boutique|network-delay": 16,
+    "train-ticket|code-defect": 24,
+    "train-ticket|cpu": 7,
+    "train-ticket|network-delay": 14
+   },
+   "total": 101
+  },
+  "test_dataset": "nezha",
+  "train": {
+   "by_stratum": {
+    "online-boutique|code-defect": 30,
+    "online-boutique|cpu": 40,
+    "online-boutique|disk-io": 40,
+    "online-boutique|memory": 40,
+    "online-boutique|network-delay": 40,
+    "online-boutique|network-loss": 40,
+    "online-boutique|socket": 15,
+    "sock-shop|code-defect": 30,
+    "sock-shop|cpu": 40,
+    "sock-shop|disk-io": 40,
+    "sock-shop|memory": 40,
+    "sock-shop|network-delay": 40,
+    "sock-shop|network-loss": 40,
+    "sock-shop|socket": 15,
+    "train-ticket|code-defect": 30,
+    "train-ticket|cpu": 40,
+    "train-ticket|disk-io": 40,
+    "train-ticket|memory": 40,
+    "train-ticket|network-delay": 40,
+    "train-ticket|network-loss": 40,
+    "train-ticket|socket": 15
+   },
+   "total": 735
+  },
+  "train_dataset": "rcaeval",
+  "train_dropped_shared_group": 0
+ },
+ "created": "2026-10-14T11:32:43Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 40,
+  "n_groups": 98,
+  "rule": "cell",
+  "singletons": 3,
+  "test_share": 0.1208
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fractions": null,
+  "min_groups_per_stratum": 3,
+  "rule": "cell",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "xdata-rcaeval-to-nezha",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

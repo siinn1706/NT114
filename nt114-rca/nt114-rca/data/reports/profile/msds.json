@@ -1,0 +1,19 @@
+{
+ "archives": {
+  "concurrent data.zip": {
+   "experiment_file": "concurrent data/IMPORTANT_experiment_start_end_data.txt",
+   "experiment_file_head": "TRACE TIME!!!\r\n\r\nSTART OF EXPERIMENTS- 2019-11-25 15:12:13\r\n\r\nEND OF EXPERIMENTS -  2019-11-20 19:45:00\r\n\r\nLOG AND METRIC TIME are +1 TIME meaning:\r\n\r\nSTART : 2019-11-19 16:12:13\r\n\r\nEND: 2019-11-20 20:45:00\r\n\r\n\r\nIMPORTANT: WHILE ANALYZING EACH OF THE LOG FILES AND THE METRICS, PLEASE FILTER OUT THE TIMESTAMPS THAT ARE OUTSIDE OF THIS INTERVAL\r\n",
+   "members": 11026
+  },
+  "sequential_data.zip": {
+   "experiment_file": "sequential_data/IMPORTANT_experiment_start_end_data.txt",
+   "experiment_file_head": "TRACE TIME!!!\r\n\r\nSTART OF EXPERIMENTS- 2019-11-19 17:38:39\r\n\r\nEND OF EXPERIMENTS -  2019-11-20 01:30:00\r\n\r\nLOG AND METRIC TIME are +1 TIME meaning:\r\n\r\nSTART : 2019-11-19 18:38:39\r\n\r\nEND: 2019-11-20 02:30:00\r\n\r\n\r\nIMPORTANT: WHILE ANALYZING EACH OF THE LOG FILES AND THE METRICS, PLEASE FILTER OUT THE TIMESTAMPS THAT ARE OUTSIDE OF THIS INTERVAL\r\n",
+   "members": 2776
+  }
+ },
+ "elapsed_s": 0.1,
+ "gate": "fail",
+ "gate_reason": "experiment start/end times only; no per-incident root-cause service label",
+ "profiled_at": "2026-10-14T01:33:57Z",
+ "source_id": "msds"
+}

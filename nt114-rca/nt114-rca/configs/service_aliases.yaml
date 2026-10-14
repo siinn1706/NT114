@@ -1,0 +1,18 @@
+# Reviewed service-identity aliases, per system. An entry maps a raw identifier to a service_id.
+# Add an entry only to resolve a reported SERVICE_ID_COLLISION or a documented rename, and give
+# the reason and the reviewer. `kind: infra` keeps the entity out of candidate sets.
+# This file is part of the build config hash: editing it invalidates every resume marker.
+aliases:
+  online-boutique:
+    # Jaeger service name of the frontend in RE2-OB traces (91 incidents); metrics and logs say `frontend`.
+    frontendservice: {service_id: frontend, reason: "RE2-OB trace serviceName of frontend", reviewed_by: "agent 2026-10-14, owner to confirm"}
+    # Sock Shop containers scraped in the same cluster (cAdvisor container-memory-* only):
+    # RE3-OB 2 incidents (front-end, payment, shipping), RE1-OB 1 incident (front-end `load`).
+    # They are not Online Boutique services and must not merge with frontend/paymentservice/shippingservice.
+    front-end: {service_id: sockshopfrontend, kind: infra, reason: "Sock Shop container in an OB cluster", reviewed_by: "agent 2026-10-14, owner to confirm"}
+    payment: {service_id: sockshoppayment, kind: infra, reason: "Sock Shop container in an OB cluster", reviewed_by: "agent 2026-10-14, owner to confirm"}
+    shipping: {service_id: sockshopshipping, kind: infra, reason: "Sock Shop container in an OB cluster", reviewed_by: "agent 2026-10-14, owner to confirm"}
+  sock-shop:
+    # Online Boutique containers scraped in one RE3-SS incident (container-memory-* only).
+    paymentservice: {service_id: onlineboutiquepayment, kind: infra, reason: "OB container in a Sock Shop cluster", reviewed_by: "agent 2026-10-14, owner to confirm"}
+    shippingservice: {service_id: onlineboutiqueshipping, kind: infra, reason: "OB container in a Sock Shop cluster", reviewed_by: "agent 2026-10-14, owner to confirm"}

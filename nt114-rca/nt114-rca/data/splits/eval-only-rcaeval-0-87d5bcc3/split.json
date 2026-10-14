@@ -1,0 +1,60 @@
+{
+ "assignments_sha256": "87d5bcc32b731ff4d8207250c43d3f983c867b52f3a10b711c3429ec36a29470",
+ "builds": [
+  {
+   "build_id": "rcaeval-2f4bf056cb8a",
+   "dataset_digest": "e9b84d790de8be8ae1cd42123ccc073e678a5dca3af475301386b55aa6ae1b44",
+   "dataset_id": "rcaeval"
+  }
+ ],
+ "counts": {
+  "test": {
+   "by_stratum": {
+    "online-boutique|code-defect": 30,
+    "online-boutique|cpu": 40,
+    "online-boutique|disk-io": 40,
+    "online-boutique|memory": 40,
+    "online-boutique|network-delay": 40,
+    "online-boutique|network-loss": 40,
+    "online-boutique|socket": 15,
+    "sock-shop|code-defect": 30,
+    "sock-shop|cpu": 40,
+    "sock-shop|disk-io": 40,
+    "sock-shop|memory": 40,
+    "sock-shop|network-delay": 40,
+    "sock-shop|network-loss": 40,
+    "sock-shop|socket": 15,
+    "train-ticket|code-defect": 30,
+    "train-ticket|cpu": 40,
+    "train-ticket|disk-io": 40,
+    "train-ticket|memory": 40,
+    "train-ticket|network-delay": 40,
+    "train-ticket|network-loss": 40,
+    "train-ticket|socket": 15
+   },
+   "total": 735
+  }
+ },
+ "created": "2026-10-14T11:32:42Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 40,
+  "n_groups": 91,
+  "rule": "cell",
+  "singletons": 0,
+  "test_share": 1.0
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fractions": null,
+  "min_groups_per_stratum": 3,
+  "rule": "cell",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "eval-only-rcaeval",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

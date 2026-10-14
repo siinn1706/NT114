@@ -1,0 +1,46 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "aa169da18c4eda869255975ba56ac4b3f2a7ce38"
+   },
+   "git_blob": "aa169da18c4eda869255975ba56ac4b3f2a7ce38",
+   "integrity_level": "publisher-hash",
+   "path": "README.md",
+   "size": null,
+   "url": "https://www.aiops.cn/gitlab/aiops-nankai/data/trace/aiops2020/-/raw/17d7929d27ef75ddf648d42fbb8781ff66b2b02d/README.md"
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "fdf90467eb0dc391654f65a7e956e0b3bd4d106a"
+   },
+   "git_blob": "fdf90467eb0dc391654f65a7e956e0b3bd4d106a",
+   "integrity_level": "publisher-hash",
+   "path": "data_release_v3.5.zip",
+   "size": null,
+   "url": "https://www.aiops.cn/gitlab/aiops-nankai/data/trace/aiops2020/-/raw/17d7929d27ef75ddf648d42fbb8781ff66b2b02d/data_release_v3.5.zip"
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "git blob id at revision",
+    "value": "7d8d129e9e5e1163307fce614a527c02f33f20ad"
+   },
+   "git_blob": "7d8d129e9e5e1163307fce614a527c02f33f20ad",
+   "integrity_level": "publisher-hash",
+   "path": "sha256sum.txt",
+   "size": null,
+   "url": "https://www.aiops.cn/gitlab/aiops-nankai/data/trace/aiops2020/-/raw/17d7929d27ef75ddf648d42fbb8781ff66b2b02d/sha256sum.txt"
+  }
+ ],
+ "host_meta": {
+  "tree_blobs": 3
+ },
+ "id": "aiops2020-upstream",
+ "kind": "gitlab-raw",
+ "pinned_at": "2026-10-13T17:15:31Z"
+}

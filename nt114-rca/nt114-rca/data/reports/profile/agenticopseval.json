@@ -1,0 +1,1376 @@
+{
+ "AIOps2025": {
+  "archives": {
+   "2025-06-06.tar.gz": {
+    "appledouble": 174,
+    "file": 162,
+    "other": 12
+   },
+   "2025-06-07.tar.gz": {
+    "appledouble": 174,
+    "file": 162,
+    "other": 12
+   },
+   "2025-06-08.tar.gz": {
+    "appledouble": 168,
+    "file": 156,
+    "other": 12
+   },
+   "2025-06-09.tar.gz": {
+    "appledouble": 156,
+    "file": 144,
+    "other": 12
+   },
+   "2025-06-10.tar.gz": {
+    "appledouble": 167,
+    "file": 155,
+    "other": 12
+   },
+   "2025-06-11.tar.gz": {
+    "appledouble": 174,
+    "file": 162,
+    "other": 12
+   },
+   "2025-06-12.tar.gz": {
+    "appledouble": 165,
+    "file": 153,
+    "other": 12
+   },
+   "2025-06-13.tar.gz": {
+    "appledouble": 162,
+    "file": 150,
+    "other": 12
+   },
+   "2025-06-14.tar.gz": {
+    "appledouble": 170,
+    "file": 158,
+    "other": 12
+   },
+   "2025-06-17.tar.gz": {
+    "appledouble": 163,
+    "file": 151,
+    "other": 12
+   },
+   "2025-06-18.tar.gz": {
+    "appledouble": 172,
+    "file": 160,
+    "other": 12
+   },
+   "2025-06-19.tar.gz": {
+    "appledouble": 173,
+    "file": 161,
+    "other": 12
+   },
+   "2025-06-20.tar.gz": {
+    "appledouble": 176,
+    "file": 164,
+    "other": 12
+   },
+   "2025-06-21.tar.gz": {
+    "appledouble": 176,
+    "file": 164,
+    "other": 12
+   },
+   "2025-06-24.tar.gz": {
+    "appledouble": 172,
+    "file": 160,
+    "other": 12
+   },
+   "2025-06-27.tar.gz": {
+    "appledouble": 175,
+    "file": 163,
+    "other": 12
+   },
+   "2025-06-28.tar.gz": {
+    "appledouble": 170,
+    "file": 158,
+    "other": 12
+   },
+   "2025-06-29.tar.gz": {
+    "appledouble": 164,
+    "file": 152,
+    "other": 12
+   }
+  },
+  "fault_types": {
+   "code error": 21,
+   "cpu stress": 22,
+   "dns error": 21,
+   "io fault": 28,
+   "jvm cpu": 13,
+   "jvm exception": 13,
+   "jvm gc": 14,
+   "jvm latency": 15,
+   "memory stress": 20,
+   "network corrupt": 27,
+   "network delay": 25,
+   "network loss": 21,
+   "node cpu stress": 23,
+   "node disk fill": 21,
+   "node memory stress": 38,
+   "pod failure": 45,
+   "pod kill": 15,
+   "target port misconfig": 18
+  },
+  "gate": {
+   "archive_name_tz_offset_h": [
+    8
+   ],
+   "covered": 358,
+   "natural_absent": 42,
+   "result": "pass",
+   "rule": "a window is covered when both log and trace hourly members overlap it; uncovered windows are natural_absent (REJECT NO_TELEMETRY)",
+   "tz_determined": true
+  },
+  "hourly_name_minus_utc_hours": [
+   {
+    "column": "@timestamp",
+    "files": 410,
+    "kind": "log",
+    "offset_h": 8
+   },
+   {
+    "column": "startTime",
+    "files": 390,
+    "kind": "trace",
+    "offset_h": 8
+   },
+   {
+    "column": "startTimeMillis",
+    "files": 390,
+    "kind": "trace",
+    "offset_h": 8
+   }
+  ],
+  "incidents": 400,
+  "input_uuids_match": true,
+  "instance_is_list": 179,
+  "instance_type": {
+   "node": 82,
+   "pod": 123,
+   "service": 195
+  },
+  "largest_member_bytes": 50564827,
+  "member_samples": {
+   "log": {
+    "columns": [
+     "k8_namespace:string",
+     "@timestamp:string",
+     "agent_name:string",
+     "k8_pod:string",
+     "message:string",
+     "k8_node_name:string"
+    ],
+    "member": "2025-06-06/log-parquet/log_filebeat-server_2025-06-06_03-00-00.parquet",
+    "rows": 156753,
+    "time": {
+     "@timestamp": {
+      "max": "2025-06-05T19:59:59.993Z",
+      "min": "2025-06-05T19:00:00.204Z"
+     }
+    }
+   },
+   "metric": {
+    "columns": [
+     "time:string",
+     "client_error:int64",
+     "client_error_ratio:double",
+     "error:int64",
+     "error_ratio:double",
+     "object_id:string",
+     "object_type:string",
+     "request:int64",
+     "response:int64",
+     "rrt:double",
+     "rrt_max:int64",
+     "server_error:int64",
+     "server_error_ratio:double",
+     "timeout:int64"
+    ],
+    "member": "2025-06-06/metric-parquet/apm/pod_ns_hipstershop_2025-06-06.parquet",
+    "rows": 1439,
+    "time": {
+     "time": {
+      "max": "2025-06-06T15:59:00Z",
+      "min": "2025-06-05T16:00:00Z"
+     },
+     "timeout": {
+      "max": "8376",
+      "min": "0"
+     }
+    }
+   },
+   "trace": {
+    "columns": [
+     "traceID:string",
+     "spanID:string",
+     "flags:double",
+     "operationName:string",
+     "references:list<element: struct<refType: string, spanID: string, traceID: string>>",
+     "startTime:int64",
+     "startTimeMillis:int64",
+     "duration:int64",
+     "tags:list<element: struct<key: string, type: string, value: string>>",
+     "logs:list<element: struct<fields: list<element: struct<key: string, type: string, value: string>>, timestamp: int64>>",
+     "process:struct<serviceName: string, tags: list<element: struct<key: string, type: string, value: string>>>"
+    ],
+    "member": "2025-06-06/trace-parquet/trace_jaeger-span_2025-06-06_23-00-00.parquet",
+    "rows": 140336,
+    "time": {
+     "startTime": {
+      "max": "1749225599688958",
+      "min": "1749222060278386"
+     },
+     "startTimeMillis": {
+      "max": "1749225599688",
+      "min": "1749222060278"
+     }
+    }
+   }
+  },
+  "multi_service_with_named_service": 55,
+  "multi_service_without_named_service": 73,
+  "source_id": "agenticopseval",
+  "split_feasibility_A": {
+   "cell": {
+    "groups": 87,
+    "largest_group": 28,
+    "singletons": 22
+   },
+   "feasible": {
+    "eval-only": true,
+    "within-grouped": true,
+    "within-retrieval": true
+   },
+   "incidents": 318,
+   "physical": {
+    "groups": 318,
+    "largest_group": 1,
+    "singletons": 318
+   }
+  },
+  "subset": "AIOps2025",
+  "uncovered_windows": [
+   {
+    "start_time": "2025-06-08T12:10:52Z",
+    "uuid": "ad13b37a-146"
+   },
+   {
+    "start_time": "2025-06-08T13:10:54Z",
+    "uuid": "dce5cefa-147"
+   },
+   {
+    "start_time": "2025-06-08T14:10:55Z",
+    "uuid": "50f000ee-148"
+   },
+   {
+    "start_time": "2025-06-08T15:10:57Z",
+    "uuid": "0a373d08-149"
+   },
+   {
+    "start_time": "2025-06-08T16:10:02Z",
+    "uuid": "9a257bd5-150"
+   },
+   {
+    "start_time": "2025-06-08T17:10:04Z",
+    "uuid": "162fe36a-151"
+   },
+   {
+    "start_time": "2025-06-08T18:10:05Z",
+    "uuid": "eba76009-152"
+   },
+   {
+    "start_time": "2025-06-08T19:10:07Z",
+    "uuid": "168cdf19-153"
+   },
+   {
+    "start_time": "2025-06-08T20:10:18Z",
+    "uuid": "05b57997-154"
+   },
+   {
+    "start_time": "2025-06-08T21:10:21Z",
+    "uuid": "54002a5c-155"
+   },
+   {
+    "start_time": "2025-06-09T11:10:46Z",
+    "uuid": "51fc47bf-169"
+   },
+   {
+    "start_time": "2025-06-09T12:10:48Z",
+    "uuid": "046aefa7-170"
+   },
+   {
+    "start_time": "2025-06-09T13:11:07Z",
+    "uuid": "e0a261ce-171"
+   },
+   {
+    "start_time": "2025-06-09T14:11:10Z",
+    "uuid": "a0761b38-172"
+   },
+   {
+    "start_time": "2025-06-09T15:11:12Z",
+    "uuid": "e6c9989b-173"
+   },
+   {
+    "start_time": "2025-06-09T16:10:02Z",
+    "uuid": "cc451a15-174"
+   },
+   {
+    "start_time": "2025-06-09T17:10:03Z",
+    "uuid": "f78ef469-175"
+   },
+   {
+    "start_time": "2025-06-09T18:10:04Z",
+    "uuid": "49a506cd-176"
+   },
+   {
+    "start_time": "2025-06-09T20:10:20Z",
+    "uuid": "6892c835-177"
+   },
+   {
+    "start_time": "2025-06-12T13:03:02Z",
+    "uuid": "1fb24317-241"
+   },
+   {
+    "start_time": "2025-06-12T14:03:03Z",
+    "uuid": "36e2b5c1-242"
+   },
+   {
+    "start_time": "2025-06-12T15:03:05Z",
+    "uuid": "f643fe98-243"
+   },
+   {
+    "start_time": "2025-06-12T16:10:02Z",
+    "uuid": "98eacd31-244"
+   },
+   {
+    "start_time": "2025-06-13T11:11:00Z",
+    "uuid": "757fa56f-263"
+   },
+   {
+    "start_time": "2025-06-13T12:11:14Z",
+    "uuid": "d8a41a9d-264"
+   },
+   {
+    "start_time": "2025-06-13T13:11:19Z",
+    "uuid": "b06b79b6-265"
+   },
+   {
+    "start_time": "2025-06-13T14:11:24Z",
+    "uuid": "49e9814e-266"
+   },
+   {
+    "start_time": "2025-06-13T15:11:27Z",
+    "uuid": "d0c7cd07-267"
+   },
+   {
+    "start_time": "2025-06-13T16:10:02Z",
+    "uuid": "25368410-268"
+   },
+   {
+    "start_time": "2025-06-14T15:10:48Z",
+    "uuid": "f370cf6d-291"
+   },
+   {
+    "start_time": "2025-06-16T16:10:02Z",
+    "uuid": "50bce1c4-311"
+   },
+   {
+    "start_time": "2025-06-16T20:10:10Z",
+    "uuid": "a482d876-315"
+   },
+   {
+    "start_time": "2025-06-16T21:10:11Z",
+    "uuid": "3260fa48-316"
+   },
+   {
+    "start_time": "2025-06-16T22:10:12Z",
+    "uuid": "332adc3a-317"
+   },
+   {
+    "start_time": "2025-06-16T23:10:14Z",
+    "uuid": "18b8cf77-318"
+   },
+   {
+    "start_time": "2025-06-17T00:10:15Z",
+    "uuid": "a42d2eb4-319"
+   },
+   {
+    "start_time": "2025-06-17T01:10:16Z",
+    "uuid": "fc3737af-320"
+   },
+   {
+    "start_time": "2025-06-18T12:10:24Z",
+    "uuid": "b168261d-355"
+   },
+   {
+    "start_time": "2025-06-18T13:10:25Z",
+    "uuid": "ac95d601-356"
+   },
+   {
+    "start_time": "2025-06-18T14:10:27Z",
+    "uuid": "b9e3efbd-357"
+   },
+   {
+    "start_time": "2025-06-18T15:10:30Z",
+    "uuid": "7bd681bb-358"
+   },
+   {
+    "start_time": "2025-06-18T16:10:01Z",
+    "uuid": "7c0d7152-359"
+   }
+  ],
+  "window_coverage": {
+   "archives_0": 19,
+   "archives_1": 381,
+   "covered": 358,
+   "uncovered": 42
+  }
+ },
+ "RCA100": {
+  "cases": [
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "payment"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t001"
+   },
+   {
+    "case_prefix": "F029-redisUnavailable",
+    "entities": [
+     "cart-64944cd445-8pbgx"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t002"
+   },
+   {
+    "case_prefix": "F031-nodeMemoryOOM",
+    "entities": [
+     "cn-hongkong.10.0.1.69"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t003"
+   },
+   {
+    "case_prefix": "F006-trafficSurge",
+    "entities": [
+     "checkout"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t004"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.107"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t005"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t006"
+   },
+   {
+    "case_prefix": "F002-threadExhaustion",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t007"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.56"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t008"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t009"
+   },
+   {
+    "case_prefix": "F029-redisUnavailable",
+    "entities": [
+     "cart"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t010"
+   },
+   {
+    "case_prefix": "F020-loadBalancerFailure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t011"
+   },
+   {
+    "case_prefix": "F006-trafficSurge",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t012"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t013"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "payment"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t014"
+   },
+   {
+    "case_prefix": "F018-dbNetworkLatency",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t015"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "cart"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t016"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t017"
+   },
+   {
+    "case_prefix": "F012-cpuDeadLoop",
+    "entities": [
+     "ad"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t018"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.49"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t019"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t020"
+   },
+   {
+    "case_prefix": "F010-slowSQL",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t021"
+   },
+   {
+    "case_prefix": "F025-diskIOHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.55"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t022"
+   },
+   {
+    "case_prefix": "F006-trafficSurge",
+    "entities": [
+     "checkout"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t023"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t024"
+   },
+   {
+    "case_prefix": "F018-dbNetworkLatency",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t025"
+   },
+   {
+    "case_prefix": "F039-resourceLimitMisconfig",
+    "entities": [
+     "cn-hongkong.10.0.2.37"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t026"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t027"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t028"
+   },
+   {
+    "case_prefix": "F023-nullPointerException",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t029"
+   },
+   {
+    "case_prefix": "F010-slowSQL",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t030"
+   },
+   {
+    "case_prefix": "F029-redisUnavailable",
+    "entities": [
+     "cart-64944cd445-8pbgx"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t031"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t032"
+   },
+   {
+    "case_prefix": "F036-replicaScaleDown",
+    "entities": [
+     "quote"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t033"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t034"
+   },
+   {
+    "case_prefix": "F023-nullPointerException",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t035"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.56"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t036"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t037"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.56"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t038"
+   },
+   {
+    "case_prefix": "F056-networkPolicyIsolation",
+    "entities": [
+     "shipping"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t039"
+   },
+   {
+    "case_prefix": "F022-fullGC",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t040"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t041"
+   },
+   {
+    "case_prefix": "F006-trafficSurge",
+    "entities": [
+     "checkout"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t042"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "cart"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t043"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t044"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "ad"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t045"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "payment"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t046"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t047"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.56"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t048"
+   },
+   {
+    "case_prefix": "F004-trafficHotspot",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t049"
+   },
+   {
+    "case_prefix": "F023-nullPointerException",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t050"
+   },
+   {
+    "case_prefix": "F006-trafficSurge",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t051"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "payment"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t052"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t053"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t054"
+   },
+   {
+    "case_prefix": "F002-threadExhaustion",
+    "entities": [
+     "inventory-5c4b7bcb9c-d24qh"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t055"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t056"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t057"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t058"
+   },
+   {
+    "case_prefix": "F022-fullGC",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t059"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.107"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t060"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t061"
+   },
+   {
+    "case_prefix": "F005-messageQueueBacklog",
+    "entities": [
+     "fraud-detection"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t062"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t063"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t064"
+   },
+   {
+    "case_prefix": "F036-replicaScaleDown",
+    "entities": [
+     "shipping"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t065"
+   },
+   {
+    "case_prefix": "F057-dnsResolutionFailure",
+    "entities": [
+     "shipping"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t066"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t067"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t068"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.107"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t069"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "cart"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t070"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t071"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t072"
+   },
+   {
+    "case_prefix": "F001-nodeDown",
+    "entities": [
+     "cn-hongkong.10.0.1.65"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t073"
+   },
+   {
+    "case_prefix": "F050-podCrashLoop",
+    "entities": [
+     "shipping"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t074"
+   },
+   {
+    "case_prefix": "F020-loadBalancerFailure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t075"
+   },
+   {
+    "case_prefix": "F036-replicaScaleDown",
+    "entities": [
+     "quote"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t076"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t077"
+   },
+   {
+    "case_prefix": "F036-replicaScaleDown",
+    "entities": [
+     "quote"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t078"
+   },
+   {
+    "case_prefix": "F009-cacheBreakdown",
+    "entities": [
+     "recommendation"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t079"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.107"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t080"
+   },
+   {
+    "case_prefix": "F036-replicaScaleDown",
+    "entities": [
+     "quote"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t081"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.107"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t082"
+   },
+   {
+    "case_prefix": "F023-nullPointerException",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t083"
+   },
+   {
+    "case_prefix": "F010-slowSQL",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t084"
+   },
+   {
+    "case_prefix": "F010-slowSQL",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t085"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t086"
+   },
+   {
+    "case_prefix": "F052-podRestartFlapping",
+    "entities": [
+     "cn-hongkong.10.0.2.37"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t087"
+   },
+   {
+    "case_prefix": "F004-trafficHotspot",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t088"
+   },
+   {
+    "case_prefix": "F016-rateLimiting",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t089"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.107"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t090"
+   },
+   {
+    "case_prefix": "F006-trafficSurge",
+    "entities": [
+     "product-catalog"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t091"
+   },
+   {
+    "case_prefix": "F026-nodeCpuHigh",
+    "entities": [
+     "cn-hongkong.10.0.1.49"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": false,
+    "task": "t092"
+   },
+   {
+    "case_prefix": "F034-cpuFullLoad",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t093"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t094"
+   },
+   {
+    "case_prefix": "F051-podPendingUnschedulable",
+    "entities": [
+     "shipping"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t095"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t096"
+   },
+   {
+    "case_prefix": "F010-slowSQL",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t097"
+   },
+   {
+    "case_prefix": "F011-codeDefect",
+    "entities": [
+     "frontend"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t098"
+   },
+   {
+    "case_prefix": "F014-httpError5xx",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t099"
+   },
+   {
+    "case_prefix": "F036-replicaScaleDown",
+    "entities": [
+     "quote"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t100"
+   },
+   {
+    "case_prefix": "F004-trafficHotspot",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t101"
+   },
+   {
+    "case_prefix": "F007-memoryPressure",
+    "entities": [
+     "inventory"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t102"
+   },
+   {
+    "case_prefix": "F029-redisUnavailable",
+    "entities": [
+     "cart"
+    ],
+    "n_services_in_topology": 19,
+    "service_resolvable": true,
+    "task": "t103"
+   }
+  ],
+  "entity_kinds": {
+   "apm.service": 83,
+   "k8s.node": 17,
+   "k8s.pod": 1,
+   "not-in-topology": 2
+  },
+  "gate": "pass",
+  "gate_threshold": 0.8,
+  "incidents": 103,
+  "service_resolvable": 83,
+  "service_resolvable_share": 0.8058,
+  "source_id": "agenticopseval",
+  "subset": "RCA100"
+ },
+ "elapsed_s": 113.2,
+ "profiled_at": "2026-10-14T02:27:52Z"
+}

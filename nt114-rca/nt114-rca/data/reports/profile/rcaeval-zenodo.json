@@ -1,0 +1,327 @@
+{
+ "column_sets": {
+  "RE2/logs": {
+   "time,timestamp,container_name,message,level,req_path,error": 246,
+   "time,timestamp,container_name,message,level,req_path,error,cluster_id,log_template": 24
+  },
+  "RE2/traces": {
+   "time,traceID,spanID,serviceName,methodName,operationName,startTimeMillis,startTime,duration,statusCode,parentSpanID": 180
+  },
+  "RE3/logs": {
+   "time,timestamp,container_name,message,pod_name,node_name": 90
+  },
+  "RE3/traces": {
+   "time,traceID,spanID,serviceName,methodName,operationName,startTimeMillis,startTime,duration,statusCode,parentSpanID": 73
+  }
+ },
+ "duplicates": [
+  {
+   "case": "RE2-OB.zip!RE2-OB/checkoutservice_cpu/multi-source-data",
+   "inject_time": 1705354566,
+   "same_inject_time_as": [
+    "RE2-OB/checkoutservice_cpu/1"
+   ]
+  }
+ ],
+ "elapsed_s": 22.7,
+ "incidents": 735,
+ "label_artifacts": [
+  "RE3-SS.zip!RE3-SS/carts_f1/1/root_cause.txt",
+  "RE3-SS.zip!RE3-SS/carts_f1/2/root_cause.txt",
+  "RE3-SS.zip!RE3-SS/carts_f3/1/root_cause.txt",
+  "RE3-SS.zip!RE3-SS/carts_f3/2/root_cause.txt",
+  "RE3-SS.zip!RE3-SS/front-end_f1/1/root_cause.txt",
+  "RE3-SS.zip!RE3-SS/front-end_f1/2/root_cause.txt",
+  "RE3-SS.zip!RE3-SS/front-end_f2/1/root_cause.txt",
+  "RE3-SS.zip!RE3-SS/front-end_f2/2/root_cause.txt"
+ ],
+ "largest_member_bytes": 233353404,
+ "non_service_metric_prefixes": {
+  "RE1-OB": [],
+  "RE1-SS": [],
+  "RE1-TT": [],
+  "RE2-OB": [
+   "InboundPassthroughClusterIpv4",
+   "PassthroughCluster",
+   "frontend-check",
+   "frontend-external",
+   "gke-gke-cluster-default-pool-2e1807ce-0e4z",
+   "gke-gke-cluster-default-pool-2e1807ce-2969",
+   "gke-gke-cluster-default-pool-2e1807ce-957d",
+   "gke-gke-cluster-default-pool-2e1807ce-cx8g",
+   "gke-gke-cluster-default-pool-2e1807ce-s8hw",
+   "gke-gke-cluster-default-pool-2e1807ce-w819",
+   "gke-gke-cluster-default-pool-2e1807ce-xd9m",
+   "gke-gke-cluster-default-pool-2e1807ce-xte3",
+   "gke-gke-cluster-default-pool-9da84637-9mfj",
+   "gke-gke-cluster-default-pool-9da84637-kwq2",
+   "gke-gke-cluster-default-pool-9da84637-r1mb",
+   "gke-gke-cluster-default-pool-9da84637-rkn0",
+   "gke-gke-cluster-default-pool-9da84637-t3sp",
+   "gke-gke-cluster-default-pool-9da84637-x97r",
+   "gke-gke-cluster-default-pool-c49c2b06-2wrr",
+   "gke-gke-cluster-default-pool-c49c2b06-crhc",
+   "gke-gke-cluster-default-pool-c49c2b06-d258",
+   "gke-gke-cluster-default-pool-c49c2b06-nv1x",
+   "gke-gke-cluster-default-pool-c49c2b06-qzd4",
+   "gke-gke-cluster-default-pool-c49c2b06-vlhn",
+   "istio-init",
+   "loadgenerator",
+   "redis"
+  ],
+  "RE2-SS": [
+   "catalogue-db",
+   "front",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-01r5",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-2z27",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-3f03",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-3px7",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-9gn2",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-fayo",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-nw9c",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-p3qr",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-ttzl",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-v826",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-vh5c",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-vt00",
+   "gke-gke-cluster-ss-default-pool-aa4d7ed2-z6rf",
+   "istio-init",
+   "loadgenerator",
+   "orders-db",
+   "queue",
+   "rabbitmq",
+   "rabbitmq-exporter",
+   "session"
+  ],
+  "RE2-TT": [
+   "gke-gke-cluster-tt-default-pool-448caaac-g8ts",
+   "gke-gke-cluster-tt-default-pool-448caaac-q7qg",
+   "gke-gke-cluster-tt-default-pool-448caaac-rjxh",
+   "gke-gke-cluster-tt-default-pool-79112c30-647f",
+   "gke-gke-cluster-tt-default-pool-79112c30-bvhh",
+   "gke-gke-cluster-tt-default-pool-79112c30-f9qk",
+   "gke-gke-cluster-tt-default-pool-79112c30-jv3l",
+   "gke-gke-cluster-tt-default-pool-79112c30-kfkc",
+   "gke-gke-cluster-tt-default-pool-79112c30-zbb4",
+   "gke-gke-cluster-tt-default-pool-ca598206-37xx",
+   "gke-gke-cluster-tt-default-pool-ca598206-46vp",
+   "gke-gke-cluster-tt-default-pool-ca598206-5snb",
+   "gke-gke-cluster-tt-default-pool-ca598206-81xz",
+   "gke-gke-cluster-tt-default-pool-ca598206-bb7s",
+   "gke-gke-cluster-tt-default-pool-ca598206-fipm",
+   "gke-gke-cluster-tt-default-pool-ca598206-g5tp",
+   "gke-gke-cluster-tt-default-pool-ca598206-g9jt",
+   "gke-gke-cluster-tt-default-pool-ca598206-p3ch",
+   "gke-gke-cluster-tt-default-pool-ca598206-ptzm",
+   "gke-gke-cluster-tt-default-pool-ca598206-tj63",
+   "gke-gke-cluster-tt-default-pool-ca598206-xvr3",
+   "istio-init",
+   "ts",
+   "ts-admin-order-service",
+   "ts-admin-route-service",
+   "ts-admin-user-service",
+   "ts-avatar-service",
+   "ts-cancel-service",
+   "ts-execute-service",
+   "ts-food-mysql",
+   "ts-news-service",
+   "ts-notification-service",
+   "ts-rebook-service",
+   "ts-route-plan-service",
+   "ts-ticket-office-service",
+   "ts-travel-plan-service",
+   "ts-verification-code-service",
+   "ts-voucher-mysql",
+   "ts-voucher-service"
+  ],
+  "RE3-OB": [
+   "carts",
+   "carts-db",
+   "catalogue",
+   "catalogue-db",
+   "front-end",
+   "frontend-check",
+   "frontend-external",
+   "ip-192-168-24-141.ap-southeast-2.compute.internal",
+   "ip-192-168-50-98.ap-southeast-2.compute.internal",
+   "ip-192-168-6-79.ap-southeast-2.compute.internal",
+   "ip-192-168-62-166.ap-southeast-2.compute.internal",
+   "ip-192-168-79-115.ap-southeast-2.compute.internal",
+   "ip-192-168-83-253.ap-southeast-2.compute.internal",
+   "loadgenerator",
+   "orders",
+   "orders-db",
+   "payment",
+   "queue-master",
+   "rabbitmq",
+   "rabbitmq-exporter",
+   "redis",
+   "session-db",
+   "shipping",
+   "user",
+   "user-db"
+  ],
+  "RE3-SS": [
+   "adservice",
+   "cartservice",
+   "catalogue-db",
+   "checkoutservice",
+   "currencyservice",
+   "emailservice",
+   "front",
+   "frontend",
+   "ip-192-168-6-79.ap-southeast-2.compute.internal",
+   "ip-192-168-62-166.ap-southeast-2.compute.internal",
+   "ip-192-168-83-253.ap-southeast-2.compute.internal",
+   "loadgenerator",
+   "paymentservice",
+   "productcatalogservice",
+   "queue",
+   "rabbitmq",
+   "rabbitmq-exporter",
+   "recommendationservice",
+   "redis",
+   "session",
+   "shippingservice",
+   "user-db"
+  ],
+  "RE3-TT": [
+   "ip-192-168-18-27.ap-southeast-2.compute.internal",
+   "ip-192-168-29-227.ap-southeast-2.compute.internal",
+   "ip-192-168-38-0.ap-southeast-2.compute.internal",
+   "ip-192-168-51-182.ap-southeast-2.compute.internal",
+   "ip-192-168-55-200.ap-southeast-2.compute.internal",
+   "ip-192-168-64-253.ap-southeast-2.compute.internal",
+   "ip-192-168-69-80.ap-southeast-2.compute.internal",
+   "ip-192-168-88-150.ap-southeast-2.compute.internal",
+   "istio-init",
+   "ts",
+   "ts-admin-order-service",
+   "ts-admin-route-service",
+   "ts-admin-user-service",
+   "ts-avatar-service",
+   "ts-cancel-service",
+   "ts-execute-service",
+   "ts-food-mysql",
+   "ts-news-service",
+   "ts-notification-service",
+   "ts-rebook-service",
+   "ts-route-plan-service",
+   "ts-ticket-office-service",
+   "ts-travel-plan-service",
+   "ts-verification-code-service",
+   "ts-voucher-mysql",
+   "ts-voucher-service"
+  ]
+ },
+ "pre_window_s": {
+  "lt_300": 0,
+  "median": 720.0,
+  "min": 360.0
+ },
+ "profiled_at": "2026-10-14T01:37:20Z",
+ "registry_rows": 735,
+ "source_id": "rcaeval-zenodo",
+ "split_feasibility": {
+  "cell": {
+   "groups": 109,
+   "largest_group": 40,
+   "singletons": 0
+  },
+  "feasible": {
+   "eval-only": true,
+   "within-grouped": true,
+   "within-retrieval": true
+  },
+  "physical": {
+   "groups": 620,
+   "largest_group": 15,
+   "singletons": 563
+  }
+ },
+ "time_units": {
+  "logs.time": {
+   "unknown": 360
+  },
+  "logs.timestamp": {
+   "ns": 360
+  },
+  "traces.parentSpanID": {
+   "unknown": 253
+  },
+  "traces.startTime": {
+   "unknown": 13,
+   "us": 240
+  },
+  "traces.startTimeMillis": {
+   "ms": 240,
+   "unknown": 13
+  },
+  "traces.time": {
+   "unknown": 253
+  }
+ },
+ "trace_time_check": {
+  "cases_checked": 12,
+  "mismatch_rows": 0,
+  "rows_checked": 5643102
+ },
+ "unparseable_cells": [],
+ "zips": {
+  "RE1-OB.zip": {
+   "cases": 125,
+   "modality_sets": {
+    "metrics": 125
+   }
+  },
+  "RE1-SS.zip": {
+   "cases": 125,
+   "modality_sets": {
+    "metrics": 125
+   }
+  },
+  "RE1-TT.zip": {
+   "cases": 125,
+   "modality_sets": {
+    "metrics": 125
+   }
+  },
+  "RE2-OB.zip": {
+   "cases": 91,
+   "modality_sets": {
+    "metrics,logs,traces": 90
+   }
+  },
+  "RE2-SS.zip": {
+   "cases": 90,
+   "modality_sets": {
+    "metrics,logs": 90
+   }
+  },
+  "RE2-TT.zip": {
+   "cases": 90,
+   "modality_sets": {
+    "metrics,logs,traces": 90
+   }
+  },
+  "RE3-OB.zip": {
+   "cases": 30,
+   "modality_sets": {
+    "metrics,logs,traces": 30
+   }
+  },
+  "RE3-SS.zip": {
+   "cases": 30,
+   "modality_sets": {
+    "metrics,logs": 17,
+    "metrics,logs,traces:empty": 13
+   }
+  },
+  "RE3-TT.zip": {
+   "cases": 30,
+   "modality_sets": {
+    "metrics,logs,traces": 30
+   }
+  }
+ }
+}

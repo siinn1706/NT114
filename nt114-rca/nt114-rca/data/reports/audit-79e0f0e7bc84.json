@@ -1,0 +1,2701 @@
+{
+ "builds": {
+  "nezha": {
+   "build_id": "nezha-4097caebc05e",
+   "dataset_digest": "226a73fcf8eb87043c48ce606230bf3459ead6862e78d13886e59300456a5913",
+   "states": {
+    "ACCEPT_WITH_WARNINGS": 101
+   }
+  },
+  "rcaeval": {
+   "build_id": "rcaeval-9bfc8d21733f",
+   "dataset_digest": "014ce4af3f276ccb75cbc8b32ca1a536cdce3087918fb4c54331790e39379a36",
+   "states": {
+    "ACCEPT": 703,
+    "ACCEPT_WITH_WARNINGS": 32,
+    "REJECT": 1
+   }
+  }
+ },
+ "created": "2026-10-14T06:56:29Z",
+ "duplicates": {
+  "content": [],
+  "cross_dataset": 0,
+  "fingerprint": [
+   {
+    "datasets": [
+     "rcaeval"
+    ],
+    "explained": true,
+    "incident_uids": [
+     "rcaeval.24e078fc27784c41",
+     "rcaeval.2bfb7e2fe0813f3e"
+    ],
+    "key": "online-boutique|1705354566|checkout|cpu"
+   }
+  ],
+  "unexplained": 0
+ },
+ "imbalance": {
+  "nezha": [
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10.0,
+     "min": 10,
+     "n": 6
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3478,
+      "n": 6
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.95,
+      "n": 6
+     },
+     "traces": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3478,
+      "n": 6
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 6,
+    "modality_status": {
+     "logs": {
+      "present": 6
+     },
+     "metrics": {
+      "present": 6
+     },
+     "traces": {
+      "present": 6
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 6
+    },
+    "subset": "2022-08-22",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 11
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5484,
+      "median": 0.5161,
+      "min": 0.129,
+      "n": 11
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 11
+     },
+     "traces": {
+      "max": 0.5484,
+      "median": 0.5161,
+      "min": 0.129,
+      "n": 11
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 11,
+    "modality_status": {
+     "logs": {
+      "present": 11
+     },
+     "metrics": {
+      "present": 11
+     },
+     "traces": {
+      "present": 11
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 11
+    },
+    "subset": "2022-08-22",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 7
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 7
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 7
+     },
+     "traces": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 7
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 7,
+    "modality_status": {
+     "logs": {
+      "present": 7
+     },
+     "metrics": {
+      "present": 7
+     },
+     "traces": {
+      "present": 7
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 7
+    },
+    "subset": "2022-08-22",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10.0,
+     "min": 10,
+     "n": 8
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 8
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.95,
+      "n": 8
+     },
+     "traces": {
+      "max": 0.55,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 8
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 8,
+    "modality_status": {
+     "logs": {
+      "present": 8
+     },
+     "metrics": {
+      "present": 8
+     },
+     "traces": {
+      "present": 8
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 8
+    },
+    "subset": "2022-08-23",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5455,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 15
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9091,
+      "n": 15
+     },
+     "traces": {
+      "max": 0.5455,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 15
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 15
+    },
+    "subset": "2022-08-23",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 10,
+     "median": 10,
+     "min": 10,
+     "n": 9
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 9
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 9
+     },
+     "traces": {
+      "max": 0.5161,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 9
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 9,
+    "modality_status": {
+     "logs": {
+      "present": 9
+     },
+     "metrics": {
+      "present": 9
+     },
+     "traces": {
+      "present": 9
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 9
+    },
+    "subset": "2022-08-23",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46.0,
+     "min": 46,
+     "n": 24
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.6774,
+      "median": 0.5161,
+      "min": 0.3871,
+      "n": 24
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9091,
+      "n": 24
+     },
+     "traces": {
+      "max": 0.6774,
+      "median": 0.5161,
+      "min": 0.3548,
+      "n": 24
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 24,
+    "modality_status": {
+     "logs": {
+      "present": 24
+     },
+     "metrics": {
+      "present": 24
+     },
+     "traces": {
+      "present": 24
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 24
+    },
+    "subset": "2023-01-29",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46.0,
+     "min": 46,
+     "n": 4
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.1739,
+      "median": 0.129,
+      "min": 0.129,
+      "n": 4
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 4
+     },
+     "traces": {
+      "max": 0.1739,
+      "median": 0.129,
+      "min": 0.129,
+      "n": 4
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 4,
+    "modality_status": {
+     "logs": {
+      "present": 4
+     },
+     "metrics": {
+      "present": 4
+     },
+     "traces": {
+      "present": 4
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 4
+    },
+    "subset": "2023-01-29",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46,
+     "min": 46,
+     "n": 3
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.5789,
+      "median": 0.5161,
+      "min": 0.4839,
+      "n": 3
+     },
+     "metrics": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9474,
+      "n": 3
+     },
+     "traces": {
+      "max": 0.5789,
+      "median": 0.5161,
+      "min": 0.4839,
+      "n": 3
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 3,
+    "modality_status": {
+     "logs": {
+      "present": 3
+     },
+     "metrics": {
+      "present": 3
+     },
+     "traces": {
+      "present": 3
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 3
+    },
+    "subset": "2023-01-30",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 46,
+     "median": 46.0,
+     "min": 46,
+     "n": 14
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.6364,
+      "median": 0.5161,
+      "min": 0.3548,
+      "n": 14
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9091,
+      "n": 14
+     },
+     "traces": {
+      "max": 0.6364,
+      "median": 0.5161,
+      "min": 0.3548,
+      "n": 14
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 14,
+    "modality_status": {
+     "logs": {
+      "present": 14
+     },
+     "metrics": {
+      "present": 14
+     },
+     "traces": {
+      "present": 14
+     }
+    },
+    "states": {
+     "ACCEPT_WITH_WARNINGS": 14
+    },
+    "subset": "2023-01-30",
+    "system": "train-ticket"
+   }
+  ],
+  "rcaeval": [
+   {
+    "candidates": {
+     "max": 15,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 21,
+     "ACCEPT_WITH_WARNINGS": 4
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 13,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 23,
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 24,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 24,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 64,
+     "median": 64,
+     "min": 64,
+     "n": 25
+    },
+    "coverage": {
+     "logs": {
+      "n": 0
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 25
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 25,
+    "modality_status": {
+     "logs": {
+      "natural_absent": 25
+     },
+     "metrics": {
+      "present": 25
+     },
+     "traces": {
+      "natural_absent": 25
+     }
+    },
+    "states": {
+     "ACCEPT": 25
+    },
+    "subset": "RE1",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12.0,
+     "min": 12,
+     "n": 16
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.9375,
+      "n": 16
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 16
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.8125,
+      "n": 16
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 16,
+    "modality_status": {
+     "logs": {
+      "present": 16
+     },
+     "metrics": {
+      "present": 16
+     },
+     "traces": {
+      "present": 16
+     }
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1,
+     "REJECT": 1
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 11,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.88,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.88,
+      "n": 15
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.85,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 0.85,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 13,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 12,
+     "median": 12,
+     "min": 12,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.76,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "socket",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.92,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 15,
+     "median": 15,
+     "min": 15,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "socket",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "natural_absent": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.92,
+      "n": 15
+     }
+    },
+    "fault_family": "cpu",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "disk-io",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "memory",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.6,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.8,
+      "n": 15
+     }
+    },
+    "fault_family": "network-delay",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 15
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.8,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "network-loss",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68,
+     "min": 68,
+     "n": 15
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.4,
+      "n": 15
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 15
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 15
+     }
+    },
+    "fault_family": "socket",
+    "incidents": 15,
+    "modality_status": {
+     "logs": {
+      "present": 15
+     },
+     "metrics": {
+      "present": 15
+     },
+     "traces": {
+      "present": 15
+     }
+    },
+    "states": {
+     "ACCEPT": 14,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE2",
+    "system": "train-ticket"
+   },
+   {
+    "candidates": {
+     "max": 25,
+     "median": 12.0,
+     "min": 12,
+     "n": 30
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 30
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 30
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 30
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 30,
+    "modality_status": {
+     "logs": {
+      "present": 30
+     },
+     "metrics": {
+      "present": 30
+     },
+     "traces": {
+      "present": 30
+     }
+    },
+    "states": {
+     "ACCEPT": 28,
+     "ACCEPT_WITH_WARNINGS": 2
+    },
+    "subset": "RE3",
+    "system": "online-boutique"
+   },
+   {
+    "candidates": {
+     "max": 23,
+     "median": 15.0,
+     "min": 15,
+     "n": 30
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.96,
+      "median": 0.96,
+      "min": 0.96,
+      "n": 30
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 30
+     },
+     "traces": {
+      "n": 0
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 30,
+    "modality_status": {
+     "logs": {
+      "present": 30
+     },
+     "metrics": {
+      "present": 30
+     },
+     "traces": {
+      "empty": 13,
+      "natural_absent": 17
+     }
+    },
+    "states": {
+     "ACCEPT": 29,
+     "ACCEPT_WITH_WARNINGS": 1
+    },
+    "subset": "RE3",
+    "system": "sock-shop"
+   },
+   {
+    "candidates": {
+     "max": 68,
+     "median": 68.0,
+     "min": 68,
+     "n": 30
+    },
+    "coverage": {
+     "logs": {
+      "max": 0.9677,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 30
+     },
+     "metrics": {
+      "max": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "n": 30
+     },
+     "traces": {
+      "max": 1.0,
+      "median": 0.9677,
+      "min": 0.9677,
+      "n": 30
+     }
+    },
+    "fault_family": "code-defect",
+    "incidents": 30,
+    "modality_status": {
+     "logs": {
+      "present": 30
+     },
+     "metrics": {
+      "present": 30
+     },
+     "traces": {
+      "present": 30
+     }
+    },
+    "states": {
+     "ACCEPT": 16,
+     "ACCEPT_WITH_WARNINGS": 14
+    },
+    "subset": "RE3",
+    "system": "train-ticket"
+   }
+  ]
+ },
+ "leakage": {
+  "nezha": {
+   "artefact_hits": [],
+   "denylist_hits": [],
+   "label_texts_checked": 46,
+   "path_hits": [],
+   "total_hits": 0
+  },
+  "rcaeval": {
+   "artefact_hits": [],
+   "denylist_hits": [],
+   "label_texts_checked": 7,
+   "path_hits": [],
+   "total_hits": 0
+  }
+ },
+ "lineage": {
+  "datasets": {
+   "nezha": {
+    "anchor_differences": [],
+    "canonical": 101,
+    "label_differences": {},
+    "matched_one_to_one": 0,
+    "multiple_registry_rows": [],
+    "not_in_registry": [
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.01ef687107029bf9",
+      "source_incident_id": "nezha:2022-08-23_12_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.01ff15baf214f7eb",
+      "source_incident_id": "nezha:2022-08-23_12_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.02ea4468cee530ad",
+      "source_incident_id": "nezha:2022-08-23_15_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.06036302f88523a1",
+      "source_incident_id": "nezha:2022-08-22_05_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.070825932168ec59",
+      "source_incident_id": "nezha:2023-01-30_12_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.138e1c7983b19f6f",
+      "source_incident_id": "nezha:2023-01-30_13_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.178594ba81f06976",
+      "source_incident_id": "nezha:2023-01-30_11_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.1cda1930ab4446b1",
+      "source_incident_id": "nezha:2023-01-29_15_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.21dd039715b6ab60",
+      "source_incident_id": "nezha:2023-01-30_13_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.29cb4684f33aa8a4",
+      "source_incident_id": "nezha:2023-01-30_12_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.2a119077c03283c6",
+      "source_incident_id": "nezha:2022-08-23_14_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.2c4cd6f5faa94da4",
+      "source_incident_id": "nezha:2022-08-23_13_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.2c7e016b1f7cb2ea",
+      "source_incident_id": "nezha:2022-08-23_12_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.2d023ad1dd363394",
+      "source_incident_id": "nezha:2022-08-22_07_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.2d1959f350503a19",
+      "source_incident_id": "nezha:2022-08-22_04_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.31a26c246a81421b",
+      "source_incident_id": "nezha:2022-08-23_13_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.338f8e59755f0cc5",
+      "source_incident_id": "nezha:2023-01-30_13_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.351217979588fd09",
+      "source_incident_id": "nezha:2023-01-29_10_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.36364d276d2a9b6d",
+      "source_incident_id": "nezha:2022-08-23_12_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.3a6cb961db65566a",
+      "source_incident_id": "nezha:2023-01-30_11_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.3c2f195ce784dc7e",
+      "source_incident_id": "nezha:2022-08-23_15_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.3def52417d38096a",
+      "source_incident_id": "nezha:2022-08-22_07_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.3e5732acc3385c66",
+      "source_incident_id": "nezha:2022-08-22_07_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.3e95b31d148bc282",
+      "source_incident_id": "nezha:2023-01-29_09_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.3ff8abba86c10ad4",
+      "source_incident_id": "nezha:2023-01-30_12_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.40b9173ea757b332",
+      "source_incident_id": "nezha:2022-08-22_06_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.42dbc2a80bca709d",
+      "source_incident_id": "nezha:2022-08-23_13_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.46c68f534362b1ee",
+      "source_incident_id": "nezha:2022-08-22_05_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.4c885499c5a2a4d9",
+      "source_incident_id": "nezha:2023-01-30_12_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.4d9d616d512f0ee2",
+      "source_incident_id": "nezha:2022-08-23_14_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.4e14ac9dfd4e2d5d",
+      "source_incident_id": "nezha:2023-01-30_13_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.4e215cc53dd9af6a",
+      "source_incident_id": "nezha:2022-08-22_06_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.4e445b7f376803c0",
+      "source_incident_id": "nezha:2022-08-23_15_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.549a9286785d779d",
+      "source_incident_id": "nezha:2023-01-29_11_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.5b3f37dd7d5b65f5",
+      "source_incident_id": "nezha:2022-08-23_16_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.5c63d113442c72d4",
+      "source_incident_id": "nezha:2023-01-30_12_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.5d85d24eb7906e16",
+      "source_incident_id": "nezha:2023-01-29_09_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.5f1ff7ab4b7da0bc",
+      "source_incident_id": "nezha:2022-08-23_14_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.60cace52d9b7d385",
+      "source_incident_id": "nezha:2022-08-22_07_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.610c1a3ba2a90916",
+      "source_incident_id": "nezha:2022-08-22_04_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.623ada8b086538ba",
+      "source_incident_id": "nezha:2022-08-23_13_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.6cb7624b76421ce2",
+      "source_incident_id": "nezha:2022-08-22_05_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.6dda1218fadd0723",
+      "source_incident_id": "nezha:2023-01-29_10_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.71318dd1fd64889c",
+      "source_incident_id": "nezha:2022-08-23_16_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.718d3a535d5e4212",
+      "source_incident_id": "nezha:2022-08-23_15_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.73f1ed04c1f62d3e",
+      "source_incident_id": "nezha:2022-08-23_13_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.7a79ae4b0cb7f7ce",
+      "source_incident_id": "nezha:2022-08-23_14_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.7e150a878c67b1fd",
+      "source_incident_id": "nezha:2022-08-23_12_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.7f49175eb92a2cc3",
+      "source_incident_id": "nezha:2022-08-22_07_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.821fa21a2dc01e5e",
+      "source_incident_id": "nezha:2022-08-23_13_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.82425abda167abf6",
+      "source_incident_id": "nezha:2023-01-30_12_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.834a92cd8247ee04",
+      "source_incident_id": "nezha:2023-01-29_09_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.8611a6ba76a3b506",
+      "source_incident_id": "nezha:2023-01-29_09_7"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.88826a4b4fd5d2cb",
+      "source_incident_id": "nezha:2022-08-23_15_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.889e5edec178ca35",
+      "source_incident_id": "nezha:2022-08-22_05_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.8b19301d168a4cdb",
+      "source_incident_id": "nezha:2022-08-22_05_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.8c53c17844817d62",
+      "source_incident_id": "nezha:2023-01-29_10_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.8f208d43f7121343",
+      "source_incident_id": "nezha:2022-08-22_04_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.8fb32697600e42de",
+      "source_incident_id": "nezha:2022-08-23_14_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.90769eeda1b68b2f",
+      "source_incident_id": "nezha:2023-01-29_08_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.9213d927abff4711",
+      "source_incident_id": "nezha:2023-01-29_09_8"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.92ac5c1350027f18",
+      "source_incident_id": "nezha:2023-01-30_13_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.92b79d18c6ef21fb",
+      "source_incident_id": "nezha:2022-08-23_15_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.9338bda4b87d7e55",
+      "source_incident_id": "nezha:2023-01-29_09_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.936b0991c0be6270",
+      "source_incident_id": "nezha:2022-08-22_07_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.9c8811c558930da3",
+      "source_incident_id": "nezha:2022-08-22_06_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.9eefac055d39c5d5",
+      "source_incident_id": "nezha:2022-08-23_13_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.9f50e20d34018cdb",
+      "source_incident_id": "nezha:2022-08-23_16_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.a25c085c6275e31b",
+      "source_incident_id": "nezha:2023-01-30_14_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.a5f0c18e29a93308",
+      "source_incident_id": "nezha:2022-08-22_03_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.a5f22251e1105a4c",
+      "source_incident_id": "nezha:2022-08-23_12_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.a7a650653843d7fa",
+      "source_incident_id": "nezha:2023-01-29_09_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.a7a8f125f75b2201",
+      "source_incident_id": "nezha:2022-08-22_05_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.aa7f674c7383127b",
+      "source_incident_id": "nezha:2022-08-23_16_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.aac80fc22f46b50a",
+      "source_incident_id": "nezha:2022-08-23_16_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.b1440065abe4bc40",
+      "source_incident_id": "nezha:2023-01-29_08_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.b25b7b499a28a206",
+      "source_incident_id": "nezha:2022-08-23_15_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.bc8d97560f283241",
+      "source_incident_id": "nezha:2023-01-29_10_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.be777b10b4eccc1a",
+      "source_incident_id": "nezha:2022-08-22_04_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.bf3b72ccc500d4df",
+      "source_incident_id": "nezha:2023-01-29_09_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.bf9f6d7ff6206941",
+      "source_incident_id": "nezha:2022-08-23_12_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.c0e28200423beedb",
+      "source_incident_id": "nezha:2022-08-22_05_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.c27d764df72044f9",
+      "source_incident_id": "nezha:2023-01-29_08_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.c3c42d60e23c044e",
+      "source_incident_id": "nezha:2023-01-29_10_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.c515ce47d58d5b39",
+      "source_incident_id": "nezha:2022-08-23_14_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.ca32bd663d2b94f9",
+      "source_incident_id": "nezha:2023-01-29_14_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.cd6f62177706ddb3",
+      "source_incident_id": "nezha:2023-01-29_13_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.cfb2669748be3745",
+      "source_incident_id": "nezha:2023-01-30_12_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.d185cef614b61043",
+      "source_incident_id": "nezha:2023-01-30_14_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.d79f42110f7198bf",
+      "source_incident_id": "nezha:2022-08-22_04_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.de54274500893986",
+      "source_incident_id": "nezha:2023-01-29_10_5"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.e82a531a6d88f503",
+      "source_incident_id": "nezha:2023-01-29_11_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.e8796973cf7cba82",
+      "source_incident_id": "nezha:2023-01-29_09_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.eebcca0bab501bb8",
+      "source_incident_id": "nezha:2023-01-29_11_0"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.ef3d2218495fbb85",
+      "source_incident_id": "nezha:2022-08-22_04_6"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.f16aa48de870626e",
+      "source_incident_id": "nezha:2023-01-29_14_1"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.f3592e014df6f497",
+      "source_incident_id": "nezha:2023-01-29_10_4"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.f563ff061fde145c",
+      "source_incident_id": "nezha:2023-01-29_11_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.f91a561e14b013ed",
+      "source_incident_id": "nezha:2023-01-30_13_2"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.fe992e09d445659f",
+      "source_incident_id": "nezha:2023-01-29_11_3"
+     },
+     {
+      "explanation": "unexplained",
+      "incident_uid": "nezha.ff142f589511ccb5",
+      "source_incident_id": "nezha:2022-08-22_04_4"
+     }
+    ],
+    "registry_only": [
+     "nezha:2022-08-22:03:0",
+     "nezha:2022-08-22:04:0",
+     "nezha:2022-08-22:04:1",
+     "nezha:2022-08-22:04:2",
+     "nezha:2022-08-22:04:3",
+     "nezha:2022-08-22:04:4",
+     "nezha:2022-08-22:04:5",
+     "nezha:2022-08-22:04:6",
+     "nezha:2022-08-22:05:0",
+     "nezha:2022-08-22:05:1",
+     "nezha:2022-08-22:05:2",
+     "nezha:2022-08-22:05:3",
+     "nezha:2022-08-22:05:4",
+     "nezha:2022-08-22:05:5",
+     "nezha:2022-08-22:05:6",
+     "nezha:2022-08-22:06:0",
+     "nezha:2022-08-22:06:1",
+     "nezha:2022-08-22:06:2",
+     "nezha:2022-08-22:07:0",
+     "nezha:2022-08-22:07:1",
+     "nezha:2022-08-22:07:2",
+     "nezha:2022-08-22:07:3",
+     "nezha:2022-08-22:07:4",
+     "nezha:2022-08-22:07:5",
+     "nezha:2022-08-23:12:0",
+     "nezha:2022-08-23:12:1",
+     "nezha:2022-08-23:12:2",
+     "nezha:2022-08-23:12:3",
+     "nezha:2022-08-23:12:4",
+     "nezha:2022-08-23:12:5",
+     "nezha:2022-08-23:12:6",
+     "nezha:2022-08-23:13:0",
+     "nezha:2022-08-23:13:1",
+     "nezha:2022-08-23:13:2",
+     "nezha:2022-08-23:13:3",
+     "nezha:2022-08-23:13:4",
+     "nezha:2022-08-23:13:5",
+     "nezha:2022-08-23:13:6",
+     "nezha:2022-08-23:14:0",
+     "nezha:2022-08-23:14:1",
+     "nezha:2022-08-23:14:2",
+     "nezha:2022-08-23:14:3",
+     "nezha:2022-08-23:14:4",
+     "nezha:2022-08-23:14:5",
+     "nezha:2022-08-23:15:0",
+     "nezha:2022-08-23:15:1",
+     "nezha:2022-08-23:15:2",
+     "nezha:2022-08-23:15:3",
+     "nezha:2022-08-23:15:4",
+     "nezha:2022-08-23:15:5"
+    ],
+    "registry_only_count": 101,
+    "registry_rows": 101,
+    "unexplained": 202
+   },
+   "rcaeval": {
+    "anchor_differences": [],
+    "canonical": 736,
+    "label_differences": {
+     "registry splits the batch cell at its last underscore (root and fault shifted)": 3
+    },
+    "matched_one_to_one": 735,
+    "multiple_registry_rows": [],
+    "not_in_registry": [
+     {
+      "explanation": "duplicate of a registered incident",
+      "incident_uid": "rcaeval.24e078fc27784c41",
+      "source_incident_id": "rcaeval:re2ob_checkoutservice_cpu_multi-source-data"
+     }
+    ],
+    "registry_only": [],
+    "registry_only_count": 0,
+    "registry_rows": 735,
+    "unexplained": 0
+   }
+  },
+  "lineage_report_groups": {
+   "L1": 735,
+   "L10": 68,
+   "L2+L3": 503,
+   "L4": 101,
+   "L5": 159,
+   "L9": 754
+  },
+  "unexplained": 202
+ },
+ "splits": {
+  "eval-only-nezha-0-38cde4e0": [],
+  "eval-only-rcaeval-0-87d5bcc3": [],
+  "loso-rcaeval-online-boutique-0-17c12b9c": [],
+  "loso-rcaeval-sock-shop-0-1cf7f474": [],
+  "loso-rcaeval-train-ticket-0-066d5f53": [],
+  "within-rcaeval-grouped-0-e9b2c81c": [],
+  "within-rcaeval-retrieval-0-45ef97c3": []
+ },
+ "summary": {
+  "cross_dataset_overlaps": 0,
+  "incidents": 837,
+  "leakage_hits": 0,
+  "lineage_unexplained": 202,
+  "split_errors": 0,
+  "unexplained_duplicates": 0
+ }
+}

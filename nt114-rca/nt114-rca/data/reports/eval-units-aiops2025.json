@@ -1,0 +1,6836 @@
+{
+ "build_id": "aiops2025-40efa9b2d22f",
+ "counts": {
+  "accepted_records": 400,
+  "coverage_causes": {
+   "logs": {
+    "covered": 379,
+    "export_truncated": 5,
+    "natural_absent": 16
+   },
+   "traces": {
+    "covered": 357,
+    "empty": 5,
+    "export_truncated": 4,
+    "natural_absent": 34
+   }
+  },
+  "excluded_from_primary": 0,
+  "independent_injections": 400,
+  "multi_record_injections": 0,
+  "primary_injections": 400,
+  "primary_records": 400
+ },
+ "dataset_digest": "1bb0da61d69f9c38aefd8b505ded97b8c274a9f21b74ea8dafda7e52a6f62aad",
+ "dataset_id": "aiops2025",
+ "rules": {
+  "min_after_s": 30,
+  "segment_gap_s": 60.0,
+  "window_s": [
+   600,
+   300
+  ]
+ },
+ "units": {
+  "aiops2025.002636bb728a833c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.579,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.577,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.002636bb728a833c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.015ed1bd9581f863": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.994,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.989,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.015ed1bd9581f863",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.01bd51b08b407b45": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.683,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.669,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.01bd51b08b407b45",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.024e6cdc260322c7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.897,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.891,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.024e6cdc260322c7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.03b5672351209d9b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.884,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.892,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.03b5672351209d9b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.043e36360ab8a869": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.996,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.043e36360ab8a869",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.04902318448bc595": {
+   "coverage": {
+    "logs": {
+     "after_s": 285.15,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 285.154,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.04902318448bc595",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.04ad6e5c9dba28d6": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.04ad6e5c9dba28d6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.04f15a01299469b3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.892,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.875,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.04f15a01299469b3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.055ff8ca86ab7f38": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.732,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.731,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.055ff8ca86ab7f38",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.05bbee30771949ff": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.05bbee30771949ff",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.067e7c94448610c0": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.977,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.067e7c94448610c0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.074dbef79476861f": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.074dbef79476861f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.07d2d4a59de7ea08": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.86,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.861,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.07d2d4a59de7ea08",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.08e786eb4e2050c9": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.938,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.931,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.08e786eb4e2050c9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.09dadd5e2b3f0c68": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.994,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.995,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.09dadd5e2b3f0c68",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0aa04f533df73221": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.997,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.991,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0aa04f533df73221",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0aaa9a44bcbfec83": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.587,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.583,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0aaa9a44bcbfec83",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0d1dbec5fb1c426e": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    },
+    "traces": {
+     "after_s": 116.537,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0d1dbec5fb1c426e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0e4580f3a15a97d7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.691,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.7,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0e4580f3a15a97d7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0e94aeea9e896ff5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.96,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.946,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0e94aeea9e896ff5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0ebaa1a93db9f7fe": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.937,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.918,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0ebaa1a93db9f7fe",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0ecd5577c92970cf": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0ecd5577c92970cf",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.0f148eccf8cd829a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.944,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.0f148eccf8cd829a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1210d9f685ce4cec": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.88,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.78,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1210d9f685ce4cec",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.125ad859e8d2c133": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.961,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.956,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.125ad859e8d2c133",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.13085bb5149bd418": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.52,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.51,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.13085bb5149bd418",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.13dcdbfe1078790e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.929,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.926,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.13dcdbfe1078790e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.14363423ece59038": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.962,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.14363423ece59038",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.14cbb443820d786c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.972,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.813,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.14cbb443820d786c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.14f1b1a5c9783f18": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.984,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.14f1b1a5c9783f18",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1538f32c07e6b341": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "empty"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1538f32c07e6b341",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.157cce162c476a7b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.869,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.864,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.157cce162c476a7b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.165293885616aed5": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.165293885616aed5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.16951949b99499aa": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.971,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.994,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.16951949b99499aa",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.16bd7ba7927e5304": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.458,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.454,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.16bd7ba7927e5304",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.16d96ff040af04d8": {
+   "coverage": {
+    "logs": {
+     "after_s": 297.616,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 297.616,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.16d96ff040af04d8",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.174b1c264bae7df3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.61,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.61,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.174b1c264bae7df3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.176f5a3933c1a522": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.986,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.978,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.176f5a3933c1a522",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.17c43414cc0f5da4": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.829,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.17c43414cc0f5da4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.186c31205e8eb473": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.934,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.924,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.186c31205e8eb473",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.186d0195109cf5f9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.917,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "empty"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.186d0195109cf5f9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.18a1e22f16bd694c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.095,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.09,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.18a1e22f16bd694c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1a16c2a0f0ea928f": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.028,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 293.383,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1a16c2a0f0ea928f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1a1d1f137fb99b9a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.701,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.7,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1a1d1f137fb99b9a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1bb619d1a50ca0d5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.906,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.892,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1bb619d1a50ca0d5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1d0644fa6c55adfb": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.909,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.904,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1d0644fa6c55adfb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1e24886b414d96bf": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.836,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.832,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1e24886b414d96bf",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1f2c10eac3e58816": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1f2c10eac3e58816",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.1f9c2708e806dd1e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.879,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.1f9c2708e806dd1e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.202517fc00d67b32": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.997,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.202517fc00d67b32",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2031484d817345a4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.93,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2031484d817345a4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.20e8f33fd6e63014": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.305,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.301,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.20e8f33fd6e63014",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.20e9fc6cd2633a64": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.647,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.64,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.20e9fc6cd2633a64",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2105ba18dc213312": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.758,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.752,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2105ba18dc213312",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.215144dbb4f6b671": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.919,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.98,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.215144dbb4f6b671",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.215eb7faee4c10ce": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.98,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.98,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.215eb7faee4c10ce",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2174d15cf1716075": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2174d15cf1716075",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.21e7b838977f2639": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.778,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.78,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.21e7b838977f2639",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2218348606e81c7c": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2218348606e81c7c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.228d041dbf3fb045": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.798,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.791,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.228d041dbf3fb045",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.22c328529df86346": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.294,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.276,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.22c328529df86346",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.24bf4266a09a86c7": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.22,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.222,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.24bf4266a09a86c7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2654bc5b63bcd724": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2654bc5b63bcd724",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.265cfbcd5e98addf": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.994,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.265cfbcd5e98addf",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.26806540b78fcad2": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.995,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.989,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.26806540b78fcad2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.26e4528fe767c804": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.428,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.424,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.26e4528fe767c804",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.27d361a69ceeadf2": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.996,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.27d361a69ceeadf2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.27edf57b042e01d6": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.997,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.27edf57b042e01d6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2894f08bfe280f26": {
+   "coverage": {
+    "logs": {
+     "after_s": 297.824,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 297.824,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2894f08bfe280f26",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.28ec862f7f4e5892": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.914,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.969,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.28ec862f7f4e5892",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.298e23b7ef86dfd4": {
+   "coverage": {
+    "logs": {
+     "after_s": 282.116,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 282.119,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.298e23b7ef86dfd4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2a4c7b85ee6f43e4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.664,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.664,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2a4c7b85ee6f43e4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2b43fff1a0956ead": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.992,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2b43fff1a0956ead",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2b74401c1d23aa22": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.775,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.775,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2b74401c1d23aa22",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2bb04169c2a7913a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.907,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 105.001,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2bb04169c2a7913a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2c144a90a9be442f": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.941,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.934,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2c144a90a9be442f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2cd99207c68f8fa4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.978,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.965,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2cd99207c68f8fa4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2d41111f91628295": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.934,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.926,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2d41111f91628295",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2dc1891d84515208": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.974,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.992,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2dc1891d84515208",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2f0710425d7bdf1a": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2f0710425d7bdf1a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.2fb83e84fbdcf07d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.914,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.909,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.2fb83e84fbdcf07d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.305d058aa2d917f3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.975,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.992,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.305d058aa2d917f3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.317c4eaebbb82105": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.23,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.226,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.317c4eaebbb82105",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.31bff1922e9de107": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.31bff1922e9de107",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.33848de692127f0c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.631,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.625,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.33848de692127f0c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.33e06187c2b18556": {
+   "coverage": {
+    "logs": {
+     "after_s": 296.52,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 296.522,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.33e06187c2b18556",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.33eb3b531288c2d2": {
+   "coverage": {
+    "logs": {
+     "after_s": 293.775,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.33eb3b531288c2d2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.343c67c63a75f913": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.732,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.724,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.343c67c63a75f913",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.35d7f5e55fb74128": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.35d7f5e55fb74128",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.389a33e1c1396924": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.827,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.813,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.389a33e1c1396924",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3a0abbc9eeccfad2": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.907,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.896,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3a0abbc9eeccfad2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3acdee3f0957421a": {
+   "coverage": {
+    "logs": {
+     "after_s": 296.172,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 296.174,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3acdee3f0957421a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3b5651f74a18dd11": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.894,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.892,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3b5651f74a18dd11",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3b9e65d832e3094b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.991,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.991,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3b9e65d832e3094b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3c3368e327ade013": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.699,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.691,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3c3368e327ade013",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3c9020ff02190b70": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.809,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.803,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3c9020ff02190b70",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3d0b9c77a2e8cf41": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.945,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.945,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3d0b9c77a2e8cf41",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3d26b83eb23d062b": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3d26b83eb23d062b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3d3f298c972fc5da": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.015,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.008,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3d3f298c972fc5da",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3dddc8a5c6962e68": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.121,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3dddc8a5c6962e68",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3ec13908dc350104": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.686,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.744,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3ec13908dc350104",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.3fab8cc1243460a9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.966,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.3fab8cc1243460a9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.41d384fe4b609162": {
+   "coverage": {
+    "logs": {
+     "after_s": 285.672,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 285.673,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.41d384fe4b609162",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.42fce8c2a9816745": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.73,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.723,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.42fce8c2a9816745",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.44b4bb200ebbabfa": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.785,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.777,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.44b4bb200ebbabfa",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.46dd1aae3d73dcca": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.948,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.941,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.46dd1aae3d73dcca",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.476e5070bd78bc0f": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.806,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.8,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.476e5070bd78bc0f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4891a98d3d0e2ced": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.834,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.829,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4891a98d3d0e2ced",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.49783d01615f4037": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.944,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.943,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.49783d01615f4037",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.49eb519d8a8d917b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.798,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.8,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.49eb519d8a8d917b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4a52f80920e153e6": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "empty"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4a52f80920e153e6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4c30d058a4f3ad5d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.801,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4c30d058a4f3ad5d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4c5fa89b3dfc8cde": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.916,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4c5fa89b3dfc8cde",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4d6b32a76996c140": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.642,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.636,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4d6b32a76996c140",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4d86e8787e85c6df": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.917,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.908,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4d86e8787e85c6df",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4e1f032ac9d11c14": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.971,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4e1f032ac9d11c14",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4f54e29d1e0293d6": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.864,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.86,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4f54e29d1e0293d6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4f67a0a47a63bc09": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.956,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.956,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4f67a0a47a63bc09",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.4fa1327163d229ed": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.938,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.931,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.4fa1327163d229ed",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5062932e7e3dda04": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.898,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5062932e7e3dda04",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.50e296858f8271de": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.901,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.899,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.50e296858f8271de",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.538f734103fb78cd": {
+   "coverage": {
+    "logs": {
+     "after_s": 276.645,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 276.648,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.538f734103fb78cd",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.54f10c64048ae57b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.892,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.874,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.54f10c64048ae57b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.553a19cbb18e1cd1": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.708,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.696,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.553a19cbb18e1cd1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.55b0f04e62966eb8": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.994,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.55b0f04e62966eb8",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.55b2d01e1343a516": {
+   "coverage": {
+    "logs": {
+     "after_s": 297.029,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 296.848,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.55b2d01e1343a516",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5676311afea543d1": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.966,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.963,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5676311afea543d1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.56ab9369de3a7232": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.45,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.446,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.56ab9369de3a7232",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.56e62c0f866aab7d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.806,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.802,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.56e62c0f866aab7d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.574fb2431a14c432": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.228,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.223,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.574fb2431a14c432",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.57947529049c331c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.702,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.697,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.57947529049c331c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.57f773453629fe11": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.77,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.765,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.57f773453629fe11",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5981dbe7052276e2": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5981dbe7052276e2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.59adbec6a3619058": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.59adbec6a3619058",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5b3161ba89ea5f08": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.992,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5b3161ba89ea5f08",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5bc6f4b023e2dbf7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.982,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.984,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5bc6f4b023e2dbf7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5bf282dde7fcd6b7": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.495,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 296.609,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5bf282dde7fcd6b7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5c2cddcc8d9f7396": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.93,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.925,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5c2cddcc8d9f7396",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5d166be0cd2133bc": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.929,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.925,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5d166be0cd2133bc",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5d2ad49ee6cbee3d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.974,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.958,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5d2ad49ee6cbee3d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5db85ee27b09eb86": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5db85ee27b09eb86",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5e0fe125f19d5d37": {
+   "coverage": {
+    "logs": {
+     "after_s": 292.033,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 292.039,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5e0fe125f19d5d37",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5e69f087940eaeae": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.244,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.238,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5e69f087940eaeae",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5edba2cbb782e8da": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.969,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.965,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5edba2cbb782e8da",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5f0a1ec199a49ada": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.836,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.83,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5f0a1ec199a49ada",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5f5a6a6b37023517": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.76,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.751,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5f5a6a6b37023517",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.5fec51747686396d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.992,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 31.231,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.5fec51747686396d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.600dc6e5d1af8533": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.812,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.799,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.600dc6e5d1af8533",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.60b744151a2f3694": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.943,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.94,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.60b744151a2f3694",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.60cecb942818fe3e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.861,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.856,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.60cecb942818fe3e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.623d5e8663980073": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.894,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.89,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.623d5e8663980073",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.630b0de7fb24dbc8": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.987,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.630b0de7fb24dbc8",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6340ead02db3c208": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.964,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.994,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6340ead02db3c208",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.64dfb0df195bfc21": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.64dfb0df195bfc21",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6771287e683b9e51": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.991,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.991,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6771287e683b9e51",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6825629f6f1b6494": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6825629f6f1b6494",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.69196f91f092b798": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.662,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.655,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.69196f91f092b798",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.699834d85206b623": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.965,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.699834d85206b623",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6a753da33ab0fc71": {
+   "coverage": {
+    "logs": {
+     "after_s": 295.108,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 295.11,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6a753da33ab0fc71",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6ac181c79db25078": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.977,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.993,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6ac181c79db25078",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6ad2dcd0197e7f43": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.501,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.493,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6ad2dcd0197e7f43",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6ad357f9080eba41": {
+   "coverage": {
+    "logs": {
+     "after_s": 288.004,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 288.005,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6ad357f9080eba41",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6b0875b33e027649": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.586,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.585,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6b0875b33e027649",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6e0a715d48cf71be": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.942,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.936,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6e0a715d48cf71be",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6e1379fdea0b3f8c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.984,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6e1379fdea0b3f8c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6e16be00a473d8f7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.632,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.631,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6e16be00a473d8f7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6ea43b210018f416": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.323,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6ea43b210018f416",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6f009d02f26e665e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.895,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.892,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6f009d02f26e665e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6f98d4e1fce1eed1": {
+   "coverage": {
+    "logs": {
+     "after_s": 275.035,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 275.035,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6f98d4e1fce1eed1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.6fff36f36616749b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.977,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.543,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.6fff36f36616749b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.70436b0a2ca1d05b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.995,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.70436b0a2ca1d05b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.713dbf1ea4270a30": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.145,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.127,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.713dbf1ea4270a30",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.71699e2334756393": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.929,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.918,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.71699e2334756393",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7176093a8a75012a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.679,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7176093a8a75012a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.71d34857b54b1089": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.71d34857b54b1089",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.72dcb9c5ecd7e3a9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.002,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.993,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.72dcb9c5ecd7e3a9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7325ee704591faf5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.819,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.813,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7325ee704591faf5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.73a517ae727a5a75": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.99,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.984,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.73a517ae727a5a75",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.763736573c701ed4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.994,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "empty"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.763736573c701ed4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.772529ccefddf924": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.995,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.772529ccefddf924",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.78e9f348e092b9d0": {
+   "coverage": {
+    "logs": {
+     "after_s": 288.036,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 288.041,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.78e9f348e092b9d0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7a7f522bf6f05a66": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7a7f522bf6f05a66",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7bf4eecd357548fc": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.879,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.879,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7bf4eecd357548fc",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7c16909b2a7a3c8e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.54,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.536,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7c16909b2a7a3c8e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7c386693765ca493": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.877,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7c386693765ca493",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7d27c8c74daaa0e3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.83,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.826,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7d27c8c74daaa0e3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7f3c483ce1f29232": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.305,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 293.227,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7f3c483ce1f29232",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7f6a692749451fad": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.803,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 296.299,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7f6a692749451fad",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.7fcd3d8e9446c1ac": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.96,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.7fcd3d8e9446c1ac",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.80a1fe7b1f7c4a88": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.174,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.168,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.80a1fe7b1f7c4a88",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.80e2c206ca810e21": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.907,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.911,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.80e2c206ca810e21",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.80ee81e6a3f09db4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.882,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.875,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.80ee81e6a3f09db4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.817abccfd23bd992": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.199,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.2,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.817abccfd23bd992",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.81f3ddec45a3c7f2": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.982,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.976,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.81f3ddec45a3c7f2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.83bf248965e0aa31": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.928,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.83bf248965e0aa31",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.83e4dc7d5d0e0df2": {
+   "coverage": {
+    "logs": {
+     "after_s": 281.034,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 281.049,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.83e4dc7d5d0e0df2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.842aa2fc2e2620ad": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.676,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.842aa2fc2e2620ad",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.84666bffbd9a3868": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.973,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.84666bffbd9a3868",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.84b6cba82d6fbd8b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.985,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.84b6cba82d6fbd8b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.85b830185dca45c4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.953,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.942,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.85b830185dca45c4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.86d6b23d33014223": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.579,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.579,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.86d6b23d33014223",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.86f7c40dea4d05e4": {
+   "coverage": {
+    "logs": {
+     "after_s": 275.942,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 275.944,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.86f7c40dea4d05e4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.86f9c486ee0b2a4a": {
+   "coverage": {
+    "logs": {
+     "after_s": 278.473,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 278.477,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.86f9c486ee0b2a4a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.86fc75a0d7ae0ae4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.524,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.521,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.86fc75a0d7ae0ae4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.87251a5f36be50cc": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.722,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.715,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.87251a5f36be50cc",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.874896ded2803058": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.992,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.995,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.874896ded2803058",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.878bf5920745af73": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.995,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.989,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.878bf5920745af73",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.885a80d3488cbb8a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.458,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "empty"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.885a80d3488cbb8a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.88815adb215fa7c0": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.932,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.92,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.88815adb215fa7c0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.889f1411d034b840": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.978,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.971,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.889f1411d034b840",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.88a883fe78ae7ef4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.962,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.88a883fe78ae7ef4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.88b9c318c45f293b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.888,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.896,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.88b9c318c45f293b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.88be8d61b3829687": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.613,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.613,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.88be8d61b3829687",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.88c2027f53365f9e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.991,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.88c2027f53365f9e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8911da86f9f9b963": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.625,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.608,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8911da86f9f9b963",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8a84d4e76a8b68d7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.193,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8a84d4e76a8b68d7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8aabb7ce6a31ea94": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.324,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.318,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8aabb7ce6a31ea94",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8c2c37414fb8ca26": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8c2c37414fb8ca26",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8d136a6c45a7954e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.97,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8d136a6c45a7954e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8eb0160e4c0867ab": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.758,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.755,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8eb0160e4c0867ab",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8ec0717b8a5a0b89": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.019,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 296.469,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8ec0717b8a5a0b89",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8eca99a46eb5fb2e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.85,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.829,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8eca99a46eb5fb2e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8f268d048140a20e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.992,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.995,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8f268d048140a20e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.8fce10c30c35db3b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.74,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.707,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.8fce10c30c35db3b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.90f29535dc733a2a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.299,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.296,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.90f29535dc733a2a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.911919977b9b11c2": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.217,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.911919977b9b11c2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.919c112314e72e75": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.388,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.375,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.919c112314e72e75",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.91adb60e4a2d3dcb": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.779,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.773,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.91adb60e4a2d3dcb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.91e57b66bd14a623": {
+   "coverage": {
+    "logs": {
+     "after_s": 297.914,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 297.913,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.91e57b66bd14a623",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.92165b5016e195c5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.981,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.92165b5016e195c5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.926a42120ee18cbb": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.926a42120ee18cbb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.928705cc08b39015": {
+   "coverage": {
+    "logs": {
+     "after_s": 297.48,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 297.477,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.928705cc08b39015",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.93273e7811116d3c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.975,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.995,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.93273e7811116d3c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.9383538146539578": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.849,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.842,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.9383538146539578",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.93dced598908c416": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.93dced598908c416",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.95937bac658ef9c8": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.711,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.698,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.95937bac658ef9c8",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.96e0060321441074": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.582,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.574,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.96e0060321441074",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.99d1cbe0e6fe84e0": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.987,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.99d1cbe0e6fe84e0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.9a6a359262b81d58": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.895,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.911,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.9a6a359262b81d58",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.9b05b11437af620e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.863,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.857,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.9b05b11437af620e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.9c58b3516f1ababa": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.903,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.879,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.9c58b3516f1ababa",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.9dbfc92ad18e2cda": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.9dbfc92ad18e2cda",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.9e472b12bed114c3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.895,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.889,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.9e472b12bed114c3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.9f217a908be72113": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.918,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.917,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.9f217a908be72113",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a125cb7537fd0cde": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.595,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.588,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a125cb7537fd0cde",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a15ff795de8e1876": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.912,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.993,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a15ff795de8e1876",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a2f75ece3ec53465": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.13,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.115,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a2f75ece3ec53465",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a4d594c7cc6b196a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.007,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.008,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a4d594c7cc6b196a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a4e4befb6c2d4a7a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.954,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.942,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a4e4befb6c2d4a7a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a7ce45a6d3e1a4a7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.871,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.865,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a7ce45a6d3e1a4a7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a8a7854501ff4edd": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.992,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a8a7854501ff4edd",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a970e1bd104bac94": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.953,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.94,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a970e1bd104bac94",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a9725ecfe5cf94df": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a9725ecfe5cf94df",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a99bab79729d54b4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a99bab79729d54b4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a99fb56d58d8a44c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.976,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.977,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a99fb56d58d8a44c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a9c7986dc8e9824f": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a9c7986dc8e9824f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.a9fe4bf935d3dc42": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.a9fe4bf935d3dc42",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ac362817546233c7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.964,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.959,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ac362817546233c7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ac9de1db4f73ae71": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.688,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.683,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ac9de1db4f73ae71",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.adb0b0afaa08bfb4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.512,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.507,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.adb0b0afaa08bfb4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ade7b2b114c6d3d7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.985,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.985,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ade7b2b114c6d3d7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ae8f230008b248be": {
+   "coverage": {
+    "logs": {
+     "after_s": 295.299,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 295.297,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ae8f230008b248be",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b07d73c3a6b1e29e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.812,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.87,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b07d73c3a6b1e29e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b11278aa661a5a67": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.995,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.994,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b11278aa661a5a67",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b1767bfc00e1be8e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.412,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.4,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b1767bfc00e1be8e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b2d0357f4f093af9": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.749,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.713,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b2d0357f4f093af9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b337a80358b36fe7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.726,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.715,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b337a80358b36fe7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b41bb4be8051cbf4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.965,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.959,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b41bb4be8051cbf4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b51466558bfac8ce": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.918,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.913,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b51466558bfac8ce",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b561beb3313c76c7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.526,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.518,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b561beb3313c76c7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b5b48d431c932df1": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b5b48d431c932df1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b62091035b599a92": {
+   "coverage": {
+    "logs": {
+     "after_s": 277.478,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 277.482,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b62091035b599a92",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b666762340a52bbe": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.375,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.385,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b666762340a52bbe",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b6e78597d4084272": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.997,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b6e78597d4084272",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b76999c5a45b4b01": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.908,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.992,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b76999c5a45b4b01",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b80cc38859475762": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.844,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.838,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b80cc38859475762",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b9301a228e85fc53": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.808,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.803,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b9301a228e85fc53",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.b95ed93c02778afa": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.992,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.b95ed93c02778afa",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ba41dcf692358b46": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.956,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.944,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ba41dcf692358b46",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.bc015f1df30c3157": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.893,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.891,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.bc015f1df30c3157",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.be025d75b1150369": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.628,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.624,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.be025d75b1150369",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.be0804094e217e41": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.363,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.566,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.be0804094e217e41",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.be6fd425fda01f1a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.94,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.94,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.be6fd425fda01f1a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.bef1b8f8489aa6e8": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.992,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.bef1b8f8489aa6e8",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.bf4b7d27ba191c0e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.978,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.994,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.bf4b7d27ba191c0e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c168d2587ef0ce48": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.996,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.99,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c168d2587ef0ce48",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c172990f5736ab69": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.418,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c172990f5736ab69",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c1bbfcc1a68565e1": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.853,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.845,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c1bbfcc1a68565e1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c2890ceceeebdcd9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.115,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.116,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c2890ceceeebdcd9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c2d116b19b12e323": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.836,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.823,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c2d116b19b12e323",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c30d057f5d894a91": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.693,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.681,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c30d057f5d894a91",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c36760a099a22b37": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.803,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.8,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c36760a099a22b37",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c5464e8ca092113b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.634,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.627,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c5464e8ca092113b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c59f5d520815fb20": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.954,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.99,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c59f5d520815fb20",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c8d5dbe5f7f4f0d9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.996,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c8d5dbe5f7f4f0d9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c90fa59543f3c413": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.157,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.153,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c90fa59543f3c413",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.c99dc6e195088672": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.961,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.c99dc6e195088672",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.cccc0c23d9bea8d7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.389,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.384,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.cccc0c23d9bea8d7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ccece718db2ec657": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.886,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.877,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ccece718db2ec657",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.cd132f6e63641860": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.709,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.703,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.cd132f6e63641860",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.cd9fef3645468a0e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.862,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.cd9fef3645468a0e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.cdab2f90d309aedf": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.963,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.957,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.cdab2f90d309aedf",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.cdd85a28ef24ee77": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.954,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.958,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.cdd85a28ef24ee77",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ce1e185d077ec3ea": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.948,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.961,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ce1e185d077ec3ea",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.cfeb092acb6a3d15": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.264,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.265,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.cfeb092acb6a3d15",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.cff1c52ab86255a7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.745,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.74,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.cff1c52ab86255a7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d083c72c274a4bac": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.538,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.533,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d083c72c274a4bac",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d138bf5835eaffcd": {
+   "coverage": {
+    "logs": {
+     "after_s": 297.095,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 297.098,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d138bf5835eaffcd",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d2845bdf9220a9a9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.39,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.383,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d2845bdf9220a9a9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d2c3725fb4204205": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.991,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d2c3725fb4204205",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d3f9ded5fafd6dae": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.915,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.9,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d3f9ded5fafd6dae",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d4758894c262f4a5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.775,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.77,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d4758894c262f4a5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d4800c2bb0b7b6f0": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.587,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.582,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d4800c2bb0b7b6f0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d481b65bb908f4fb": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.445,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.439,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d481b65bb908f4fb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d4c7d53c5176807c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.684,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.678,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d4c7d53c5176807c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d5217232505d17b5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.992,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.993,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d5217232505d17b5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d57fb478e57ce149": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.149,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.328,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d57fb478e57ce149",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d5ada074d7ef52ee": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.747,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.729,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d5ada074d7ef52ee",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d65ca2386705f30b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.983,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.967,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d65ca2386705f30b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d75a77389ddd36a3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.85,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.844,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d75a77389ddd36a3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d7b0c6d7f50a121d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.688,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.682,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d7b0c6d7f50a121d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d7e7e2eb121e2bb0": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.79,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.785,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d7e7e2eb121e2bb0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d7ff2fbea9dea9d6": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.01,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.009,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d7ff2fbea9dea9d6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d953c265cb0c8016": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d953c265cb0c8016",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.d96b40727081130b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.872,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.872,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.d96b40727081130b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.da1e5f74116095f4": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.728,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.da1e5f74116095f4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.da35e6156d0c7064": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.847,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.84,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.da35e6156d0c7064",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.dab6352617ecae6d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.484,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.475,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.dab6352617ecae6d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.db1e1181454f2800": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.784,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.781,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.db1e1181454f2800",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.db6fec4faccce08e": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.db6fec4faccce08e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.dbdb883bf81c49b7": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.803,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.749,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.dbdb883bf81c49b7",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.dc83bb1532a247dc": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.803,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.797,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.dc83bb1532a247dc",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.dcc074f6d8a4971a": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.444,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.441,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.dcc074f6d8a4971a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.dda58328acbdee5b": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.dda58328acbdee5b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.deb000d080c3b619": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.978,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.986,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.deb000d080c3b619",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.df51247c7c958f18": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.df51247c7c958f18",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.df830a2069654b14": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.968,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.967,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.df830a2069654b14",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e018c897757fe5c0": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.43,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.423,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e018c897757fe5c0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e06a22c1f7018ef6": {
+   "coverage": {
+    "logs": {
+     "after_s": 284.583,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 284.583,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e06a22c1f7018ef6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e0748dd71324f612": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.755,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.749,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e0748dd71324f612",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e095c2019db712ad": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.667,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.627,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e095c2019db712ad",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e0b7bb405a81fe97": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.948,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.936,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e0b7bb405a81fe97",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e14e5e0b07ba18d9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.908,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e14e5e0b07ba18d9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e1b3ab93638ec385": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.448,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.444,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e1b3ab93638ec385",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e1de6dbdb6c341a5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.64,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.044,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e1de6dbdb6c341a5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e21c4e5192a9643d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e21c4e5192a9643d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e3f2c9de1d2f463e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.85,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.844,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e3f2c9de1d2f463e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e55e9011710831f5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.99,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e55e9011710831f5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e730073de373860f": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.912,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.908,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e730073de373860f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e73ec1802cdc0690": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.629,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.619,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e73ec1802cdc0690",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e7645579aae3e965": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.98,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.995,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e7645579aae3e965",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e8a5e3573dc009ad": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.991,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e8a5e3573dc009ad",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e94fcb2acf4ae4b5": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "export_truncated"
+    },
+    "traces": {
+     "after_s": 299.982,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e94fcb2acf4ae4b5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e9892f1dbbe2f6cd": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.707,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.701,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e9892f1dbbe2f6cd",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.e9a4be54acd023be": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 300.0,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.e9a4be54acd023be",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ea6e116419f8b68b": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.876,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.872,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ea6e116419f8b68b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ea7b59382a84d551": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.825,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.814,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ea7b59382a84d551",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ec90bce86d49aaa3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.433,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.429,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ec90bce86d49aaa3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ed14d01c79817c4b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.695,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.688,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ed14d01c79817c4b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ed59688672018adf": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.986,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.982,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ed59688672018adf",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.edbd8c1d9e1416c5": {
+   "coverage": {
+    "logs": {
+     "after_s": 282.483,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 282.484,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.edbd8c1d9e1416c5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ee11d948da38ce52": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.949,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.948,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ee11d948da38ce52",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.eeefc9cb2c3588df": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.987,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.eeefc9cb2c3588df",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ef62e9cc1d2a739b": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.527,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.542,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ef62e9cc1d2a739b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f091aea3d0e826b1": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f091aea3d0e826b1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f1647ae07bd534fa": {
+   "coverage": {
+    "logs": {
+     "after_s": 300.0,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.993,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f1647ae07bd534fa",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f17b9d6c4d1d44e1": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.416,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.406,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f17b9d6c4d1d44e1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f182cfbcf251f77a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.475,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.469,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f182cfbcf251f77a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f22ab733210b667c": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.718,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.712,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f22ab733210b667c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f274f5627df85290": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.883,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.882,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f274f5627df85290",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f30046af796032ed": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.285,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.279,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f30046af796032ed",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f336a6f56a202824": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.906,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.897,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f336a6f56a202824",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f3e36c101025f23a": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.891,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.885,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f3e36c101025f23a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f3fe526eec36095e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.925,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.998,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f3fe526eec36095e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f4389c4d1834530e": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.988,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f4389c4d1834530e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f49255a2f36ce3c4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.837,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.83,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f49255a2f36ce3c4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f4c5332c2e11ae33": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.999,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.997,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f4c5332c2e11ae33",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f6f90dabbcbc8c46": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.387,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.376,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f6f90dabbcbc8c46",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f84c038f745e61e1": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.898,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.894,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f84c038f745e61e1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f8608adec6a13ae2": {
+   "coverage": {
+    "logs": {
+     "after_s": 286.985,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 286.984,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f8608adec6a13ae2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f8759284bf3e4adb": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.42,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.418,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f8759284bf3e4adb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f8893119c668ddf9": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.99,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.999,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f8893119c668ddf9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f88e4b22391dc78b": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f88e4b22391dc78b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f923a3ab6b39f36d": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.834,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.827,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f923a3ab6b39f36d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.f99d2763a5f82319": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.683,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.681,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.f99d2763a5f82319",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fa53322d245dcde6": {
+   "coverage": {
+    "logs": {
+     "after_s": 281.498,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 281.501,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fa53322d245dcde6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fa57d2411f279970": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.784,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.763,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fa57d2411f279970",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fabe0d29937dfd86": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.831,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.82,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fabe0d29937dfd86",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fac79c2f513c094f": {
+   "coverage": {
+    "logs": {
+     "after_s": 298.928,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 298.923,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fac79c2f513c094f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fbdf8de8d1ac0989": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fbdf8de8d1ac0989",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fbf7502343356e14": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.989,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.985,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fbf7502343356e14",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fc32e50c47d7c7a3": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.871,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.865,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fc32e50c47d7c7a3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fe2319e3e13aab2d": {
+   "coverage": {
+    "logs": {
+     "after_s": 288.257,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 288.258,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fe2319e3e13aab2d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fe75ad052bad2f50": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.751,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.748,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fe75ad052bad2f50",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fe8215335844b5a0": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.87,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.866,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fe8215335844b5a0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fe85ece581c612b4": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.413,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.408,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fe85ece581c612b4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.feefeb21205a2e22": {
+   "coverage": {
+    "logs": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    },
+    "traces": {
+     "after_s": 0.0,
+     "cause": "natural_absent"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.feefeb21205a2e22",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.ffabdc8eebe948d5": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.76,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.754,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.ffabdc8eebe948d5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "aiops2025.fff62224ab47abb2": {
+   "coverage": {
+    "logs": {
+     "after_s": 299.912,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 299.907,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "aiops2025.fff62224ab47abb2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  }
+ }
+}

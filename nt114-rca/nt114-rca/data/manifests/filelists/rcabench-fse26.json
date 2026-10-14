@@ -1,0 +1,47 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "b363d3a0fff3a1047c907648afbe8575"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "rcabench-platform-feat-fse26.zip",
+   "size": 557891,
+   "url": "https://zenodo.org/api/records/17105974/files/rcabench-platform-feat-fse26.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "51b80c5d7b79c67e531c2639ec43412f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "rcabench-fse-26.zip",
+   "size": 1436695,
+   "url": "https://zenodo.org/api/records/17105974/files/rcabench-fse-26.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "96d32ae290e06be7d4e251be02b36cb8"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "rcabench-absolute_anomaly.tar.gz",
+   "size": 13444974981,
+   "url": "https://zenodo.org/api/records/17105974/files/rcabench-absolute_anomaly.tar.gz/content"
+  }
+ ],
+ "host_meta": {
+  "doi": "10.5281/zenodo.17105974",
+  "license": "cc-by-4.0",
+  "title": "Rethinking the Evaluation of Microservice RCA with a Fault Propagation-Aware Benchmark",
+  "updated": "2025-09-12T11:24:37.091786+00:00",
+  "version": null
+ },
+ "id": "rcabench-fse26",
+ "kind": "zenodo-record",
+ "pinned_at": "2026-10-13T17:15:30Z"
+}

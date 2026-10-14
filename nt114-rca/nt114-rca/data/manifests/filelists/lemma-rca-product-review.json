@@ -1,0 +1,77 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "HF git blob id",
+    "value": "28df5f900b358436f0267334b3e3e9af33f917ba"
+   },
+   "integrity_level": "publisher-hash",
+   "path": ".gitattributes",
+   "size": 2307,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original/resolve/63aa4abe7dd7217d9b0b108894c7d893e2b29aef/.gitattributes"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "b7b3fd798e2e1da5cd266003fd38448fc4faadd1f68e9c34bc7094eca1025a81"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20210517.zip",
+   "size": 14040008257,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original/resolve/63aa4abe7dd7217d9b0b108894c7d893e2b29aef/20210517.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "b82345b78353a279f3d03f59f2f20818028aabd5a5f43c0865bb1f3ef705cb81"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20210524.zip",
+   "size": 11721862708,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original/resolve/63aa4abe7dd7217d9b0b108894c7d893e2b29aef/20210524.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "7450f76f2717211d215c06442be0a9b22a9df49c912637990bc050013f91d855"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20211203.zip",
+   "size": 18012496133,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original/resolve/63aa4abe7dd7217d9b0b108894c7d893e2b29aef/20211203.zip"
+  },
+  {
+   "anchor": {
+    "algo": "sha256",
+    "source": "HF LFS oid",
+    "value": "8870be1f06c0010935c37c58fc90fde794a68c1d10197d8f59a6516de82a4933"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "20220606.zip",
+   "size": 9859441848,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original/resolve/63aa4abe7dd7217d9b0b108894c7d893e2b29aef/20220606.zip"
+  },
+  {
+   "anchor": {
+    "algo": "git-sha1",
+    "source": "HF git blob id",
+    "value": "63b0e9014597182ca882a42c32398c2ba39a6c59"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "README.md",
+   "size": 832,
+   "url": "https://huggingface.co/datasets/Lemma-RCA-NEC/Product_Review_Original/resolve/63aa4abe7dd7217d9b0b108894c7d893e2b29aef/README.md"
+  }
+ ],
+ "host_meta": {
+  "last_modified": "2025-05-17T17:46:05.000Z",
+  "license": "cc-by-nc-4.0"
+ },
+ "id": "lemma-rca-product-review",
+ "kind": "huggingface-dataset",
+ "pinned_at": "2026-10-13T17:17:54Z"
+}

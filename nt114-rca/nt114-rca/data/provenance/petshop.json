@@ -1,0 +1,61 @@
+{
+ "archive_audit": {
+  "archives": 0,
+  "at": "2026-10-13T17:19:45Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/petshop.json",
+ "artefact_url_example": null,
+ "canonical_source_url": "https://github.com/amazon-science/petshop-root-cause-analysis",
+ "category": "A-metric-only",
+ "decisions": "acquire",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 164,
+  "verified": 164
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "submodules": 0,
+  "tree_entries": 250
+ },
+ "id": "petshop",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "github-git",
+ "known_limitations": [
+  "metric-only",
+  "AWS PetShop single system"
+ ],
+ "labels": "68 target.json files: root_cause.node per issue (gold, injected)",
+ "license": "CC-BY-4.0 (data, LICENSE_DATASET); Apache-2.0 (code)",
+ "license_evidence": "raw tree LICENSE_DATASET (CC-BY-4.0) and LICENSE (Apache-2.0)",
+ "lineage_edges": {},
+ "lineage_group": "L10",
+ "lineage_group_counts": {
+  "copies": 0,
+  "independent_incidents": 68,
+  "rows": 68,
+  "sources": [
+   "petshop"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:15:20Z",
+ "modalities": [
+  "metrics"
+ ],
+ "next_action": null,
+ "publication": "PetShop RCA benchmark (amazon-science); paper DOI UNKNOWN in this attempt",
+ "publisher_or_maintainer": "Amazon Science",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:17:08Z",
+ "revision_or_version": "2e96f937c4c044b8b4aad03217592cd52e66db5d",
+ "state": "VERIFIED",
+ "state_file": "data/.state/petshop.json (git-ignored)",
+ "total_bytes": {
+  "expected": 18712735,
+  "verified": 18712735
+ }
+}

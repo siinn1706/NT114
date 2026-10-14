@@ -1,0 +1,188 @@
+{
+ "by_subset_system_state": [
+  {
+   "n": 121,
+   "state": "ACCEPT",
+   "subset": "RE1",
+   "system": "online-boutique"
+  },
+  {
+   "n": 4,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE1",
+   "system": "online-boutique"
+  },
+  {
+   "n": 122,
+   "state": "ACCEPT",
+   "subset": "RE1",
+   "system": "sock-shop"
+  },
+  {
+   "n": 3,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE1",
+   "system": "sock-shop"
+  },
+  {
+   "n": 124,
+   "state": "ACCEPT",
+   "subset": "RE1",
+   "system": "train-ticket"
+  },
+  {
+   "n": 1,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE1",
+   "system": "train-ticket"
+  },
+  {
+   "n": 87,
+   "state": "ACCEPT",
+   "subset": "RE2",
+   "system": "online-boutique"
+  },
+  {
+   "n": 3,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE2",
+   "system": "online-boutique"
+  },
+  {
+   "n": 1,
+   "state": "REJECT",
+   "subset": "RE2",
+   "system": "online-boutique"
+  },
+  {
+   "n": 89,
+   "state": "ACCEPT",
+   "subset": "RE2",
+   "system": "sock-shop"
+  },
+  {
+   "n": 1,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE2",
+   "system": "sock-shop"
+  },
+  {
+   "n": 87,
+   "state": "ACCEPT",
+   "subset": "RE2",
+   "system": "train-ticket"
+  },
+  {
+   "n": 3,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE2",
+   "system": "train-ticket"
+  },
+  {
+   "n": 28,
+   "state": "ACCEPT",
+   "subset": "RE3",
+   "system": "online-boutique"
+  },
+  {
+   "n": 2,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE3",
+   "system": "online-boutique"
+  },
+  {
+   "n": 29,
+   "state": "ACCEPT",
+   "subset": "RE3",
+   "system": "sock-shop"
+  },
+  {
+   "n": 1,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE3",
+   "system": "sock-shop"
+  },
+  {
+   "n": 16,
+   "state": "ACCEPT",
+   "subset": "RE3",
+   "system": "train-ticket"
+  },
+  {
+   "n": 14,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RE3",
+   "system": "train-ticket"
+  }
+ ],
+ "dataset_id": "rcaeval",
+ "findings": [
+  {
+   "code": "DUPLICATE",
+   "n": 1,
+   "severity": "reject"
+  },
+  {
+   "code": "EMPTY_MODALITY_FILE",
+   "n": 13,
+   "severity": "info"
+  },
+  {
+   "code": "LABEL_ARTIFACT_PRESENT",
+   "n": 8,
+   "severity": "info"
+  },
+  {
+   "code": "LOG_LEVEL_MISSING",
+   "n": 270,
+   "severity": "info"
+  },
+  {
+   "code": "LOW_COVERAGE",
+   "n": 1,
+   "severity": "warn"
+  },
+  {
+   "code": "METRIC_CONSTANT",
+   "n": 50,
+   "severity": "info"
+  },
+  {
+   "code": "METRIC_NONFINITE",
+   "n": 541,
+   "severity": "info"
+  },
+  {
+   "code": "METRIC_NONFINITE",
+   "n": 21,
+   "severity": "warn"
+  },
+  {
+   "code": "PARSE_ERROR",
+   "n": 8,
+   "severity": "warn"
+  },
+  {
+   "code": "TRACE_ORPHAN_SPANS",
+   "n": 154,
+   "severity": "info"
+  },
+  {
+   "code": "TRACE_ORPHAN_SPANS",
+   "n": 2,
+   "severity": "warn"
+  }
+ ],
+ "incidents": 736,
+ "invariant_error_count": 0,
+ "invariant_errors": [],
+ "quarantined": [],
+ "rejected": [
+  "rcaeval.24e078fc27784c41"
+ ],
+ "states": {
+  "ACCEPT": 703,
+  "ACCEPT_WITH_WARNINGS": 32,
+  "REJECT": 1
+ }
+}

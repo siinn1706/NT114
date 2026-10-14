@@ -1,0 +1,46 @@
+{
+ "archive_audit": null,
+ "artefact_list": "data/manifests/filelists/gaia.json",
+ "artefact_url_example": null,
+ "canonical_source_url": "https://github.com/CloudWise-OpenSource/GAIA-DataSet",
+ "category": "B",
+ "decisions": "decision",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 122,
+  "verified": 0
+ },
+ "hash_list": null,
+ "host_metadata": {
+  "submodules": 0,
+  "tree_entries": 128
+ },
+ "id": "gaia",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "github-git",
+ "known_limitations": [
+  "licence conflict GPL-2.0 vs Apache-2.0"
+ ],
+ "labels": "UNKNOWN",
+ "license": "CONFLICT: LICENSE file GPL-2.0; README Apache-2.0",
+ "license_evidence": "plans/261013-2300-aiops-rca-dataset-acquisition/research/evidence/CloudWise-OpenSource_GAIA-DataSet.md",
+ "lineage_edges": {},
+ "lineage_group": "L7",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:17:53Z",
+ "modalities": "UNKNOWN",
+ "next_action": "owner acknowledges licence conflict (plan question 1), then fetch",
+ "publication": "UNKNOWN",
+ "publisher_or_maintainer": "CloudWise",
+ "reason": "licence conflict: LICENSE file GPL-2.0 vs README Apache-2.0",
+ "retrieved_at": null,
+ "revision_or_version": "238a9e24ae0b69e7e05dff112652a3fa62db88fd",
+ "state": "PENDING:decision",
+ "state_file": "data/.state/gaia.json (git-ignored)",
+ "total_bytes": {
+  "expected": 5786350270,
+  "verified": 0
+ }
+}

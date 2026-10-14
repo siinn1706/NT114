@@ -1,0 +1,58 @@
+{
+ "archive_audit": null,
+ "artefact_list": "data/manifests/filelists/openrca.json",
+ "artefact_url_example": "1enBrdPT3wLG94ITGbSOwUFg9fkLR-16R",
+ "canonical_source_url": "https://github.com/microsoft/OpenRCA (Drive folder 1wGiEnu4OkWrjPxfx5ZTROnU37-5UDoPM)",
+ "category": "A-conditional",
+ "decisions": "acquire-after-gate",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 4,
+  "verified": 0
+ },
+ "hash_list": null,
+ "host_metadata": {},
+ "id": "openrca",
+ "integrity_levels": [
+  "local-only"
+ ],
+ "kind": "google-drive-files",
+ "known_limitations": [
+  "records with missing telemetry were removed (observability bias)",
+  "no publisher checksum: local-only integrity",
+  "subset of AIOps Challenge data"
+ ],
+ "labels": "record.csv per system; 335 records after expert review (paper lines 242-261)",
+ "license": "CC BY-NC 4.0 stated with SA terms -> treat BY-NC-SA",
+ "license_evidence": "plans/261013-2300-aiops-rca-dataset-acquisition/research/evidence/openrca-iclr2025-text.txt lines 640-648 (CC BY-NC with SA terms)",
+ "lineage_edges": {
+  "repo_pointer": "microsoft/OpenRCA@c1bd4af7f635171a1c31cdd567c07d698dff6abc"
+ },
+ "lineage_group": "L5",
+ "lineage_group_counts": {
+  "copies": 0,
+  "independent_incidents": 159,
+  "rows": 159,
+  "sources": [
+   "aiops2021-upstream"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:15:32Z",
+ "modalities": [
+  "metrics",
+  "logs",
+  "traces"
+ ],
+ "next_action": "rerun fetch after the Drive quota window (~24 h); never with cookies",
+ "publication": "OpenRCA, ICLR 2025",
+ "publisher_or_maintainer": "Microsoft OpenRCA authors",
+ "reason": "Drive refused all 3 downloads (quota/interstitial)",
+ "retrieved_at": null,
+ "revision_or_version": "20261014",
+ "state": "PENDING:drive-quota",
+ "state_file": "data/.state/openrca.json (git-ignored)",
+ "total_bytes": {
+  "expected": 24349,
+  "verified": 0
+ }
+}

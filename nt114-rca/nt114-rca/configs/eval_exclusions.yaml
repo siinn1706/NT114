@@ -1,0 +1,30 @@
+# Incidents kept in the canonical store but left out of PRIMARY evaluation (headline tables). They stay
+# in secondary/sensitivity analyses and in every split manifest, so removing an entry never changes a
+# split. Not part of the build config hash: editing this file changes only data/reports/eval-units-*.json.
+# Each entry: dataset, incident_uid, reason, status (temporary | permanent | lifted), decided; a lifted
+# entry also records why (`lifted`) and excludes nothing.
+exclusions:
+  - dataset: rcaeval
+    incident_uid: rcaeval.4303ec727622942a
+    reason: "RE3-OB case also records the whole Sock Shop container set (cluster shared with another demo); candidate sets were contaminated before the rcaeval adapter 1.0.1 identity fix"
+    status: lifted
+    decided: "owner 2026-10-14"
+    lifted: "owner 2026-10-14: build rcaeval-2f4bf056cb8a passes tests/test_realdata_identity.py (system-scoped candidates and identity, ground truth, evidence, leakage)"
+  - dataset: rcaeval
+    incident_uid: rcaeval.d5bb2ac1b3c6bb37
+    reason: "RE3-OB case also records the whole Sock Shop container set (cluster shared with another demo); candidate sets were contaminated before the rcaeval adapter 1.0.1 identity fix"
+    status: lifted
+    decided: "owner 2026-10-14"
+    lifted: "owner 2026-10-14: build rcaeval-2f4bf056cb8a passes tests/test_realdata_identity.py (system-scoped candidates and identity, ground truth, evidence, leakage)"
+  - dataset: rcaeval
+    incident_uid: rcaeval.4d62cb4318958396
+    reason: "RE1-OB case also records Sock Shop front-end, carts, catalogue and orders metrics (cluster shared with another demo); candidate sets were contaminated before the rcaeval adapter 1.0.1 identity fix"
+    status: lifted
+    decided: "owner 2026-10-14"
+    lifted: "owner 2026-10-14: build rcaeval-2f4bf056cb8a passes tests/test_realdata_identity.py (system-scoped candidates and identity, ground truth, evidence, leakage)"
+  - dataset: rcaeval
+    incident_uid: rcaeval.76e86a2d6f0e1dc1
+    reason: "RE3-SS case also records the whole Online Boutique container set; OB frontend merged with Sock Shop front-end before the rcaeval adapter 1.0.1 identity fix"
+    status: lifted
+    decided: "owner 2026-10-14"
+    lifted: "owner 2026-10-14: build rcaeval-2f4bf056cb8a passes tests/test_realdata_identity.py (system-scoped candidates and identity, ground truth, evidence, leakage)"

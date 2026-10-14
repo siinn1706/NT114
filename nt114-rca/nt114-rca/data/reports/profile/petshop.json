@@ -1,0 +1,35 @@
+{
+ "elapsed_s": 0.1,
+ "incidents": 68,
+ "metrics_columns_sample": [
+  "microservice",
+  "169.254.170.2_remote",
+  "AWSSimpleSystemsManagement_AWS::AWSSimpleSystemsManagement",
+  "DynamoDB_AWS::DynamoDB",
+  "Evidently_AWS::Evidently",
+  "PGSQL Query_remote",
+  "PetAdoptionStatusUpdater/prod_AWS::ApiGateway::Stage",
+  "PetSearch_AWS::ECS::Fargate",
+  "PetSearch_client",
+  "PetSite",
+  "SSM_AWS::SSM",
+  "STS_AWS::STS"
+ ],
+ "modalities": [
+  "metrics"
+ ],
+ "profiled_at": "2026-10-14T01:33:54Z",
+ "registry_rows": 68,
+ "root_cause_nodes": {
+  "PetSearch_AWS::ECS::Fargate": 20,
+  "lambdastatusupdater_AWS::Lambda::Function": 16,
+  "payforadoption_AWS::ECS::Container": 16,
+  "petInfo_AWS::DynamoDB::Table": 6,
+  "petlistadoptions_AWS::ECS::Fargate": 10
+ },
+ "source_id": "petshop",
+ "splits": {
+  "test": 48,
+  "train": 20
+ }
+}

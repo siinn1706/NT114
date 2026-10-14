@@ -1,0 +1,36 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "4c523faf64770b1e9a709cdd610e07c4"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "SN Dataset.zip",
+   "size": 78753809,
+   "url": "https://zenodo.org/api/records/7615394/files/SN%20Dataset.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "2d77861e4a025781e598d51866fd6f4e"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "TT Dataset.zip",
+   "size": 48923113,
+   "url": "https://zenodo.org/api/records/7615394/files/TT%20Dataset.zip/content"
+  }
+ ],
+ "host_meta": {
+  "doi": "10.5281/zenodo.7615394",
+  "license": null,
+  "title": "Traces, Metrics, and Logs for Anomaly Detection and Root Cause Localization in Microservices",
+  "updated": "2023-10-24T15:16:48.465036+00:00",
+  "version": null
+ },
+ "id": "eadro",
+ "kind": "zenodo-record",
+ "pinned_at": "2026-10-13T17:17:54Z"
+}

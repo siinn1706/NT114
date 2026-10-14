@@ -1,0 +1,58 @@
+{
+ "by_subset_system_state": [
+  {
+   "n": 9,
+   "state": "ACCEPT",
+   "subset": "RCA100",
+   "system": "otel-demo"
+  },
+  {
+   "n": 94,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "RCA100",
+   "system": "otel-demo"
+  }
+ ],
+ "dataset_id": "rca100",
+ "findings": [
+  {
+   "code": "ANCHOR_FIELD_DISAGREE",
+   "n": 2,
+   "severity": "info"
+  },
+  {
+   "code": "LABEL_ARTIFACT_PRESENT",
+   "n": 103,
+   "severity": "info"
+  },
+  {
+   "code": "LOW_COVERAGE",
+   "n": 245,
+   "severity": "warn"
+  },
+  {
+   "code": "METRIC_GROUP_DROPPED",
+   "n": 6,
+   "severity": "info"
+  },
+  {
+   "code": "METRIC_NONFINITE",
+   "n": 103,
+   "severity": "info"
+  },
+  {
+   "code": "TRACE_ORPHAN_SPANS",
+   "n": 103,
+   "severity": "info"
+  }
+ ],
+ "incidents": 103,
+ "invariant_error_count": 0,
+ "invariant_errors": [],
+ "quarantined": [],
+ "rejected": [],
+ "states": {
+  "ACCEPT": 9,
+  "ACCEPT_WITH_WARNINGS": 94
+ }
+}

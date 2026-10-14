@@ -1,0 +1,35 @@
+# Data-preparation config for `python -m rca.prep`. Paths are relative to the data home.
+# Data home: --data-home > $RCA_DATA_HOME > paths.data_home > <RCA_ROOT>/data
+schema_version: "1.0.0"
+paths:
+  data_home: null
+  raw: raw
+  work: work
+  canonical: canonical/v1
+  splits: splits
+  reports: reports
+  export: export
+processing:
+  chunk_rows: 500000          # pyarrow batch size for CSV/Parquet streaming
+  max_workers: 2              # incidents in parallel; memory-bound, not CPU-bound
+  parquet: {compression: zstd, compression_level: 3, row_group_rows: 1000000}
+evidence:                     # evidence text from the canonical store; excluded from the build hash
+  # logs/traces compared only inside the contiguous data stretch around the anchor (rows <= gap apart):
+  # Nezha records them in ~3-minute bursts per injection, so fixed windows would hold other injections;
+  # AIOps2025 has archive gaps and RCA100 exports stop at a row cap, often close to the anchor
+  log_trace_segment_gap_s: {nezha: 30, aiops2025: 60, rca100: 60}
+windows:                      # stored slice for continuous-stream datasets (s)
+  default: {pre_s: 1200, post_s: 600}
+  evidence: {pre_s: 600, post_s: 300}   # evidence window used for overlap grouping and pre-window checks
+datasets:
+  rcaeval:   {enabled: true,  source: rcaeval-zenodo, subsets: [RE1, RE2, RE3]}
+  nezha:     {enabled: true,  source: nezha}
+  aiops2025: {enabled: true,  source: agenticopseval}
+  rca100:    {enabled: gate,  source: agenticopseval}   # gate: data/reports/compatibility-matrix.json decides
+  petshop:   {enabled: true,  source: petshop, tier: B}
+  dejavu:    {enabled: true,  source: dejavu, tier: B}
+  cloud-opsbench: {enabled: true, source: cloud-opsbench, tier: B}
+extraction:
+  max_member_bytes: 20000000000
+  max_total_ratio: 200        # uncompressed / compressed bomb guard
+  skip_patterns: ["__MACOSX/*", "*/._*", "._*", "*.DS_Store", "*/.DS_Store"]

@@ -1,0 +1,1748 @@
+{
+ "build_id": "nezha-ea30424eba55",
+ "counts": {
+  "accepted_records": 101,
+  "coverage_causes": {
+   "logs": {
+    "covered": 101
+   },
+   "traces": {
+    "covered": 101
+   }
+  },
+  "excluded_from_primary": 0,
+  "independent_injections": 101,
+  "multi_record_injections": 0,
+  "primary_injections": 101,
+  "primary_records": 101
+ },
+ "dataset_digest": "56ec3db8aef93edca59346ad82b3e09f81a024cb7ed7b6c4ae80267f166c8217",
+ "dataset_id": "nezha",
+ "rules": {
+  "min_after_s": 30,
+  "segment_gap_s": 30.0,
+  "window_s": [
+   600,
+   300
+  ]
+ },
+ "units": {
+  "nezha.01ef687107029bf9": {
+   "coverage": {
+    "logs": {
+     "after_s": 124.985,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 124.98,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.01ef687107029bf9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.01ff15baf214f7eb": {
+   "coverage": {
+    "logs": {
+     "after_s": 123.652,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 123.477,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.01ff15baf214f7eb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.02ea4468cee530ad": {
+   "coverage": {
+    "logs": {
+     "after_s": 107.856,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 107.853,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.02ea4468cee530ad",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.06036302f88523a1": {
+   "coverage": {
+    "logs": {
+     "after_s": 139.849,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 139.847,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.06036302f88523a1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.070825932168ec59": {
+   "coverage": {
+    "logs": {
+     "after_s": 119.232,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 119.23,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.070825932168ec59",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.138e1c7983b19f6f": {
+   "coverage": {
+    "logs": {
+     "after_s": 152.993,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 152.993,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.138e1c7983b19f6f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.178594ba81f06976": {
+   "coverage": {
+    "logs": {
+     "after_s": 152.713,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 152.714,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.178594ba81f06976",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.1cda1930ab4446b1": {
+   "coverage": {
+    "logs": {
+     "after_s": 127.796,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 127.795,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.1cda1930ab4446b1",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.21dd039715b6ab60": {
+   "coverage": {
+    "logs": {
+     "after_s": 129.392,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 129.385,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.21dd039715b6ab60",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.29cb4684f33aa8a4": {
+   "coverage": {
+    "logs": {
+     "after_s": 167.114,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 167.108,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.29cb4684f33aa8a4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.2a119077c03283c6": {
+   "coverage": {
+    "logs": {
+     "after_s": 96.196,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 95.943,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.2a119077c03283c6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.2c4cd6f5faa94da4": {
+   "coverage": {
+    "logs": {
+     "after_s": 142.024,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 142.021,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.2c4cd6f5faa94da4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.2c7e016b1f7cb2ea": {
+   "coverage": {
+    "logs": {
+     "after_s": 126.795,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 126.793,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.2c7e016b1f7cb2ea",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.2d023ad1dd363394": {
+   "coverage": {
+    "logs": {
+     "after_s": 100.275,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 100.272,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.2d023ad1dd363394",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.2d1959f350503a19": {
+   "coverage": {
+    "logs": {
+     "after_s": 132.157,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 132.155,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.2d1959f350503a19",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.31a26c246a81421b": {
+   "coverage": {
+    "logs": {
+     "after_s": 145.534,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 145.532,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.31a26c246a81421b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.338f8e59755f0cc5": {
+   "coverage": {
+    "logs": {
+     "after_s": 129.443,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 129.417,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.338f8e59755f0cc5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.351217979588fd09": {
+   "coverage": {
+    "logs": {
+     "after_s": 76.208,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 76.205,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.351217979588fd09",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.36364d276d2a9b6d": {
+   "coverage": {
+    "logs": {
+     "after_s": 96.111,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 96.108,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.36364d276d2a9b6d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.3a6cb961db65566a": {
+   "coverage": {
+    "logs": {
+     "after_s": 126.156,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 126.155,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.3a6cb961db65566a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.3c2f195ce784dc7e": {
+   "coverage": {
+    "logs": {
+     "after_s": 124.46,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 124.458,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.3c2f195ce784dc7e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.3def52417d38096a": {
+   "coverage": {
+    "logs": {
+     "after_s": 119.201,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 119.198,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.3def52417d38096a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.3e5732acc3385c66": {
+   "coverage": {
+    "logs": {
+     "after_s": 117.632,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 117.628,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.3e5732acc3385c66",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.3e95b31d148bc282": {
+   "coverage": {
+    "logs": {
+     "after_s": 103.898,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 103.898,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.3e95b31d148bc282",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.3ff8abba86c10ad4": {
+   "coverage": {
+    "logs": {
+     "after_s": 117.356,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 117.352,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.3ff8abba86c10ad4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.40b9173ea757b332": {
+   "coverage": {
+    "logs": {
+     "after_s": 120.75,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 120.746,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.40b9173ea757b332",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.42dbc2a80bca709d": {
+   "coverage": {
+    "logs": {
+     "after_s": 95.014,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 95.011,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.42dbc2a80bca709d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.46c68f534362b1ee": {
+   "coverage": {
+    "logs": {
+     "after_s": 159.7,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 159.697,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.46c68f534362b1ee",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.4c885499c5a2a4d9": {
+   "coverage": {
+    "logs": {
+     "after_s": 136.389,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 136.385,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.4c885499c5a2a4d9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.4d9d616d512f0ee2": {
+   "coverage": {
+    "logs": {
+     "after_s": 94.203,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 94.201,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.4d9d616d512f0ee2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.4e14ac9dfd4e2d5d": {
+   "coverage": {
+    "logs": {
+     "after_s": 123.291,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 123.283,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.4e14ac9dfd4e2d5d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.4e215cc53dd9af6a": {
+   "coverage": {
+    "logs": {
+     "after_s": 101.157,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 101.155,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.4e215cc53dd9af6a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.4e445b7f376803c0": {
+   "coverage": {
+    "logs": {
+     "after_s": 119.463,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 119.461,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.4e445b7f376803c0",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.549a9286785d779d": {
+   "coverage": {
+    "logs": {
+     "after_s": 120.861,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 120.857,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.549a9286785d779d",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.5b3f37dd7d5b65f5": {
+   "coverage": {
+    "logs": {
+     "after_s": 146.191,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 146.129,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.5b3f37dd7d5b65f5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.5c63d113442c72d4": {
+   "coverage": {
+    "logs": {
+     "after_s": 137.504,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 137.504,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.5c63d113442c72d4",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.5d85d24eb7906e16": {
+   "coverage": {
+    "logs": {
+     "after_s": 88.32,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 88.316,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.5d85d24eb7906e16",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.5f1ff7ab4b7da0bc": {
+   "coverage": {
+    "logs": {
+     "after_s": 139.004,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 139.002,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.5f1ff7ab4b7da0bc",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.60cace52d9b7d385": {
+   "coverage": {
+    "logs": {
+     "after_s": 85.405,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 85.401,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.60cace52d9b7d385",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.610c1a3ba2a90916": {
+   "coverage": {
+    "logs": {
+     "after_s": 120.751,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 119.876,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.610c1a3ba2a90916",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.623ada8b086538ba": {
+   "coverage": {
+    "logs": {
+     "after_s": 140.413,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 140.408,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.623ada8b086538ba",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.6cb7624b76421ce2": {
+   "coverage": {
+    "logs": {
+     "after_s": 127.103,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 127.1,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.6cb7624b76421ce2",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.6dda1218fadd0723": {
+   "coverage": {
+    "logs": {
+     "after_s": 92.889,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 92.885,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.6dda1218fadd0723",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.71318dd1fd64889c": {
+   "coverage": {
+    "logs": {
+     "after_s": 113.438,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 113.433,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.71318dd1fd64889c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.718d3a535d5e4212": {
+   "coverage": {
+    "logs": {
+     "after_s": 99.9,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 99.895,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.718d3a535d5e4212",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.73f1ed04c1f62d3e": {
+   "coverage": {
+    "logs": {
+     "after_s": 115.905,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 115.9,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.73f1ed04c1f62d3e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.7a79ae4b0cb7f7ce": {
+   "coverage": {
+    "logs": {
+     "after_s": 108.017,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 108.013,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.7a79ae4b0cb7f7ce",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.7e150a878c67b1fd": {
+   "coverage": {
+    "logs": {
+     "after_s": 91.196,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 91.194,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.7e150a878c67b1fd",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.7f49175eb92a2cc3": {
+   "coverage": {
+    "logs": {
+     "after_s": 107.807,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 107.303,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.7f49175eb92a2cc3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.821fa21a2dc01e5e": {
+   "coverage": {
+    "logs": {
+     "after_s": 111.852,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 111.847,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.821fa21a2dc01e5e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.82425abda167abf6": {
+   "coverage": {
+    "logs": {
+     "after_s": 143.737,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 143.737,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.82425abda167abf6",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.834a92cd8247ee04": {
+   "coverage": {
+    "logs": {
+     "after_s": 89.62,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 89.589,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.834a92cd8247ee04",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.8611a6ba76a3b506": {
+   "coverage": {
+    "logs": {
+     "after_s": 94.838,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 94.839,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.8611a6ba76a3b506",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.88826a4b4fd5d2cb": {
+   "coverage": {
+    "logs": {
+     "after_s": 96.391,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 96.387,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.88826a4b4fd5d2cb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.889e5edec178ca35": {
+   "coverage": {
+    "logs": {
+     "after_s": 85.412,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 85.409,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.889e5edec178ca35",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.8b19301d168a4cdb": {
+   "coverage": {
+    "logs": {
+     "after_s": 89.696,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 89.692,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.8b19301d168a4cdb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.8c53c17844817d62": {
+   "coverage": {
+    "logs": {
+     "after_s": 82.854,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 82.85,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.8c53c17844817d62",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.8f208d43f7121343": {
+   "coverage": {
+    "logs": {
+     "after_s": 136.513,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 136.51,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.8f208d43f7121343",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.8fb32697600e42de": {
+   "coverage": {
+    "logs": {
+     "after_s": 100.311,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 100.305,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.8fb32697600e42de",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.90769eeda1b68b2f": {
+   "coverage": {
+    "logs": {
+     "after_s": 124.524,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 124.519,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.90769eeda1b68b2f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.9213d927abff4711": {
+   "coverage": {
+    "logs": {
+     "after_s": 124.673,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 124.669,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.9213d927abff4711",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.92ac5c1350027f18": {
+   "coverage": {
+    "logs": {
+     "after_s": 121.39,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 121.391,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.92ac5c1350027f18",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.92b79d18c6ef21fb": {
+   "coverage": {
+    "logs": {
+     "after_s": 104.378,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 104.376,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.92b79d18c6ef21fb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.9338bda4b87d7e55": {
+   "coverage": {
+    "logs": {
+     "after_s": 101.96,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 101.955,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.9338bda4b87d7e55",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.936b0991c0be6270": {
+   "coverage": {
+    "logs": {
+     "after_s": 91.703,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 91.7,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.936b0991c0be6270",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.9c8811c558930da3": {
+   "coverage": {
+    "logs": {
+     "after_s": 84.219,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 84.216,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.9c8811c558930da3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.9eefac055d39c5d5": {
+   "coverage": {
+    "logs": {
+     "after_s": 112.389,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 112.295,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.9eefac055d39c5d5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.9f50e20d34018cdb": {
+   "coverage": {
+    "logs": {
+     "after_s": 91.37,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 91.365,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.9f50e20d34018cdb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.a25c085c6275e31b": {
+   "coverage": {
+    "logs": {
+     "after_s": 150.776,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 150.772,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.a25c085c6275e31b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.a5f0c18e29a93308": {
+   "coverage": {
+    "logs": {
+     "after_s": 86.053,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 85.759,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.a5f0c18e29a93308",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.a5f22251e1105a4c": {
+   "coverage": {
+    "logs": {
+     "after_s": 139.796,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 139.794,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.a5f22251e1105a4c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.a7a650653843d7fa": {
+   "coverage": {
+    "logs": {
+     "after_s": 75.237,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 75.235,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.a7a650653843d7fa",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.a7a8f125f75b2201": {
+   "coverage": {
+    "logs": {
+     "after_s": 92.498,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 92.496,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.a7a8f125f75b2201",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.aa7f674c7383127b": {
+   "coverage": {
+    "logs": {
+     "after_s": 111.186,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 111.096,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.aa7f674c7383127b",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.aac80fc22f46b50a": {
+   "coverage": {
+    "logs": {
+     "after_s": 96.005,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 95.503,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.aac80fc22f46b50a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.b1440065abe4bc40": {
+   "coverage": {
+    "logs": {
+     "after_s": 112.145,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 112.14,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.b1440065abe4bc40",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.b25b7b499a28a206": {
+   "coverage": {
+    "logs": {
+     "after_s": 104.885,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 104.882,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.b25b7b499a28a206",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.bc8d97560f283241": {
+   "coverage": {
+    "logs": {
+     "after_s": 115.676,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 115.672,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.bc8d97560f283241",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.be777b10b4eccc1a": {
+   "coverage": {
+    "logs": {
+     "after_s": 125.647,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 125.645,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.be777b10b4eccc1a",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.bf3b72ccc500d4df": {
+   "coverage": {
+    "logs": {
+     "after_s": 72.271,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 72.267,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.bf3b72ccc500d4df",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.bf9f6d7ff6206941": {
+   "coverage": {
+    "logs": {
+     "after_s": 126.052,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 125.234,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.bf9f6d7ff6206941",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.c0e28200423beedb": {
+   "coverage": {
+    "logs": {
+     "after_s": 107.07,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 107.068,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.c0e28200423beedb",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.c27d764df72044f9": {
+   "coverage": {
+    "logs": {
+     "after_s": 121.998,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 121.996,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.c27d764df72044f9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.c3c42d60e23c044e": {
+   "coverage": {
+    "logs": {
+     "after_s": 109.19,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 109.167,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.c3c42d60e23c044e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.c515ce47d58d5b39": {
+   "coverage": {
+    "logs": {
+     "after_s": 93.397,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 93.392,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.c515ce47d58d5b39",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.ca32bd663d2b94f9": {
+   "coverage": {
+    "logs": {
+     "after_s": 98.446,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 98.446,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.ca32bd663d2b94f9",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.cd6f62177706ddb3": {
+   "coverage": {
+    "logs": {
+     "after_s": 73.956,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 73.951,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.cd6f62177706ddb3",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.cfb2669748be3745": {
+   "coverage": {
+    "logs": {
+     "after_s": 160.343,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 160.337,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.cfb2669748be3745",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.d185cef614b61043": {
+   "coverage": {
+    "logs": {
+     "after_s": 154.343,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 154.339,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.d185cef614b61043",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.d79f42110f7198bf": {
+   "coverage": {
+    "logs": {
+     "after_s": 104.492,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 104.487,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.d79f42110f7198bf",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.de54274500893986": {
+   "coverage": {
+    "logs": {
+     "after_s": 111.783,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 111.778,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.de54274500893986",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.e82a531a6d88f503": {
+   "coverage": {
+    "logs": {
+     "after_s": 72.719,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 72.714,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.e82a531a6d88f503",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.e8796973cf7cba82": {
+   "coverage": {
+    "logs": {
+     "after_s": 118.86,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 118.861,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.e8796973cf7cba82",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.eebcca0bab501bb8": {
+   "coverage": {
+    "logs": {
+     "after_s": 123.602,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 123.598,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.eebcca0bab501bb8",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.ef3d2218495fbb85": {
+   "coverage": {
+    "logs": {
+     "after_s": 85.117,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 85.112,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.ef3d2218495fbb85",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.f16aa48de870626e": {
+   "coverage": {
+    "logs": {
+     "after_s": 70.97,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 70.965,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.f16aa48de870626e",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.f3592e014df6f497": {
+   "coverage": {
+    "logs": {
+     "after_s": 118.63,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 118.602,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.f3592e014df6f497",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.f563ff061fde145c": {
+   "coverage": {
+    "logs": {
+     "after_s": 69.273,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 69.27,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.f563ff061fde145c",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.f91a561e14b013ed": {
+   "coverage": {
+    "logs": {
+     "after_s": 148.489,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 148.482,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.f91a561e14b013ed",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.fe992e09d445659f": {
+   "coverage": {
+    "logs": {
+     "after_s": 125.882,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 125.881,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.fe992e09d445659f",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  },
+  "nezha.ff142f589511ccb5": {
+   "coverage": {
+    "logs": {
+     "after_s": 136.815,
+     "cause": "covered"
+    },
+    "traces": {
+     "after_s": 136.811,
+     "cause": "covered"
+    }
+   },
+   "excluded_from_primary": null,
+   "injection_id": "nezha.ff142f589511ccb5",
+   "injection_size": 1,
+   "representative": true,
+   "weight": 1.0
+  }
+ }
+}

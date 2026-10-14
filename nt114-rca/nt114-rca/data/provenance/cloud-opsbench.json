@@ -1,0 +1,65 @@
+{
+ "archive_audit": {
+  "archives": 0,
+  "at": "2026-10-13T19:03:49Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/cloud-opsbench.json",
+ "artefact_url_example": "https://huggingface.co/datasets/LLM4Ops/Cloud-OpsBench/resolve/1a02e54329cc82aeef31ff8c4509cc7e68483ef5/.gitattributes",
+ "canonical_source_url": "https://github.com/LLM4Ops/Cloud-OpsBench",
+ "category": "A-snapshot",
+ "decisions": "acquire",
+ "doi": "UNKNOWN",
+ "file_count": {
+  "expected": 27110,
+  "verified": 27110
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "last_modified": "2026-10-13T14:33:46.000Z",
+  "license": "mit"
+ },
+ "id": "cloud-opsbench",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "huggingface-dataset",
+ "known_limitations": [
+  "benchmark snapshot with golden trajectories; GitHub main moved to 6b986be4 after pin"
+ ],
+ "labels": "index.jsonl: root_cause, fault_object per case (754)",
+ "license": "MIT",
+ "license_evidence": "HF card license (mit)",
+ "lineage_edges": {
+  "source_commit": "ea05dafbc87b5985df8721622d63d4229c2b4224"
+ },
+ "lineage_group": "L9",
+ "lineage_group_counts": {
+  "copies": 0,
+  "independent_incidents": 754,
+  "rows": 754,
+  "sources": [
+   "cloud-opsbench"
+  ]
+ },
+ "metadata_pinned_at": "2026-10-13T17:15:28Z",
+ "modalities": [
+  "k8s states",
+  "logs",
+  "metrics",
+  "tool cache"
+ ],
+ "next_action": null,
+ "publication": "UNKNOWN",
+ "publisher_or_maintainer": "LLM4Ops",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:21:06Z",
+ "revision_or_version": "1a02e54329cc82aeef31ff8c4509cc7e68483ef5",
+ "state": "VERIFIED",
+ "state_file": "data/.state/cloud-opsbench.json (git-ignored)",
+ "total_bytes": {
+  "expected": 3840845678,
+  "verified": 3840845678
+ }
+}

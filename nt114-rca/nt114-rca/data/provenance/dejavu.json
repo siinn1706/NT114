@@ -1,0 +1,56 @@
+{
+ "archive_audit": {
+  "archives": 5,
+  "at": "2026-10-13T18:45:39Z",
+  "errors": [],
+  "unsafe_or_corrupt": 0
+ },
+ "artefact_list": "data/manifests/filelists/dejavu.json",
+ "artefact_url_example": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.003/content",
+ "canonical_source_url": "https://zenodo.org/records/6955909",
+ "category": "A-metric-only",
+ "decisions": "acquire",
+ "doi": "10.5281/zenodo.6955909",
+ "file_count": {
+  "expected": 12,
+  "verified": 12
+ },
+ "hash_list": "data/manifests/checksums.sha256 and checksums-levels.tsv",
+ "host_metadata": {
+  "doi": "10.5281/zenodo.6955909",
+  "license": "cc-by-4.0",
+  "title": "Actionable and Interpretable Fault Localization for Recurring Failures in Online Service Systems",
+  "updated": "2022-08-03T13:48:59.596562+00:00",
+  "version": null
+ },
+ "id": "dejavu",
+ "integrity_levels": [
+  "publisher-hash"
+ ],
+ "kind": "zenodo-record",
+ "known_limitations": [
+  "D raw archive split into 7 parts (.zip.001-.007); not audited"
+ ],
+ "labels": "UNKNOWN",
+ "license": "CC-BY-4.0",
+ "license_evidence": "Zenodo record license field (cc-by-4.0)",
+ "lineage_edges": {},
+ "lineage_group": "L13",
+ "lineage_group_counts": null,
+ "metadata_pinned_at": "2026-10-13T17:15:29Z",
+ "modalities": [
+  "metrics"
+ ],
+ "next_action": null,
+ "publication": "doi:10.1145/3540250.3549092 (ESEC/FSE 2022)",
+ "publisher_or_maintainer": "NetManAIOps (DejaVu authors)",
+ "reason": "all files match publisher anchors",
+ "retrieved_at": "2026-10-13T20:23:00Z",
+ "revision_or_version": "6955909",
+ "state": "VERIFIED",
+ "state_file": "data/.state/dejavu.json (git-ignored)",
+ "total_bytes": {
+  "expected": 4545204660,
+  "verified": 4545204660
+ }
+}

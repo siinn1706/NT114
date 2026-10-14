@@ -1,0 +1,73 @@
+{
+ "case_like_dirs": 19991,
+ "elapsed_s": 92.1,
+ "gate": {
+  "cases": 1422,
+  "cases_with_both": 1422,
+  "cases_with_telemetry_parquet": 1422,
+  "injection_point_kinds": {
+   "service_pair": 254,
+   "single_service": 1168
+  },
+  "result": "pass",
+  "rule": "per-case abnormal/normal logs|traces|metrics Parquet and an injection.json injection_point naming a service (app_name/app_label) or a source/target service pair"
+ },
+ "label_like_examples": [
+  {
+   "head": "{\n    \"benchmark\": \"clickhouse\",\n    \"created_at\": \"2025-09-06T19:06:47.116Z\",\n    \"description\": \"Fault for task 4e09334b-e7e5-45f1-b2a9-f21c4fed7b00\",\n    \"display_config\": \"{\\\"duration\\\":4,\\\"injection_point\\\":{\\\"app_name\\\":\\\"ts-order-service\\\",\\\"class_name\\\":\\\"order.service.OrderServiceImpl\\\",\\\"method_name\\\":\\\"getOrderPrice\\\"},\\\"mem_type\\\":1,\\\"namespace\\\":\\\"ts\\\"}\",\n    \"end_time\": \"2025-09-06T19:10:47Z\",\n    \"engine_config\": \"{\\\"name\\\":\\\"InjectionConf\\\",\\\"range\\\":[0,30],\\\"children\\\":{\\\"28\\\":{\\\"name\\\":\\\"28\\\",\\\"range\\\":[0,3],\\\"children\\\":{\\\"0\\\":{\\\"name\\\":\\\"0\\\",\\\"range\\\":[1,60],\\\"children\\\":null,\\\"description\\\":\\\"Time Unit Minute\\\",\\\"value\\\":4},\\\"1\\\":{\\\"name\\\":\\\"1\\\",\\\"range\\\":[0,0],\\\"children\\\":null,\\\"description\\\":\\\"{ts: 0}\\\",\\\"value\\\":0},\\\"2\\\":{\\\"name\\\":\\\"2\\\",\\\"range\\\":[0,887],\\\"children",
+   "name": "ts5-ts-order-service-stress-svfvxk/injection.json",
+   "size": 1759
+  },
+  {
+   "head": "{\n    \"benchmark\": \"clickhouse\",\n    \"created_at\": \"2025-09-06T19:03:03.125Z\",\n    \"description\": \"Fault for task 14141e8f-76d5-4bc2-ab57-fe4b3c210fce\",\n    \"display_config\": \"{\\\"duration\\\":4,\\\"injection_point\\\":{\\\"app_name\\\":\\\"ts-consign-service\\\",\\\"class_name\\\":\\\"consign.controller.ConsignController\\\",\\\"method_name\\\":\\\"home\\\"},\\\"mem_type\\\":1,\\\"namespace\\\":\\\"ts\\\"}\",\n    \"end_time\": \"2025-09-06T19:07:03Z\",\n    \"engine_config\": \"{\\\"name\\\":\\\"InjectionConf\\\",\\\"range\\\":[0,30],\\\"children\\\":{\\\"28\\\":{\\\"name\\\":\\\"28\\\",\\\"range\\\":[0,3],\\\"children\\\":{\\\"0\\\":{\\\"name\\\":\\\"0\\\",\\\"range\\\":[1,60],\\\"children\\\":null,\\\"description\\\":\\\"Time Unit Minute\\\",\\\"value\\\":4},\\\"1\\\":{\\\"name\\\":\\\"1\\\",\\\"range\\\":[0,0],\\\"children\\\":null,\\\"description\\\":\\\"{ts: 0}\\\",\\\"value\\\":0},\\\"2\\\":{\\\"name\\\":\\\"2\\\",\\\"range\\\":[0,887],\\\"children\\",
+   "name": "ts2-ts-consign-service-stress-b7twdg/injection.json",
+   "size": 1763
+  },
+  {
+   "head": "{\n    \"benchmark\": \"clickhouse\",\n    \"created_at\": \"2025-09-06T19:01:07.115Z\",\n    \"description\": \"Fault for task d7ee1955-f3b9-43a8-9593-ab1ecadbe127\",\n    \"display_config\": \"{\\\"duration\\\":4,\\\"injection_point\\\":{\\\"app_name\\\":\\\"ts-inside-payment-service\\\",\\\"class_name\\\":\\\"inside_payment.init.InitData\\\",\\\"method_name\\\":\\\"run\\\"},\\\"mem_type\\\":2,\\\"namespace\\\":\\\"ts\\\"}\",\n    \"end_time\": \"2025-09-06T19:05:07Z\",\n    \"engine_config\": \"{\\\"name\\\":\\\"InjectionConf\\\",\\\"range\\\":[0,30],\\\"children\\\":{\\\"28\\\":{\\\"name\\\":\\\"28\\\",\\\"range\\\":[0,3],\\\"children\\\":{\\\"0\\\":{\\\"name\\\":\\\"0\\\",\\\"range\\\":[1,60],\\\"children\\\":null,\\\"description\\\":\\\"Time Unit Minute\\\",\\\"value\\\":4},\\\"1\\\":{\\\"name\\\":\\\"1\\\",\\\"range\\\":[0,0],\\\"children\\\":null,\\\"description\\\":\\\"{ts: 0}\\\",\\\"value\\\":0},\\\"2\\\":{\\\"name\\\":\\\"2\\\",\\\"range\\\":[0,887],\\\"children\\\":",
+   "name": "ts1-ts-inside-payment-service-stress-lp6wwg/injection.json",
+   "size": 1780
+  },
+  {
+   "head": "{\n    \"benchmark\": \"clickhouse\",\n    \"created_at\": \"2025-09-06T18:49:42.107Z\",\n    \"description\": \"Fault for task ba9d1efa-00e3-47aa-bcef-482e88c8b7fa\",\n    \"display_config\": \"{\\\"duration\\\":4,\\\"injection_point\\\":{\\\"app_name\\\":\\\"ts-inside-payment-service\\\",\\\"class_name\\\":\\\"inside_payment.controller.InsidePaymentController\\\",\\\"method_name\\\":\\\"pay\\\"},\\\"mem_type\\\":2,\\\"namespace\\\":\\\"ts\\\"}\",\n    \"end_time\": \"2025-09-06T18:53:42Z\",\n    \"engine_config\": \"{\\\"name\\\":\\\"InjectionConf\\\",\\\"range\\\":[0,30],\\\"children\\\":{\\\"28\\\":{\\\"name\\\":\\\"28\\\",\\\"range\\\":[0,3],\\\"children\\\":{\\\"0\\\":{\\\"name\\\":\\\"0\\\",\\\"range\\\":[1,60],\\\"children\\\":null,\\\"description\\\":\\\"Time Unit Minute\\\",\\\"value\\\":4},\\\"1\\\":{\\\"name\\\":\\\"1\\\",\\\"range\\\":[0,0],\\\"children\\\":null,\\\"description\\\":\\\"{ts: 0}\\\",\\\"value\\\":0},\\\"2\\\":{\\\"name\\\":\\\"2\\\",\\\"range\\\":",
+   "name": "ts5-ts-inside-payment-service-stress-dslxhv/injection.json",
+   "size": 1822
+  },
+  {
+   "head": "{\n    \"benchmark\": \"clickhouse\",\n    \"created_at\": \"2025-09-06T18:22:50.131Z\",\n    \"description\": \"Fault for task ca732609-e1a8-4461-9af5-4003500f14b5\",\n    \"display_config\": \"{\\\"duration\\\":4,\\\"injection_point\\\":{\\\"app_name\\\":\\\"ts-route-plan-service\\\",\\\"method\\\":\\\"POST\\\",\\\"route\\\":\\\"/api/v1/travelservice/trip_detail\\\",\\\"server_address\\\":\\\"ts-travel-service\\\",\\\"server_port\\\":\\\"8080\\\"},\\\"namespace\\\":\\\"ts\\\"}\",\n    \"end_time\": \"2025-09-06T18:26:50Z\",\n    \"engine_config\": \"{\\\"name\\\":\\\"InjectionConf\\\",\\\"range\\\":[0,30],\\\"children\\\":{\\\"6\\\":{\\\"name\\\":\\\"6\\\",\\\"range\\\":[0,2],\\\"children\\\":{\\\"0\\\":{\\\"name\\\":\\\"0\\\",\\\"range\\\":[1,60],\\\"children\\\":null,\\\"description\\\":\\\"Time Unit Minute\\\",\\\"value\\\":4},\\\"1\\\":{\\\"name\\\":\\\"1\\\",\\\"range\\\":[0,0],\\\"children\\\":null,\\\"description\\\":\\\"{ts: 0}\\\",\\\"value\\\":0},\\\"2\\\":{\\\"nam",
+   "name": "ts5-ts-route-plan-service-response-abort-vw2dh4/injection.json",
+   "size": 1802
+  },
+  {
+   "head": "{\n    \"benchmark\": \"clickhouse\",\n    \"created_at\": \"2025-09-06T18:16:25.116Z\",\n    \"description\": \"Fault for task 7148552c-8549-4b79-90a0-275eb00a6f5f\",\n    \"display_config\": \"{\\\"duration\\\":4,\\\"injection_point\\\":{\\\"app_name\\\":\\\"ts-travel2-service\\\",\\\"method\\\":\\\"POST\\\",\\\"route\\\":\\\"/api/v1/basicservice/basic/travel\\\",\\\"server_address\\\":\\\"ts-basic-service\\\",\\\"server_port\\\":\\\"8080\\\"},\\\"namespace\\\":\\\"ts\\\"}\",\n    \"end_time\": \"2025-09-06T18:20:25Z\",\n    \"engine_config\": \"{\\\"name\\\":\\\"InjectionConf\\\",\\\"range\\\":[0,30],\\\"children\\\":{\\\"11\\\":{\\\"name\\\":\\\"11\\\",\\\"range\\\":[0,2],\\\"children\\\":{\\\"0\\\":{\\\"name\\\":\\\"0\\\",\\\"range\\\":[1,60],\\\"children\\\":null,\\\"description\\\":\\\"Time Unit Minute\\\",\\\"value\\\":4},\\\"1\\\":{\\\"name\\\":\\\"1\\\",\\\"range\\\":[0,0],\\\"children\\\":null,\\\"description\\\":\\\"{ts: 0}\\\",\\\"value\\\":0},\\\"2\\\":{\\\"name\\",
+   "name": "ts3-ts-travel2-service-request-replace-path-cn6j54/injection.json",
+   "size": 1790
+  }
+ ],
+ "label_like_members": 1422,
+ "profiled_at": "2026-10-14T02:30:16Z",
+ "source_id": "rcabench-fse26",
+ "tar_members": 21413,
+ "top_level_dirs": 21413,
+ "top_level_examples": [
+  "ts5-ts-order-service-stress-svfvxk",
+  "ts5-ts-order-service-stress-svfvxk/.finished",
+  "ts5-ts-order-service-stress-svfvxk/abnormal_logs.parquet",
+  "ts5-ts-order-service-stress-svfvxk/abnormal_metrics.parquet",
+  "ts5-ts-order-service-stress-svfvxk/abnormal_metrics_histogram.parquet",
+  "ts5-ts-order-service-stress-svfvxk/abnormal_metrics_sum.parquet",
+  "ts5-ts-order-service-stress-svfvxk/abnormal_traces.parquet",
+  "ts5-ts-order-service-stress-svfvxk/conclusion.parquet",
+  "ts5-ts-order-service-stress-svfvxk/env.json",
+  "ts5-ts-order-service-stress-svfvxk/injection.json",
+  "ts5-ts-order-service-stress-svfvxk/normal_logs.parquet",
+  "ts5-ts-order-service-stress-svfvxk/normal_metrics.parquet",
+  "ts5-ts-order-service-stress-svfvxk/normal_metrics_histogram.parquet",
+  "ts5-ts-order-service-stress-svfvxk/normal_metrics_sum.parquet",
+  "ts5-ts-order-service-stress-svfvxk/normal_traces.parquet"
+ ],
+ "zips": {
+  "rcabench-fse-26.zip": 852,
+  "rcabench-platform-feat-fse26.zip": 186
+ }
+}

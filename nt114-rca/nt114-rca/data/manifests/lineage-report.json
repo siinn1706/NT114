@@ -1,0 +1,146 @@
+{
+ "agenticopseval": {
+  "AIOps2025": 400,
+  "AIOps2025_checksums_md5": {
+   "listed": 18,
+   "mismatched": []
+  },
+  "RCA100": 103,
+  "project107_blob_ids": {
+   "identical": true,
+   "project107": {
+    "groundtruth.jsonl": "fd0a1a361564cbe3683223686915ca3c3dccf8f1",
+    "input.json": "c8316852bf5ca162dd19ed8aa7050c47a724b45f"
+   },
+   "project110_local": {
+    "groundtruth.jsonl": "fd0a1a361564cbe3683223686915ca3c3dccf8f1",
+    "input.json": "c8316852bf5ca162dd19ed8aa7050c47a724b45f"
+   }
+  }
+ },
+ "aiops2021_groundtruth_rows": 159,
+ "cloud_opsbench": null,
+ "label_candidates": {
+  "anomod": {
+   "count": 2,
+   "examples": [
+    "AnoMod.zip:TT_data/trace_data/Lv_C_exception_injection_20251103T185917Z_em/Lv_C_exception_injection_20251103T185917Z_em_skywalking_traces_20251103_192217.json",
+    "AnoMod.zip:TT_data/metric_data/Lv_C_exception_injection_20251103T185917Z_em/Lv_C_exception_injection_20251103T185917Z_em_metrics_20251103_192141.csv"
+   ],
+   "note": "incident rows not extracted; label format not parsed (tar.gz and split zips not listed)"
+  },
+  "dejavu": {
+   "count": 6,
+   "examples": [
+    "A1.zip:A1/faults.csv",
+    "A2.zip:A2/faults.csv",
+    "B.zip:B/faults.csv",
+    "C.zip:C/faults.csv",
+    "D.zip:D/faults.csv",
+    "D.zip:D/.ipynb_checkpoints/faults-checkpoint.csv"
+   ],
+   "note": "incident rows not extracted; label format not parsed (tar.gz and split zips not listed)"
+  },
+  "msds": {
+   "count": 0,
+   "examples": [],
+   "note": "incident rows not extracted; label format not parsed (tar.gz and split zips not listed)"
+  },
+  "rcabench-fse26": {
+   "count": 0,
+   "examples": [],
+   "note": "incident rows not extracted; label format not parsed (tar.gz and split zips not listed)"
+  }
+ },
+ "lineage": {
+  "fault_cells": {
+   "agenticopseval": {
+    "cells": 55,
+    "max_repetitions": 38
+   },
+   "aiops2021-upstream": {
+    "cells": 6,
+    "max_repetitions": 64
+   },
+   "cloud-opsbench": {
+    "cells": 12,
+    "max_repetitions": 164
+   },
+   "nezha": {
+    "cells": 56,
+    "max_repetitions": 3
+   },
+   "petshop": {
+    "cells": 4,
+    "max_repetitions": 26
+   },
+   "rcaeval-zenodo": {
+    "cells": 193,
+    "max_repetitions": 5
+   }
+  },
+  "groups": {
+   "L1": {
+    "copies": 735,
+    "independent_incidents": 735,
+    "rows": 1470,
+    "sources": [
+     "rcaeval-hf",
+     "rcaeval-zenodo"
+    ]
+   },
+   "L10": {
+    "copies": 0,
+    "independent_incidents": 68,
+    "rows": 68,
+    "sources": [
+     "petshop"
+    ]
+   },
+   "L2+L3": {
+    "copies": 0,
+    "independent_incidents": 503,
+    "rows": 503,
+    "sources": [
+     "agenticopseval"
+    ]
+   },
+   "L4": {
+    "copies": 0,
+    "independent_incidents": 101,
+    "rows": 101,
+    "sources": [
+     "nezha"
+    ]
+   },
+   "L5": {
+    "copies": 0,
+    "independent_incidents": 159,
+    "rows": 159,
+    "sources": [
+     "aiops2021-upstream"
+    ]
+   },
+   "L9": {
+    "copies": 0,
+    "independent_incidents": 754,
+    "rows": 754,
+    "sources": [
+     "cloud-opsbench"
+    ]
+   }
+  },
+  "independent_incidents_total": 2320,
+  "note": "aiops2021-upstream rows are lineage metadata (OpenRCA parent); its telemetry was not acquired",
+  "rows_total": 3055
+ },
+ "nezha_incidents": {
+  "online-boutique": 56,
+  "train-ticket": 45
+ },
+ "openrca": {
+  "present": false
+ },
+ "petshop_incidents": 68,
+ "rcaeval": null
+}

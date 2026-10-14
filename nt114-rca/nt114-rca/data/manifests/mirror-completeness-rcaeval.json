@@ -1,0 +1,260 @@
+{
+ "files_only_on_hf_by_name": {
+  "metrics.parquet": 374
+ },
+ "files_only_on_zenodo_by_name": {
+  "cluster_info.json": 270,
+  "data.csv": 374,
+  "logs.csv": 1,
+  "logts.csv": 270,
+  "metrics_postprocess.log": 360,
+  "pod-node-1.csv": 270,
+  "pod-node-2.csv": 270,
+  "simple_data.csv": 250,
+  "simple_metrics.csv": 360,
+  "traces.csv": 13,
+  "tracets_err.csv": 180,
+  "tracets_lat.csv": 180
+ },
+ "hf_cases": 735,
+ "hf_missing_logs": [
+  "re2tt_ts-auth-service_cpu_1"
+ ],
+ "hf_present": true,
+ "hf_root_cause_txt": [
+  "re3ss_carts_f1_1",
+  "re3ss_carts_f1_2",
+  "re3ss_carts_f3_1",
+  "re3ss_carts_f3_2",
+  "re3ss_front-end_f1_1",
+  "re3ss_front-end_f1_2",
+  "re3ss_front-end_f2_1",
+  "re3ss_front-end_f2_2"
+ ],
+ "hf_unmatched": [
+  "re1ob_currencyservice_loss_1"
+ ],
+ "matched_by_identical_inject_time": 734,
+ "modality_differences": [
+  {
+   "hf": "re2tt_ts-auth-service_cpu_1",
+   "hf_modalities": [
+    "metrics",
+    "traces"
+   ],
+   "zenodo": "re2tt_ts-auth-service_cpu_1",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_carts_f1_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_carts_f1_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_carts_f3_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_carts_f3_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_carts_f4_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_carts_f4_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_front-end_f1_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_front-end_f1_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_front-end_f2_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_front-end_f2_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_front-end_f3_1",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_front-end_f3_1",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_front-end_f3_2",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_front-end_f3_2",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_front-end_f3_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_front-end_f3_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_orders_f1_1",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_orders_f1_1",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_orders_f1_2",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_orders_f1_2",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_orders_f1_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_orders_f1_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_orders_f3_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_orders_f3_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  },
+  {
+   "hf": "re3ss_orders_f4_3",
+   "hf_modalities": [
+    "logs",
+    "metrics"
+   ],
+   "zenodo": "re3ss_orders_f4_3",
+   "zenodo_modalities": [
+    "logs",
+    "metrics",
+    "traces"
+   ]
+  }
+ ],
+ "renamed_cases": [
+  [
+   "re3tt_ts-route-service_f3_4",
+   "re3tt_ts-route-service_f3_1_1"
+  ],
+  [
+   "re3tt_ts-route-service_f3_5",
+   "re3tt_ts-route-service_f3_1_2"
+  ],
+  [
+   "re3tt_ts-route-service_f3_6",
+   "re3tt_ts-route-service_f3_1_3"
+  ]
+ ],
+ "same_key_different_inject_time": [
+  "re1ob_currencyservice_loss_1"
+ ],
+ "verdict": "HF is a derived copy: 734 of 735 HF cases map to Zenodo cases by identical inject_time bytes; 1 share a Zenodo key with a different inject_time; 0 have no Zenodo counterpart",
+ "zenodo_cases": 735,
+ "zenodo_header_only_traces_absent_on_hf": [
+  "re3ss_carts_f1_3",
+  "re3ss_carts_f3_3",
+  "re3ss_carts_f4_3",
+  "re3ss_front-end_f1_3",
+  "re3ss_front-end_f2_3",
+  "re3ss_front-end_f3_1",
+  "re3ss_front-end_f3_2",
+  "re3ss_front-end_f3_3",
+  "re3ss_orders_f1_1",
+  "re3ss_orders_f1_2",
+  "re3ss_orders_f1_3",
+  "re3ss_orders_f3_3",
+  "re3ss_orders_f4_3"
+ ],
+ "zenodo_present": true,
+ "zenodo_without_hf_copy": [
+  "re1ob_currencyservice_loss_1"
+ ]
+}

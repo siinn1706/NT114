@@ -1,0 +1,68 @@
+{
+ "by_subset_system_state": [
+  {
+   "n": 381,
+   "state": "ACCEPT",
+   "subset": "AIOps2025",
+   "system": "hipstershop"
+  },
+  {
+   "n": 19,
+   "state": "ACCEPT_WITH_WARNINGS",
+   "subset": "AIOps2025",
+   "system": "hipstershop"
+  }
+ ],
+ "dataset_id": "aiops2025",
+ "findings": [
+  {
+   "code": "EMPTY_MODALITY_FILE",
+   "n": 5,
+   "severity": "info"
+  },
+  {
+   "code": "LABEL_ARTIFACT_PRESENT",
+   "n": 400,
+   "severity": "info"
+  },
+  {
+   "code": "LOW_COVERAGE",
+   "n": 11,
+   "severity": "warn"
+  },
+  {
+   "code": "METRIC_NONFINITE",
+   "n": 10,
+   "severity": "info"
+  },
+  {
+   "code": "MULTI_ROOT",
+   "n": 128,
+   "severity": "info"
+  },
+  {
+   "code": "TRACE_ORPHAN_SPANS",
+   "n": 229,
+   "severity": "info"
+  },
+  {
+   "code": "TRACE_ORPHAN_SPANS",
+   "n": 7,
+   "severity": "warn"
+  },
+  {
+   "code": "WINDOW_CLIPPED",
+   "n": 4,
+   "severity": "warn"
+  }
+ ],
+ "incidents": 400,
+ "invariant_error_count": 0,
+ "invariant_errors": [],
+ "quarantined": [],
+ "rejected": [],
+ "states": {
+  "ACCEPT": 381,
+  "ACCEPT_WITH_WARNINGS": 19
+ }
+}

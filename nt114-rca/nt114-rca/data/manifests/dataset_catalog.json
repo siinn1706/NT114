@@ -1,0 +1,561 @@
+{
+ "generated_at": "2026-10-13T20:25:04Z",
+ "registry": "scripts/datasets/sources.json",
+ "sources": [
+  {
+   "archive_audit": {
+    "archives": 0,
+    "at": "2026-10-13T17:19:45Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A-metric-only",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 18712735,
+    "expected_bytes": 18712735,
+    "expected_files": 164,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 164
+   },
+   "doi": null,
+   "id": "petshop",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "github-git",
+   "license": "CC-BY-4.0 (data, LICENSE_DATASET); Apache-2.0 (code)",
+   "lineage_group": "L10",
+   "next_action": null,
+   "provenance": "data/provenance/petshop.json",
+   "reason": "all files match publisher anchors",
+   "record": null,
+   "repo": "amazon-science/petshop-root-cause-analysis",
+   "revision": "2e96f937c4c044b8b4aad03217592cd52e66db5d",
+   "state": "VERIFIED",
+   "version_dir": "git-2e96f937c4c0"
+  },
+  {
+   "archive_audit": {
+    "archives": 1,
+    "at": "2026-10-13T17:32:27Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 201917396,
+    "expected_bytes": 201917396,
+    "expected_files": 1,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 1
+   },
+   "doi": "10.5281/zenodo.18342898",
+   "id": "anomod",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "zenodo-record",
+   "license": "CC-BY-4.0",
+   "lineage_group": "L12",
+   "next_action": null,
+   "provenance": "data/provenance/anomod.json",
+   "reason": "all files match publisher anchors",
+   "record": "18342898",
+   "repo": null,
+   "revision": null,
+   "state": "VERIFIED",
+   "version_dir": "zenodo-18342898"
+  },
+  {
+   "archive_audit": {
+    "archives": 2,
+    "at": "2026-10-13T17:35:03Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "B-auxiliary",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 650495000,
+    "expected_bytes": 650495000,
+    "expected_files": 2,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 2
+   },
+   "doi": "10.5281/zenodo.3549604",
+   "id": "msds",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "zenodo-record",
+   "license": "CC-BY-4.0",
+   "lineage_group": "L14",
+   "next_action": null,
+   "provenance": "data/provenance/msds.json",
+   "reason": "all files match publisher anchors",
+   "record": "3549604",
+   "repo": null,
+   "revision": null,
+   "state": "VERIFIED",
+   "version_dir": "zenodo-3549604"
+  },
+  {
+   "archive_audit": {
+    "archives": 9,
+    "at": "2026-10-13T18:21:02Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 5161758943,
+    "expected_bytes": 5161758943,
+    "expected_files": 9,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 9
+   },
+   "doi": "10.5281/zenodo.14590730",
+   "id": "rcaeval-zenodo",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "zenodo-record",
+   "license": "CC-BY-4.0 (Zenodo record)",
+   "lineage_group": "L1",
+   "next_action": null,
+   "provenance": "data/provenance/rcaeval-zenodo.json",
+   "reason": "all files match publisher anchors",
+   "record": "14590730",
+   "repo": null,
+   "revision": null,
+   "state": "VERIFIED",
+   "version_dir": "zenodo-14590730"
+  },
+  {
+   "archive_audit": {
+    "archives": 0,
+    "at": "2026-10-13T17:31:46Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A-derived-copy",
+   "copy_of": "rcaeval-zenodo",
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 3442007684,
+    "expected_bytes": 3442007684,
+    "expected_files": 2080,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 2080
+   },
+   "doi": null,
+   "id": "rcaeval-hf",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "huggingface-dataset",
+   "license": "MIT (HF card)",
+   "lineage_group": "L1",
+   "next_action": null,
+   "provenance": "data/provenance/rcaeval-hf.json",
+   "reason": "all files match publisher anchors",
+   "record": null,
+   "repo": "phamquiluan/RCAEval",
+   "revision": "afeacb11bcc94dadfd1c8f483ee4377b2b8b614e",
+   "state": "VERIFIED",
+   "version_dir": "hf-afeacb11bcc9"
+  },
+  {
+   "archive_audit": {
+    "archives": 0,
+    "at": "2026-10-13T17:33:03Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 3042817082,
+    "expected_bytes": 3042817082,
+    "expected_files": 1252,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 1252
+   },
+   "doi": null,
+   "id": "nezha",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "github-git",
+   "license": "MIT",
+   "lineage_group": "L4",
+   "next_action": null,
+   "provenance": "data/provenance/nezha.json",
+   "reason": "all files match publisher anchors",
+   "record": null,
+   "repo": "IntelligentDDS/Nezha",
+   "revision": "d8140101fdb4e7dfb60d3ef9f64706f382b68470",
+   "state": "VERIFIED",
+   "version_dir": "git-d8140101fdb4"
+  },
+  {
+   "archive_audit": {
+    "archives": 0,
+    "at": "2026-10-13T19:03:49Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A-snapshot",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 3840845678,
+    "expected_bytes": 3840845678,
+    "expected_files": 27110,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 27110
+   },
+   "doi": null,
+   "id": "cloud-opsbench",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "huggingface-dataset",
+   "license": "MIT",
+   "lineage_group": "L9",
+   "next_action": null,
+   "provenance": "data/provenance/cloud-opsbench.json",
+   "reason": "all files match publisher anchors",
+   "record": null,
+   "repo": "LLM4Ops/Cloud-OpsBench",
+   "revision": "1a02e54329cc82aeef31ff8c4509cc7e68483ef5",
+   "state": "VERIFIED",
+   "version_dir": "hf-1a02e54329cc"
+  },
+  {
+   "archive_audit": {
+    "archives": 18,
+    "at": "2026-10-13T19:29:46Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 13426756118,
+    "expected_bytes": 13403947520,
+    "expected_files": 857,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 857
+   },
+   "doi": null,
+   "id": "agenticopseval",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "gitlab-raw",
+   "license": {
+    "AIOps2025": "CC BY-NC 4.0 (README)",
+    "RCA100": "CC BY-NC-SA 4.0 (RCA100/LICENSE)"
+   },
+   "lineage_group": "L2+L3",
+   "next_action": null,
+   "provenance": "data/provenance/agenticopseval.json",
+   "reason": "all files match publisher anchors",
+   "record": null,
+   "repo": null,
+   "revision": "69cf36430b43024d02530c610b1a4738b5c9a7fb",
+   "state": "VERIFIED",
+   "version_dir": "gitlab-69cf36430b43"
+  },
+  {
+   "archive_audit": {
+    "archives": 5,
+    "at": "2026-10-13T18:45:39Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A-metric-only",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 4545204660,
+    "expected_bytes": 4545204660,
+    "expected_files": 12,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 12
+   },
+   "doi": "10.5281/zenodo.6955909",
+   "id": "dejavu",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "zenodo-record",
+   "license": "CC-BY-4.0",
+   "lineage_group": "L13",
+   "next_action": null,
+   "provenance": "data/provenance/dejavu.json",
+   "reason": "all files match publisher anchors",
+   "record": "6955909",
+   "repo": null,
+   "revision": null,
+   "state": "VERIFIED",
+   "version_dir": "zenodo-6955909"
+  },
+  {
+   "archive_audit": {
+    "archives": 3,
+    "at": "2026-10-13T20:14:49Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "A",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 13446969567,
+    "expected_bytes": 13446969567,
+    "expected_files": 3,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 3
+   },
+   "doi": "10.5281/zenodo.17105974",
+   "id": "rcabench-fse26",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "zenodo-record",
+   "license": "CC-BY-4.0",
+   "lineage_group": "L11",
+   "next_action": null,
+   "provenance": "data/provenance/rcabench-fse26.json",
+   "reason": "all files match publisher anchors",
+   "record": "17105974",
+   "repo": null,
+   "revision": null,
+   "state": "VERIFIED",
+   "version_dir": "zenodo-17105974"
+  },
+  {
+   "archive_audit": null,
+   "category": "A-conditional",
+   "copy_of": null,
+   "counts": null,
+   "doi": null,
+   "id": "openrca",
+   "integrity_levels": null,
+   "kind": "google-drive-files",
+   "license": "CC BY-NC 4.0 stated with SA terms -> treat BY-NC-SA",
+   "lineage_group": "L5",
+   "next_action": "rerun fetch after the Drive quota window (~24 h); never with cookies",
+   "provenance": "data/provenance/openrca.json",
+   "reason": "Drive refused all 3 downloads (quota/interstitial)",
+   "record": null,
+   "repo": null,
+   "revision": null,
+   "state": "PENDING:drive-quota",
+   "version_dir": "drive-20261014"
+  },
+  {
+   "archive_audit": null,
+   "category": "B",
+   "copy_of": null,
+   "counts": null,
+   "doi": null,
+   "id": "gaia",
+   "integrity_levels": null,
+   "kind": "github-git",
+   "license": "CONFLICT: LICENSE file GPL-2.0; README Apache-2.0",
+   "lineage_group": "L7",
+   "next_action": "owner acknowledges licence conflict (plan question 1), then fetch",
+   "provenance": "data/provenance/gaia.json",
+   "reason": "licence conflict: LICENSE file GPL-2.0 vs README Apache-2.0",
+   "record": null,
+   "repo": "CloudWise-OpenSource/GAIA-DataSet",
+   "revision": "238a9e24ae0b69e7e05dff112652a3fa62db88fd",
+   "state": "PENDING:decision",
+   "version_dir": "git-238a9e24ae0b"
+  },
+  {
+   "archive_audit": null,
+   "category": "A-pending",
+   "copy_of": null,
+   "counts": null,
+   "doi": null,
+   "id": "eadro",
+   "integrity_levels": null,
+   "kind": "zenodo-record",
+   "license": null,
+   "lineage_group": "L6",
+   "next_action": "find a licence in the ICSE'23 artefact or ask the authors",
+   "provenance": "data/provenance/eadro.json",
+   "reason": "Zenodo record has no licence",
+   "record": "7615394",
+   "repo": null,
+   "revision": null,
+   "state": "PENDING:license",
+   "version_dir": "zenodo-7615394"
+  },
+  {
+   "archive_audit": null,
+   "category": "B",
+   "copy_of": null,
+   "counts": null,
+   "doi": null,
+   "id": "lemma-rca-product-review",
+   "integrity_levels": null,
+   "kind": "huggingface-dataset",
+   "license": "CONFLICT: Zenodo 20516735 cc-by-nd-4.0; HF cc-by-nc-4.0",
+   "lineage_group": "L8",
+   "next_action": "ask the authors which licence governs: lemmarca.info has expired (2026-10-14) and lemma-rca.github.io states CC BY-ND 4.0, conflicting with the HF cards (CC-BY-NC-4.0)",
+   "provenance": "data/provenance/lemma-rca-product-review.json",
+   "reason": "owner decision D3: licence conflict (Zenodo CC-BY-ND-4.0 vs HF CC-BY-NC-4.0); ~10 incidents for 86.6 GB",
+   "record": null,
+   "repo": "Lemma-RCA-NEC/Product_Review_Original",
+   "revision": "63aa4abe7dd7217d9b0b108894c7d893e2b29aef",
+   "state": "PENDING:deferred",
+   "version_dir": "hf-63aa4abe7dd7"
+  },
+  {
+   "archive_audit": null,
+   "category": "B",
+   "copy_of": null,
+   "counts": null,
+   "doi": null,
+   "id": "lemma-rca-cloud-computing",
+   "integrity_levels": null,
+   "kind": "huggingface-dataset",
+   "license": "CONFLICT: as above",
+   "lineage_group": "L8",
+   "next_action": "ask the authors which licence governs: lemmarca.info has expired (2026-10-14) and lemma-rca.github.io states CC BY-ND 4.0, conflicting with the HF cards (CC-BY-NC-4.0)",
+   "provenance": "data/provenance/lemma-rca-cloud-computing.json",
+   "reason": "owner decision D3: licence conflict (Zenodo CC-BY-ND-4.0 vs HF CC-BY-NC-4.0); ~10 incidents for 86.6 GB",
+   "record": null,
+   "repo": "Lemma-RCA-NEC/Cloud_Computing_Original",
+   "revision": "9e5ad23fa390f6b596f41be014233fe446679bcd",
+   "state": "PENDING:deferred",
+   "version_dir": "hf-9e5ad23fa390"
+  },
+  {
+   "archive_audit": {
+    "archives": 1,
+    "at": "2026-10-13T17:26:35Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "B-lineage",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 115628,
+    "expected_bytes": 0,
+    "expected_files": 3,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 3
+   },
+   "doi": null,
+   "id": "aiops2020-upstream",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "gitlab-raw",
+   "license": "CONFLICT: organiser non-commercial terms (GitHub) vs CC BY-NC 4.0 (mirror)",
+   "lineage_group": "L5",
+   "next_action": "archives need a separate owner request",
+   "provenance": "data/provenance/aiops2020-upstream.json",
+   "reason": "allowed small files verified (publisher-hash); archives not acquired (owner decision D4)",
+   "record": null,
+   "repo": null,
+   "revision": "17d7929d27ef75ddf648d42fbb8781ff66b2b02d",
+   "state": "PENDING:metadata-only",
+   "version_dir": "gitlab-17d7929d27ef"
+  },
+  {
+   "archive_audit": {
+    "archives": 0,
+    "at": "2026-10-13T17:26:36Z",
+    "errors": [],
+    "unsafe_or_corrupt": 0
+   },
+   "category": "B-lineage",
+   "copy_of": null,
+   "counts": {
+    "anchor_mismatch": 0,
+    "bytes": 20581,
+    "expected_bytes": 0,
+    "expected_files": 2,
+    "extra_files": 0,
+    "lfs_pointers": 0,
+    "missing": 0,
+    "present_files": 2
+   },
+   "doi": null,
+   "id": "aiops2021-upstream",
+   "integrity_levels": [
+    "publisher-hash"
+   ],
+   "kind": "gitlab-raw",
+   "license": "CC BY-NC 4.0 (mirror README)",
+   "lineage_group": "L5",
+   "next_action": "archives need a separate owner request",
+   "provenance": "data/provenance/aiops2021-upstream.json",
+   "reason": "allowed small files verified (publisher-hash); archives not acquired (owner decision D4)",
+   "record": null,
+   "repo": null,
+   "revision": "cdd0861dd999b2ed998e73d0abec4566d3d1422f",
+   "state": "PENDING:metadata-only",
+   "version_dir": "gitlab-cdd0861dd999"
+  },
+  {
+   "archive_audit": null,
+   "category": "B-auxiliary",
+   "copy_of": null,
+   "counts": null,
+   "doi": "10.5281/zenodo.18937117",
+   "id": "lo2v2",
+   "integrity_levels": null,
+   "kind": "zenodo-record",
+   "license": "CC-BY-4.0 (Zenodo record)",
+   "lineage_group": "L15",
+   "next_action": "owner decides whether an auxiliary anomaly dataset of ~70 GB is wanted; fits the remaining budget",
+   "provenance": "data/provenance/lo2v2.json",
+   "reason": "found in the phase-01 saturation round (2026-10-14); OAuth2 microservice logs/metrics/traces with Locust-scenario anomaly labels, not root-cause labels; 69,963,617,238 B",
+   "record": "18937117",
+   "repo": null,
+   "revision": null,
+   "state": "PENDING:decision",
+   "version_dir": "zenodo-18937117"
+  }
+ ]
+}

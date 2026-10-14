@@ -1,0 +1,45 @@
+{
+ "assignments_sha256": "38cde4e0f6f6c7466c0bfa7e827f20ec3549c26c57a35ab37d4251311dc910da",
+ "builds": [
+  {
+   "build_id": "nezha-4097caebc05e",
+   "dataset_digest": "226a73fcf8eb87043c48ce606230bf3459ead6862e78d13886e59300456a5913",
+   "dataset_id": "nezha"
+  }
+ ],
+ "counts": {
+  "test": {
+   "by_stratum": {
+    "online-boutique|code-defect": 14,
+    "online-boutique|cpu": 26,
+    "online-boutique|network-delay": 16,
+    "train-ticket|code-defect": 24,
+    "train-ticket|cpu": 7,
+    "train-ticket|network-delay": 14
+   },
+   "total": 101
+  }
+ },
+ "created": "2026-10-14T06:40:50Z",
+ "groups": {
+  "headline_ok": true,
+  "largest_group": 34,
+  "n_groups": 7,
+  "rule": "cell",
+  "singletons": 3,
+  "test_share": 1.0
+ },
+ "params": {
+  "evidence_window_s": [
+   600,
+   300
+  ],
+  "fractions": null,
+  "min_groups_per_stratum": 3,
+  "rule": "cell",
+  "stratify": "system|fault_family"
+ },
+ "protocol": "eval-only-nezha",
+ "schema_version": "1.0.0",
+ "seed": 0
+}

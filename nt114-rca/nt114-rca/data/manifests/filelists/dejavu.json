@@ -1,0 +1,146 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "c646ba6b7eb5141d6205e788a5f97b4f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "DejaVu-D-raw.zip.003",
+   "size": 500000000,
+   "url": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.003/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "4a0bd62767b002f15cb1c15bd4a42ac2"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "DejaVu-D-raw.zip.002",
+   "size": 500000000,
+   "url": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.002/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "452ffa694fbe370f66feebbd0e875909"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "B.zip",
+   "size": 332565303,
+   "url": "https://zenodo.org/api/records/6955909/files/B.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "37308c9161a8ea9aae70e5ebb6888a1d"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "C.zip",
+   "size": 17466479,
+   "url": "https://zenodo.org/api/records/6955909/files/C.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "13f7dfef84cace7c8652a44b5aa6167a"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "A1.zip",
+   "size": 31414675,
+   "url": "https://zenodo.org/api/records/6955909/files/A1.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "6d76c9aacba554306877eaee7a86cb13"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "A2.zip",
+   "size": 33445083,
+   "url": "https://zenodo.org/api/records/6955909/files/A2.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "4f92df43302f0aa89b6fe2d80c830fdd"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "D.zip",
+   "size": 829331865,
+   "url": "https://zenodo.org/api/records/6955909/files/D.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "4c89b6f9ce453769e941def65094af35"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "DejaVu-D-raw.zip.007",
+   "size": 300981255,
+   "url": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.007/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "78524e9fd54b266de3dae36000711489"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "DejaVu-D-raw.zip.006",
+   "size": 500000000,
+   "url": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.006/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "4d027ac91285af135b85fa404e6fcd3f"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "DejaVu-D-raw.zip.005",
+   "size": 500000000,
+   "url": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.005/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "06d90c62d7bc78ac051e3d53c9620f9b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "DejaVu-D-raw.zip.004",
+   "size": 500000000,
+   "url": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.004/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "89fb3491f9b6a3d991b8d736dd1b1c01"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "DejaVu-D-raw.zip.001",
+   "size": 500000000,
+   "url": "https://zenodo.org/api/records/6955909/files/DejaVu-D-raw.zip.001/content"
+  }
+ ],
+ "host_meta": {
+  "doi": "10.5281/zenodo.6955909",
+  "license": "cc-by-4.0",
+  "title": "Actionable and Interpretable Fault Localization for Recurring Failures in Online Service Systems",
+  "updated": "2022-08-03T13:48:59.596562+00:00",
+  "version": null
+ },
+ "id": "dejavu",
+ "kind": "zenodo-record",
+ "pinned_at": "2026-10-13T17:15:29Z"
+}

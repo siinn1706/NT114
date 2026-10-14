@@ -1,0 +1,113 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "d2b15cbd3bb3cf6ec5f3cc65f7fac225"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE1-SS.zip",
+   "size": 79089075,
+   "url": "https://zenodo.org/api/records/14590730/files/RE1-SS.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "47cce26ed24140e8974e68f9db2a5e9c"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE1-OB.zip",
+   "size": 30966778,
+   "url": "https://zenodo.org/api/records/14590730/files/RE1-OB.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "48a26925ce47fd4bcfbedbae4f31475b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE1-TT.zip",
+   "size": 279663965,
+   "url": "https://zenodo.org/api/records/14590730/files/RE1-TT.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "b9e23f8842c404b396ffd2becff15de4"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE2-OB.zip",
+   "size": 1191025569,
+   "url": "https://zenodo.org/api/records/14590730/files/RE2-OB.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "a7fbcd1ada406067dcc50771ae398408"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE2-TT.zip",
+   "size": 2801345134,
+   "url": "https://zenodo.org/api/records/14590730/files/RE2-TT.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "bd747a8fc7c5be00c613e13fbf9dd74b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE2-SS.zip",
+   "size": 245629018,
+   "url": "https://zenodo.org/api/records/14590730/files/RE2-SS.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "96947589084348f9d12cba370313458e"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE3-OB.zip",
+   "size": 190838064,
+   "url": "https://zenodo.org/api/records/14590730/files/RE3-OB.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "467964eddb2a4fef4d6486c4679e749b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE3-SS.zip",
+   "size": 101485651,
+   "url": "https://zenodo.org/api/records/14590730/files/RE3-SS.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "ae1eb5906fb4d13a16a6a5e58faaf30b"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "RE3-TT.zip",
+   "size": 241715689,
+   "url": "https://zenodo.org/api/records/14590730/files/RE3-TT.zip/content"
+  }
+ ],
+ "host_meta": {
+  "doi": "10.5281/zenodo.14590730",
+  "license": "cc-by-4.0",
+  "title": "RCAEval: A Benchmark for Root Cause Analysis of Microservice Systems",
+  "updated": "2025-01-04T11:14:17.514705+00:00",
+  "version": null
+ },
+ "id": "rcaeval-zenodo",
+ "kind": "zenodo-record",
+ "pinned_at": "2026-10-13T17:15:23Z"
+}

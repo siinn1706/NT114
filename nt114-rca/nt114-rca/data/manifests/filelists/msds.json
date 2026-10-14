@@ -1,0 +1,36 @@
+{
+ "files": [
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "c54229949981264c2d76a50a396a2bf6"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "sequential_data.zip",
+   "size": 315104962,
+   "url": "https://zenodo.org/api/records/3549604/files/sequential_data.zip/content"
+  },
+  {
+   "anchor": {
+    "algo": "md5",
+    "source": "zenodo record checksum",
+    "value": "be2ba2f17f774e7f3f045dcf5f406ff0"
+   },
+   "integrity_level": "publisher-hash",
+   "path": "concurrent data.zip",
+   "size": 335390038,
+   "url": "https://zenodo.org/api/records/3549604/files/concurrent%20data.zip/content"
+  }
+ ],
+ "host_meta": {
+  "doi": "10.5281/zenodo.3549604",
+  "license": "cc-by-4.0",
+  "title": "Multi-Source Distributed System Data for AI-powered Analytics",
+  "updated": "2022-11-10T13:49:22.424628+00:00",
+  "version": "1.1"
+ },
+ "id": "msds",
+ "kind": "zenodo-record",
+ "pinned_at": "2026-10-13T17:15:22Z"
+}

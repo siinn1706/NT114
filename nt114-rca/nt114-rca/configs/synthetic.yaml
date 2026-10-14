@@ -1,0 +1,23 @@
+# Test pipeline trên dữ liệu giả, LLM giả (không cần GPU). Chạy từ thư mục gốc repo:
+#   python scripts/make_synthetic.py data_synth
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/synthetic.yaml
+#   PYTHONPATH=src python -m rca.run_grid run     configs/synthetic.yaml
+#   PYTHONPATH=src python -m rca.analyze results_synth/grid.jsonl --gate mock-small mock-big
+data_root: data_synth
+datasets: [re2]
+systems: [online-boutique, sock-shop, train-ticket]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, blind_root]
+retrieval: [none, bm25, dense, hybrid]
+store_modes: [precedent, no_precedent]
+top_k: 3
+n_samples: 5
+temperature: 0.7
+seed: 0
+embedder: BAAI/bge-small-en-v1.5
+evidence_dir: results_synth/evidence
+cache: results_synth/llm_cache.sqlite
+out: results_synth/grid.jsonl
+models:
+  - {name: mock-small, backend: mock}
+  - {name: mock-big, backend: mock}
