@@ -30,8 +30,9 @@ Phase 02 done; phase 01 tasks 1 (Linux gate), 2 (hardware), 3 (model probe), 4 (
 ## Tasks
 
 0. **Feasibility test first** (no Jev, 12 DEV incidents per profile): follow
-   `nt114-rca/nt114-rca/docs/gpu_deployment.md` steps 5–8, i.e. `python -m rca.feasibility run`
-   for each serving profile and then `report`. Pick the primary (or its fallback) and the escalation
+   `nt114-rca/nt114-rca/docs/gpu_deployment.md` steps 5–8: `python -m rca.feasibility run` for the
+   primary and its fallback first, then for the escalation candidates one at a time, only as the
+   measurements justify (downloads are staged), and then `report`. Pick the primary (or its fallback) and the escalation
    candidates by the measured verdict, and log the choice.
 1. **Serve the primary model** on the GPU machine with the probe's pinned revision:
    `vllm serve <repo> --revision <sha> --max-model-len <p99 prompt + retrieval + 400> --enable-prefix-caching
@@ -54,7 +55,12 @@ Phase 02 done; phase 01 tasks 1 (Linux gate), 2 (hardware), 3 (model probe), 4 (
    If the parse rate fails: fix the prompt or the guided-decoding settings. If accuracy fails:
    switch the primary per model-selection §3 and log the switch.
 3. **Prompt freeze.** At most 3 prompt iterations on DEV, each logged with its DEV metrics in
-   `decisions.md`. Freeze `PROMPT_VERSION = "v1"`. Thinking stays off.
+   `decisions.md`. Freeze `PROMPT_VERSION = "v1"`. Thinking stays off. Before the freeze, run
+   `configs/exp/dev-sampling.yaml` (Qwen3.5 primary, presence penalty 0 against 1.5, same DEV
+   cells), then `python -m rca.feasibility compare-sampling`. That reports AC@1/AC@3, parse rate,
+   confidence stability, tokens and latency. Freeze the rule's `choice` with prompt v1 and set it in
+   `dev-pilot.yaml`. Rule: keep 0 unless 1.5 has parse rate ≥ 0.99, a paired AC@1 gain with an
+   incident-cluster 95 % CI above 0, and ≤ 25 % more completion tokens. Never use test results.
 4. **Serve the escalation model** (and later the replication model) one at a time; run DEV with
    the frozen prompt; confirm the parse rate gate.
 5. **Live Jev on DEV** (`configs/exp/jev-dev.yaml`):

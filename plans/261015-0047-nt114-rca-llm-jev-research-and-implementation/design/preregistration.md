@@ -23,7 +23,9 @@ oracle), `src/rca/decide.py` and `src/rca/jev.py` (Jev decisions).
 ## 2. Research questions and hypotheses
 
 All effects are paired within incident, with the injection as the independent unit (handoff
-§2b). Sampling uses n = 10 at T = 0.7, so consensus confidence has 11 levels. "Confident" means
+§2b). Sampling uses n = 10 at T = 0.7, so consensus confidence has 11 levels. For the Qwen3.5
+primary, the presence penalty (0, the current setting, or 1.5, the card value) is chosen on DEV by
+the fixed rule of `rca.feasibility.compare_sampling` and frozen with prompt v1, before any test-set run. "Confident" means
 consensus ≥ 0.8, i.e. ≥ 8 of 10 samples (primary), and verbal ≥ 0.8 (secondary).
 
 | RQ | Question | Hypotheses | Endpoint and set |

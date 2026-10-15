@@ -35,13 +35,17 @@ preregistration is added here.
 | 2026-10-15 | **Serving stack pinned:** vLLM 0.30.0 (2026-09-22), transformers 5.17.0 and bitsandbytes 0.50.2 in a separate `.venv-serve` (`requirements-gpu.txt`), because vLLM pins torch 2.13.0 and setuptools<81, which conflict with the analysis lock. The driver must report CUDA >= 13.0 | PyPI metadata; `rca.feasibility check-env` | R1 |
 | 2026-10-15 | **Serving profiles and feasibility test** prepared, not run: five profiles in `configs/hardware/rtx4080-laptop-12gb.yaml` (revision, vLLM quantisation, max-model-len 8192, fallback) and `python -m rca.feasibility` (fetch pinned snapshots, serve offline, 12 DEV incidents, nvidia-smi sampling, report). A profile is feasible if it loads without OOM, the parse rate is >= 0.99 and the measured KV cache holds >= 2 requests of p95 size. The model set is final only after this test and the DEV pilot. No Jev call | `tests/test_feasibility.py` (end-to-end against a fake vLLM server); `docs/gpu_deployment.md` | R1 |
 
+| 2026-10-15 | **Commits `291923e` and `a7b8441` pushed** to the feature branch after the same safety scan (fast-forward, not merged) | `git diff origin/...HEAD` scan | owner |
+| 2026-10-15 | **Qwen3.5 sampling kept unchanged** (owner): only `temperature` is sent. The pinned Qwen3.5-4B repo has no `generation_config.json`, so vLLM's neutral defaults apply (presence penalty 0, top-p 1). The 0 vs 1.5 comparison is prepared (`configs/exp/dev-sampling.yaml`, `presence_penalty` model option, `rca.feasibility compare-sampling` with the decision rule fixed in code) and runs in M2 on DEV before the prompt freeze | `tests/test_feasibility.py`, `tests/test_pipeline.py` | owner |
+| 2026-10-15 | **Staged model downloads** (owner): primary and fallback first (17.4 GB); `qwen3-8b-awq` after the primary is measured feasible; `qwen35-9b-nf4` only if AWQ is infeasible or too slow; the replication model when M3 needs it | `docs/gpu_deployment.md` §4, §6 | owner |
+
 ## Pending owner inputs (phase 01)
 
 | Item | Status |
 |---|---|
 | Linux GPU gate from the `cd96e9e` worktree | **blocking** (needs the GPU machine) |
 | GPU probe: model, VRAM, driver, CUDA, PyTorch, free VRAM, disk | **blocking** (`scripts/gpu_probe.py` on the machine; D2 hardware reported) |
-| GPU feasibility test of the five serving profiles | open, after the probe (`docs/gpu_deployment.md` steps 5–8); no Jev needed |
+| GPU feasibility test: primary and fallback, then escalation candidates as measured | open, after the probe (`docs/gpu_deployment.md` steps 5–8); no Jev needed |
 | Model-card probe: chat template, thinking toggle, minimum vLLM version | done 2026-10-15 (model-selection §2.1); guided JSON with thinking off is measured by the feasibility test |
 | TypeSafe key in `TYPESAFE_API_KEY`, exact response `model` string, org rate limit | **blocking** (hard exit of M0; deadline 2026-10-30) |
 | D3 licence and data-processing terms for AIOps2025 / RCA100 | open (evidence withheld until then) |
