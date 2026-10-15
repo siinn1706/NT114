@@ -46,7 +46,8 @@ None. M1 (phase 02) can start in parallel: it needs no GPU and no Jev key.
    `configs/hardware/rtx4080-laptop-12gb.yaml`, rerun `python -m rca.capacity` on it, and record
    GPU, VRAM, driver, CUDA, PyTorch, free VRAM and disk in `decisions.md`. The model set is in
    [model-selection §3](research/model-selection.md).
-3. **Model-card probe** (read-only). Repos, revisions, licences and architectures of the 12 GB set
+3. **Model-card probe** (read-only). *Done 2026-10-15: model-selection §2.1; serving pinned at
+   vLLM 0.30.0 in `requirements-gpu.txt`.* Repos, revisions, licences and architectures of the 12 GB set
    were recorded on 2026-10-15 from the HF API (`configs/hardware/rtx4080-laptop-12gb.yaml`). Still
    to check for Qwen3.5-4B, Qwen3-4B-Instruct-2507, Phi-4-mini-instruct, Qwen3.5-9B and Qwen3-8B-AWQ, record
    from the official HF cards: licence, context, chat template and thinking toggle, official FP8 or

@@ -45,7 +45,7 @@ nothing here is implemented.
 |---|-------|-------|--------|
 | 1 | [M0: Prerequisites, owner decisions, preregistration draft](./phase-01-m0-audit-prerequisites-and-design-decisions.md) | 1 | **Blocked** (Linux gate, GPU probe, TypeSafe access); D1–D8 decided 2026-10-15 |
 | 2 | [M1: Offline end-to-end LLM + Jev pipeline (CPU, mocks)](./phase-02-m1-offline-end-to-end-pipeline.md) | 1–2 | Done (2026-10-15) |
-| 3 | [M2: Real-model inference, live Jev on DEV, freezes](./phase-03-m2-real-model-inference-and-live-jev.md) | 3 | Pending |
+| 3 | [M2: Real-model inference, live Jev on DEV, freezes](./phase-03-m2-real-model-inference-and-live-jev.md) | 3 | Pending (deployment kit and feasibility test ready, not run) |
 | 4 | [M3: Baselines, confidence, minimum experiment set](./phase-04-m3-baselines-confidence-and-main-experiments.md) | 4–6 | Pending (CPU baselines B0, B1, B3 done early) |
 | 5 | [M4: Gated fine-tuning (optional)](./phase-05-m4-gated-fine-tuning.md) | 7–8 | Pending |
 | 6 | [M5: Extensions, reproducibility, paper results](./phase-06-m5-ablations-reproducibility-and-paper-results.md) | 7–12 | Pending |

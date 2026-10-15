@@ -22,8 +22,8 @@ The model does not need tool use, vision or long context. On the 12 GB GPU (D2) 
 
 | Model | Licence | Params (active) | Released | Notes |
 |---|---|---|---|---|
-| Qwen3.5-9B | Apache-2.0 [S] | 9B dense | 2026-03 [S] | Small Qwen3.5 series (0.8B–9B); native vision; hybrid thinking expected [S]; structured output reported [S] |
-| Qwen3.5-4B | Apache-2.0 [S] | 4B dense | 2026-03 [S] | Fits 12 GB at bf16 [A] |
+| Qwen3.5-9B | Apache-2.0 [F] | 9B dense | 2026-03 [S] | Small Qwen3.5 series (0.8B–9B); native vision; hybrid thinking expected [S]; structured output reported [S] |
+| Qwen3.5-4B | Apache-2.0 [F] | 4B dense | 2026-03 [S] | Fits 12 GB at bf16 [A] |
 | Qwen3.5-27B | Apache-2.0 [S] | 27B dense | 2026-02-24 [S] | Natural escalation sibling |
 | Qwen3.5-35B-A3B | Apache-2.0 [S] | 35B MoE (3B) | 2026-02 [S] | Fast, but all experts must sit in memory |
 | Gemma 4 E4B | Apache-2.0 [S] | ~4.5B effective | 2026-04-02 [S] | 128k context; text+image+audio |
@@ -41,6 +41,26 @@ Sources: [Artificial Analysis on Qwen3.5 small models](https://artificialanalysi
 Search results disagreed on context lengths (32k vs 262k for small Qwen3.5) and on whether a
 Gemma 4 12B exists. Neither affects this design (≥16k is enough), but the M0 model probe records
 the official card values.
+
+### 2.1 Model-card facts at the pinned revisions (2026-10-15) [F]
+
+Read from each repo's README at the revision pinned in `configs/hardware/rtx4080-laptop-12gb.yaml`;
+snapshot sizes from the HF API.
+
+| Model (revision) | Licence | Native context | Thinking | Serving notes on the card | Snapshot |
+|---|---|---|---|---|---|
+| Qwen3.5-4B (`851bf6e8`) | Apache-2.0 | 262,144 | on by default; off with `chat_template_kwargs: {enable_thinking: false}`; no `/think` soft switch | "vLLM main branch" at release; `--language-model-only` skips the vision encoder; non-thinking sampling T 0.7, top-p 0.8, top-k 20, presence penalty 1.5 | 9.34 GB |
+| Qwen3-4B-Instruct-2507 (`cdbee75f`) | Apache-2.0 | 262,144 | non-thinking only | `vllm>=0.8.5`; T 0.7, top-p 0.8, top-k 20 | 8.06 GB |
+| Phi-4-mini-instruct (`cfbefacb`) | MIT | 128k | none | `vllm>=0.7.3`, `transformers>=4.49` | 7.69 GB |
+| Qwen3.5-9B (`c2022362`) | Apache-2.0 | 262,144 | as Qwen3.5-4B | as Qwen3.5-4B; no official 4-bit checkpoint | 19.33 GB |
+| Qwen3-8B-AWQ (`4da05a8e`) | Apache-2.0 | 32,768 | on by default; off with `enable_thinking: false` | `vllm>=0.8.5`; official AWQ | 6.11 GB |
+
+The serving pin is **vLLM 0.30.0** (2026-09-22, `requirements-gpu.txt`): its API documents the
+`qwen3_5` model class (present since at least 0.19), and it pins torch 2.13.0 with CUDA 13 kernels.
+`rca.feasibility check-env` confirms the class imports in the installed environment. The run sends
+only `temperature`; vLLM takes the other sampling defaults from each pinned `generation_config.json`,
+so they are fixed by the revision. The card's presence penalty is **not** applied. Changing that
+would alter the preregistered sampling, so it is a DEV prompt-freeze decision in M2.
 
 No public RCA benchmark ranks these exact checkpoints on RCAEval-style evidence. Reasoning ability
 for RCA is therefore measured in our own pilot (M2), not assumed from leaderboards.
@@ -149,11 +169,16 @@ Consequences:
 
 ## 5. Serving decisions to verify in M0/M2
 
-- vLLM version that supports Qwen3.5 and Gemma 4, and guided JSON (`response_format:
-  json_schema`) with thinking disabled (`chat_template_kwargs: {enable_thinking: false}` or the
-  model's equivalent).
-- Text-only loading of the multimodal checkpoints (vision tower memory; `--limit-mm-per-prompt`).
-- An official FP8 or 4-bit checkpoint; else pin a community quantisation by HF commit sha.
+The serving profiles (repo, revision, vLLM quantisation, context, fallback) are in the `profiles`
+block of `configs/hardware/rtx4080-laptop-12gb.yaml`, and the procedure is in
+`nt114-rca/nt114-rca/docs/gpu_deployment.md`. The model set is final only after
+`python -m rca.feasibility run` has measured every profile on the GPU.
+
+- vLLM version: pinned at 0.30.0 (§2.1). Still to measure: guided JSON (`response_format:
+  json_schema`) with thinking disabled. The feasibility parse rate tests this.
+- Text-only loading of the multimodal Qwen3.5 checkpoints: `--language-model-only` (card).
+- Official quantised checkpoints: only Qwen3-8B-AWQ. Qwen3.5 uses on-the-fly FP8 (4B) or in-flight
+  bitsandbytes NF4 (9B). Whether vLLM supports NF4 on the hybrid layers is tested by the 9B profile.
 - Prefix caching on; `--max-model-len` set from the measured p99 prompt (plus retrieval) and no larger, since
   12 GB leaves little KV headroom; `seed` honoured.
 - Each model pinned by HF repo **and** revision sha in the config and the run manifest.

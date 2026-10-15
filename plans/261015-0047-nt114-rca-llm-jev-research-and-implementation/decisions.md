@@ -30,13 +30,19 @@ preregistration is added here.
 | 2026-10-15 | **Injection weights are renormalised per evaluated cell** (`analyze.reweight`): weight = 1 / records of that injection in the cell, so an injection always counts once even when a cell holds only part of it. The tier-A RCA100 numbers do not change (no tier-A injection has a tier-B sibling) | `tests/test_baselines.py::test_reweight_equal_per_injection_within_cell` | R1 |
 | 2026-10-15 | **`configs/exp/dev-pilot.yaml`** prepared for the 12 GB primary (Qwen3.5-4B FP8, `within-rcaeval-grouped` val = 143 DEV incidents, live Jev). Not run: it needs the GPU machine and TypeSafe access | config resolves on the real build | R1 |
 
+| 2026-10-15 | **Branch `feat/m1-offline-llm-jev-pipeline` pushed** to origin (5 commits ahead of `main`, no force push, not merged). Checked before the push: no secrets or key patterns in the diff, no `.env`, no data or result files, no file over 200 kB, every path under `nt114-rca/nt114-rca/{src,tests,configs,scripts,docs}`, `.gitignore` or `plans/`, and no AI references in the commit messages | `git diff origin/main..HEAD` scan | owner |
+| 2026-10-15 | **Model-card probe done** (phase 01 task 3) at the pinned revisions: licences, native context, thinking toggle, serving flags and snapshot sizes are in model-selection §2.1 [F]. Qwen3.5 needs `enable_thinking: false` and `--language-model-only`; Qwen3-4B-2507 is non-thinking only | model-selection §2.1 | R1 |
+| 2026-10-15 | **Serving stack pinned:** vLLM 0.30.0 (2026-09-22), transformers 5.17.0 and bitsandbytes 0.50.2 in a separate `.venv-serve` (`requirements-gpu.txt`), because vLLM pins torch 2.13.0 and setuptools<81, which conflict with the analysis lock. The driver must report CUDA >= 13.0 | PyPI metadata; `rca.feasibility check-env` | R1 |
+| 2026-10-15 | **Serving profiles and feasibility test** prepared, not run: five profiles in `configs/hardware/rtx4080-laptop-12gb.yaml` (revision, vLLM quantisation, max-model-len 8192, fallback) and `python -m rca.feasibility` (fetch pinned snapshots, serve offline, 12 DEV incidents, nvidia-smi sampling, report). A profile is feasible if it loads without OOM, the parse rate is >= 0.99 and the measured KV cache holds >= 2 requests of p95 size. The model set is final only after this test and the DEV pilot. No Jev call | `tests/test_feasibility.py` (end-to-end against a fake vLLM server); `docs/gpu_deployment.md` | R1 |
+
 ## Pending owner inputs (phase 01)
 
 | Item | Status |
 |---|---|
 | Linux GPU gate from the `cd96e9e` worktree | **blocking** (needs the GPU machine) |
 | GPU probe: model, VRAM, driver, CUDA, PyTorch, free VRAM, disk | **blocking** (`scripts/gpu_probe.py` on the machine; D2 hardware reported) |
-| Model-card probe: chat template, thinking toggle, minimum vLLM version | open (repos, revisions, licences recorded) |
+| GPU feasibility test of the five serving profiles | open, after the probe (`docs/gpu_deployment.md` steps 5–8); no Jev needed |
+| Model-card probe: chat template, thinking toggle, minimum vLLM version | done 2026-10-15 (model-selection §2.1); guided JSON with thinking off is measured by the feasibility test |
 | TypeSafe key in `TYPESAFE_API_KEY`, exact response `model` string, org rate limit | **blocking** (hard exit of M0; deadline 2026-10-30) |
 | D3 licence and data-processing terms for AIOps2025 / RCA100 | open (evidence withheld until then) |
 | D6 alias evidence and collision tests | open (before M3) |

@@ -29,6 +29,10 @@ Phase 02 done; phase 01 tasks 1 (Linux gate), 2 (hardware), 3 (model probe), 4 (
 
 ## Tasks
 
+0. **Feasibility test first** (no Jev, 12 DEV incidents per profile): follow
+   `nt114-rca/nt114-rca/docs/gpu_deployment.md` steps 5–8, i.e. `python -m rca.feasibility run`
+   for each serving profile and then `report`. Pick the primary (or its fallback) and the escalation
+   candidates by the measured verdict, and log the choice.
 1. **Serve the primary model** on the GPU machine with the probe's pinned revision:
    `vllm serve <repo> --revision <sha> --max-model-len <p99 prompt + retrieval + 400> --enable-prefix-caching
    --gpu-memory-utilization 0.90 --quantization fp8 [--limit-mm-per-prompt '{"image":0}']` on the
@@ -80,7 +84,8 @@ Phase 02 outputs; `llm.LLM`, `run_grid`, `decide`, `gate.tune_threshold`, `gate.
 
 | File | Action |
 |---|---|
-| `configs/exp/dev-pilot.yaml`, `configs/exp/jev-dev.yaml` | create |
+| `configs/exp/dev-pilot.yaml`, `configs/exp/jev-dev.yaml` | create (`dev-pilot.yaml` exists) |
+| `configs/exp/gpu-feasibility.yaml`, `src/rca/feasibility.py`, `requirements-gpu.txt`, `docs/gpu_deployment.md` | exist (2026-10-15); run here |
 | `src/rca/llm.py` | modify (prompt text v1 only, if a DEV iteration requires it) |
 | `src/rca/jev.py` | modify (question wording v1 only) |
 | `src/rca/decide.py` | modify (`--rotations`, `--repeat` diagnostic flags) |
