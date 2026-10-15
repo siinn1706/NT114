@@ -15,6 +15,11 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 
+# Bump on any change to SYSTEM_PROMPT, USER_TEMPLATE or schema(): it is part of every cache and result key.
+PROMPT_VERSION = "v1"
+MOCK_SEED = "mock-v1"
+CANARY_MESSAGES = [{"role": "user", "content": "Reply with the single word: ready"}]
+
 SYSTEM_PROMPT = (
     "You are an on-call SRE assistant for a microservice system. Given monitoring evidence collected "
     "around an incident, identify which service is the ROOT CAUSE (not merely a service showing symptoms). "
@@ -76,13 +81,22 @@ class Cache:
 # ---------------------------------------------------------------- client
 class LLM:
     def __init__(self, model: str, base_url="http://localhost:8000/v1", backend="vllm",
-                 n=5, temperature=0.7, max_tokens=400, seed=0, cache: Cache | None = None, timeout=300):
+                 n=5, temperature=0.7, max_tokens=400, seed=0, cache: Cache | None = None, timeout=300,
+                 revision: str | None = None, chat_template_kwargs: dict | None = None, logprobs: bool = False,
+                 server_fp: str | None = None):
         self.model, self.base_url, self.backend = model, base_url.rstrip("/"), backend
         self.n, self.temperature, self.max_tokens, self.seed = n, temperature, max_tokens, seed
         self.cache, self.timeout = cache or Cache(), timeout
+        self.revision, self.logprobs = revision, logprobs
+        self.chat_template_kwargs = {"enable_thinking": False} if chat_template_kwargs is None else dict(chat_template_kwargs)
+        self.server_fp = server_fp if server_fp is not None else ("mock" if backend == "mock" else None)
 
     def key(self, messages, candidates) -> str:
-        blob = json.dumps([self.model, self.backend, self.n, self.temperature, self.seed, messages, candidates])
+        if self.server_fp is None:
+            raise RuntimeError("server fingerprint not set: call server_fingerprint() before asking a live server")
+        blob = json.dumps([self.model, self.revision, self.backend, self.n, self.temperature, self.seed, self.max_tokens,
+                           PROMPT_VERSION, self.chat_template_kwargs, self.logprobs, self.server_fp, messages, candidates],
+                          sort_keys=True)
         return hashlib.sha256(blob.encode()).hexdigest()
 
     def ask(self, messages, candidates) -> dict:
@@ -101,29 +115,58 @@ class LLM:
     def _vllm(self, messages, candidates) -> dict:
         body = {
             "model": self.model, "messages": messages, "n": self.n, "temperature": self.temperature,
-            "max_tokens": self.max_tokens, "seed": self.seed,
+            "max_tokens": self.max_tokens, "seed": self.seed, "chat_template_kwargs": self.chat_template_kwargs,
             "response_format": {"type": "json_schema",
                                 "json_schema": {"name": "rca", "schema": schema(candidates)}},
         }
-        req = urllib.request.Request(f"{self.base_url}/chat/completions", data=json.dumps(body).encode(),
-                                     headers={"Content-Type": "application/json"})
+        if self.logprobs:
+            body.update(logprobs=True, top_logprobs=5)
+        res = self._post("/chat/completions", body)
+        u = res.get("usage", {})
+        out = {"texts": [c["message"]["content"] for c in res["choices"]],
+               "prompt_tokens": u.get("prompt_tokens"), "completion_tokens": u.get("completion_tokens")}
+        if self.logprobs:
+            out["logprobs"] = [c.get("logprobs") for c in res["choices"]]
+        return out
+
+    def _post(self, path: str, body: dict | None = None) -> dict:
+        data = json.dumps(body).encode() if body is not None else None
+        req = urllib.request.Request(f"{self.base_url}{path}", data=data, headers={"Content-Type": "application/json"})
         for attempt in range(3):
             try:
                 with urllib.request.urlopen(req, timeout=self.timeout) as r:
-                    res = json.loads(r.read())
-                break
+                    return json.loads(r.read())
             except Exception:
                 if attempt == 2:
                     raise
                 time.sleep(5 * (attempt + 1))
-        u = res.get("usage", {})
-        return {"texts": [c["message"]["content"] for c in res["choices"]],
-                "prompt_tokens": u.get("prompt_tokens"), "completion_tokens": u.get("completion_tokens")}
+
+    def server_fingerprint(self, launch_args_path=None, quantization: str | None = None) -> str:
+        """sha of the served model list, the launch arguments written by scripts/serve_model.sh and the
+        T=0 answer to a fixed canary prompt. Raises when the launch arguments contradict the configured
+        revision or quantisation. Sets and returns `self.server_fp`."""
+        if self.backend == "mock":
+            self.server_fp = "mock"
+            return self.server_fp
+        if not launch_args_path or not Path(launch_args_path).is_file():
+            raise RuntimeError(f"launch arguments file {launch_args_path!r} not found (written by scripts/serve_model.sh)")
+        args = Path(launch_args_path).read_text(encoding="utf-8").split()
+        for flag, want in (("--revision", self.revision), ("--quantization", quantization)):
+            got = args[args.index(flag) + 1] if flag in args[:-1] else None
+            if want is not None and got != want:
+                raise RuntimeError(f"server {flag} is {got!r}, config expects {want!r}")
+        models = self._post("/models")
+        canary = self._post("/chat/completions", {"model": self.model, "messages": CANARY_MESSAGES, "temperature": 0,
+                                                  "max_tokens": 8, "seed": 0, "chat_template_kwargs": self.chat_template_kwargs})
+        blob = json.dumps([models.get("data"), args, canary["choices"][0]["message"]["content"]], sort_keys=True)
+        self.server_fp = hashlib.sha256(blob.encode()).hexdigest()[:16]
+        return self.server_fp
 
     def _mock(self, messages, candidates) -> dict:
         """LLM giả: tin dịch vụ có z-score cao nhất ở phần Metrics, nhiễu ngẫu nhiên. Chỉ để test."""
         text = messages[-1]["content"]
-        rng = random.Random(self.key(messages, candidates))
+        # seeded independently of the cache key, so adding key fields does not change mock fixtures
+        rng = random.Random(hashlib.sha256(json.dumps([MOCK_SEED, self.model, self.seed, messages, candidates]).encode()).hexdigest())
         seen = [s for s in re.findall(r"^- ([a-z0-9]+):", text, re.M) if s in candidates]
         order = list(dict.fromkeys(seen + candidates))
         outs = []

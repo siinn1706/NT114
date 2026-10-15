@@ -43,9 +43,12 @@ class VisibleCase:
 
 @dataclass
 class Truth:
-    """Nhãn đúng; chỉ dùng cho chấm điểm, chọn mục tiêu ablation và mặt nạ kho oracle."""
-    root_service: str
+    """Nhãn đúng; chỉ dùng cho chấm điểm, chọn mục tiêu ablation và mặt nạ kho oracle.
+    `root_service` = None khi nhãn chỉ là một tập dịch vụ (`root_ids`, chấm theo tập)."""
+    root_service: str | None
     fault: str
+    root_ids: tuple[str, ...] = ()
+    granularity: str = "service"
 
 
 @dataclass

@@ -64,6 +64,6 @@ def canonical_run_cfg(dh, out_root, **over) -> dict:
     from rca import run_grid
     cfg = run_grid.load_cfg(RCA_ROOT / "configs/canonical_synthetic.yaml")
     cfg.update(data_home=str(dh), evidence_dir=str(out_root / "evidence"), cache=str(out_root / "cache.sqlite"),
-               out=str(out_root / "grid.jsonl"), retrieval=["none", "bm25", "hybrid"], embedder="offline/no-such-model")
+               out=str(out_root / "grid.jsonl"), retrieval=["none", "bm25", "hybrid"], embedder="tfidf")
     cfg.update(over)
     return cfg

@@ -217,12 +217,23 @@ record its independent statistical unit:
 
 ## 8. Jev decision state
 
-`gate.jev_payload()["state"]` may contain only the keys in `schema.DECISION_STATE_ALLOWED_KEYS`:
-`evidence`, `assistant_first_answer`, `assistant_confidence`, `telemetry_available`,
-`similar_past_incident_similarity`. The similarity must come from `precedent` rows:
-`gate.action_table(..., store_mode="precedent")`. Its default is still `no_precedent`, so Jev and
-headline gate runs must pass the mode explicitly. Root service, fault, label artefacts, masked
-service, missingness cause, `source_incident_id` and dataset paths are never allowed.
+`jev.build_state()` produces the Jev state. Its top-level keys must be in
+`schema.DECISION_STATE_ALLOWED_KEYS` (exact match): `evidence`, `assistant_first_answer`,
+`assistant_ranking`, `assistant_confidence`, `assistant_flagged_insufficient`,
+`telemetry_available`, `similar_past_incident_similarity`, `candidate_count`, `decision_stage`.
+The allowlist takes precedence over the label denylist, because the denylist's `answer` token would
+otherwise reject `assistant_first_answer`; `schema.denylisted` is applied to nested keys only.
+Numbers reach Jev as text with a verbal band (`"8 of 10 samples agree (high)"`).
+
+`decide.decision_inputs()` builds the state from the evidence file and named LLM aggregate fields
+(`ranking`, `conf_verbal`, `conf_consensus`, `abstain_vote`, `n_candidates`, top precedent
+similarity) only, never from a whole grid row: grid rows also carry `truth`, `truth_ids`, `fault`,
+`correct`, `rank`, `hits[].root` and `hit_has_truth`. The similarity comes from `precedent` rows;
+`decide` refuses a grid with `oracle_store` (`no_precedent`) rows. `gate.action_table` (the legacy
+comparator table) defaults to `store_mode="precedent"` and raises on `no_precedent` unless
+`oracle=True`. Root service, fault, label artefacts, masked service, missingness cause,
+`source_incident_id` and dataset paths are never allowed. Tests: `tests/test_jev.py`,
+`tests/test_leakage.py`.
 
 ## 9. Using the data from code
 

@@ -15,6 +15,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
+import shutil
+import subprocess
 import sys
 import time
 from dataclasses import asdict
@@ -22,13 +25,16 @@ from pathlib import Path
 
 import yaml
 
-from . import ablate, evidence
+from . import ablate, evidence, score
 from .data import Case, Truth, VisibleCase, discover_cases, load_case
-from .llm import LLM, Cache, aggregate, build_messages
-from .metrics import rank_of_truth
+from .llm import LLM, PROMPT_VERSION, Cache, aggregate, build_messages
 from .retrieve import CaseStore, Embedder, format_hits
 
 EVIDENCE_SCHEMA = 2
+# Evidence-matched control for blind_root: masks the traces of a non-root service chosen from the
+# full evidence text (not from span counts), so the masked service is as visible as the root.
+NONROOT_EV = "blind_nonroot_ev"
+MODEL_ROLES = ("primary", "escalation", "replication")
 
 
 def load_cfg(path):
@@ -120,12 +126,18 @@ class Canon:
         from .legacy_view import truth
         return truth(self.labels()[uid])
 
+    def split_roles(self) -> list[str]:
+        """`split_roles: [train, test]` (e.g. the zero-shot union) or the single `split_role` (default test)."""
+        roles = self.cfg.get("split_roles") or [self.cfg.get("split_role", "test")]
+        return [roles] if isinstance(roles, str) else list(roles)
+
     def incidents(self, role):
+        roles = {role} if isinstance(role, str) else set(role)
         out = []
         for ds in self.datasets:
             for inc in self.store.incidents(ds):
                 u = inc["incident_uid"]
-                if self.split_dir and self.roles.get(u) != role:
+                if self.split_dir and self.roles.get(u) not in roles:
                     continue
                 if not self.matrix.get(u, {}).get("conditions", {}).get("full", {}).get("applicable"):
                     continue
@@ -133,9 +145,9 @@ class Canon:
         return out
 
     def selected(self):
-        """[(VisibleCase, incident)] cho vai trò `split_role` (mặc định test)."""
+        """[(VisibleCase, incident)] cho các vai trò `split_roles` / `split_role` (mặc định test)."""
         from .legacy_view import visible_case
-        incs = self.incidents(self.cfg.get("split_role", "test"))
+        incs = self.incidents(self.split_roles())
         subsets = self.cfg.get("subsets")
         incs = [i for i in incs if (not subsets or i.get("dataset_subset") in subsets)
                 and i["system"] in self.cfg.get("systems", [i["system"]])]
@@ -151,8 +163,10 @@ class Canon:
         return incs[:lim] if lim else incs
 
     def conditions(self, uid):
-        row = self.matrix[uid]
-        return [c for c in self.cfg["conditions"] if row["conditions"].get(c, {}).get("applicable")]
+        """Requested conditions applicable to `uid`; `blind_nonroot_ev` wherever `blind_root` applies."""
+        row_c = self.matrix[uid]["conditions"]
+        return [c for c in self.cfg["conditions"]
+                if row_c.get("blind_root" if c == NONROOT_EV else c, {}).get("applicable")]
 
     def evidence_fp(self, uid) -> str:
         """Everything a canonical evidence record depends on besides the requested conditions: the
@@ -172,6 +186,10 @@ def _is_current(path: Path, fp: str, conditions=None) -> bool:
         return False
     with open(path, encoding="utf-8") as f:
         rec = json.load(f)
+    if rec.get("schema") == EVIDENCE_SCHEMA and "same_as_full" not in rec:
+        return False
+    if conditions is not None:
+        conditions = [c for c in conditions if c not in rec.get("skipped", [])]
     return rec.get("evidence_fp") == fp and (conditions is None or list(rec["conditions"]) == list(conditions))
 
 
@@ -188,34 +206,76 @@ def _write_json(path: Path, obj) -> None:
     tmp.replace(path)
 
 
+_EV_LINE = re.compile(r"^- ([a-z0-9][a-z0-9\-]*):", re.M)
+
+
+def nonroot_ev_target(full_text: str, root: str, uid: str) -> str | None:
+    """Non-root service listed in the Traces block of the full evidence whose number of evidence lines
+    (all blocks) is closest to the root's; ties by sha256(uid + service). None when there is none."""
+    traces = full_text.split("## Traces", 1)
+    if len(traces) < 2:
+        return None
+    trace_block = traces[1].split("\n## ", 1)[0]
+    counts: dict[str, int] = {}
+    for m in _EV_LINE.finditer(full_text):
+        counts[m.group(1)] = counts.get(m.group(1), 0) + 1
+    others = sorted({m.group(1) for m in _EV_LINE.finditer(trace_block)} - {root})
+    if not others:
+        return None
+    n_root = counts.get(root, 0)
+    return min(others, key=lambda s: (abs(counts[s] - n_root), hashlib.sha256(f"{uid}{s}".encode()).hexdigest()))
+
+
 def _canonical_evidence(cn: Canon, vc: VisibleCase, conditions) -> dict:
     from .legacy_view import evidence_kwargs, legacy_telemetry
     tel = legacy_telemetry(cn.store, vc.case_id)
     tr = cn.truth(vc.case_id)
     target = cn.matrix[vc.case_id]["nonroot_target"]
+    kw = evidence_kwargs(cn.prep_cfg, vc.dataset)
     rec = {"schema": EVIDENCE_SCHEMA, "incident_uid": vc.case_id, "system": vc.system,
-           "evidence_fp": cn.evidence_fp(vc.case_id), "candidates": evidence.shuffled_candidates(vc), "conditions": {}}
+           "evidence_fp": cn.evidence_fp(vc.case_id), "candidates": evidence.shuffled_candidates(vc), "conditions": {},
+           "same_as_full": {}}
+    full = evidence.build(vc, tel, **kw)
     for cond in conditions:
-        rec["conditions"][cond] = evidence.build(vc, ablate.apply(tel, cond, tr.root_service, target),
-                                                 **evidence_kwargs(cn.prep_cfg, vc.dataset))
+        if cond == NONROOT_EV:
+            ev_target = nonroot_ev_target(full["text"], tr.root_service, vc.case_id)
+            if ev_target is None:
+                rec.setdefault("skipped", []).append(cond)
+                continue
+            ev = evidence.build(vc, ablate.mask_service_traces(tel, ev_target), **kw)
+        else:
+            ev = full if cond == "full" else evidence.build(vc, ablate.apply(tel, cond, tr.root_service, target), **kw)
+        rec["conditions"][cond] = ev
+        rec["same_as_full"][cond] = ev["text"] == full["text"]
     return rec
 
 
-def ablation_log(cn: Canon, uids) -> list[dict]:
+def ablation_log(cn: Canon, uids, ev_dir: Path | None = None) -> list[dict]:
     """Vùng eval-only: dịch vụ bị che của từng biến thể (ghi cạnh kết quả, không ở thư mục bằng chứng)."""
     out = []
     for u in sorted(uids):
+        rec = None
+        if ev_dir is not None and (ev_dir / f"{u}.json").exists():
+            with open(ev_dir / f"{u}.json", encoding="utf-8") as f:
+                rec = json.load(f)
         for cond in cn.conditions(u):
-            masked = {"blind_root": cn.truth(u).root_service, "blind_nonroot": cn.matrix[u]["nonroot_target"]}.get(cond)
+            if cond == NONROOT_EV:
+                if rec is None or cond not in rec["conditions"]:
+                    continue
+                masked = nonroot_ev_target(rec["conditions"]["full"]["text"], cn.truth(u).root_service, u)
+            else:
+                masked = {"blind_root": cn.truth(u).root_service, "blind_nonroot": cn.matrix[u]["nonroot_target"]}.get(cond)
             out.append({"variant_id": f"{u}|{cond}", "pair_id": u, "condition": cond, "masked_service": masked})
     return out
 
 
 def prepare_canonical(cfg):
     cn = Canon(cfg)
+    if NONROOT_EV in cfg["conditions"] and "full" not in cfg["conditions"]:
+        raise ValueError(f"{NONROOT_EV} is chosen from the full evidence: add 'full' to conditions")
     out = evidence_dir(cfg)
     sel = cn.selected()
-    print(f"{len(sel)} incidents ({cn.split_id or 'no split'}, role {cfg.get('split_role', 'test')})")
+    print(f"{len(sel)} incidents ({cn.split_id or 'no split'}, roles {cn.split_roles()})")
     for i, (vc, _) in enumerate(sel, 1):
         f = out / f"{vc.case_id}.json"
         if _is_current(f, cn.evidence_fp(vc.case_id), cn.conditions(vc.case_id)):
@@ -234,7 +294,7 @@ def prepare_canonical(cfg):
     log = Path(cfg["out"]).parent / "ablation_log.jsonl"
     log.parent.mkdir(parents=True, exist_ok=True)
     with open(log, "w", encoding="utf-8", newline="\n") as fh:
-        for r in ablation_log(cn, [vc.case_id for vc, _ in sel]):
+        for r in ablation_log(cn, [vc.case_id for vc, _ in sel], out):
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
 
 
@@ -307,6 +367,57 @@ def exclusions(store: CaseStore, vc: VisibleCase, truth: Truth, mode: str, group
     return ex
 
 
+def _git(*args) -> str | None:
+    try:
+        return subprocess.run(["git", *args], capture_output=True, text=True, check=True,
+                              cwd=Path(__file__).resolve().parent).stdout.strip()
+    except Exception:
+        return None
+
+
+def _gpu_name() -> str | None:
+    if not shutil.which("nvidia-smi"):
+        return None
+    try:
+        return subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], capture_output=True,
+                              text=True, check=True).stdout.strip() or None
+    except Exception:
+        return None
+
+
+def write_manifest(cfg, cn: Canon | None, server_fps: dict, started: float) -> dict:
+    """`manifest.json` next to the results: code, data, split, config and model identity of this run."""
+    from . import jev
+    bundle = {}
+    if cn is not None:
+        root = cn.data_home.parent
+        if (root / "bundle.json").is_file():
+            with open(root / "bundle.json", encoding="utf-8") as f:
+                bundle["bundle_id"] = json.load(f).get("bundle_id")
+        if (root / "MANIFEST.sha256").is_file():
+            bundle["manifest_sha256"] = hashlib.sha256((root / "MANIFEST.sha256").read_bytes()).hexdigest()
+    man = {"git_commit": _git("rev-parse", "HEAD"), "git_dirty": bool(_git("status", "--porcelain", "--", ".")),
+           **bundle, "split_id": cn.split_id if cn is not None else None,
+           "split_roles": cn.split_roles() if cn is not None else None, "config_hash": cfg["_hash"],
+           "models": [{"name": m["name"], "role": m.get("role", "primary"), "revision": m.get("revision"),
+                       "quantization": m.get("quantization"), "backend": m.get("backend", "vllm"),
+                       "vllm_version": m.get("vllm_version"), "server_fp": server_fps.get(m["name"])}
+                      for m in cfg["models"]],
+           "gpu": _gpu_name(), "prompt_version": PROMPT_VERSION, "jev_question_version": jev.JEV_QUESTION_VERSION,
+           "jev_pinned_model": jev.PINNED_MODEL, "seed": cfg.get("seed", 0),
+           "sampling": {"n": cfg["n_samples"], "temperature": cfg["temperature"]},
+           "started": int(started), "finished": int(time.time())}
+    path = Path(cfg["out"]).parent / "manifest.json"
+    _write_json(path, man)
+    return man
+
+
+def _check_roles(models):
+    for m in models:
+        if m.get("role", "primary") not in MODEL_ROLES:
+            raise ValueError(f"model {m['name']}: role must be one of {MODEL_ROLES}")
+
+
 # ---------------------------------------------------------------- bước 2
 def run(cfg):
     cn = Canon(cfg) if is_canonical(cfg) else None
@@ -319,11 +430,18 @@ def run(cfg):
         recs = [r for r in recs if r["vc"].case_id in wanted]
     print(f"{len(recs)} cases with evidence")
 
+    _check_roles(cfg["models"])
+    started = time.time()
     store, store_fp = None, "-"
     if any(m != "none" for m in cfg["retrieval"]):
         entries = _store_entries(cfg, recs, cn)
-        store_fp = hashlib.sha256("\n".join(sorted(f"{e['case_id']}:{e['evidence_fp']}" for e in entries)).encode()).hexdigest()[:16]
-        store = CaseStore(entries, Embedder(cfg.get("embedder", "BAAI/bge-small-en-v1.5")))
+        emb_name = cfg.get("embedder", "BAAI/bge-small-en-v1.5")
+        store = CaseStore(entries, Embedder(emb_name))
+        if emb_name != "tfidf" and store.emb.kind != "st":
+            raise RuntimeError(f"embedder {emb_name!r} is unavailable (fell back to {store.emb.kind}); "
+                               "install sentence-transformers or set `embedder: tfidf` explicitly")
+        blob = "\n".join([f"embedder:{store.emb.kind}:{emb_name}"] + sorted(f"{e['case_id']}:{e['evidence_fp']}" for e in entries))
+        store_fp = hashlib.sha256(blob.encode()).hexdigest()[:16]
         print(f"case store: {len(entries)} entries, embedder={store.emb.kind}")
     members: dict[str, set] = {}
     if cn is not None:
@@ -337,11 +455,16 @@ def run(cfg):
         with open(out_path, encoding="utf-8") as fh:
             done = {json.loads(l)["key"] for l in fh if l.strip()}
     cache = Cache(cfg.get("cache", "results/llm_cache.sqlite"))
+    server_fps = {}
 
     with open(out_path, "a", encoding="utf-8", newline="\n") as fout:
         for m in cfg["models"]:
             llm = LLM(m["name"], m.get("base_url", "http://localhost:8000/v1"), m.get("backend", "vllm"),
-                      n=cfg["n_samples"], temperature=cfg["temperature"], seed=cfg.get("seed", 0), cache=cache)
+                      n=cfg["n_samples"], temperature=cfg["temperature"], seed=cfg.get("seed", 0), cache=cache,
+                      max_tokens=m.get("max_tokens", 400), revision=m.get("revision"),
+                      chat_template_kwargs=m.get("chat_template_kwargs"), logprobs=m.get("logprobs", False))
+            server_fps[m["name"]] = llm.server_fingerprint(m.get("launch_args"), m.get("quantization"))
+            role, rev = m.get("role", "primary"), m.get("revision")
             for r in recs:
                 vc, tr, cands = r["vc"], r["truth"], r["candidates"]
                 grp = frozenset(members.get(cn.group.get(vc.case_id), ())) if cn is not None else frozenset()
@@ -353,7 +476,8 @@ def run(cfg):
                             continue
                         # the evidence (and store) fingerprints are part of the key: rows produced from
                         # stale evidence are not counted as done
-                        key = f"{m['name']}|{vc.case_id}|{cond}|{meth}|{mode}|{r['evidence_fp']}|{store_fp if meth != 'none' else '-'}"
+                        key = (f"{m['name']}|{rev}|{PROMPT_VERSION}|{vc.case_id}|{cond}|{meth}|{mode}|{r['evidence_fp']}|"
+                               f"{store_fp if meth != 'none' else '-'}")
                         if key in done:
                             continue
                         hits = (store.search(ev["text"], vc, meth, mode, cfg["top_k"], exclude_ids=exclusions(store, vc, tr, mode, grp))
@@ -361,25 +485,33 @@ def run(cfg):
                         msgs = build_messages(vc, cands, ev["text"], format_hits(hits))
                         res = llm.ask(msgs, cands)
                         agg = aggregate(res["samples"])
-                        rk = rank_of_truth(agg["ranking"], tr.root_service)
+                        sc = score.correctness(agg["ranking"], tr, len(cands))
                         row = {
-                            "key": key, "cfg": cfg["_hash"], "model": m["name"], "case_id": vc.case_id,
+                            "key": key, "cfg": cfg["_hash"], "model": m["name"], "model_role": role, "model_revision": rev,
+                            "prompt_version": PROMPT_VERSION, "server_fp": llm.server_fp, "backend": llm.backend,
+                            "sampling": {"n": llm.n, "temperature": llm.temperature, "seed": llm.seed},
+                            "case_id": vc.case_id,
                             "system": vc.system, "dataset": vc.dataset, "fault": tr.fault, "truth": tr.root_service,
+                            "truth_ids": list(score.truth_ids(tr)), "label_granularity": tr.granularity,
                             "n_candidates": len(cands), "condition": cond, "retrieval": meth, "store_mode": mode,
-                            "rank": rk, "correct": rk == 1, **agg,
+                            "rank": sc["rank"], "correct": sc["correct_at_1"], "correct_at_3": sc["correct_at_3"],
+                            "parse_failed": sc["parse_failed"], "set_scored": sc["set_scored"], **agg,
                             "features": ev["features"],
                             "hits": [{"case_id": h["case_id"], "root": h["root"], "dense_sim": h["dense_sim"]} for h in hits],
-                            "hit_has_truth": any(h["root"] == tr.root_service for h in hits),
+                            "hit_has_truth": any(h["root"] in score.truth_ids(tr) for h in hits),
                             "prompt_tokens": res["prompt_tokens"], "completion_tokens": res["completion_tokens"],
                             "latency_s": res["latency_s"], "cached": res["cached"], "ts": int(time.time()),
                             "incident_uid": vc.case_id if cn is not None else None, "pair_id": vc.case_id,
-                            "split_id": cn.split_id if cn is not None else None, "oracle_store": mode == "no_precedent",
+                            "split_id": cn.split_id if cn is not None else None,
+                            "split_role": cn.roles.get(vc.case_id) if cn is not None else None,
+                            "oracle_store": mode == "no_precedent",
                             "evidence_fp": r["evidence_fp"], "store_fp": store_fp if meth != "none" else None,
                         }
                         fout.write(json.dumps(row) + "\n")
                         fout.flush()
                         done.add(key)
             print(f"model {m['name']} done")
+    write_manifest(cfg, cn, server_fps, started)
 
 
 if __name__ == "__main__":

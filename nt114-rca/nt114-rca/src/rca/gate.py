@@ -11,10 +11,6 @@ Vì lưới đã chạy MỌI hành động cho MỌI ca nên đánh giá phản
 """
 from __future__ import annotations
 
-import json
-import os
-import urllib.request
-
 import numpy as np
 import pandas as pd
 
@@ -67,28 +63,55 @@ def reward(ok: bool, action: str, tokens: float, wrong_penalty: float = 2.0, tok
     return (1.0 if ok else -wrong_penalty) - tok_cost * tokens / 1000
 
 
-def evaluate(t: pd.DataFrame, chosen: pd.Series, **rw) -> dict:
-    """chosen: hành động cho từng dòng của t."""
-    ok, tok, rew, conf = [], [], [], []
-    for i, a in chosen.items():
-        row = t.loc[i]
-        if a == "abstain":
-            ok.append(np.nan); tok.append(row["answer_tok"]); conf.append(np.nan)
-        else:
-            ok.append(bool(row[f"{a}_ok"])); tok.append(row[f"{a}_tok"]); conf.append(row[f"{a}_conf"])
-        rew.append(reward(ok[-1] if a != "abstain" else False, a, tok[-1], **rw))
-    ok = np.array(ok, float)
-    answered = ~np.isnan(ok)
-    conf = np.array(conf, float)
+def outcomes(t: pd.DataFrame, chosen: pd.Series) -> dict[str, np.ndarray]:
+    """Per row: answered, correct (NaN when abstaining), confidence of the arm that produced the final
+    answer, tokens and latency along the chosen path."""
+    a = chosen.reindex(t.index).to_numpy()
+    bad = set(a) - set(ACTIONS)
+    if bad:
+        raise ValueError(f"unknown actions {bad}")
+    n = len(t)
+    ok, conf = np.full(n, np.nan), np.full(n, np.nan)
+    tok = t["answer_tok"].to_numpy(float).copy()
+    lat = t["answer_lat"].to_numpy(float).copy() if "answer_lat" in t else np.zeros(n)
+    for act in ("answer", "retrieve", "escalate"):
+        m = a == act
+        if not m.any():
+            continue
+        if f"{act}_ok" not in t:
+            raise ValueError(f"policy chose {act!r} but the table has no {act} arm")
+        ok[m] = t[f"{act}_ok"].to_numpy(float)[m]
+        conf[m] = t[f"{act}_conf"].to_numpy(float)[m]
+        tok[m] = t[f"{act}_tok"].to_numpy(float)[m]
+        if f"{act}_lat" in t:
+            lat[m] = t[f"{act}_lat"].to_numpy(float)[m]
+    return {"action": a, "answered": a != "abstain", "ok": ok, "conf": conf, "tok": tok, "lat": lat}
+
+
+def evaluate(t: pd.DataFrame, chosen: pd.Series, weights=None, conf_thr: float = 0.8, **rw) -> dict:
+    """chosen: hành động cho từng dòng của t. `weights`: trọng số eval-unit (1 / số bản ghi của lần tiêm).
+    CWA dùng độ tự tin của nhánh tạo ra câu trả lời cuối cùng."""
+    o = outcomes(t, chosen)
+    w = np.ones(len(t)) if weights is None else np.asarray(weights, float)
+    w = w / w.sum()
+    ans, ok = o["answered"], o["ok"]
+    wrong = ans & (np.nan_to_num(ok, nan=1.0) == 0)
+    cw = wrong & (np.nan_to_num(o["conf"]) >= conf_thr)
+    cov = float((w * ans).sum())
+    acc = float((w * np.nan_to_num(ok) * ans).sum() / cov) if cov > 0 else float("nan")
+    rew = np.array([reward(bool(k) if s else False, act, tk, **rw)
+                    for k, s, act, tk in zip(np.nan_to_num(ok), ans, o["action"], o["tok"])])
     return {
-        "coverage": float(answered.mean()),
-        "acc_answered": float(np.nanmean(ok)) if answered.any() else float("nan"),
-        "confident_wrong_per_100": float(100 * np.mean(answered & (ok == 0) & (np.nan_to_num(conf) >= 0.8))),
-        "wrong_per_100": float(100 * np.mean(answered & (ok == 0))),
-        "abstain_per_100": float(100 * np.mean(~answered)),
-        "tokens_per_incident": float(np.mean(tok)),
-        "reward": float(np.mean(rew)),
-        "actions": chosen.value_counts().to_dict(),
+        "coverage": cov,
+        "acc_answered": acc,
+        "selective_risk": 1 - acc if cov > 0 else float("nan"),
+        "confident_wrong_per_100": float(100 * (w * cw).sum()),
+        "wrong_per_100": float(100 * (w * wrong).sum()),
+        "abstain_per_100": float(100 * (w * ~ans).sum()),
+        "tokens_per_incident": float((w * o["tok"]).sum()),
+        "latency_per_incident": float((w * o["lat"]).sum()),
+        "reward": float((w * rew).sum()),
+        "actions": pd.Series(o["action"]).value_counts().to_dict(),
     }
 
 
@@ -153,38 +176,124 @@ def leave_one_system_out(t: pd.DataFrame, **rw) -> pd.DataFrame:
     return pd.DataFrame(res)
 
 
-# ---------------------------------------------------------------- Jev (TypeSafe)
-def jev_payload(row: pd.Series, evidence_text: str, answer: str) -> dict:
-    """Tạo yêu cầu cho Jev: state + một câu hỏi kiểu choice.
-    CẦN KIỂM TRA tên trường của câu hỏi choice (vd 'options') với docs.typesafe.ai trước khi chạy."""
-    state = {
-        "evidence": evidence_text[:6000],
-        "assistant_first_answer": answer,
-        "assistant_confidence": round(float(row["conf_consensus"]), 2),
-        "telemetry_available": {k: bool(row[f"has_{k}"]) for k in ("metrics", "logs", "traces")},
-        "similar_past_incident_similarity": round(float(row["hit_top_sim"]), 2),
-    }
-    return {
-        "state": state,
-        "questions": {
-            "action": {
-                "type": "choice",
-                "instructions": "An on-call engineer will act on the assistant's root-cause answer. "
-                                "Choose the next step that minimises the risk of sending the engineer to the wrong service.",
-                "criteria": "answer = evidence clearly supports the first answer; retrieve = look up similar past "
-                            "incidents first; abstain = evidence is insufficient, ask the engineer to check more data.",
-                "options": ["answer", "retrieve", "abstain"],  # TODO: xác nhận tên trường
-            }
-        },
-    }
+# ---------------------------------------------------------------- Jev policies (decisions from `rca.decide`)
+def _decision_rows(t: pd.DataFrame, decisions: pd.DataFrame, variant: str) -> pd.DataFrame:
+    d = decisions[decisions.variant == variant].drop_duplicates(["incident_uid", "condition"], keep="last")
+    d = d.set_index(["incident_uid", "condition"])
+    idx = pd.MultiIndex.from_frame(t[["incident_uid", "condition"]])
+    missing = ~idx.isin(d.index)
+    if missing.any():
+        raise ValueError(f"{int(missing.sum())} rows have no {variant} decision")
+    return d.loc[idx]
 
 
-def jev_call(payload: dict) -> dict:
-    """Gửi tới endpoint Jev. Đặt JEV_URL và JEV_TOKEN trong biến môi trường (Cloudflare Workers AI hoặc API TypeSafe)."""
-    url, token = os.environ.get("JEV_URL"), os.environ.get("JEV_TOKEN")
-    if not url or not token:
-        raise RuntimeError("Đặt JEV_URL và JEV_TOKEN trước khi gọi Jev")
-    req = urllib.request.Request(url, data=json.dumps(payload).encode(),
-                                 headers={"Content-Type": "application/json", "Authorization": f"Bearer {token}"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read())  # lưu nguyên văn, kể cả trường version của mô hình
+def jev_policy(t: pd.DataFrame, decisions: pd.DataFrame, variant: str = "J-full", floor: float | None = None):
+    """Final action per row: stage-1 choice; after retrieve/escalate the stage-2 accept/abstain. Any
+    failed stage on the path gives `abstain` (fail-closed) and `flagged`. `floor`: J-floor, a stage-1
+    accept with Jev confidence below it becomes abstain."""
+    from .decide import POLICY_ACTION
+    d = _decision_rows(t, decisions, variant)
+    acts, flagged = [], []
+    for _, r in d.iterrows():
+        s1 = r["stage1"]
+        if s1["status"] != "ok":
+            acts.append("abstain"); flagged.append(True)
+            continue
+        a = POLICY_ACTION[s1["action"]]
+        if a == "answer" and floor is not None and (s1["confidence"] or 0) < floor:
+            a = "abstain"
+        if a in ("retrieve", "escalate"):
+            s2 = r.get(f"stage2_{a}")
+            if not isinstance(s2, dict) or s2["status"] != "ok":
+                acts.append("abstain"); flagged.append(True)
+                continue
+            a = a if s2["action"] == "accept" else "abstain"
+        acts.append(a); flagged.append(False)
+    return pd.Series(acts, index=t.index), pd.Series(flagged, index=t.index)
+
+
+def jev_scores(t: pd.DataFrame, decisions: pd.DataFrame, variant: str = "J-full") -> dict[str, pd.Series]:
+    """Stage-1 Jev P(accept) and the `supported` noul, for risk-coverage and error detection (NaN on failure)."""
+    d = _decision_rows(t, decisions, variant)
+    pa = [r["stage1"]["probabilities"].get("accept", np.nan) if r["stage1"]["status"] == "ok" else np.nan for _, r in d.iterrows()]
+    sp = [r["stage1"]["supported"] if r["stage1"]["status"] == "ok" else np.nan for _, r in d.iterrows()]
+    return {"p_accept": pd.Series(pa, index=t.index, dtype=float), "supported": pd.Series(sp, index=t.index, dtype=float)}
+
+
+def tune_jev_floor(t_dev: pd.DataFrame, decisions_dev: pd.DataFrame, variant: str = "J-full", **rw) -> float:
+    """J-floor: the stage-1 confidence floor maximising the utility on DEV (labels of DEV only)."""
+    grid = np.round(np.arange(0.0, 1.0, 0.05), 2)
+    return float(max(grid, key=lambda f: evaluate(t_dev, jev_policy(t_dev, decisions_dev, variant, f)[0], **rw)["reward"]))
+
+
+# ---------------------------------------------------------------- controls (research design §5)
+def _accept_top(score: np.ndarray, k: int, rng) -> np.ndarray:
+    """Accept the k highest scores; ties at the boundary broken at random (exact coverage per draw)."""
+    order = np.lexsort((rng.random(len(score)), -score))
+    acc = np.zeros(len(score), bool)
+    acc[order[:k]] = True
+    return acc
+
+
+def coverage_matched_threshold(t: pd.DataFrame, coverage: float, conf: str = "answer_conf",
+                               draws: int = 1000, seed: int = 0) -> list[pd.Series]:
+    """C1: answer the round(coverage·n) most confident rows (primary answer), abstain on the rest;
+    one action vector per seeded tie-breaking draw."""
+    rng = np.random.default_rng(seed)
+    k = int(round(coverage * len(t)))
+    sc = t[conf].to_numpy(float)
+    return [pd.Series(np.where(_accept_top(sc, k, rng), "answer", "abstain"), index=t.index) for _ in range(draws)]
+
+
+def coverage_matched_random(t: pd.DataFrame, coverage: float, draws: int = 1000, seed: int = 0) -> list[pd.Series]:
+    """C2: answer a uniformly random round(coverage·n) rows, abstain on the rest."""
+    rng = np.random.default_rng(seed)
+    k = int(round(coverage * len(t)))
+    out = []
+    for _ in range(draws):
+        acc = np.zeros(len(t), bool)
+        acc[rng.choice(len(t), k, replace=False)] = True
+        out.append(pd.Series(np.where(acc, "answer", "abstain"), index=t.index))
+    return out
+
+
+def route_matched_random(t: pd.DataFrame, reference: pd.Series, draws: int = 1000, seed: int = 0) -> list[pd.Series]:
+    """R1: J's final actions reassigned to random rows (same count of every action)."""
+    rng = np.random.default_rng(seed)
+    a = reference.reindex(t.index).to_numpy()
+    return [pd.Series(rng.permutation(a), index=t.index) for _ in range(draws)]
+
+
+def route_matched_consensus(t: pd.DataFrame, reference: pd.Series, conf: str = "answer_conf",
+                            draws: int = 1000, seed: int = 0) -> list[pd.Series]:
+    """R2: the lowest-consensus rows get abstain, then escalate, then retrieve, at J's counts; ties at random."""
+    rng = np.random.default_rng(seed)
+    counts = reference.value_counts()
+    sc = t[conf].to_numpy(float)
+    out = []
+    for _ in range(draws):
+        order = np.lexsort((rng.random(len(sc)), sc))      # ascending confidence
+        acts = np.full(len(sc), "answer", dtype=object)
+        pos = 0
+        for a in ("abstain", "escalate", "retrieve"):
+            n = int(counts.get(a, 0))
+            acts[order[pos:pos + n]] = a
+            pos += n
+        out.append(pd.Series(acts, index=t.index))
+    return out
+
+
+def evaluate_draws(t: pd.DataFrame, draws: list[pd.Series], weights=None, **rw) -> dict:
+    """Mean of every numeric metric over the draws of a randomised control."""
+    res = [evaluate(t, c, weights, **rw) for c in draws]
+    keys = [k for k, v in res[0].items() if isinstance(v, float)]
+    return {**{k: float(np.nanmean([r[k] for r in res])) for k in keys}, "draws": len(draws)}
+
+
+def oracle_policy(t: pd.DataFrame) -> pd.Series:
+    """O (analysis only, reads labels): the first correct arm in cost order, else abstain."""
+    out = pd.Series("abstain", index=t.index, dtype=object)
+    for a in ("escalate", "retrieve", "answer"):
+        if f"{a}_ok" in t:
+            out[t[f"{a}_ok"].astype(bool)] = a
+    return out

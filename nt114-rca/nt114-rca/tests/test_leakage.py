@@ -11,7 +11,7 @@ import pandas as pd
 import pytest
 
 from conftest import canonical_run_cfg
-from rca import audit, evidence, gate, retrieve, run_grid
+from rca import audit, decide, evidence, gate, jev, retrieve, run_grid
 from rca.data import VisibleCase
 from rca.llm import build_messages
 from rca.retrieve import CaseStore, Embedder, format_hits
@@ -19,7 +19,8 @@ from rca.schema import DECISION_STATE_ALLOWED_KEYS
 from rca.store import read_jsonl, write_jsonl_atomic
 
 RCA_ROOT = Path(__file__).resolve().parents[1]
-MODEL_FACING = ("evidence.py", "llm.py", "retrieve.py", "gate.py")
+MODEL_FACING = ("evidence.py", "llm.py", "retrieve.py", "gate.py", "jev.py")
+FIXED_AGG = {"ranking": [], "conf_verbal": 0.7, "conf_consensus": 0.5, "abstain_vote": 0.0, "n_samples": 10}
 PERM_CONDITIONS = ["full", "no_metric", "no_log", "no_trace"]
 
 
@@ -67,9 +68,9 @@ def model_artifacts(cfg) -> dict[str, str]:
                     ev["text"], vc, meth, "precedent", 3, exclude_ids=run_grid.exclusions(store, vc, tr, "precedent", grp))
                 msgs = build_messages(vc, cands, ev["text"], format_hits(hits))
                 out[f"{vc.case_id}|{cond}|{meth}|prompt"] = json.dumps(msgs)
-                row = pd.Series({"conf_consensus": 0.5, **{f"has_{k}": ev["features"][f"has_{k}"] for k in ("metrics", "logs", "traces")},
-                                 "hit_top_sim": hits[0]["dense_sim"] if hits else 0.0})
-                out[f"{vc.case_id}|{cond}|{meth}|jev"] = json.dumps(gate.jev_payload(row, ev["text"], cands[0]), sort_keys=True)
+                agg = {**FIXED_AGG, "ranking": cands[:3]}
+                inp = decide.decision_inputs(r, agg, cond, hits[0]["dense_sim"] if hits else None)
+                out[f"{vc.case_id}|{cond}|{meth}|jev"] = json.dumps(jev.build_state(inp), sort_keys=True)
     return out
 
 
@@ -132,9 +133,9 @@ def test_model_facing_entry_points_only_see_visible_cases(canonical_synth, tmp_p
 
 
 def test_jev_state_allowlist_and_precedent_similarity():
-    row = pd.Series({"conf_consensus": 0.83, "has_metrics": 1, "has_logs": 0, "has_traces": 1, "hit_top_sim": 0.41})
-    p = gate.jev_payload(row, "evidence text", "cart")
-    assert set(p["state"]) <= DECISION_STATE_ALLOWED_KEYS
+    inp = jev.DecisionInputs("evidence text", ["cart", "frontend"], 0.83, 0.8, 10, 0.0,
+                             {"metrics": 1, "logs": 0, "traces": 1}, 5, top_sim=0.41)
+    assert set(jev.build_state(inp)) <= DECISION_STATE_ALLOWED_KEYS
     rows = []
     for mode, sim in (("precedent", 0.3), ("no_precedent", 0.9)):
         for meth in ("none", "hybrid"):
@@ -189,3 +190,64 @@ def test_evidence_scan_flags_label_keys(tmp_path):
     assert audit.evidence_scan(tmp_path, set())["total_hits"] == 0
     (tmp_path / "b.json").write_text(json.dumps({"case": {"root_service": "cart"}}), encoding="utf-8")
     assert audit.evidence_scan(tmp_path, set())["total_hits"] >= 1
+
+
+def _e2e(cfg) -> Path:
+    """prepare -> run (mock LLM) -> decide (mock Jev); returns jev_raw.jsonl."""
+    run_grid.prepare(cfg)
+    run_grid.run(cfg)
+    decide.run(cfg)
+    return Path(cfg["out"]).parent / "jev_raw.jsonl"
+
+
+def _e2e_cfg(dh, out, conditions=PERM_CONDITIONS):
+    """`blind_root` is label-dependent by design (it masks the true root), so the permutation test leaves it out."""
+    return canonical_run_cfg(dh, out, conditions=conditions, retrieval=["none", "hybrid"],
+                             store_modes=["precedent"], n_samples=3,
+                             models=[{"name": "m-primary", "backend": "mock", "role": "primary"},
+                                     {"name": "m-esc", "backend": "mock", "role": "escalation"}],
+                             jev={"backend": "mock", "cache": str(out / "jev.sqlite"), "variants": ["J-full", "J-AA"]})
+
+
+def _request_shas(path: Path) -> dict:
+    return {(r["incident_uid"], r["condition"], r["variant"], r["stage"]): r["request_sha"] for r in read_jsonl(path)}
+
+
+def test_jev_states_label_permutation_invariant(canonical_synth, tmp_path, monkeypatch):
+    """Permuting the label store (test-role roots and faults) and rerunning the whole chain leaves every
+    Jev request unchanged, although scoring columns of the grid change."""
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    dh = _home(canonical_synth, tmp_path)
+    base = _request_shas(_e2e(_e2e_cfg(dh, tmp_path / "a")))
+    cfg = _e2e_cfg(dh, tmp_path / "b")
+    test = _test_uids(cfg)
+    labs = {l["incident_uid"]: l for l in read_jsonl(_labels_path(dh))}
+    fields = [(labs[u]["root_cause"], labs[u]["fault"]) for u in test]
+    fields = fields[1:] + fields[:1]
+    for u, (rc, fa) in zip(test, fields):
+        labs[u]["root_cause"], labs[u]["fault"] = rc, fa
+    write_jsonl_atomic(_labels_path(dh), list(labs.values()))
+    got = _request_shas(_e2e(cfg))
+    assert base and got == base
+    a = pd.DataFrame(read_jsonl(tmp_path / "a" / "grid.jsonl")).sort_values("key")["truth"].tolist()
+    b = pd.DataFrame(read_jsonl(tmp_path / "b" / "grid.jsonl")).sort_values("key")["truth"].tolist()
+    assert a != b                                       # the labels did change
+
+
+def test_canary_not_in_jev_requests(canonical_synth, tmp_path, monkeypatch):
+    """A canary written into every label-derived grid field never reaches a Jev request."""
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    dh = _home(canonical_synth, tmp_path)
+    cfg = _e2e_cfg(dh, tmp_path / "res", PERM_CONDITIONS + ["blind_root"])
+    run_grid.prepare(cfg)
+    run_grid.run(cfg)
+    canary = f"CANARY_{secrets.token_hex(8)}"
+    rows = read_jsonl(Path(cfg["out"]))
+    for r in rows:
+        r["truth"], r["fault"], r["hit_has_truth"], r["truth_ids"] = canary, canary, canary, [canary]
+        for h in r["hits"]:
+            h["root"] = canary
+    write_jsonl_atomic(Path(cfg["out"]), rows)
+    decide.run(cfg)
+    raw = (Path(cfg["out"]).parent / "jev_raw.jsonl").read_text(encoding="utf-8")
+    assert raw.strip() and canary not in raw

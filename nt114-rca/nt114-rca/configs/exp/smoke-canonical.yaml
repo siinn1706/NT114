@@ -1,0 +1,31 @@
+# Canonical smoke on the REAL bundle, mock backends: 2 incidents per system of every dataset, no split
+# (no retrieval store), mock LLM (primary + escalation) and mock Jev. No GPU, no network, no API key.
+#   RCA_DATA_HOME=<bundle>/parts PYTHONPATH=src python -m rca.run_grid prepare configs/exp/smoke-canonical.yaml
+#   RCA_DATA_HOME=<bundle>/parts PYTHONPATH=src python -m rca.run_grid run     configs/exp/smoke-canonical.yaml
+#   RCA_DATA_HOME=<bundle>/parts PYTHONPATH=src python -m rca.decide           configs/exp/smoke-canonical.yaml
+#   PYTHONPATH=src python -m rca.analyze results_smoke_canonical/grid.jsonl \
+#       --decisions results_smoke_canonical/decisions.jsonl --data-home <bundle>/parts --smoke
+source: canonical
+data_home: null                         # null: $RCA_DATA_HOME, else <repo>/data
+canonical_datasets: [rcaeval, nezha, aiops2025, rca100]
+split: null
+limit_per_system: 2
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none]
+store_modes: [precedent]
+top_k: 3
+n_samples: 10
+temperature: 0.7
+seed: 0
+embedder: tfidf
+evidence_dir: results_smoke_canonical/evidence
+cache: results_smoke_canonical/llm_cache.sqlite
+out: results_smoke_canonical/grid.jsonl
+models:
+  - {name: mock-primary, backend: mock, role: primary, revision: mock-r1}
+  - {name: mock-escalation, backend: mock, role: escalation, revision: mock-r1}
+jev:
+  backend: mock
+  model: jev-1.13.0
+  cache: results_smoke_canonical/jev_cache.sqlite
+  variants: [J-full, J-AA]

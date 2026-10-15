@@ -1,0 +1,35 @@
+# Offline end-to-end smoke: SYNTHETIC canonical data, mock LLM (primary + escalation), mock Jev.
+# No GPU, no network, no API key. Run from the repo root:
+#   python scripts/make_synthetic.py data_synth_home/raw/synthetic --anchor-gap 12000
+#   PYTHONPATH=src python -m rca.prep --config configs/prep_synthetic.yaml --data-home data_synth_home normalize --dataset rcaeval
+#   PYTHONPATH=src python -m rca.prep --config configs/prep_synthetic.yaml --data-home data_synth_home conditions --dataset rcaeval
+#   PYTHONPATH=src python -m rca.prep --config configs/prep_synthetic.yaml --data-home data_synth_home split --protocol within-rcaeval-retrieval --seed 0
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/smoke-offline.yaml
+#   PYTHONPATH=src python -m rca.run_grid run     configs/exp/smoke-offline.yaml
+#   PYTHONPATH=src python -m rca.decide           configs/exp/smoke-offline.yaml
+#   PYTHONPATH=src python -m rca.analyze results_smoke/grid.jsonl --decisions results_smoke/decisions.jsonl --smoke
+source: canonical
+data_home: data_synth_home
+canonical_datasets: [rcaeval]
+split: within-rcaeval-retrieval-0       # synthetic data: the only split with a train role here
+split_role: test
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none, hybrid]
+store_modes: [precedent]                # decisions never use the oracle (no_precedent) store
+top_k: 3
+n_samples: 10
+temperature: 0.7
+seed: 0
+embedder: tfidf
+evidence_dir: results_smoke/evidence
+cache: results_smoke/llm_cache.sqlite
+out: results_smoke/grid.jsonl
+models:
+  - {name: mock-primary, backend: mock, role: primary, revision: mock-r1}
+  - {name: mock-escalation, backend: mock, role: escalation, revision: mock-r1}
+jev:
+  backend: mock
+  model: jev-1.13.0
+  cache: results_smoke/jev_cache.sqlite
+  variants: [J-full, J-AA, J-noconf, J-noevidence]

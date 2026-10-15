@@ -42,10 +42,15 @@ class BM25:
 
 
 class Embedder:
-    """sentence-transformers nếu có (khuyến nghị: BAAI/bge-small-en-v1.5), nếu không thì TF-IDF + SVD."""
+    """sentence-transformers nếu có (khuyến nghị: BAAI/bge-small-en-v1.5), nếu không thì TF-IDF + SVD.
+    `model_name="tfidf"` chọn TF-IDF + SVD một cách tường minh."""
 
     def __init__(self, model_name="BAAI/bge-small-en-v1.5"):
         self.model_name = model_name
+        self._fit = None
+        if model_name == "tfidf":
+            self.st, self.kind = None, "tfidf-svd"
+            return
         try:
             from sentence_transformers import SentenceTransformer
             self.st = SentenceTransformer(model_name, device="cpu")

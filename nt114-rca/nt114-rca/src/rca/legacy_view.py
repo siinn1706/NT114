@@ -31,7 +31,8 @@ def visible_case(incident: dict) -> VisibleCase:
 
 def truth(label: dict) -> Truth:
     rc = label["root_cause"]
-    return Truth(root_service=rc["primary_root_service"], fault=label["fault"]["type_raw"])
+    return Truth(root_service=rc["primary_root_service"], fault=label["fault"]["type_raw"],
+                 root_ids=tuple(rc["root_service_ids"]), granularity=rc["label_granularity"])
 
 
 def evidence_kwargs(cfg: dict, dataset: str) -> dict:

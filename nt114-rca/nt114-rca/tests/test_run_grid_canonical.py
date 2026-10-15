@@ -14,6 +14,8 @@ LABEL_KEYS = {"root_service", "fault", "truth", "root", "case", "path", "fault_t
 GATE_FIELDS = {"model", "retrieval", "store_mode", "case_id", "condition", "system", "features", "hits",
                "conf_consensus", "conf_verbal", "abstain_vote", "correct", "prompt_tokens", "completion_tokens"}
 ANALYZE_FIELDS = {"rank", "parse_rate", "hit_has_truth", "store_mode", "retrieval", "condition", "model", "case_id"}
+ROW_FIELDS = {"prompt_version", "model_revision", "model_role", "sampling", "truth_ids", "label_granularity",
+              "parse_failed", "set_scored", "correct_at_3", "server_fp", "split_role"}
 
 
 def _keys(obj):
@@ -70,6 +72,9 @@ def test_canonical_prepare_and_run(synth, monkeypatch):
     assert rows
     for r in rows:
         assert GATE_FIELDS | ANALYZE_FIELDS | {"incident_uid", "pair_id", "split_id", "oracle_store"} <= set(r)
+        assert ROW_FIELDS <= set(r)
+        assert r["prompt_version"] == "v1" and r["model_role"] == "primary" and r["split_role"] == "test"
+        assert r["truth_ids"] == [r["truth"]] and r["correct"] == (r["rank"] == 1)
         assert r["oracle_store"] == (r["store_mode"] == "no_precedent")
         lab = labels[r["incident_uid"]]
         assert r["truth"] == lab["root_cause"]["primary_root_service"]
@@ -119,3 +124,93 @@ def test_evidence_options_change_the_fingerprint():
     from rca import evidence
     assert evidence.fingerprint() != evidence.fingerprint(log_trace_segment_gap_s=30.0)
     assert evidence.fingerprint(log_trace_segment_gap_s=30.0) != evidence.fingerprint(log_trace_segment_gap_s=20.0)
+
+
+def test_nonroot_ev_target_is_evidence_matched():
+    full = ("## Metrics\n- a: cpu up\n- b: mem up\n- c: x\n- c: y\n\n"
+            "## Traces (per service, after vs. before)\n- a: slow\n- b: slow\n- c: slow\n- d: err")
+    # root a has 2 lines; b has 2 (closest), c has 3, d has 1
+    assert run_grid.nonroot_ev_target(full, "a", "u1") == "b"
+    assert run_grid.nonroot_ev_target(full, "a", "u1") == run_grid.nonroot_ev_target(full, "a", "u1")
+    assert run_grid.nonroot_ev_target("## Metrics\n- a: up", "a", "u") is None           # no Traces block
+    assert run_grid.nonroot_ev_target("## Traces (x)\n- a: slow", "a", "u") is None      # only the root is listed
+    tie = "## Traces (x)\n- a: s\n- b: s\n- c: s"
+    picks = {run_grid.nonroot_ev_target(tie, "a", f"u{i}") for i in range(20)}
+    assert picks == {"b", "c"}                                                         # ties by sha256(uid + service)
+
+
+def test_blind_nonroot_ev(canonical_synth, tmp_path, monkeypatch):
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path, conditions=["full", "blind_root", "blind_nonroot_ev"],
+                            retrieval=["none"])
+    run_grid.prepare(cfg)
+    cn = run_grid.Canon(cfg)
+    labels = CanonicalStore(canonical_synth["dh"]).labels("rcaeval")
+    log = {(r["pair_id"], r["condition"]): r["masked_service"] for r in read_jsonl(Path(cfg["out"]).parent / "ablation_log.jsonl")}
+    seen = 0
+    for f in sorted(Path(cfg["evidence_dir"]).glob("*.json")):
+        text = f.read_text(encoding="utf-8")
+        rec = json.loads(text)
+        uid = rec["incident_uid"]
+        root = labels[uid]["root_cause"]["primary_root_service"]
+        assert set(rec["same_as_full"]) == set(rec["conditions"]) and rec["same_as_full"]["full"]
+        if "blind_nonroot_ev" not in rec["conditions"]:
+            assert "blind_root" not in cn.conditions(uid) or rec.get("skipped") == ["blind_nonroot_ev"]
+            continue
+        seen += 1
+        target = log[(uid, "blind_nonroot_ev")]
+        assert target not in (None, root)
+        assert f"- {target}:" in rec["conditions"]["full"]["text"].split("## Traces", 1)[1]
+        assert target == run_grid.nonroot_ev_target(rec["conditions"]["full"]["text"], root, uid)
+        assert "masked" not in text and "nonroot_target" not in text                     # target only in the eval-only log
+        assert rec["conditions"]["blind_nonroot_ev"]["text"] != rec["conditions"]["full"]["text"]
+    assert seen
+    before = {p.name: p.read_bytes() for p in Path(cfg["evidence_dir"]).glob("*.json")}
+    run_grid.prepare(cfg)                                                              # current files are reused
+    assert {p.name: p.read_bytes() for p in Path(cfg["evidence_dir"]).glob("*.json")} == before
+
+
+def test_embedder_kind_pinned(canonical_synth, tmp_path, monkeypatch):
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    from rca import retrieve
+
+    class FallbackEmbedder(retrieve.Embedder):
+        def __init__(self, name):
+            super().__init__("tfidf")
+            self.model_name = name                         # a dense model was asked for, TF-IDF is what loaded
+
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path / "a", conditions=["full"], retrieval=["none", "hybrid"],
+                            store_modes=["precedent"], embedder="BAAI/bge-small-en-v1.5")
+    run_grid.prepare(cfg)
+    monkeypatch.setattr(run_grid, "Embedder", FallbackEmbedder)
+    with pytest.raises(RuntimeError, match="unavailable"):
+        run_grid.run(cfg)
+
+    class FakeDense(retrieve.Embedder):
+        """Reports kind `st` (a dense model loaded) but computes TF-IDF vectors."""
+        def __init__(self, name):
+            super().__init__("tfidf")
+            self.kind = "st"
+
+        def _as_tfidf(self, fn, *a):
+            self.kind = "tfidf-svd"
+            try:
+                return fn(*a)
+            finally:
+                self.kind = "st"
+
+        def fit(self, texts):
+            self._as_tfidf(super().fit, texts)
+            return self
+
+        def encode(self, texts):
+            return self._as_tfidf(super().encode, texts)
+
+    monkeypatch.setattr(run_grid, "Embedder", FakeDense)
+    run_grid.run(cfg)
+    monkeypatch.undo()
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    cfg_t = {**cfg, "embedder": "tfidf", "out": str(tmp_path / "b" / "grid.jsonl"), "cache": str(tmp_path / "b" / "c.sqlite")}
+    run_grid.run(cfg_t)
+    fp = lambda path: {json.loads(l)["store_fp"] for l in open(path, encoding="utf-8")} - {None}
+    assert fp(cfg["out"]) and fp(cfg_t["out"]) and fp(cfg["out"]).isdisjoint(fp(cfg_t["out"]))

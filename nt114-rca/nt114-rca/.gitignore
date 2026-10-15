@@ -4,8 +4,13 @@ data/*
 !data/reports/
 !data/splits/
 data_synth/
+data_synth_home/
 results/
 results_synth/
+results*/
+.env
+.env.*
+paper/artifact/
 *.sqlite
 __pycache__/
 .venv/
