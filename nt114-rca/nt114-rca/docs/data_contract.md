@@ -235,6 +235,12 @@ comparator table) defaults to `store_mode="precedent"` and raises on `no_precede
 `source_incident_id` and dataset paths are never allowed. Tests: `tests/test_jev.py`,
 `tests/test_leakage.py`.
 
+Datasets in `decide.EVIDENCE_WITHHELD` (AIOps2025 and RCA100, whose licence and data-processing
+terms for the external Jev API are not yet verified) never send `evidence` in any variant. Their
+decision rows carry `evidence_withheld: true`. `jev.evidence_cleared: [<dataset>]` lifts the rule
+once the terms are recorded. `decide` also refuses mock Jev on a grid with real-LLM rows unless
+`jev.smoke: true`. Tests: `tests/test_decide.py`.
+
 ## 9. Using the data from code
 
 ```python

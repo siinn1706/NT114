@@ -63,8 +63,19 @@ def attach_units(df: pd.DataFrame, data_home: Path | None = None, uid_col: str =
     known = pd.concat(frames) if frames else pd.DataFrame(columns=score.UNIT_COLUMNS)
     rest = score.default_units(set(df["incident_uid"]) - set(known["incident_uid"]))
     units = pd.concat([known, rest], ignore_index=True)
-    return df.drop(columns=[c for c in score.UNIT_COLUMNS if c != "incident_uid" and c in df]).merge(
+    out = df.drop(columns=[c for c in score.UNIT_COLUMNS if c != "incident_uid" and c in df]).merge(
         units, on="incident_uid", how="left")
+    return reweight(out)
+
+
+def reweight(df: pd.DataFrame) -> pd.DataFrame:
+    """Equal weight per injection within each evaluated cell: weight = 1 / (records of that injection in
+    the cell). The eval-units weights count every record of the dataset, so in a cell holding only part
+    of an injection (a condition not applicable to every task, a `limit_per_system` sample) that
+    injection would otherwise count less than one. On the full sets the weights are unchanged."""
+    keys = [c for c in strata_cols(df) if c != "label_granularity"] + ["injection_id"]
+    n = df.groupby(keys, dropna=False)["incident_uid"].transform("nunique")
+    return df.assign(weight=1.0 / n)
 
 
 def strata_cols(df: pd.DataFrame, extra=()) -> list[str]:

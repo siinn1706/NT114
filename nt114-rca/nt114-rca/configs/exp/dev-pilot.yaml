@@ -1,0 +1,42 @@
+# DEV pilot on the 12 GB GPU: primary Qwen3.5-4B at FP8, live Jev. NOT RUN YET.
+# Needs the GPU machine (Linux gate, GPU probe) and TypeSafe access in $TYPESAFE_API_KEY.
+#   bash scripts/serve_model.sh results_dev_pilot/server/qwen35-4b.args Qwen/Qwen3.5-4B 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
+#        --quantization fp8 --max-model-len 8192 --gpu-memory-utilization 0.90 --limit-mm-per-prompt '{"image":0}' --port 8000
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/dev-pilot.yaml
+#   PYTHONPATH=src python -m rca.run_grid run     configs/exp/dev-pilot.yaml
+#   PYTHONPATH=src python -m rca.decide           configs/exp/dev-pilot.yaml
+# Set --max-model-len from the measured p99 prompt (python -m rca.capacity ... --evidence-dir).
+# DEV rows are never reported (the analysis headline guard refuses split_role=val).
+source: canonical
+data_home: null
+canonical_datasets: [rcaeval]
+split: within-rcaeval-grouped-0-e9b2c81c
+split_role: val
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none, hybrid]
+store_modes: [precedent]
+top_k: 3
+n_samples: 10
+temperature: 0.7
+seed: 0
+embedder: tfidf
+evidence_dir: results_dev_pilot/evidence
+cache: results_dev_pilot/llm_cache.sqlite
+out: results_dev_pilot/grid.jsonl
+models:
+  - name: Qwen/Qwen3.5-4B
+    role: primary
+    backend: vllm
+    base_url: http://localhost:8000/v1
+    revision: 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a
+    quantization: fp8
+    launch_args: results_dev_pilot/server/qwen35-4b.args
+    max_tokens: 400
+    chat_template_kwargs: {enable_thinking: false}
+jev:
+  backend: live
+  model: jev-1.13.0
+  expected_model: null          # set to the exact response `model` string observed in the M0 smoke call
+  cache: results_dev_pilot/jev_cache.sqlite
+  variants: [J-full, J-AA, J-noconf, J-noevidence]

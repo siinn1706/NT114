@@ -3,8 +3,8 @@
 # fingerprint (run_grid reads them via the model's `launch_args` config key).
 #
 #   bash scripts/serve_model.sh <args-file> <hf-repo> <revision-sha> [extra vllm serve flags...]
-#   bash scripts/serve_model.sh results/server/qwen35-9b.args Qwen/Qwen3.5-9B <sha> \
-#        --quantization fp8 --max-model-len 16384 --gpu-memory-utilization 0.85 --port 8000
+#   bash scripts/serve_model.sh results/server/qwen35-4b.args Qwen/Qwen3.5-4B 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
+#        --quantization fp8 --max-model-len 8192 --gpu-memory-utilization 0.90 --port 8000
 #
 # The args file holds `--revision`, `--quantization` and every other flag on one line; run_grid refuses
 # to run when they contradict the config. Prefix caching is always on; the vLLM version is recorded.

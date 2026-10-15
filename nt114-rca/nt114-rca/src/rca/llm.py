@@ -84,6 +84,8 @@ class LLM:
                  n=5, temperature=0.7, max_tokens=400, seed=0, cache: Cache | None = None, timeout=300,
                  revision: str | None = None, chat_template_kwargs: dict | None = None, logprobs: bool = False,
                  server_fp: str | None = None):
+        if backend != "mock" and not revision:
+            raise ValueError(f"model {model!r}: a live backend needs a pinned `revision` (commit sha of the weights)")
         self.model, self.base_url, self.backend = model, base_url.rstrip("/"), backend
         self.n, self.temperature, self.max_tokens, self.seed = n, temperature, max_tokens, seed
         self.cache, self.timeout = cache or Cache(), timeout

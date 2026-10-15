@@ -147,3 +147,9 @@ if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and not fn.__code__.co_argcount:   # fixture tests run under pytest only
             fn(); print("ok", name)
+
+
+def test_live_backend_needs_revision(fake_vllm):
+    with pytest.raises(ValueError, match="revision"):
+        LLM("m", fake_vllm)
+    LLM("m", backend="mock")                                                   # mock needs none

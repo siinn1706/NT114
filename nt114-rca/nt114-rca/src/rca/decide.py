@@ -29,6 +29,10 @@ STAGE2 = {"retrieve": "after_retrieval", "escalate": "after_escalation"}
 POLICY_ACTION = {"accept": "answer", "retrieve": "retrieve", "escalate": "escalate", "abstain": "abstain"}
 # Datasets without a comparable retrieval store (research design §6): no retrieve action.
 NO_RETRIEVE = {"aiops2025", "rca100"}
+# Datasets whose evidence text is never sent to the external Jev API until their licence and
+# data-processing terms are verified: their states use the J-noevidence form whatever the variant.
+# `jev.evidence_cleared: [<dataset>, ...]` lifts this once the terms are recorded.
+EVIDENCE_WITHHELD = {"aiops2025", "rca100"}
 VARIANTS = {
     "J-full": {"actions": jev.ACTIONS, "drop": ()},
     "J-AA": {"actions": jev.TERMINAL_ACTIONS, "drop": ()},
@@ -155,9 +159,26 @@ def available_actions(dataset: str, arms_present: set, variant: str) -> tuple[st
     return tuple(acts)
 
 
-def jev_fp(client: jev.JevClient, variant: str, prompt_version: str, revisions: dict) -> str:
+def withheld_datasets(jcfg: dict) -> frozenset:
+    cleared = set(jcfg.get("evidence_cleared") or ())
+    unknown = cleared - EVIDENCE_WITHHELD
+    if unknown:
+        raise ValueError(f"evidence_cleared names datasets that are not withheld: {sorted(unknown)}")
+    return frozenset(EVIDENCE_WITHHELD - cleared)
+
+
+def check_backends(grid: pd.DataFrame, client: jev.JevClient, jcfg: dict) -> None:
+    """Mock Jev is for offline smoke runs: on a grid with any real-LLM row it needs `jev.smoke: true`."""
+    real = "backend" in grid and (grid["backend"] != "mock").any()
+    if client.backend == "mock" and real and not jcfg.get("smoke"):
+        raise ValueError("mock Jev on a grid with real-LLM rows: use the live Jev backend, "
+                         "or set jev.smoke: true for a smoke run (never reported)")
+
+
+def jev_fp(client: jev.JevClient, variant: str, prompt_version: str, revisions: dict,
+           withheld: frozenset = frozenset()) -> str:
     blob = json.dumps([jev.JEV_QUESTION_VERSION, client.backend, client.expected_model, variant, prompt_version,
-                       sorted(revisions.items())], sort_keys=True)
+                       sorted(revisions.items()), sorted(withheld)], sort_keys=True)
     return hashlib.sha256(blob.encode()).hexdigest()[:16]
 
 
@@ -185,7 +206,10 @@ def run(cfg: dict, client: jev.JevClient | None = None) -> dict:
     unknown = set(variants) - set(VARIANTS)
     if unknown:
         raise ValueError(f"unknown Jev variants {sorted(unknown)}")
-    sel = select_rows(load_grid(cfg["out"]), prompt_version, revisions)
+    grid = load_grid(cfg["out"])
+    check_backends(grid, client, jcfg)
+    withheld = withheld_datasets(jcfg)
+    sel = select_rows(grid, prompt_version, revisions)
     agg = aggregates(sel)
     ev_dir = Path(cfg.get("evidence_dir", "results/evidence"))
     dec_path, raw_path, retry_path = out_dir / "decisions.jsonl", out_dir / "jev_raw.jsonl", out_dir / "jev_retry.jsonl"
@@ -193,7 +217,7 @@ def run(cfg: dict, client: jev.JevClient | None = None) -> dict:
     if dec_path.exists():
         with open(dec_path, encoding="utf-8") as f:
             done = {r["key"] for r in map(json.loads, filter(str.strip, f)) if r["done"]}
-    fps = {v: jev_fp(client, v, prompt_version, revisions) for v in variants}
+    fps = {v: jev_fp(client, v, prompt_version, revisions, withheld) for v in variants}
     arms_present = set(sel)
     counts = {"rows": 0, "skipped_done": 0, "failed": 0}
     retry = []
@@ -210,12 +234,14 @@ def run(cfg: dict, client: jev.JevClient | None = None) -> dict:
                 if key in done:
                     counts["skipped_done"] += 1
                     continue
-                drop = VARIANTS[v]["drop"]
+                no_ev = prim["dataset"] in withheld
+                drop = tuple(dict.fromkeys(VARIANTS[v]["drop"] + (("evidence",) if no_ev else ())))
                 acts = available_actions(prim["dataset"], arms_present, v)
                 row = {"key": key, "incident_uid": uid, "condition": cond, "dataset": prim["dataset"],
                        "split_id": prim.get("split_id"), "split_role": prim.get("split_role"), "variant": v,
                        "available_actions": list(acts), "jev_question_version": jev.JEV_QUESTION_VERSION,
-                       "jev_fp": fps[v], "jev_backend": client.backend, "prompt_version": prompt_version}
+                       "jev_fp": fps[v], "jev_backend": client.backend, "prompt_version": prompt_version,
+                       "evidence_withheld": no_ev or "evidence" in VARIANTS[v]["drop"]}
                 s_sim = sim if "retrieve" in acts else None
                 stages = {"stage1": (decision_inputs(rec, agg[("answer", uid, cond)], cond, s_sim), acts)}
                 for arm in ("retrieve", "escalate"):

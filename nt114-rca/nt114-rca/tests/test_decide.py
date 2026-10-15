@@ -173,3 +173,35 @@ def test_resume_retries_failed(canonical_synth, tmp_path, monkeypatch):
     assert read_jsonl(tmp_path / "jev_retry.jsonl") == []
     dec = decide.load_decisions(tmp_path / "decisions.jsonl")
     assert dec["done"].all() and len(dec) == first["rows"]
+
+
+def _regrid(chain, tmp_path, **cols):
+    """The chain's grid with columns overwritten, in a fresh output dir (same evidence files)."""
+    grid = analyze.load(chain["cfg"]["out"]).assign(**cols)
+    out = tmp_path / "grid.jsonl"
+    grid.to_json(out, orient="records", lines=True)
+    return {**chain["cfg"], "out": str(out), "jev": {**chain["cfg"]["jev"], "cache": str(tmp_path / "j.sqlite"),
+                                                      "variants": ["J-full"]}}
+
+
+def test_withheld_evidence_never_sent(chain, tmp_path):
+    cfg = _regrid(chain, tmp_path, dataset="rca100")
+    decide.run(cfg)
+    raws = read_jsonl(tmp_path / "jev_raw.jsonl")
+    assert raws and all("evidence" not in r["request"]["state"] for r in raws)
+    dec = decide.load_decisions(tmp_path / "decisions.jsonl")
+    assert dec["evidence_withheld"].all() and not dec["available_actions"].map(lambda a: "retrieve" in a).any()
+    cleared = {**cfg, "jev": {**cfg["jev"], "evidence_cleared": ["rca100"]}}
+    (tmp_path / "jev_raw.jsonl").unlink()
+    decide.run(cleared)                                                        # new fingerprint: decided again
+    assert all("evidence" in r["request"]["state"] for r in read_jsonl(tmp_path / "jev_raw.jsonl"))
+    with pytest.raises(ValueError, match="not withheld"):
+        decide.withheld_datasets({"evidence_cleared": ["rcaeval"]})
+
+
+def test_mock_jev_refused_on_real_grid(chain, tmp_path):
+    cfg = _regrid(chain, tmp_path, backend="vllm")
+    with pytest.raises(ValueError, match="mock Jev"):
+        decide.run(cfg)
+    smoke = {**cfg, "jev": {**cfg["jev"], "smoke": True}}
+    assert decide.run(smoke)["failed"] == 0
