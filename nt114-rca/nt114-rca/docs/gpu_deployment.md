@@ -16,7 +16,7 @@ GPU probe, TypeSafe access and the D3 data-sharing check have all passed. The ca
 | GPU | NVIDIA, compute capability ≥ 8.9 for FP8 (RTX 4080 Laptop = 8.9) | `rca.feasibility check-env` |
 | Driver | Reports CUDA ≥ 13.0, because vLLM 0.30.0 kernels are CUDA 13 builds. On WSL2, install the Windows driver; never install a Linux driver inside WSL | `scripts/gpu_probe.py` |
 | Python | 3.12 | `python3.12 -V` |
-| Disk | ~50 GB for the five pinned snapshots (9.3 + 8.1 + 7.7 + 19.3 + 6.1 GB), ~15 GB for the two venvs, plus the data bundle | `gpu_probe.py` (`disk_free_gib`) |
+| Disk | 17.4 GB for the primary and its fallback (9.3 + 8.1 GB), then 6.1 GB (AWQ), 7.7 GB (replication) and 19.3 GB (9B NF4) only if they are tested; ~15 GB for the two venvs, plus the data bundle | `gpu_probe.py` (`disk_free_gib`) |
 | Power | AC power and the vendor's performance mode; laptop GPUs throttle on battery | `smi.csv` clocks in the feasibility report |
 
 ## 2. Two environments
@@ -71,17 +71,21 @@ python3.12 -m venv .venv-serve && .venv-serve/bin/pip install -r requirements-gp
 export VLLM_VENV=$PWD/.venv-serve
 PYTHONPATH=src python -m rca.feasibility check-env configs/hardware/rtx4080-laptop-12gb.yaml   # exit 0 = no problems
 
-# 6. pinned model snapshots (into the HF cache; the commit sha is checked)
-PYTHONPATH=src python -m rca.feasibility list  configs/hardware/rtx4080-laptop-12gb.yaml
-PYTHONPATH=src python -m rca.feasibility fetch configs/hardware/rtx4080-laptop-12gb.yaml \
-  qwen35-4b-fp8 qwen3-4b-2507-fp8 phi4-mini-fp8 qwen3-8b-awq qwen35-9b-nf4
+# 6. primary and fallback only (17.4 GB; the commit sha is checked)
+HW=configs/hardware/rtx4080-laptop-12gb.yaml
+PYTHONPATH=src python -m rca.feasibility list  $HW
+PYTHONPATH=src python -m rca.feasibility fetch $HW qwen35-4b-fp8 qwen3-4b-2507-fp8
 
-# 7. feasibility test: one profile at a time, no Jev. The first run also builds the evidence and the
+# 7. feasibility test, one profile at a time, no Jev. The first run also builds the evidence and the
 #    374-incident retrieval store on the CPU (13 min on the dev laptop); later profiles reuse them.
-for p in qwen35-4b-fp8 qwen3-4b-2507-fp8 phi4-mini-fp8 qwen3-8b-awq qwen35-9b-nf4; do
-  PYTHONPATH=src python -m rca.feasibility run configs/hardware/rtx4080-laptop-12gb.yaml "$p"
-done
+PYTHONPATH=src python -m rca.feasibility run $HW qwen35-4b-fp8
+PYTHONPATH=src python -m rca.feasibility run $HW qwen3-4b-2507-fp8
 PYTHONPATH=src python -m rca.feasibility report       # results_feasibility/feasibility.csv
+
+# 7b. escalation candidates, one at a time and only when the measurements justify them (section 6):
+#     qwen3-8b-awq first (6.1 GB download, official 4-bit); qwen35-9b-nf4 (19.3 GB) only if needed
+PYTHONPATH=src python -m rca.feasibility fetch $HW qwen3-8b-awq && PYTHONPATH=src python -m rca.feasibility run $HW qwen3-8b-awq
+# The replication model (phi4-mini-fp8) is fetched and tested when M3 needs it.
 
 # 8. record the measured choice (section 6) in the plan's decisions.md and commit the config changes
 ```
@@ -125,7 +129,7 @@ pilot does that.
 |---|---|---|
 | Primary | `qwen35-4b-fp8` if feasible | `qwen3-4b-2507-fp8` |
 | Replication | `phi4-mini-fp8` if feasible | none; the replication arm is dropped and the drop is logged |
-| Escalation candidates | the feasible profiles among `qwen3-8b-awq` and `qwen35-9b-nf4` | if neither is feasible, escalation needs external inference, which needs owner approval |
+| Escalation candidates | Test `qwen3-8b-awq` only after the primary is feasible. Test `qwen35-9b-nf4` (a 19.3 GB download) only if AWQ is infeasible, or too slow for the E3 volume (plan phase 03, task 2) | if neither is feasible, escalation needs external inference, which needs owner approval |
 
 The final escalation model is picked in the DEV pilot: the feasible candidate with the larger DEV
 AC@1 gain over the primary, measured over at least 30 minutes of sustained load (plan phase 03,
@@ -142,13 +146,24 @@ profile, log the change, and rerun that profile in a fresh results directory.
    rate limit in `decisions.md`. Set `jev.expected_model` in `configs/exp/dev-pilot.yaml` to that string.
 2. **Serve the chosen primary:**
    `bash scripts/serve_model.sh results_dev_pilot/server/qwen35-4b.args <repo> <sha> <flags from rca.feasibility list>`.
-3. **DEV pilot, LLM part:**
+3. **Presence-penalty comparison (Qwen3.5 primary only; no Jev).** Run `configs/exp/dev-sampling.yaml`
+   with `run_grid prepare` and `run`. This puts 0 (the current setting, not sent) and 1.5 on the
+   same DEV cells: 143 incidents, `full` and `no_metric`, retrieval `none` and `hybrid`. Then run
+   `python -m rca.feasibility compare-sampling results_dev_sampling/grid.jsonl`. The report
+   compares the two arms on AC@1 and AC@3, parse rate, consensus, the spread of verbal confidence
+   across samples, completion tokens and latency, and returns a `choice`.
+   - **Decision rule, fixed before the run:** keep 0 unless 1.5 meets all three conditions:
+     a parse rate ≥ 0.99, a paired AC@1 gain whose incident-level bootstrap 95 % CI lies above 0,
+     and at most 25 % more completion tokens.
+   - Freeze the chosen value with prompt v1 in `decisions.md`, then set it in
+     `configs/exp/dev-pilot.yaml` before the pilot. It is never tuned on test results.
+4. **DEV pilot, LLM part:**
    `PYTHONPATH=src python -m rca.run_grid prepare configs/exp/dev-pilot.yaml`, then `run`. These are
    143 RCAEval DEV incidents, so no NC data is involved.
-4. **DEV pilot, Jev part:** `PYTHONPATH=src python -m rca.decide configs/exp/dev-pilot.yaml`. This is
+5. **DEV pilot, Jev part:** `PYTHONPATH=src python -m rca.decide configs/exp/dev-pilot.yaml`. This is
    the first live Jev use. Before running it, confirm that D3 still withholds AIOps2025/RCA100
    evidence; DEV is RCAEval, CC BY 4.0.
-5. Continue with plan phase 03 tasks 2–7: gates, prompt freeze, escalation serving, Jev bias and
+6. Continue with plan phase 03 tasks 2–7: gates, prompt freeze, escalation serving, Jev bias and
    stability, tuning, and the preregistration freeze.
 
 ## 8. Troubleshooting

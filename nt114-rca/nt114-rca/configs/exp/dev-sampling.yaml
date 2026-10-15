@@ -1,0 +1,39 @@
+# Qwen3.5-4B presence penalty 0 (current configuration: not sent, vLLM default 0; the pinned repo has
+# no generation_config.json) against 1.5 (model-card recommendation for non-thinking mode), on the
+# same DEV cells. M2, after the feasibility test, before the prompt freeze. NOT RUN YET. No Jev.
+#   serve profile qwen35-4b-fp8 (python -m rca.feasibility list configs/hardware/rtx4080-laptop-12gb.yaml)
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/dev-sampling.yaml
+#   PYTHONPATH=src python -m rca.run_grid run     configs/exp/dev-sampling.yaml
+#   PYTHONPATH=src python -m rca.feasibility compare-sampling results_dev_sampling/grid.jsonl
+# 143 DEV incidents x applicable conditions x 2 retrieval x 2 arms (about 1,100 requests of n = 10).
+# The decision rule is in rca.feasibility.compare_sampling; the chosen value is frozen with prompt v1.
+source: canonical
+data_home: null
+canonical_datasets: [rcaeval]
+split: within-rcaeval-grouped-0-e9b2c81c
+split_role: val
+limit_per_system: null
+conditions: [full, no_metric]
+retrieval: [none, hybrid]
+store_modes: [precedent]
+top_k: 3
+n_samples: 10
+temperature: 0.7
+seed: 0
+embedder: tfidf
+evidence_dir: results_dev_pilot/evidence      # shared with the DEV pilot
+cache: results_dev_sampling/llm_cache.sqlite
+out: results_dev_sampling/grid.jsonl
+models:
+  - &qwen35
+    name: Qwen/Qwen3.5-4B
+    role: primary
+    backend: vllm
+    base_url: http://localhost:8000/v1
+    revision: 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a
+    quantization: fp8
+    launch_args: results_dev_sampling/server/qwen35-4b.args
+    max_tokens: 400
+    chat_template_kwargs: {enable_thinking: false}
+  - <<: *qwen35
+    presence_penalty: 1.5

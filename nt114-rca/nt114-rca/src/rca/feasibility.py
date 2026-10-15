@@ -5,6 +5,7 @@
   python -m rca.feasibility fetch     <hw.yaml> <profile>... # pinned snapshots into the HF cache
   python -m rca.feasibility run       <hw.yaml> <profile> [--exp configs/exp/gpu-feasibility.yaml]
   python -m rca.feasibility report    [--root results_feasibility]
+  python -m rca.feasibility compare-sampling results_dev_sampling/grid.jsonl   # presence penalty 0 vs 1.5
 
 `run` starts `vllm serve` through scripts/serve_model.sh (offline, pinned revision), samples
 nvidia-smi every second, runs the small DEV grid of the experiment config with run_grid, stops the
@@ -296,6 +297,56 @@ def report(root: Path) -> list[dict]:
     return rows
 
 
+PAIR_KEY = ("case_id", "condition", "retrieval", "store_mode")
+MAX_TOKEN_INCREASE = 0.25
+
+
+def compare_sampling(grid_path, base: float = 0.0, alt: float = 1.5, n_boot: int = 10000) -> dict:
+    """Paired DEV comparison of two presence-penalty arms of the same model on the same cells.
+
+    Decision rule (fixed before the run): keep `base` unless `alt` has parse rate >= MIN_PARSE_RATE,
+    a paired AC@1 gain whose 95 % incident-cluster bootstrap CI lies above 0, and mean completion
+    tokens at most MAX_TOKEN_INCREASE above `base`. Confidence stability (consensus, spread of the
+    verbal confidence across samples) is reported, not gated. DEV rows only."""
+    from .metrics import cluster_bootstrap, mcnemar
+    rows = [json.loads(l) for l in Path(grid_path).read_text(encoding="utf-8").splitlines() if l.strip()]
+    if any(r.get("split_role") not in (None, "val") for r in rows):
+        raise ValueError("sampling is compared on DEV (split_role val) rows only")
+    arms: dict[float, dict] = {base: {}, alt: {}}
+    for r in rows:
+        pp = (r.get("sampling") or {}).get("presence_penalty")
+        pp = 0.0 if pp is None else float(pp)
+        if pp in arms:
+            arms[pp][tuple(r[k] for k in PAIR_KEY)] = r
+    keys = sorted(set(arms[base]) & set(arms[alt]))
+    if not keys:
+        raise ValueError(f"no cells answered under both presence_penalty={base} and {alt}")
+
+    def summary(rs):
+        return {"n": len(rs), "ac1": round(float(np.mean([bool(r["correct"]) for r in rs])), 4),
+                "ac3": round(float(np.mean([bool(r["correct_at_3"]) for r in rs])), 4),
+                "parse_rate": round(float(np.mean([r["parse_rate"] for r in rs])), 4),
+                "conf_consensus": round(float(np.mean([r["conf_consensus"] for r in rs])), 4),
+                "conf_verbal_sd": round(float(np.mean([r.get("conf_verbal_sd", np.nan) for r in rs])), 3),
+                "completion_tokens": round(float(np.mean([r["completion_tokens"] or 0 for r in rs])), 1),
+                "latency_s": round(float(np.mean([r["latency_s"] for r in rs])), 2)}
+
+    a = [arms[base][k] for k in keys]
+    b = [arms[alt][k] for k in keys]
+    sa, sb = summary(a), summary(b)
+    diff = cluster_bootstrap(np.column_stack([[bool(r["correct"]) for r in b], [bool(r["correct"]) for r in a]]),
+                             [r["case_id"] for r in a], n=n_boot)
+    tok_up = sb["completion_tokens"] / sa["completion_tokens"] - 1 if sa["completion_tokens"] else 0.0
+    switch = sb["parse_rate"] >= MIN_PARSE_RATE and diff["lo"] > 0 and tok_up <= MAX_TOKEN_INCREASE
+    rep = {"pairs": len(keys), "incidents": diff["n_clusters"], "base": {"presence_penalty": base, **sa},
+           "alt": {"presence_penalty": alt, **sb},
+           "ac1_gain": {k: round(v, 4) for k, v in diff.items() if k != "n_clusters"},
+           "mcnemar": mcnemar([bool(r["correct"]) for r in a], [bool(r["correct"]) for r in b]),
+           "completion_token_increase": round(tok_up, 3), "choice": alt if switch else base}
+    print(json.dumps(rep, indent=1))
+    return rep
+
+
 ENV_CHECK = r"""
 import json, sys, torch, vllm, transformers
 from importlib.util import find_spec
@@ -367,6 +418,8 @@ def main(argv=None):
             s.add_argument("--root", default="results_feasibility")
     s = sub.add_parser("report")
     s.add_argument("--root", default="results_feasibility")
+    s = sub.add_parser("compare-sampling")
+    s.add_argument("grid")
     a = ap.parse_args(argv)
     if a.cmd == "list":
         plan, profiles = load(a.hw)
@@ -383,6 +436,8 @@ def main(argv=None):
         fetch(a.hw, a.profiles)
     elif a.cmd == "run":
         run(a.hw, a.profile, a.exp, Path(a.root))
+    elif a.cmd == "compare-sampling":
+        compare_sampling(a.grid)
     else:
         report(Path(a.root))
 

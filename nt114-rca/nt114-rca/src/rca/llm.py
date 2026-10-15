@@ -83,13 +83,14 @@ class LLM:
     def __init__(self, model: str, base_url="http://localhost:8000/v1", backend="vllm",
                  n=5, temperature=0.7, max_tokens=400, seed=0, cache: Cache | None = None, timeout=300,
                  revision: str | None = None, chat_template_kwargs: dict | None = None, logprobs: bool = False,
-                 server_fp: str | None = None):
+                 server_fp: str | None = None, presence_penalty: float | None = None):
         if backend != "mock" and not revision:
             raise ValueError(f"model {model!r}: a live backend needs a pinned `revision` (commit sha of the weights)")
         self.model, self.base_url, self.backend = model, base_url.rstrip("/"), backend
         self.n, self.temperature, self.max_tokens, self.seed = n, temperature, max_tokens, seed
         self.cache, self.timeout = cache or Cache(), timeout
         self.revision, self.logprobs = revision, logprobs
+        self.presence_penalty = presence_penalty   # None = not sent (server default)
         self.chat_template_kwargs = {"enable_thinking": False} if chat_template_kwargs is None else dict(chat_template_kwargs)
         self.server_fp = server_fp if server_fp is not None else ("mock" if backend == "mock" else None)
 
@@ -97,7 +98,9 @@ class LLM:
         if self.server_fp is None:
             raise RuntimeError("server fingerprint not set: call server_fingerprint() before asking a live server")
         blob = json.dumps([self.model, self.revision, self.backend, self.n, self.temperature, self.seed, self.max_tokens,
-                           PROMPT_VERSION, self.chat_template_kwargs, self.logprobs, self.server_fp, messages, candidates],
+                           PROMPT_VERSION, self.chat_template_kwargs, self.logprobs, self.server_fp, messages, candidates]
+                          # appended only when set, so keys of runs without it stay valid
+                          + ([{"presence_penalty": self.presence_penalty}] if self.presence_penalty is not None else []),
                           sort_keys=True)
         return hashlib.sha256(blob.encode()).hexdigest()
 
@@ -121,6 +124,8 @@ class LLM:
             "response_format": {"type": "json_schema",
                                 "json_schema": {"name": "rca", "schema": schema(candidates)}},
         }
+        if self.presence_penalty is not None:
+            body["presence_penalty"] = self.presence_penalty
         if self.logprobs:
             body.update(logprobs=True, top_logprobs=5)
         res = self._post("/chat/completions", body)
@@ -209,9 +214,12 @@ def aggregate(samples: list[dict]) -> dict:
             borda[svc] += 5 - i
     ranking = [s for s, _ in borda.most_common()]
     top1 = Counter(s["ranking"][0] for s in good)
+    conf = [s["confidence"] for s in good]
+    mean = sum(conf) / len(conf)
     return {
         "ranking": ranking,
-        "conf_verbal": sum(s["confidence"] for s in good) / len(good),
+        "conf_verbal": mean,
+        "conf_verbal_sd": (sum((c - mean) ** 2 for c in conf) / len(conf)) ** 0.5,  # spread across samples
         "conf_consensus": top1[ranking[0]] / len(samples),
         "abstain_vote": sum(s["insufficient"] for s in good) / len(good),
         "next_check": good[0]["next_check"],

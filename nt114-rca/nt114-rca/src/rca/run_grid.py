@@ -401,6 +401,7 @@ def write_manifest(cfg, cn: Canon | None, server_fps: dict, started: float) -> d
            "split_roles": cn.split_roles() if cn is not None else None, "config_hash": cfg["_hash"],
            "models": [{"name": m["name"], "role": m.get("role", "primary"), "revision": m.get("revision"),
                        "quantization": m.get("quantization"), "backend": m.get("backend", "vllm"),
+                       "presence_penalty": m.get("presence_penalty"),
                        "vllm_version": m.get("vllm_version"), "server_fp": server_fps.get(m["name"])}
                       for m in cfg["models"]],
            "gpu": _gpu_name(), "prompt_version": PROMPT_VERSION, "jev_question_version": jev.JEV_QUESTION_VERSION,
@@ -462,7 +463,8 @@ def run(cfg):
             llm = LLM(m["name"], m.get("base_url", "http://localhost:8000/v1"), m.get("backend", "vllm"),
                       n=cfg["n_samples"], temperature=cfg["temperature"], seed=cfg.get("seed", 0), cache=cache,
                       max_tokens=m.get("max_tokens", 400), revision=m.get("revision"),
-                      chat_template_kwargs=m.get("chat_template_kwargs"), logprobs=m.get("logprobs", False))
+                      chat_template_kwargs=m.get("chat_template_kwargs"), logprobs=m.get("logprobs", False),
+                      presence_penalty=m.get("presence_penalty"))
             server_fps[m["name"]] = llm.server_fingerprint(m.get("launch_args"), m.get("quantization"))
             role, rev = m.get("role", "primary"), m.get("revision")
             for r in recs:
@@ -477,7 +479,8 @@ def run(cfg):
                         # the evidence (and store) fingerprints are part of the key: rows produced from
                         # stale evidence are not counted as done
                         key = (f"{m['name']}|{rev}|{PROMPT_VERSION}|{vc.case_id}|{cond}|{meth}|{mode}|{r['evidence_fp']}|"
-                               f"{store_fp if meth != 'none' else '-'}")
+                               f"{store_fp if meth != 'none' else '-'}"
+                               + (f"|pp={llm.presence_penalty}" if llm.presence_penalty is not None else ""))
                         if key in done:
                             continue
                         hits = (store.search(ev["text"], vc, meth, mode, cfg["top_k"], exclude_ids=exclusions(store, vc, tr, mode, grp))
@@ -489,7 +492,8 @@ def run(cfg):
                         row = {
                             "key": key, "cfg": cfg["_hash"], "model": m["name"], "model_role": role, "model_revision": rev,
                             "prompt_version": PROMPT_VERSION, "server_fp": llm.server_fp, "backend": llm.backend,
-                            "sampling": {"n": llm.n, "temperature": llm.temperature, "seed": llm.seed},
+                            "sampling": {"n": llm.n, "temperature": llm.temperature, "seed": llm.seed,
+                                         "presence_penalty": llm.presence_penalty},
                             "case_id": vc.case_id,
                             "system": vc.system, "dataset": vc.dataset, "fault": tr.fault, "truth": tr.root_service,
                             "truth_ids": list(score.truth_ids(tr)), "label_granularity": tr.granularity,

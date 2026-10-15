@@ -153,3 +153,24 @@ def test_live_backend_needs_revision(fake_vllm):
     with pytest.raises(ValueError, match="revision"):
         LLM("m", fake_vllm)
     LLM("m", backend="mock")                                                   # mock needs none
+
+
+def test_presence_penalty_sent_and_keyed_only_when_set(monkeypatch):
+    sent = []
+    msg = json.dumps({"reason": "r", "ranking": ["a"], "confidence": 60, "insufficient_evidence": False,
+                      "next_check": "logs"})
+    plain = LLM("m", backend="vllm", revision="abc", server_fp="fp", n=2)
+    pp = LLM("m", backend="vllm", revision="abc", server_fp="fp", n=2, presence_penalty=1.5)
+    for llm in (plain, pp):
+        monkeypatch.setattr(llm, "_post", lambda path, body=None: sent.append(body) or
+                            {"choices": [{"message": {"content": msg}}] * 2, "usage": {}})
+        llm._vllm([{"role": "user", "content": "x"}], ["a", "b"])
+    assert "presence_penalty" not in sent[0] and sent[1]["presence_penalty"] == 1.5
+    k_plain, k_pp = plain.key([], ["a"]), pp.key([], ["a"])
+    assert k_plain != k_pp
+    assert k_plain == LLM("m", backend="vllm", revision="abc", server_fp="fp", n=2).key([], ["a"])
+
+
+def test_conf_verbal_sd():
+    s = [{"ok": True, "ranking": ["a"], "confidence": c, "insufficient": False, "next_check": ""} for c in (60, 80)]
+    assert aggregate(s)["conf_verbal_sd"] == 10

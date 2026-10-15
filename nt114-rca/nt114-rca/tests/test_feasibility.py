@@ -176,3 +176,63 @@ def test_run_end_to_end_with_fake_server(canonical_synth, tmp_path, monkeypatch)
     rows = feasibility.report(tmp_path / "feas")
     assert rows[0]["profile"] == "qwen35-4b-fp8" and rows[0]["feasible"]
     assert (tmp_path / "feas" / "feasibility.csv").is_file()
+
+
+def _arm_rows(pp, correct, tokens=800, parse=1.0, role="val"):
+    return [{"case_id": f"inc{i // 2}", "condition": "full" if i % 2 else "no_metric", "retrieval": "none",
+             "store_mode": "-", "split_role": role, "sampling": {"n": 10, "presence_penalty": pp},
+             "correct": c, "correct_at_3": True, "parse_rate": parse, "conf_consensus": 0.7, "conf_verbal_sd": 5.0,
+             "completion_tokens": tokens, "latency_s": 3.0} for i, c in enumerate(correct)]
+
+
+def _write(path, rows):
+    path.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+
+
+def test_compare_sampling_keeps_base_without_clear_gain(tmp_path):
+    f = tmp_path / "grid.jsonl"
+    _write(f, _arm_rows(None, [True, False] * 20) + _arm_rows(1.5, [False, True] * 20))   # None = server default 0
+    rep = feasibility.compare_sampling(f, n_boot=500)
+    assert rep["pairs"] == 40 and rep["incidents"] == 20 and rep["choice"] == 0.0
+    assert rep["base"]["ac1"] == rep["alt"]["ac1"] == 0.5
+
+
+def test_compare_sampling_switches_only_on_gain_parse_and_cost(tmp_path):
+    f = tmp_path / "grid.jsonl"
+    base = _arm_rows(None, [False] * 40)
+    _write(f, base + _arm_rows(1.5, [True] * 40))
+    assert feasibility.compare_sampling(f, n_boot=500)["choice"] == 1.5
+    _write(f, base + _arm_rows(1.5, [True] * 40, tokens=1100))      # +37.5 % completion tokens
+    assert feasibility.compare_sampling(f, n_boot=500)["choice"] == 0.0
+    _write(f, base + _arm_rows(1.5, [True] * 40, parse=0.95))
+    assert feasibility.compare_sampling(f, n_boot=500)["choice"] == 0.0
+
+
+def test_compare_sampling_refuses_test_rows(tmp_path):
+    f = tmp_path / "grid.jsonl"
+    _write(f, _arm_rows(None, [True] * 4, role="test") + _arm_rows(1.5, [True] * 4, role="test"))
+    with pytest.raises(ValueError, match="DEV"):
+        feasibility.compare_sampling(f)
+
+
+def test_dev_sampling_config_pairs_two_arms():
+    cfg = run_grid.load_cfg(ROOT / "configs" / "exp" / "dev-sampling.yaml")
+    a, b = cfg["models"]
+    assert cfg["split_role"] == "val" and "jev" not in cfg
+    assert a.get("presence_penalty") is None and b["presence_penalty"] == 1.5
+    assert {k: v for k, v in b.items() if k != "presence_penalty"} == a
+
+
+def test_presence_penalty_arms_do_not_collide(canonical_synth, tmp_path, monkeypatch):
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path, retrieval=["none"], conditions=["full"],
+                            models=[{"name": "mock-small", "backend": "mock"},
+                                    {"name": "mock-small", "backend": "mock", "presence_penalty": 1.5}])
+    run_grid.prepare(cfg)
+    run_grid.run(cfg)
+    rows = [json.loads(l) for l in Path(cfg["out"]).read_text(encoding="utf-8").splitlines()]
+    by = {}
+    for r in rows:
+        by.setdefault(r["sampling"]["presence_penalty"], []).append(r)
+    assert set(by) == {None, 1.5} and len(by[None]) == len(by[1.5]) > 0
+    assert all("|pp=" not in r["key"] for r in by[None]) and all(r["key"].endswith("|pp=1.5") for r in by[1.5])
