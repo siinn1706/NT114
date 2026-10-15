@@ -42,6 +42,10 @@ Số liệu ra từ bước này là vô nghĩa (LLM giả). Chỉ dùng để k
 
 ## 3. Chạy thật
 
+> Máy GPU 12 GB (RTX 4080 Laptop): làm theo [docs/gpu_deployment.md](docs/gpu_deployment.md). Tài liệu này gồm
+> hai venv, các mô hình ghim theo revision và phép thử khả thi `rca.feasibility`. Lệnh `vllm serve` dưới đây
+> là cấu hình pilot cũ.
+
 ```bash
 # tải dữ liệu (khoảng 30 phút cho cả 3 bộ, RE2+RE3 nhanh hơn)
 python -c "from RCAEval.utility import download_re2_dataset, download_re3_dataset; download_re2_dataset(); download_re3_dataset()"

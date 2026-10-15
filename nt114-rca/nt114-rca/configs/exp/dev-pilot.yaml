@@ -1,7 +1,9 @@
 # DEV pilot on the 12 GB GPU: primary Qwen3.5-4B at FP8, live Jev. NOT RUN YET.
 # Needs the GPU machine (Linux gate, GPU probe) and TypeSafe access in $TYPESAFE_API_KEY.
 #   bash scripts/serve_model.sh results_dev_pilot/server/qwen35-4b.args Qwen/Qwen3.5-4B 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a \
-#        --quantization fp8 --max-model-len 8192 --gpu-memory-utilization 0.90 --limit-mm-per-prompt '{"image":0}' --port 8000
+#        --max-model-len 8192 --gpu-memory-utilization 0.9 --quantization fp8 --language-model-only --port 8000
+# (flags of profile qwen35-4b-fp8: `python -m rca.feasibility list configs/hardware/rtx4080-laptop-12gb.yaml`;
+#  run the feasibility test first, docs/gpu_deployment.md)
 #   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/dev-pilot.yaml
 #   PYTHONPATH=src python -m rca.run_grid run     configs/exp/dev-pilot.yaml
 #   PYTHONPATH=src python -m rca.decide           configs/exp/dev-pilot.yaml

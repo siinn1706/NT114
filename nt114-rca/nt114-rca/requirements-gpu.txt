@@ -1,0 +1,9 @@
+# vLLM serving environment on the Linux / WSL2 GPU machine. Kept apart from requirements-lock.txt
+# (the analysis environment): vLLM pins torch==2.13.0 and setuptools<81, the analysis lock has
+# torch 2.14.1 and setuptools 84. The two talk over HTTP only.
+# vLLM 0.30.0 (2026-09-22) ships Qwen3.5 (qwen3_5), Qwen3, Phi-3/4 and AWQ-Marlin; its kernels are
+# CUDA 13 builds, so the NVIDIA driver must report CUDA >= 13.0 (scripts/gpu_probe.py).
+# After the first install, freeze it: pip freeze > requirements-gpu-lock.txt (and commit that file).
+vllm==0.30.0
+transformers==5.17.0
+bitsandbytes==0.50.2

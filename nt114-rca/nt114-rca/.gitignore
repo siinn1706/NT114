@@ -15,6 +15,7 @@ paper/artifact/
 __pycache__/
 .venv/
 .venv-acquire/
+.venv-serve/
 # Evaluation-only label content stays out of git (it travels only in the private data bundle):
 # the lineage registry holds every source's ground truth, condition matrices hold label-derived
 # masking targets (regenerate with `prep conditions`).

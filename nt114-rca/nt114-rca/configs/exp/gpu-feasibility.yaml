@@ -1,0 +1,23 @@
+# Small GPU feasibility test on DEV: does each serving profile load, fit the KV budget at the real
+# request size and return parseable answers, and at what latency. NOT RUN YET.
+#   PYTHONPATH=src python -m rca.feasibility run configs/hardware/rtx4080-laptop-12gb.yaml <profile>
+# rca.feasibility fills `models` from the profile and writes under results_feasibility/<profile>/.
+# No Jev section: this test never calls Jev. DEV rows are never reported.
+source: canonical
+data_home: null
+canonical_datasets: [rcaeval]
+split: within-rcaeval-grouped-0-e9b2c81c
+split_role: val
+limit_per_system: 4             # 4 DEV incidents per system (12 in all), stratified by fault type
+conditions: [full, no_trace]
+retrieval: [none, hybrid]       # hybrid gives the longest (retrieval) prompts
+store_modes: [precedent]
+top_k: 3
+n_samples: 10
+temperature: 0.7
+seed: 0
+embedder: tfidf
+evidence_dir: results_feasibility/evidence
+port: 8000
+server_timeout_s: 1200          # model load + torch.compile + CUDA graph capture on first start
+models: []

@@ -117,3 +117,53 @@ models:
     intermediate: 12288
     tied_embeddings: false
     notes: official AWQ checkpoint Qwen/Qwen3-8B-AWQ at 4da05a8edb55c6046cce958586c33b61da07bb79
+
+# Serving profiles for the GPU feasibility test (python -m rca.feasibility). Each profile fixes the
+# checkpoint revision, the vLLM quantisation, the context length and the fallback; the estimated
+# VRAM is computed from the model spec above, the measured one comes from the feasibility run.
+# Selection is final only after the feasibility test and the DEV pilot.
+profiles:
+  - name: qwen35-4b-fp8
+    role: primary
+    model: qwen3.5-4b
+    precision: fp8                # capacity precision
+    quantization: fp8             # vLLM --quantization (on-the-fly; no official FP8 checkpoint)
+    max_model_len: 8192
+    extra_args: [--language-model-only]
+    chat_template_kwargs: {enable_thinking: false}
+    fallback: qwen3-4b-2507-fp8
+  - name: qwen3-4b-2507-fp8
+    role: primary
+    model: qwen3-4b-instruct-2507
+    precision: fp8
+    quantization: fp8
+    max_model_len: 8192
+    chat_template_kwargs: null    # non-thinking only model
+    fallback: null
+  - name: phi4-mini-fp8
+    role: replication
+    model: phi-4-mini-instruct
+    precision: fp8
+    quantization: fp8
+    max_model_len: 8192
+    chat_template_kwargs: null
+    fallback: null
+  - name: qwen35-9b-nf4
+    role: escalation
+    model: qwen3.5-9b
+    precision: nf4
+    quantization: bitsandbytes    # in-flight NF4; hybrid-layer support in vLLM to be confirmed by the run
+    max_model_len: 8192
+    extra_args: [--language-model-only]
+    chat_template_kwargs: {enable_thinking: false}
+    fallback: qwen3-8b-awq
+  - name: qwen3-8b-awq
+    role: escalation
+    model: qwen3-8b
+    repo: Qwen/Qwen3-8B-AWQ       # official 4-bit checkpoint, replaces the base repo
+    revision: 4da05a8edb55c6046cce958586c33b61da07bb79
+    precision: awq4
+    quantization: awq_marlin
+    max_model_len: 8192
+    chat_template_kwargs: {enable_thinking: false}
+    fallback: null                # next step is external inference, which needs owner approval
