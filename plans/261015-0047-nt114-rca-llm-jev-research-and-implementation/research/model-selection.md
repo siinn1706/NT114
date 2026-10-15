@@ -7,16 +7,16 @@ secondary sources found, must be confirmed on the model card in M0; **[A]** = es
 
 1. A ranked list of ≤5 services, drawn from a given candidate list (enum-constrained JSON).
    `llm.schema()` already enforces this with vLLM guided decoding.
-2. Prompts of about 3.5k evidence tokens + ≤1k retrieved precedents + instructions, so ≥16k
-   context is plenty.
+2. Prompts measured at p95 ≈ 1.1k tokens without retrieval and ≈ 4.5k with 3 precedents (§4.1),
+   so an 8k context is enough.
 3. Ten samples at T = 0.7 per prompt (consensus confidence). vLLM shares the prefill across
    `n`, so the cost is mostly prefill.
 4. A verbal confidence (0–100) and an `insufficient_evidence` flag in the same JSON.
 5. Thinking/reasoning traces are **not** needed for the main grid. They multiply tokens 5–20×,
    and they interact badly with guided JSON on some parsers. Thinking mode is an optional ablation.
 
-The model does not need tool use, vision or long context. That favours a dense 4–10B instruct
-model as primary and a larger sibling for escalation.
+The model does not need tool use, vision or long context. On the 12 GB GPU (D2) that favours a
+3–4B instruct model as primary and a 4-bit 8–9B sibling for escalation (§3).
 
 ## 2. Candidates
 
@@ -45,39 +45,107 @@ the official card values.
 No public RCA benchmark ranks these exact checkpoints on RCAEval-style evidence. Reasoning ability
 for RCA is therefore measured in our own pilot (M2), not assumed from leaderboards.
 
-## 3. Recommendation
+## 3. Recommendation for the 12 GB GPU (decision D2, 2026-10-15)
 
-| Role | Model | Why |
-|---|---|---|
-| **Primary RCA LLM** | **Qwen3.5-9B instruct, non-thinking mode** | Newest permissive small dense model; fits every hardware tier at 4–8 bit; same family as a strong larger sibling, so escalation isolates scale |
-| **Escalation LLM** | **Qwen3.5-27B, non-thinking** | Same family, same tokenizer and prompt; any gain comes from scale, not formatting. Not co-resident: the grid runs models one after another |
-| **Cross-family replication** (required for generality) | Gemma 4 26B-A4B on ≥24 GB, else Gemma 4 E4B | Different family and lab; repeats the core LLM-only and Jev runs on the RCAEval test split |
-| Optional | Nemotron 3 Nano 30B-A3B | Third family; custom vLLM parser and licence review make it optional |
-| Minimal baseline config | Qwen3.5-4B (or 9B at 4-bit) + Jev mock, `limit_per_system: 2` | Smoke on any ≥12 GB GPU |
+The owner's planned GPU is an **NVIDIA RTX 4080 Laptop, 12 GB** (owner-reported; GPU, driver,
+CUDA, PyTorch and free VRAM still to be probed with `scripts/gpu_probe.py`). 14B–27B models are
+**not** assumed to run. Every figure below is an **[A]** estimate from
+`python -m rca.capacity configs/hardware/rtx4080-laptop-12gb.yaml`, which uses each model's
+`config.json` at a pinned revision **[C]**. The M2 gate replaces the estimates with measurements.
 
-Fallback if Qwen3.5-9B fails the M2 gates (parse rate <99%, or full-condition AC@1 on dev not
-above the max-z heuristic): switch the primary to Gemma 4 E4B/26B-A4B and keep Qwen3.5-27B as
-the escalation model. Record the switch in the decision log before the main grid.
+Assumptions in the estimate: a serving budget of 10.8 GB (0.90 × 12 GB, at most 12 − 0.6 GB
+reserved for display and driver), 1 GB runtime overhead, 10 samples × 400 output tokens per
+request sharing one prompt prefix, and fp16 KV. Weight-only formats keep embeddings in 16 bit.
 
-## 4. Hardware tiers (target GPU not chosen)
+| Role | Model (repo @ revision) | Precision | Weights | KV per request (2k prompt, n=10) | Concurrent requests | QLoRA, seq 4096, micro-batch 1 |
+|---|---|---|---|---|---|---|
+| **Primary** | **Qwen3.5-4B** (`Qwen/Qwen3.5-4B` @ `851bf6e`), non-thinking | FP8 (on the fly) | 5.3 GB | 0.72 GB | ~6 | ~6.6 GB (fits) |
+| Primary fallback | Qwen3-4B-Instruct-2507 (`cdbee75`), text-only, non-thinking | FP8 / bf16 | 4.4 / 8.0 GB | 0.89 GB | ~6 / 1 | ~5.8 GB (fits) |
+| Cross-family replication | Phi-4-mini-instruct (`microsoft/Phi-4-mini-instruct` @ `cfbefac`, MIT, 3.8B) | FP8 / bf16 | 4.5 / 7.7 GB | 0.79 GB | ~6 / 2 | ~6.1 GB (fits) |
+| Escalation and 7–9B 4-bit evaluation, candidate A | Qwen3.5-9B (`c202236`), same tokenizer and prompt as the primary | NF4 (bitsandbytes) | 8.0 GB | 0.72 GB | ~2 | ~12.0 GB (does **not** fit; 2048 is marginal at 11.1 GB) |
+| Escalation and 7–9B 4-bit evaluation, candidate B | Qwen3-8B-AWQ (`Qwen/Qwen3-8B-AWQ` @ `4da05a8`, official) | AWQ 4-bit | 6.2 GB | 0.89 GB | ~4 | ~10.0 GB (fits, tight) |
+| Measured only if it fits | Gemma 4 E4B-it (`ee0ef60`; 8.0B stored, ~4B effective) | FP8 | 11.5 GB | — | 0 | does not fit |
 
-Weight memory ≈ params × bytes (bf16 2, FP8 1, 4-bit ≈0.55) plus KV cache and activations. All
-figures are **[A]** estimates for the M0 probe to confirm.
+Why this set:
 
-| Tier | Example GPUs | Primary | Escalation | Replication | Fine-tuning (M4) |
-|---|---|---|---|---|---|
-| S: 12–16 GB | RTX 4080 Laptop 12 GB, 4060 Ti 16 GB, T4 16 GB | 9B at 4-bit (~6 GB) or 4B bf16 (~9 GB) | 27B 4-bit (~16 GB) does **not** fit 12 GB; use 9B as "escalation" from a 4B primary | Gemma 4 E4B 4-bit | QLoRA on 4B only |
-| M: 24 GB | RTX 3090/4090, L4, A10 | 9B FP8 (~10 GB) | 27B AWQ/GPTQ 4-bit (~16 GB; leaves only ~3–4 GB KV at 0.85 utilisation, so M2 measures concurrency) | Gemma 4 26B-A4B 4-bit (~15 GB) | QLoRA 9B (~12–16 GB) |
-| L: 40–80 GB | A100, L40S 48 GB, H100 | 9B bf16 | 27B FP8 (48 GB) or bf16 (80 GB) | Gemma 4 26B-A4B bf16 (80 GB) | LoRA bf16 9B; QLoRA 27B |
+- **Qwen3.5-4B** is the newest permissive small model in the family the plan already chose. Its
+  hybrid attention means only 8 of 32 layers keep a per-token KV cache (32 KiB per token against
+  144 KiB for Qwen3-4B), so long telemetry prompts and 10 samples cost little KV. bf16 (9.3 GB)
+  leaves under 0.5 GB of KV, so **every primary run uses FP8**, and the precision is fixed for the
+  whole paper. Ada (sm_89) supports FP8 in vLLM; the M2 gate confirms it, together with the Gated
+  DeltaNet kernels, on this laptop.
+- The **fallback** Qwen3-4B-Instruct-2507 is text-only with standard attention and mature vLLM
+  support. It is used if Qwen3.5-4B fails the M2 gates: parse rate < 99 %, full-condition AC@1 on
+  DEV not above the max-z heuristic, or a kernel or precision problem on the laptop.
+- **Escalation stays inside one family**, so a gain comes from scale rather than formatting.
+  Candidate A (Qwen3.5-9B NF4) is the cleaner scale contrast for the Qwen3.5-4B primary. No
+  official 4-bit checkpoint exists, bitsandbytes serving is slower, and the precision differs from
+  the primary's. Candidate B (Qwen3-8B-AWQ) is official and faster, and is the natural pair for
+  the fallback primary. The M2 gate picks the escalation model from measured parse rate, DEV
+  AC@1 gain over the primary, and throughput. The choice is recorded in decisions.md before the
+  main grid. External inference for escalation is used only if the owner approves it separately.
+- **Cross-family replication** uses Phi-4-mini (a different lab, MIT licence, text-only). Gemma 4
+  E4B stores 8B parameters (2.8B of them per-layer embeddings kept in 16 bit), so it does not fit
+  12 GB with KV by this estimate. It is used only if a measurement shows otherwise (for example,
+  with per-layer embeddings offloaded).
+- **Optional** models (Nemotron 3 Nano 30B-A3B, Qwen3.5-27B, Gemma 4 26B-A4B) are out of scope on
+  this GPU. They return only with separately approved external inference or a larger GPU.
 
-Recommended minimum for the full plan: **tier M (24 GB)**. Tier S works if the escalation pair
-is 4B → 9B; the paper must then say so.
+Minimal baseline configuration: the Qwen3.5-4B FP8 primary with mock Jev and
+`limit_per_system: 2` (`configs/exp/smoke-canonical.yaml` with the model block swapped). This is a
+smoke run only and is never reported.
 
-Throughput estimate for tier M **[A]**: the main grid has about 6.5k prompts for the primary
-model (research-design §7). The earlier estimate assumed ~5k prefill tokens and 10 × ~150 output
-tokens per prompt, giving ~33M prefill and ~10M decode tokens. Pilot evidence (median ~800
-characters) suggests prefill is several times smaller. With vLLM batching this is a few GPU-hours for 9B and under one day for 27B
-4-bit. Compute is not the schedule bottleneck; the pilot (M2) measures it.
+## 4. Memory accounting and what the M2 gate measures
+
+The estimator (`src/rca/capacity.py`, tests in `tests/test_capacity.py`) computes the following:
+
+- **Weights:** `params × bytes`. Embeddings and an untied lm_head stay in 16 bit under FP8, AWQ
+  and NF4. This dominates for the 248k-token Qwen3.5 vocabulary: the 9B model's untied
+  embeddings alone are 4.1 GB.
+- **KV:** `2 × kv_layers × kv_heads × head_dim × bytes` per token, times `prompt + n × max_tokens`
+  per request (vLLM shares the prompt prefix across the n samples). Linear-attention layers add a
+  fixed state per sequence of about 52 MB.
+- **QLoRA:** NF4 base with double quantisation, plus LoRA r=16 on all linear layers with fp32
+  Adam (about 30–45M parameters, under 1 GB), plus gradient-checkpointed activations (linear in
+  sequence length), plus logits. Logits must be computed only on the supervised answer tokens
+  (`logits_to_keep`, answer-only loss). Over a full 4096-token sequence, vocabulary-sized logits
+  alone would add about 10 GB for Qwen3.5.
+
+Prompt length decides the KV and training sequence length. Estimates from the evidence files
+(characters ÷ 3 + template) are recorded in §4.1. The M2 pilot replaces them with
+`usage.prompt_tokens` from the served tokenizer.
+
+The M2 gate measures, on the laptop: peak VRAM (`nvidia-smi`) at the chosen `--max-model-len`;
+sustained requests in flight and tokens/s for the primary and both escalation candidates;
+extrapolated wall-clock for the M3 volume, which must fit in 3 GPU-days; and QLoRA peak memory at
+the training sequence length. A configuration counts as feasible only when it is measured, not
+estimated.
+
+### 4.1 Prompt lengths (estimate)
+
+Measured on 2026-10-15 from 89 evidence files: a stratified sample of up to 12 incidents per
+system over all four datasets, built on CPU with `run_grid prepare`. Tokens ≈ characters ÷ 3 +
+30 for the chat template, which is conservative for English-heavy telemetry text.
+
+| Condition | n | p50 | p95 | max |
+|---|---|---|---|---|
+| full | 89 | 796 | 1,126 | 1,579 |
+| no_trace | 59 | 748 | 1,121 | 1,572 |
+| no_log | 68 | 691 | 885 | 1,080 |
+| no_metric | 68 | 435 | 826 | 1,348 |
+| metrics_only | 68 | 636 | 822 | 962 |
+| blind_root / blind_nonroot | 28 | ~785 | ~1,400 | ~1,580 |
+| retrieval (full + 3 precedents of p95 size; upper estimate) | 89 | 4,174 | 4,504 | 4,957 |
+
+Consequences:
+
+- Prompts are short. `--max-model-len 8192` covers the retrieval arm (p95 ≈ 4.5k tokens + 400
+  output) with margin, and the no-retrieval arms need only about 2k.
+- At the p95 retrieval prompt with n = 10, the KV budget holds about 5 concurrent requests for
+  Qwen3.5-4B FP8, 2 for Qwen3.5-9B NF4 and 2 for Qwen3-8B-AWQ. This compares with 6 / 2 / 4 at a
+  2k-token prompt.
+- A QLoRA sequence length of 2048 covers every no-retrieval training example. 4096 is needed only
+  if retrieved precedents are part of the training prompt.
 
 ## 5. Serving decisions to verify in M0/M2
 
@@ -86,5 +154,6 @@ characters) suggests prefill is several times smaller. With vLLM batching this i
   model's equivalent).
 - Text-only loading of the multimodal checkpoints (vision tower memory; `--limit-mm-per-prompt`).
 - An official FP8 or 4-bit checkpoint; else pin a community quantisation by HF commit sha.
-- Prefix caching on; `--max-model-len 16384`; `seed` honoured.
+- Prefix caching on; `--max-model-len` set from the measured p99 prompt (plus retrieval) and no larger, since
+  12 GB leaves little KV headroom; `seed` honoured.
 - Each model pinned by HF repo **and** revision sha in the config and the run manifest.

@@ -30,18 +30,23 @@ Phase 02 done; phase 01 tasks 1 (Linux gate), 2 (hardware), 3 (model probe), 4 (
 ## Tasks
 
 1. **Serve the primary model** on the GPU machine with the probe's pinned revision:
-   `vllm serve <repo> --revision <sha> --max-model-len 16384 --enable-prefix-caching
-   --gpu-memory-utilization 0.85 [--quantization ...] [--limit-mm-per-prompt ...]`. Record the vLLM
-   version in the manifest.
+   `vllm serve <repo> --revision <sha> --max-model-len <p99 prompt + retrieval + 400> --enable-prefix-caching
+   --gpu-memory-utilization 0.90 --quantization fp8 [--limit-mm-per-prompt '{"image":0}']` on the
+   12 GB laptop GPU. Record the vLLM version in the manifest, and the peak VRAM from `nvidia-smi`
+   next to the `python -m rca.capacity` estimate.
 2. **Pilot on DEV** (`configs/exp/dev-pilot.yaml`: DEV, all conditions, retrieval none + hybrid
    precedent, n = 10). Gates:
    - parse rate ≥ 99 % per condition (`aggregate.parse_rate`);
-   - prompt length ≤ 12k tokens at p99;
+   - prompt length (served tokenizer) at p99 fits `--max-model-len`, and the KV budget holds at
+     least 2 concurrent requests of n = 10;
    - full-condition AC@1 above the B1 max-z heuristic and above random (CIs reported, DEV only);
    - wall-clock per incident × condition, extrapolated to the M3 volume, fits ≤ 3 GPU-days;
    - <!-- Red team B10 --> for the escalation model at n = 10: measured KV-cache headroom,
-     concurrent sequences and tokens/s are recorded; if 27B at 4-bit cannot sustain the E3 volume
-     in ≤ 1.5 GPU-days, E3 drops to RCA-T + NEZ and the change is logged before the freeze.
+     concurrent sequences and tokens/s are recorded for both candidates (Qwen3.5-9B NF4, Qwen3-8B-AWQ);
+     the escalation model is the feasible candidate with the larger DEV AC@1 gain over the primary,
+     logged before the freeze. If neither sustains the E3 volume in ≤ 1.5 GPU-days, E3 drops to
+     RCA-T + NEZ and the change is logged. Throughput is measured over ≥ 30 min, since laptop GPUs
+     throttle under sustained load.
    If the parse rate fails: fix the prompt or the guided-decoding settings. If accuracy fails:
    switch the primary per model-selection §3 and log the switch.
 3. **Prompt freeze.** At most 3 prompt iterations on DEV, each logged with its DEV metrics in

@@ -43,10 +43,10 @@ nothing here is implemented.
 
 | # | Phase | Weeks | Status |
 |---|-------|-------|--------|
-| 1 | [M0: Prerequisites, owner decisions, preregistration draft](./phase-01-m0-audit-prerequisites-and-design-decisions.md) | 1 | In progress (owner items open) |
+| 1 | [M0: Prerequisites, owner decisions, preregistration draft](./phase-01-m0-audit-prerequisites-and-design-decisions.md) | 1 | **Blocked** (Linux gate, GPU probe, TypeSafe access); D1–D8 decided 2026-10-15 |
 | 2 | [M1: Offline end-to-end LLM + Jev pipeline (CPU, mocks)](./phase-02-m1-offline-end-to-end-pipeline.md) | 1–2 | Done (2026-10-15) |
 | 3 | [M2: Real-model inference, live Jev on DEV, freezes](./phase-03-m2-real-model-inference-and-live-jev.md) | 3 | Pending |
-| 4 | [M3: Baselines, confidence, minimum experiment set](./phase-04-m3-baselines-confidence-and-main-experiments.md) | 4–6 | Pending |
+| 4 | [M3: Baselines, confidence, minimum experiment set](./phase-04-m3-baselines-confidence-and-main-experiments.md) | 4–6 | Pending (CPU baselines B0, B1, B3 done early) |
 | 5 | [M4: Gated fine-tuning (optional)](./phase-05-m4-gated-fine-tuning.md) | 7–8 | Pending |
 | 6 | [M5: Extensions, reproducibility, paper results](./phase-06-m5-ablations-reproducibility-and-paper-results.md) | 7–12 | Pending |
 
@@ -59,8 +59,10 @@ task 1. Everything before that runs on CPU without paid calls.
 - **Architecture:** offline full-feedback grid (all LLM arms cached) → Jev decides on visible
   states (stage 1: accept/retrieve/escalate/abstain; stage 2 after retrieve/escalate:
   accept/abstain) → label join and analysis. Online behaviour equals the replayed chosen path.
-- **Models:** primary Qwen3.5-9B (non-thinking), escalation Qwen3.5-27B, cross-family replication
-  Gemma 4 (26B-A4B on ≥ 24 GB, else E4B). Tier M (24 GB) is the recommended minimum GPU.
+- **Models (12 GB RTX 4080 Laptop, D2):** primary Qwen3.5-4B at FP8 (non-thinking); fallback
+  Qwen3-4B-Instruct-2507. The escalation model is a 4-bit 8–9B model, chosen by measurement:
+  Qwen3.5-9B NF4 or Qwen3-8B-AWQ. Cross-family replication uses Phi-4-mini-instruct. No 14B–27B
+  models. VRAM estimates are in [model-selection §3](research/model-selection.md).
 - **Jev:** `POST /v1/systemone` (TypeSafe direct, the only adapter), pinned `jev-1.13.0`, `choice` + `noul`, numbers as banded
   text, shuffled option order, cached, fail-closed. Jev probabilities are treated as uncalibrated
   scores and evaluated, not trusted.
@@ -81,7 +83,20 @@ task 1. Everything before that runs on CPU without paid calls.
 | 10–11 | 12-21 → 01-01 | holidays: no experiments | Intro, full draft |
 | 12 | 01-04 → 01-08 | Final regeneration | Outside review, submit |
 
-## Open decisions (owner)
+## Owner decisions (answered 2026-10-15; details in [decisions.md](decisions.md))
+
+| ID | Answer | Still required |
+|---|---|---|
+| D1 | TypeSafe direct, pinned `jev-1.13.0`; Jev stays the mandatory post-LLM layer | Key, exact response `model` string, rate limit (M0 exit) |
+| D2 | RTX 4080 Laptop, 12 GB: 3–4B primary, 4-bit 7–9B evaluated if feasible, QLoRA/LoRA only, no 14B–27B | Probe GPU, driver, CUDA, PyTorch, free VRAM (`scripts/gpu_probe.py`) |
+| D3 | AIOps2025/RCA100 evidence is **not** sent to TypeSafe; their Jev states use the J-noevidence form (enforced in `rca.decide`) | Licence and data-processing terms verified before lifting (`jev.evidence_cleared`) |
+| D4 | Kubernetes demo out of scope | – |
+| D5 | 2027-01-08 provisional; venue TBD | Venue |
+| D6 | Alias sign-off needs verified raw-data / topology evidence and collision tests | Evidence and tests, before M3 |
+| D7 | RCA100 primary: tier A (86 tasks / 70 injections); all 103 tasks / 86 injections secondary | – |
+| D8 | RCAEval primary: cell-held-out `within-rcaeval-grouped-0-e9b2c81c`; retrieval split secondary (E2b) | – |
+
+### Original decision requests
 
 | ID | Decision | Evidence needed | Default if unanswered by |
 |---|---|---|---|
@@ -133,7 +148,7 @@ twins and compositions). All 18 are accepted (proposed); the owner may still rej
 | B8 | High | LLM/retrieval cache keys miss server state, `max_tokens`, embedder kind | Server fingerprint, `max_tokens` in key; embedder kind in `store_fp`; "reproducible from cache only" (architecture §6, §10) |
 | B9 | High | Artefact would commit NC evidence and train labels to GitHub; no D3 = no fallback | Artefact git-ignored, private HF only; hygiene moved to M0; J-noevidence fallback; DoD "where licence permits" |
 | A9 | Medium | SFT data overstated (1,223 examples, effective n ≈ 374); Δgap is an artefact of masking | Counts fixed; Δgap conditional on Δaccuracy (training-strategy §2, phase 05) |
-| B10 | Medium | Hardware claims unverified; M4 precision mismatch | M2 gate measures 27B KV and throughput; M4 holds precision fixed (phases 03, 05) |
+| B10 | Medium | Hardware claims unverified; M4 precision mismatch | M2 gate measures KV and throughput of the measured-feasible models (12 GB since D2: 4B primary, 8–9B 4-bit escalation candidates); M4 holds precision fixed (phases 03, 05) |
 
 ### Whole-Plan Consistency Sweep
 

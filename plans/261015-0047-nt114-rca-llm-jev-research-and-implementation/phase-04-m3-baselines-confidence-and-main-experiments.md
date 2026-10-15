@@ -25,7 +25,10 @@ Phase 03 exit (frozen prompt, Jev wording, preregistration, `tuned.json`).
 
 ## Tasks
 
-1. **Non-LLM baselines (`baselines.py`)**: B0 random (analytic per incident), B1 max-z from
+1. **Non-LLM baselines (`baselines.py`)** — *B0, B1 and B3 implemented on CPU ahead of this phase
+   (2026-10-15): `python -m rca.baselines configs/exp/baselines-rca100.yaml` gives majority 0.586 /
+   alert-entity 0.374 on the 70 tier-A injections (0.651 / 0.372 per task) and 0.477 / 0.304 on all
+   103 tasks / 86 injections; B1 needs the evidence files of `prepare`; B2 still to do.* B0 random (analytic per incident), B1 max-z from
    evidence features, B3 RCA100 majority (`inventory`, train prior) and alert-entity (from the
    visible first alert), B2 BARO via the `RCAEval` package in a **separate venv** on RCAEval RE2/RE3
    metrics, through `legacy_view.legacy_telemetry` wide frames. Expect the protocol numbers for B3:

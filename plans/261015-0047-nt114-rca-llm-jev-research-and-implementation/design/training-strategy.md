@@ -12,8 +12,9 @@ depend on it.
 | Zero-shot | none | The deployment-relevant setting; Jev untuned too | lowest | none | **Primary** |
 | Static few-shot (k = 2 fixed train exemplars) | 2 train incidents | Formatting help only | low | Exemplar choice biases answers | DEV check only, not reported unless it changes AC@1 by > 5 pp |
 | Dynamic few-shot = retrieval of labelled precedents | STORE (grouped train, 374) | Value of past incidents (RQ5) | already in E2 | Label leakage, handled by precedent mode | **In minimum set (E2)** |
-| LoRA (bf16) | train role of a `within-*` split | Domain adaptation | tier L GPU | Over-fitting, calibration loss | Gated (phase 05) |
-| QLoRA (4-bit base) | same | Same, on 24 GB | tier M GPU | Same, plus a quantisation mismatch between training and serving | Gated (phase 05), preferred on tier M |
+| LoRA (bf16 base) | train role of a `within-*` split | Domain adaptation | 4B bf16 base (~9 GB) leaves too little room on 12 GB | Over-fitting, calibration loss | Not used on the 12 GB GPU |
+| QLoRA (4-bit base) | same | Same | 3–4B: ~6–7 GB estimated at seq 4096 on the 12 GB GPU | Same, plus a quantisation mismatch between training and serving | Gated (phase 05); the only fine-tuning option on 12 GB |
+| Full fine-tuning | same | Same | does not fit 12 GB for ≥ 3B | Same | Not considered |
 
 ## 2. Is there enough training data?
 
@@ -42,7 +43,7 @@ Run phase 05 only if all hold:
 2. Zero-shot primary AC@1 on DEV is between 1.5× random and 0.85. Below that, evidence or prompt
    is the bottleneck. Above it, there is no headroom.
 3. ≥ 3 weeks remain before the submission freeze.
-4. A tier M or L GPU is available for ≥ 2 days.
+4. The 12 GB GPU is available for ≥ 2 days, and a measured QLoRA step fits (§7).
 
 ## 5. Must exist before any training vs can wait
 
@@ -60,3 +61,20 @@ Target JSON = the same schema as inference, with `ranking[0]` = true root, the r
 model's own order, and **no confidence target** (the confidence field is masked from the loss).
 Teaching a confidence would confound RQ2. Jev stays untuned and is rerun on the SFT model's
 outputs. The comparison is SFT + Jev vs zero-shot + Jev.
+
+## 7. Memory-efficient settings on the 12 GB GPU (D2)
+
+Estimates come from `python -m rca.capacity configs/hardware/rtx4080-laptop-12gb.yaml`. The first
+training step on the machine replaces them with the measured peak (`torch.cuda.max_memory_allocated`).
+
+| Setting | Value | Reason |
+|---|---|---|
+| Base | the 3–4B primary in NF4 with double quantisation | ~3.4 GB for Qwen3.5-4B, whose embeddings stay 16 bit |
+| Adapters | LoRA r = 16, α = 32, all linear layers | ~30M parameters; under 1 GB with fp32 Adam |
+| Micro-batch / accumulation | 1 / 16 | Activations scale with micro-batch × sequence |
+| Gradient checkpointing | on | Activations ~1.1 GB at seq 4096 instead of ~10× that |
+| Sequence length | configurable; p99 prompt + target, default ≤ 4096 | Telemetry prompts are the longest input |
+| Loss | answer tokens only, `logits_to_keep` = target length | Full-sequence logits over a 248k vocabulary would add ~10 GB |
+| 7–9B QLoRA | only if measured under budget (Qwen3-8B estimated ~10 GB at 4096; Qwen3.5-9B does not fit at 4096) | No assumption of feasibility |
+| Serving after training | adapter merged, served at the primary's FP8 | Keeps precision fixed between the zero-shot and SFT arms |
+

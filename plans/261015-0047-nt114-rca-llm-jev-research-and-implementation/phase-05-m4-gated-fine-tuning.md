@@ -22,7 +22,8 @@ calibration under missingness?), not a speed-up. The minimum paper does not depe
 ## Gate (all must hold; decided and logged at the week-6 checkpoint)
 
 1. Phase 04 DoD met. 2. Zero-shot DEV AC@1 in [1.5 × random, 0.85]. 3. ≥ 3 weeks to the
-submission freeze. 4. A tier M/L GPU is available for ≥ 2 days. If the gate fails, mark this phase
+submission freeze. 4. The 12 GB GPU is available for ≥ 2 days and a measured QLoRA step of the
+primary at the training sequence length stays under the memory budget. If the gate fails, mark this phase
 `cancelled` with the reason and move its time to phase 06.
 
 ## Tasks
@@ -31,8 +32,12 @@ submission freeze. 4. A tier M/L GPU is available for ≥ 2 days. If the gate fa
    conditions), write chat JSONL with the frozen prompt v1 and the target JSON (`ranking[0]` =
    truth; the other items are the base model's own order; confidence tokens masked from the loss).
    DEV = the split's val role.
-2. `scripts/train_lora.py`: QLoRA (tier M) or LoRA bf16 (tier L), rank 16, α 32, lr ∈ {1e-4, 2e-4},
-   ≤ 3 epochs, early stop on DEV loss; pinned library versions in a training lock file.
+2. `scripts/train_lora.py`: QLoRA (NF4 base, double quantisation) of the 3–4B primary, rank 16,
+   α 32, lr ∈ {1e-4, 2e-4}, ≤ 3 epochs, early stop on DEV loss; micro-batch 1 with gradient
+   accumulation to an effective batch of 16, gradient checkpointing, answer-only loss with
+   `logits_to_keep`, and a configurable `max_seq_len` (p99 prompt + target, default ≤ 4096).
+   7–9B QLoRA only if measured feasible. Pinned library versions in a training lock file. The
+   adapter is merged and served at the same FP8 precision as the zero-shot primary.
 3. Serve base + adapter in vLLM (`--enable-lora`); rerun E1 (no retrieval) on
    `within-rcaeval-grouped` test (218) and `xdata-rcaeval-to-nezha` test (97); then Jev (J-full).
 4. Compare SFT vs zero-shot on the same incidents: ΔAC@1, Δgap, ΔAUROC, Jev CWA₁₀₀ (paired,

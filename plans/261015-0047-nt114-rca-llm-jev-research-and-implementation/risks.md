@@ -19,7 +19,8 @@ researcher 2 (analysis/writing); with one researcher, both roles fall to R1.
 | R11 | DEV contamination of reported results | L | H | `val` uid in a headline table | Guard + test; DEV never reported | R2 |
 | R12 | NC-licensed evidence sent to a third-party API without permission | M | H | D3 unanswered when E4 starts | E4 on AIO/R100 waits for D3; RCAEval/Nezha (CC BY / MIT) proceed | Owner |
 | R13 | Timeline overrun with 1 researcher | H | H | M3 not done by 11-27 | Cut order: phase 05 → O-extensions → E7 retrieval arm → E3 on AIO; the minimum set stays | Owner |
-| R14 | GPU tier S only (12 GB) | M | M | D2 | Escalation pair 4B → 9B; disclose | R1 |
+| R14 | 12 GB laptop GPU (D2) limits model size, KV headroom and throughput | H | M | M2 measurements | 3–4B primary at FP8; 4-bit 8–9B escalation chosen by measurement; no 14B–27B; QLoRA only; disclosed under threats to validity; external inference only with separate approval | R1 |
+| R19 | Laptop GPU throttles or shares memory with the display during long runs | M | M | Tokens/s drops over a 30-min M2 run | Measure sustained throughput; resume-safe caches; run with the display on the integrated GPU | R1 |
 | R15 | Thinking/guided-JSON incompatibility in vLLM | M | M | Parse rate < 99 % | Non-thinking template; vLLM pin; switch model | R1 |
 | R16 | BARO package conflicts with the main env | M | L | Install failure | Separate venv; B2 optional if it cannot run (B0, B1, B3 remain) | R1 |
 | R17 | Secrets committed | L | H | `.env` not ignored (verified 2026-10-15) | Phase 01 (M0) adds `.env`, `results*/` and `paper/artifact/` to `.gitignore`; keys only in env vars | R1 |

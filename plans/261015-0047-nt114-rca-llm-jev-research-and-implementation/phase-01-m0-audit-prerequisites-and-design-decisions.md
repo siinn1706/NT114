@@ -1,12 +1,17 @@
 ---
 title: "Phase 1: M0 — Prerequisites, owner decisions and preregistration draft"
-status: in-progress
+status: blocked
 priority: P1
 effort: 3 person-days (week 1, 2026-10-19 → 10-23)
 dependencies: []
 ---
 
 # Phase 1: M0 — Prerequisites, owner decisions and preregistration draft
+
+> **Blocked (2026-10-15)** until three mandatory prerequisites pass: the Linux portability gate
+> (task 1), the GPU probe on the training machine (task 2) and TypeSafe access with the pinned
+> version (task 4). The owner decisions D1–D8 (task 5) were answered on 2026-10-15. Phase 03 does
+> not start, and no live Jev call is made, before this phase is done.
 
 ## Context links
 
@@ -36,9 +41,14 @@ None. M1 (phase 02) can start in parallel: it needs no GPU and no Jev key.
    `verify-splits`) and the full test suite at HEAD on Linux, without step 0. Record
    the output in the data plan's `reports/phase-12-portability.md`. Exit: steps 0–5 pass and the
    `status` counts equal `bundle.json`.
-2. **Hardware decision.** Record GPU model, VRAM, driver/CUDA and disk in `decisions.md`. Map it
-   to tier S/M/L ([model-selection §4](research/model-selection.md)) and confirm the model trio.
-3. **Model-card probe** (read-only). For Qwen3.5-9B, Qwen3.5-27B, Gemma 4 E4B / 26B-A4B, record
+2. **Hardware decision.** The owner reported an RTX 4080 Laptop with 12 GB (D2). On the machine,
+   run `python scripts/gpu_probe.py --out results/gpu_probe.json`, copy its `hardware` block into
+   `configs/hardware/rtx4080-laptop-12gb.yaml`, rerun `python -m rca.capacity` on it, and record
+   GPU, VRAM, driver, CUDA, PyTorch, free VRAM and disk in `decisions.md`. The model set is in
+   [model-selection §3](research/model-selection.md).
+3. **Model-card probe** (read-only). Repos, revisions, licences and architectures of the 12 GB set
+   were recorded on 2026-10-15 from the HF API (`configs/hardware/rtx4080-laptop-12gb.yaml`). Still
+   to check for Qwen3.5-4B, Qwen3-4B-Instruct-2507, Phi-4-mini-instruct, Qwen3.5-9B and Qwen3-8B-AWQ, record
    from the official HF cards: licence, context, chat template and thinking toggle, official FP8 or
    4-bit checkpoint and the revision sha, minimum vLLM version. Resolve every **[S]** row in
    model-selection §2.
@@ -97,9 +107,9 @@ None new. This phase confirms external contracts: the Jev request/response shape
 - [ ] Linux gate passed from the `cd96e9e` worktree and recorded (or, if blocked, M2 start date moved and logged)
 - [x] `.gitignore` covers `.env`, `results*/`, `paper/artifact/` (verified with `git check-ignore`)
 - [ ] Researcher availability per week recorded
-- [ ] GPU tier and model trio recorded in `decisions.md`
+- [ ] GPU probed on the training machine and recorded in `decisions.md` (owner-reported RTX 4080 Laptop 12 GB; model set recorded 2026-10-15)
 - [ ] Jev access confirmed with the pinned version; exact response `model` string and rate limit recorded; key not in any file
-- [ ] D1–D6 answered or explicitly deferred with a date
+- [x] D1–D8 answered (2026-10-15); D2 awaits the probe, D3 the licence check, D6 the alias evidence
 - [x] `design/preregistration.md` draft exists
 
 ## Risks
