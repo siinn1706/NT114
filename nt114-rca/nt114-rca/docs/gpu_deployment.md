@@ -40,26 +40,42 @@ lock has torch 2.14.1 and setuptools 84. They talk over HTTP on `localhost:8000`
 ## 4. Sequence
 
 Steps 1–8 need no Jev key. Step 9 is the first live Jev call and starts only once M0 has passed.
+Run these commands in Bash on Linux/WSL2. The Git root contains the agent entry point
+[`llms.txt`](../../../llms.txt); Python commands run two directories below it. GitHub holds code,
+while the private HF dataset holds the immutable data release, not model weights or run outputs.
+The [`release manifest`](../releases/nt114-data-v1.json) owns the bundle identity and revisions.
+Both private repositories require an account with existing access; do not put tokens in clone
+URLs or command arguments, and do not change repository visibility to work around access errors.
 
 ```bash
+set -euo pipefail
 # 1. checkout (Linux / WSL2)
-git clone https://github.com/siinn1706/NT114.git && cd NT114
-git checkout feat/m1-offline-llm-jev-pipeline
+git clone --branch main https://github.com/siinn1706/NT114.git && cd NT114
 cd nt114-rca/nt114-rca
 
 # 2. Linux portability gate, from a worktree pinned to the bundle commit (plan phase 01, task 1)
 git worktree add ../../../nt114-gate cd96e9e
 (cd ../../../nt114-gate/nt114-rca/nt114-rca \
   && python3.12 -m venv .venv && . .venv/bin/activate && pip install -r requirements-lock.txt \
-  && hf auth login && hf download siinn1706/nt114-rca-data --repo-type dataset --local-dir ~/nt114-rca-data \
+  && hf auth login && hf download siinn1706/nt114-rca-data --repo-type dataset \
+     --revision c5c4a6dc455cac5d0545b98d8d40266b2bbdaa05 \
+     --include 'nt114-data-v1-20261014-6fdd9835/*' --local-dir ~/nt114-rca-data \
   && bash scripts/verify_portability.sh ~/nt114-rca-data/nt114-data-v1-20261014-6fdd9835 | tee ~/portability.log)
-# Record ~/portability.log in the data plan's reports/phase-12-portability.md, then remove the worktree.
+# Record ~/portability.log in the data plan's reports/phase-12-portability.md.
+# The worktree contains an ignored .venv: retain it until verification is accepted; inspect before cleanup.
 
-# 3. analysis venv at the branch HEAD + data home
+# 3. analysis venv at main HEAD + data home (back in the original checkout)
 python3.12 -m venv .venv && . .venv/bin/activate && pip install -r requirements-lock.txt
+export PYTHONPATH=src
 export RCA_DATA_HOME=~/nt114-rca-data/nt114-data-v1-20261014-6fdd9835/parts
-PYTHONPATH=src python -m rca.prep status && PYTHONPATH=src python -m rca.prep verify-splits
-PYTHONPATH=src python -m pytest -q -m "not realdata" && PYTHONPATH=src python -m pytest -q -m realdata
+python -m rca.prep status && python -m rca.prep verify-splits
+python -m pytest -q -m "not realdata"
+# Check the real transferred bundle with current code, mock LLM/Jev, no provider calls:
+python -m rca.run_grid prepare configs/exp/smoke-canonical.yaml
+python -m rca.run_grid run configs/exp/smoke-canonical.yaml
+python -m rca.decide configs/exp/smoke-canonical.yaml
+python -m rca.analyze results_smoke_canonical/grid.jsonl \
+  --decisions results_smoke_canonical/decisions.jsonl --data-home "$RCA_DATA_HOME" --smoke
 
 # 4. GPU probe; paste its `hardware` block into configs/hardware/rtx4080-laptop-12gb.yaml
 python scripts/gpu_probe.py --out results/gpu_probe.json
@@ -91,6 +107,25 @@ PYTHONPATH=src python -m rca.feasibility fetch $HW qwen3-8b-awq && PYTHONPATH=sr
 ```
 
 Step 9 and later steps are the M2 sequence in section 7.
+
+The historical portability script deliberately rejects changed `src/configs/schemas`, so do not
+run that gate at current `main` or bypass its commit check. Its pinned worktree verifies the data
+release; step 3 separately checks integration with current code. If the named worktree already
+exists, inspect its revision and reuse it only if it is the correct clean checkout.
+
+`pytest -m realdata` is not a bundle-only acceptance check: `tests/conftest.py` fixes `REAL_DATA`
+to the Python project's `data/` directory, ignoring `RCA_DATA_HOME`, and raw-parity tests need
+raw/work inputs absent from the bundle. On a fresh clone those tests can skip. Use the deep
+portability check and the canonical smoke above for transfer validation; restore the original
+raw-data layout through the [acquisition guide](acquisition_plan.md) before claiming raw-parity
+test coverage. Do not overwrite tracked `data/` metadata or alter the immutable bundle to make
+the tests run. Mock smoke results are not model-quality or GPU evidence.
+
+Inference readiness is not fine-tuning readiness. The
+[training strategy](../../../plans/261015-0047-nt114-rca-llm-jev-research-and-implementation/design/training-strategy.md)
+owns the optional QLoRA gate; the exporter and trainer remain planned work. Raw downloads,
+scratch extractions, local result/cache folders, venvs and model cache are not included in the
+data release and do not travel with a Git clone.
 
 ## 5. What the feasibility test does
 
