@@ -11,6 +11,7 @@ import random
 import re
 import sqlite3
 import time
+import urllib.parse
 import urllib.request
 from collections import Counter
 from pathlib import Path
@@ -19,6 +20,8 @@ from pathlib import Path
 PROMPT_VERSION = "v1"
 MOCK_SEED = "mock-v1"
 CANARY_MESSAGES = [{"role": "user", "content": "Reply with the single word: ready"}]
+# Never written into a raw-output record (request metadata holds no headers; this is the backstop).
+SECRET_KEYS = frozenset({"authorization", "api_key", "apikey", "x-api-key", "bearer", "password", "access_token"})
 
 SYSTEM_PROMPT = (
     "You are an on-call SRE assistant for a microservice system. Given monitoring evidence collected "
@@ -83,7 +86,7 @@ class LLM:
     def __init__(self, model: str, base_url="http://localhost:8000/v1", backend="vllm",
                  n=5, temperature=0.7, max_tokens=400, seed=0, cache: Cache | None = None, timeout=300,
                  revision: str | None = None, chat_template_kwargs: dict | None = None, logprobs: bool = False,
-                 server_fp: str | None = None, presence_penalty: float | None = None):
+                 server_fp: str | None = None, presence_penalty: float | None = None, keep_raw: bool = True):
         if backend != "mock" and not revision:
             raise ValueError(f"model {model!r}: a live backend needs a pinned `revision` (commit sha of the weights)")
         self.model, self.base_url, self.backend = model, base_url.rstrip("/"), backend
@@ -93,6 +96,9 @@ class LLM:
         self.presence_penalty = presence_penalty   # None = not sent (server default)
         self.chat_template_kwargs = {"enable_thinking": False} if chat_template_kwargs is None else dict(chat_template_kwargs)
         self.server_fp = server_fp if server_fp is not None else ("mock" if backend == "mock" else None)
+        # raw completions, logprobs and request metadata are kept in the cache value (not the key), so
+        # turning this on or off never invalidates cached answers
+        self.keep_raw = keep_raw
 
     def key(self, messages, candidates) -> str:
         if self.server_fp is None:
@@ -108,16 +114,21 @@ class LLM:
         k = self.key(messages, candidates)
         hit = self.cache.get(k)
         if hit is not None:
-            return {**hit, "cached": True}
+            out = {**hit, "cached": True}       # entries written before raw persistence have no "raw"
+            if not self.keep_raw:
+                out.pop("raw", None)
+            return out
         t0 = time.time()
         raw = self._mock(messages, candidates) if self.backend == "mock" else self._vllm(messages, candidates)
         samples = [parse(x, candidates) for x in raw["texts"]]
         out = {"samples": samples, "prompt_tokens": raw.get("prompt_tokens"),
                "completion_tokens": raw.get("completion_tokens"), "latency_s": round(time.time() - t0, 3)}
+        if self.keep_raw:
+            out["raw"] = self.raw_record(raw, messages, candidates, k)
         self.cache.put(k, out)
         return {**out, "cached": False}
 
-    def _vllm(self, messages, candidates) -> dict:
+    def request_body(self, messages, candidates) -> dict:
         body = {
             "model": self.model, "messages": messages, "n": self.n, "temperature": self.temperature,
             "max_tokens": self.max_tokens, "seed": self.seed, "chat_template_kwargs": self.chat_template_kwargs,
@@ -128,12 +139,36 @@ class LLM:
             body["presence_penalty"] = self.presence_penalty
         if self.logprobs:
             body.update(logprobs=True, top_logprobs=5)
-        res = self._post("/chat/completions", body)
+        return body
+
+    def request_meta(self, messages, candidates, key: str) -> dict:
+        """The request as sent, without headers and with the prompt replaced by its sha256 (the prompt
+        is rebuilt from the evidence files, which stay in the private results directory)."""
+        body = self.request_body(messages, candidates)
+        meta = {k: v for k, v in body.items() if k not in ("messages", "response_format")}
+        meta.update(endpoint="mock" if self.backend == "mock" else f"{redact_url(self.base_url)}/chat/completions",
+                    response_format="json_schema", candidates=list(candidates), backend=self.backend,
+                    revision=self.revision, prompt_version=PROMPT_VERSION, server_fp=self.server_fp, cache_key=key,
+                    messages_sha256=hashlib.sha256(json.dumps(messages, sort_keys=True).encode()).hexdigest())
+        return meta
+
+    def raw_record(self, raw: dict, messages, candidates, key: str) -> dict:
+        rec = {"request": self.request_meta(messages, candidates, key), "response": raw.get("response", {}),
+               "texts": list(raw["texts"]), "finish_reasons": raw.get("finish_reasons"),
+               "logprobs": raw.get("logprobs")}
+        check_no_secrets(rec)
+        return rec
+
+    def _vllm(self, messages, candidates) -> dict:
+        res = self._post("/chat/completions", self.request_body(messages, candidates))
         u = res.get("usage", {})
         out = {"texts": [c["message"]["content"] for c in res["choices"]],
-               "prompt_tokens": u.get("prompt_tokens"), "completion_tokens": u.get("completion_tokens")}
+               "prompt_tokens": u.get("prompt_tokens"), "completion_tokens": u.get("completion_tokens"),
+               "finish_reasons": [c.get("finish_reason") for c in res["choices"]],
+               "response": {"id": res.get("id"), "model": res.get("model"), "created": res.get("created"),
+                            "system_fingerprint": res.get("system_fingerprint"), "usage": u}}
         if self.logprobs:
-            out["logprobs"] = [c.get("logprobs") for c in res["choices"]]
+            out["logprobs"] = [compact_logprobs(c.get("logprobs")) for c in res["choices"]]
         return out
 
     def _post(self, path: str, body: dict | None = None) -> dict:
@@ -186,7 +221,38 @@ class LLM:
             outs.append(json.dumps({"reason": "mock", "ranking": r[:5], "confidence": conf,
                                     "insufficient_evidence": thin and rng.random() < 0.3,
                                     "next_check": f"check logs of {r[0]}"}))
-        return {"texts": outs, "prompt_tokens": len(text) // 4, "completion_tokens": 60 * self.n}
+        return {"texts": outs, "prompt_tokens": len(text) // 4, "completion_tokens": 60 * self.n,
+                "finish_reasons": ["stop"] * self.n, "response": {"model": self.model}}
+
+
+def redact_url(url: str) -> str:
+    """scheme://host[:port]/path: drops user info, query and fragment, where credentials could sit."""
+    p = urllib.parse.urlsplit(url)
+    host = p.hostname or ""
+    host = f"[{host}]" if ":" in host else host            # IPv6 literal keeps its brackets
+    return urllib.parse.urlunsplit((p.scheme, f"{host}:{p.port}" if p.port else host, p.path, "", ""))
+
+
+def check_no_secrets(obj) -> None:
+    if isinstance(obj, dict):
+        bad = [k for k in obj if str(k).lower() in SECRET_KEYS]
+        if bad:
+            raise ValueError(f"raw-output record would contain credential fields {bad}")
+        for v in obj.values():
+            check_no_secrets(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            check_no_secrets(v)
+
+
+def compact_logprobs(lp: dict | None) -> list[dict] | None:
+    """Per generated token: the token, its logprob and the top alternatives as [token, logprob] pairs
+    (vLLM's `bytes` arrays dropped)."""
+    if not lp:
+        return None
+    return [{"token": t.get("token"), "logprob": t.get("logprob"),
+             "top": [[x.get("token"), x.get("logprob")] for x in t.get("top_logprobs") or []]}
+            for t in lp.get("content") or []]
 
 
 def parse(text: str, candidates: list[str]) -> dict:
@@ -200,7 +266,8 @@ def parse(text: str, candidates: list[str]) -> dict:
             d = {}
     rank = [s for s in d.get("ranking", []) if s in candidates]
     return {"ok": bool(rank), "ranking": rank, "confidence": float(d.get("confidence", 0)) / 100,
-            "insufficient": bool(d.get("insufficient_evidence", False)), "next_check": d.get("next_check", "")}
+            "insufficient": bool(d.get("insufficient_evidence", False)), "next_check": d.get("next_check", ""),
+            "reason": d.get("reason", "")}
 
 
 def aggregate(samples: list[dict]) -> dict:

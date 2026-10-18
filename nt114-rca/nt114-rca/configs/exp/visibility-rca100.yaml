@@ -1,0 +1,17 @@
+# Evidence visibility audit on rca100 (CPU, label-reading, no LLM call). Eval-only split (tier-A subset of the build): every incident is test.
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/visibility-rca100.yaml
+#   PYTHONPATH=src python -m rca.visibility       configs/exp/visibility-rca100.yaml
+# Evidence and outputs stay under results_visibility/rca100/ (git-ignored). Never pass this config to `run`.
+source: canonical
+data_home: null
+canonical_datasets: [rca100]
+split: eval-only-rca100-0-b8a32300
+split_roles: [test]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none]
+store_modes: [precedent]
+embedder: tfidf
+evidence_dir: results_visibility/rca100/evidence
+out: results_visibility/rca100/grid.jsonl
+models: []

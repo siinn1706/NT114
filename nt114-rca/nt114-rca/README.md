@@ -115,6 +115,16 @@ không phải task hay biến thể điều kiện; so sánh các điều kiện
 cùng sự cố; các sự cố trong `configs/eval_exclusions.yaml` bị loại khỏi bảng chính. Chi tiết:
 mục 6 của [docs/data_contract.md](docs/data_contract.md).
 
+Đầu ra thô của LLM: `run_grid run` ghi `llm_raw.jsonl` cạnh `out` (văn bản trả lời, mẫu đã phân tích,
+`finish_reason`, logprobs khi mô hình đặt `logprobs: true`, siêu dữ liệu yêu cầu không có header và prompt chỉ
+lưu sha256). Tắt bằng `raw_outputs: false`; đổi đường dẫn bằng `raw_outputs_path` (phải nằm trong thư mục
+git-ignore như `results*/`, vì câu trả lời có thể trích telemetry). Ca đã có trong cache cũ ghi
+`raw_available: false`.
+
+Kiểm tra độ hiển thị bằng chứng (chỉ vùng eval-only, sau `prepare`): `python -m rca.visibility <cfg> [--roles val test]`
+ghi `evidence_visibility.jsonl` và `table_evidence_visibility.csv` cạnh `out`: dịch vụ gốc có trong danh sách
+ứng viên không, có được nêu tên trong bằng chứng không và ở khối nào. Không nêu tên không có nghĩa là không thể đoán đúng.
+
 Chạy thử toàn bộ đường canonical trên dữ liệu giả, không cần GPU: xem các lệnh ở đầu
 `configs/canonical_synthetic.yaml`. Bộ test nhanh: `python -m pytest -q -m "not realdata"`;
 test trên dữ liệu thật: `python -m pytest -q -m realdata`.

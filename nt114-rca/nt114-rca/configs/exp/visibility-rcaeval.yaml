@@ -1,0 +1,17 @@
+# Evidence visibility audit on rcaeval (CPU, label-reading, no LLM call). Primary split: DEV (val) and headline (test) roles; train is the retrieval store and is not audited.
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/visibility-rcaeval.yaml
+#   PYTHONPATH=src python -m rca.visibility       configs/exp/visibility-rcaeval.yaml
+# Evidence and outputs stay under results_visibility/rcaeval/ (git-ignored). Never pass this config to `run`.
+source: canonical
+data_home: null
+canonical_datasets: [rcaeval]
+split: within-rcaeval-grouped-0-e9b2c81c
+split_roles: [val, test]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none]
+store_modes: [precedent]
+embedder: tfidf
+evidence_dir: results_visibility/rcaeval/evidence
+out: results_visibility/rcaeval/grid.jsonl
+models: []

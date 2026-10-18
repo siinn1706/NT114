@@ -1,0 +1,17 @@
+# Evidence visibility audit on aiops2025 (CPU, label-reading, no LLM call). Eval-only split (tier-A subset of the build): every incident is test.
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/visibility-aiops2025.yaml
+#   PYTHONPATH=src python -m rca.visibility       configs/exp/visibility-aiops2025.yaml
+# Evidence and outputs stay under results_visibility/aiops2025/ (git-ignored). Never pass this config to `run`.
+source: canonical
+data_home: null
+canonical_datasets: [aiops2025]
+split: eval-only-aiops2025-0-f92dd409
+split_roles: [test]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none]
+store_modes: [precedent]
+embedder: tfidf
+evidence_dir: results_visibility/aiops2025/evidence
+out: results_visibility/aiops2025/grid.jsonl
+models: []

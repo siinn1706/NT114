@@ -1,0 +1,17 @@
+# Evidence visibility audit on nezha (CPU, label-reading, no LLM call). Eval-only split: every incident is test.
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/visibility-nezha.yaml
+#   PYTHONPATH=src python -m rca.visibility       configs/exp/visibility-nezha.yaml
+# Evidence and outputs stay under results_visibility/nezha/ (git-ignored). Never pass this config to `run`.
+source: canonical
+data_home: null
+canonical_datasets: [nezha]
+split: eval-only-nezha-0-38cde4e0
+split_roles: [test]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none]
+store_modes: [precedent]
+embedder: tfidf
+evidence_dir: results_visibility/nezha/evidence
+out: results_visibility/nezha/grid.jsonl
+models: []

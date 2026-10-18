@@ -407,10 +407,66 @@ def write_manifest(cfg, cn: Canon | None, server_fps: dict, started: float) -> d
            "gpu": _gpu_name(), "prompt_version": PROMPT_VERSION, "jev_question_version": jev.JEV_QUESTION_VERSION,
            "jev_pinned_model": jev.PINNED_MODEL, "seed": cfg.get("seed", 0),
            "sampling": {"n": cfg["n_samples"], "temperature": cfg["temperature"]},
+           "raw_outputs": raw_outputs_path(cfg).name if raw_outputs_enabled(cfg) else None,
            "started": int(started), "finished": int(time.time())}
     path = Path(cfg["out"]).parent / "manifest.json"
     _write_json(path, man)
     return man
+
+
+class _NullFile:
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+
+def raw_outputs_enabled(cfg) -> bool:
+    """`raw_outputs: false` turns raw-output persistence off (default on)."""
+    return bool(cfg.get("raw_outputs", True))
+
+
+def raw_outputs_path(cfg) -> Path:
+    """`llm_raw.jsonl` next to the results (results*/ is git-ignored), or `raw_outputs_path`. The
+    completions can quote telemetry, so the file is a private local artefact like the evidence."""
+    return Path(cfg.get("raw_outputs_path") or Path(cfg["out"]).parent / "llm_raw.jsonl")
+
+
+def raw_output_keys(path: Path) -> set:
+    """Keys already in a raw-output file; a torn last line (crash mid-write) is skipped."""
+    keys = set()
+    if path.exists():
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                try:
+                    keys.add(json.loads(line)["key"])
+                except (ValueError, KeyError, TypeError):
+                    continue
+    return keys
+
+
+def _open_append(path: Path):
+    """Append mode that first ends a torn last line, so the next record starts on a line of its own."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() and path.stat().st_size:
+        with open(path, "rb") as f:
+            f.seek(-1, 2)
+            torn = f.read(1) != b"\n"
+        if torn:
+            with open(path, "ab") as f:
+                f.write(b"\n")
+    return open(path, "a", encoding="utf-8", newline="\n")
+
+
+def raw_output_row(key, model, role, uid, cond, meth, mode, res) -> dict:
+    """One raw-output record per grid cell (`key` joins it to the grid row). No label field: truth is
+    joined only in the grid row. A crash between the two writes leaves a raw record without a grid
+    row; the resumed run reuses it instead of writing a second one."""
+    raw = res.get("raw")
+    return {"key": key, "model": model, "model_role": role, "incident_uid": uid, "condition": cond,
+            "retrieval": meth, "store_mode": mode, "cached": res["cached"], "raw_available": raw is not None,
+            "samples": res["samples"], **(raw or {})}
 
 
 def _check_roles(models):
@@ -457,14 +513,18 @@ def run(cfg):
             done = {json.loads(l)["key"] for l in fh if l.strip()}
     cache = Cache(cfg.get("cache", "results/llm_cache.sqlite"))
     server_fps = {}
+    keep_raw = raw_outputs_enabled(cfg)
+    raw_path = raw_outputs_path(cfg)
+    raw_done = raw_output_keys(raw_path) if keep_raw else set()
 
-    with open(out_path, "a", encoding="utf-8", newline="\n") as fout:
+    with open(out_path, "a", encoding="utf-8", newline="\n") as fout, \
+            (_open_append(raw_path) if keep_raw else _NullFile()) as fraw:
         for m in cfg["models"]:
             llm = LLM(m["name"], m.get("base_url", "http://localhost:8000/v1"), m.get("backend", "vllm"),
                       n=cfg["n_samples"], temperature=cfg["temperature"], seed=cfg.get("seed", 0), cache=cache,
                       max_tokens=m.get("max_tokens", 400), revision=m.get("revision"),
                       chat_template_kwargs=m.get("chat_template_kwargs"), logprobs=m.get("logprobs", False),
-                      presence_penalty=m.get("presence_penalty"))
+                      presence_penalty=m.get("presence_penalty"), keep_raw=keep_raw)
             server_fps[m["name"]] = llm.server_fingerprint(m.get("launch_args"), m.get("quantization"))
             role, rev = m.get("role", "primary"), m.get("revision")
             for r in recs:
@@ -487,6 +547,11 @@ def run(cfg):
                                 if meth != "none" else [])
                         msgs = build_messages(vc, cands, ev["text"], format_hits(hits))
                         res = llm.ask(msgs, cands)
+                        if keep_raw and key not in raw_done:   # before the grid row: a done key has its raw record
+                            fraw.write(json.dumps(raw_output_row(key, m["name"], role, vc.case_id, cond, meth, mode, res),
+                                                  ensure_ascii=False) + "\n")
+                            fraw.flush()
+                            raw_done.add(key)
                         agg = aggregate(res["samples"])
                         sc = score.correctness(agg["ranking"], tr, len(cands))
                         row = {
