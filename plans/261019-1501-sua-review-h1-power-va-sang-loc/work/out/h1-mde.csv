@@ -1,0 +1,37 @@
+structure,err,alpha,mde_gain_E1,auroc_at_mde_grid_max
+rcaeval_full,0.2,a05,0.0548,0.763
+rcaeval_full,0.2,a05_holm3,0.0613,0.763
+rcaeval_full,0.35,a05,0.0637,0.747
+rcaeval_full,0.35,a05_holm3,0.0717,0.747
+rcaeval_full,0.5,a05,0.0599,0.74
+rcaeval_full,0.5,a05_holm3,0.0715,0.74
+rcaeval_missing_pool,0.2,a05,0.046,0.763
+rcaeval_missing_pool,0.2,a05_holm3,0.0561,0.763
+rcaeval_missing_pool,0.35,a05,0.0523,0.747
+rcaeval_missing_pool,0.35,a05_holm3,0.0651,0.747
+rcaeval_missing_pool,0.5,a05,0.0531,0.74
+rcaeval_missing_pool,0.5,a05_holm3,0.0649,0.74
+rcaeval_blindroot_x_ev,0.2,a05,> 0.089,0.763
+rcaeval_blindroot_x_ev,0.2,a05_holm3,> 0.089,0.763
+rcaeval_blindroot_x_ev,0.35,a05,> 0.112,0.747
+rcaeval_blindroot_x_ev,0.35,a05_holm3,> 0.112,0.747
+rcaeval_blindroot_x_ev,0.5,a05,> 0.113,0.74
+rcaeval_blindroot_x_ev,0.5,a05_holm3,> 0.113,0.74
+nezha_full,0.2,a05,0.0799,0.763
+nezha_full,0.2,a05_holm3,> 0.089,0.763
+nezha_full,0.35,a05,0.0904,0.747
+nezha_full,0.35,a05_holm3,0.1042,0.747
+nezha_full,0.5,a05,0.0928,0.74
+nezha_full,0.5,a05_holm3,0.1028,0.74
+rca100_full,0.2,a05,0.0884,0.763
+rca100_full,0.2,a05_holm3,> 0.089,0.763
+rca100_full,0.35,a05,0.1015,0.747
+rca100_full,0.35,a05_holm3,> 0.112,0.747
+rca100_full,0.5,a05,0.1021,0.74
+rca100_full,0.5,a05_holm3,0.1117,0.74
+aiops2025_full,0.2,a05,0.0456,0.763
+aiops2025_full,0.2,a05_holm3,0.0531,0.763
+aiops2025_full,0.35,a05,0.0498,0.747
+aiops2025_full,0.35,a05_holm3,0.0603,0.747
+aiops2025_full,0.5,a05,0.0503,0.74
+aiops2025_full,0.5,a05_holm3,0.0568,0.74

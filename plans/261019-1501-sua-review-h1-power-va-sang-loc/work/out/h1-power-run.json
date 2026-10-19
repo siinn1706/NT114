@@ -1,0 +1,44 @@
+{
+ "reps": 1000,
+ "boot": 1999,
+ "seed": 20261019,
+ "coverage": 0.7,
+ "alphas": {
+  "a05": 0.05,
+  "a05_holm3": 0.016666666666666666
+ },
+ "structures": {
+  "rcaeval_full": {
+   "test_injections": 218,
+   "test_records": 218,
+   "dev_injections": 143
+  },
+  "rcaeval_missing_pool": {
+   "test_injections": 108,
+   "test_records": 285,
+   "dev_injections": 78
+  },
+  "rcaeval_blindroot_x_ev": {
+   "test_injections": 52,
+   "test_records": 52,
+   "dev_injections": null
+  },
+  "nezha_full": {
+   "test_injections": 97,
+   "test_records": 97,
+   "dev_injections": null
+  },
+  "rca100_full": {
+   "test_injections": 70,
+   "test_records": 86,
+   "dev_injections": null
+  },
+  "aiops2025_full": {
+   "test_injections": 318,
+   "test_records": 318,
+   "dev_injections": null
+  }
+ },
+ "seconds": 682.2,
+ "numpy": "2.5.4"
+}

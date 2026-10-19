@@ -1,0 +1,43 @@
+{
+ "records_identified_total": 2255,
+ "works_after_dedup": 1958,
+ "sr1": {
+  "records": 1267,
+  "works": 1259,
+  "within_sr1_duplicate_records": 6,
+  "unmapped_records": 2,
+  "records_abstract": {
+   "Include": 877,
+   "Exclude": 390
+  },
+  "records_fulltext": {
+   "included": 551,
+   "not_retrieved": 286,
+   "excluded_content": 40
+  },
+  "records_fulltext_content_reasons": {
+   "Quantitative evaluation or survey": 21,
+   "Domain or transferable method": 11,
+   "Diagnosis not only detection, Domain or transferable method": 4,
+   "Diagnosis not only detection": 4
+  },
+  "works_final_status": {
+   "included_after_fulltext": 546,
+   "excluded_abstract": 389,
+   "undetermined_fulltext_not_retrieved": 284,
+   "excluded_fulltext_with_reason": 40
+  }
+ },
+ "outside_sr1": {
+  "works": 699,
+  "works_final_status": {
+   "candidate_not_manually_screened": 279,
+   "not_relevant_by_title_rule": 420
+  }
+ },
+ "manual_title_abstract_decisions": {
+  "works_with_decision": 127,
+  "relevance_assigned": 0
+ },
+ "note": "SR1 records = Elicit export rows (1,267); SR1 works = distinct works after the corpus dedup. Full-text 'not_retrieved' is Elicit's 'Full text not available', not a content exclusion."
+}
