@@ -1,6 +1,6 @@
 ---
 title: "Phase 7: Docs, research reports and supersession of the Jev plan"
-status: todo
+status: done
 priority: P2
 effort: 1 d
 dependencies: [phase-06]

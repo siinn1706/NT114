@@ -1,7 +1,7 @@
 ---
 title: "NT114-RCA: LLM root-cause diagnosis under missing observability, with Jev as the mandatory decision layer"
 description: "Research and engineering master plan: LLM RCA, confidence reliability and a Jev post-LLM decision layer on the nt114-data-v1 release, in 12 weeks."
-status: in-progress
+status: partially-superseded
 priority: P1
 effort: 43 person-days + ~6 GPU-days
 branch: main
@@ -12,6 +12,14 @@ created: 2026-10-15
 ---
 
 # NT114-RCA: LLM + Jev research and implementation plan
+
+> **Status (2026-10-18): partially superseded** by [261018-2300-single-llm-simplification-and-evaluation-hardening](../261018-2300-single-llm-simplification-and-evaluation-hardening/plan.md).
+> The owner removed Jev and made the system single-LLM. Superseded here: Jev and the TypeSafe
+> decision layer, escalation, RQ4–RQ5, the Jev part of E3–E5, and E8. Phases 03–06 below are
+> **partially superseded**: their Jev, escalation and routing steps no longer apply, while their
+> real-model inference, baseline, confidence and reproducibility steps continue under the new plan
+> ([protocol v2](../261018-2300-single-llm-simplification-and-evaluation-hardening/design/protocol-v2.md), [decision log](../261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md)). The Jev
+> implementation is recoverable from the git tag `pre-single-llm`.
 
 ## Overview
 
@@ -45,10 +53,10 @@ nothing here is implemented.
 |---|-------|-------|--------|
 | 1 | [M0: Prerequisites, owner decisions, preregistration draft](./phase-01-m0-audit-prerequisites-and-design-decisions.md) | 1 | **Blocked** (Linux gate, GPU probe, TypeSafe access); D1–D8 decided 2026-10-15 |
 | 2 | [M1: Offline end-to-end LLM + Jev pipeline (CPU, mocks)](./phase-02-m1-offline-end-to-end-pipeline.md) | 1–2 | Done (2026-10-15) |
-| 3 | [M2: Real-model inference, live Jev on DEV, freezes](./phase-03-m2-real-model-inference-and-live-jev.md) | 3 | Pending (deployment kit and feasibility test ready, not run) |
-| 4 | [M3: Baselines, confidence, minimum experiment set](./phase-04-m3-baselines-confidence-and-main-experiments.md) | 4–6 | Pending (CPU baselines B0, B1, B3 done early) |
-| 5 | [M4: Gated fine-tuning (optional)](./phase-05-m4-gated-fine-tuning.md) | 7–8 | Pending |
-| 6 | [M5: Extensions, reproducibility, paper results](./phase-06-m5-ablations-reproducibility-and-paper-results.md) | 7–12 | Pending |
+| 3 | [M2: Real-model inference, live Jev on DEV, freezes](./phase-03-m2-real-model-inference-and-live-jev.md) | 3 | Partially superseded ([new plan](../261018-2300-single-llm-simplification-and-evaluation-hardening/plan.md)); was: Pending (deployment kit and feasibility test ready, not run) |
+| 4 | [M3: Baselines, confidence, minimum experiment set](./phase-04-m3-baselines-confidence-and-main-experiments.md) | 4–6 | Partially superseded ([new plan](../261018-2300-single-llm-simplification-and-evaluation-hardening/plan.md)); was: Pending (CPU baselines B0, B1, B3 done early) |
+| 5 | [M4: Gated fine-tuning (optional)](./phase-05-m4-gated-fine-tuning.md) | 7–8 | Partially superseded ([new plan](../261018-2300-single-llm-simplification-and-evaluation-hardening/plan.md)); was: Pending |
+| 6 | [M5: Extensions, reproducibility, paper results](./phase-06-m5-ablations-reproducibility-and-paper-results.md) | 7–12 | Partially superseded ([new plan](../261018-2300-single-llm-simplification-and-evaluation-hardening/plan.md)); was: Pending |
 
 Dependencies: 1 ∥ 2 → 3 → 4 → {5 (gated), 6}. The GPU machine is first needed at phase 03
 task 1. Everything before that runs on CPU without paid calls.

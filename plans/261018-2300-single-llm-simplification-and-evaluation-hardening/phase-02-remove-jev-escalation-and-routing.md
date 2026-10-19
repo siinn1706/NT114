@@ -1,6 +1,6 @@
 ---
 title: "Phase 2: Remove Jev, the escalation role and model routing"
-status: todo
+status: done
 priority: P1
 effort: 2-3 d
 dependencies: [phase-00, phase-01]

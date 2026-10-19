@@ -1,6 +1,6 @@
 ---
 title: "Phase 8 (optional): Retire the legacy RCAEval data_root path"
-status: todo
+status: done
 priority: P3
 effort: 1 d
 dependencies: [phase-02]

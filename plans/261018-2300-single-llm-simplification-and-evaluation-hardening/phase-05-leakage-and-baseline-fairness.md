@@ -1,6 +1,6 @@
 ---
 title: "Phase 5: Leakage checks and baseline fairness"
-status: todo
+status: done
 priority: P1
 effort: 3-4 d
 dependencies: [phase-00, phase-02]

@@ -1,12 +1,12 @@
 ---
 title: "NT114-RCA: single-LLM simplification and evaluation hardening (CPU only)"
 description: "Remove Jev and every second model, then rebuild the evaluation core so that one LLM's own ranking, confidence and abstention are measured with paired, injection-level, reproducible statistics."
-status: in-progress
+status: blocked
 priority: P1
 effort: 16-20 person-days [A], 0 GPU-days
 branch: main
 tags: [refactor, research, evaluation, statistics, tech-debt]
-blockedBy: []
+blockedBy: ["V8 step 2: DecompRCA code release (github.com/cruiseresearchgroup/DecompRCA) returned HTTP 404 on 2026-10-19; every other phase item is done"]
 blocks: []
 supersedes: [261015-0047-nt114-rca-llm-jev-research-and-implementation (Jev, escalation, RQ4-RQ5 and E3-E5, E8)]
 created: 2026-10-18
@@ -81,13 +81,13 @@ What survives, and why:
 |---|---|---|---|---|---|
 | 0 | [Gate: audit jobs finished, turn-2–4 work committed](phase-00-gate-audit-jobs-and-baseline-commit.md) | P1 | 0.5 d | – | done (2026-10-19) |
 | 1 | [Decision record and protocol reset](phase-01-decision-record-and-protocol-reset.md) | P1 | 1 d | 0 | done (2026-10-19) |
-| 2 | [Remove Jev, escalation and model routing](phase-02-remove-jev-escalation-and-routing.md) | P1 | 2–3 d | 0, 1 | pending |
-| 3 | [Evaluation core: confidence registry, selective evaluator, paired contrasts](phase-03-evaluation-core.md) | P1 | 4–5 d | 2 | pending |
-| 4 | [Cost ledger and reproducibility](phase-04-cost-ledger-and-reproducibility.md) | P2 | 2 d | 2 | pending |
-| 5 | [Leakage and baseline fairness](phase-05-leakage-and-baseline-fairness.md) | P1 | 3–4 d (incl. BARO-style and task 5a) | 0, 2 | pending |
-| 6 | [CPU-only validation experiments](phase-06-cpu-validation-experiments.md) | P1 | 2–3 d | 3, 4, 5 | pending |
-| 7 | [Docs, research reports and old-plan supersession](phase-07-docs-and-supersession.md) | P2 | 1 d | 6 | pending |
-| 8 | [Retire the legacy `data_root` path](phase-08-optional-retire-legacy-path.md) | P3 | 1 d | 2 | pending (approved 2026-10-18) |
+| 2 | [Remove Jev, escalation and model routing](phase-02-remove-jev-escalation-and-routing.md) | P1 | 2–3 d | 0, 1 | done (2026-10-19) |
+| 3 | [Evaluation core: confidence registry, selective evaluator, paired contrasts](phase-03-evaluation-core.md) | P1 | 4–5 d | 2 | done (2026-10-19) |
+| 4 | [Cost ledger and reproducibility](phase-04-cost-ledger-and-reproducibility.md) | P2 | 2 d | 2 | done |
+| 5 | [Leakage and baseline fairness](phase-05-leakage-and-baseline-fairness.md) | P1 | 3–4 d (incl. BARO-style and task 5a) | 0, 2 | done |
+| 6 | [CPU-only validation experiments](phase-06-cpu-validation-experiments.md) | P1 | 2–3 d | 3, 4, 5 | blocked on V8 step 2 only: V1–V7 and V8 step 1 done; step 2 needs the DecompRCA release, which returned HTTP 404 on 2026-10-19 (see research/05 §V8, research/06) |
+| 7 | [Docs, research reports and old-plan supersession](phase-07-docs-and-supersession.md) | P2 | 1 d | 6 | done (grep hit only in the old plan's directory name inside a link) |
+| 8 | [Retire the legacy `data_root` path](phase-08-optional-retire-legacy-path.md) | P3 | 1 d | 2 | done (golden ported to the canonical path; 309 + 56 tests pass; V1 0/862 changed) |
 
 ```text
 0 ─► 1 ─► 2 ─┬─► 3 ─┐
@@ -228,13 +228,26 @@ Answered by the owner on 2026-10-18; every default was accepted (recorded in
 
 ## Definition of Done
 
-- [ ] `grep -riE "jev|typesafe|escalat" src tests configs docs README.md` returns nothing except the absence assertions in `tests/test_feasibility.py` (old plans and journals are untouched)
-- [ ] The non-realdata suite passes. The realdata suite passes where the bundle is present
-- [ ] A mock end-to-end run (synthetic) produces the grid, raw outputs, confidence table, selective table, paired-contrast table and manifest. Re-running `rca.reproduce` on it gives byte-identical tables
-- [ ] Simulation checks pass: cluster-bootstrap 95 % CI coverage within the Monte-Carlo band; sign-flip type-I error ≤ α + MC error
-- [ ] Evidence fingerprints of every visibility evidence file are unchanged by the refactor
-- [ ] Phase 06 reports exist under `/research/` with numerator, denominator and exclusions for every number
-- [ ] `/research/00`–`02` and the old plan's `plan.md` state which parts are superseded
+Verified on 2026-10-19 against the working tree. Each line names its evidence.
+
+- [x] `grep -riE "jev|typesafe|escalat" src tests configs docs README.md` returns nothing except the absence assertions in `tests/test_feasibility.py` (old plans and journals are untouched)
+  - **Exception, accepted in the phase 07 row:** the old plan's directory name inside the training-strategy link at `docs/gpu_deployment.md:118`.
+- [x] The non-realdata suite passes. The realdata suite passes where the bundle is present
+  - Both suites pass; the commit records give the counts.
+  - `tests/test_feasibility.py::test_run_end_to_end_with_fake_server` needs Git Bash ahead of the WSL `bash.exe` stub on `PATH`.
+- [x] A mock end-to-end run (synthetic) produces the grid, raw outputs, confidence table, selective table, paired-contrast table and manifest. Re-running `rca.reproduce` on it gives byte-identical tables
+  - Covered by `tests/test_reproduce.py` and, on a real slice, by V7 in research/05.
+- [x] Simulation checks pass: cluster-bootstrap 95 % CI coverage within the Monte-Carlo band; sign-flip type-I error ≤ α + MC error
+  - research/06 V4: coverage 0.930–0.955, type-I error 0.025–0.041.
+- [x] Evidence fingerprints of every visibility evidence file are unchanged by the refactor
+  - 0 of 862 changed (`reports/evidence-digests-after.txt`), and 1,236 of 1,236 files are current.
+- [x] Phase 06 reports exist under `/research/` with numerator, denominator and exclusions for every number
+  - research/05 and research/06.
+- [x] `/research/00`–`02` and the old plan's `plan.md` state which parts are superseded
+- [ ] **Blocked:** V8 step 2 (alignment with the DecompRCA release).
+  - The release returned HTTP 404 on 2026-10-19.
+  - Step 1 is done (`results_alignment/re1/`).
+  - No paper-level alignment is claimed until step 2 runs.
 
 ## Unresolved questions
 

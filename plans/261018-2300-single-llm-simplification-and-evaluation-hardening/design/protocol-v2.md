@@ -49,6 +49,10 @@ AIOps2025 set-scored incidents form a separate table and are never pooled with t
   the config. Every reported metric carries a CI.
 - Tests: paired sign-flip permutation test (10,000 draws) for endpoints that decompose per
   injection; the cluster bootstrap otherwise. Holm correction within declared families only.
+- Calibration (2026-10-19, [research/06](../../../research/06_statistics_validation.md#v4--calibration)):
+  on every test structure, CI coverage is 0.930–0.955 and sign-flip type-I is 0.025–0.041.
+  Retrieval contrasts are reported stratified by the query's max store cosine
+  ([research/05 §V6](../../../research/05_evidence_instrument_audit.md#v6--text-level-leakage-from-the-retrieval-store)).
 - Datasets are never pooled in headline tables.
 - DEV (grouped val) is never reported as a result.
 - Assumptions are listed in [plan.md](../plan.md#statistical-assumptions-summary-details-in-phase-03)
@@ -98,6 +102,54 @@ the `token_prob` estimator pending validation) and O7 (second sampling seed) rem
 O4, O10 (Jev) are retired. O3 (`no_precedent`) remains with E2b. O5, O8 and O9 are unchanged and
 out of scope here.
 
+### 5.1 Measured instrument facts (2026-10-19, CPU only)
+
+These figures come from [research/05](../../../research/05_evidence_instrument_audit.md) and
+[research/06](../../../research/06_statistics_validation.md). They constrain E1 and E2 before any
+model is run.
+
+- **Manipulation check.** This is the share of records whose `full` evidence text is unchanged by
+  the condition (test role):
+  - `blind_nonroot` is unchanged in 80–98 % of records. It is not a manipulation for most
+    incidents.
+  - `blind_nonroot_ev` changes the text in every record it applies to.
+  - RCA100 `blind_root` is unchanged in 83 of 86 records, which leaves 3 records after
+    `require_changed`.
+  - The single-modality conditions never equal `full`.
+- **Measured intersections (test).**
+
+  | Set | Records | Injections |
+  |---|---:|---:|
+  | RCAEval `full` | 218 | 218 |
+  | RCAEval `blind_root` ∩ `blind_nonroot_ev` | 52 | 52 |
+  | Nezha `full` | 97 | 97 |
+  | RCA100 `full` | 86 | 70 |
+  | AIOps2025 `full` | 318 | 318 |
+
+- **MDEs.** The paired AC@1 MDE at 80 % power, assuming 20 % discordance, is:
+  - RCAEval `full` 0.10;
+  - the `blind_root` ∩ `blind_nonroot_ev` intersection 0.18 (not reachable at 10 %);
+  - Nezha 0.14, RCA100 0.16, AIOps2025 0.08.
+
+  The full table is in research/06. The discordance rates are placeholders until a DEV pilot.
+- **Retrieval store (RCAEval grouped).**
+  - There is no line-level copying: the max Jaccard is 0.455.
+  - No same-cell (root, fault) entry is reachable, by construction of the split.
+  - A same-root entry under another fault is reachable for every test query. The split's cell
+    includes the fault family.
+    - Its nearest store neighbour has the query's root in 67 of 218 test `full` queries (36.0
+      expected without regard to similarity).
+    - Under `blind_root` it does in 29 of 69 (11.0 expected).
+  - 29 of 218 test `full` queries have a cross-cell neighbour with cosine ≥ 0.95.
+  - E2 is therefore reported stratified by max cosine, with the evaluation-only covariate "the
+    top 3 hold the query's root". It is reported in `table_cells_by_precedent_root`, from the grid's
+    `hit_has_truth` flag.
+  - That covariate describes the retrieval regime of the grouped split. It is not a leakage
+    finding, and no prediction, confidence score or threshold uses it.
+  - Any `blind_root` × retrieval cell is read with it.
+  - A root-held-out split is deferred to a separate experiment, conditional on the literature
+    review. The existing splits are kept.
+
 ## 6. Research questions: what remains
 
 Old hypotheses H1a, H1b (accuracy under `blind_root`), H2a, H2b (overconfidence gap) and H3a,
@@ -131,4 +183,4 @@ cannot be claimed.
 | §8 Avg@5, mean rank | replaced by AC@1–5 and MRR@5 (censored) |
 | §8 CWA₁₀₀, Jev cost | CWA₁₀₀ uses the answering cell's own confidence; Jev cost retired |
 | §9.5 confirmatory family | open slot |
-| §9.6 MDE table | recomputed in phase 06 (V5) from measured intersections |
+| §9.6 MDE table | replaced by the V5 table in [research/06](../../../research/06_statistics_validation.md#v5--minimum-detectable-effects) (2026-10-19; the discordance rates stay placeholders until a DEV pilot) |

@@ -1,12 +1,21 @@
 ---
 title: "Phase 6: CPU-only validation experiments"
-status: todo
+status: blocked
 priority: P1
 effort: 2-3 d (plus about 2 h of unattended CPU time for the RCAEval store)
 dependencies: [phase-03, phase-04, phase-05]
 ---
 
 # Phase 6: CPU-only validation experiments
+
+**Status (2026-10-19).**
+- **Done:** V1–V7, and V8 step 1 (the RE1 inventory in `results_alignment/re1/`).
+- **Blocked:** V8 step 2. The DecompRCA release returned HTTP 404 from the web and from the
+  GitHub API (`results_alignment/re1/provenance.json`).
+- **Until step 2 runs:** no paper-level alignment is claimed, and the paper's numbers stay
+  external reference values.
+- **To unblock:** inspect the release once it is public, then run
+  `python -m rca.alignment compare`.
 
 ## Context
 

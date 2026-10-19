@@ -38,6 +38,7 @@ preregistration is added here.
 | 2026-10-15 | **Commits `291923e` and `a7b8441` pushed** to the feature branch after the same safety scan (fast-forward, not merged) | `git diff origin/...HEAD` scan | owner |
 | 2026-10-15 | **Qwen3.5 sampling kept unchanged** (owner): only `temperature` is sent. The pinned Qwen3.5-4B repo has no `generation_config.json`, so vLLM's neutral defaults apply (presence penalty 0, top-p 1). The 0 vs 1.5 comparison is prepared (`configs/exp/dev-sampling.yaml`, `presence_penalty` model option, `rca.feasibility compare-sampling` with the decision rule fixed in code) and runs in M2 on DEV before the prompt freeze | `tests/test_feasibility.py`, `tests/test_pipeline.py` | owner |
 | 2026-10-15 | **Staged model downloads** (owner): primary and fallback first (17.4 GB); `qwen3-8b-awq` after the primary is measured feasible; `qwen35-9b-nf4` only if AWQ is infeasible or too slow; the replication model when M3 needs it | `docs/gpu_deployment.md` §4, §6 | owner |
+| 2026-10-18 | **Jev removed; single-LLM system** (owner). This plan is partially superseded (Jev, escalation, RQ4–RQ5, the Jev part of E3–E5, E8). Later decisions are logged in [261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md](../261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md) | New plan; git tag `pre-single-llm` | Owner |
 
 ## Pending owner inputs (phase 01)
 

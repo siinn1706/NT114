@@ -1,6 +1,6 @@
 ---
 title: "Phase 3: Evaluation core — confidence registry, selective evaluator, paired-contrast engine"
-status: todo
+status: done
 priority: P1
 effort: 4-5 d
 dependencies: [phase-02]

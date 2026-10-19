@@ -1,6 +1,6 @@
 ---
 title: "Phase 4: End-to-end cost ledger and reproducibility"
-status: todo
+status: done
 priority: P2
 effort: 2 d
 dependencies: [phase-02]
