@@ -12,6 +12,13 @@ exists but is incomplete or not wired in. DOCUMENTED_ONLY = described in docs or
 code. MISSING = neither. A separate column says whether the component has ever been **executed on
 a real model**. UNKNOWN marks anything this audit could not establish.
 
+> **Update 2026-10-19.** The owner removed Jev, escalation and the separate decision layer
+> (`/plans/261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md`). The system is now single-LLM. Rows below that cite `src/rca/decide.py`,
+> `src/rca/jev.py` or `src/rca/gate.py` describe the audited commit; those files are deleted and
+> recoverable from the git tag `pre-single-llm`. Statements the change or the phase-06 CPU
+> measurements alter carry an inline dated update. The measurements are in
+> [05](05_evidence_instrument_audit.md) and [06](06_statistics_validation.md).
+
 ## Executive summary
 
 The repository contains a careful, leakage-aware **offline evaluation harness** for single-shot LLM
@@ -33,7 +40,7 @@ evidence step by step, and it has no separate candidate-generation stage.
 | 2 | The project's gap claims come from a survey corpus that contained **journals only**: conference papers and arXiv were excluded, yet most LLM-RCA work appears at conferences. Every novelty statement is therefore UNVERIFIED UNTIL LITERATURE REVIEW | `/plans/261011-1345-aiops-q1-literature-gap/work/q1-protocol.md:25`; `/plans/261015-0047-.../design/research-design.md:15-18` |
 | 3 | Raw LLM completions (including `reason`) and token logprobs were thrown away before caching. **Addressed 2026-10-18 (uncommitted):** they are now persisted, see [01, blocker 2](01_experimental_readiness.md#blockers-that-could-invalidate-conclusions) | Before the fix: `src/rca/llm.py:114-117,129-136` at `fee95cf`; claim at `/plans/.../design/research-design.md:61` |
 | 4 | The evidence builder names at most 10 services per block, and only those above fixed thresholds, so the root is sometimes not named in the text the LLM reads (**evidence omission**). The root stays in the candidate list, so this does not rule out a correct answer, but missingness effects may track what the builder omits. Measured on the full sets 2026-10-19: the root is named in `full` for 216/218 RCAEval test, 80/97 Nezha, 77/86 RCA100 and 298/318 AIOps2025 records ([04](04_evidence_visibility_results.md)) | `src/rca/evidence.py:218,240-246,256,270`; sample counts in [01 §5](01_experimental_readiness.md#5-leakage-and-confound-audit) |
-| 5 | The protocol is not frozen and the comparators are incomplete. The preregistration is a draft, the prompt and Jev wording are drafts, B2 (BARO) and recalibration exist only in documents, B1 never ran on RCA100, policy cost leaves out Jev, and alias sign-off D6 is open | `/plans/.../design/preregistration.md:3`; `src/rca/jev.py:28`; `results_baselines_rca100/table_baselines.csv` (only B0 and B3); `src/rca/gate.py:75-87`; `/plans/.../decisions.md:52` |
+| 5 | The protocol is not frozen and the comparators are incomplete. The preregistration is a draft, the prompt and Jev wording are drafts, B2 (BARO) and recalibration exist only in documents, B1 never ran on RCA100, policy cost leaves out Jev, and alias sign-off D6 is open. *Update 2026-10-19: the Jev cost gap is moot (Jev removed). B1 per block and B1m have run on all four datasets, and a BARO-style port exists under an unvalidated label ([05 §V3](05_evidence_instrument_audit.md#v3--how-strong-are-the-non-llm-baselines)). Preregistration and D6 are still open* | `/plans/.../design/preregistration.md:3`; `src/rca/jev.py:28`; `results_baselines_rca100/table_baselines.csv` (only B0 and B3); `src/rca/gate.py:75-87`; `/plans/.../decisions.md:52` |
 
 ## 1. Reconstructed runtime pipeline (canonical path)
 

@@ -3,6 +3,13 @@
 Path convention as in [00](00_repo_audit.md): code paths are relative to `nt114-rca/nt114-rca/`;
 paths that start with `/` are relative to the repository root.
 
+> **Update 2026-10-19.** The owner removed Jev, escalation and the separate decision layer
+> (`/plans/261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md`). The system is now single-LLM. Rows below that cite `src/rca/decide.py`,
+> `src/rca/jev.py` or `src/rca/gate.py` describe the audited commit; those files are deleted and
+> recoverable from the git tag `pre-single-llm`. Statements the change or the phase-06 CPU
+> measurements alter carry an inline dated update. The measurements are in
+> [05](05_evidence_instrument_audit.md) and [06](06_statistics_validation.md).
+
 ## Executive summary
 
 The data side is close to experiment-ready. Labels come with provenance and quality states, the
@@ -85,7 +92,7 @@ Confirmed side effects of whole-group stratified filling (`data/splits/within-rc
 | B2 BARO | DOCUMENTED_ONLY | `/plans/.../design/research-design.md:104` |
 | B3 majority / alert-entity (RCA100) | Run: 0.586 / 0.374 tier A; 0.477 / 0.304 for all 103 tasks | `results_baselines_rca100{,_all}/table_baselines.csv` |
 | L0, L1, C1, C2, R1, R2, O | Implemented, mock only | `src/rca/analyze.py:110-139` |
-| C3, C4, J-floor | Functions exist but are not wired into `decision_report` | `src/rca/gate.py:123-176,223-226` |
+| C3, C4, J-floor | Functions exist but are not wired into `decision_report`. *Update 2026-10-19: C4 and J-floor are retired with Jev (protocol v2 §4). C3 is now a DEV-fit threshold on the answer's own confidence, transferred to test (`src/rca/selective.py` `fit_threshold`; `table_selective`)* | `src/rca/gate.py:123-176,223-226` |
 
 Missing comparators that matter for H1–H3: token-probability confidence (blocked by §6), a
 recalibrated consensus, an agentic or tool-using LLM-RCA baseline (out of scope by
@@ -142,11 +149,11 @@ The script used is outside the repository, at
 
 | Area | State | Gap | Evidence |
 |---|---|---|---|
-| Accuracy | AC@1/@3 (weighted, cluster CI); AC@5/Avg@5 only in the legacy table | The output is capped at 5 items, so rank > 5 is stored as `n+1` and the full rank curve is lost | `src/rca/analyze.py:85-107,162`; `src/rca/llm.py:50`; `src/rca/score.py:25` |
+| Accuracy | AC@1/@3 (weighted, cluster CI); AC@5/Avg@5 only in the legacy table | The output is capped at 5 items, so rank > 5 is stored as `n+1` and the full rank curve is lost. *Update 2026-10-19: the cap and prompt v1 are kept (owner). Ranks > 5 are treated as censored and only AC@1–5 and MRR@5 are reported. Paired contrasts use the injection-level cluster bootstrap and sign-flip test (`src/rca/contrasts.py`). Exact McNemar is a sensitivity column on one representative record per injection only* | `src/rca/analyze.py:85-107,162`; `src/rca/llm.py:50`; `src/rca/score.py:25` |
 | Confidence | Brier, support-ECE, AUROC/AUPRC, AURC, selective risk, CW₁₀₀ | No recalibration, no conformal coverage guarantee | `src/rca/metrics.py:98-190` |
-| Cost | Prompt and completion tokens and latency per arm; retrieve and escalate add the primary's cost | Jev usage and cost **excluded**; no telemetry-acquisition cost; no GPU-seconds or money | `src/rca/decide.py:103-121`; `src/rca/gate.py:75-87,111-112` |
+| Cost | Prompt and completion tokens and latency per arm; retrieve and escalate add the primary's cost | Jev usage and cost **excluded**; no telemetry-acquisition cost; no GPU-seconds or money. *Update 2026-10-19: the Jev cost is moot. Preparation time per incident and condition is in `prepare_log.jsonl`, retrieval time in `retrieval_s`, and `table_cost` (`src/rca/cost.py`) adds them per arm path. GPU-seconds stay empty until real runs* | `src/rca/decide.py:103-121`; `src/rca/gate.py:75-87,111-112` |
 | Reproducibility | Pinned model revisions, server fingerprint in the cache key, `manifest.json` (commit, dirty flag, bundle), lock file, write-once splits | vLLM batching and Jev are non-deterministic (results reproduce from caches only). Raw texts are not cached. The bundle is private (HF) | `src/rca/llm.py:97-105,151-170`; `src/rca/run_grid.py:388-413`; `/plans/.../design/research-design.md:253` |
-| Result logging | Append-only JSONL with resume keys; Jev raw requests and responses in `jev_raw.jsonl`; failures listed in `jev_retry.jsonl` | LLM raw responses missing (the asymmetry with Jev) | `src/rca/run_grid.py:461-516`; `src/rca/decide.py:215-266` |
+| Result logging | Append-only JSONL with resume keys; Jev raw requests and responses in `jev_raw.jsonl`; failures listed in `jev_retry.jsonl` | LLM raw responses missing (the asymmetry with Jev). *Update 2026-10-19: LLM raw outputs are persisted (commit `b2dbb20`); the Jev logs are gone with Jev* | `src/rca/run_grid.py:461-516`; `src/rca/decide.py:215-266` |
 | Tests | 255 test functions | Not re-run in this audit; recorded 232 + 39 passed | `/plans/.../decisions.md:8` |
 
 ## 7. Confirmed problems vs risks that need experiments
@@ -154,10 +161,10 @@ The script used is outside the repository, at
 **Confirmed (fixable without a GPU):**
 
 1. Raw LLM completions and logprobs were not stored. Fixed 2026-10-18, uncommitted; see blocker 2.
-2. Policy cost excludes Jev (`src/rca/gate.py:75-87`).
-3. B1 has not been run; B2 and recalibration are documented only.
-4. C3, C4 and J-floor are not wired into the reported policy table (`src/rca/analyze.py:110-139`).
-5. The preregistration, prompt `v1` and Jev `q1-draft` are not frozen.
+2. Policy cost excludes Jev (`src/rca/gate.py:75-87`). *Moot 2026-10-19: Jev removed.*
+3. B1 has not been run; B2 and recalibration are documented only. *Update 2026-10-19: B1 and B1m ran on all four datasets; BARO-style passes its fixture equivalence and stays labelled unvalidated ([05 §V3](05_evidence_instrument_audit.md#v3--how-strong-are-the-non-llm-baselines)).*
+4. C3, C4 and J-floor are not wired into the reported policy table (`src/rca/analyze.py:110-139`). *Update 2026-10-19: C4 and J-floor retired; C3 redefined (see §4).*
+5. The preregistration, prompt `v1` and Jev `q1-draft` are not frozen. *Update 2026-10-19: Jev `q1-draft` is moot; the preregistration is still not frozen; prompt v1 is kept.*
 6. Alias sign-off D6 is open.
 7. Stale doc references (`README.md:74`, `docs/data_contract.md:198`).
 8. Literature gap claims are unverified against conference and arXiv work.
