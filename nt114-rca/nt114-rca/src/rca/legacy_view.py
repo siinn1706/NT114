@@ -2,8 +2,9 @@
 
 `visible_case` gives model-facing code a `VisibleCase` (no labels, `case_id = incident_uid`, so the
 candidate shuffle seed carries no label). `truth` gives scoring and ablation a `Truth`.
-`legacy_telemetry` rebuilds the `{"metrics", "logs", "traces"}` DataFrames that `data.load_case`
-produces, with the same column names, units and row order, from the canonical Parquet files.
+`legacy_telemetry` rebuilds the `{"metrics", "logs", "traces"}` DataFrames the evidence builder reads
+(the shapes of the retired direct RCAEval loader: same column names, units and row order) from the
+canonical Parquet files. `tests/golden/canonical_synthetic_evidence.sha256` pins the resulting evidence.
 """
 from __future__ import annotations
 

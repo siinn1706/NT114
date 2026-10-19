@@ -1,6 +1,6 @@
 # Qwen3.5-4B presence penalty 0 (current configuration: not sent, vLLM default 0; the pinned repo has
 # no generation_config.json) against 1.5 (model-card recommendation for non-thinking mode), on the
-# same DEV cells. M2, after the feasibility test, before the prompt freeze. NOT RUN YET. No Jev.
+# same DEV cells. M2, after the feasibility test, before the prompt freeze. NOT RUN YET.
 #   serve profile qwen35-4b-fp8 (python -m rca.feasibility list configs/hardware/rtx4080-laptop-12gb.yaml)
 #   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/dev-sampling.yaml
 #   PYTHONPATH=src python -m rca.run_grid run     configs/exp/dev-sampling.yaml

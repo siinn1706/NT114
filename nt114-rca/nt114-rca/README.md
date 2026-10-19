@@ -1,7 +1,7 @@
 # nt114-rca — Trợ lý AI chẩn đoán sự cố khi thiếu dữ liệu giám sát
 
 Code tham khảo cho kế hoạch 12 tuần. Pipeline:
-**telemetry → bỏ modality → tóm tắt bằng chứng → (tra ca cũ) → LLM → lớp quyết định → độ đo.**
+**telemetry → bỏ modality → tóm tắt bằng chứng → (tra ca cũ) → một LLM → đánh giá chọn lọc → độ đo.**
 
 ```
 src/rca/
@@ -10,13 +10,23 @@ src/rca/
   evidence.py   telemetry -> văn bản ngắn (z-score metric, log lỗi, trace p90/lỗi/cạnh gọi)
   retrieve.py   kho ca cũ; BM25 (tự viết), dense (bge-small), hybrid (RRF); chế độ precedent/no_precedent
   llm.py        gọi vLLM bằng HTTP, ép JSON schema, n mẫu, cache SQLite; backend "mock" để test
-  metrics.py    AC@k, Avg@5, số dịch vụ phải kiểm tra, sai-mà-chắc, ECE, AURC, McNemar, Holm, bootstrap
-  gate.py       lớp quyết định offline: luôn trả lời / luôn tra / ngưỡng / học được / Jev
+  metrics.py    AC@1-5, MRR@5 (hạng sau 5 bị cắt), sai-mà-chắc, ECE, AURC, McNemar, Holm, bootstrap theo cụm
+  selective.py  đánh giá chọn lọc offline trên ô đã lưu của cùng một LLM: trả lời / tra cứu / từ chối
   run_grid.py   prepare (lưu bằng chứng) + run (gọi LLM từng ô, ghi JSONL, chạy tiếp được)
-  analyze.py    bảng cho 3 câu hỏi nghiên cứu
+  confidence.py danh mục điểm tự tin, chỉ từ đầu ra của cùng một LLM (đồng thuận, tự khai, Borda, entropy...)
+  contrasts.py  so sánh ghép cặp khai báo trong config: đơn vị = lần tiêm lỗi, bootstrap cụm, sign-flip, Holm
+  analyze.py    điểm vào phân tích: `python -m rca.analyze <analysis.yaml | grid.jsonl>`
+  cost.py       chi phí đầu-cuối mỗi ô và mỗi đường nhánh: token, độ trễ LLM, giây tra cứu, giây chuẩn bị
+  reproduce.py  tạo lại mọi bảng từ đầu vào đã lưu và so sha256: `python -m rca.reproduce <thư mục phân tích>`
+  baselines.py  mốc không-LLM: B0, B1 (metric/log/trace), B1m thứ tự bằng chứng, B3 prior từ train; `--baro`
+  baro.py       BARO-style bằng NumPy, đối chiếu với bản chính thức của RCAEval qua fixture (tests/fixtures/baro)
+  leakage_audit.py  gần-trùng văn bản giữa bằng chứng truy vấn và kho truy hồi (TF-IDF cosine, Jaccard dòng)
+  alignment.py  kiểm kê ca RE1 (uid, thời điểm tiêm, sha256) và đối chiếu với danh sách ca của một bản phát hành ngoài
+scripts/export_baro_inputs.py  xuất khung metric thô + sha256 cho phía tham chiếu BARO
+scripts/simulate_contrasts.py  mô phỏng độ phủ CI, sai lầm loại I và MDE của `contrasts` trên cấu trúc lần tiêm thật
 scripts/make_synthetic.py   dữ liệu GIẢ đúng định dạng RCAEval, chỉ để test
-configs/synthetic.yaml      test toàn bộ không cần GPU
-configs/pilot.yaml          chạy thử thật: 10 ca/hệ thống, 1 mô hình 8B
+configs/canonical_synthetic.yaml  test toàn bộ đường canonical không cần GPU
+configs/canonical_pilot.yaml      chạy thử thật: 10 ca/hệ thống, 1 mô hình 8B
 tests/test_pipeline.py      test đơn vị + giả lập server vLLM
 ```
 
@@ -31,35 +41,27 @@ pip install vllm                         # môi trường riêng nếu xung đ�
 
 ## 2. Test ngay, không cần GPU hay dữ liệu thật
 
+Các lệnh dựng kho chuẩn hóa từ dữ liệu giả rồi chạy `prepare`, `run`, `analyze` nằm ở đầu
+[configs/canonical_synthetic.yaml](configs/canonical_synthetic.yaml). Bộ test:
+
 ```bash
-python scripts/make_synthetic.py data_synth
-PYTHONPATH=src python -m rca.run_grid prepare configs/synthetic.yaml
-PYTHONPATH=src python -m rca.run_grid run     configs/synthetic.yaml
-PYTHONPATH=src python -m rca.analyze results_synth/grid.jsonl --gate mock-small mock-big
-PYTHONPATH=src python tests/test_pipeline.py
+PYTHONPATH=src python -m pytest -q -m "not realdata"
 ```
 Số liệu ra từ bước này là vô nghĩa (LLM giả). Chỉ dùng để kiểm tra đường ống chạy đủ.
+
+Phân tích theo file cấu hình (lưới, đầu ra thô, độ hiển thị, mốc, các so sánh ghép cặp khai báo sẵn):
+xem [configs/analysis/example-mock.yaml](configs/analysis/example-mock.yaml). `analyze` ghi
+`analysis_config.yaml` và `analysis_meta.json` (sha256 đầu vào và bảng); `rca.reproduce` chạy lại và so sánh.
+Không có `preregistration_sha` thì mọi bảng mang tiền tố `exploratory_`.
 
 ## 3. Chạy thật
 
 > Máy GPU 12 GB (RTX 4080 Laptop): làm theo [docs/gpu_deployment.md](docs/gpu_deployment.md). Tài liệu này gồm
-> hai venv, các mô hình ghim theo revision và phép thử khả thi `rca.feasibility`. Lệnh `vllm serve` dưới đây
-> là cấu hình pilot cũ.
+> hai venv, các mô hình ghim theo revision và phép thử khả thi `rca.feasibility`.
 
-```bash
-# tải dữ liệu (khoảng 30 phút cho cả 3 bộ, RE2+RE3 nhanh hơn)
-python -c "from RCAEval.utility import download_re2_dataset, download_re3_dataset; download_re2_dataset(); download_re3_dataset()"
-
-# terminal 1: mở vLLM (laptop 4080 12 GB: bản AWQ 4-bit, ngữ cảnh 16k)
-vllm serve Qwen/Qwen2.5-7B-Instruct-AWQ --quantization awq --max-model-len 16384 --gpu-memory-utilization 0.85
-
-# terminal 2
-PYTHONPATH=src python -m rca.run_grid prepare configs/pilot.yaml
-PYTHONPATH=src python -m rca.run_grid run     configs/pilot.yaml
-PYTHONPATH=src python -m rca.analyze results/pilot.jsonl
-```
-Đổi tên mô hình trong `configs/pilot.yaml` theo bản bạn tải. Lưới đầy đủ: copy `pilot.yaml`, bỏ `limit_per_system`,
-thêm mô hình thứ hai và 3B vào `models`, đổi `out`.
+`run_grid` chỉ đọc kho chuẩn hóa (`source: canonical`, mục 6); config khác bị từ chối. Pilot thật trên RE2+RE3:
+lệnh `vllm serve`, `prepare` và `run` nằm ở đầu [configs/canonical_pilot.yaml](configs/canonical_pilot.yaml).
+Đổi tên mô hình theo bản bạn tải; lưới đầy đủ: copy file, bỏ `limit_per_system`, đổi `out`.
 
 ## 4. Những chỗ phải kiểm tra lại khi có dữ liệu thật
 
@@ -69,9 +71,8 @@ thêm mô hình thứ hai và 3B vào `models`, đổi `out`.
 - **Độ dài bằng chứng** dưới ~3.500 token. Train Ticket nhiều dịch vụ, có thể phải giảm `max_services`.
 - **So sánh công bằng giữa điều kiện:** Sock Shop không có trace nên `no_trace`/`blind_root` chỉ có ở OB và TT.
   Khi so với `full`, lọc `full` về cùng tập ca OB+TT.
-- **Kho ca cũ** dùng bằng chứng đầy đủ modality của ca khác cùng hệ thống. Kết luận chính và Jev lấy chế độ `precedent`
+- **Kho ca cũ** dùng bằng chứng đầy đủ modality của ca khác cùng hệ thống. Kết luận chính lấy chế độ `precedent`
   (không dùng nhãn của ca hỏi); `no_precedent` là phép thử oracle, báo cáo riêng (`oracle_store: true`).
-- **Jev:** `gate.jev_payload` có một trường đánh dấu TODO; xác nhận với docs.typesafe.ai trước khi gọi.
 
 ## 5. Dữ liệu cần có
 
@@ -92,7 +93,7 @@ Cách tải và kiểm chứng dữ liệu thô (nguồn, checksum, provenance, 
 
 Dữ liệu thô đã kiểm chứng được chuẩn hóa một lần trên máy chuẩn bị, rồi chuyển sang máy GPU dưới dạng
 bundle có checksum. Hợp đồng dữ liệu (vùng `visible`/`eval_only`, trạng thái chất lượng, điều kiện thiếu
-dữ liệu, cách chia tập, quy tắc chống rò rỉ nhãn, trạng thái Jev): [docs/data_contract.md](docs/data_contract.md).
+dữ liệu, cách chia tập, quy tắc chống rò rỉ nhãn, đánh giá chọn lọc): [docs/data_contract.md](docs/data_contract.md).
 
 ```bash
 export PYTHONPATH=src

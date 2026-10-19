@@ -1,0 +1,26 @@
+# Example analysis of the offline mock smoke (configs/exp/smoke-offline.yaml). Mock rows are never a
+# result: without preregistration_sha every table is written as exploratory_*.
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/smoke-offline.yaml
+#   PYTHONPATH=src python -m rca.run_grid run     configs/exp/smoke-offline.yaml
+#   PYTHONPATH=src python -m rca.analyze configs/analysis/example-mock.yaml
+grids: [results_smoke/grid.jsonl]
+raw: null                     # null: llm_raw.jsonl next to each grid
+visibility: []                # e.g. results_visibility/<ds>/evidence_visibility.jsonl
+baselines: []                 # e.g. results_baselines_<ds>/baselines.jsonl
+data_home: null               # holds reports/eval-units-<dataset>.json; null: one injection per record
+out_dir: results_smoke/analysis
+n_boot: 200
+n_perm: 2000
+seed: 0
+scores: null                  # null: every registry score
+selective: {coverage: [0.7, 0.9], risk: [0.2]}
+contrasts:
+  - {name: drop_blind_root, a: {condition: full, retrieval: none}, b: {condition: blind_root, retrieval: none},
+     metric: ac1, require_changed: true}
+  - {name: did_root_vs_nonroot_ev, kind: did, a: {condition: full, retrieval: none}, b: {condition: blind_root, retrieval: none},
+     c: {condition: full, retrieval: none}, d: {condition: blind_nonroot_ev, retrieval: none}, metric: ac1}
+  - {name: auroc_consensus_vs_verbal, a: {score: consensus}, b: {score: verbal}, metric: auroc,
+     within: {condition: full, retrieval: none}}
+  - {name: retrieval_gain, a: {condition: full, retrieval: hybrid}, b: {condition: full, retrieval: none}, metric: ac1}
+families: {}                  # filled from the preregistration; empty: every p-value unadjusted and exploratory
+preregistration_sha: null

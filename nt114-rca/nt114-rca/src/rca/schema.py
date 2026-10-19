@@ -35,15 +35,6 @@ LABEL_DENYLIST = frozenset({
 })
 _DENY_TOKENS = frozenset({"root", "fault", "label", "gt", "answer", "culprit"})
 
-# Top-level keys allowed in the Jev decision state (`jev.build_state`). The allowlist is an exact match
-# and takes precedence over the denylist; `denylisted` applies to nested keys only.
-DECISION_STATE_ALLOWED_KEYS = frozenset({
-    "evidence", "assistant_first_answer", "assistant_ranking", "assistant_confidence",
-    "assistant_flagged_insufficient", "telemetry_available", "similar_past_incident_similarity",
-    "candidate_count", "decision_stage",
-})
-
-
 def denylisted(name: str) -> bool:
     n = str(name).lower()
     return n in LABEL_DENYLIST or any(t in _DENY_TOKENS for t in n.split("_"))

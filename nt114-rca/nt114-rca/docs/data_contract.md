@@ -1,7 +1,7 @@
 # Data contract: canonical incidents, splits and the transfer bundle
 
 This is the contract between data preparation (`python -m rca.prep`) and everything that consumes
-it: `run_grid`, evidence, retrieval, the LLM layer and the Jev decision layer. The JSON Schema
+it: `run_grid`, evidence, retrieval, the LLM layer and the offline evaluation. The JSON Schema
 [`schemas/canonical_incident.v1.schema.json`](../schemas/canonical_incident.v1.schema.json) is the
 authority for record fields. This page explains the zones, the files, the rules and how to use
 them. It does not copy the field list.
@@ -10,7 +10,7 @@ them. It does not copy the field list.
 
 ```text
 raw (immutable) -> adapter -> canonical/v1/<dataset>/{visible, eval_only} -> validate -> audit
-                -> conditions (condition matrix) -> split (manifests) -> run_grid (evidence, LLM, Jev)
+                -> conditions (condition matrix) -> split (manifests) -> run_grid (evidence, LLM)
                 -> export (bundle) -> verify-bundle on the GPU machine
 ```
 
@@ -195,7 +195,7 @@ record its independent statistical unit:
 ## 7. Leakage rules
 
 1. Zone separation by type: `evidence.build`, `evidence.shuffled_candidates`,
-   `llm.build_messages`, `CaseStore.search` and `gate.jev_payload` receive `VisibleCase` objects,
+   `llm.build_messages` and `CaseStore.search` receive `VisibleCase` objects,
    which have no `root_service` or `fault` attribute. `tests/test_leakage.py` asserts this at
    every entry point and scans those modules' source for label access.
 2. Label artefacts (`root_cause.txt` and similar) are referenced only from
@@ -203,7 +203,7 @@ record its independent statistical unit:
 3. Retrieval (owner decision R1). The store holds train-role incidents of a
    `within-*-retrieval` split.
    - `precedent` (headline, label-free) excludes the query's own split group. It is the only mode
-     whose hits and similarity may reach the prompt for Jev runs and the Jev state.
+     whose hits and similarity may reach a headline prompt or the selective evaluation.
    - `no_precedent` is an oracle ablation. The caller adds incidents with the query's
      (root, fault) from `Truth` through `CaseStore.search(..., exclude_ids=...)`; `retrieve.py`
      never reads query labels. Its result rows carry `oracle_store: true`.
@@ -211,35 +211,45 @@ record its independent statistical unit:
    control target. The masked service is logged in `ablation_log.jsonl` next to the results,
    never in the evidence directory.
 5. Checks: canary label, label-permutation invariance (evidence, prompts for every retrieval
-   method in `precedent` mode, Jev states), denylisted keys and Parquet columns
+   method in `precedent` mode), denylisted keys and Parquet columns
    (`schema.LABEL_DENYLIST`), raw-path fragments and free-text label artefacts in the visible zone
    (`rca.audit.leakage_scan`).
+6. Text-level near-duplicates (eval-only): `python -m rca.leakage_audit <cfg>` compares each query
+   incident's evidence with the same-system `precedent` store entries (the query's split group
+   excluded): maximum TF-IDF cosine, maximum line-set Jaccard, and whether the nearest entry shares
+   the query's (root, fault). It writes flags and similarities only, next to the results; an output
+   directory inside the evidence directory is refused. Tests: `tests/test_leakage.py` (store entries
+   are train-role and outside the query's group; `no_precedent` rows are refused by `selective` and
+   the headline guard), `tests/test_leakage_audit.py`.
+7. Evaluation zone: `visibility`, `leakage_audit`, `alignment`, `baselines`, `baro` and the
+   analysis modules (`analyze`, `confidence`, `contrasts`, `selective`) may read labels. No
+   model-facing module (`llm`, `evidence`, `retrieve`, `run_grid`) imports them; `tests/test_confidence.py`
+   checks the imports.
 
-## 8. Jev decision state
+## 8. Selective evaluation (eval-only)
 
-`jev.build_state()` produces the Jev state. Its top-level keys must be in
-`schema.DECISION_STATE_ALLOWED_KEYS` (exact match): `evidence`, `assistant_first_answer`,
-`assistant_ranking`, `assistant_confidence`, `assistant_flagged_insufficient`,
-`telemetry_available`, `similar_past_incident_similarity`, `candidate_count`, `decision_stage`.
-The allowlist takes precedence over the label denylist, because the denylist's `answer` token would
-otherwise reject `assistant_first_answer`; `schema.denylisted` is applied to nested keys only.
-Numbers reach Jev as text with a verbal band (`"8 of 10 samples agree (high)"`).
+The system is a single LLM: every answer comes from one model's call on one cell, and abstention is
+a fixed rule on that call's own outputs. `selective.action_table()` joins the cached cells of one
+primary model (without retrieval, and with `hybrid` retrieval from the `precedent` store) into an
+evaluation table. It holds correctness, so it is evaluation-only and nothing in it reaches a prompt.
+It refuses a grid that contains `oracle_store` (`no_precedent`) rows. `run_grid` accepts the model
+roles `primary` and `replication` only; several models in one config are independent runs. Tests:
+`tests/test_selective.py`, `tests/test_leakage.py`.
 
-`decide.decision_inputs()` builds the state from the evidence file and named LLM aggregate fields
-(`ranking`, `conf_verbal`, `conf_consensus`, `abstain_vote`, `n_candidates`, top precedent
-similarity) only, never from a whole grid row: grid rows also carry `truth`, `truth_ids`, `fault`,
-`correct`, `rank`, `hits[].root` and `hit_has_truth`. The similarity comes from `precedent` rows;
-`decide` refuses a grid with `oracle_store` (`no_precedent`) rows. `gate.action_table` (the legacy
-comparator table) defaults to `store_mode="precedent"` and raises on `no_precedent` unless
-`oracle=True`. Root service, fault, label artefacts, masked service, missingness cause,
-`source_incident_id` and dataset paths are never allowed. Tests: `tests/test_jev.py`,
-`tests/test_leakage.py`.
+### Run records next to the grid
 
-Datasets in `decide.EVIDENCE_WITHHELD` (AIOps2025 and RCA100, whose licence and data-processing
-terms for the external Jev API are not yet verified) never send `evidence` in any variant. Their
-decision rows carry `evidence_withheld: true`. `jev.evidence_cleared: [<dataset>]` lifts the rule
-once the terms are recorded. `decide` also refuses mock Jev on a grid with real-LLM rows unless
-`jev.smoke: true`. Tests: `tests/test_decide.py`.
+- `prepare_log.jsonl` (appended by `prepare`): per (incident, condition) the telemetry read and build
+  seconds, telemetry rows per modality, evidence characters, `truncated` and the evidence
+  fingerprint; `kind: store` rows are the retrieval store. It is outside the evidence directory, so
+  fingerprints and cache keys do not depend on it. Wall times measure the machine in the manifest.
+- Grid rows carry `retrieval_s` (0.0 without retrieval).
+- `manifest.json` (`manifest_version: 2`): git commit, bundle, split and its `split.json` sha256,
+  Python, platform, package versions, `evidence.BUILDER_VERSION`, `legacy_view.VIEW_VERSION`,
+  the sha256 of the resolved config and its copy `config.yaml`, the `prepare_log.jsonl` sha256,
+  models and sampling. The manifest and the config copy are checked by `llm.check_no_secrets`.
+- `rca.analyze` writes `analysis_config.yaml` and the sha256 of every input and table into
+  `analysis_meta.json`; `python -m rca.reproduce <analysis dir>` reruns the analysis offline and
+  exits 1 naming each table that differs. Tests: `tests/test_reproduce.py`.
 
 ## 9. Using the data from code
 
@@ -255,12 +265,15 @@ for inc in store.incidents("rcaeval", split_dir=split, role="test"):   # visible
 labels = store.labels("rcaeval")                 # evaluation-only: scoring and ablation targets
 ```
 
-`run_grid` uses the same calls when a config sets `source: canonical`
+`run_grid` uses the same calls, and accepts only configs with `source: canonical`
 ([`configs/canonical_pilot.yaml`](../configs/canonical_pilot.yaml),
 [`configs/canonical_synthetic.yaml`](../configs/canonical_synthetic.yaml)). Canonical evidence
 files (`schema: 2`) contain `incident_uid`, `system`, `candidates` and `conditions` only.
+`tests/golden/canonical_synthetic_evidence.sha256` pins the synthetic evidence. It was captured
+when the canonical path still matched the retired direct RCAEval loader: the text was identical
+for every shared condition.
 
-Known, intended differences from the legacy loader:
+Known, intended differences from the retired direct loader:
 
 - Candidates exclude infrastructure entities (node exporters, `main`, `istio-init`, mesh
   pseudo-clusters, truncated pod-network prefixes). `adapters/rcaeval.py` lists them (`is_infra`).

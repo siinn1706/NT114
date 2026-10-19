@@ -1,45 +1,49 @@
 """Chạy lưới thí nghiệm. Hai bước, đều chạy tiếp được nếu bị dừng giữa chừng.
 
-  python -m rca.run_grid prepare configs/pilot.yaml   # đọc telemetry, lưu bằng chứng mọi điều kiện ra đĩa
-  python -m rca.run_grid run     configs/pilot.yaml   # gọi LLM cho từng ô, ghi mỗi ca một dòng JSONL
+  python -m rca.run_grid prepare configs/canonical_pilot.yaml   # đọc telemetry, lưu bằng chứng mọi điều kiện ra đĩa
+  python -m rca.run_grid run     configs/canonical_pilot.yaml   # gọi LLM cho từng ô, ghi mỗi ca một dòng JSONL
 
 Bước prepare tách riêng vì đọc log/trace tốn RAM; bước run chỉ đọc văn bản bằng chứng đã lưu.
 
-Hai nguồn dữ liệu:
-  - mặc định (legacy): thư mục RCAEval `data_root`, như trước.
-  - `source: canonical`: kho chuẩn hóa (`rca.prep`), lọc theo manifest chia tập `split` + `split_role`.
-    Điều kiện lấy từ `condition-matrix-<dataset>.json`; tệp bằng chứng KHÔNG chứa nhãn (schema 2);
-    nhãn chỉ được nối lại khi chấm điểm. Mô hình chỉ thấy `VisibleCase`.
+Nguồn dữ liệu duy nhất là kho chuẩn hóa (`source: canonical`, `rca.prep`), lọc theo manifest chia tập
+`split` + `split_role`. Điều kiện lấy từ `condition-matrix-<dataset>.json`; tệp bằng chứng KHÔNG chứa nhãn
+(schema 2); nhãn chỉ được nối lại khi chấm điểm. Mô hình chỉ thấy `VisibleCase`.
 """
 from __future__ import annotations
 
 import hashlib
 import json
+import platform
 import re
 import shutil
 import subprocess
 import sys
 import time
-from dataclasses import asdict
 from pathlib import Path
 
 import yaml
 
 from . import ablate, evidence, score
-from .data import Case, Truth, VisibleCase, discover_cases, load_case
-from .llm import LLM, PROMPT_VERSION, Cache, aggregate, build_messages
+from .data import Truth, VisibleCase
+from .llm import LLM, PROMPT_VERSION, Cache, aggregate, build_messages, check_no_secrets
 from .retrieve import CaseStore, Embedder, format_hits
 
 EVIDENCE_SCHEMA = 2
 # Evidence-matched control for blind_root: masks the traces of a non-root service chosen from the
 # full evidence text (not from span counts), so the masked service is as visible as the root.
 NONROOT_EV = "blind_nonroot_ev"
-MODEL_ROLES = ("primary", "escalation", "replication")
+# Every model of a config is an independent single-LLM run; no row depends on another model's output.
+MODEL_ROLES = ("primary", "replication")
+# Packages whose versions the manifest records (distribution names).
+MANIFEST_PACKAGES = ("numpy", "pandas", "scipy", "scikit-learn", "pyarrow", "PyYAML")
 
 
 def load_cfg(path):
     with open(path, encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
+    if not is_canonical(cfg):
+        raise ValueError(f"{path}: only `source: canonical` configs are supported; the direct RCAEval "
+                         "directory loader was retired (build the canonical store with `python -m rca.prep`)")
     cfg["_hash"] = hashlib.sha256(json.dumps(cfg, sort_keys=True).encode()).hexdigest()[:10]
     return cfg
 
@@ -61,12 +65,6 @@ def _sample(items, key_system, key_sort, lim):
         step = max(len(lst) // lim, 1)
         out += lst[::step][:lim]
     return out
-
-
-def select_cases(cfg) -> list[Case]:
-    cases = discover_cases(cfg["data_root"], tuple(cfg.get("datasets", ["re2", "re3"])))
-    cases = [c for c in cases if c.system in cfg.get("systems", [c.system])]
-    return _sample(cases, lambda c: c.system, lambda c: (c.fault, c.case_id), cfg.get("limit_per_system"))
 
 
 def evidence_dir(cfg) -> Path:
@@ -226,17 +224,33 @@ def nonroot_ev_target(full_text: str, root: str, uid: str) -> str | None:
     return min(others, key=lambda s: (abs(counts[s] - n_root), hashlib.sha256(f"{uid}{s}".encode()).hexdigest()))
 
 
-def _canonical_evidence(cn: Canon, vc: VisibleCase, conditions) -> dict:
+def _prep_row(uid: str, cond: str, kind: str, load_s: float, build_s: float, tel: dict, ev: dict, fp: str) -> dict:
+    """One preparation-log row: what building the evidence of (incident, condition) read and cost."""
+    return {"incident_uid": uid, "condition": cond, "kind": kind, "load_s": round(load_s, 4),
+            "build_s": round(build_s, 4), "wall_s": round(load_s + build_s, 4),
+            "telemetry_rows": {m: (None if t is None else int(len(t))) for m, t in tel.items()},
+            "evidence_chars": len(ev["text"]), "truncated": ev["text"].endswith("[truncated]"),
+            "evidence_fp": fp, "ts": int(time.time())}
+
+
+def _canonical_evidence(cn: Canon, vc: VisibleCase, conditions, log: list | None = None, kind: str = "query") -> dict:
+    """Evidence record of every condition. With `log`, appends one `_prep_row` per built condition; the
+    log never enters the record, so fingerprints and cache keys are unchanged."""
     from .legacy_view import evidence_kwargs, legacy_telemetry
+    t0 = time.perf_counter()
     tel = legacy_telemetry(cn.store, vc.case_id)
+    load_s = time.perf_counter() - t0
     tr = cn.truth(vc.case_id)
     target = cn.matrix[vc.case_id]["nonroot_target"]
     kw = evidence_kwargs(cn.prep_cfg, vc.dataset)
     rec = {"schema": EVIDENCE_SCHEMA, "incident_uid": vc.case_id, "system": vc.system,
            "evidence_fp": cn.evidence_fp(vc.case_id), "candidates": evidence.shuffled_candidates(vc), "conditions": {},
            "same_as_full": {}}
+    t0 = time.perf_counter()
     full = evidence.build(vc, tel, **kw)
+    full_s = time.perf_counter() - t0
     for cond in conditions:
+        t0 = time.perf_counter()
         if cond == NONROOT_EV:
             ev_target = nonroot_ev_target(full["text"], tr.root_service, vc.case_id)
             if ev_target is None:
@@ -247,6 +261,10 @@ def _canonical_evidence(cn: Canon, vc: VisibleCase, conditions) -> dict:
             ev = full if cond == "full" else evidence.build(vc, ablate.apply(tel, cond, tr.root_service, target), **kw)
         rec["conditions"][cond] = ev
         rec["same_as_full"][cond] = ev["text"] == full["text"]
+        if log is not None:
+            # a condition's cost includes the telemetry read; `full` is built once and reused
+            build_s = full_s if cond == "full" else time.perf_counter() - t0
+            log.append(_prep_row(vc.case_id, cond, kind, load_s, build_s, tel, ev, rec["evidence_fp"]))
     return rec
 
 
@@ -269,82 +287,66 @@ def ablation_log(cn: Canon, uids, ev_dir: Path | None = None) -> list[dict]:
     return out
 
 
-def prepare_canonical(cfg):
+def prepare(cfg):
     cn = Canon(cfg)
     if NONROOT_EV in cfg["conditions"] and "full" not in cfg["conditions"]:
         raise ValueError(f"{NONROOT_EV} is chosen from the full evidence: add 'full' to conditions")
     out = evidence_dir(cfg)
     sel = cn.selected()
     print(f"{len(sel)} incidents ({cn.split_id or 'no split'}, roles {cn.split_roles()})")
-    for i, (vc, _) in enumerate(sel, 1):
-        f = out / f"{vc.case_id}.json"
-        if _is_current(f, cn.evidence_fp(vc.case_id), cn.conditions(vc.case_id)):
-            continue
-        rec = _canonical_evidence(cn, vc, cn.conditions(vc.case_id))
-        _write_json(f, rec)
-        print(f"[{i}/{len(sel)}] {vc.case_id}: {list(rec['conditions'])}")
-    if any(m != "none" for m in cfg.get("retrieval", ["none"])) and cn.split_dir:
-        from .legacy_view import visible_case
-        st = cn.store_incidents()
-        for k, inc in enumerate(st, 1):
-            f = out / "store" / f"{inc['incident_uid']}.json"
-            if not _is_current(f, cn.evidence_fp(inc["incident_uid"]), ["full"]):
-                _write_json(f, _canonical_evidence(cn, visible_case(inc), ["full"]))
-        print(f"store: {len(st)} train-role incidents")
+    plog = prepare_log_path(cfg)
+    plog.parent.mkdir(parents=True, exist_ok=True)
+    with open(plog, "a", encoding="utf-8", newline="\n") as fp_log:
+        def flush(rows):
+            for r in rows:
+                fp_log.write(json.dumps(r, ensure_ascii=False) + "\n")
+            fp_log.flush()
+
+        for i, (vc, _) in enumerate(sel, 1):
+            f = out / f"{vc.case_id}.json"
+            if _is_current(f, cn.evidence_fp(vc.case_id), cn.conditions(vc.case_id)):
+                continue
+            rows = []
+            rec = _canonical_evidence(cn, vc, cn.conditions(vc.case_id), rows)
+            _write_json(f, rec)
+            flush(rows)
+            print(f"[{i}/{len(sel)}] {vc.case_id}: {list(rec['conditions'])}")
+        if any(m != "none" for m in cfg.get("retrieval", ["none"])) and cn.split_dir:
+            from .legacy_view import visible_case
+            st = cn.store_incidents()
+            for k, inc in enumerate(st, 1):
+                f = out / "store" / f"{inc['incident_uid']}.json"
+                if not _is_current(f, cn.evidence_fp(inc["incident_uid"]), ["full"]):
+                    rows = []
+                    _write_json(f, _canonical_evidence(cn, visible_case(inc), ["full"], rows, kind="store"))
+                    flush(rows)
+            print(f"store: {len(st)} train-role incidents")
     log = Path(cfg["out"]).parent / "ablation_log.jsonl"
-    log.parent.mkdir(parents=True, exist_ok=True)
     with open(log, "w", encoding="utf-8", newline="\n") as fh:
         for r in ablation_log(cn, [vc.case_id for vc, _ in sel], out):
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
 
 
 # ---------------------------------------------------------------- bước 1
-def prepare(cfg):
-    if is_canonical(cfg):
-        return prepare_canonical(cfg)
-    out = evidence_dir(cfg)
-    cases = select_cases(cfg)
-    print(f"{len(cases)} cases")
-    fp = evidence.fingerprint()
-    for i, c in enumerate(cases, 1):
-        f = out / f"{c.case_id}.json"
-        if _is_current(f, fp):
-            continue
-        tel = load_case(c)
-        vc = c.visible()
-        rec = {"case": {**asdict(c), "path": str(c.path)}, "evidence_fp": fp, "candidates": evidence.shuffled_candidates(vc),
-               "conditions": {}}
-        for cond in cfg["conditions"]:
-            if not ablate.applicable(cond, tel):
-                continue
-            ev = evidence.build(vc, ablate.apply(tel, cond, c.root_service))
-            rec["conditions"][cond] = ev
-        _write_json(f, rec)
-        print(f"[{i}/{len(cases)}] {c.case_id}: {list(rec['conditions'])}")
-
-
 def load_evidence(cfg) -> list[dict]:
     """Mỗi bản ghi có `vc` (VisibleCase, cho mô hình) và `truth` (Truth, chỉ để chấm điểm)."""
+    from .legacy_view import visible_case
     recs = []
-    cn = Canon(cfg) if is_canonical(cfg) else None
+    cn = Canon(cfg)
     for f in sorted(evidence_dir(cfg).glob("*.json")):
         with open(f, encoding="utf-8") as fh:
             r = json.load(fh)
-        if r.get("schema") == EVIDENCE_SCHEMA:
-            from .legacy_view import visible_case
-            _check_current(r, cn.evidence_fp(r["incident_uid"]), f)
-            r["vc"] = visible_case(cn.store.incident(r["incident_uid"]))
-            r["truth"] = cn.truth(r["incident_uid"])
-        else:
-            _check_current(r, evidence.fingerprint(), f)
-            c = Case(**{**r["case"], "path": Path(r["case"]["path"])})
-            r["case_obj"], r["vc"], r["truth"] = c, c.visible(), c.truth()
+        if r.get("schema") != EVIDENCE_SCHEMA:
+            raise RuntimeError(f"{f}: evidence schema {r.get('schema')!r} is not {EVIDENCE_SCHEMA}; rerun `prepare`")
+        _check_current(r, cn.evidence_fp(r["incident_uid"]), f)
+        r["vc"] = visible_case(cn.store.incident(r["incident_uid"]))
+        r["truth"] = cn.truth(r["incident_uid"])
         recs.append(r)
     return recs
 
 
-def _store_entries(cfg, recs, cn: Canon | None) -> list[dict]:
-    if cn is not None and cn.split_dir:
+def _store_entries(cfg, recs, cn: Canon) -> list[dict]:
+    if cn.split_dir:
         entries = []
         for f in sorted((evidence_dir(cfg) / "store").glob("*.json")):
             with open(f, encoding="utf-8") as fh:
@@ -385,30 +387,67 @@ def _gpu_name() -> str | None:
         return None
 
 
-def write_manifest(cfg, cn: Canon | None, server_fps: dict, started: float) -> dict:
-    """`manifest.json` next to the results: code, data, split, config and model identity of this run."""
-    from . import jev
+def prepare_log_path(cfg) -> Path:
+    """Preparation cost log (appended by `prepare`), next to the results; outside the evidence files."""
+    return Path(cfg["out"]).parent / "prepare_log.jsonl"
+
+
+def _sha256(path: Path) -> str | None:
+    return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+
+
+def _package_versions() -> dict:
+    from importlib import metadata
+    out = {}
+    for name in MANIFEST_PACKAGES:
+        try:
+            out[name] = metadata.version(name)
+        except metadata.PackageNotFoundError:
+            out[name] = None
+    return out
+
+
+def write_config_copy(cfg) -> tuple[str, Path]:
+    """The resolved config as `config.yaml` next to the grid; returns (sha256 of its text, path)."""
+    resolved = {k: v for k, v in cfg.items() if not k.startswith("_")}
+    check_no_secrets(resolved)
+    text = yaml.safe_dump(resolved, sort_keys=True, allow_unicode=True)
+    path = Path(cfg["out"]).parent / "config.yaml"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8", newline="\n")
+    return hashlib.sha256(text.encode("utf-8")).hexdigest(), path
+
+
+def write_manifest(cfg, cn: Canon, server_fps: dict, started: float) -> dict:
+    """`manifest.json` next to the results: code, environment, data, split, config and model identity of
+    this run. Wall times in the logs are measurements of the machine named by `platform`."""
+    from .legacy_view import VIEW_VERSION
     bundle = {}
-    if cn is not None:
-        root = cn.data_home.parent
-        if (root / "bundle.json").is_file():
-            with open(root / "bundle.json", encoding="utf-8") as f:
-                bundle["bundle_id"] = json.load(f).get("bundle_id")
-        if (root / "MANIFEST.sha256").is_file():
-            bundle["manifest_sha256"] = hashlib.sha256((root / "MANIFEST.sha256").read_bytes()).hexdigest()
+    root = cn.data_home.parent
+    if (root / "bundle.json").is_file():
+        with open(root / "bundle.json", encoding="utf-8") as f:
+            bundle["bundle_id"] = json.load(f).get("bundle_id")
+    if (root / "MANIFEST.sha256").is_file():
+        bundle["manifest_sha256"] = hashlib.sha256((root / "MANIFEST.sha256").read_bytes()).hexdigest()
     man = {"git_commit": _git("rev-parse", "HEAD"), "git_dirty": bool(_git("status", "--porcelain", "--", ".")),
-           **bundle, "split_id": cn.split_id if cn is not None else None,
-           "split_roles": cn.split_roles() if cn is not None else None, "config_hash": cfg["_hash"],
+           **bundle, "split_id": cn.split_id,
+           "split_roles": cn.split_roles(), "config_hash": cfg["_hash"],
            "models": [{"name": m["name"], "role": m.get("role", "primary"), "revision": m.get("revision"),
                        "quantization": m.get("quantization"), "backend": m.get("backend", "vllm"),
                        "presence_penalty": m.get("presence_penalty"),
                        "vllm_version": m.get("vllm_version"), "server_fp": server_fps.get(m["name"])}
                       for m in cfg["models"]],
-           "gpu": _gpu_name(), "prompt_version": PROMPT_VERSION, "jev_question_version": jev.JEV_QUESTION_VERSION,
-           "jev_pinned_model": jev.PINNED_MODEL, "seed": cfg.get("seed", 0),
+           "gpu": _gpu_name(), "prompt_version": PROMPT_VERSION, "seed": cfg.get("seed", 0),
            "sampling": {"n": cfg["n_samples"], "temperature": cfg["temperature"]},
            "raw_outputs": raw_outputs_path(cfg).name if raw_outputs_enabled(cfg) else None,
            "started": int(started), "finished": int(time.time())}
+    cfg_sha, cfg_path = write_config_copy(cfg)
+    man.update({"manifest_version": 2, "python": platform.python_version(), "platform": platform.platform(),
+                "packages": _package_versions(), "evidence_builder_version": evidence.BUILDER_VERSION,
+                "legacy_view_version": VIEW_VERSION, "config_sha256": cfg_sha, "config_copy": cfg_path.name,
+                "split_sha256": _sha256(cn.split_dir / "split.json") if cn.split_dir else None,
+                "prepare_log_sha256": _sha256(prepare_log_path(cfg))})
+    check_no_secrets(man)
     path = Path(cfg["out"]).parent / "manifest.json"
     _write_json(path, man)
     return man
@@ -477,14 +516,10 @@ def _check_roles(models):
 
 # ---------------------------------------------------------------- bước 2
 def run(cfg):
-    cn = Canon(cfg) if is_canonical(cfg) else None
+    cn = Canon(cfg)
     recs = load_evidence(cfg)
-    if cn is not None:
-        wanted = {vc.case_id for vc, _ in cn.selected()}
-    else:
-        wanted = {c.case_id for c in select_cases(cfg)} if Path(cfg["data_root"]).exists() else None
-    if wanted:
-        recs = [r for r in recs if r["vc"].case_id in wanted]
+    wanted = {vc.case_id for vc, _ in cn.selected()}
+    recs = [r for r in recs if r["vc"].case_id in wanted]
     print(f"{len(recs)} cases with evidence")
 
     _check_roles(cfg["models"])
@@ -501,9 +536,8 @@ def run(cfg):
         store_fp = hashlib.sha256(blob.encode()).hexdigest()[:16]
         print(f"case store: {len(entries)} entries, embedder={store.emb.kind}")
     members: dict[str, set] = {}
-    if cn is not None:
-        for u, g in cn.group.items():
-            members.setdefault(g, set()).add(u)
+    for u, g in cn.group.items():
+        members.setdefault(g, set()).add(u)
 
     out_path = Path(cfg["out"])
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -529,7 +563,7 @@ def run(cfg):
             role, rev = m.get("role", "primary"), m.get("revision")
             for r in recs:
                 vc, tr, cands = r["vc"], r["truth"], r["candidates"]
-                grp = frozenset(members.get(cn.group.get(vc.case_id), ())) if cn is not None else frozenset()
+                grp = frozenset(members.get(cn.group.get(vc.case_id), ()))
                 for cond, ev in r["conditions"].items():
                     cells = [("none", "-")] + [(meth, mode) for meth in cfg["retrieval"] if meth != "none"
                                                for mode in cfg["store_modes"]]
@@ -543,8 +577,10 @@ def run(cfg):
                                + (f"|pp={llm.presence_penalty}" if llm.presence_penalty is not None else ""))
                         if key in done:
                             continue
+                        t0 = time.perf_counter()
                         hits = (store.search(ev["text"], vc, meth, mode, cfg["top_k"], exclude_ids=exclusions(store, vc, tr, mode, grp))
                                 if meth != "none" else [])
+                        retrieval_s = round(time.perf_counter() - t0, 4) if meth != "none" else 0.0
                         msgs = build_messages(vc, cands, ev["text"], format_hits(hits))
                         res = llm.ask(msgs, cands)
                         if keep_raw and key not in raw_done:   # before the grid row: a done key has its raw record
@@ -569,10 +605,11 @@ def run(cfg):
                             "hits": [{"case_id": h["case_id"], "root": h["root"], "dense_sim": h["dense_sim"]} for h in hits],
                             "hit_has_truth": any(h["root"] in score.truth_ids(tr) for h in hits),
                             "prompt_tokens": res["prompt_tokens"], "completion_tokens": res["completion_tokens"],
-                            "latency_s": res["latency_s"], "cached": res["cached"], "ts": int(time.time()),
-                            "incident_uid": vc.case_id if cn is not None else None, "pair_id": vc.case_id,
-                            "split_id": cn.split_id if cn is not None else None,
-                            "split_role": cn.roles.get(vc.case_id) if cn is not None else None,
+                            "latency_s": res["latency_s"], "cached": res["cached"], "retrieval_s": retrieval_s,
+                            "ts": int(time.time()),
+                            "incident_uid": vc.case_id, "pair_id": vc.case_id,
+                            "split_id": cn.split_id,
+                            "split_role": cn.roles.get(vc.case_id),
                             "oracle_store": mode == "no_precedent",
                             "evidence_fp": r["evidence_fp"], "store_fp": store_fp if meth != "none" else None,
                         }

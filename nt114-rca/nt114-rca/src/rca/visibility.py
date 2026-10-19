@@ -16,8 +16,7 @@ file from `run_grid prepare`, and every condition in that file:
 Being named is a property of the summary, not a precondition of a correct answer: the model ranks
 the whole candidate list and can pick an unnamed root.
 
-Reads labels, so it runs offline after `prepare` and nothing it writes reaches a prompt or a Jev
-state. Writes `evidence_visibility.jsonl` (flags only, no service names),
+Reads labels, so it runs offline after `prepare` and nothing it writes reaches a prompt. Writes `evidence_visibility.jsonl` (flags only, no service names),
 `table_evidence_visibility.csv` (by dataset x split x condition; per record and injection-weighted) and
 `visibility_counts.json` (incidents of the roles, exclusions with reasons, skipped conditions) next to
 the config's `out`, never into the evidence directory.

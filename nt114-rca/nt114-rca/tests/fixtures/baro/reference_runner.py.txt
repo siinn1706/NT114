@@ -1,0 +1,126 @@
+"""Reference BARO fixtures for NT114 (runs in this isolated CPU-only environment, never in NT114's).
+
+  refenv/Scripts/python.exe run_reference.py <inputs dir> <fixtures out dir>
+
+Upstream code is used unmodified: `RCAEval/e2e/baro.py::baro` is loaded from the checkout by file
+path (so `RCAEval/e2e/__init__.py` and its heavy imports are not loaded) together with
+`RCAEval.io.time_series`. The preprocessing before the call is `main.py`'s `process` body, copied
+statement by statement below with its line numbers at commit 259ea41.
+
+Scores: the official API returns a ranking only. A second, separate module instance of baro.py gets
+a recording subclass of `RobustScaler` in its namespace; `transform` returns sklearn's own result and
+records Python `max()` of it, the exact value `baro` ranks by. No upstream file is changed (the
+diff against upstream is empty). A record's scores are kept only when the instrumented ranking equals
+the uninstrumented one.
+"""
+from __future__ import annotations
+
+import hashlib
+import importlib.util
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import RobustScaler
+
+HERE = Path(__file__).resolve().parent
+UPSTREAM = HERE / "RCAEval"
+sys.path.insert(0, str(UPSTREAM))
+LENGTH, TDELTA = 20, 0          # main.py argparse defaults (--length 20, --tdelta 0)
+
+
+def load_baro(name: str, scaler=None):
+    spec = importlib.util.spec_from_file_location(name, UPSTREAM / "RCAEval" / "e2e" / "baro.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    if scaler is not None:
+        mod.RobustScaler = scaler
+    return mod
+
+
+class Recorder:
+    scores: list = []
+
+
+class RecordingRobustScaler(RobustScaler):
+    def transform(self, X):
+        out = super().transform(X)
+        Recorder.scores.append(float(max(out[:, 0])))
+        return out
+
+
+def main_py_process(data: pd.DataFrame, inject_time: int):
+    """main.py lines 287-337 (process), for a metrics-only method, with a record of each step."""
+    rec = {"rows_in": len(data), "cols_in": data.shape[1]}
+    if "time.1" in data:                                                        # 291
+        data = data.drop(columns=["time.1"])                                    # 292
+    dropped50 = [c for c in data.columns if c.endswith("_latency-50")]
+    data = data.loc[:, ~data.columns.str.endswith("_latency-50")]               # 295
+    # 297-300: the "mm-tt" / "torai-TT" ts-* filter does not apply to RCAEval RE1-RE3 paths
+    data = data.replace([np.inf, -np.inf], np.nan)                              # 303
+    data = data.ffill()                                                         # 306
+    data = data.fillna(0)                                                       # 307
+    inject_time = int(inject_time) + TDELTA                                     # 309-310
+    normal_df = data[data["time"] < inject_time].tail(LENGTH * 60 // 2)         # 312
+    anomal_df = data[data["time"] >= inject_time].head(LENGTH * 60 // 2)        # 313
+    data = pd.concat([normal_df, anomal_df], ignore_index=True)                 # 315
+    num_node = len(data.columns) - 1                                            # 318
+    renamed = {c: c.replace("_latency-90", "_latency") for c in data.columns if c.endswith("_latency-90")}
+    data = data.rename(columns=renamed)                                         # 330-336
+    rec.update(dropped_latency50=dropped50, renamed=renamed, inject_time=inject_time, length=LENGTH, tdelta=TDELTA,
+               normal_window={"rows": len(normal_df), "t_min": float(normal_df["time"].min()) if len(normal_df) else None,
+                              "t_max": float(normal_df["time"].max()) if len(normal_df) else None},
+               anomal_window={"rows": len(anomal_df), "t_min": float(anomal_df["time"].min()) if len(anomal_df) else None,
+                              "t_max": float(anomal_df["time"].max()) if len(anomal_df) else None},
+               fill="replace +-inf by NaN; ffill; fillna(0)", num_node=num_node)
+    return data, inject_time, num_node, rec
+
+
+def services(ranks):
+    """main.py lines 560-571: service = name before the first '_', '-db' removed, first occurrence kept."""
+    s_ranks = [x.split("_")[0].replace("-db", "") for x in ranks]
+    return [s_ranks[0]] + [s_ranks[i] for i in range(1, len(s_ranks)) if s_ranks[i] not in s_ranks[:i]] if s_ranks else []
+
+
+def run(inputs: Path, out: Path):
+    from RCAEval.io.time_series import preprocess
+    plain = load_baro("baro_upstream")
+    instr = load_baro("baro_instrumented", RecordingRobustScaler)
+    items = json.loads((inputs / "inputs.json").read_text(encoding="utf-8"))
+    fixtures = []
+    for it in items:
+        f = inputs / it["file"]
+        sha = hashlib.sha256(f.read_bytes()).hexdigest()
+        assert sha == it["sha256"], f
+        raw = pd.read_csv(f)                                                    # 288
+        data, t, num_node, rec = main_py_process(raw, it["inject_time"])
+        dataset = f"{(it['subset'] or 'edge').lower()}-{it['system'] or 'synthetic'}"
+        kw = dict(dataset=dataset, anomalies=None, dk_select_useful=False, sli=None, verbose=False, n_iter=num_node)
+        out_plain = plain.baro(data.copy(), t, **kw)                            # 420-430
+        Recorder.scores = []
+        out_instr = instr.baro(data.copy(), t, **kw)
+        nodes = out_instr["node_names"]
+        same = out_instr["ranks"] == out_plain["ranks"] and len(Recorder.scores) == len(nodes)
+        scores = dict(zip(nodes, Recorder.scores)) if same else None
+        normal = preprocess(data[data["time"] < t], dataset=dataset)
+        anomal = preprocess(data[data["time"] >= t], dataset=dataset)
+        rec.update(dataset_arg=dataset, normal_cols_after_preprocess=normal.shape[1],
+                   anomal_cols_after_preprocess=anomal.shape[1], intersect_cols=len(nodes),
+                   mem_columns_mb=[c for c in nodes if c.endswith("_mem")],
+                   column_to_service={c: c.split("_")[0].replace("-db", "") for c in nodes},
+                   service_rule="name.split('_')[0].replace('-db', '')")
+        fixtures.append({"name": it["name"], "incident_uid": it["incident_uid"], "subset": it["subset"],
+                         "system": it["system"], "input_sha256": sha, "ranks": out_plain["ranks"],
+                         "services": services(out_plain["ranks"]), "instrumented_ranking_identical": same,
+                         "scores": None if scores is None else [[c, scores[c]] for c in out_plain["ranks"]],
+                         "preprocessing": rec})
+        print(it["name"], len(out_plain["ranks"]), "metrics;", "scores kept" if same else "scores DISCARDED")
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "reference.json").write_text(json.dumps(fixtures, indent=0), encoding="utf-8")
+    return fixtures
+
+
+if __name__ == "__main__":
+    run(Path(sys.argv[1]), Path(sys.argv[2]))

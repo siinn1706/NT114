@@ -1,4 +1,4 @@
-"""Weighted metrics, injection-clustered statistics and the randomised controls."""
+"""Weighted metrics and injection-clustered statistics."""
 from __future__ import annotations
 
 import numpy as np
@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 from sklearn.metrics import average_precision_score, roc_auc_score
 
-from rca import gate, metrics
+from rca import metrics
 
 
 def test_weighted_metrics_equal_unweighted_with_unit_weights():
@@ -81,47 +81,31 @@ def test_per_injection():
     assert metrics.per_injection(df, "ok").to_dict() == {"i": 0.5, "j": 1.0}
 
 
-def _table(n=50, seed=0):
-    rng = np.random.default_rng(seed)
-    conf = np.round(rng.random(n), 1)                  # many ties
-    return pd.DataFrame({"answer_ok": rng.random(n) < conf, "answer_conf": conf, "answer_tok": 100.0,
-                         "escalate_ok": rng.random(n) < 0.7, "escalate_conf": 0.9, "escalate_tok": 300.0,
-                         "retrieve_ok": rng.random(n) < 0.5, "retrieve_conf": 0.5, "retrieve_tok": 200.0})
+def test_known_values_with_ties():
+    # positives = wrong. Scores: 0.2 negative, 0.5 positive and 0.5 negative (a tie), 0.9 positive.
+    # Positive-negative pairs ranked correctly: 1 + 0.5 (tie) + 1 + 1, over 4 pairs.
+    y, s = np.array([0, 1, 0, 1], bool), np.array([0.2, 0.5, 0.5, 0.9])
+    assert metrics.auroc(y, s) == pytest.approx(3.5 / 4)
+    assert metrics.auroc(y, s) == pytest.approx(roc_auc_score(y, s))
+    # risk-coverage with a tie: answer 0.9 -> risk 0 at coverage 1/4; add the 0.5 tie -> 1/3 at 3/4; all -> 2/4
+    c, p = np.array([1, 1, 0, 0], bool), np.array([0.9, 0.5, 0.5, 0.2])
+    assert metrics.aurc_w(c, p) == pytest.approx(0.25 * 0 + 0.5 * (1 / 3) + 0.25 * 0.5)
 
 
-def test_coverage_match():
-    t = _table()
-    draws = gate.coverage_matched_threshold(t, 0.62, draws=200, seed=0)
-    k = round(0.62 * len(t))
-    assert all((d == "answer").sum() == k for d in draws)
-    assert len({tuple(d) for d in draws}) > 1                        # ties broken differently per draw
-    accepted = np.array([(d == "answer").to_numpy() for d in draws])
-    # every accepted row is at least as confident as every rejected row, in every draw
-    for row in accepted:
-        assert t["answer_conf"][row].min() >= t["answer_conf"][~row].max()
-    rnd = gate.coverage_matched_random(t, 0.62, draws=50, seed=1)
-    assert all((d == "answer").sum() == k for d in rnd)
-    res = gate.evaluate_draws(t, draws)
-    assert res["coverage"] == pytest.approx(k / len(t)) and res["draws"] == 200
+def test_holm_textbook_example():
+    # m = 4, sorted p = 0.005, 0.01, 0.03, 0.04 -> 4 x 0.005, 3 x 0.01, 2 x 0.03, max(1 x 0.04, 0.06)
+    adj = metrics.holm({"a": 0.01, "b": 0.04, "c": 0.03, "d": 0.005})
+    assert adj == pytest.approx({"d": 0.02, "a": 0.03, "c": 0.06, "b": 0.06})
 
 
-def test_route_matched():
-    t = _table()
-    ref = pd.Series(np.repeat(["answer", "abstain", "escalate", "retrieve"], [20, 10, 12, 8]), index=t.index)
-    for draws in (gate.route_matched_random(t, ref, draws=20), gate.route_matched_consensus(t, ref, draws=20)):
-        for d in draws:
-            assert d.value_counts().to_dict() == ref.value_counts().to_dict()
-    r2 = gate.route_matched_consensus(t, ref, draws=1)[0]
-    assert t["answer_conf"][r2 == "abstain"].max() <= t["answer_conf"][r2 == "answer"].min()
-
-
-def test_evaluate_uses_final_arm_confidence_and_weights():
-    t = pd.DataFrame({"answer_ok": [False, False], "answer_conf": [0.9, 0.2], "answer_tok": [10.0, 10.0],
-                      "escalate_ok": [False, True], "escalate_conf": [0.2, 0.95], "escalate_tok": [30.0, 30.0]})
-    r = gate.evaluate(t, pd.Series(["escalate", "answer"]))
-    assert r["confident_wrong_per_100"] == 0.0 and r["wrong_per_100"] == 100.0    # escalate arm's 0.2 is not confident
-    r = gate.evaluate(t, pd.Series(["answer", "escalate"]), weights=[3, 1])
-    assert r["confident_wrong_per_100"] == pytest.approx(75.0) and r["acc_answered"] == pytest.approx(0.25)
-    assert gate.oracle_policy(t).tolist() == ["abstain", "escalate"]
-    with pytest.raises(ValueError, match="retrieve"):
-        gate.evaluate(t, pd.Series(["retrieve", "answer"]))
+def test_censored_mrr_and_vectorised_cluster_bootstrap():
+    assert metrics.mrr_at_k([1, 2, 6, 11]) == pytest.approx((1 + 0.5 + 0 + 0) / 4)
+    rng = np.random.default_rng(0)
+    v, cl, w = rng.random(60), np.repeat(np.arange(20), 3), rng.random(60) + 0.5
+    fast = metrics.cluster_bootstrap_means(v, cl, w, n=4000, seed=3)
+    slow = metrics.cluster_bootstrap(v, cl, w, n=4000, seed=7)
+    assert fast["est"] == pytest.approx(slow["est"])
+    assert fast["lo"] == pytest.approx(slow["lo"], abs=0.02)
+    assert fast["hi"] == pytest.approx(slow["hi"], abs=0.02)
+    two = metrics.cluster_bootstrap_means(np.column_stack([v, 1 - v]), cl, w, n=200)
+    assert two["est"][0] + two["est"][1] == pytest.approx(1.0)

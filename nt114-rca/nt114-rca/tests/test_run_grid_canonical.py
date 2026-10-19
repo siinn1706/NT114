@@ -1,13 +1,14 @@
 """run_grid on the canonical path: synthetic data built by the RCAEval adapter, mock LLM."""
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
 import pytest
 
 from conftest import canonical_run_cfg
-from rca import analyze, gate, run_grid
+from rca import analyze, run_grid, selective
 from rca.store import CanonicalStore, read_jsonl
 
 LABEL_KEYS = {"root_service", "fault", "truth", "root", "case", "path", "fault_type", "root_cause"}
@@ -84,11 +85,11 @@ def test_canonical_prepare_and_run(synth, monkeypatch):
                 hl = labels[h["case_id"]]
                 assert (hl["root_cause"]["primary_root_service"], hl["fault"]["type_raw"]) != (r["truth"], r["fault"])
     df = analyze.load(cfg["out"])
-    assert len(analyze.cell_table(df))
-    t = gate.action_table(df, "mock-small", "mock-big", retrieval="hybrid", store_mode="precedent")
+    assert len(analyze.cell_table(analyze.attach_units(df), n_boot=50))
+    t = selective.action_table(df[~df.oracle_store.astype(bool)], model="mock-small")
     assert len(t) and "hit_top_sim" in t
-    res = gate.leave_one_system_out(t)
-    assert set(res["policy"]) >= {"always_answer", "learned"}
+    res = selective.evaluate(t, selective.fixed(t, "answer"))
+    assert res["coverage"] == pytest.approx(1.0)
 
 
 def test_rerun_is_idempotent(synth, monkeypatch):
@@ -100,6 +101,72 @@ def test_rerun_is_idempotent(synth, monkeypatch):
     run_grid.run(cfg)
     assert {p.name: p.read_bytes() for p in Path(cfg["evidence_dir"]).rglob("*.json")} == ev
     assert sum(1 for _ in open(cfg["out"], encoding="utf-8")) == n
+
+
+GOLDEN = Path(__file__).resolve().parent / "golden/canonical_synthetic_evidence.sha256"
+FIXTURE_GOLDEN = Path(__file__).resolve().parent / "golden/canonical_fixture_evidence.sha256"
+ALL_CONDITIONS = ["full", "no_trace", "no_log", "no_metric", "metrics_only", "blind_root", "blind_nonroot",
+                  "blind_nonroot_ev"]
+
+
+def read_golden(path: Path) -> dict[str, str]:
+    return dict(reversed(line.split("  ")) for line in path.read_text(encoding="utf-8").splitlines())
+
+
+def evidence_digests(ev_dir: Path) -> dict[str, str]:
+    """sha256 of the model-visible part (candidates, conditions) of every query and store evidence file."""
+    out = {}
+    for f in sorted(ev_dir.rglob("*.json")):
+        r = json.loads(f.read_text(encoding="utf-8"))
+        blob = json.dumps({"candidates": r["candidates"], "conditions": r["conditions"]}, sort_keys=True,
+                          ensure_ascii=False, separators=(",", ":"))
+        out[f.relative_to(ev_dir).as_posix()] = hashlib.sha256(blob.encode()).hexdigest()
+    return out
+
+
+def test_canonical_synthetic_matches_golden(canonical_synth, tmp_path, monkeypatch):
+    """Evidence parity: the digests were captured when this path matched the retired direct RCAEval loader
+    (identical text for every shared condition; features within the float-parser tolerance)."""
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path)
+    run_grid.prepare(cfg)
+    assert evidence_digests(Path(cfg["evidence_dir"])) == read_golden(GOLDEN)
+
+
+@pytest.fixture(scope="module")
+def fixture_eval_home(tmp_path_factory) -> Path:
+    """The RCAEval fixture zips (every known raw defect) built, condition-matrixed and split eval-only."""
+    from conftest import build_fixture_home, fixture_config
+    from rca import splits
+    dh = tmp_path_factory.mktemp("fixture_eval") / "dh"
+    build_fixture_home(dh)
+    pcfg = fixture_config()
+    assert splits.conditions_cmd("rcaeval", pcfg, dh) == 0
+    assert splits.split_cmd("eval-only-rcaeval", 0, pcfg, dh) == 0
+    return dh
+
+
+def test_fixture_build_matches_golden(fixture_eval_home, tmp_path, monkeypatch):
+    """Evidence regression on the raw-defect fixture cases, all three systems and every applicable condition.
+
+    Evidence is rebuilt from scratch, so a change to the canonical view or the evidence builder fails here even
+    when the evidence fingerprint was not bumped. The digests were captured when all 36 condition pairs the retired
+    direct RCAEval loader could build on these cases had identical text and features within 1e-9. Recapture them
+    only for an intended evidence change."""
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    cfg = canonical_run_cfg(fixture_eval_home, tmp_path, split="eval-only-rcaeval-0", retrieval=["none"],
+                            conditions=ALL_CONDITIONS)
+    cfg.pop("systems")
+    run_grid.prepare(cfg)
+    got = evidence_digests(Path(cfg["evidence_dir"]))
+    assert len(got) == 7 and got == read_golden(FIXTURE_GOLDEN)
+
+
+def test_load_cfg_rejects_non_canonical_configs(tmp_path):
+    p = tmp_path / "old.yaml"
+    p.write_text("evidence_dir: x\nconditions: [full]\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="only `source: canonical`"):
+        run_grid.load_cfg(p)
 
 
 def test_changed_evidence_logic_is_never_reused(synth, monkeypatch):

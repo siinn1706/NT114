@@ -1,0 +1,19 @@
+# V7 analysis of the Nezha mock slice (configs/exp/v7-nezha-mock.yaml). Exploratory only.
+grids: [results_v7/nezha/grid.jsonl]
+raw: null
+visibility: [results_visibility/nezha/evidence_visibility.jsonl]
+baselines: [results_baselines_nezha/baselines.jsonl]
+data_home: data
+out_dir: results_v7/nezha/analysis
+n_boot: 500
+n_perm: 2000
+seed: 0
+scores: null
+selective: {coverage: [0.7, 0.9], risk: [0.2]}
+contrasts:
+  - {name: drop_blind_root, a: {condition: full}, b: {condition: blind_root}, metric: ac1, require_changed: true,
+     within: {model: mock-primary}}
+  - {name: mock_vs_b1m_full, a: {model: mock-primary}, b: {model: B1m evidence order}, metric: ac1,
+     within: {condition: full}}
+families: {}
+preregistration_sha: null

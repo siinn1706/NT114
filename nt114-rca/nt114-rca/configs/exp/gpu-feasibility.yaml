@@ -2,7 +2,7 @@
 # request size and return parseable answers, and at what latency. NOT RUN YET.
 #   PYTHONPATH=src python -m rca.feasibility run configs/hardware/rtx4080-laptop-12gb.yaml <profile>
 # rca.feasibility fills `models` from the profile and writes under results_feasibility/<profile>/.
-# No Jev section: this test never calls Jev. DEV rows are never reported.
+# DEV rows are never reported.
 source: canonical
 data_home: null
 canonical_datasets: [rcaeval]

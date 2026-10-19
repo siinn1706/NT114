@@ -9,7 +9,7 @@
 
 `run` starts `vllm serve` through scripts/serve_model.sh (offline, pinned revision), samples
 nvidia-smi every second, runs the small DEV grid of the experiment config with run_grid, stops the
-server and writes `<root>/<profile>/feasibility.json`. It never calls Jev. The estimate from
+server and writes `<root>/<profile>/feasibility.json`. The estimate from
 rca.capacity is stored next to the measurement; the measurement decides.
 """
 from __future__ import annotations

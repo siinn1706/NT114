@@ -95,5 +95,5 @@ def test_outputs_never_go_into_the_evidence_dir(tmp_path):
 
 
 def test_model_facing_modules_do_not_import_the_audit():
-    for mod in ("llm", "evidence", "retrieve", "jev", "decide", "run_grid"):
+    for mod in ("llm", "evidence", "retrieve", "selective", "run_grid"):
         assert "visibility" not in (RCA_ROOT / "src" / "rca" / f"{mod}.py").read_text(encoding="utf-8"), mod

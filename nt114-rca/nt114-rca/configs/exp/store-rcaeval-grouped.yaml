@@ -1,0 +1,20 @@
+# Retrieval store of the grouped RCAEval split (CPU, no LLM call): the 374 train-role incidents'
+# `full` evidence, for the text-level near-duplicate audit (V6). Query evidence (val and test) is
+# reused from the visibility audit's directory (same fingerprints); the store files go to its
+# `store/` subdirectory. Preparation and ablation logs go next to `out` (results_store/rcaeval/).
+#   PYTHONPATH=src python -m rca.run_grid prepare    configs/exp/store-rcaeval-grouped.yaml   # ~18 s per store incident
+#   PYTHONPATH=src python -m rca.leakage_audit       configs/exp/store-rcaeval-grouped.yaml
+# Never pass this config to `run`.
+source: canonical
+data_home: null
+canonical_datasets: [rcaeval]
+split: within-rcaeval-grouped-0-e9b2c81c
+split_roles: [val, test]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [hybrid]
+store_modes: [precedent]
+embedder: tfidf
+evidence_dir: results_visibility/rcaeval/evidence
+out: results_store/rcaeval/grid.jsonl
+models: []

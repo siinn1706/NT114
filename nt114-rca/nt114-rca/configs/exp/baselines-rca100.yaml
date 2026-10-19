@@ -2,20 +2,20 @@
 #   PYTHONPATH=src python -m rca.baselines configs/exp/baselines-rca100.yaml
 # Primary: eval-only-rca100 = 86 tier-A tasks / 70 injections (expect B3 majority 0.586, alert-entity
 # 0.374, injection-weighted). Secondary (all 103 tasks / 86 injections): set `split: null`.
-# B1 max-z rows appear only for incidents whose evidence files exist (run_grid prepare).
+# B1 rows come from the evidence files of the visibility audit (results_visibility/rca100/evidence).
 source: canonical
 data_home: null
 canonical_datasets: [rca100]
 split: eval-only-rca100
 split_role: test
 limit_per_system: null
-conditions: [full, no_trace, no_log, no_metric, metrics_only]
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
 retrieval: [none]
 store_modes: [precedent]
 top_k: 3
 n_samples: 1
 temperature: 0
 embedder: tfidf
-evidence_dir: results_baselines_rca100/evidence
+evidence_dir: results_visibility/rca100/evidence   # the visibility audit's evidence (V3)
 out: results_baselines_rca100/grid.jsonl
 models: []

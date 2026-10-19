@@ -1,25 +1,47 @@
-"""Tổng hợp kết quả lưới thành các bảng cho các câu hỏi nghiên cứu.
+"""Analysis entry point (evaluation-only): grids -> weighted, injection-clustered tables.
 
-  python -m rca.analyze results/grid.jsonl                         # bảng câu hỏi 1-2
-  python -m rca.analyze results/grid.jsonl --gate MODEL_SMALL [MODEL_BIG]   # lớp quyết định cũ
-  python -m rca.analyze results/grid.jsonl --decisions results/decisions.jsonl [--data-home D] [--smoke]
+  python -m rca.analyze configs/analysis/<name>.yaml
+  python -m rca.analyze results/grid.jsonl [--data-home D]        # defaults: no contrasts, exploratory
 
-Bảng chính (headline) từ chối: dòng mock, dòng DEV (split_role val) và dòng trộn phiên bản prompt /
-câu hỏi Jev. `--smoke` cho phép chúng nhưng ghi rõ bảng là smoke. Trọng số và cụm = eval-units
-(một lần tiêm lỗi là một đơn vị); không có báo cáo eval-units thì mỗi bản ghi là một đơn vị.
+The analysis config names the grid file(s), the optional raw outputs (default `llm_raw.jsonl` next to
+each grid), visibility JSONL, baselines JSONL, `data_home`, contrasts and families, the selective
+goals and `preregistration_sha`. Tables:
+
+- `table_cells`: per dataset x granularity x split role x set-scored x model x condition x retrieval:
+  AC@1-5 and MRR@5 (ranks beyond 5 are censored; no mean rank is computed), Brier, gap, ECE on the
+  support, AUROC and AURC, each with a cluster-bootstrap CI over injections;
+- `table_confidence`: every registry score per cell (error detection; calibration for probabilities);
+- `table_selective`: risk-coverage per score, L1, C2, O, and DEV-fit thresholds transferred to test;
+- `table_contrasts`: the declared paired contrasts (`rca.contrasts`); scored baseline rows join the
+  frame with `model` = the baseline name, so `{model: B1m evidence order}` is an arm like any other;
+- `table_shift`: DEV vs test by system x fault;
+- `table_cost`: tokens, latency, retrieval and preparation seconds per cell and arm path (`rca.cost`);
+- `table_cells_by_precedent_root` (retrieval rows only): `table_cells` split by whether a retrieved precedent
+  carries the query's root, i.e. records, injections and outcomes per stratum of the retrieval regime.
+
+`analysis_config.yaml` (the resolved config, absolute input paths) and `analysis_meta.json` (sha256 of
+every input and table) let `python -m rca.reproduce <out dir>` regenerate and compare the tables.
+
+Without `preregistration_sha` every file is prefixed `exploratory_`. With it, the headline guard
+refuses mock rows, DEV rows, mixed prompt versions, mixed model revisions or server fingerprints
+within a model, oracle-store rows and mixed evidence fingerprints of an incident, and unvalidated
+confidence scores go to a separate exploratory file. `excluded_from_primary` records are removed
+from every table and counted in `analysis_meta.json`.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import yaml
 
-from . import gate, score
-from .metrics import (ac_at_k, ac_at_k_w, aurc, aurc_w, avg_at_k, brier, cluster_bootstrap, confident_wrong_rate,
-                      ece, ece_w, error_detection, holm, mcnemar, overconfidence_gap, selective_accuracy)
+from . import confidence, contrasts, cost, score, selective
+from .metrics import (RANK_CAP, auprc, auroc, aurc_w, brier, cluster_bootstrap, cluster_bootstrap_means, ece_w,
+                      overconfidence_gap, selective_risk_at)
 
 
 def load(path) -> pd.DataFrame:
@@ -31,24 +53,36 @@ class HeadlineGuardError(ValueError):
     pass
 
 
-def guard_headline(grid: pd.DataFrame, decisions: pd.DataFrame | None = None) -> None:
-    """Headline tables never contain mock rows, DEV rows or mixed prompt / Jev question versions."""
+def _mixed_within(grid: pd.DataFrame, col: str, by: str) -> list:
+    if col not in grid or by not in grid:
+        return []
+    n = grid.groupby(by)[col].nunique(dropna=False)
+    return sorted(n[n > 1].index)
+
+
+def guard_headline(grid: pd.DataFrame) -> None:
+    """Headline tables never contain mock rows, DEV rows, mixed prompt versions, mixed model revisions or
+    server fingerprints within one model, oracle-store rows or mixed evidence fingerprints of an incident."""
     problems = []
+    if not len(grid):
+        problems.append("no rows")
     if "backend" in grid and (grid["backend"] == "mock").any():
         problems.append("mock LLM rows")
     if "split_role" in grid and (grid["split_role"] == "val").any():
         problems.append("DEV (split_role=val) rows")
     if "prompt_version" in grid and grid["prompt_version"].nunique() > 1:
         problems.append(f"mixed prompt_version {sorted(grid['prompt_version'].unique())}")
-    if decisions is not None and len(decisions):
-        if (decisions["jev_backend"] == "mock").any():
-            problems.append("mock Jev rows")
-        if decisions["jev_question_version"].nunique() > 1:
-            problems.append(f"mixed jev_question_version {sorted(decisions['jev_question_version'].unique())}")
-        if "split_role" in decisions and (decisions["split_role"] == "val").any():
-            problems.append("DEV decision rows")
+    for col in ("model_revision", "server_fp"):
+        bad = _mixed_within(grid, col, "model")
+        if bad:
+            problems.append(f"mixed {col} within model(s) {bad}")
+    if "oracle_store" in grid and grid["oracle_store"].fillna(False).astype(bool).any():
+        problems.append("oracle_store (no_precedent) rows")
+    bad = _mixed_within(grid, "evidence_fp", "incident_uid")
+    if bad:
+        problems.append(f"mixed evidence fingerprints for {len(bad)} incident(s)")
     if problems:
-        raise HeadlineGuardError("refusing headline tables: " + "; ".join(problems) + " (use --smoke for a smoke report)")
+        raise HeadlineGuardError("refusing headline tables: " + "; ".join(problems))
 
 
 def attach_units(df: pd.DataFrame, data_home: Path | None = None, uid_col: str = "incident_uid") -> pd.DataFrame:
@@ -79,178 +113,317 @@ def reweight(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def strata_cols(df: pd.DataFrame, extra=()) -> list[str]:
-    return [c for c in ("dataset", "label_granularity", *extra, "model", "condition", "retrieval", "store_mode") if c in df]
+    return [c for c in ("dataset", "label_granularity", "split_role", "set_scored", *extra, "model", "condition",
+                        "retrieval", "store_mode") if c in df]
 
 
-def weighted_cell_table(df: pd.DataFrame, n_boot: int = 2000, extra=()) -> pd.DataFrame:
-    """Per dataset x granularity [x extra strata, e.g. coverage cause] x model x condition x retrieval:
-    weighted accuracy (CI over injections), calibration, error detection and selective metrics."""
+# ---------------------------------------------------------------- tables
+def _boot(fn, cols: list[np.ndarray], g: pd.DataFrame, n_boot: int, seed: int) -> tuple[float, float, float]:
+    X = np.column_stack(cols)
+    r = cluster_bootstrap(X, g["injection_id"].to_numpy(), g["weight"].to_numpy(),
+                          fn=lambda x, w: fn(*[x[:, i] for i in range(x.shape[1])], w), n=n_boot, seed=seed)
+    return r["est"], r["lo"], r["hi"]
+
+
+def cell_table(df: pd.DataFrame, n_boot: int = 2000, seed: int = 0, extra=()) -> pd.DataFrame:
+    """Weighted cell metrics, each with a percentile cluster-bootstrap CI over injections."""
     rows = []
     cols = strata_cols(df, extra)
     for k, g in df.groupby(cols, dropna=False):
-        c, w = g["correct"].astype(bool).values, g["weight"].values
-        ci = cluster_bootstrap(c, g["injection_id"].values, w, n=n_boot)
         rec = dict(zip(cols, k if isinstance(k, tuple) else (k,)))
-        rec.update({"n_records": len(g), "n_injections": g["injection_id"].nunique(),
-                    "AC@1": ac_at_k_w(g["rank"], 1, w), "AC@1_lo": ci["lo"], "AC@1_hi": ci["hi"],
-                    "AC@3": ac_at_k_w(g["rank"], 3, w),
-                    "parse_failed": float(np.average(g["parse_failed"].astype(float), weights=w)) if "parse_failed" in g else 0.0})
-        for name in ("consensus", "verbal"):
-            conf = g[f"conf_{name}"].astype(float).values
-            ed = error_detection(c, conf, w)
-            rec.update({f"Brier_{name}": brier(c, conf, w), f"gap_{name}": overconfidence_gap(c, conf, w),
-                        f"ECE_{name}": ece_w(c, conf, w, "support" if name == "consensus" else "width"),
-                        f"AUROC_{name}": ed["AUROC"], f"AUPRC_{name}": ed["AUPRC"],
-                        f"CW100_{name}": float(100 * np.average(~c & (conf >= 0.8), weights=w))})
-        rec["AURC_consensus"] = aurc_w(c, g["conf_consensus"].astype(float).values, w)
+        w, inj = g["weight"].to_numpy(), g["injection_id"].to_numpy()
+        r = g["rank"].astype(float).to_numpy()
+        c = g["correct"].astype(float).to_numpy()
+        pc, pv = g["conf_consensus"].astype(float).to_numpy(), g["conf_verbal"].astype(float).to_numpy()
+        means = {f"AC@{j}": (r <= j).astype(float) for j in range(1, RANK_CAP + 1)}
+        means["MRR@5"] = np.where(r <= RANK_CAP, 1.0 / r, 0.0)
+        means["Brier_consensus"], means["gap_consensus"] = (np.clip(pc, 0, 1) - c) ** 2, pc - c
+        means["Brier_verbal"], means["gap_verbal"] = (np.clip(pv, 0, 1) - c) ** 2, pv - c
+        means["parse_failed"] = g["parse_failed"].astype(float).to_numpy() if "parse_failed" in g else np.zeros(len(g))
+        b = cluster_bootstrap_means(np.column_stack(list(means.values())), inj, w, n=n_boot, seed=seed)
+        rec.update(n_records=len(g), n_injections=int(len(set(inj))))
+        for i, name in enumerate(means):
+            rec[name] = float(b["est"][i])
+            if name != "parse_failed":
+                rec[f"{name}_lo"], rec[f"{name}_hi"] = float(b["lo"][i]), float(b["hi"][i])
+        cb = c.astype(bool)
+        for name, fn, arrays in (
+                ("ECE_support_consensus", lambda cc, p, ww: ece_w(cc, p, ww, "support"), [c, pc]),
+                ("AUROC_consensus", lambda cc, p, ww: auroc(cc < 0.5, -p, ww), [c, pc]),
+                ("AUROC_verbal", lambda cc, p, ww: auroc(cc < 0.5, -p, ww), [c, pv]),
+                ("AURC_consensus", lambda cc, p, ww: aurc_w(cc >= 0.5, p, ww), [c, pc])):
+            if name.startswith("AUROC") and (cb.all() or not cb.any()):
+                rec[name] = rec[f"{name}_lo"] = rec[f"{name}_hi"] = np.nan
+                continue
+            rec[name], rec[f"{name}_lo"], rec[f"{name}_hi"] = _boot(fn, arrays, g, n_boot, seed)
         rows.append(rec)
     return pd.DataFrame(rows)
 
 
-def policy_table(t: pd.DataFrame, decisions: pd.DataFrame, variants=("J-full", "J-AA"), draws: int = 1000,
-                 **rw) -> pd.DataFrame:
-    """Per dataset x condition: L0, L1, L2, Jev variants, C1/C2 at J-AA's coverage, R1/R2 at J-full's routes, O."""
-    out = []
-    for (ds, cond), g in t.groupby(["dataset", "condition"]):
-        g = g.reset_index(drop=True)
-        w = g["weight"].values
-        pols = {"L0 always answer": gate.fixed(g, "answer"),
-                "L1 self-abstain": pd.Series(np.where(g["abstain_vote"] >= 0.5, "abstain", "answer"), index=g.index)}
-        if "escalate_ok" in g:
-            pols["L2 always escalate"] = gate.fixed(g, "escalate")
-        jev = {}
-        for v in variants:
-            if v in set(decisions["variant"]):
-                jev[v], flagged = gate.jev_policy(g, decisions, v)
-                pols[v] = jev[v]
-        res = [{"policy": n, **gate.evaluate(g, c, w, **rw)} for n, c in pols.items()]
-        ref_cov = next((r["coverage"] for r in res if r["policy"] == "J-AA"), None)
-        if ref_cov is not None:
-            res.append({"policy": "C1 coverage-matched consensus", **gate.evaluate_draws(g, gate.coverage_matched_threshold(g, ref_cov, draws=draws), w, **rw)})
-            res.append({"policy": "C2 coverage-matched random", **gate.evaluate_draws(g, gate.coverage_matched_random(g, ref_cov, draws=draws), w, **rw)})
-        if "J-full" in jev:
-            res.append({"policy": "R1 route-matched random", **gate.evaluate_draws(g, gate.route_matched_random(g, jev["J-full"], draws=draws), w, **rw)})
-            res.append({"policy": "R2 route-matched consensus", **gate.evaluate_draws(g, gate.route_matched_consensus(g, jev["J-full"], draws=draws), w, **rw)})
-        res.append({"policy": "O oracle", **gate.evaluate(g, gate.oracle_policy(g), w, **rw)})
-        for r in res:
-            r.update(dataset=ds, condition=cond, n_records=len(g), n_injections=g["injection_id"].nunique())
-            r.pop("actions", None)
-        out += res
-    return pd.DataFrame(out)
+def precedent_root_table(df: pd.DataFrame, n_boot: int = 2000, seed: int = 0) -> pd.DataFrame:
+    """Retrieval cells split by `precedent_has_root`: one of the `top_k` precedents shown to the model is labelled
+    with the query's root (the grid's `hit_has_truth`, computed after retrieval and the model call).
+
+    It describes the retrieval regime: the grouped split holds out the query's (root, fault) cell, not its root
+    service. It is not evidence of leakage, and no confidence score, threshold or prediction uses it."""
+    if "hit_has_truth" not in df or "retrieval" not in df:
+        return pd.DataFrame()
+    r = df[df["retrieval"].ne("none") & df["hit_has_truth"].notna()]
+    if not len(r):
+        return pd.DataFrame()
+    return cell_table(r.assign(precedent_has_root=r["hit_has_truth"].astype(bool)), n_boot, seed,
+                      extra=("precedent_has_root",))
 
 
-def jev_score_table(t: pd.DataFrame, decisions: pd.DataFrame, variant: str = "J-full") -> pd.DataFrame:
-    """Error detection of Jev's stage-1 P(accept) and `supported`, next to the LLM's consensus."""
+def confidence_table(df: pd.DataFrame, names: list[str], n_boot: int = 2000, seed: int = 0) -> pd.DataFrame:
+    """Every requested registry score per cell: error detection (positive = wrong) with a CI on AUROC,
+    AURC, and Brier / ECE / gap for probability scores."""
     rows = []
-    for (ds, cond), g in t.groupby(["dataset", "condition"]):
-        g = g.reset_index(drop=True)
-        sc = gate.jev_scores(g, decisions, variant)
-        c, w = g["answer_ok"].values, g["weight"].values
-        for name, s in (("consensus", g["answer_conf"]), ("jev_p_accept", sc["p_accept"]), ("jev_supported", sc["supported"])):
-            ok = ~np.isnan(s.values)
-            ed = error_detection(c[ok], s.values[ok], w[ok]) if ok.any() else {"AUROC": np.nan, "AUPRC": np.nan}
-            rows.append({"dataset": ds, "condition": cond, "score": name, "n": int(ok.sum()), **ed})
+    cols = strata_cols(df)
+    for k, g in df.groupby(cols, dropna=False):
+        base = dict(zip(cols, k if isinstance(k, tuple) else (k,)))
+        for name in names:
+            spec = confidence.REGISTRY[name]
+            s = g[f"score_{name}"].astype(float)
+            m = s.notna().to_numpy()
+            h = g[m]
+            rec = {**base, "score": name, "validated": spec.validated, "support": spec.support,
+                   "n_records": len(g), "n_scored": int(m.sum())}
+            if m.sum() >= 2:
+                c, p, w = h["correct"].astype(bool).to_numpy(), s[m].to_numpy(), h["weight"].to_numpy()
+                rec["AUPRC"] = auprc(~c, -p, w)
+                if c.all() or not c.any():
+                    rec["AUROC"] = rec["AUROC_lo"] = rec["AUROC_hi"] = np.nan
+                else:
+                    rec["AUROC"], rec["AUROC_lo"], rec["AUROC_hi"] = _boot(
+                        lambda cc, pp, ww: auroc(cc < 0.5, -pp, ww), [c.astype(float), p], h, n_boot, seed)
+                rec["AURC"] = aurc_w(c, p, w)
+                if spec.probability:
+                    rec["Brier"] = brier(c, p, w)
+                    rec["ECE"] = ece_w(c, p, w, "support" if spec.support == "discrete" else "width")
+                    rec["gap"] = overconfidence_gap(c, p, w)
+            rows.append(rec)
     return pd.DataFrame(rows)
 
 
-def cell_table(df: pd.DataFrame) -> pd.DataFrame:
+def selective_table(df: pd.DataFrame, names: list[str], dev: pd.DataFrame | None = None, goals: dict | None = None,
+                    n_boot: int = 2000, seed: int = 0) -> pd.DataFrame:
+    """Risk-coverage per score and the L1 / C2 / O references per cell; DEV-fit thresholds (`goals`:
+    {coverage: [...], risk: [...]}) fitted on `dev` rows of the same model x condition x retrieval x
+    store mode and applied unchanged to every test cell, next to the test-oracle point."""
     rows = []
-    for k, g in df.groupby(["model", "condition", "retrieval", "store_mode"]):
-        c = g["correct"].astype(bool).values
-        rows.append({
-            "model": k[0], "condition": k[1], "retrieval": k[2], "store_mode": k[3], "n": len(g),
-            "AC@1": ac_at_k(g["rank"], 1), "AC@3": ac_at_k(g["rank"], 3), "Avg@5": avg_at_k(g["rank"]),
-            "mean_rank": g["rank"].mean(),                                   # số dịch vụ phải kiểm tra
-            "conf_wrong_consensus": confident_wrong_rate(c, g["conf_consensus"]),
-            "conf_wrong_verbal": confident_wrong_rate(c, g["conf_verbal"]),
-            "ECE_consensus": ece(c, g["conf_consensus"]), "ECE_verbal": ece(c, g["conf_verbal"]),
-            "AURC": aurc(c, g["conf_consensus"]), "SelAcc@80": selective_accuracy(c, g["conf_consensus"], 0.8),
-            "abstain_vote": g["abstain_vote"].mean(), "parse_rate": g["parse_rate"].mean(),
-            "hit_has_truth": g["hit_has_truth"].mean(),
-        })
+    cols = strata_cols(df)
+    goals = goals or {}
+    fit_keys = [c for c in ("model", "condition", "retrieval", "store_mode") if c in df]
+    for k, g in df.groupby(cols, dropna=False):
+        base = dict(zip(cols, k if isinstance(k, tuple) else (k,)))
+        c, w = g["correct"].astype(bool).to_numpy(), g["weight"].to_numpy()
+        for r in selective.references(c, g["abstain_vote"].to_numpy(), w):
+            rows.append({**base, "kind": "reference", **r})
+        for name in names:
+            s = g[f"score_{name}"].astype(float).to_numpy()
+            rec = {**base, "kind": "curve", "score": name, **selective.risk_coverage_summary(c, s, w)}
+            for x in goals.get("risk", []):
+                rec[f"coverage_at_risk{x}"] = selective.coverage_at_risk(c[~np.isnan(s)], s[~np.isnan(s)], x, w[~np.isnan(s)])
+            rows.append(rec)
+            if dev is None or not len(dev):
+                continue
+            d = dev
+            for kc in fit_keys:
+                d = d[d[kc] == base[kc]]
+            ds = d[f"score_{name}"].astype(float).to_numpy() if len(d) else np.array([])
+            if not len(d) or np.isnan(ds).all():
+                continue
+            dm = ~np.isnan(ds)
+            dc, dw = d["correct"].astype(bool).to_numpy()[dm], d["weight"].to_numpy()[dm]
+            for kind, vals in (("coverage", goals.get("coverage", [])), ("risk", goals.get("risk", []))):
+                for x in vals:
+                    tau = selective.fit_threshold(dc, ds[dm], dw, **{kind: x})
+                    real = selective.apply_threshold(c, s, tau, g["injection_id"].to_numpy(), w, n_boot, seed)
+                    m = ~np.isnan(s)
+                    if not m.any():
+                        oracle = np.nan
+                    elif kind == "risk":
+                        oracle = selective.coverage_at_risk(c[m], s[m], x, w[m])
+                    else:
+                        oracle = selective_risk_at(c[m], s[m], x, w[m])
+                    rows.append({**base, "kind": "dev_fit", "score": name, "goal": kind, "goal_value": x,
+                                 "tau": tau, "n_dev": int(dm.sum()), **real,
+                                 ("oracle_coverage" if kind == "risk" else "oracle_risk"): oracle})
     return pd.DataFrame(rows)
 
 
-def retrieval_tests(df: pd.DataFrame) -> pd.DataFrame:
-    """McNemar: mỗi cấu hình truy hồi so với không truy hồi, cùng mô hình, cùng điều kiện, cùng tập ca."""
-    out = []
-    base = df[df.retrieval == "none"]
-    for (m, cond, meth, mode), g in df[df.retrieval != "none"].groupby(["model", "condition", "retrieval", "store_mode"]):
-        b = base[(base.model == m) & (base.condition == cond)].set_index("case_id")["correct"]
-        x = g.set_index("case_id")["correct"]
-        common = b.index.intersection(x.index)
-        t = mcnemar(b[common].values, x[common].values)
-        out.append({"model": m, "condition": cond, "retrieval": meth, "store_mode": mode, "n": len(common),
-                    "delta_AC@1": x[common].mean() - b[common].mean(), **t})
-    out = pd.DataFrame(out)
-    if len(out):
-        adj = holm({i: p for i, p in out["p"].items()})
-        out["p_holm"] = out.index.map(adj)
+def baselines_table(df: pd.DataFrame, n_boot: int = 2000, seed: int = 0) -> pd.DataFrame:
+    rows = []
+    for (ds, b, cond), g in df.groupby(["dataset", "model", "condition"]):
+        r = cluster_bootstrap_means(g[["ac1", "ac3"]].astype(float).to_numpy(), g["injection_id"].to_numpy(),
+                                    g["weight"].to_numpy(), n=n_boot, seed=seed)
+        rows.append({"dataset": ds, "baseline": b, "condition": cond, "n_records": len(g),
+                     "n_injections": g["injection_id"].nunique(), "AC@1": r["est"][0], "AC@1_lo": r["lo"][0],
+                     "AC@1_hi": r["hi"][0], "AC@3": r["est"][1], "AC@3_lo": r["lo"][1], "AC@3_hi": r["hi"][1]})
+    return pd.DataFrame(rows)
+
+
+def joint_baselines(bl: pd.DataFrame, data_home=None) -> pd.DataFrame:
+    """Scored, non-DEV baseline rows keyed like grid rows; analytic (B0), absent-block and label-prior
+    reference rows (`reference_only`) never enter a contrast."""
+    if not len(bl) or "rank" not in bl:
+        return pd.DataFrame()
+    keep = bl["rank"].notna()
+    for col in ("no_row_reason", "reference_only"):
+        if col in bl:
+            keep &= ~bl[col].fillna(False).astype(bool) if col == "reference_only" else bl[col].isna()
+    if "split_role" in bl:
+        keep &= bl["split_role"] != "val"
+    return attach_units(bl[keep].rename(columns={"baseline": "model"}), data_home)
+
+
+# ---------------------------------------------------------------- entry point
+def load_config(path: str, data_home: str | None = None) -> dict:
+    p = Path(path)
+    if p.suffix in (".yaml", ".yml"):
+        with open(p, encoding="utf-8") as f:
+            cfg = yaml.safe_load(f) or {}
+    else:
+        cfg = {"grids": [str(p)]}
+    if data_home:
+        cfg["data_home"] = data_home
+    cfg.setdefault("out_dir", str(Path(cfg["grids"][0]).parent))
+    return cfg
+
+
+def _read_jsonl(paths) -> pd.DataFrame:
+    frames = [load(p) for p in paths or [] if Path(p).is_file()]
+    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
+
+
+def build_frame(cfg: dict) -> tuple[pd.DataFrame, dict]:
+    """Grid rows with units, registry scores and visibility strata; and the counts of what was joined."""
+    grid = _read_jsonl(cfg["grids"])
+    if not len(grid):
+        raise ValueError(f"no grid rows in {cfg['grids']}")
+    raw = {}
+    for p in cfg.get("raw") or [Path(g).parent / "llm_raw.jsonl" for g in cfg["grids"]]:
+        raw.update(confidence.load_raw(p))
+    sc, counts = confidence.scores(grid, raw)
+    df = attach_units(pd.concat([grid, sc], axis=1), cfg.get("data_home"))
+    vis = _read_jsonl(cfg.get("visibility"))
+    if len(vis):
+        keep = [c for c in ("named", "in_candidates", "same_as_full", "token_anywhere") if c in vis]
+        vis = vis.drop_duplicates(["incident_uid", "condition"], keep="last")[["incident_uid", "condition", *keep]]
+        df = df.merge(vis, on=["incident_uid", "condition"], how="left")
+        counts["visibility_joined"] = int(df["named"].notna().sum()) if "named" in df else 0
+    excl = df["excluded"].notna() if "excluded" in df else pd.Series(False, index=df.index)
+    counts["excluded_from_primary"] = int(excl.sum())
+    return reweight(df[~excl].reset_index(drop=True)), counts
+
+
+PATH_KEYS = ("grids", "raw", "visibility", "baselines", "prepare_log")
+
+
+def _sha(path) -> str | None:
+    p = Path(path)
+    return hashlib.sha256(p.read_bytes()).hexdigest() if p.is_file() else None
+
+
+def resolve_inputs(cfg: dict) -> dict:
+    """Input paths made absolute and the defaults made explicit, so the config copy reruns anywhere."""
+    out = dict(cfg)
+    grids = [str(Path(g).resolve()) for g in cfg["grids"]]
+    defaults = {"raw": [str(Path(g).parent / "llm_raw.jsonl") for g in grids],
+                "prepare_log": [str(Path(g).parent / "prepare_log.jsonl") for g in grids]}
+    out["grids"] = grids
+    for k in PATH_KEYS[1:]:
+        v = cfg.get(k) or defaults.get(k) or []
+        out[k] = [str(Path(x).resolve()) for x in ([v] if isinstance(v, str) else v)]
+    if cfg.get("data_home"):
+        out["data_home"] = str(Path(cfg["data_home"]).resolve())
+    out["out_dir"] = str(Path(cfg["out_dir"]).resolve())
     return out
 
 
-def decision_report(grid: pd.DataFrame, decisions: pd.DataFrame, outdir: Path, data_home=None, smoke=False,
-                    draws: int = 1000, n_boot: int = 2000, **rw) -> dict:
-    """Weighted cell table, policy table and Jev score table; headline guards unless `smoke`."""
-    from . import decide
-    if not smoke:
-        guard_headline(grid, decisions)
-    prefix = "smoke_" if smoke else ""
-    g = attach_units(grid, data_home)
-    cells = weighted_cell_table(g, n_boot)
-    cells_cov = weighted_cell_table(g, n_boot, ("cov_logs", "cov_traces"))
-    t = attach_units(decide.action_table(grid, grid["prompt_version"].iloc[0]), data_home)
-    pol = policy_table(t, decisions, draws=draws, **rw)
-    js = jev_score_table(t, decisions)
-    err_rate = float((~decisions["done"].astype(bool)).mean()) if len(decisions) else 0.0
-    for name, tab in (("table_cells_weighted", cells), ("table_cells_by_coverage", cells_cov), ("table_policies", pol),
-                      ("table_jev_scores", js)):
-        tab.to_csv(outdir / f"{prefix}{name}.csv", index=False)
-    return {"cells": cells, "cells_by_coverage": cells_cov, "policies": pol, "jev_scores": js, "jev_error_rate": err_rate}
+def run(cfg: dict) -> dict:
+    cfg = resolve_inputs(cfg)
+    df, counts = build_frame(cfg)
+    headline = bool(cfg.get("preregistration_sha"))
+    is_dev = (df["split_role"] == "val") if "split_role" in df else pd.Series(False, index=df.index)
+    # DEV rows only fit thresholds and feed the shift table; a DEV-only grid is analysed as exploratory
+    if headline or (~is_dev).any():
+        main, dev = df[~is_dev], df[is_dev]
+    else:
+        main, dev = df, df.iloc[:0]
+    if headline:
+        guard_headline(main)
+    names = cfg.get("scores") or list(confidence.REGISTRY)
+    bl = _read_jsonl(cfg.get("baselines"))
+    validated = [n for n in names if confidence.REGISTRY[n].validated]
+    n_boot, seed = int(cfg.get("n_boot", 2000)), int(cfg.get("seed", 0))
+    out = Path(cfg["out_dir"])
+    out.mkdir(parents=True, exist_ok=True)
+    prefix = "" if headline else "exploratory_"
+    tabs = {
+        "table_cells": cell_table(main, n_boot, seed),
+        "table_confidence": confidence_table(main, validated if headline else names, n_boot, seed),
+        "table_selective": selective_table(main, validated if headline else names, dev, cfg.get("selective"),
+                                           n_boot, seed),
+        "table_contrasts": contrasts.run(pd.concat([main, joint_baselines(bl, cfg.get("data_home"))], ignore_index=True),
+                                         cfg.get("contrasts") or [], cfg.get("families"),
+                                         int(cfg.get("n_boot_contrasts", n_boot)), int(cfg.get("n_perm", 10000)), seed),
+        "table_shift": selective.shift_table(df) if "fault" in df else pd.DataFrame(),
+        "table_cost": cost.table_cost(main, cfg["prepare_log"]),
+    }
+    if "named" in main:
+        tabs["table_cells_by_named"] = cell_table(main[main["named"].notna()], n_boot, seed, extra=("named",))
+    by_root = precedent_root_table(main, n_boot, seed)
+    if len(by_root):
+        tabs["table_cells_by_precedent_root"] = by_root
+    if len(bl):
+        scored = bl[bl["no_row_reason"].isna()] if "no_row_reason" in bl else bl
+        tabs["table_baselines"] = baselines_table(attach_units(scored.rename(columns={"baseline": "model"}),
+                                                               cfg.get("data_home")), n_boot, seed)
+    written = {}
+    for name, tab in tabs.items():
+        path = out / f"{prefix}{name}.csv"
+        tab.to_csv(path, index=False)
+        written[name] = path.name
+    if headline and set(names) - set(validated):
+        extra = confidence_table(main, [n for n in names if n not in validated], n_boot, seed)
+        extra.to_csv(out / "exploratory_table_confidence_unvalidated.csv", index=False)
+        written["table_confidence_unvalidated"] = "exploratory_table_confidence_unvalidated.csv"
+    (out / f"{prefix}analysis_config.yaml").write_text(yaml.safe_dump(cfg, sort_keys=True, allow_unicode=True),
+                                                       encoding="utf-8", newline="\n")
+    meta = {"headline": headline, "preregistration_sha": cfg.get("preregistration_sha"), "counts": counts,
+            "n_rows": int(len(main)), "n_dev_rows": int(len(dev)), "n_boot": n_boot, "seed": seed,
+            "scores": {n: {"validated": confidence.REGISTRY[n].validated, "note": confidence.REGISTRY[n].note} for n in names},
+            "assumptions": contrasts.ASSUMPTIONS, "tables": written,
+            "config": f"{prefix}analysis_config.yaml",
+            "inputs_sha256": {x: _sha(x) for k in PATH_KEYS for x in cfg[k]},
+            "tables_sha256": {n: _sha(out / f) for n, f in written.items()}}
+    (out / f"{prefix}analysis_meta.json").write_text(json.dumps(meta, indent=1, default=str), encoding="utf-8")
+    return {"tables": tabs, "meta": meta}
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("config", help="analysis YAML, or a grid.jsonl for the default exploratory analysis")
+    ap.add_argument("--data-home", help="data directory holding reports/eval-units-<dataset>.json")
+    a = ap.parse_args(argv)
+    try:
+        res = run(load_config(a.config, a.data_home))
+    except HeadlineGuardError as e:
+        print(f"HeadlineGuardError: {e}")
+        return 2
+    pd.set_option("display.width", 200, "display.max_columns", 30)
+    m = res["meta"]
+    print(("headline" if m["headline"] else "EXPLORATORY (no preregistration_sha)") + f": {m['n_rows']} rows, "
+          f"{m['counts']['excluded_from_primary']} excluded from primary, {m['counts']['missing_raw']} without raw outputs")
+    cols = [c for c in ("dataset", "split_role", "model", "condition", "retrieval", "n_records", "n_injections",
+                        "AC@1", "AC@1_lo", "AC@1_hi", "MRR@5", "Brier_consensus", "AUROC_consensus")
+            if c in res["tables"]["table_cells"]]
+    print(res["tables"]["table_cells"][cols].round(3).to_string(index=False))
+    print("tables:", ", ".join(m["tables"].values()))
+    return 0
 
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser()
-    ap.add_argument("grid")
-    ap.add_argument("--gate", nargs="+", help="mô hình cơ sở [mô hình lớn]")
-    ap.add_argument("--decisions", help="decisions.jsonl của rca.decide")
-    ap.add_argument("--data-home", help="thư mục dữ liệu chứa reports/eval-units-<dataset>.json")
-    ap.add_argument("--smoke", action="store_true", help="cho phép dòng mock/DEV; bảng ghi tiền tố smoke_")
-    ap.add_argument("--draws", type=int, default=1000)
-    ap.add_argument("--wrong-penalty", type=float, default=2.0)
-    a = ap.parse_args()
-    df = load(a.grid)
-    outdir = Path(a.grid).parent
-    pd.set_option("display.width", 200, "display.max_columns", 30)
-    if a.decisions:
-        from .decide import load_decisions
-        rep = decision_report(df, load_decisions(a.decisions), outdir, a.data_home, a.smoke, a.draws,
-                              wrong_penalty=a.wrong_penalty)
-        print(("== SMOKE REPORT (mock / DEV rows allowed; not a result)\n" if a.smoke else "") +
-              f"Jev error rate: {rep['jev_error_rate']:.3%}")
-        cols = ["dataset", "condition", "policy", "coverage", "selective_risk", "confident_wrong_per_100",
-                "wrong_per_100", "abstain_per_100", "tokens_per_incident"]
-        print(rep["policies"][cols].round(3).to_string(index=False))
-        print(rep["jev_scores"].round(3).to_string(index=False))
-        raise SystemExit(0)
-
-    ct = cell_table(df)
-    ct.to_csv(outdir / "table_cells.csv", index=False)
-    print("\n== Câu hỏi 1: thiếu dữ liệu -> sai bao nhiêu, sai mà chắc bao nhiêu (không truy hồi)")
-    print(ct[ct.retrieval == "none"][["model", "condition", "n", "AC@1", "mean_rank", "conf_wrong_consensus",
-                                      "ECE_consensus", "ECE_verbal", "abstain_vote"]].round(3).to_string(index=False))
-
-    rt = retrieval_tests(df)
-    rt.to_csv(outdir / "table_retrieval_tests.csv", index=False)
-    print("\n== Câu hỏi 2: truy hồi giúp hay hại (McNemar so với không truy hồi, hiệu chỉnh Holm)")
-    if len(rt):
-        print(rt.round(3).to_string(index=False))
-
-    if a.gate:
-        t = gate.action_table(df, a.gate[0], a.gate[1] if len(a.gate) > 1 else None)
-        res = gate.leave_one_system_out(t, wrong_penalty=a.wrong_penalty)
-        res.to_csv(outdir / "table_gate.csv", index=False)
-        print(f"\n== Câu hỏi 3: lớp quyết định (phạt sai = {a.wrong_penalty}), trên 100 sự cố")
-        cols = ["test_system", "policy", "coverage", "acc_answered", "wrong_per_100",
-                "confident_wrong_per_100", "abstain_per_100", "tokens_per_incident", "reward"]
-        print(res[cols].round(3).to_string(index=False))
+    raise SystemExit(main())

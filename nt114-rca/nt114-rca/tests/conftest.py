@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from fixtures.build_fixtures import rcaeval_tree, rcaeval_zips
+from fixtures.build_fixtures import rcaeval_zips
 
 RCA_ROOT = Path(__file__).resolve().parents[1]
 REAL_DATA = RCA_ROOT / "data"
@@ -31,12 +31,6 @@ def rcaeval_home(tmp_path_factory) -> Path:
     dh = tmp_path_factory.mktemp("dh")
     build_fixture_home(dh)
     return dh
-
-
-@pytest.fixture(scope="session")
-def rcaeval_dir_tree(tmp_path_factory) -> Path:
-    """The same fixture cases as plain directories (the layout the legacy loader reads)."""
-    return rcaeval_tree(tmp_path_factory.mktemp("tree") / "RE")
 
 
 def real_data_available() -> bool:

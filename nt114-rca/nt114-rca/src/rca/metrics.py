@@ -240,3 +240,45 @@ def sign_flip_test(diff_per_injection, n: int = 10000, seed: int = 0) -> dict:
     signs = rng.choice([-1.0, 1.0], size=(n, len(d)))
     null = np.abs((signs * d).mean(axis=1))
     return {"mean": float(d.mean()), "p": float((1 + np.sum(null >= obs - 1e-12)) / (n + 1)), "n": int(len(d))}
+
+
+# ---------------------------------------------------------------- censored ranks and vectorised cluster bootstrap
+RANK_CAP = 5    # prompt v1 returns at most 5 services per sample: ranks beyond the cap are censored
+
+
+def mrr_at_k(ranks, k: int = RANK_CAP, weights=None) -> float:
+    """Censored mean reciprocal rank: 1/rank within the top k, 0 beyond (rank > k is unknown)."""
+    r = np.asarray(ranks, float)
+    return wmean(np.where(r <= k, 1.0 / r, 0.0), weights)
+
+
+def cluster_draws(clusters, n: int, seed: int = 0) -> tuple[np.ndarray, np.ndarray]:
+    """Bootstrap draws over clusters as a (n x k) count matrix, plus the cluster index of every record."""
+    uniq, inv = np.unique(np.asarray(clusters), return_inverse=True)
+    k = len(uniq)
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, k, (n, k))
+    counts = np.zeros((n, k))
+    np.add.at(counts, (np.repeat(np.arange(n), k), idx.ravel()), 1.0)
+    return counts, inv
+
+
+def cluster_bootstrap_means(values, clusters, weights=None, n: int = 10000, seed: int = 0,
+                            alpha: float = 0.05) -> dict:
+    """Percentile cluster bootstrap of weighted means, vectorised. `values`: (records,) or (records x m);
+    every draw resamples the same clusters for all columns. Returns est, lo, hi (arrays for 2-D input)."""
+    v = np.asarray(values, float)
+    one = v.ndim == 1
+    v = v[:, None] if one else v
+    w = _w(weights, len(v))
+    counts, inv = cluster_draws(clusters, n, seed)
+    k = counts.shape[1]
+    s = np.zeros((k, v.shape[1]))
+    np.add.at(s, inv, w[:, None] * v)
+    wc = np.bincount(inv, weights=w, minlength=k)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        stats = (counts @ s) / (counts @ wc)[:, None]
+    est = (w[:, None] * v).sum(0) / w.sum()
+    lo, hi = np.nanquantile(stats, [alpha / 2, 1 - alpha / 2], axis=0)
+    out = {"est": est, "lo": lo, "hi": hi, "n_clusters": int(k)}
+    return {key: (val[0] if one and isinstance(val, np.ndarray) else val) for key, val in out.items()}

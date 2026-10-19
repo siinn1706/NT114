@@ -1,0 +1,251 @@
+{
+ "upstream": {
+  "repository": "https://github.com/phamquiluan/RCAEval",
+  "commit": "259ea4167160256a74ad30004aa3d96a998c846e",
+  "working_tree_clean": true,
+  "diff_against_upstream": ""
+ },
+ "environment": {
+  "interpreter": "F:\\Nam\\UIT\\nt114-baro-reference\\refenv\\Scripts\\python.exe",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "pip_freeze": [
+   "cloudpickle==3.1.2",
+   "joblib==1.6.0",
+   "narwhals==2.27.1",
+   "numpy==1.26.4",
+   "pandas==3.0.6",
+   "python-dateutil==2.9.0.post0",
+   "scikit-learn==1.9.1",
+   "scipy==1.17.1",
+   "six==1.17.0",
+   "threadpoolctl==3.7.0",
+   "tzdata==2026.5"
+  ],
+  "gpu": null,
+  "isolation": "own venv outside nt114-rca/nt114-rca; not in NT114's lock file"
+ },
+ "inputs": [
+  {
+   "name": "edge_gaps_inf",
+   "incident_uid": null,
+   "subset": null,
+   "system": null,
+   "inject_time": 600,
+   "file": "edge_gaps_inf.csv",
+   "sha256": "c05f8b3cc0b1a0c1572d04c98dc2c05a562bc5f19c87df3b1e941b542716c9bd",
+   "n_rows": 601,
+   "n_cols": 9
+  },
+  {
+   "name": "edge_ties",
+   "incident_uid": null,
+   "subset": null,
+   "system": null,
+   "inject_time": 600,
+   "file": "edge_ties.csv",
+   "sha256": "296326253699c642910abc821b62987962f5fadffea03522c41f715f1081d988",
+   "n_rows": 600,
+   "n_cols": 11
+  },
+  {
+   "name": "edge_flat_after",
+   "incident_uid": null,
+   "subset": null,
+   "system": null,
+   "inject_time": 600,
+   "file": "edge_flat_after.csv",
+   "sha256": "3701c89ac056c5311497182e13d15029c9781523393a793944c8e639bde3ec54",
+   "n_rows": 600,
+   "n_cols": 9
+  },
+  {
+   "name": "rcaeval.0bebc4f54bf5af90",
+   "incident_uid": "rcaeval.0bebc4f54bf5af90",
+   "subset": "RE1",
+   "system": "online-boutique",
+   "inject_time": 1685368916,
+   "file": "rcaeval.0bebc4f54bf5af90.csv",
+   "sha256": "80ecddfa2faa37116203321b5b08650c809c27dc4b4f753b70dff61167fb4e53",
+   "n_rows": 4201,
+   "n_cols": 50
+  },
+  {
+   "name": "rcaeval.165a0055bac21ba2",
+   "incident_uid": "rcaeval.165a0055bac21ba2",
+   "subset": "RE1",
+   "system": "online-boutique",
+   "inject_time": 1685286163,
+   "file": "rcaeval.165a0055bac21ba2.csv",
+   "sha256": "a5effba45445d1425894ad3a76c98b6cc862a9067f36ab8b624b02c4255c9c98",
+   "n_rows": 4201,
+   "n_cols": 50
+  },
+  {
+   "name": "rcaeval.07e947611a6dd34d",
+   "incident_uid": "rcaeval.07e947611a6dd34d",
+   "subset": "RE1",
+   "system": "sock-shop",
+   "inject_time": 1693077099,
+   "file": "rcaeval.07e947611a6dd34d.csv",
+   "sha256": "c2df3df363dc05d4e211c8c52cbe7707e3d16cf8478a6b780e3b8bb0caf3bc8c",
+   "n_rows": 721,
+   "n_cols": 438
+  },
+  {
+   "name": "rcaeval.0b7bb25ae37fd107",
+   "incident_uid": "rcaeval.0b7bb25ae37fd107",
+   "subset": "RE1",
+   "system": "sock-shop",
+   "inject_time": 1693071361,
+   "file": "rcaeval.0b7bb25ae37fd107.csv",
+   "sha256": "1e6cba3f9a80e9c2546ad1a0fde52adf2ff2c8496cfdb899675c9c474aef97f2",
+   "n_rows": 721,
+   "n_cols": 438
+  },
+  {
+   "name": "rcaeval.13cb7cc742926c86",
+   "incident_uid": "rcaeval.13cb7cc742926c86",
+   "subset": "RE1",
+   "system": "train-ticket",
+   "inject_time": 1693350515,
+   "file": "rcaeval.13cb7cc742926c86.csv",
+   "sha256": "78291e6653192f5f0649aa11dad7d9d8e8b0ac0e11ffb7388ffe6e5592edd146",
+   "n_rows": 961,
+   "n_cols": 1190
+  },
+  {
+   "name": "rcaeval.1754226f65c6eedc",
+   "incident_uid": "rcaeval.1754226f65c6eedc",
+   "subset": "RE1",
+   "system": "train-ticket",
+   "inject_time": 1693256087,
+   "file": "rcaeval.1754226f65c6eedc.csv",
+   "sha256": "840876d81dc5d812e07b1bdc967ef4e3319a569aa3440f3574be956cb348d93c",
+   "n_rows": 961,
+   "n_cols": 1231
+  },
+  {
+   "name": "rcaeval.0e4dec4723cc313d",
+   "incident_uid": "rcaeval.0e4dec4723cc313d",
+   "subset": "RE2",
+   "system": "online-boutique",
+   "inject_time": 1705740414,
+   "file": "rcaeval.0e4dec4723cc313d.csv",
+   "sha256": "e2e5bbcfb8df3fece3a29bce909719c2b84a8c4f935c61599f0f19a7f7fa395f",
+   "n_rows": 1441,
+   "n_cols": 75
+  },
+  {
+   "name": "rcaeval.18225fd99fb46e5a",
+   "incident_uid": "rcaeval.18225fd99fb46e5a",
+   "subset": "RE2",
+   "system": "online-boutique",
+   "inject_time": 1705489222,
+   "file": "rcaeval.18225fd99fb46e5a.csv",
+   "sha256": "d21116ecd047b7e52dc0f9345a6e5e713dd7a15548d1a91040c336a0eebb12e8",
+   "n_rows": 1441,
+   "n_cols": 71
+  },
+  {
+   "name": "rcaeval.110b6b41aaaf2c1b",
+   "incident_uid": "rcaeval.110b6b41aaaf2c1b",
+   "subset": "RE2",
+   "system": "sock-shop",
+   "inject_time": 1705644992,
+   "file": "rcaeval.110b6b41aaaf2c1b.csv",
+   "sha256": "6d9524d18415977bd7107aa57a1198834e9958473988c74c2b0b4f785ede0be0",
+   "n_rows": 1441,
+   "n_cols": 81
+  },
+  {
+   "name": "rcaeval.293b12cefdb7bb4b",
+   "incident_uid": "rcaeval.293b12cefdb7bb4b",
+   "subset": "RE2",
+   "system": "sock-shop",
+   "inject_time": 1705679876,
+   "file": "rcaeval.293b12cefdb7bb4b.csv",
+   "sha256": "b5e101901dfcc4eff1080b45951a25476113b4021002a97f4bbca31e1d2ebb6b",
+   "n_rows": 1441,
+   "n_cols": 79
+  },
+  {
+   "name": "rcaeval.069675347dbfc501",
+   "incident_uid": "rcaeval.069675347dbfc501",
+   "subset": "RE2",
+   "system": "train-ticket",
+   "inject_time": 1705986772,
+   "file": "rcaeval.069675347dbfc501.csv",
+   "sha256": "cfbcf8465183acf5128d7c1c17b24e9761599687fb23ec703b53ba6587b9f0ab",
+   "n_rows": 1441,
+   "n_cols": 373
+  },
+  {
+   "name": "rcaeval.16471e15c6538818",
+   "incident_uid": "rcaeval.16471e15c6538818",
+   "subset": "RE2",
+   "system": "train-ticket",
+   "inject_time": 1706028246,
+   "file": "rcaeval.16471e15c6538818.csv",
+   "sha256": "db7af6cbe85a8248435d9e83e9b6c3ad163b5b92cc46f43bd82742e949395ffd",
+   "n_rows": 1441,
+   "n_cols": 372
+  },
+  {
+   "name": "rcaeval.0a436184a0d6faae",
+   "incident_uid": "rcaeval.0a436184a0d6faae",
+   "subset": "RE3",
+   "system": "online-boutique",
+   "inject_time": 1732371718,
+   "file": "rcaeval.0a436184a0d6faae.csv",
+   "sha256": "8e5d0c6323a456154813c198eaf98fe86a5d632a4eba3f7ce3f2764aeb6bb4d1",
+   "n_rows": 1441,
+   "n_cols": 69
+  },
+  {
+   "name": "rcaeval.1f1e10e39863c1b1",
+   "incident_uid": "rcaeval.1f1e10e39863c1b1",
+   "subset": "RE3",
+   "system": "online-boutique",
+   "inject_time": 1731914768,
+   "file": "rcaeval.1f1e10e39863c1b1.csv",
+   "sha256": "03e910867a0f1031621e3e9c867ac16bb9c8ac7cc9f12a162e6464a2738d26ad",
+   "n_rows": 1441,
+   "n_cols": 69
+  },
+  {
+   "name": "rcaeval.087c36565b470193",
+   "incident_uid": "rcaeval.087c36565b470193",
+   "subset": "RE3",
+   "system": "sock-shop",
+   "inject_time": 1732351388,
+   "file": "rcaeval.087c36565b470193.csv",
+   "sha256": "37390498db3c71555a75eef19c718c97d41f0e416b8898e03f93553f58829dac",
+   "n_rows": 1441,
+   "n_cols": 81
+  },
+  {
+   "name": "rcaeval.1789ff26629a7c4a",
+   "incident_uid": "rcaeval.1789ff26629a7c4a",
+   "subset": "RE3",
+   "system": "sock-shop",
+   "inject_time": 1732393062,
+   "file": "rcaeval.1789ff26629a7c4a.csv",
+   "sha256": "ce0f211932a4499ced6869b4a028233cbadece249b1e4a4f2782a4bfd9bd8712",
+   "n_rows": 1441,
+   "n_cols": 85
+  }
+ ],
+ "data_bundle_id": null,
+ "sample": "first 2 DEV (val) incidents by uid of every RCAEval (subset, system) in within-rcaeval-grouped (no RE3 train-ticket incident has the val role) + 3 deterministic edge cases",
+ "call": "baro(data, inject_time, dataset=<subset>-<system>, anomalies=None, dk_select_useful=False, sli=None, verbose=False, n_iter=num_node) after main.py process lines 287-337; --length 20, --tdelta 0",
+ "preprocessing_record": "reference.json[*].preprocessing (windows, dropped/renamed columns, mem columns, column_to_service table, service rule)",
+ "instrumentation": {
+  "file": "reference_runner.py.txt",
+  "sha256": "8ed97d93925514266c319d3e7e1bf03e2a85d26634c2f4a84e6be8385d2fae31",
+  "method": "RobustScaler subclass in a separate module instance records max(transform); scores kept only where the instrumented ranking equals the plain call"
+ },
+ "reference_sha256": "2692c3eb1e31f75d23a7ee285f9e208a9a99aae8187d9202fdad60686341f8f2",
+ "generated_by": "Claude Code on the owner's local Windows machine (CPU only)",
+ "generated_at": "2026-10-18T19:20:16+00:00"
+}

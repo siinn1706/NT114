@@ -2,10 +2,11 @@
 
 This guide takes the GPU machine from a fresh checkout to a measured model choice. It covers the
 environment, the pinned model set, a small feasibility test on DEV data, and the order in which
-M2 starts. Everything up to step 7 runs without TypeSafe Jev and without any test-set data.
+M2 starts. Everything up to step 7 runs without any test-set data. The system is a single LLM:
+no judge, decision or second model, and no external API key.
 
-Status on 2026-10-15: prepared, not run. M0 stays blocked until the Linux portability gate, the
-GPU probe, TypeSafe access and the D3 data-sharing check have all passed. The capacity figures in
+Status on 2026-10-15: prepared, not run. M0 stays blocked until the Linux portability gate and the
+GPU probe have passed. The capacity figures in
 `configs/hardware/rtx4080-laptop-12gb.yaml` are estimates. The model set is final only after step 7.
 
 ## 1. Machine requirements
@@ -23,7 +24,7 @@ GPU probe, TypeSafe access and the D3 data-sharing check have all passed. The ca
 
 | Venv | Contents | Used for |
 |---|---|---|
-| `.venv` | `requirements-lock.txt` | prep, `run_grid`, `decide`, `analyze`, `rca.feasibility` |
+| `.venv` | `requirements-lock.txt` | prep, `run_grid`, `analyze`, `rca.feasibility` |
 | `.venv-serve` | `requirements-gpu.txt` (vLLM 0.30.0, transformers 5.17.0, bitsandbytes 0.50.2) | `vllm serve` only |
 
 The two cannot share a venv. vLLM pins `torch==2.13.0` and `setuptools<81`, while the analysis
@@ -31,15 +32,11 @@ lock has torch 2.14.1 and setuptools 84. They talk over HTTP on `localhost:8000`
 
 ## 3. Credentials
 
-- **TypeSafe** (needed from step 9 only): type the key into the shell without echo, and never write it to a file:
-  `read -rs TYPESAFE_API_KEY && export TYPESAFE_API_KEY`. `rca.jev` reads only this variable and
-  never logs it. Do not put it in `.env`, a config, a notebook or the shell history.
 - **Hugging Face:** the five models are public, so no token is needed. The private data bundle needs
   `hf auth login` with a team account. The token stays in the HF cache directory, outside the repo.
 
 ## 4. Sequence
 
-Steps 1–8 need no Jev key. Step 9 is the first live Jev call and starts only once M0 has passed.
 Run these commands in Bash on Linux/WSL2. The Git root contains the agent entry point
 [`llms.txt`](../../../llms.txt); Python commands run two directories below it. GitHub holds code,
 while the private HF dataset holds the immutable data release, not model weights or run outputs.
@@ -70,12 +67,10 @@ export PYTHONPATH=src
 export RCA_DATA_HOME=~/nt114-rca-data/nt114-data-v1-20261014-6fdd9835/parts
 python -m rca.prep status && python -m rca.prep verify-splits
 python -m pytest -q -m "not realdata"
-# Check the real transferred bundle with current code, mock LLM/Jev, no provider calls:
+# Check the real transferred bundle with current code, mock LLM, no provider calls:
 python -m rca.run_grid prepare configs/exp/smoke-canonical.yaml
 python -m rca.run_grid run configs/exp/smoke-canonical.yaml
-python -m rca.decide configs/exp/smoke-canonical.yaml
-python -m rca.analyze results_smoke_canonical/grid.jsonl \
-  --decisions results_smoke_canonical/decisions.jsonl --data-home "$RCA_DATA_HOME" --smoke
+python -m rca.analyze results_smoke_canonical/grid.jsonl --data-home "$RCA_DATA_HOME"   # exploratory_* tables
 
 # 4. GPU probe; paste its `hardware` block into configs/hardware/rtx4080-laptop-12gb.yaml
 python scripts/gpu_probe.py --out results/gpu_probe.json
@@ -92,21 +87,19 @@ HW=configs/hardware/rtx4080-laptop-12gb.yaml
 PYTHONPATH=src python -m rca.feasibility list  $HW
 PYTHONPATH=src python -m rca.feasibility fetch $HW qwen35-4b-fp8 qwen3-4b-2507-fp8
 
-# 7. feasibility test, one profile at a time, no Jev. The first run also builds the evidence and the
+# 7. feasibility test, one profile at a time. The first run also builds the evidence and the
 #    374-incident retrieval store on the CPU (13 min on the dev laptop); later profiles reuse them.
 PYTHONPATH=src python -m rca.feasibility run $HW qwen35-4b-fp8
 PYTHONPATH=src python -m rca.feasibility run $HW qwen3-4b-2507-fp8
 PYTHONPATH=src python -m rca.feasibility report       # results_feasibility/feasibility.csv
 
-# 7b. escalation candidates, one at a time and only when the measurements justify them (section 6):
-#     qwen3-8b-awq first (6.1 GB download, official 4-bit); qwen35-9b-nf4 (19.3 GB) only if needed
-PYTHONPATH=src python -m rca.feasibility fetch $HW qwen3-8b-awq && PYTHONPATH=src python -m rca.feasibility run $HW qwen3-8b-awq
-# The replication model (phi4-mini-fp8) is fetched and tested when M3 needs it.
+# 7b. optional replication profiles, one at a time, only if a cross-family replication is run
+#     (not part of the minimum study): phi4-mini-fp8, qwen3-8b-awq, qwen35-9b-nf4
 
 # 8. record the measured choice (section 6) in the plan's decisions.md and commit the config changes
 ```
 
-Step 9 and later steps are the M2 sequence in section 7.
+Later steps are the M2 sequence in section 7.
 
 The historical portability script deliberately rejects changed `src/configs/schemas`, so do not
 run that gate at current `main` or bypass its commit check. Its pinned worktree verifies the data
@@ -163,12 +156,9 @@ pilot does that.
 | Role | Rule | Fallback |
 |---|---|---|
 | Primary | `qwen35-4b-fp8` if feasible | `qwen3-4b-2507-fp8` |
-| Replication | `phi4-mini-fp8` if feasible | none; the replication arm is dropped and the drop is logged |
-| Escalation candidates | Test `qwen3-8b-awq` only after the primary is feasible. Test `qwen35-9b-nf4` (a 19.3 GB download) only if AWQ is infeasible, or too slow for the E3 volume (plan phase 03, task 2) | if neither is feasible, escalation needs external inference, which needs owner approval |
+| Replication (optional) | `phi4-mini-fp8`, `qwen3-8b-awq` or `qwen35-9b-nf4`, each an independent single-LLM run; no prediction depends on another model | none; the replication arm is dropped and the drop is logged |
 
-The final escalation model is picked in the DEV pilot: the feasible candidate with the larger DEV
-AC@1 gain over the primary, measured over at least 30 minutes of sustained load (plan phase 03,
-task 2). Record the revisions, flags, measured VRAM and verdicts in `decisions.md`.
+Record the revisions, flags, measured VRAM and verdicts in `decisions.md`.
 
 If a measurement contradicts the estimate (for example, the server's KV tokens are far below the
 estimate), keep the measurement. To change `gpu_memory_utilization` or `max_model_len`, edit the
@@ -176,12 +166,9 @@ profile, log the change, and rerun that profile in a fresh results directory.
 
 ## 7. Starting M2 (after M0 passes)
 
-1. **Jev smoke call (M0 task 4).** Send one hand-written synthetic state outside the repo with
-   `model: jev-1.13.0`. Record the exact response `model` string, the response fields and the org
-   rate limit in `decisions.md`. Set `jev.expected_model` in `configs/exp/dev-pilot.yaml` to that string.
-2. **Serve the chosen primary:**
+1. **Serve the chosen primary:**
    `bash scripts/serve_model.sh results_dev_pilot/server/qwen35-4b.args <repo> <sha> <flags from rca.feasibility list>`.
-3. **Presence-penalty comparison (Qwen3.5 primary only; no Jev).** Run `configs/exp/dev-sampling.yaml`
+2. **Presence-penalty comparison (Qwen3.5 primary only).** Run `configs/exp/dev-sampling.yaml`
    with `run_grid prepare` and `run`. This puts 0 (the current setting, not sent) and 1.5 on the
    same DEV cells: 143 incidents, `full` and `no_metric`, retrieval `none` and `hybrid`. Then run
    `python -m rca.feasibility compare-sampling results_dev_sampling/grid.jsonl`. The report
@@ -192,14 +179,12 @@ profile, log the change, and rerun that profile in a fresh results directory.
      and at most 25 % more completion tokens.
    - Freeze the chosen value with prompt v1 in `decisions.md`, then set it in
      `configs/exp/dev-pilot.yaml` before the pilot. It is never tuned on test results.
-4. **DEV pilot, LLM part:**
+3. **DEV pilot:**
    `PYTHONPATH=src python -m rca.run_grid prepare configs/exp/dev-pilot.yaml`, then `run`. These are
    143 RCAEval DEV incidents, so no NC data is involved.
-5. **DEV pilot, Jev part:** `PYTHONPATH=src python -m rca.decide configs/exp/dev-pilot.yaml`. This is
-   the first live Jev use. Before running it, confirm that D3 still withholds AIOps2025/RCA100
-   evidence; DEV is RCAEval, CC BY 4.0.
-6. Continue with plan phase 03 tasks 2–7: gates, prompt freeze, escalation serving, Jev bias and
-   stability, tuning, and the preregistration freeze.
+4. Continue with the protocol in
+   `plans/261018-2300-single-llm-simplification-and-evaluation-hardening/design/protocol-v2.md`:
+   prompt freeze, DEV-fitted confidence thresholds and the preregistration freeze.
 
 ## 8. Troubleshooting
 

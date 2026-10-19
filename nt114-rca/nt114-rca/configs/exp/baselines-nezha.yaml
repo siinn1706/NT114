@@ -1,0 +1,16 @@
+# Non-LLM baselines on nezha (CPU, V3): B0, B1 per block, B1m, B3 majority (train prior when the split has one).
+# Reuses the visibility audit's evidence (same fingerprints; nothing is rebuilt):
+#   PYTHONPATH=src python -m rca.baselines configs/exp/baselines-nezha.yaml
+source: canonical
+data_home: null
+canonical_datasets: [nezha]
+split: eval-only-nezha-0-38cde4e0
+split_roles: [test]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, metrics_only, blind_root, blind_nonroot, blind_nonroot_ev]
+retrieval: [none]
+store_modes: [precedent]
+embedder: tfidf
+evidence_dir: results_visibility/nezha/evidence
+out: results_baselines_nezha/grid.jsonl
+models: []

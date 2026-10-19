@@ -1,4 +1,4 @@
-"""No label reaches model-visible data: canary, type guard, permutation invariance, scans, Jev allowlist."""
+"""No label reaches model-visible data: canary, type guard, permutation invariance, scans."""
 from __future__ import annotations
 
 import ast
@@ -11,16 +11,14 @@ import pandas as pd
 import pytest
 
 from conftest import canonical_run_cfg
-from rca import audit, decide, evidence, gate, jev, retrieve, run_grid
+from rca import audit, evidence, retrieve, run_grid, selective
 from rca.data import VisibleCase
 from rca.llm import build_messages
 from rca.retrieve import CaseStore, Embedder, format_hits
-from rca.schema import DECISION_STATE_ALLOWED_KEYS
 from rca.store import read_jsonl, write_jsonl_atomic
 
 RCA_ROOT = Path(__file__).resolve().parents[1]
-MODEL_FACING = ("evidence.py", "llm.py", "retrieve.py", "gate.py", "jev.py")
-FIXED_AGG = {"ranking": [], "conf_verbal": 0.7, "conf_consensus": 0.5, "abstain_vote": 0.0, "n_samples": 10}
+MODEL_FACING = ("evidence.py", "llm.py", "retrieve.py")
 PERM_CONDITIONS = ["full", "no_metric", "no_log", "no_trace"]
 
 
@@ -47,8 +45,8 @@ def _test_uids(cfg) -> list[str]:
 
 
 def model_artifacts(cfg) -> dict[str, str]:
-    """Everything a model or Jev would see, for test-role incidents: evidence, prompts with every
-    retrieval method in `precedent` mode, and Jev states."""
+    """Everything a model would see, for test-role incidents: evidence and prompts with every
+    retrieval method in `precedent` mode."""
     run_grid.prepare(cfg)
     recs = run_grid.load_evidence(cfg)
     cn = run_grid.Canon(cfg)
@@ -68,9 +66,6 @@ def model_artifacts(cfg) -> dict[str, str]:
                     ev["text"], vc, meth, "precedent", 3, exclude_ids=run_grid.exclusions(store, vc, tr, "precedent", grp))
                 msgs = build_messages(vc, cands, ev["text"], format_hits(hits))
                 out[f"{vc.case_id}|{cond}|{meth}|prompt"] = json.dumps(msgs)
-                agg = {**FIXED_AGG, "ranking": cands[:3]}
-                inp = decide.decision_inputs(r, agg, cond, hits[0]["dense_sim"] if hits else None)
-                out[f"{vc.case_id}|{cond}|{meth}|jev"] = json.dumps(jev.build_state(inp), sort_keys=True)
     return out
 
 
@@ -132,25 +127,21 @@ def test_model_facing_entry_points_only_see_visible_cases(canonical_synth, tmp_p
     assert {"build", "shuffled_candidates", "build_messages", "search"} <= set(seen)
 
 
-def test_jev_state_allowlist_and_precedent_similarity():
-    inp = jev.DecisionInputs("evidence text", ["cart", "frontend"], 0.83, 0.8, 10, 0.0,
-                             {"metrics": 1, "logs": 0, "traces": 1}, 5, top_sim=0.41)
-    assert set(jev.build_state(inp)) <= DECISION_STATE_ALLOWED_KEYS
+def test_selective_evaluation_refuses_the_label_masked_store():
+    """`no_precedent` masks the store by the query's true label: such rows never enter a selective
+    evaluation, and the retrieval arm's similarity comes from the label-free `precedent` store."""
     rows = []
-    for mode, sim in (("precedent", 0.3), ("no_precedent", 0.9)):
-        for meth in ("none", "hybrid"):
-            rows.append({"model": "m", "case_id": "x.0000000000000001", "condition": "full", "system": "s",
-                         "retrieval": meth, "store_mode": "-" if meth == "none" else mode, "features": {"has_metrics": 1},
-                         "hits": [] if meth == "none" else [{"dense_sim": sim}], "correct": True, "conf_consensus": 0.5,
-                         "conf_verbal": 0.5, "abstain_vote": 0.0, "n_candidates": 3, "prompt_tokens": 1, "completion_tokens": 1})
-    df = pd.DataFrame(rows).drop_duplicates(subset=["retrieval", "store_mode"])
-    t = gate.action_table(df, "m", store_mode="precedent")
-    assert t["hit_top_sim"].tolist() == [0.3]
-    # the default (as used by `analyze --gate`) must be the label-free store
-    assert gate.action_table(df, "m")["hit_top_sim"].tolist() == [0.3]
-    with pytest.raises(ValueError, match="oracle"):
-        gate.action_table(df, "m", store_mode="no_precedent")
-    assert gate.action_table(df, "m", store_mode="no_precedent", oracle=True)["hit_top_sim"].tolist() == [0.9]
+    for mode, sim in (("-", None), ("precedent", 0.3), ("no_precedent", 0.9)):
+        rows.append({"model": "m", "model_role": "primary", "prompt_version": "v1", "incident_uid": "x.0000000000000001",
+                     "case_id": "x.0000000000000001", "condition": "full", "system": "s",
+                     "retrieval": "none" if sim is None else "hybrid", "store_mode": mode, "oracle_store": mode == "no_precedent",
+                     "features": {"has_metrics": 1}, "hits": [] if sim is None else [{"dense_sim": sim}], "correct": True,
+                     "rank": 1, "conf_consensus": 0.5, "conf_verbal": 0.5, "abstain_vote": 0.0, "parse_rate": 1.0,
+                     "prompt_tokens": 1, "completion_tokens": 1, "latency_s": 0.0})
+    df = pd.DataFrame(rows)
+    with pytest.raises(ValueError, match="oracle_store"):
+        selective.action_table(df)
+    assert selective.action_table(df[~df.oracle_store])["hit_top_sim"].tolist() == [0.3]
 
 
 def test_model_facing_modules_never_touch_labels():
@@ -192,62 +183,37 @@ def test_evidence_scan_flags_label_keys(tmp_path):
     assert audit.evidence_scan(tmp_path, set())["total_hits"] >= 1
 
 
-def _e2e(cfg) -> Path:
-    """prepare -> run (mock LLM) -> decide (mock Jev); returns jev_raw.jsonl."""
-    run_grid.prepare(cfg)
-    run_grid.run(cfg)
-    decide.run(cfg)
-    return Path(cfg["out"]).parent / "jev_raw.jsonl"
+def test_headline_guard_refuses_the_label_masked_store():
+    from rca import analyze
+    df = pd.DataFrame([{"model": "m", "model_revision": "r", "server_fp": "f", "prompt_version": "v1", "backend": "vllm",
+                        "incident_uid": "x.1", "condition": "full", "retrieval": "hybrid", "store_mode": m,
+                        "oracle_store": m == "no_precedent", "evidence_fp": "e", "split_role": "test"}
+                       for m in ("precedent", "no_precedent")])
+    with pytest.raises(analyze.HeadlineGuardError, match="oracle_store"):
+        analyze.guard_headline(df)
+    analyze.guard_headline(df[~df.oracle_store])
 
 
-def _e2e_cfg(dh, out, conditions=PERM_CONDITIONS):
-    """`blind_root` is label-dependent by design (it masks the true root), so the permutation test leaves it out."""
-    return canonical_run_cfg(dh, out, conditions=conditions, retrieval=["none", "hybrid"],
-                             store_modes=["precedent"], n_samples=3,
-                             models=[{"name": "m-primary", "backend": "mock", "role": "primary"},
-                                     {"name": "m-esc", "backend": "mock", "role": "escalation"}],
-                             jev={"backend": "mock", "cache": str(out / "jev.sqlite"), "variants": ["J-full", "J-AA"]})
-
-
-def _request_shas(path: Path) -> dict:
-    return {(r["incident_uid"], r["condition"], r["variant"], r["stage"]): r["request_sha"] for r in read_jsonl(path)}
-
-
-def test_jev_states_label_permutation_invariant(canonical_synth, tmp_path, monkeypatch):
-    """Permuting the label store (test-role roots and faults) and rerunning the whole chain leaves every
-    Jev request unchanged, although scoring columns of the grid change."""
+def test_store_entries_are_train_role_and_never_in_the_query_group(canonical_synth, tmp_path, monkeypatch):
     monkeypatch.setenv("HF_HUB_OFFLINE", "1")
-    dh = _home(canonical_synth, tmp_path)
-    base = _request_shas(_e2e(_e2e_cfg(dh, tmp_path / "a")))
-    cfg = _e2e_cfg(dh, tmp_path / "b")
-    test = _test_uids(cfg)
-    labs = {l["incident_uid"]: l for l in read_jsonl(_labels_path(dh))}
-    fields = [(labs[u]["root_cause"], labs[u]["fault"]) for u in test]
-    fields = fields[1:] + fields[:1]
-    for u, (rc, fa) in zip(test, fields):
-        labs[u]["root_cause"], labs[u]["fault"] = rc, fa
-    write_jsonl_atomic(_labels_path(dh), list(labs.values()))
-    got = _request_shas(_e2e(cfg))
-    assert base and got == base
-    a = pd.DataFrame(read_jsonl(tmp_path / "a" / "grid.jsonl")).sort_values("key")["truth"].tolist()
-    b = pd.DataFrame(read_jsonl(tmp_path / "b" / "grid.jsonl")).sort_values("key")["truth"].tolist()
-    assert a != b                                       # the labels did change
-
-
-def test_canary_not_in_jev_requests(canonical_synth, tmp_path, monkeypatch):
-    """A canary written into every label-derived grid field never reaches a Jev request."""
-    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
-    dh = _home(canonical_synth, tmp_path)
-    cfg = _e2e_cfg(dh, tmp_path / "res", PERM_CONDITIONS + ["blind_root"])
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path, retrieval=["none", "hybrid"])
     run_grid.prepare(cfg)
-    run_grid.run(cfg)
-    canary = f"CANARY_{secrets.token_hex(8)}"
-    rows = read_jsonl(Path(cfg["out"]))
-    for r in rows:
-        r["truth"], r["fault"], r["hit_has_truth"], r["truth_ids"] = canary, canary, canary, [canary]
-        for h in r["hits"]:
-            h["root"] = canary
-    write_jsonl_atomic(Path(cfg["out"]), rows)
-    decide.run(cfg)
-    raw = (Path(cfg["out"]).parent / "jev_raw.jsonl").read_text(encoding="utf-8")
-    assert raw.strip() and canary not in raw
+    recs = run_grid.load_evidence(cfg)
+    cn = run_grid.Canon(cfg)
+    entries = run_grid._store_entries(cfg, recs, cn)
+    assert entries and {cn.roles[e["case_id"]] for e in entries} == {"train"}
+    store = CaseStore(entries, _tfidf())
+    members = {}
+    for u, g in cn.group.items():
+        members.setdefault(g, set()).add(u)
+    checked = 0
+    for r in recs:
+        vc, tr = r["vc"], r["truth"]
+        grp = frozenset(members.get(cn.group.get(vc.case_id), ()))
+        for meth in ("bm25", "dense", "hybrid"):
+            for h in store.search(r["conditions"]["full"]["text"], vc, meth, "precedent", 10,
+                                  exclude_ids=run_grid.exclusions(store, vc, tr, "precedent", grp)):
+                assert cn.roles[h["case_id"]] == "train" and h["case_id"] not in grp
+                assert cn.group.get(h["case_id"]) != cn.group.get(vc.case_id)
+                checked += 1
+    assert checked

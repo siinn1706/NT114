@@ -149,7 +149,7 @@ profiles:
     chat_template_kwargs: null
     fallback: null
   - name: qwen35-9b-nf4
-    role: escalation
+    role: replication
     model: qwen3.5-9b
     precision: nf4
     quantization: bitsandbytes    # in-flight NF4; hybrid-layer support in vLLM to be confirmed by the run
@@ -158,7 +158,7 @@ profiles:
     chat_template_kwargs: {enable_thinking: false}
     fallback: qwen3-8b-awq
   - name: qwen3-8b-awq
-    role: escalation
+    role: replication
     model: qwen3-8b
     repo: Qwen/Qwen3-8B-AWQ       # official 4-bit checkpoint, replaces the base repo
     revision: 4da05a8edb55c6046cce958586c33b61da07bb79
