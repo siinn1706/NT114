@@ -1,0 +1,12 @@
+at_utc,action,percent_used_before,percent_used_after,note
+2026-10-19T03:40Z,get_usage (planning),0,0,period 2026-10-18T16:00Z..2026-11-18T16:00Z; extraUsage null
+2026-10-19T03:50Z,4x search_papers (planning scoping),0,0,search_papers did not move percentUsed
+2026-10-19T04:14Z,search_papers maxResults=1000 cap probe,0,0,400 invalid_request: maxResults must be at most 300 for your plan tier
+2026-10-19T04:14Z,create_library_collection + save_library_sources (3) + get_library_source_full_text,0,0,full text available for arXiv PDF (PACE-LM); DecompRCA elicitId source fullTextStatus unavailable
+2026-10-19T04:15Z,create_systematic_review useFigures=true,0,0,rejected: figure_extraction_required (not included in current plan)
+2026-10-19T04:16Z,create_systematic_review SR1 (H1; thorough/thorough; useFigures=false; 16 searches x100),0,0,session 55578d01-8556-49c7-bddf-52f20b0c5db8
+2026-10-19T04:20Z,save_library_sources (16 arXiv PDFs),0,0,
+2026-10-19T04:24Z,2x search_papers (H2 E-S1; H3 F-S1; 30 each),0,0,
+2026-10-19T04:33Z,get_usage while SR1 still running,0,24,SR1 crossed the 20% stop rule; owner chose no further systematic reviews
+2026-10-19T06:29Z,get_usage + get_systematic_review SR1 status check,24,100,SR1 status pausedForInsufficientQuota at extracting_data; 551 fulltext includes; 144 extracted
+2026-10-19T06:29Z,6x search_papers (H2/H3 gap queries; maxResults 50),100,100,all failed: insufficient_quota (credits_exhausted); Elicit unavailable until 2026-11-18T16:00Z
