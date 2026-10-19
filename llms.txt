@@ -1,51 +1,55 @@
 # NT114 — RCA dưới điều kiện thiếu telemetry
 
-> Điểm vào cho agent tiếp quản repository nghiên cứu chẩn đoán nguyên nhân gốc (root-cause analysis, RCA). GitHub chứa code và tài liệu; Hugging Face private chứa bundle dữ liệu chuẩn hóa. Quy trình chính là inference zero-shot, retrieval và lớp quyết định TypeSafe Jev; không phải một trainer đã hoàn thiện.
+> Điểm vào cho agent tiếp quản repository nghiên cứu chẩn đoán nguyên nhân gốc (root-cause analysis, RCA). GitHub chứa code và tài liệu; Hugging Face private chứa bundle dữ liệu chuẩn hóa. Quy trình chính là inference zero-shot bằng một LLM duy nhất, có retrieval tùy chọn; xếp hạng, độ tin cậy và abstention đều lấy từ chính LLM đó, không có judge, mô hình quyết định hay escalation. Đây không phải một trainer đã hoàn thiện.
 
 Git root là thư mục chứa file này. Thư mục chạy Python là `nt114-rca/nt114-rca/` (hai cấp cùng tên, không phải lỗi). Bắt đầu từ nhánh `main`. Trong thư mục chạy, kích hoạt analysis venv và đặt `PYTHONPATH=src`; đặt `RCA_DATA_HOME` tới `parts/` của bundle đã kiểm chứng, không phải thư mục chứa `bundle.json`. Lệnh Linux/Bash chạy trong Linux hoặc WSL2, không dán trực tiếp vào PowerShell.
 
-Đường chạy trên máy mới: đọc hướng dẫn GPU → xác thực hai repository private → tải bundle đúng revision trong release manifest → chạy portability tại commit tạo bundle → kiểm tra lại bằng code `main` → probe GPU và kiểm tra môi trường serving → tải primary/fallback theo revision đã ghim → feasibility trên DEV → hoàn thành các điều kiện M0 → inference DEV và Jev theo kế hoạch. Không tự bỏ qua điều kiện còn thiếu hoặc bắt đầu main experiments từ một smoke test thành công.
+Đường chạy trên máy mới: đọc hướng dẫn GPU → xác thực hai repository private → tải bundle đúng revision trong release manifest → chạy portability tại commit tạo bundle → kiểm tra lại bằng code `main` → probe GPU và kiểm tra môi trường serving → tải primary/fallback theo revision đã ghim → feasibility trên DEV → hoàn thành các điều kiện M0 còn hiệu lực (Linux gate, GPU probe) → DEV pilot một LLM theo protocol v2. Không tự bỏ qua điều kiện còn thiếu hoặc bắt đầu main experiments từ một smoke test thành công.
 
 Fine-tuning là phần mở rộng QLoRA có điều kiện, không phải bước đầu tiên. Chưa có `sft_export.py` hay `scripts/train_lora.py`; không tự suy diễn lệnh train. Đọc training strategy và phase M4 trước khi đề xuất triển khai. Hai mốc M1/M2 trong kế hoạch dữ liệu và kế hoạch LLM có nghĩa khác nhau; luôn nêu tên kế hoạch khi báo trạng thái.
 
-Giữ bundle bất biến. Không đưa `eval_only`/đáp án, raw data, cache, output hoặc credentials vào GitHub. Không đưa nhãn ca đang hỏi vào prompt/Jev; chỉ dùng precedent từ split train theo hợp đồng. Không gửi evidence AIOps2025/RCA100 ra TypeSafe khi D3 chưa được xác minh. Không dùng mock/DEV/oracle làm kết quả chính. Không tự chạy paid API, tải toàn bộ model, đổi quyền private hay công bố dữ liệu khi chưa được giao việc đó.
+Giữ bundle bất biến. Không đưa `eval_only`/đáp án, raw data, cache, output hoặc credentials vào GitHub. Không đưa nhãn ca đang hỏi vào prompt; chỉ dùng precedent từ split train theo hợp đồng. Không đổi evidence, split hay prompt v1 khi chưa được giao việc đó. Lúc chạy không phụ thuộc dịch vụ bên ngoài; không gửi evidence ra ngoài. Không dùng mock/DEV/oracle làm kết quả chính. Không tự chạy paid API, tải toàn bộ model, đổi quyền private hay công bố dữ liệu khi chưa được giao việc đó.
 
 ## Đọc trước và chạy trên máy mới
 
-- [GPU deployment](nt114-rca/nt114-rca/docs/gpu_deployment.md): Runbook sở hữu các lệnh clone, hai venv, tải bundle ghim revision, portability, smoke trên bundle, probe, feasibility và thứ tự DEV/Jev.
+- [GPU deployment](nt114-rca/nt114-rca/docs/gpu_deployment.md): Runbook sở hữu các lệnh clone, hai venv, tải bundle ghim revision, portability, smoke trên bundle, probe, feasibility và thứ tự DEV.
 - [Release manifest](nt114-rca/nt114-rca/releases/nt114-data-v1.json): Nguồn máy đọc được của dataset repo, HF commit, bundle path, checksum, code commit tạo dữ liệu, build và split.
-- [Data contract](nt114-rca/nt114-rca/docs/data_contract.md): Phân tách visible/eval_only, leakage, đơn vị injection, split, chế độ retrieval, bundle bất biến và điều kiện dữ liệu.
-- [README của Python project](nt114-rca/nt114-rca/README.md): Tổng quan pipeline và dữ liệu; pilot legacy không phải runbook triển khai hiện tại.
+- [Data contract](nt114-rca/nt114-rca/docs/data_contract.md): Phân tách visible/eval_only, vùng chỉ dùng cho đánh giá, leakage, đơn vị injection, split, chế độ retrieval, bundle bất biến và điều kiện dữ liệu.
+- [README của Python project](nt114-rca/nt114-rca/README.md): Tổng quan pipeline và dữ liệu; `run_grid` chỉ nhận config `source: canonical`.
 
 ## Kế hoạch và quyết định phải giữ
 
-- [Kế hoạch LLM + Jev](plans/261015-0047-nt114-rca-llm-jev-research-and-implementation/plan.md): Thứ tự M0–M5, phụ thuộc, phạm vi và tiêu chí hoàn thành; trạng thái kế hoạch không chứng minh một lần chạy thật.
-- [Decision log](plans/261015-0047-nt114-rca-llm-jev-research-and-implementation/decisions.md): Quyết định của owner, phần cứng mục tiêu, D3, split chính, staged downloads và các điều kiện còn chờ.
+- [Kế hoạch single-LLM](plans/261018-2300-single-llm-simplification-and-evaluation-hardening/plan.md): Kế hoạch hiện hành: bỏ Jev, lõi đánh giá, cost ledger, leakage và các kiểm tra CPU. Chỉ còn chặn ở V8 bước 2 (bản phát hành DecompRCA trả 404).
+- [Decision log hiện hành](plans/261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md): Quyết định của owner cho kế hoạch single-LLM: một LLM, CPU-only, top-5, prompt v1, BARO có điều kiện, chính sách Internet.
+- [Protocol v2](plans/261018-2300-single-llm-simplification-and-evaluation-hardening/design/protocol-v2.md): Những gì được đo và đo thế nào, cùng các số đo của công cụ (manipulation check, MDE, leakage store); họ giả thuyết confirmatory còn để mở.
+- [Kế hoạch LLM + Jev (thay thế một phần)](plans/261015-0047-nt114-rca-llm-jev-research-and-implementation/plan.md): Các mốc M0–M5 cũ; phần Jev, escalation, RQ4–RQ5, E3–E5 và E8 đã bị thay thế. Vẫn là nguồn cho M0, phần cứng và các quyết định D1–D8 còn hiệu lực (D1 đã bị đảo ngược, D3 không còn áp dụng).
 - [Training strategy](plans/261015-0047-nt114-rca-llm-jev-research-and-implementation/design/training-strategy.md): Zero-shot là chính; điều kiện cho QLoRA, dữ liệu train, chống leakage và giữ precision khi so sánh.
 - [Phase M4](plans/261015-0047-nt114-rca-llm-jev-research-and-implementation/phase-05-m4-gated-fine-tuning.md): Công việc fine-tuning chưa được thay thế bằng inference; đọc gate trước khi xây exporter/trainer.
-- [Research design](plans/261015-0047-nt114-rca-llm-jev-research-and-implementation/design/research-design.md): Câu hỏi nghiên cứu, baseline, contrast và giao thức đánh giá.
 
 ## Điểm vào code và cấu hình
 
 - [Data CLI](nt114-rca/nt114-rca/src/rca/prep.py): `python -m rca.prep --help`; owner của status, chuẩn hóa, kiểm chứng bundle/split và cách resolve data home.
 - [Grid runner](nt114-rca/nt114-rca/src/rca/run_grid.py): `python -m rca.run_grid prepare <config>` và `python -m rca.run_grid run <config>`; CLI positional, không hỗ trợ `--help`.
-- [Decision runner](nt114-rca/nt114-rca/src/rca/decide.py): Lớp quyết định Jev và các chặn oracle/mock/evidence chưa được phép chia sẻ.
-- [Analysis](nt114-rca/nt114-rca/src/rca/analyze.py): Phân tích theo injection và chặn dữ liệu không đủ điều kiện cho bảng chính.
+- [Analysis](nt114-rca/nt114-rca/src/rca/analyze.py): Phân tích theo injection, paired contrast và headline guard chặn dữ liệu không đủ điều kiện cho bảng chính.
+- [Paired contrasts](nt114-rca/nt114-rca/src/rca/contrasts.py): Cluster bootstrap theo injection, sign-flip test và Holm correction; [reproduce](nt114-rca/nt114-rca/src/rca/reproduce.py) tạo lại bảng từ manifest.
 - [Hardware profiles](nt114-rca/nt114-rca/configs/hardware/rtx4080-laptop-12gb.yaml): Owner của model revision, serving profile và ước tính; phải đo trên GPU trước khi kết luận phù hợp.
 - [Feasibility CLI](nt114-rca/nt114-rca/src/rca/feasibility.py): list/check-env/fetch/run/report/compare-sampling; chỉ chạy các bước được giao, phân biệt fetch và run có tác động thực.
-- [DEV pilot](nt114-rca/nt114-rca/configs/exp/dev-pilot.yaml): Cấu hình live; `jev.expected_model` phải khớp response quan sát trong smoke được phép.
+- [DEV pilot](nt114-rca/nt114-rca/configs/exp/dev-pilot.yaml): Cấu hình live, một LLM; chưa chạy. Dòng DEV không bao giờ vào kết quả báo cáo.
 - [DEV sampling](nt114-rca/nt114-rca/configs/exp/dev-sampling.yaml): So sánh presence penalty trước khi đóng băng prompt; không tune trên test.
 
 ## Kiểm tra và an toàn bàn giao
 
-- [Offline smoke](nt114-rca/nt114-rca/configs/exp/smoke-offline.yaml): Chuỗi lệnh đầy đủ ở đầu file; dữ liệu tổng hợp, mock LLM/Jev, không GPU hoặc API.
+- [Offline smoke](nt114-rca/nt114-rca/configs/exp/smoke-offline.yaml): Chuỗi lệnh đầy đủ ở đầu file; dữ liệu tổng hợp, mock LLM, không GPU hoặc API.
 - [Canonical smoke](nt114-rca/nt114-rca/configs/exp/smoke-canonical.yaml): Chuỗi lệnh chạy bundle thật bằng mock backend; kiểm tra tích hợp, không phải chất lượng mô hình.
 - [Portability gate](nt114-rca/nt114-rca/scripts/verify_portability.sh): Kiểm tra commit, byte/content hashes, splits và synthetic pipeline; dùng worktree tại commit trong release manifest.
 - [Test fixtures](nt114-rca/nt114-rca/tests/conftest.py): `REAL_DATA` trỏ cố định tới `data/`; test raw-parity cần raw/work không nằm trong transfer bundle. Skipped tests không chứng minh dữ liệu đã được kiểm tra.
+- [Evidence goldens](nt114-rca/nt114-rca/tests/golden/): Digest evidence của dữ liệu tổng hợp và của fixture RCAEval có lỗi raw cài sẵn; chỉ ghi lại khi evidence được cố ý thay đổi.
 - [Ignored artifacts](nt114-rca/nt114-rca/.gitignore): Các vùng dữ liệu, kết quả, cache và venv không đi theo Git clone; không force-add chúng để chuyển máy.
 
 ## Optional
 
+- [Instrument audit](research/05_evidence_instrument_audit.md): Visibility, baseline, BARO, leakage store (loại trừ cùng cell; cùng root service vẫn truy cập được) và V8.
+- [Statistics validation](research/06_statistics_validation.md): Hiệu chuẩn bootstrap, sign-flip và MDE theo từng cấu trúc.
 - [Acquisition](nt114-rca/nt114-rca/docs/acquisition_plan.md): Cách tái lấy raw data nếu cần rebuild hoặc raw-parity; không cần cho inference bằng bundle đã kiểm chứng.
 - [Data quality audit](nt114-rca/nt114-rca/docs/dataset_quality_audit.md): Hạn chế nguồn dữ liệu và bằng chứng phục vụ alias sign-off.
 - [Đối chiếu chuyển máy](plans/reports/docs-261015-1642-repository-transfer-audit.md): Snapshot kiểm tra GitHub/Hugging Face và giới hạn validation; không thay thế runbook hay xác nhận GPU runtime.
