@@ -1,0 +1,16 @@
+{
+  "input": "F:\\Nam\\UIT\\NT114 - NCKH\\plans\\reports\\bao-cao-tien-do-nt114-2026-10-16.docx",
+  "input_sha256": "6a3593237cec475f3ceef0118baa1d9fa876a11c99987595bcaf88e05e76c164",
+  "output": "F:\\Nam\\UIT\\NT114 - NCKH\\plans\\reports\\bao-cao-tien-do-nt114-2026-10-16-ban-sua.docx",
+  "output_sha256": "76fe07aa779ef8944f38c19d7bc0d3ab8e92e43b97cf4850bcdd7e94181eb374",
+  "style_changes": [
+    "Replaced impersonal module summaries with first-person student prose addressed to the advisor.",
+    "Removed subtitle block, page footer and repeated bold paragraph leads.",
+    "Used a plain date, two manually numbered section labels and ordinary dash paragraphs."
+  ],
+  "factual_delta": {
+    "new_claims": [],
+    "changed_numbers": [],
+    "changed_execution_status": []
+  }
+}

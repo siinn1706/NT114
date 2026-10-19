@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+<title id="title">NT114 — Vòng giám sát và chẩn đoán 24/24</title>
+<desc id="desc">Kiến trúc vận hành mục tiêu: giám sát 24/24, phát hiện sự cố, tóm tắt bằng chứng, LLM chẩn đoán, Jev định tuyến, team dev xử lý và tiếp tục giám sát. Phần mở rộng vận hành được vẽ bằng nét đứt.</desc>
+<style>text {font-family: Arial, sans-serif;} .title{font-weight:700;} </style>
+<defs>
+<marker id="ab" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4 L0 8 Z" fill="#2563eb"/></marker>
+<marker id="ag" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4 L0 8 Z" fill="#15803d"/></marker>
+<marker id="ap" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4 L0 8 Z" fill="#7c3aed"/></marker>
+<marker id="ao" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4 L0 8 Z" fill="#c2410c"/></marker>
+<marker id="as" markerWidth="9" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L9 4 L0 8 Z" fill="#64748b"/></marker>
+</defs>
+<rect width="1920" height="1080" fill="#ffffff"/>
+<text x="80" y="72" font-size="41" fill="#172033" font-weight="700" text-anchor="start">VÒNG GIÁM SÁT VÀ CHẨN ĐOÁN SỰ CỐ 24/24</text>
+<text x="80" y="118" font-size="26" fill="#64748b" font-weight="400" text-anchor="start">Kiến trúc mục tiêu khi hoàn thiện · Chẩn đoán bằng LLM, định tuyến bằng Jev</text>
+<rect x="90" y="240" width="350" height="155" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 6"/>
+<circle cx="118" cy="272" r="16" fill="#2563eb"/>
+<text x="118" y="279" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">1</text>
+<text x="144" y="280" font-size="25" fill="#2563eb" font-weight="700" text-anchor="start">Dịch vụ</text>
+<text x="112" y="316" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Ứng dụng microservice</text>
+<text x="112" y="345" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Trace · log · metric</text>
+<rect x="520" y="240" width="350" height="155" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 6"/>
+<circle cx="548" cy="272" r="16" fill="#2563eb"/>
+<text x="548" y="279" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">2</text>
+<text x="574" y="280" font-size="25" fill="#2563eb" font-weight="700" text-anchor="start">Giám sát 24/24</text>
+<text x="542" y="316" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Thu thập telemetry</text>
+<text x="542" y="345" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Phát hiện cảnh báo</text>
+<rect x="950" y="240" width="350" height="155" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="978" cy="272" r="16" fill="#2563eb"/>
+<text x="978" y="279" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">3</text>
+<text x="1004" y="280" font-size="25" fill="#2563eb" font-weight="700" text-anchor="start">Bằng chứng</text>
+<text x="972" y="316" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Gom dữ liệu theo sự cố</text>
+<text x="972" y="345" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Tóm tắt + đánh dấu thiếu</text>
+<rect x="1380" y="240" width="350" height="155" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="1408" cy="272" r="16" fill="#2563eb"/>
+<text x="1408" y="279" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">4</text>
+<text x="1434" y="280" font-size="25" fill="#2563eb" font-weight="700" text-anchor="start">LLM chẩn đoán</text>
+<text x="1402" y="316" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Xếp hạng nguyên nhân</text>
+<text x="1402" y="345" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Độ tự tin + đồng thuận</text>
+<path d="M 440 318 H 516" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M 870 318 H 946" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M 1300 318 H 1376" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M 1555 395 V 500" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ab)"/>
+<rect x="1380" y="500" width="350" height="155" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<circle cx="1408" cy="532" r="16" fill="#7c3aed"/>
+<text x="1408" y="539" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">5</text>
+<text x="1434" y="540" font-size="25" fill="#7c3aed" font-weight="700" text-anchor="start">Jev quyết định</text>
+<text x="1402" y="576" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Chấp nhận → team dev</text>
+<text x="1402" y="605" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Chưa ổn → bổ sung</text>
+<path d="M 1380 578 H 1304" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ap)"/>
+<rect x="950" y="500" width="350" height="155" rx="16" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+<circle cx="978" cy="532" r="16" fill="#15803d"/>
+<text x="978" y="539" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">6</text>
+<text x="1004" y="540" font-size="25" fill="#15803d" font-weight="700" text-anchor="start">Kết quả xử lý</text>
+<text x="972" y="576" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Đưa chẩn đoán hoặc</text>
+<text x="972" y="605" font-size="21" fill="#172033" font-weight="400" text-anchor="start">yêu cầu kiểm tra thêm</text>
+<path d="M 950 578 H 874" fill="none" stroke="#15803d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ag)"/>
+<rect x="520" y="500" width="350" height="155" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" stroke-dasharray="8 6"/>
+<circle cx="548" cy="532" r="16" fill="#7c3aed"/>
+<text x="548" y="539" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">7</text>
+<text x="574" y="540" font-size="25" fill="#7c3aed" font-weight="700" text-anchor="start">Team dev xử lý</text>
+<text x="542" y="576" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Xác minh nguyên nhân</text>
+<text x="542" y="605" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Khắc phục sự cố</text>
+<path d="M 520 578 H 444" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ap)"/>
+<rect x="90" y="500" width="350" height="155" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" stroke-dasharray="8 6"/>
+<circle cx="118" cy="532" r="16" fill="#7c3aed"/>
+<text x="118" y="539" font-size="19" fill="#fff" font-weight="700" text-anchor="middle">8</text>
+<text x="144" y="540" font-size="25" fill="#7c3aed" font-weight="700" text-anchor="start">Theo dõi phục hồi</text>
+<text x="112" y="576" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Kiểm tra trạng thái dịch vụ</text>
+<text x="112" y="605" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Lưu hồ sơ đã xác minh</text>
+<path d="M 90 578 H 48 V 199 H 695 V 240" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ap)"/>
+<rect x="230.79000000000002" y="176" width="310.41999999999996" height="31" rx="5" fill="#ffffff"/>
+<text x="386" y="199" font-size="23" fill="#7c3aed" font-weight="500" text-anchor="middle">Tiếp tục vòng giám sát</text>
+<rect x="90" y="725" width="1640" height="174" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+<text x="120" y="770" font-size="20" fill="#7c3aed" font-weight="700" text-anchor="start">KHI JEV LẦN 1 CHƯA CHẤP NHẬN: THỰC HIỆN CẢ HAI NHÁNH</text>
+<text x="120" y="813" font-size="25" fill="#2563eb" font-weight="600" text-anchor="start">RETRIEVE  →  Kho ca cũ + LLM chính</text>
+<text x="120" y="857" font-size="25" fill="#c2410c" font-weight="600" text-anchor="start">ESCALATE →  LLM mạnh hơn</text>
+<path d="M 735 819 H 840" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ap)"/>
+<rect x="862" y="768" width="393" height="93" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="884" y="808" font-size="25" fill="#7c3aed" font-weight="700" text-anchor="start">Jev đánh giá lần 2</text>
+<text x="884" y="844" font-size="21" fill="#172033" font-weight="400" text-anchor="start">Chấp nhận hoặc từ chối</text>
+<path d="M 1255 817 H 1350" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ap)"/>
+<text x="1380" y="806" font-size="26" fill="#15803d" font-weight="700" text-anchor="start">Kết quả cuối</text>
+<text x="1380" y="845" font-size="23" fill="#172033" font-weight="400" text-anchor="start">Chuyển team dev</text>
+<text x="90" y="956" font-size="27" fill="#172033" font-weight="600" text-anchor="start">Telemetry được thu liên tục; LLM được gọi khi có sự cố cần chẩn đoán.</text>
+<text x="90" y="999" font-size="23" fill="#64748b" font-weight="400" text-anchor="start">Jev lần 2 chấp nhận: gửi chẩn đoán; chưa chấp nhận: yêu cầu team dev điều tra thêm.</text>
+<path d="M 90 1042 H 140" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ab)"/>
+<text x="155" y="1049" font-size="20" fill="#64748b" font-weight="400" text-anchor="start">Chẩn đoán</text>
+<path d="M 390 1042 H 440" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#ap)"/>
+<text x="455" y="1049" font-size="20" fill="#64748b" font-weight="400" text-anchor="start">Định tuyến / phản hồi</text>
+<rect x="815" y="1028" width="43" height="24" rx="4" fill="#fff" stroke="#64748b" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="875" y="1049" font-size="20" fill="#64748b" font-weight="400" text-anchor="start">Phần mở rộng vận hành</text>
+</svg>

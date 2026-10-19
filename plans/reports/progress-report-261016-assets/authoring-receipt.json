@@ -1,0 +1,27 @@
+{
+  "output": "F:\\Nam\\UIT\\NT114 - NCKH\\plans\\reports\\bao-cao-tien-do-nt114-2026-10-16.docx",
+  "input_hashes_before": {
+    "plans\\reports\\research-261012-q1-survey-and-directions.md": "75a5fa2e6424672be8a89e381783babc51ea5f870b08f39b9341ead60ea677c0",
+    "nt114-rca\\nt114-rca\\releases\\nt114-data-v1.json": "f9b7c552aee2d7381c70bfbada9ce4a106ce0a05fe4f56aba9ba812f28641b6b",
+    "plans\\261015-0047-nt114-rca-llm-jev-research-and-implementation\\decisions.md": "5685dc6a28ab1edbb2bd16b21978dcbdd0524587de3a216c05c3c89c0445d1bd",
+    "plans\\reports\\docs-261015-1642-repository-transfer-audit.md": "062c87a88314c172957a0d82a2b688c0f90ce363c988e7acdaedcd864dce2165"
+  },
+  "input_hashes_after": {
+    "plans\\reports\\research-261012-q1-survey-and-directions.md": "75a5fa2e6424672be8a89e381783babc51ea5f870b08f39b9341ead60ea677c0",
+    "nt114-rca\\nt114-rca\\releases\\nt114-data-v1.json": "f9b7c552aee2d7381c70bfbada9ce4a106ce0a05fe4f56aba9ba812f28641b6b",
+    "plans\\261015-0047-nt114-rca-llm-jev-research-and-implementation\\decisions.md": "5685dc6a28ab1edbb2bd16b21978dcbdd0524587de3a216c05c3c89c0445d1bd",
+    "plans\\reports\\docs-261015-1642-repository-transfer-audit.md": "062c87a88314c172957a0d82a2b688c0f90ce363c988e7acdaedcd864dce2165"
+  },
+  "status_authority": "User clarification in this conversation: code completed and committed; no GPU execution.",
+  "editorial_changes": [
+    "Converted internal implementation descriptions into short Vietnamese paragraphs for the advisor.",
+    "Removed test counts, software milestone codes, baseline metrics and release acceptance wording.",
+    "Described implemented modules as written code; did not claim successful real-model execution."
+  ],
+  "factual_delta": {
+    "added_results": [],
+    "strengthened_claims": [],
+    "unresolved_factual_changes": []
+  },
+  "output_sha256": "6a3593237cec475f3ceef0118baa1d9fa876a11c99987595bcaf88e05e76c164"
+}
