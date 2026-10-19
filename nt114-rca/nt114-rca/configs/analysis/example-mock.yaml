@@ -3,12 +3,14 @@
 #   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/smoke-offline.yaml
 #   PYTHONPATH=src python -m rca.run_grid run     configs/exp/smoke-offline.yaml
 #   PYTHONPATH=src python -m rca.analyze configs/analysis/example-mock.yaml
-grids: [results_smoke/grid.jsonl]
+# Outputs go to a fresh directory: the earlier results_smoke/ grid predates the execution signature (exec_sig),
+# which `run` refuses to resume; it is kept unchanged as a pre-signature record.
+grids: [results_smoke_sig/grid.jsonl]
 raw: null                     # null: llm_raw.jsonl next to each grid
 visibility: []                # e.g. results_visibility/<ds>/evidence_visibility.jsonl
 baselines: []                 # e.g. results_baselines_<ds>/baselines.jsonl
 data_home: null               # holds reports/eval-units-<dataset>.json; null: one injection per record
-out_dir: results_smoke/analysis
+out_dir: results_smoke_sig/analysis
 n_boot: 200
 n_perm: 2000
 seed: 0

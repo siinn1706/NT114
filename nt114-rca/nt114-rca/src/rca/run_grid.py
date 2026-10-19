@@ -289,6 +289,7 @@ def ablation_log(cn: Canon, uids, ev_dir: Path | None = None) -> list[dict]:
 
 def prepare(cfg):
     cn = Canon(cfg)
+    _require_split_for_retrieval(cfg, cn)
     if NONROOT_EV in cfg["conditions"] and "full" not in cfg["conditions"]:
         raise ValueError(f"{NONROOT_EV} is chosen from the full evidence: add 'full' to conditions")
     out = evidence_dir(cfg)
@@ -311,7 +312,7 @@ def prepare(cfg):
             _write_json(f, rec)
             flush(rows)
             print(f"[{i}/{len(sel)}] {vc.case_id}: {list(rec['conditions'])}")
-        if any(m != "none" for m in cfg.get("retrieval", ["none"])) and cn.split_dir:
+        if any(m != "none" for m in cfg.get("retrieval", ["none"])):
             from .legacy_view import visible_case
             st = cn.store_incidents()
             for k, inc in enumerate(st, 1):
@@ -345,27 +346,52 @@ def load_evidence(cfg) -> list[dict]:
     return recs
 
 
-def _store_entries(cfg, recs, cn: Canon) -> list[dict]:
-    if cn.split_dir:
-        entries = []
-        for f in sorted((evidence_dir(cfg) / "store").glob("*.json")):
-            with open(f, encoding="utf-8") as fh:
-                r = json.load(fh)
-            _check_current(r, cn.evidence_fp(r["incident_uid"]), f)
-            t = cn.truth(r["incident_uid"])   # nhãn của ca TRAIN (bản post-mortem), không phải của ca hỏi
-            entries.append({"case_id": r["incident_uid"], "system": r["system"], "root": t.root_service, "fault": t.fault,
-                            "text": r["conditions"]["full"]["text"], "evidence_fp": r["evidence_fp"]})
-        return entries
-    return [{"case_id": r["vc"].case_id, "system": r["vc"].system, "root": r["truth"].root_service,
-             "fault": r["truth"].fault, "text": r["conditions"]["full"]["text"], "evidence_fp": r["evidence_fp"]}
-            for r in recs if "full" in r["conditions"]]
+def _require_split_for_retrieval(cfg, cn: Canon) -> None:
+    if any(m != "none" for m in cfg.get("retrieval", ["none"])) and not cn.split_dir:
+        raise ValueError("retrieval needs a `split`: precedents come only from its train role")
+
+
+def _store_entries(cfg, cn: Canon) -> tuple[list[dict], dict]:
+    """Precedents = exactly the train-role incidents of the configured split (after `store_limit`).
+
+    Files under `<evidence_dir>/store` left by another split or limit are ignored and counted; a missing
+    eligible file raises. Prompt v1 names one root service per precedent, so train incidents labelled
+    only by a root set or a node are excluded and counted by granularity. Returns (entries, info)."""
+    _require_split_for_retrieval(cfg, cn)
+    eligible = [i["incident_uid"] for i in cn.store_incidents()]
+    queries = {vc.case_id for vc, _ in cn.selected()}
+    sdir = evidence_dir(cfg) / "store"
+    entries, excluded = [], {}
+    for u in eligible:
+        if cn.roles.get(u) != "train" or u in queries:
+            raise RuntimeError(f"store incident {u} is not a train-role incident outside the scored set")
+        f = sdir / f"{u}.json"
+        if not f.is_file():
+            raise RuntimeError(f"store evidence {f} is missing for split {cn.split_id}: run `prepare` again")
+        with open(f, encoding="utf-8") as fh:
+            r = json.load(fh)
+        _check_current(r, cn.evidence_fp(u), f)
+        t = cn.truth(u)   # nhãn của ca TRAIN (bản post-mortem), không phải của ca hỏi
+        if t.root_service is None:
+            excluded[t.granularity] = excluded.get(t.granularity, 0) + 1
+            continue
+        entries.append({"case_id": u, "system": r["system"], "root": t.root_service, "root_ids": tuple(t.root_ids),
+                        "granularity": t.granularity, "fault": t.fault, "text": r["conditions"]["full"]["text"],
+                        "evidence_fp": r["evidence_fp"]})
+    on_disk = {p.stem for p in sdir.glob("*.json")}
+    binding = {"split_id": cn.split_id, "split_sha256": _sha256(cn.split_dir / "split.json"),
+               "store_limit": cfg.get("store_limit"), "eligible": eligible}
+    info = {"split_id": cn.split_id, "store_limit": cfg.get("store_limit"), "eligible": len(eligible),
+            "entries": len(entries), "excluded": excluded, "ignored_files": len(on_disk - set(eligible)),
+            "binding": hashlib.sha256(json.dumps(binding, sort_keys=True).encode()).hexdigest()[:16]}
+    return entries, info
 
 
 def exclusions(store: CaseStore, vc: VisibleCase, truth: Truth, mode: str, group_members: frozenset) -> frozenset:
     """`precedent`: cùng nhóm trong manifest (không nhãn). `no_precedent` (oracle): thêm cùng (gốc, lỗi) từ Truth."""
     ex = frozenset(group_members) - {vc.case_id}
     if mode == "no_precedent":
-        ex |= store.oracle_exclusions(truth.root_service, truth.fault)
+        ex |= store.oracle_exclusions(score.truth_ids(truth), truth.fault)
     return ex
 
 
@@ -418,9 +444,12 @@ def write_config_copy(cfg) -> tuple[str, Path]:
     return hashlib.sha256(text.encode("utf-8")).hexdigest(), path
 
 
-def write_manifest(cfg, cn: Canon, server_fps: dict, started: float) -> dict:
+def write_manifest(cfg, cn: Canon, server_fps: dict, started: float, executions: list | None = None,
+                   store_info: dict | None = None) -> dict:
     """`manifest.json` next to the results: code, environment, data, split, config and model identity of
-    this run. Wall times in the logs are measurements of the machine named by `platform`."""
+    this run, each model's execution signature and the retrieval store's binding to the split. Wall times
+    in the logs are measurements of the machine named by `platform`."""
+    executions = executions or [{} for _ in cfg["models"]]
     from .legacy_view import VIEW_VERSION
     bundle = {}
     root = cn.data_home.parent
@@ -435,14 +464,16 @@ def write_manifest(cfg, cn: Canon, server_fps: dict, started: float) -> dict:
            "models": [{"name": m["name"], "role": m.get("role", "primary"), "revision": m.get("revision"),
                        "quantization": m.get("quantization"), "backend": m.get("backend", "vllm"),
                        "presence_penalty": m.get("presence_penalty"),
-                       "vllm_version": m.get("vllm_version"), "server_fp": server_fps.get(m["name"])}
-                      for m in cfg["models"]],
+                       "vllm_version": m.get("vllm_version"), "server_fp": server_fps.get(m["name"]),
+                       **ex}
+                      for m, ex in zip(cfg["models"], executions)],
            "gpu": _gpu_name(), "prompt_version": PROMPT_VERSION, "seed": cfg.get("seed", 0),
            "sampling": {"n": cfg["n_samples"], "temperature": cfg["temperature"]},
            "raw_outputs": raw_outputs_path(cfg).name if raw_outputs_enabled(cfg) else None,
            "started": int(started), "finished": int(time.time())}
     cfg_sha, cfg_path = write_config_copy(cfg)
-    man.update({"manifest_version": 2, "python": platform.python_version(), "platform": platform.platform(),
+    man.update({"manifest_version": 3, "store": store_info, "python": platform.python_version(),
+                "platform": platform.platform(),
                 "packages": _package_versions(), "evidence_builder_version": evidence.BUILDER_VERSION,
                 "legacy_view_version": VIEW_VERSION, "config_sha256": cfg_sha, "config_copy": cfg_path.name,
                 "split_sha256": _sha256(cn.split_dir / "split.json") if cn.split_dir else None,
@@ -514,9 +545,26 @@ def _check_roles(models):
             raise ValueError(f"model {m['name']}: role must be one of {MODEL_ROLES}")
 
 
+def _check_resumable(rows: list[dict], llms: list[LLM], out_path: Path) -> None:
+    """A grid only holds rows of the execution signatures this config declares (several entries of one model,
+    e.g. sampling arms, each have their own); rows made with other settings are never resumed."""
+    declared = {}
+    for llm in llms:
+        declared.setdefault(llm.model, {})[llm.execution_signature()] = llm.execution()
+    for r in rows:
+        mine = declared.get(r.get("model"))
+        if mine is None or r.get("exec_sig") in mine:
+            continue
+        old = r.get("execution") or {}
+        diff = sorted({k for now in mine.values() for k in now if old.get(k, "<missing>") != now[k]}) or ["exec_sig"]
+        raise RuntimeError(f"{out_path} holds rows of model {r['model']!r} made with other settings ({', '.join(diff)}); "
+                           "write this configuration to a new `out` path")
+
+
 # ---------------------------------------------------------------- bước 2
 def run(cfg):
     cn = Canon(cfg)
+    _require_split_for_retrieval(cfg, cn)
     recs = load_evidence(cfg)
     wanted = {vc.case_id for vc, _ in cn.selected()}
     recs = [r for r in recs if r["vc"].case_id in wanted]
@@ -524,42 +572,52 @@ def run(cfg):
 
     _check_roles(cfg["models"])
     started = time.time()
-    store, store_fp = None, "-"
+    store, store_fp, store_info = None, "-", None
     if any(m != "none" for m in cfg["retrieval"]):
-        entries = _store_entries(cfg, recs, cn)
+        entries, store_info = _store_entries(cfg, cn)
         emb_name = cfg.get("embedder", "BAAI/bge-small-en-v1.5")
         store = CaseStore(entries, Embedder(emb_name))
         if emb_name != "tfidf" and store.emb.kind != "st":
             raise RuntimeError(f"embedder {emb_name!r} is unavailable (fell back to {store.emb.kind}); "
                                "install sentence-transformers or set `embedder: tfidf` explicitly")
-        blob = "\n".join([f"embedder:{store.emb.kind}:{emb_name}"] + sorted(f"{e['case_id']}:{e['evidence_fp']}" for e in entries))
+        blob = "\n".join([f"embedder:{store.emb.kind}:{emb_name}", f"binding:{store_info['binding']}"]
+                         + sorted(f"{e['case_id']}:{e['evidence_fp']}" for e in entries))
         store_fp = hashlib.sha256(blob.encode()).hexdigest()[:16]
-        print(f"case store: {len(entries)} entries, embedder={store.emb.kind}")
+        store_info["store_fp"] = store_fp
+        print(f"case store: {len(entries)} entries ({store_info['ignored_files']} other store files ignored, "
+              f"excluded {store_info['excluded'] or 'none'}), embedder={store.emb.kind}")
     members: dict[str, set] = {}
     for u, g in cn.group.items():
         members.setdefault(g, set()).add(u)
 
     out_path = Path(cfg["out"])
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    done = set()
+    existing = []
     if out_path.exists():
         with open(out_path, encoding="utf-8") as fh:
-            done = {json.loads(l)["key"] for l in fh if l.strip()}
+            existing = [json.loads(l) for l in fh if l.strip()]
+    done = {r["key"] for r in existing}
     cache = Cache(cfg.get("cache", "results/llm_cache.sqlite"))
-    server_fps = {}
     keep_raw = raw_outputs_enabled(cfg)
     raw_path = raw_outputs_path(cfg)
     raw_done = raw_output_keys(raw_path) if keep_raw else set()
+    llms = []
+    for m in cfg["models"]:
+        llm = LLM(m["name"], m.get("base_url", "http://localhost:8000/v1"), m.get("backend", "vllm"),
+                  n=cfg["n_samples"], temperature=cfg["temperature"], seed=cfg.get("seed", 0), cache=cache,
+                  max_tokens=m.get("max_tokens", 400), revision=m.get("revision"),
+                  chat_template_kwargs=m.get("chat_template_kwargs"), logprobs=m.get("logprobs", False),
+                  presence_penalty=m.get("presence_penalty"), keep_raw=keep_raw)
+        llm.server_fingerprint(m.get("launch_args"), m.get("quantization"))
+        llms.append(llm)
+    _check_resumable(existing, llms, out_path)
+    server_fps = {llm.model: llm.server_fp for llm in llms}
+    executions = [{"exec_sig": llm.execution_signature(), "execution": llm.execution()} for llm in llms]
 
     with open(out_path, "a", encoding="utf-8", newline="\n") as fout, \
             (_open_append(raw_path) if keep_raw else _NullFile()) as fraw:
-        for m in cfg["models"]:
-            llm = LLM(m["name"], m.get("base_url", "http://localhost:8000/v1"), m.get("backend", "vllm"),
-                      n=cfg["n_samples"], temperature=cfg["temperature"], seed=cfg.get("seed", 0), cache=cache,
-                      max_tokens=m.get("max_tokens", 400), revision=m.get("revision"),
-                      chat_template_kwargs=m.get("chat_template_kwargs"), logprobs=m.get("logprobs", False),
-                      presence_penalty=m.get("presence_penalty"), keep_raw=keep_raw)
-            server_fps[m["name"]] = llm.server_fingerprint(m.get("launch_args"), m.get("quantization"))
+        for m, llm, ex in zip(cfg["models"], llms, executions):
+            sig = ex["exec_sig"]
             role, rev = m.get("role", "primary"), m.get("revision")
             for r in recs:
                 vc, tr, cands = r["vc"], r["truth"], r["candidates"]
@@ -570,11 +628,10 @@ def run(cfg):
                     for meth, mode in cells:
                         if meth == "none" and "none" not in cfg["retrieval"]:
                             continue
-                        # the evidence (and store) fingerprints are part of the key: rows produced from
-                        # stale evidence are not counted as done
+                        # the evidence and store fingerprints and the execution signature are part of the
+                        # key: rows produced from stale evidence or other settings are never counted as done
                         key = (f"{m['name']}|{rev}|{PROMPT_VERSION}|{vc.case_id}|{cond}|{meth}|{mode}|{r['evidence_fp']}|"
-                               f"{store_fp if meth != 'none' else '-'}"
-                               + (f"|pp={llm.presence_penalty}" if llm.presence_penalty is not None else ""))
+                               f"{store_fp if meth != 'none' else '-'}|sig={sig}")
                         if key in done:
                             continue
                         t0 = time.perf_counter()
@@ -584,8 +641,8 @@ def run(cfg):
                         msgs = build_messages(vc, cands, ev["text"], format_hits(hits))
                         res = llm.ask(msgs, cands)
                         if keep_raw and key not in raw_done:   # before the grid row: a done key has its raw record
-                            fraw.write(json.dumps(raw_output_row(key, m["name"], role, vc.case_id, cond, meth, mode, res),
-                                                  ensure_ascii=False) + "\n")
+                            fraw.write(json.dumps({**raw_output_row(key, m["name"], role, vc.case_id, cond, meth, mode, res),
+                                                   "exec_sig": sig}, ensure_ascii=False) + "\n")
                             fraw.flush()
                             raw_done.add(key)
                         agg = aggregate(res["samples"])
@@ -594,7 +651,8 @@ def run(cfg):
                             "key": key, "cfg": cfg["_hash"], "model": m["name"], "model_role": role, "model_revision": rev,
                             "prompt_version": PROMPT_VERSION, "server_fp": llm.server_fp, "backend": llm.backend,
                             "sampling": {"n": llm.n, "temperature": llm.temperature, "seed": llm.seed,
-                                         "presence_penalty": llm.presence_penalty},
+                                         "presence_penalty": llm.presence_penalty, "max_tokens": llm.max_tokens},
+                            "exec_sig": sig, "execution": ex["execution"],
                             "case_id": vc.case_id,
                             "system": vc.system, "dataset": vc.dataset, "fault": tr.fault, "truth": tr.root_service,
                             "truth_ids": list(score.truth_ids(tr)), "label_granularity": tr.granularity,
@@ -603,7 +661,7 @@ def run(cfg):
                             "parse_failed": sc["parse_failed"], "set_scored": sc["set_scored"], **agg,
                             "features": ev["features"],
                             "hits": [{"case_id": h["case_id"], "root": h["root"], "dense_sim": h["dense_sim"]} for h in hits],
-                            "hit_has_truth": any(h["root"] in score.truth_ids(tr) for h in hits),
+                            "hit_has_truth": any(set(score.truth_ids(tr)) & {h["root"], *h["root_ids"]} for h in hits),
                             "prompt_tokens": res["prompt_tokens"], "completion_tokens": res["completion_tokens"],
                             "latency_s": res["latency_s"], "cached": res["cached"], "retrieval_s": retrieval_s,
                             "ts": int(time.time()),
@@ -617,7 +675,7 @@ def run(cfg):
                         fout.flush()
                         done.add(key)
             print(f"model {m['name']} done")
-    write_manifest(cfg, cn, server_fps, started)
+    write_manifest(cfg, cn, server_fps, started, executions, store_info)
 
 
 if __name__ == "__main__":

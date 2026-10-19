@@ -2,7 +2,9 @@
 # (no retrieval store), mock LLM (one model). No GPU, no network, no API key.
 #   RCA_DATA_HOME=<bundle>/parts PYTHONPATH=src python -m rca.run_grid prepare configs/exp/smoke-canonical.yaml
 #   RCA_DATA_HOME=<bundle>/parts PYTHONPATH=src python -m rca.run_grid run     configs/exp/smoke-canonical.yaml
-#   PYTHONPATH=src python -m rca.analyze results_smoke_canonical/grid.jsonl --data-home <bundle>/parts
+#   PYTHONPATH=src python -m rca.analyze results_smoke_canonical_sig/grid.jsonl --data-home <bundle>/parts
+# Outputs go to a fresh directory: the earlier results_smoke_canonical/ grid predates the execution signature (exec_sig),
+# which `run` refuses to resume; it is kept unchanged as a pre-signature record.
 source: canonical
 data_home: null                         # null: $RCA_DATA_HOME, else <repo>/data
 canonical_datasets: [rcaeval, nezha, aiops2025, rca100]
@@ -16,8 +18,8 @@ n_samples: 10
 temperature: 0.7
 seed: 0
 embedder: tfidf
-evidence_dir: results_smoke_canonical/evidence
-cache: results_smoke_canonical/llm_cache.sqlite
-out: results_smoke_canonical/grid.jsonl
+evidence_dir: results_smoke_canonical_sig/evidence
+cache: results_smoke_canonical_sig/llm_cache.sqlite
+out: results_smoke_canonical_sig/grid.jsonl
 models:
   - {name: mock-primary, backend: mock, role: primary, revision: mock-r1}

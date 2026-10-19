@@ -50,7 +50,7 @@ def model_artifacts(cfg) -> dict[str, str]:
     run_grid.prepare(cfg)
     recs = run_grid.load_evidence(cfg)
     cn = run_grid.Canon(cfg)
-    store = CaseStore(run_grid._store_entries(cfg, recs, cn), _tfidf())
+    store = CaseStore(run_grid._store_entries(cfg, cn)[0], _tfidf())
     members = {}
     for u, g in cn.group.items():
         members.setdefault(g, set()).add(u)
@@ -200,7 +200,7 @@ def test_store_entries_are_train_role_and_never_in_the_query_group(canonical_syn
     run_grid.prepare(cfg)
     recs = run_grid.load_evidence(cfg)
     cn = run_grid.Canon(cfg)
-    entries = run_grid._store_entries(cfg, recs, cn)
+    entries, _ = run_grid._store_entries(cfg, cn)
     assert entries and {cn.roles[e["case_id"]] for e in entries} == {"train"}
     store = CaseStore(entries, _tfidf())
     members = {}
@@ -217,3 +217,96 @@ def test_store_entries_are_train_role_and_never_in_the_query_group(canonical_syn
                 assert cn.group.get(h["case_id"]) != cn.group.get(vc.case_id)
                 checked += 1
     assert checked
+
+
+# ---------------------------------------------------------------- store bound to the split
+def _store_files(cfg) -> set[str]:
+    return {p.stem for p in (Path(cfg["evidence_dir"]) / "store").glob("*.json")}
+
+
+def test_store_follows_the_configured_split_not_the_evidence_dir(canonical_synth, tmp_path, monkeypatch):
+    """Store files written for another split stay on disk; they never become precedents."""
+    from rca import splits
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    dh = _home(canonical_synth, tmp_path)
+    assert splits.split_cmd("within-rcaeval-retrieval", 1, canonical_synth["pcfg"], dh) in (0, 3)
+    a = canonical_run_cfg(dh, tmp_path / "res", retrieval=["none", "hybrid"], conditions=["full"])
+    b = {**a, "split": "within-rcaeval-retrieval-1"}
+    run_grid.prepare(a)
+    cn_b = run_grid.Canon(b)
+    train_b = {i["incident_uid"] for i in cn_b.store_incidents()}
+    stale = _store_files(a) - train_b
+    assert stale and {cn_b.roles[u] for u in stale} - {"train"}       # split A's store holds B's held-out incidents
+    assert train_b - _store_files(a)
+    with pytest.raises(RuntimeError, match="prepare"):
+        run_grid._store_entries(b, cn_b)                              # B's train incidents are not prepared yet
+    run_grid.prepare(b)
+    entries, info = run_grid._store_entries(b, cn_b)
+    assert {e["case_id"] for e in entries} == train_b
+    assert not {e["case_id"] for e in entries} & {vc.case_id for vc, _ in cn_b.selected()}
+    assert info["ignored_files"] == len(_store_files(b) - train_b) > 0
+    assert info["split_id"] == cn_b.split_id
+
+
+def test_store_limit_selects_the_first_train_incidents(canonical_synth, tmp_path, monkeypatch):
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path / "res", retrieval=["none", "hybrid"], conditions=["full"])
+    run_grid.prepare(cfg)
+    train = sorted(i["incident_uid"] for i in run_grid.Canon(cfg).store_incidents())
+    small = {**cfg, "store_limit": 2}
+    e_small, i_small = run_grid._store_entries(small, run_grid.Canon(small))
+    e_all, i_all = run_grid._store_entries(cfg, run_grid.Canon(cfg))
+    assert [e["case_id"] for e in e_small] == train[:2] and i_small["ignored_files"] == len(train) - 2
+    assert [e["case_id"] for e in e_all] == train and i_all["ignored_files"] == 0
+    assert i_small["binding"] != i_all["binding"]
+
+
+def test_retrieval_without_a_split_is_refused(canonical_synth, tmp_path):
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path / "res", split=None, retrieval=["none", "hybrid"])
+    for step in (run_grid.prepare, run_grid.run):
+        with pytest.raises(ValueError, match="split"):
+            step(cfg)
+
+
+def test_precedents_without_a_service_root_are_excluded_and_counted(canonical_synth, tmp_path, monkeypatch):
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    dh = _home(canonical_synth, tmp_path)
+    cfg = canonical_run_cfg(dh, tmp_path / "res", retrieval=["none", "hybrid"], conditions=["full"])
+    train = sorted(i["incident_uid"] for i in run_grid.Canon(cfg).store_incidents())
+    labs = read_jsonl(_labels_path(dh))
+    for l in labs:
+        if l["incident_uid"] == train[0]:
+            l["root_cause"].update(primary_root_service=None, root_service_ids=["node-7"], label_granularity="node")
+        if l["incident_uid"] == train[1]:
+            l["root_cause"].update(primary_root_service=None, root_service_ids=["cart", "redis"],
+                                   label_granularity="multi-service")
+    write_jsonl_atomic(_labels_path(dh), labs)
+    run_grid.prepare(cfg)
+    entries, info = run_grid._store_entries(cfg, run_grid.Canon(cfg))
+    assert info["excluded"] == {"node": 1, "multi-service": 1}
+    assert {e["case_id"] for e in entries} == set(train[2:])
+    assert all(e["root"] is not None and e["root_ids"] and e["granularity"] for e in entries)
+    assert "None" not in format_hits(entries[:3])
+
+
+def _entry(uid, root, ids, gran="service", fault="cpu"):
+    return {"case_id": uid, "system": "s", "root": root, "root_ids": ids, "granularity": gran, "fault": fault,
+            "text": f"metrics latency errors {uid} cart redis frontend checkout payment"}
+
+
+def test_oracle_exclusion_and_hits_use_root_sets():
+    store = CaseStore([_entry("t.1", "cart", ("cart",)), _entry("t.2", "redis", ("redis",)),
+                       _entry("t.3", "cart", ("cart",), fault="mem")], _tfidf())
+    assert store.oracle_exclusions(("cart", "redis"), "cpu") == {"t.1", "t.2"}      # set-scored query
+    assert store.oracle_exclusions(("cart",), "cpu") == {"t.1"}
+    assert store.oracle_exclusions((), "cpu") == frozenset()
+    with pytest.raises(ValueError, match="service-level root"):
+        format_hits([_entry("t.4", None, ("cart", "redis"), "multi-service")])
+
+
+def test_format_hits_text_is_unchanged_for_service_roots():
+    hits = [_entry("t.1", "cart", ("cart",)), _entry("t.2", "redis", ("redis",), fault="mem")]
+    assert format_hits(hits) == (
+        "# Similar past incidents (resolved, root cause known)\n\n"
+        "### Past incident 1 — root cause: cart (cpu)\nmetrics latency errors t.1 cart redis frontend checkout payment\n\n"
+        "### Past incident 2 — root cause: redis (mem)\nmetrics latency errors t.2 cart redis frontend checkout payment")

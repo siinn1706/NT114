@@ -281,3 +281,62 @@ def test_embedder_kind_pinned(canonical_synth, tmp_path, monkeypatch):
     run_grid.run(cfg_t)
     fp = lambda path: {json.loads(l)["store_fp"] for l in open(path, encoding="utf-8")} - {None}
     assert fp(cfg["out"]) and fp(cfg_t["out"]) and fp(cfg["out"]).isdisjoint(fp(cfg_t["out"]))
+
+
+# ---------------------------------------------------------------- execution signature and resume
+def _lines(path) -> int:
+    return sum(1 for l in open(path, encoding="utf-8") if l.strip())
+
+
+@pytest.fixture(scope="module")
+def small_run(canonical_synth, tmp_path_factory):
+    out = tmp_path_factory.mktemp("sig")
+    cfg = canonical_run_cfg(canonical_synth["dh"], out, conditions=["full"], retrieval=["none"],
+                            models=[{"name": "mock-small", "backend": "mock", "max_tokens": 400}])
+    run_grid.prepare(cfg)
+    run_grid.run(cfg)
+    return cfg
+
+
+@pytest.mark.parametrize("field, value", [("n_samples", 3), ("temperature", 0.2), ("seed", 1),
+                                          ("max_tokens", 200), ("presence_penalty", 1.5),
+                                          ("chat_template_kwargs", {"enable_thinking": True}), ("logprobs", True)])
+def test_changed_execution_settings_are_never_resumed(small_run, field, value):
+    import copy
+    cfg = copy.deepcopy(small_run)
+    n_grid, n_raw = _lines(cfg["out"]), _lines(Path(cfg["out"]).parent / "llm_raw.jsonl")
+    if field in ("n_samples", "temperature", "seed"):
+        cfg[field] = value
+    else:
+        cfg["models"][0][field] = value
+    name = {"n_samples": "n"}.get(field, field)
+    with pytest.raises(RuntimeError, match=name):
+        run_grid.run(cfg)
+    assert _lines(cfg["out"]) == n_grid and _lines(Path(cfg["out"]).parent / "llm_raw.jsonl") == n_raw
+
+
+def test_rows_raw_records_and_manifest_carry_the_signature(small_run):
+    out = Path(small_run["out"]).parent
+    grid = [json.loads(l) for l in open(small_run["out"], encoding="utf-8")]
+    raw = [json.loads(l) for l in open(out / "llm_raw.jsonl", encoding="utf-8")]
+    sigs = {r["exec_sig"] for r in grid}
+    assert len(sigs) == 1 and {r["exec_sig"] for r in raw} == sigs
+    assert all(r["key"].endswith(f"|sig={r['exec_sig']}") for r in grid)
+    ex = grid[0]["execution"]
+    assert {"n", "temperature", "seed", "max_tokens", "presence_penalty", "chat_template_kwargs", "logprobs",
+            "server_fp", "backend", "revision", "prompt_version", "model"} <= set(ex)
+    man = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
+    assert man["manifest_version"] == 3 and man["models"][0]["exec_sig"] in sigs
+    n = _lines(small_run["out"])
+    run_grid.run(small_run)                                       # same settings: nothing new
+    assert _lines(small_run["out"]) == n
+
+
+def test_headline_guard_refuses_mixed_signatures():
+    import pandas as pd
+    df = pd.DataFrame([{"model": "m", "model_revision": "r", "server_fp": "f", "prompt_version": "v1", "backend": "vllm",
+                        "incident_uid": f"x.{i}", "condition": "full", "evidence_fp": "e", "split_role": "test",
+                        "exec_sig": s} for i, s in enumerate(("a", "b"))])
+    with pytest.raises(analyze.HeadlineGuardError, match="exec_sig"):
+        analyze.guard_headline(df)
+    analyze.guard_headline(df.assign(exec_sig="a"))

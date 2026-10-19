@@ -70,7 +70,7 @@ python -m pytest -q -m "not realdata"
 # Check the real transferred bundle with current code, mock LLM, no provider calls:
 python -m rca.run_grid prepare configs/exp/smoke-canonical.yaml
 python -m rca.run_grid run configs/exp/smoke-canonical.yaml
-python -m rca.analyze results_smoke_canonical/grid.jsonl --data-home "$RCA_DATA_HOME"   # exploratory_* tables
+python -m rca.analyze results_smoke_canonical_sig/grid.jsonl --data-home "$RCA_DATA_HOME"   # exploratory_* tables
 
 # 4. GPU probe; paste its `hardware` block into configs/hardware/rtx4080-laptop-12gb.yaml
 python scripts/gpu_probe.py --out results/gpu_probe.json
@@ -139,13 +139,15 @@ data release and do not travel with a Git clone.
    - the capacity estimate;
    - the server's measured weight memory, KV-cache memory and KV tokens;
    - peak and baseline VRAM, temperature, SM clock and throttle reasons;
-   - the parse rate per cell, latency p50/p95, tokens/s and the served prompt-length p95;
+   - the completion parse rate (valid completions / all completions, overall and per cell), the share of
+     cells with at least one and with all valid completions, latency p50/p95, tokens/s and the served
+     prompt-length p95;
    - a verdict.
 
 A profile is **feasible** when all of these hold:
 
 - the server starts without running out of memory;
-- the parse rate is ≥ 0.99;
+- the completion parse rate is ≥ 0.99 (a cell with one valid completion of ten counts as 0.1, not 1);
 - the measured KV cache holds ≥ 2 requests of (p95 prompt + 10 × 400) tokens.
 
 DEV AC@1 is reported for information only. With 12 incidents it does not rank models; the DEV

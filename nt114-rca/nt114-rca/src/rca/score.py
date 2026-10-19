@@ -2,7 +2,8 @@
 
 A ranking hits when its entry is the primary root service, or, for records labelled only with a set
 of root services (AIOps2025 multi-service labels), any member of `Truth.root_ids`. A miss has rank
-n_candidates + 1, so a short wrong ranking never counts as correct@k. An empty ranking (every sample
+max(n_candidates, RANK_CAP) + 1: it lies beyond the top-RANK_CAP window, so a short wrong ranking never
+counts for AC@1..AC@5 or MRR@5, however few candidates the incident has. An empty ranking (every sample
 failed to parse) is a miss with `parse_failed` set.
 """
 from __future__ import annotations
@@ -13,6 +14,7 @@ from pathlib import Path
 import pandas as pd
 
 from .data import Truth
+from .metrics import RANK_CAP
 
 
 def truth_ids(truth: Truth) -> tuple[str, ...]:
@@ -22,7 +24,7 @@ def truth_ids(truth: Truth) -> tuple[str, ...]:
 
 def correctness(ranking: list[str], truth: Truth, n_candidates: int) -> dict:
     ids = set(truth_ids(truth))
-    rank = next((i + 1 for i, s in enumerate(ranking) if s in ids), n_candidates + 1)
+    rank = next((i + 1 for i, s in enumerate(ranking) if s in ids), max(n_candidates, RANK_CAP) + 1)
     return {"rank": rank, "correct_at_1": rank == 1, "correct_at_3": rank <= 3,
             "set_scored": truth.root_service is None, "parse_failed": not ranking}
 

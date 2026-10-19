@@ -40,8 +40,7 @@ import pandas as pd
 import yaml
 
 from . import confidence, contrasts, cost, score, selective
-from .metrics import (RANK_CAP, auprc, auroc, aurc_w, brier, cluster_bootstrap, cluster_bootstrap_means, ece_w,
-                      overconfidence_gap, selective_risk_at)
+from .metrics import RANK_CAP, auroc, aurc_w, cluster_bootstrap, cluster_bootstrap_means, ece_w, selective_risk_at
 
 
 def load(path) -> pd.DataFrame:
@@ -72,7 +71,7 @@ def guard_headline(grid: pd.DataFrame) -> None:
         problems.append("DEV (split_role=val) rows")
     if "prompt_version" in grid and grid["prompt_version"].nunique() > 1:
         problems.append(f"mixed prompt_version {sorted(grid['prompt_version'].unique())}")
-    for col in ("model_revision", "server_fp"):
+    for col in ("model_revision", "server_fp", "exec_sig"):
         bad = _mixed_within(grid, col, "model")
         if bad:
             problems.append(f"mixed {col} within model(s) {bad}")
@@ -175,6 +174,12 @@ def precedent_root_table(df: pd.DataFrame, n_boot: int = 2000, seed: int = 0) ->
                       extra=("precedent_has_root",))
 
 
+def _flat(ep: str, v: dict) -> dict:
+    """An endpoint {est, lo, hi[, nan_draws]} as columns `ep`, `ep_lo`, `ep_hi`[, `ep_nan_draws`]."""
+    return {ep: v["est"], f"{ep}_lo": v["lo"], f"{ep}_hi": v["hi"],
+            **({f"{ep}_nan_draws": v["nan_draws"]} if "nan_draws" in v else {})}
+
+
 def confidence_table(df: pd.DataFrame, names: list[str], n_boot: int = 2000, seed: int = 0) -> pd.DataFrame:
     """Every requested registry score per cell: error detection (positive = wrong) with a CI on AUROC,
     AURC, and Brier / ECE / gap for probability scores."""
@@ -191,55 +196,101 @@ def confidence_table(df: pd.DataFrame, names: list[str], n_boot: int = 2000, see
                    "n_records": len(g), "n_scored": int(m.sum())}
             if m.sum() >= 2:
                 c, p, w = h["correct"].astype(bool).to_numpy(), s[m].to_numpy(), h["weight"].to_numpy()
-                rec["AUPRC"] = auprc(~c, -p, w)
                 if c.all() or not c.any():
                     rec["AUROC"] = rec["AUROC_lo"] = rec["AUROC_hi"] = np.nan
                 else:
                     rec["AUROC"], rec["AUROC_lo"], rec["AUROC_hi"] = _boot(
                         lambda cc, pp, ww: auroc(cc < 0.5, -pp, ww), [c.astype(float), p], h, n_boot, seed)
-                rec["AURC"] = aurc_w(c, p, w)
-                if spec.probability:
-                    rec["Brier"] = brier(c, p, w)
-                    rec["ECE"] = ece_w(c, p, w, "support" if spec.support == "discrete" else "width")
-                    rec["gap"] = overconfidence_gap(c, p, w)
+                for ep, v in selective.confidence_endpoints(c, p, h["injection_id"].to_numpy(), w, spec.probability,
+                                                            spec.support, n_boot, seed).items():
+                    rec.update(_flat(ep, v))
             rows.append(rec)
     return pd.DataFrame(rows)
 
 
+SELECTIVE_TIES = {
+    "risk@c": "tie groups answered together; achieved coverage (>= c) reported as coverage_ties@c",
+    "risk_exact@c": "exactly c of the weight answered; the boundary tie group answered fractionally "
+                    "(expected risk of C1's seeded random tie-break); gain_exact@c = base error - risk_exact@c "
+                    "is the contrast with C2 random deferral",
+    "dev_fit": "tau fitted on the DEV rows of the same stratum (source_stratum) for the goal, applied unchanged; "
+               "achieved test coverage and risk reported with CIs",
+}
+
+
+def _pooled(df: pd.DataFrame, pools: dict) -> pd.DataFrame:
+    """Declared pools as extra cells: `{name: {column: [values]}}` -> rows with column = `pool:<name>`.
+    Within the pooled cell weight = 1 / (records of the injection), so every injection weighs 1 however
+    many pooled conditions apply to it (an incident has one record per condition, so `reweight`'s
+    distinct-incident count would not do). Nothing is pooled unless declared."""
+    frames = []
+    for name, spec in (pools or {}).items():
+        (col, values), = spec.items()
+        if col in df:
+            sub = df[df[col].isin(values)].assign(**{col: f"pool:{name}"})
+            if len(sub):
+                keys = [c for c in strata_cols(sub) if c != "label_granularity"] + ["injection_id"]
+                frames.append(sub.assign(weight=1.0 / sub.groupby(keys, dropna=False)["incident_uid"].transform("size")))
+    return pd.concat(frames, ignore_index=True) if frames else df.iloc[:0]
+
+
+def _same_stratum(df: pd.DataFrame, base: dict, keys: list[str]) -> pd.DataFrame:
+    m = pd.Series(True, index=df.index)
+    for k in keys:
+        v = base[k]
+        m &= df[k].isna() if pd.isna(v) else df[k] == v
+    return df[m]
+
+
+def _plain(v):
+    return v.item() if hasattr(v, "item") else v
+
+
 def selective_table(df: pd.DataFrame, names: list[str], dev: pd.DataFrame | None = None, goals: dict | None = None,
                     n_boot: int = 2000, seed: int = 0) -> pd.DataFrame:
-    """Risk-coverage per score and the L1 / C2 / O references per cell; DEV-fit thresholds (`goals`:
-    {coverage: [...], risk: [...]}) fitted on `dev` rows of the same model x condition x retrieval x
-    store mode and applied unchanged to every test cell, next to the test-oracle point."""
+    """Risk-coverage endpoints per score and the L1 / C2 / O references per cell, each with a CI over
+    injections (`SELECTIVE_TIES` states the tie handling). DEV-fit thresholds (`goals`: {coverage: [...],
+    risk: [...]}) are fitted on the `dev` rows of the **same stratum** (dataset, granularity, set-scored,
+    model, condition, retrieval, store mode) and applied unchanged to the test cell, next to the
+    test-oracle point; a stratum without DEV rows gets a `no_source` row. `goals["pools"]` declares
+    pooled cells (`{name: {column: [values]}}`), pooled the same way on DEV and test."""
+    goals = goals or {}
+    pools = goals.get("pools")
+    df = pd.concat([df, _pooled(df, pools)], ignore_index=True)
+    dev = dev if dev is not None else df.iloc[:0]
+    dev = pd.concat([dev, _pooled(dev, pools)], ignore_index=True) if len(dev) else dev
     rows = []
     cols = strata_cols(df)
-    goals = goals or {}
-    fit_keys = [c for c in ("model", "condition", "retrieval", "store_mode") if c in df]
+    fit_keys = [c for c in cols if c != "split_role"]
+    coverages = sorted(set(selective.COVERAGES) | set(goals.get("coverage", [])))
     for k, g in df.groupby(cols, dropna=False):
         base = dict(zip(cols, k if isinstance(k, tuple) else (k,)))
-        c, w = g["correct"].astype(bool).to_numpy(), g["weight"].to_numpy()
-        for r in selective.references(c, g["abstain_vote"].to_numpy(), w):
+        c, w, inj = g["correct"].astype(bool).to_numpy(), g["weight"].to_numpy(), g["injection_id"].to_numpy()
+        for r in selective.references(c, g["abstain_vote"].to_numpy(), w, inj, n_boot, seed):
             rows.append({**base, "kind": "reference", **r})
+        d = _same_stratum(dev, base, fit_keys) if len(dev) else dev
+        source = {"source_split_role": "val", "source_stratum": json.dumps({kc: _plain(base[kc]) for kc in fit_keys}),
+                  "n_dev_records": len(d), "n_dev_injections": int(d["injection_id"].nunique()) if len(d) else 0}
         for name in names:
             s = g[f"score_{name}"].astype(float).to_numpy()
-            rec = {**base, "kind": "curve", "score": name, **selective.risk_coverage_summary(c, s, w)}
-            for x in goals.get("risk", []):
-                rec[f"coverage_at_risk{x}"] = selective.coverage_at_risk(c[~np.isnan(s)], s[~np.isnan(s)], x, w[~np.isnan(s)])
+            rec = {**base, "kind": "curve", "score": name, "n_scored": int((~np.isnan(s)).sum())}
+            for ep, v in selective.selective_endpoints(c, s, inj, w, coverages, goals.get("risk", []),
+                                                       n_boot, seed).items():
+                rec.update(_flat(ep, v))
             rows.append(rec)
-            if dev is None or not len(dev):
+            if not len(dev):
                 continue
-            d = dev
-            for kc in fit_keys:
-                d = d[d[kc] == base[kc]]
             ds = d[f"score_{name}"].astype(float).to_numpy() if len(d) else np.array([])
-            if not len(d) or np.isnan(ds).all():
-                continue
             dm = ~np.isnan(ds)
-            dc, dw = d["correct"].astype(bool).to_numpy()[dm], d["weight"].to_numpy()[dm]
             for kind, vals in (("coverage", goals.get("coverage", [])), ("risk", goals.get("risk", []))):
                 for x in vals:
+                    fit = {**base, "kind": "dev_fit", "score": name, "goal": kind, "goal_value": x, **source}
+                    if not dm.any():
+                        rows.append({**fit, "no_source": True, "tau": np.nan})
+                        continue
+                    dc, dw = d["correct"].astype(bool).to_numpy()[dm], d["weight"].to_numpy()[dm]
                     tau = selective.fit_threshold(dc, ds[dm], dw, **{kind: x})
-                    real = selective.apply_threshold(c, s, tau, g["injection_id"].to_numpy(), w, n_boot, seed)
+                    real = selective.apply_threshold(c, s, tau, inj, w, n_boot, seed)
                     m = ~np.isnan(s)
                     if not m.any():
                         oracle = np.nan
@@ -247,8 +298,7 @@ def selective_table(df: pd.DataFrame, names: list[str], dev: pd.DataFrame | None
                         oracle = selective.coverage_at_risk(c[m], s[m], x, w[m])
                     else:
                         oracle = selective_risk_at(c[m], s[m], x, w[m])
-                    rows.append({**base, "kind": "dev_fit", "score": name, "goal": kind, "goal_value": x,
-                                 "tau": tau, "n_dev": int(dm.sum()), **real,
+                    rows.append({**fit, "no_source": False, "tau": tau, **real,
                                  ("oracle_coverage" if kind == "risk" else "oracle_risk"): oracle})
     return pd.DataFrame(rows)
 
@@ -369,7 +419,10 @@ def run(cfg: dict) -> dict:
         "table_contrasts": contrasts.run(pd.concat([main, joint_baselines(bl, cfg.get("data_home"))], ignore_index=True),
                                          cfg.get("contrasts") or [], cfg.get("families"),
                                          int(cfg.get("n_boot_contrasts", n_boot)), int(cfg.get("n_perm", 10000)), seed),
-        "table_shift": selective.shift_table(df) if "fault" in df else pd.DataFrame(),
+        "table_shift": (selective.shift_table(pd.concat([df, _pooled(df, (cfg.get("selective") or {}).get("pools"))],
+                                                        ignore_index=True),
+                                              strata=[c for c in strata_cols(df) if c != "split_role"])
+                        if "fault" in df else pd.DataFrame()),
         "table_cost": cost.table_cost(main, cfg["prepare_log"]),
     }
     if "named" in main:
@@ -395,7 +448,7 @@ def run(cfg: dict) -> dict:
     meta = {"headline": headline, "preregistration_sha": cfg.get("preregistration_sha"), "counts": counts,
             "n_rows": int(len(main)), "n_dev_rows": int(len(dev)), "n_boot": n_boot, "seed": seed,
             "scores": {n: {"validated": confidence.REGISTRY[n].validated, "note": confidence.REGISTRY[n].note} for n in names},
-            "assumptions": contrasts.ASSUMPTIONS, "tables": written,
+            "assumptions": contrasts.ASSUMPTIONS, "selective_ties": SELECTIVE_TIES, "tables": written,
             "config": f"{prefix}analysis_config.yaml",
             "inputs_sha256": {x: _sha(x) for k in PATH_KEYS for x in cfg[k]},
             "tables_sha256": {n: _sha(out / f) for n, f in written.items()}}

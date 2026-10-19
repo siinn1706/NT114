@@ -5,12 +5,6 @@ import numpy as np
 from scipy.stats import binomtest
 
 
-def rank_of_truth(ranking: list[str], truth: str) -> int:
-    """Vị trí (1-based) của dịch vụ gốc; = số dịch vụ kỹ sư phải kiểm tra theo thứ tự gợi ý.
-    Không có trong danh sách -> len+1 (phạt)."""
-    return ranking.index(truth) + 1 if truth in ranking else len(ranking) + 1
-
-
 def ac_at_k(ranks, k: int) -> float:
     return float(np.mean(np.asarray(ranks) <= k))
 

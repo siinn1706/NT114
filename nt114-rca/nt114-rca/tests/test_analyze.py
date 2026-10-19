@@ -82,7 +82,7 @@ def test_dev_rows_fit_thresholds_and_never_enter_tables(tmp_path):
     t = res["tables"]
     assert set(t["table_cells"]["split_role"]) == {"test"}
     fit = t["table_selective"][t["table_selective"]["kind"] == "dev_fit"]
-    assert len(fit) and {"tau", "coverage", "coverage_lo", "risk", "n_dev"} <= set(fit)
+    assert len(fit) and {"tau", "coverage", "coverage_lo", "risk", "n_dev_records"} <= set(fit)
     assert set(t["table_shift"]["split_role"]) == {"val", "test"}
 
 
@@ -136,3 +136,103 @@ def test_precedent_root_flag_is_read_by_the_analysis_only():
     assert users == ["analyze.py", "run_grid.py"]
     run_grid = (src / "run_grid.py").read_text(encoding="utf-8")
     assert run_grid.count("hit_has_truth") == 1 and run_grid.index("hit_has_truth") > run_grid.index("llm.ask(")
+
+
+def test_small_candidate_misses_count_for_no_ac_at_k(tmp_path):
+    from rca import score
+    from rca.data import Truth
+    rows = []
+    for i in range(6):
+        uid = f"rcaeval.t{i:04d}"
+        sc = score.correctness([] if i % 2 else ["frontend"], Truth("cart", "cpu"), 3)
+        rows.append({"model": "m", "incident_uid": uid, "case_id": uid, "dataset": "rcaeval", "split_role": "test",
+                     "condition": "full", "retrieval": "none", "store_mode": "-", "rank": sc["rank"],
+                     "correct": sc["correct_at_1"], "parse_failed": sc["parse_failed"], "conf_consensus": 0.5,
+                     "conf_verbal": 0.5})
+    cells = analyze.cell_table(analyze.attach_units(pd.DataFrame(rows)), n_boot=20)
+    for j in range(1, 6):
+        assert cells[f"AC@{j}"].item() == 0.0
+    assert cells["MRR@5"].item() == 0.0
+
+
+# ---------------------------------------------------------------- calibration source -> target, CIs everywhere
+def _write(tmp_path, df, name="g2.jsonl"):
+    p = tmp_path / name
+    p.write_text("\n".join(json.dumps(r) for r in df.to_dict("records")) + "\n", encoding="utf-8")
+    return p
+
+
+def _two_datasets(tmp_path):
+    g = analyze.load(_grid(tmp_path, n=30, roles=("val", "test")))
+    odd = g["incident_uid"].str[-1].astype(int) % 2 == 1
+    g.loc[odd, "dataset"] = "nezha"
+    g.loc[odd, "conf_consensus"] = (g.loc[odd, "conf_consensus"] / 2).round(2)     # another score scale
+    return g
+
+
+def test_dev_fit_never_pools_datasets(tmp_path):
+    from rca import selective
+    g = _two_datasets(tmp_path)
+    res = analyze.run(_cfg(tmp_path, _write(tmp_path, g), contrasts=[], selective={"coverage": [0.7]}))
+    sel = res["tables"]["table_selective"]
+    fit = sel[(sel.kind == "dev_fit") & (sel.score == "consensus") & (sel.condition == "full")]
+    taus = {}
+    for ds in ("rcaeval", "nezha"):
+        d = g[(g.dataset == ds) & (g.split_role == "val") & (g.condition == "full")]
+        want = selective.fit_threshold(d["correct"].to_numpy(bool), d["conf_consensus"].to_numpy(float), coverage=0.7)
+        row = fit[fit.dataset == ds].iloc[0]
+        assert row["tau"] == pytest.approx(want) and row["source_split_role"] == "val"
+        assert json.loads(row["source_stratum"])["dataset"] == ds and row["n_dev_injections"] == len(d)
+        taus[ds] = want
+    assert taus["rcaeval"] != taus["nezha"]
+
+
+def test_dev_fit_without_a_source_stratum_is_reported_not_pooled(tmp_path):
+    g = analyze.load(_grid(tmp_path, roles=("val", "test")))
+    g.loc[g.split_role == "test", "label_granularity"] = "pod"
+    res = analyze.run(_cfg(tmp_path, _write(tmp_path, g), contrasts=[], selective={"coverage": [0.7]}))
+    fit = res["tables"]["table_selective"].query("kind == 'dev_fit'")
+    assert len(fit) and fit["no_source"].all() and fit["tau"].isna().all()
+
+
+def test_declared_pool_is_one_source_and_one_target(tmp_path):
+    from rca import selective
+    g = analyze.load(_grid(tmp_path, roles=("val", "test")))
+    pools = {"pooled": {"condition": ["full", "blind_root"]}}
+    res = analyze.run(_cfg(tmp_path, _write(tmp_path, g), contrasts=[], selective={"coverage": [0.7], "pools": pools}))
+    sel = res["tables"]["table_selective"]
+    fit = sel[(sel.kind == "dev_fit") & (sel.score == "consensus") & (sel.condition == "pool:pooled")]
+    d = g[g.split_role == "val"]
+    w = 1.0 / d.groupby("incident_uid")["incident_uid"].transform("size")
+    want = selective.fit_threshold(d["correct"].to_numpy(bool), d["conf_consensus"].to_numpy(float), w.to_numpy(), coverage=0.7)
+    assert len(fit) == 1 and fit["tau"].item() == pytest.approx(want)
+    curve = sel[(sel.kind == "curve") & (sel.condition == "pool:pooled") & (sel.score == "consensus")]
+    assert curve["n_scored"].item() == (g.split_role == "test").sum()
+    shift = res["tables"]["table_shift"]
+    pooled = shift[shift.condition == "pool:pooled"]
+    assert set(pooled["split_role"]) == {"val", "test"} and pooled["n_records"].sum() == len(g)
+
+
+def test_pooled_cell_weighs_each_injection_once():
+    """An incident appears once per pooled condition; each injection still has total weight 1."""
+    df = pd.DataFrame({"dataset": "d", "split_role": "test", "model": "m", "retrieval": "none",
+                       "condition": ["a", "b", "c", "a"], "incident_uid": ["i1", "i1", "i1", "i2"],
+                       "injection_id": ["j1", "j1", "j1", "j2"], "weight": 1.0})
+    p = analyze._pooled(df, {"pool": {"condition": ["a", "b", "c"]}})
+    assert set(p["condition"]) == {"pool:pool"}
+    assert p.groupby("injection_id")["weight"].sum().tolist() == pytest.approx([1.0, 1.0])
+
+
+def test_every_reported_metric_has_a_ci(tmp_path):
+    res = analyze.run(_cfg(tmp_path, _grid(tmp_path, roles=("val", "test")), contrasts=[],
+                           selective={"coverage": [0.7], "risk": [0.3]}))
+    counts = {"n_records", "n_scored", "n_dev", "n_dev_records", "n_dev_injections", "n_injections", "goal_value",
+              "tau", "validated", "draws", "AUROC", "AUROC_lo", "AUROC_hi", "oracle_risk", "oracle_coverage",
+              "parse_failed"}
+    for name in ("table_confidence", "table_selective", "table_cells"):
+        t = res["tables"][name]
+        num = [c for c in t.select_dtypes("number").columns
+               if not c.endswith(("_lo", "_hi", "_nan_draws")) and c not in counts]
+        missing = [c for c in num if t[c].notna().any() and not {f"{c}_lo", f"{c}_hi"} <= set(t)]
+        assert not missing, (name, missing)
+    assert "selective_ties" in res["meta"]

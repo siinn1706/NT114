@@ -69,72 +69,17 @@ def generate(sizes, err, rho, rng, icc=0.5, m=1.0, s=1.5):
 
 
 # ---------------------------------------------------------------- estimators on level matrices
-def level_mats(correct, score, clusters, weights=None):
-    """Levels (descending) and per-cluster weight / correct-weight per level: (levels, Mw, Mc, inv)."""
-    c, s = np.asarray(correct, float), np.asarray(score, float)
-    w = np.ones(len(c)) if weights is None else np.asarray(weights, float)
-    levels = np.unique(s)[::-1]
-    li = np.searchsorted(-levels, -s)
-    _, inv = np.unique(np.asarray(clusters), return_inverse=True)
-    k = inv.max() + 1
-    Mw, Mc = np.zeros((k, len(levels))), np.zeros((k, len(levels)))
-    np.add.at(Mw, (inv, li), w)
-    np.add.at(Mc, (inv, li), w * c)
-    return levels, Mw, Mc, inv
-
-
-def _base(Wl, Cl):
-    return 1 - Cl.sum(1) / Wl.sum(1)
+# The level-matrix estimators live in `rca.selective` (shared with `rca.analyze`); E1/E1t default to COVERAGE here.
+level_mats, boot_mats, _base = selective.level_mats, selective.boot_mats, selective._base
+gain_threshold, gain_aurc = selective.gain_threshold, selective.gain_aurc
 
 
 def gain_exact(Wl, Cl, coverage=COVERAGE):
-    """E1 on (draws x levels) matrices: base error - risk at exactly `coverage` (fractional boundary)."""
-    T = Wl.sum(1)
-    cw, cc = Wl.cumsum(1), Cl.cumsum(1)
-    target = coverage * T
-    idx = np.argmax(cw >= target[:, None] - 1e-12, axis=1)
-    r = np.arange(len(T))
-    prev_w, prev_c = cw[r, idx] - Wl[r, idx], cc[r, idx] - Cl[r, idx]
-    with np.errstate(invalid="ignore", divide="ignore"):
-        frac = np.where(Wl[r, idx] > 0, (target - prev_w) / Wl[r, idx], 0.0)
-        risk = 1 - (prev_c + frac * Cl[r, idx]) / target
-    return _base(Wl, Cl) - risk
+    return selective.gain_exact(Wl, Cl, coverage)
 
 
 def gain_tiegroup(Wl, Cl, coverage=COVERAGE):
-    """E1t: whole tie groups (`metrics.selective_risk_at`); returns (gain, realised coverage)."""
-    T = Wl.sum(1)
-    cw, cc = Wl.cumsum(1), Cl.cumsum(1)
-    cov = cw / T[:, None]
-    idx = np.argmax(cov >= coverage - 1e-12, axis=1)
-    r = np.arange(len(T))
-    return _base(Wl, Cl) - (1 - cc[r, idx] / cw[r, idx]), cov[r, idx]
-
-
-def gain_threshold(Wl, Cl, levels, tau):
-    """E2: base error - risk of answering levels >= tau; returns (gain, realised coverage)."""
-    ans = levels >= tau
-    aw, ac = Wl[:, ans].sum(1), Cl[:, ans].sum(1)
-    with np.errstate(invalid="ignore", divide="ignore"):
-        return _base(Wl, Cl) - (1 - ac / aw), aw / Wl.sum(1)
-
-
-def gain_aurc(Wl, Cl):
-    """E3: base error - AURC (ties answered together), as `metrics.aurc_w`."""
-    cw, cc = Wl.cumsum(1), Cl.cumsum(1)
-    cov = cw / Wl.sum(1)[:, None]
-    with np.errstate(invalid="ignore", divide="ignore"):
-        risk = np.where(cw > 0, 1 - cc / cw, 0.0)
-    d = np.diff(np.concatenate([np.zeros((len(cov), 1)), cov], 1), axis=1)
-    return _base(Wl, Cl) - (d * risk).sum(1)
-
-
-def boot_mats(Mw, Mc, inv, n_boot, seed):
-    """Point (row 0) and cluster-bootstrap level matrices; draws as `metrics.cluster_draws`."""
-    counts, _ = metrics.cluster_draws(inv, n_boot, seed)
-    one = np.ones((1, Mw.shape[0]))
-    C = np.vstack([one, counts])
-    return C @ Mw, C @ Mc
+    return selective.gain_tiegroup(Wl, Cl, coverage)
 
 
 def ci_lo(draws, alpha):

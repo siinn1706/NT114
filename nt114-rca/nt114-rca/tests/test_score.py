@@ -47,3 +47,15 @@ def test_units(tmp_path):
     assert u.set_index("incident_uid").loc["d.2", "cov_traces"] == "export_gap"
     d = score.default_units(["b", "a", "a"])
     assert d["incident_uid"].tolist() == ["a", "b"] and (d["weight"] == 1).all() and (d["injection_id"] == d["incident_uid"]).all()
+
+
+def test_a_miss_is_beyond_the_rank_cap_for_small_candidate_sets():
+    for n in (1, 2, 3, 4):
+        for ranking in ([], ["frontend"]):
+            r = score.correctness(ranking, Truth("cart", "cpu"), n)
+            assert r["rank"] == 6 and not r["correct_at_3"], (n, ranking)
+
+
+def test_miss_rank_is_unchanged_for_large_candidate_sets():
+    for n in (5, 12):
+        assert score.correctness(["frontend"], Truth("cart", "cpu"), n)["rank"] == n + 1

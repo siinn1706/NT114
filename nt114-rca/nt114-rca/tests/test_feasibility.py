@@ -25,8 +25,9 @@ INFO Maximum concurrency for 8,192 tokens per request: 5.71x
 """
 
 
-def _row(cond="full", ret="none", ok=True, cached=False, lat=4.0, pt=1200, correct=True):
+def _row(cond="full", ret="none", ok=True, cached=False, lat=4.0, pt=1200, correct=True, parse=None):
     return {"case_id": f"c-{cond}-{ret}-{lat}", "condition": cond, "retrieval": ret, "parse_failed": not ok,
+            "parse_rate": (1.0 if ok else 0.0) if parse is None else parse, "sampling": {"n": 10},
             "cached": cached, "latency_s": lat, "prompt_tokens": pt, "completion_tokens": 800, "correct": correct}
 
 
@@ -95,14 +96,27 @@ def test_grid_stats_ignore_cached_rows(tmp_path):
     f.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
     g = feasibility.grid_stats(f)
     assert g["rows"] == 4 and g["live_rows"] == 3
-    assert g["parse_rate"] == pytest.approx(2 / 3, abs=1e-4) and g["parse_rate_by_cell"]["no_trace/hybrid"] == 0
+    assert g["completion_parse_rate"] == pytest.approx(2 / 3, abs=1e-4) and g["parse_rate_by_cell"]["no_trace/hybrid"] == 0
+    assert g["cell_any_valid_rate"] == pytest.approx(2 / 3, abs=1e-4)
     assert g["prompt_tokens"]["max"] == 4000 and g["completion_tokens_per_s"] == pytest.approx(2400 / 12, abs=0.1)
 
 
+def test_parse_gate_counts_completions_not_cells(tmp_path):
+    """One valid completion of ten makes a cell usable, not a 100 % parse rate."""
+    f = tmp_path / "grid.jsonl"
+    f.write_text(json.dumps(_row(parse=0.1)) + "\n" + json.dumps(_row("no_log", parse=1.0)) + "\n", encoding="utf-8")
+    g = feasibility.grid_stats(f)
+    assert g["completion_parse_rate"] == pytest.approx(0.55)
+    assert g["cell_any_valid_rate"] == 1.0 and g["cell_all_valid_rate"] == 0.5
+    assert g["parse_rate_by_cell"]["full/none"] == pytest.approx(0.1)
+    v = feasibility.verdict({"ready": True, "kv_cache_tokens": 46752}, g, 5500)
+    assert not v["feasible"] and "parse rate" in v["reasons"][0]
+
+
 def test_verdict():
-    good = {"live_rows": 10, "parse_rate": 1.0}
+    good = {"live_rows": 10, "completion_parse_rate": 1.0}
     assert feasibility.verdict({"ready": True, "kv_cache_tokens": 46752}, good, 5500)["feasible"]
-    v = feasibility.verdict({"ready": True, "kv_cache_tokens": 8000}, {"live_rows": 10, "parse_rate": 0.9}, 5500)
+    v = feasibility.verdict({"ready": True, "kv_cache_tokens": 8000}, {"live_rows": 10, "completion_parse_rate": 0.9}, 5500)
     assert not v["feasible"] and len(v["reasons"]) == 2 and v["concurrent_requests_measured"] == pytest.approx(1.45, abs=0.01)
     v = feasibility.verdict({"ready": False, "oom": True}, {"live_rows": 0}, None)
     assert not v["feasible"] and "out of memory" in v["reasons"][0]
@@ -144,8 +158,21 @@ while time.time() - last[0] < 30:         # exits on its own if the runner's sto
 '''
 
 
-@pytest.mark.skipif(shutil.which("bash") is None, reason="needs bash for scripts/serve_model.sh")
+def _posix_bash_dir() -> str | None:
+    """Directory of a bash that runs scripts/serve_model.sh. On Windows, `C:\\Windows\\System32\\bash.exe` and
+    the WindowsApps alias are WSL launchers (`execvpe(/bin/bash) failed` without a distribution), so Git
+    Bash is used when it is installed."""
+    found = shutil.which("bash")
+    if os.name == "nt" and (found is None or Path(found).parent.name.lower() in ("system32", "windowsapps")):
+        git = Path(os.environ.get("ProgramFiles", r"C:\Program Files")) / "Git" / "usr" / "bin"
+        return str(git) if (git / "bash.exe").is_file() else None
+    return str(Path(found).parent) if found else None
+
+
+@pytest.mark.skipif(_posix_bash_dir() is None,
+                    reason="needs a POSIX bash for scripts/serve_model.sh (the WSL bash.exe launcher cannot run it)")
 def test_run_end_to_end_with_fake_server(canonical_synth, tmp_path, monkeypatch):
+    monkeypatch.setenv("PATH", _posix_bash_dir() + os.pathsep + os.environ["PATH"])
     venv = tmp_path / "venv"
     (venv / "bin").mkdir(parents=True)
     (tmp_path / "fake_vllm.py").write_text(FAKE_SERVER, encoding="utf-8")
@@ -165,7 +192,7 @@ def test_run_end_to_end_with_fake_server(canonical_synth, tmp_path, monkeypatch)
     monkeypatch.setattr(shutil, "which", lambda n, *a, **k: None if n == "nvidia-smi" else real_which(n, *a, **k))
     rep = feasibility.run(HW, "qwen35-4b-fp8", tmp_path / "exp.yaml", tmp_path / "feas")
     assert rep["server"]["ready"] and rep["server"]["kv_cache_tokens"] == 46752
-    assert rep["grid"]["live_rows"] > 0 and rep["grid"]["parse_rate"] == 1.0
+    assert rep["grid"]["live_rows"] > 0 and rep["grid"]["completion_parse_rate"] == 1.0
     assert rep["verdict"]["request_tokens"] == 1500 + 3 * 400 and rep["verdict"]["feasible"]
     args = (tmp_path / "feas" / "qwen35-4b-fp8" / "server.args").read_text(encoding="utf-8")
     assert "--revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a" in args and "--quantization fp8" in args
@@ -235,4 +262,9 @@ def test_presence_penalty_arms_do_not_collide(canonical_synth, tmp_path, monkeyp
     for r in rows:
         by.setdefault(r["sampling"]["presence_penalty"], []).append(r)
     assert set(by) == {None, 1.5} and len(by[None]) == len(by[1.5]) > 0
-    assert all("|pp=" not in r["key"] for r in by[None]) and all(r["key"].endswith("|pp=1.5") for r in by[1.5])
+    sigs = {pp: {r["exec_sig"] for r in rs} for pp, rs in by.items()}
+    assert len(sigs[None]) == len(sigs[1.5]) == 1 and sigs[None] != sigs[1.5]
+    assert all(r["key"].endswith(f"|sig={r['exec_sig']}") for r in rows)
+    n = len(rows)
+    run_grid.run(cfg)                                    # both declared arms resume; nothing is redone
+    assert len(Path(cfg["out"]).read_text(encoding="utf-8").splitlines()) == n

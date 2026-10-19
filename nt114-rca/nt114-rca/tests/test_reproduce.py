@@ -67,12 +67,14 @@ def test_grid_rows_time_retrieval(chain):
     assert all(r["retrieval_s"] > 0 for r in rows if r["retrieval"] != "none")
 
 
-def test_manifest_v2(chain):
+def test_manifest_v3(chain):
     out = Path(chain["cfg"]["out"]).parent
     man = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
     assert {"manifest_version", "python", "platform", "packages", "evidence_builder_version", "legacy_view_version",
             "config_sha256", "config_copy", "split_sha256", "prepare_log_sha256"} <= set(man)
-    assert man["manifest_version"] == 2 and man["packages"]["numpy"] and man["split_sha256"]
+    assert man["manifest_version"] == 3 and man["packages"]["numpy"] and man["split_sha256"]
+    assert man["store"]["split_id"] == man["split_id"] and man["store"]["ignored_files"] == 0
+    assert all(m["exec_sig"] and m["execution"]["n"] == chain["cfg"]["n_samples"] for m in man["models"])
     assert man["prepare_log_sha256"] == run_grid._sha256(run_grid.prepare_log_path(chain["cfg"]))
     import hashlib
     assert man["config_sha256"] == hashlib.sha256((out / "config.yaml").read_bytes()).hexdigest()
@@ -126,3 +128,28 @@ def test_reproduce_matches_then_names_the_changed_table(chain, capsys):
     msg = capsys.readouterr().out
     assert "table_cells" in msg and "input changed" in msg
     assert reproduce.main([str(chain["out"])]) == 2
+
+
+def _small_analysis(tmp_path) -> Path:
+    from test_analyze import _cfg, _grid
+    analyze.run(_cfg(tmp_path, _grid(tmp_path), contrasts=[]))
+    return tmp_path / "out"
+
+
+def test_reproduce_flags_a_modified_published_table(tmp_path, capsys):
+    adir = _small_analysis(tmp_path)
+    assert reproduce.main([str(adir)]) == 0
+    with open(adir / "exploratory_table_cells.csv", "a", encoding="utf-8") as f:
+        f.write("\n")
+    out = reproduce.reproduce(adir)
+    assert out["tables"]["table_cells"] == "published_modified"
+    assert {s for n, s in out["tables"].items() if n != "table_cells"} == {"match"}
+    capsys.readouterr()
+    assert reproduce.main([str(adir)]) == 1 and "table_cells (published_modified)" in capsys.readouterr().out
+
+
+def test_reproduce_flags_a_deleted_published_table(tmp_path):
+    adir = _small_analysis(tmp_path)
+    (adir / "exploratory_table_shift.csv").unlink()
+    assert reproduce.reproduce(adir)["tables"]["table_shift"] == "published_missing"
+    assert reproduce.main([str(adir)]) == 1

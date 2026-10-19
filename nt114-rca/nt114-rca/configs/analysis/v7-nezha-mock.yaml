@@ -1,10 +1,12 @@
 # V7 analysis of the Nezha mock slice (configs/exp/v7-nezha-mock.yaml). Exploratory only.
-grids: [results_v7/nezha/grid.jsonl]
+# Outputs go to a fresh directory: the earlier results_v7/ grid predates the execution signature (exec_sig),
+# which `run` refuses to resume; it is kept unchanged as a pre-signature record.
+grids: [results_v7_sig/nezha/grid.jsonl]
 raw: null
 visibility: [results_visibility/nezha/evidence_visibility.jsonl]
 baselines: [results_baselines_nezha/baselines.jsonl]
 data_home: data
-out_dir: results_v7/nezha/analysis
+out_dir: results_v7_sig/nezha/analysis
 n_boot: 500
 n_perm: 2000
 seed: 0

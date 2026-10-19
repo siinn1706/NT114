@@ -3,7 +3,8 @@
   python -m rca.leakage_audit <canonical cfg>
 
 For every selected incident and condition, against the same-system entries of the `precedent` store
-(the store `prepare` wrote, minus the query's own split group, as the model would see it):
+(the store bound to the configured split's train role, as `run` builds it, minus the query's own split
+group, as the model would see it):
 
 - `max_cosine`: the largest TF-IDF cosine (the retrieval tokenizer; fitted on store and query texts);
 - `max_jaccard`: the largest Jaccard similarity of the sets of evidence lines;
@@ -98,7 +99,7 @@ def summary(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def inputs(cfg: dict) -> tuple[list[dict], list[dict]]:
-    from .run_grid import Canon, evidence_dir
+    from .run_grid import Canon, _store_entries, evidence_dir
     cn = Canon(cfg)
     ev = evidence_dir(cfg)
 
@@ -106,12 +107,9 @@ def inputs(cfg: dict) -> tuple[list[dict], list[dict]]:
         t = cn.truth(u)
         return (t.root_service, t.fault)
 
-    store = []
-    for f in sorted((ev / "store").glob("*.json")):
-        r = json.loads(f.read_text(encoding="utf-8"))
-        u = r["incident_uid"]
-        store.append({"incident_uid": u, "system": r["system"], "group": cn.group.get(u, u), "cell": cell(u),
-                      "text": r["conditions"]["full"]["text"]})
+    # the store bound to the split, exactly as `run` builds it (files left by another split are not seen)
+    store = [{"incident_uid": e["case_id"], "system": e["system"], "group": cn.group.get(e["case_id"], e["case_id"]),
+              "cell": cell(e["case_id"]), "text": e["text"]} for e in _store_entries(cfg, cn)[0]]
     queries = []
     for vc, _ in cn.selected():
         f = ev / f"{vc.case_id}.json"

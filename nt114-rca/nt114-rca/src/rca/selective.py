@@ -280,33 +280,228 @@ def apply_threshold(correct, score, tau: float, clusters, weights=None, n_boot: 
     return out
 
 
-def references(correct, abstain_vote, weights=None) -> list[dict]:
-    """L1 (the LLM's own flag), C2 (random deferral: risk = base error at any coverage, analytic) and O."""
+def _ci(name: str, draws: np.ndarray, alpha: float = 0.05) -> dict:
+    """{name: est, name_lo, name_hi} from (point, draws...) values; draws where the statistic is undefined
+    (NaN) are ignored, and their share is reported as `name_nan_draws` when > 0."""
+    ok = np.isfinite(draws[1:])
+    lo, hi = np.nanquantile(draws[1:], [alpha / 2, 1 - alpha / 2]) if ok.any() else (np.nan, np.nan)
+    out = {name: float(draws[0]), f"{name}_lo": float(lo), f"{name}_hi": float(hi)}
+    if len(ok) and not ok.all():
+        out[f"{name}_nan_draws"] = float(1 - ok.mean())
+    return out
+
+
+def _endpoint(name: str, draws: np.ndarray) -> dict:
+    r = _ci(name, draws)
+    return {"est": r[name], "lo": r[f"{name}_lo"], "hi": r[f"{name}_hi"],
+            **({"nan_draws": r[f"{name}_nan_draws"]} if f"{name}_nan_draws" in r else {})}
+
+
+def references(correct, abstain_vote, weights=None, clusters=None, n_boot: int = 2000, seed: int = 0) -> list[dict]:
+    """L1 (the LLM's own flag), C2 (random deferral: risk = base error at any coverage, analytic) and O.
+    With `clusters`, every value carries a cluster-bootstrap CI over injections."""
     c = np.asarray(correct, bool)
     w = np.ones(len(c)) if weights is None else np.asarray(weights, float)
     w = w / w.sum()
     ans = np.asarray(abstain_vote, float) < 0.5
     l1_cov = float((w * ans).sum())
-    return [
+    out = [
         {"policy": "L1 self-abstain", "coverage": l1_cov,
          "risk": float((w * ans * ~c).sum() / l1_cov) if l1_cov > 0 else np.nan},
         {"policy": "C2 random deferral", "coverage": np.nan, "risk": float((w * ~c).sum())},
         {"policy": "O oracle", "coverage": float((w * c).sum()), "risk": 0.0},
     ]
+    if clusters is None:
+        return out
+    boot = lambda v, ww: metrics.cluster_bootstrap_means(v, clusters, ww, n=n_boot, seed=seed)
+    cis = {("L1 self-abstain", "coverage"): boot(ans.astype(float), w),
+           ("C2 random deferral", "risk"): boot((~c).astype(float), w),
+           ("O oracle", "coverage"): boot(c.astype(float), w)}
+    if l1_cov > 0:
+        cis[("L1 self-abstain", "risk")] = boot((~c).astype(float), w * ans)
+    for r in out:
+        for (policy, k), b in cis.items():
+            if r["policy"] == policy:
+                r[f"{k}_lo"], r[f"{k}_hi"] = float(b["lo"]), float(b["hi"])
+    return out
 
 
-def shift_table(df: pd.DataFrame, score_col: str = "conf_consensus") -> pd.DataFrame:
-    """DEV (split_role val) vs test by system x fault: records, base error and the share of each
-    confidence level. Reported next to every DEV-fit result."""
+# ---------------------------------------------------------------- vectorised endpoints over tie levels
+# Every endpoint of a score depends on the records only through the weight and correct weight per
+# (injection, distinct score level). A cluster-bootstrap draw is then a count vector over injections, so
+# all draws are one matrix product. Row 0 of every (draws x levels) matrix is the point estimate.
+
+def level_mats(correct, score, clusters, weights=None):
+    """Levels (descending) and per-cluster weight / correct-weight per level: (levels, Mw, Mc, inv)."""
+    c, s = np.asarray(correct, float), np.asarray(score, float)
+    w = np.ones(len(c)) if weights is None else np.asarray(weights, float)
+    levels = np.unique(s)[::-1]
+    li = np.searchsorted(-levels, -s)
+    _, inv = np.unique(np.asarray(clusters), return_inverse=True)
+    k = inv.max() + 1
+    Mw, Mc = np.zeros((k, len(levels))), np.zeros((k, len(levels)))
+    np.add.at(Mw, (inv, li), w)
+    np.add.at(Mc, (inv, li), w * c)
+    return levels, Mw, Mc, inv
+
+
+def boot_counts(inv, n_boot: int, seed: int) -> np.ndarray:
+    """(1 + n_boot) x clusters: a row of ones (the point estimate), then `metrics.cluster_draws`."""
+    counts, _ = metrics.cluster_draws(inv, n_boot, seed)
+    return np.vstack([np.ones((1, counts.shape[1])), counts])
+
+
+def boot_mats(Mw, Mc, inv, n_boot, seed):
+    """Point (row 0) and cluster-bootstrap level matrices; draws as `metrics.cluster_draws`."""
+    C = boot_counts(inv, n_boot, seed)
+    return C @ Mw, C @ Mc
+
+
+def _base(Wl, Cl):
+    return 1 - Cl.sum(1) / Wl.sum(1)
+
+
+def gain_exact(Wl, Cl, coverage):
+    """Base error - risk at exactly `coverage` of the weight: the boundary tie group is answered
+    fractionally, which is the expectation of the seeded random tie-break of C1."""
+    T = Wl.sum(1)
+    cw, cc = Wl.cumsum(1), Cl.cumsum(1)
+    target = coverage * T
+    idx = np.argmax(cw >= target[:, None] - 1e-12, axis=1)
+    r = np.arange(len(T))
+    prev_w, prev_c = cw[r, idx] - Wl[r, idx], cc[r, idx] - Cl[r, idx]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        frac = np.where(Wl[r, idx] > 0, (target - prev_w) / Wl[r, idx], 0.0)
+        risk = 1 - (prev_c + frac * Cl[r, idx]) / target
+    return _base(Wl, Cl) - risk
+
+
+def gain_tiegroup(Wl, Cl, coverage):
+    """Whole tie groups (`metrics.selective_risk_at`): returns (gain, achieved coverage >= coverage)."""
+    T = Wl.sum(1)
+    cw, cc = Wl.cumsum(1), Cl.cumsum(1)
+    cov = cw / T[:, None]
+    idx = np.argmax(cov >= coverage - 1e-12, axis=1)
+    r = np.arange(len(T))
+    return _base(Wl, Cl) - (1 - cc[r, idx] / cw[r, idx]), cov[r, idx]
+
+
+def gain_threshold(Wl, Cl, levels, tau):
+    """Base error - risk of answering levels >= tau: returns (gain, achieved coverage)."""
+    ans = levels >= tau
+    aw, ac = Wl[:, ans].sum(1), Cl[:, ans].sum(1)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return _base(Wl, Cl) - (1 - ac / aw), aw / Wl.sum(1)
+
+
+def gain_aurc(Wl, Cl):
+    """Base error - AURC (ties answered together), as `metrics.aurc_w`."""
+    cw, cc = Wl.cumsum(1), Cl.cumsum(1)
+    cov = cw / Wl.sum(1)[:, None]
+    with np.errstate(invalid="ignore", divide="ignore"):
+        risk = np.where(cw > 0, 1 - cc / cw, 0.0)
+    d = np.diff(np.concatenate([np.zeros((len(cov), 1)), cov], 1), axis=1)
+    return _base(Wl, Cl) - (d * risk).sum(1)
+
+
+def exact_coverage_risk(correct, score, coverage: float, weights=None) -> float:
+    """Selective risk when answering exactly `coverage` of the weight, highest score first; the boundary
+    tie group is answered fractionally (expected risk of C1's random tie-break)."""
+    c = np.asarray(correct, bool)
+    _, Mw, Mc, _ = level_mats(c, score, np.arange(len(c)), weights)
+    Wl, Cl = Mw.sum(0, keepdims=True), Mc.sum(0, keepdims=True)
+    return float((_base(Wl, Cl) - gain_exact(Wl, Cl, coverage))[0])
+
+
+def selective_endpoints(correct, score, clusters, weights=None, coverages=COVERAGES, risk_goals=(),
+                        n_boot: int = 2000, seed: int = 0) -> dict:
+    """Fixed-coverage endpoints of one score with cluster-bootstrap CIs, rows with a NaN score left out:
+
+    - `risk@c` / `coverage_ties@c`: tie groups answered together (achieved coverage >= c, reported);
+    - `risk_exact@c` / `gain_exact@c`: exactly c of the weight, boundary tie group fractional;
+      gain = base error - risk, the contrast with C2 random deferral (risk = base error at any coverage);
+    - `AURC`, `gain_AURC`, `base_error`, and `coverage_at_risk<g>` per risk goal.
+    Returns {name: {"est", "lo", "hi"[, "nan_draws"]}}."""
+    c, s = np.asarray(correct, bool), np.asarray(score, float)
+    m = ~np.isnan(s)
+    names = (["base_error", "AURC", "gain_AURC"]
+             + [f"{p}@{x}" for x in coverages for p in ("risk", "coverage_ties", "risk_exact", "gain_exact")]
+             + [f"coverage_at_risk{g}" for g in risk_goals])
+    if not m.any():
+        return {n: {"est": np.nan, "lo": np.nan, "hi": np.nan} for n in names}
+    w = np.ones(len(c)) if weights is None else np.asarray(weights, float)
+    _, Mw, Mc, inv = level_mats(c[m], s[m], np.asarray(clusters)[m], w[m])
+    Wl, Cl = boot_mats(Mw, Mc, inv, n_boot, seed)
+    base = _base(Wl, Cl)
+    vals = {"base_error": base, "gain_AURC": gain_aurc(Wl, Cl)}
+    vals["AURC"] = base - vals["gain_AURC"]
+    for x in coverages:
+        g, cov = gain_tiegroup(Wl, Cl, x)
+        vals[f"risk@{x}"], vals[f"coverage_ties@{x}"] = base - g, cov
+        vals[f"gain_exact@{x}"] = gain_exact(Wl, Cl, x)
+        vals[f"risk_exact@{x}"] = base - vals[f"gain_exact@{x}"]
+    cw, cc = Wl.cumsum(1), Cl.cumsum(1)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        risk = np.where(cw > 0, 1 - cc / cw, np.nan)
+    cov = cw / Wl.sum(1)[:, None]
+    for gl in risk_goals:
+        vals[f"coverage_at_risk{gl}"] = np.where(risk <= gl + 1e-12, cov, 0.0).max(1)
+    return {n: _endpoint(n, vals[n]) for n in names}
+
+
+def confidence_endpoints(correct, score, clusters, weights=None, probability: bool = False,
+                         support: str = "continuous", n_boot: int = 2000, seed: int = 0) -> dict:
+    """Error-detection AUPRC (positive = wrong) and AURC of one score, plus Brier, ECE (`support`:
+    one bin per level for discrete scores, 10 equal-width bins otherwise) and overconfidence gap for
+    probability scores; each with a cluster-bootstrap CI over injections (`metrics` definitions)."""
+    c, p = np.asarray(correct, bool), np.asarray(score, float)
+    w = np.ones(len(c)) if weights is None else np.asarray(weights, float)
+    _, Mw, Mc, inv = level_mats(c, p, clusters, w)
+    C = boot_counts(inv, n_boot, seed)
+    Wl, Cl = C @ Mw, C @ Mc
+    vals = {"AURC": _base(Wl, Cl) - gain_aurc(Wl, Cl)}
+    # AUPRC: thresholds at distinct scores of -p, i.e. levels by ascending confidence
+    P, N = (Wl - Cl)[:, ::-1], Cl[:, ::-1]
+    tp, fp = P.cumsum(1), N.cumsum(1)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        recall = tp / tp[:, -1:]
+        prec = np.where(tp + fp > 0, tp / (tp + fp), 0.0)
+        vals["AUPRC"] = np.where(tp[:, -1] > 0, (np.diff(recall, prepend=0.0, axis=1) * prec).sum(1), np.nan)
+    if probability:
+        k = inv.max() + 1
+        pc = np.clip(p, 0, 1)
+        S = np.zeros((k, 3))
+        np.add.at(S, inv, np.column_stack([w, w * (pc - c) ** 2, w * (p - c)]))
+        T = C @ S
+        vals["Brier"], vals["gap"] = T[:, 1] / T[:, 0], T[:, 2] / T[:, 0]
+        bins = (np.unique(np.round(pc, 9), return_inverse=True)[1] if support == "discrete"
+                else np.minimum((pc * 10).astype(int), 9))
+        B = np.zeros((k, bins.max() + 1, 2))
+        np.add.at(B, (inv, bins), np.column_stack([w * c, w * pc]))
+        Bd = np.einsum("dk,kbj->dbj", C, B)
+        vals["ECE"] = np.abs(Bd[..., 0] - Bd[..., 1]).sum(1) / T[:, 0]
+    return {n: _endpoint(n, v) for n, v in vals.items()}
+
+
+def shift_table(df: pd.DataFrame, score_col: str = "conf_consensus", strata=()) -> pd.DataFrame:
+    """DEV (split_role val) vs test per stratum (`strata`, e.g. dataset x model x condition x arm) x
+    system x fault: records, injections, injection-weighted base error and share of each confidence
+    level. Reported next to every DEV-fit result."""
     rows = []
     d = df[df["split_role"].isin(["val", "test"])]
-    for (sys_, fault, role), g in d.groupby(["system", "fault", "split_role"], dropna=False):
-        rec = {"system": sys_, "fault": fault, "split_role": role, "n_records": len(g),
-               "base_error": float(1 - g["correct"].astype(float).mean())}
-        for lvl, share in g[score_col].round(2).value_counts(normalize=True).sort_index().items():
+    d = d.assign(_w=d["weight"].astype(float) if "weight" in d else 1.0)
+    keys = [*strata, "system", "fault", "split_role"]
+    for k, g in d.groupby(keys, dropna=False):
+        rec = dict(zip(keys, k))
+        rec.update(n_records=len(g), n_injections=int(g["injection_id"].nunique()) if "injection_id" in g else len(g),
+                   base_error=float(1 - np.average(g["correct"].astype(float), weights=g["_w"])))
+        lv = g[score_col].astype(float).round(2)
+        for lvl, share in (g["_w"].groupby(lv).sum() / g["_w"].sum()).sort_index().items():
             rec[f"share_{score_col}={lvl:.2f}"] = float(share)
         rows.append(rec)
     out = pd.DataFrame(rows)
     if len(out):
-        out.insert(3, "present_in", out.groupby(["system", "fault"])["split_role"].transform(lambda s: "+".join(sorted(set(s)))))
+        grp = [*strata, "system", "fault"]
+        out.insert(len(keys), "present_in",
+                   out.groupby(grp, dropna=False)["split_role"].transform(lambda s: "+".join(sorted(set(s)))))
     return out

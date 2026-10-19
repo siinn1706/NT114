@@ -184,3 +184,32 @@ cannot be claimed.
 | §8 CWA₁₀₀, Jev cost | CWA₁₀₀ uses the answering cell's own confidence; Jev cost retired |
 | §9.5 confirmatory family | open slot |
 | §9.6 MDE table | replaced by the V5 table in [research/06](../../../research/06_statistics_validation.md#v5--minimum-detectable-effects) (2026-10-19; the discordance rates stay placeholders until a DEV pilot) |
+
+## 9. Addendum 2026-10-19: selective endpoints, calibration source and pools (accepted by the owner 2026-10-19)
+
+Implemented by plan [261019-1800](../../261019-1800-review-findings-fixes-and-research-readiness/plan.md)
+(phase 05); `analysis_meta.json["selective_ties"]` carries the tie rules below.
+
+- **Fixed coverage, two tie rules.** `risk@c` answers whole tie groups (achieved coverage ≥ c,
+  reported as `coverage_ties@c`). `risk_exact@c` answers exactly c of the weight, with the boundary
+  tie group answered fractionally; this is the expected risk of C1's seeded random tie-break.
+  `gain_exact@c` = base error − `risk_exact@c` is the contrast with C2 random deferral.
+  `gain_AURC` = base error − AURC.
+- **DEV-fit transfer (source → target).** A threshold is fitted on the DEV (val) rows of the
+  target's own stratum (dataset, label granularity, set-scored, model, condition, retrieval, store
+  mode) and applied unchanged to that test cell. Each `dev_fit` row records `source_split_role`,
+  `source_stratum`, `n_dev_records` and `n_dev_injections`, plus the achieved test coverage and risk
+  with CIs. A stratum without DEV rows gets a `no_source` row with no threshold; it is never fitted
+  on pooled DEV data.
+- **Pools are declared, never implicit.** `selective.pools` in the analysis config
+  (`{name: {column: [values]}}`) adds a cell `column = pool:<name>`. The pool is formed the same way
+  on DEV (source) and test (target). Within the pooled cell, weight = 1 / (records of the injection),
+  so every injection weighs 1. The H1-primary pool is
+  `single_modality: {condition: [no_metric, no_log, no_trace]}` on RCAEval with `retrieval = none`
+  (declared in `configs/analysis/dev-pilot.yaml`; 78 injections / 210 records on DEV, 108 / 285 on
+  test).
+- **CIs.** Every selective, reference and confidence endpoint carries a cluster-bootstrap CI over
+  injections. When a statistic is undefined in some draws, those draws are ignored and their share
+  is reported as `<metric>_nan_draws`.
+- **Shift table.** It is stratified by the same strata (pool cells included) × system × fault ×
+  split role. Base error and confidence-level shares are injection-weighted.

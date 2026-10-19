@@ -207,6 +207,12 @@ record its independent statistical unit:
    - `no_precedent` is an oracle ablation. The caller adds incidents with the query's
      (root, fault) from `Truth` through `CaseStore.search(..., exclude_ids=...)`; `retrieve.py`
      never reads query labels. Its result rows carry `oracle_store: true`.
+   - The store is bound to the configured split: exactly its train-role incidents (after
+     `store_limit`) are loaded from `<evidence_dir>/store/`; files left there by another split or
+     limit are ignored and counted, a missing one stops the run, and retrieval without a split is
+     refused. Prompt v1 names one service root per precedent, so train incidents labelled only by a
+     root set or a node are excluded and counted by granularity. The manifest's `store` block records
+     the split, the counts and a binding hash, which is part of every retrieval row's resume key.
 4. The masking operator takes a service name; only the condition driver passes the root or the
    control target. The masked service is logged in `ablation_log.jsonl` next to the results,
    never in the evidence directory.
@@ -243,13 +249,20 @@ roles `primary` and `replication` only; several models in one config are indepen
   fingerprint; `kind: store` rows are the retrieval store. It is outside the evidence directory, so
   fingerprints and cache keys do not depend on it. Wall times measure the machine in the manifest.
 - Grid rows carry `retrieval_s` (0.0 without retrieval).
-- `manifest.json` (`manifest_version: 2`): git commit, bundle, split and its `split.json` sha256,
+- `manifest.json` (`manifest_version: 3`): git commit, bundle, split and its `split.json` sha256,
   Python, platform, package versions, `evidence.BUILDER_VERSION`, `legacy_view.VIEW_VERSION`,
   the sha256 of the resolved config and its copy `config.yaml`, the `prepare_log.jsonl` sha256,
-  models and sampling. The manifest and the config copy are checked by `llm.check_no_secrets`.
+  models with their execution settings and `exec_sig`, sampling, and the retrieval `store` block.
+  The manifest and the config copy are checked by `llm.check_no_secrets`.
+- Resume is keyed by the execution signature: `exec_sig` hashes everything that changes a model's
+  output (model, revision, backend, prompt version, samples, temperature, seed, max tokens, chat
+  template arguments, logprobs, presence penalty, server fingerprint). Rows, raw records and the
+  manifest carry it; `run` refuses a grid holding rows of a configured model under a signature the
+  config does not declare, and the headline guard refuses mixed signatures.
 - `rca.analyze` writes `analysis_config.yaml` and the sha256 of every input and table into
   `analysis_meta.json`; `python -m rca.reproduce <analysis dir>` reruns the analysis offline and
-  exits 1 naming each table that differs. Tests: `tests/test_reproduce.py`.
+  exits 1 naming each table that differs, including a published CSV that was deleted or edited
+  (`published_missing`, `published_modified`). Tests: `tests/test_reproduce.py`.
 
 ## 9. Using the data from code
 

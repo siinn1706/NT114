@@ -100,6 +100,19 @@ class LLM:
         # turning this on or off never invalidates cached answers
         self.keep_raw = keep_raw
 
+    def execution(self) -> dict:
+        """Every setting that changes this model's outputs for a given prompt (the cache key's fields
+        besides the prompt). `server_fp` covers the served model list, launch arguments and canary."""
+        if self.server_fp is None:
+            raise RuntimeError("server fingerprint not set: call server_fingerprint() first")
+        return {"model": self.model, "revision": self.revision, "backend": self.backend, "prompt_version": PROMPT_VERSION,
+                "n": self.n, "temperature": self.temperature, "seed": self.seed, "max_tokens": self.max_tokens,
+                "chat_template_kwargs": self.chat_template_kwargs, "logprobs": self.logprobs,
+                "presence_penalty": self.presence_penalty, "server_fp": self.server_fp}
+
+    def execution_signature(self) -> str:
+        return hashlib.sha256(json.dumps(self.execution(), sort_keys=True).encode()).hexdigest()[:16]
+
     def key(self, messages, candidates) -> str:
         if self.server_fp is None:
             raise RuntimeError("server fingerprint not set: call server_fingerprint() before asking a live server")

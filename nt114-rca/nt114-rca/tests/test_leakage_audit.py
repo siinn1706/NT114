@@ -70,6 +70,22 @@ def test_outputs_hold_no_service_names(canonical_synth, tmp_path, monkeypatch):
                             "same_root_in_top_k", "same_root_in_top_k_chance"}
 
 
+def test_audits_the_store_bound_to_the_split_not_every_store_file(canonical_synth, tmp_path, monkeypatch):
+    """A store file left by another split (here: a query incident) is what the model never sees."""
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")
+    cfg = canonical_run_cfg(canonical_synth["dh"], tmp_path / "res", retrieval=["none", "hybrid"])
+    run_grid.prepare(cfg)
+    entries, _ = run_grid._store_entries(cfg, run_grid.Canon(cfg))
+    queries, store = leakage_audit.inputs(cfg)
+    sdir = run_grid.evidence_dir(cfg) / "store"
+    q = queries[0]["incident_uid"]
+    stray = json.loads(next(sdir.glob("*.json")).read_text(encoding="utf-8")) | {"incident_uid": q}
+    (sdir / f"{q}.json").write_text(json.dumps(stray), encoding="utf-8")
+    _, after = leakage_audit.inputs(cfg)
+    assert [e["incident_uid"] for e in store] == [e["incident_uid"] for e in after] == [e["case_id"] for e in entries]
+    assert q not in {e["incident_uid"] for e in after}
+
+
 def test_refuses_an_output_path_inside_the_evidence_dir(tmp_path):
     cfg = {"out": str(tmp_path / "ev" / "sub" / "grid.jsonl"), "evidence_dir": str(tmp_path / "ev")}
     with pytest.raises(ValueError, match="evidence dir"):

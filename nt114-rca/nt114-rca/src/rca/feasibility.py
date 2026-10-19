@@ -130,7 +130,8 @@ def smi_stats(path: Path, baseline_rows: int = 1) -> dict:
 
 
 def grid_stats(path: Path) -> dict:
-    """Parse rate, latency, throughput and served prompt lengths over the rows answered by the server."""
+    """Completion parse rate, latency, throughput and served prompt lengths over the rows answered by the
+    server. `cell_any_valid_rate` (a cell with one valid sample counts) is reported, never gated on."""
     rows = [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()] if path.is_file() else []
     live = [r for r in rows if not r.get("cached")]
     if not live:
@@ -139,12 +140,18 @@ def grid_stats(path: Path) -> dict:
     pt = np.array([r["prompt_tokens"] or 0 for r in live], dtype=float)
     ct = np.array([r["completion_tokens"] or 0 for r in live], dtype=float)
     q = lambda a, p: round(float(np.percentile(a, p)), 1)
+    # completions, not cells: a cell with one valid sample of n is usable but parsed 1/n of the time
+    n = np.array([r["sampling"]["n"] for r in live], dtype=float)
+    ok = np.array([r["parse_rate"] for r in live], dtype=float) * n
     by_cond: dict[str, list] = {}
-    for r in live:
-        by_cond.setdefault(f"{r['condition']}/{r['retrieval']}", []).append(not r["parse_failed"])
+    for r, k, m in zip(live, ok, n):
+        by_cond.setdefault(f"{r['condition']}/{r['retrieval']}", []).append((k, m))
     return {"rows": len(rows), "live_rows": len(live), "incidents": len({r["case_id"] for r in live}),
-            "parse_rate": round(float(np.mean([not r["parse_failed"] for r in live])), 4),
-            "parse_rate_by_cell": {k: round(float(np.mean(v)), 4) for k, v in sorted(by_cond.items())},
+            "completion_parse_rate": round(float(ok.sum() / n.sum()), 4),
+            "cell_any_valid_rate": round(float(np.mean([not r["parse_failed"] for r in live])), 4),
+            "cell_all_valid_rate": round(float(np.mean(ok == n)), 4),
+            "parse_rate_by_cell": {k: round(float(sum(a for a, _ in v) / sum(b for _, b in v)), 4)
+                                   for k, v in sorted(by_cond.items())},
             "latency_s": {"p50": q(lat, 50), "p95": q(lat, 95), "max": round(float(lat.max()), 1)},
             "prompt_tokens": {"p50": q(pt, 50), "p95": q(pt, 95), "max": int(pt.max())},
             "completion_tokens_per_s": round(float(ct.sum() / lat.sum()), 1) if lat.sum() else None,
@@ -153,16 +160,16 @@ def grid_stats(path: Path) -> dict:
 
 
 def verdict(server: dict, grid: dict, req_tokens: int | None) -> dict:
-    """Feasible = the server came up without OOM, answers parse, and the KV cache holds at least
-    MIN_CONCURRENT requests of the measured p95 size."""
+    """Feasible = the server came up without OOM, completions parse (`completion_parse_rate`), and the
+    KV cache holds at least MIN_CONCURRENT requests of the measured p95 size."""
     conc = (server["kv_cache_tokens"] / req_tokens) if server.get("kv_cache_tokens") and req_tokens else None
     reasons = []
     if not server.get("ready"):
         reasons.append("server did not become ready" + (" (out of memory)" if server.get("oom") else ""))
     if grid.get("live_rows", 0) == 0:
         reasons.append("no live rows")
-    elif grid["parse_rate"] < MIN_PARSE_RATE:
-        reasons.append(f"parse rate {grid['parse_rate']} < {MIN_PARSE_RATE}")
+    elif grid["completion_parse_rate"] < MIN_PARSE_RATE:
+        reasons.append(f"completion parse rate {grid['completion_parse_rate']} < {MIN_PARSE_RATE}")
     if conc is None:
         reasons.append("KV cache size not found in the server log")
     elif conc < MIN_CONCURRENT:
@@ -283,7 +290,7 @@ def report(root: Path) -> list[dict]:
                      "kv_cache_gib": s.get("kv_cache_gib"), "conc_est": r["estimate"]["concurrent_requests"],
                      "conc_measured": v["concurrent_requests_measured"],
                      "peak_vram_mib": gpu.get("peak_mib"), "baseline_vram_mib": gpu.get("baseline_mib"),
-                     "parse_rate": g.get("parse_rate"), "latency_p50_s": (g.get("latency_s") or {}).get("p50"),
+                     "completion_parse_rate": g.get("completion_parse_rate"), "latency_p50_s": (g.get("latency_s") or {}).get("p50"),
                      "latency_p95_s": (g.get("latency_s") or {}).get("p95"),
                      "tok_per_s": g.get("completion_tokens_per_s"),
                      "prompt_p95": (g.get("prompt_tokens") or {}).get("p95"), "temp_max_c": gpu.get("temp_max_c"),

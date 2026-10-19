@@ -121,3 +121,83 @@ def test_shift_table_marks_strata_missing_from_dev():
     t = selective.shift_table(df)
     assert set(t["present_in"]) == {"test+val", "test"}
     assert t.loc[(t.system == "b"), "base_error"].item() == 1.0
+
+
+# ---------------------------------------------------------------- fixed-coverage endpoints with CIs
+def test_exact_coverage_risk_is_the_expected_c1_tie_break():
+    rng = np.random.default_rng(3)
+    c = rng.random(40) < 0.6
+    s = rng.integers(0, 4, 40) / 3                     # heavy ties at the boundary
+    t = pd.DataFrame({"answer_ok": c, "answer_conf": s, "answer_tok": 0.0})
+    mc = selective.evaluate_draws(t, selective.coverage_matched_threshold(t, 0.7, draws=4000, seed=1))["selective_risk"]
+    assert selective.exact_coverage_risk(c, s, 0.7) == pytest.approx(mc, abs=0.004)
+
+
+def test_endpoints_report_achieved_coverage_and_cis():
+    from rca import metrics
+    rng = np.random.default_rng(5)
+    n = 90
+    c = rng.random(n) < 0.6
+    s = rng.integers(0, 11, n) / 10
+    w = rng.uniform(0.3, 1.0, n)
+    cl = np.arange(n) // 3
+    e = selective.selective_endpoints(c, s, cl, w, coverages=(0.7,), risk_goals=(0.3,), n_boot=300, seed=1)
+    assert e["risk@0.7"]["est"] == pytest.approx(metrics.selective_risk_at(c, s, 0.7, w))
+    assert e["coverage_ties@0.7"]["est"] >= 0.7                       # ties answered together
+    assert e["risk_exact@0.7"]["est"] == pytest.approx(selective.exact_coverage_risk(c, s, 0.7, w))
+    assert e["AURC"]["est"] == pytest.approx(metrics.aurc_w(c, s, w))
+    assert e["coverage_at_risk0.3"]["est"] == pytest.approx(selective.coverage_at_risk(c, s, 0.3, w))
+    base = 1 - np.average(c, weights=w)
+    assert e["gain_exact@0.7"]["est"] == pytest.approx(base - e["risk_exact@0.7"]["est"])
+    for k, v in e.items():
+        assert v["lo"] <= v["est"] + 1e-12 and v["est"] <= v["hi"] + 1e-12, k
+
+
+def test_undefined_draws_are_ignored_and_their_share_reported():
+    """One wrong record in 8 injections: a draw without it has no positive, so AUPRC is undefined there."""
+    c = np.array([True] * 7 + [False])
+    out = selective.confidence_endpoints(c, np.linspace(0.9, 0.2, 8), np.arange(8), n_boot=500, seed=0)
+    share = out["AUPRC"]["nan_draws"]
+    assert share == pytest.approx((7 / 8) ** 8, abs=0.06) and np.isfinite(out["AUPRC"]["lo"])
+    assert "nan_draws" not in out["AURC"]
+
+
+def test_vectorised_confidence_metrics_match_the_reference_functions():
+    from rca import metrics
+    rng = np.random.default_rng(11)
+    n = 80
+    c = rng.random(n) < 0.55
+    p = rng.integers(0, 11, n) / 10
+    w = rng.uniform(0.2, 1.0, n)
+    r = selective.confidence_endpoints(c, p, np.arange(n) // 2, w, probability=True, support="discrete",
+                                       n_boot=200, seed=2)
+    assert r["AUPRC"]["est"] == pytest.approx(metrics.auprc(~c, -p, w))
+    assert r["AURC"]["est"] == pytest.approx(metrics.aurc_w(c, p, w))
+    assert r["Brier"]["est"] == pytest.approx(metrics.brier(c, p, w))
+    assert r["ECE"]["est"] == pytest.approx(metrics.ece_w(c, p, w, "support"))
+    assert r["gap"]["est"] == pytest.approx(metrics.overconfidence_gap(c, p, w))
+    q = rng.random(n)
+    r = selective.confidence_endpoints(c, q, np.arange(n), w, probability=True, support="continuous", n_boot=50)
+    assert r["ECE"]["est"] == pytest.approx(metrics.ece_w(c, q, w, "width"))
+
+
+def test_references_carry_cis_when_clusters_are_given():
+    c = np.array([True, False, True, False, True, True])
+    refs = {r["policy"]: r for r in selective.references(c, [0.0, 0.0, 1.0, 0.0, 0.0, 0.0],
+                                                         clusters=np.arange(6), n_boot=200)}
+    for name, keys in (("L1 self-abstain", ("coverage", "risk")), ("C2 random deferral", ("risk",)),
+                       ("O oracle", ("coverage",))):
+        for k in keys:
+            assert refs[name][f"{k}_lo"] <= refs[name][k] <= refs[name][f"{k}_hi"]
+
+
+def test_shift_table_is_stratified_and_injection_weighted():
+    df = pd.DataFrame({"system": "a", "fault": "cpu", "split_role": ["val"] * 4 + ["test"] * 4,
+                       "condition": ["full", "no_log"] * 4, "correct": [True, False, True, True, False, False, False, True],
+                       "conf_consensus": 0.5, "weight": [1, 1, 1, 1, 1 / 3, 1, 1 / 3, 1], "injection_id": list("ppqqrsrt")})
+    t = selective.shift_table(df, strata=["condition"])
+    assert set(t["condition"]) == {"full", "no_log"} and len(t) == 4
+    row = t[(t.condition == "full") & (t.split_role == "test")].iloc[0]
+    assert row["base_error"] == pytest.approx(1.0) and row["n_injections"] == 1        # records r, r: one injection
+    row = t[(t.condition == "no_log") & (t.split_role == "val")].iloc[0]
+    assert row["base_error"] == pytest.approx(0.5)

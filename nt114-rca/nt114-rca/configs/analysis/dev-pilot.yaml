@@ -1,0 +1,25 @@
+# Q1 / H1 DEV-pilot analysis of configs/exp/dev-pilot.yaml (RCAEval grouped split, split_role val).
+# DEV is never a result: without preregistration_sha every table is exploratory_*, and the headline
+# guard refuses val rows. The pilot reads the curve rows of the declared pool:
+#   condition = pool:single_modality, retrieval = none, score = consensus:
+#   gain_exact@0.7 (E1; H1 SESOI 0.05, owner-confirmed 2026-10-19), gain_AURC (E3), risk@0.7 with
+#   coverage_ties@0.7 (E1t), each with a cluster-bootstrap CI over injections (protocol v2 §9).
+#   PYTHONPATH=src python -m rca.analyze configs/analysis/dev-pilot.yaml --data-home "$RCA_DATA_HOME"
+grids: [results_dev_pilot/grid.jsonl]
+raw: null                     # null: llm_raw.jsonl next to each grid
+visibility: [results_visibility/rcaeval/evidence_visibility.jsonl]
+baselines: []
+data_home: data               # holds reports/eval-units-rcaeval.json (injection ids and weights)
+out_dir: results_dev_pilot/analysis
+n_boot: 10000
+n_perm: 10000
+seed: 0
+scores: null                  # null: every registry score
+selective:
+  coverage: [0.7]
+  risk: []
+  pools:                      # H1-primary population; also reported per condition (the unpooled cells)
+    single_modality: {condition: [no_metric, no_log, no_trace]}
+contrasts: []
+families: {}
+preregistration_sha: null

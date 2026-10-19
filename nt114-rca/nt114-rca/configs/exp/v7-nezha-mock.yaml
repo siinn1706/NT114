@@ -2,7 +2,9 @@
 # visibility audit (same fingerprints). Mock rows are never a result.
 #   PYTHONPATH=src python -m rca.run_grid run    configs/exp/v7-nezha-mock.yaml
 #   PYTHONPATH=src python -m rca.analyze         configs/analysis/v7-nezha-mock.yaml
-#   PYTHONPATH=src python -m rca.reproduce       results_v7/nezha/analysis
+#   PYTHONPATH=src python -m rca.reproduce       results_v7_sig/nezha/analysis
+# Outputs go to a fresh directory: the earlier results_v7/ grid predates the execution signature (exec_sig),
+# which `run` refuses to resume; it is kept unchanged as a pre-signature record.
 source: canonical
 data_home: null
 canonical_datasets: [nezha]
@@ -18,7 +20,7 @@ temperature: 0.7
 seed: 0
 embedder: tfidf
 evidence_dir: results_visibility/nezha/evidence
-cache: results_v7/nezha/llm_cache.sqlite
-out: results_v7/nezha/grid.jsonl
+cache: results_v7_sig/nezha/llm_cache.sqlite
+out: results_v7_sig/nezha/grid.jsonl
 models:
   - {name: mock-primary, backend: mock, role: primary, revision: mock-r1}

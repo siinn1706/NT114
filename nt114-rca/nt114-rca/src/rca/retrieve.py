@@ -91,9 +91,12 @@ class CaseStore:
         return np.array([e["system"] == case.system and e["case_id"] != case.case_id and e["case_id"] not in exclude_ids
                          for e in self.entries], dtype=bool)
 
-    def oracle_exclusions(self, root: str, fault: str) -> frozenset:
-        """`no_precedent`: ca trong kho cùng (dịch vụ gốc, loại lỗi) với nhãn đúng của ca hỏi (bên gọi truyền Truth)."""
-        return frozenset(e["case_id"] for e in self.entries if e["root"] == root and e["fault"] == fault)
+    def oracle_exclusions(self, roots, fault: str) -> frozenset:
+        """`no_precedent`: entries sharing the query's fault and any of its true root services (`roots`:
+        the primary root, or the label's root set; the caller passes them from Truth)."""
+        roots = set(roots) - {None}
+        return frozenset(e["case_id"] for e in self.entries
+                         if e["fault"] == fault and roots & ({e["root"], *e.get("root_ids", ())} - {None}))
 
     def search(self, query: str, case, method: str, mode: str, k: int = 3, exclude_ids=frozenset()) -> list[dict]:
         ok = self._mask(case, mode, exclude_ids)
@@ -121,6 +124,9 @@ class CaseStore:
 def format_hits(hits: list[dict], max_chars_each: int = 1200) -> str:
     if not hits:
         return ""
+    if any(h["root"] is None for h in hits):
+        # prompt v1 names one root service per precedent; set-valued or node-level labels need a new prompt version
+        raise ValueError("prompt v1 shows only precedents with a single service-level root")
     parts = ["# Similar past incidents (resolved, root cause known)"]
     for j, h in enumerate(hits, 1):
         parts.append(f"### Past incident {j} — root cause: {h['root']} ({h['fault']})\n{h['text'][:max_chars_each]}")

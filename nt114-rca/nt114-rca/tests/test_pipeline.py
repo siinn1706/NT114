@@ -23,8 +23,6 @@ def test_canon():
 
 
 def test_metrics():
-    assert metrics.rank_of_truth(["a", "b"], "b") == 2
-    assert metrics.rank_of_truth(["a", "b"], "z") == 3
     assert metrics.ac_at_k([1, 2, 3, 1], 1) == 0.5
     assert metrics.ece([1, 1, 0, 0], [1, 1, 0, 0]) == 0.0
     assert abs(metrics.ece([0, 0], [0.9, 0.9]) - 0.9) < 1e-9
