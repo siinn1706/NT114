@@ -8,8 +8,8 @@ này không đổi plan, protocol v2, `decisions.md` hay code. Nam đọc rồi 
 Câu 4 **không nên thay H1**. H1 vẫn là hướng chính; câu 4 chỉ nên là phân tích phụ.
 
 Số liệu hiện có chỉ đo một việc hẹp: bản tóm tắt có **nêu tên** dịch vụ gốc hay không (`named`). Ở điều kiện `full`
-trên RCAEval test, tên gốc vắng mặt ở 2/218 bản ghi (`research/04` §2.2). Như vậy, **mất tên gốc** khi tóm tắt hiếm
-trên bộ chính. Ba câu hỏi khác vẫn chưa được đo:
+trên RCAEval test, tên gốc vắng mặt ở 2/218 bản ghi (`research/04` §2.2). Như vậy, trên bộ chính bản tóm tắt hiếm
+khi **thiếu tên gốc**, dù thiếu vì dữ liệu thô hay vì bộ tóm tắt. Ba câu hỏi khác vẫn chưa được đo:
 
 - bản tóm tắt có giữ đủ **bằng chứng chẩn đoán** khi đã nêu tên gốc hay không;
 - lỗi của LLM phân bố thế nào giữa các tầng `named` (chưa có accuracy);
