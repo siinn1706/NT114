@@ -1,7 +1,9 @@
 # Đề xuất: đưa câu 4 (thiếu telemetry hay mất khi tóm tắt) vào NT114
 
-Ngày: 19/10/2026, sửa theo review ngày 20/10/2026. Người đề xuất: Trí. **Trạng thái: đề xuất, chờ Nam xem.** File
-này không đổi plan, protocol v2, `decisions.md` hay code. Nam đọc rồi quyết có đưa vào plan 261018 hay không.
+Ngày: 19/10/2026, sửa theo review ngày 20/10/2026. Người đề xuất: Trí. **Trạng thái: Nam đã chấp nhận ngày 20/10/2026;**
+các câu hỏi cuối file đã được quyết và ghi trong
+[`decisions.md`](../261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md) (các dòng 2026-10-20).
+File này không đổi plan, protocol v2 hay code.
 
 ## Kết luận ngắn
 

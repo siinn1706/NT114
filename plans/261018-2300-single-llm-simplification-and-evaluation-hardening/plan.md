@@ -267,4 +267,12 @@ Resolved on 2026-10-18:
 - Internet access across the whole workflow (see the Internet policy). The DecompRCA release is
   downloaded in phase 06 for V8.
 
+Resolved on 2026-10-20: question 4 of the 16/10 note (missing telemetry vs summary loss). H1 stays
+the main direction; P1 (`named` stratification) is a required descriptive analysis, P2 is
+exploratory with criteria frozen on RCAEval DEV, evidence loss under `named = true` stays
+unmeasured, and P3 stays a conditional open direction outside protocol v2 (see
+[decisions](decisions.md) and the
+[accepted proposal](../reports/research-261019-1629-de-xuat-huong-cau-4-cho-nam-xem.md)). None of
+these analyses is implemented by this plan.
+
 No questions remain open.
