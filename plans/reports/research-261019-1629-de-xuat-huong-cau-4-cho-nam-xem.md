@@ -61,7 +61,7 @@ Một ca có thể nêu tên gốc mà vẫn mất tín hiệu quan trọng củ
 bị cắt vì giới hạn ký tự không có nghĩa là không mất thông tin: việc chọn lọc theo ngưỡng ở trên xảy ra trước đó.
 
 **Điều số liệu này cho phép nói:**
-- Ở `full`, mất **tên** gốc là hiếm trên RCAEval test (2/218) và thường gặp hơn ở Nezha (17/97), AIOps2025 (20/318),
+- Ở `full`, bản tóm tắt **thiếu tên** gốc là hiếm trên RCAEval test (2/218) và thường gặp hơn ở Nezha (17/97), AIOps2025 (20/318),
   RCA100 (9/86).
 - Đơn vị là bản ghi (sự cố × điều kiện). Tỉ lệ trên là tỉ lệ trên **mọi** bản ghi, không phải trên các ca LLM trả lời
   sai. `research/04` §4 ghi rõ chưa đo accuracy.
@@ -104,7 +104,7 @@ F-041 đến F-044. Đây là kiểm tra trên bản lưu; không kiểm lại t
 
 **Hệ quả cho câu 4:**
 - Trong pipeline của DecompRCA, `anomaly_summary` chính là tập ứng viên. Vì vậy retrieval failure của bài **tương đương
-  với việc gốc không có mặt trong bản tóm tắt** đưa cho LLM. Bài đã đo đúng loại "mất tên gốc" này trên RE1, ở mức
+  với việc gốc không có mặt trong bản tóm tắt** đưa cho LLM. Bài đã đo đúng loại "thiếu tên gốc" này trên RE1, ở mức
   0,00–0,09.
 - Bài không tách nguyên nhân của retrieval failure thành "dữ liệu thô không có tín hiệu" và "có tín hiệu nhưng bộ chọn
   bỏ" (A/B), không có logs/traces hay thao tác thiếu modality, và không đo mức giữ bằng chứng khi gốc đã có mặt.
