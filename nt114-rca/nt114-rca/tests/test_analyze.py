@@ -236,3 +236,22 @@ def test_every_reported_metric_has_a_ci(tmp_path):
         missing = [c for c in num if t[c].notna().any() and not {f"{c}_lo", f"{c}_hi"} <= set(t)]
         assert not missing, (name, missing)
     assert "selective_ties" in res["meta"]
+
+
+def test_headline_keeps_im1_arms_exploratory_and_arms_apart(tmp_path):
+    """Arm rows join the l0 grid: headline tables hold l0 and ra only, IM1 goes to exploratory_im1_* files;
+    an incident's evidence fingerprints may differ across arms but not within one."""
+    base = analyze.load(_grid(tmp_path))
+    arms = [base.assign(arm=a, evidence_fp=f"e-{a}", key=base["key"] + f"|arm={a}") for a in ("ra", "ra_im1", "ra_im1_shuf")]
+    g = pd.concat([base, *arms], ignore_index=True)
+    p = tmp_path / "arms.jsonl"
+    p.write_text("\n".join(g.apply(lambda r: json.dumps({k: v for k, v in r.items() if not (isinstance(v, float) and np.isnan(v))}),
+                                   axis=1)) + "\n", encoding="utf-8")
+    res = analyze.run(_cfg(tmp_path, p, preregistration_sha="0" * 64, contrasts=[]))
+    assert set(res["tables"]["table_cells"]["arm"]) == {"l0", "ra"}
+    im1 = pd.read_csv(tmp_path / "out" / "exploratory_im1_table_cells.csv")
+    assert set(im1["arm"]) == {"ra_im1", "ra_im1_shuf"}
+    bad = g.copy()
+    bad.loc[(bad.get("arm").isna()) & (bad.condition == "blind_root"), "evidence_fp"] = "e2"
+    with pytest.raises(analyze.HeadlineGuardError, match="evidence fingerprints"):
+        analyze.guard_headline(bad)

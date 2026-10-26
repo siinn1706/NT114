@@ -24,6 +24,14 @@ ACTIONS = ("answer", "retrieve", "abstain")
 # Arms of the action table: (policy action, retrieval method). Optional except `answer`.
 ARMS = {"answer": "none", "retrieve": "hybrid"}
 FEATS = ["conf_verbal", "conf_consensus", "abstain_vote", "parse_rate"]
+L0 = "l0"
+
+
+def arm_column(df: pd.DataFrame) -> pd.Series:
+    """Evidence arm of each row (amendment a02). Rows written before the `arm` field are arm `l0`, the
+    existing builder: with `retrieval = none` the existing H1 arm, with `hybrid` the existing retrieval arm
+    (the retrieval column keeps them apart). Rows of different arms are never pooled or fitted together."""
+    return df["arm"].fillna(L0) if "arm" in df else pd.Series(L0, index=df.index)
 
 
 # ---------------------------------------------------------------- action table
@@ -35,14 +43,14 @@ def _arm_rows(rows: pd.DataFrame, meth: str) -> pd.DataFrame:
 
 
 def select_rows(rows: pd.DataFrame, prompt_version: str, revision: str | None = None, arms: dict = ARMS,
-                model: str | None = None) -> dict:
+                model: str | None = None, evidence_arm: str = L0) -> dict:
     """{arm: rows indexed by (incident_uid, condition)} of one primary model (`model`, needed when a sweep
-    has several) for one prompt version (and model revision). Fails on oracle-store rows and on duplicate
-    keys within an arm."""
+    has several) for one prompt version (and model revision) and one evidence arm (`evidence_arm`, default
+    `l0`; never mixed). Fails on oracle-store rows and on duplicate keys within an arm."""
     if "oracle_store" in rows and rows["oracle_store"].fillna(False).astype(bool).any():
         raise ValueError("grid contains oracle_store (no_precedent) rows: they mask by the query's true label "
                          "and never enter a selective evaluation; evaluate a grid without them")
-    rows = rows[rows.prompt_version == prompt_version]
+    rows = rows[(rows.prompt_version == prompt_version) & (arm_column(rows) == evidence_arm)]
     if model is not None:
         rows = rows[rows.model == model]
     out = {}
@@ -64,11 +72,11 @@ def select_rows(rows: pd.DataFrame, prompt_version: str, revision: str | None = 
 
 
 def action_table(rows: pd.DataFrame, prompt_version: str = PROMPT_VERSION, revision: str | None = None,
-                 arms: dict = ARMS, model: str | None = None) -> pd.DataFrame:
+                 arms: dict = ARMS, model: str | None = None, evidence_arm: str = L0) -> pd.DataFrame:
     """Evaluation table keyed (incident_uid, condition): per arm `<a>_ok`, `<a>_tok`, `<a>_conf`
     (consensus of the arm that produced the answer), `<a>_verbal`, `<a>_rank`, `<a>_lat`; visible
     features of the primary answer."""
-    sel = select_rows(rows, prompt_version, revision, arms, model)
+    sel = select_rows(rows, prompt_version, revision, arms, model, evidence_arm)
     b = sel["answer"]
     t = pd.DataFrame(index=b.index)
     for c in ("system", "dataset", "split_id", "split_role", "n_candidates", "backend", "set_scored", "label_granularity"):

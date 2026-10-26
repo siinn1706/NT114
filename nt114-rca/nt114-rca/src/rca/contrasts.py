@@ -19,6 +19,15 @@ injection, and tested with the paired sign-flip test; the CI is a cluster bootst
 injections. Non-decomposable metrics (auroc, aurc, risk@<coverage>) use the paired cluster
 bootstrap, resampling the same injections for all arms. Holm is applied within declared families
 only; without a family every p-value is unadjusted and labelled exploratory.
+
+Sensitivity (D10): with a `group_col` (the split's `group_id`), a second CI (`lo_group`, `hi_group`)
+resamples whole groups, keeping repeats of one fault cell together; both arms of a paired contrast use
+the same drawn groups. The primary analysis (injection clusters) is unchanged.
+
+Reading a CI (`ci_reading`, never "rejected"): inside +-SESOI -> `excludes_practical_effect`; wholly on
+the harmful side of 0 -> `evidence_of_harm`; wholly on the beneficial side -> `evidence_of_benefit`;
+otherwise `insufficient_evidence`. The direction of a metric decides which side is harmful (`gap`
+has none: `nonzero`). Contrasts that select an exploratory arm (IM1 frames, D13) never enter a family.
 """
 from __future__ import annotations
 
@@ -28,6 +37,37 @@ import pandas as pd
 from . import metrics
 
 DECOMPOSABLE = {"ac1", "ac2", "ac3", "ac4", "ac5", "mrr5", "brier", "gap"}
+# IM1 arms are exploratory in the first MVP (D13): their contrasts are never part of a family
+EXPLORATORY_ARMS = frozenset({"ra_im1", "ra_im1_shuf"})
+
+
+def direction(metric: str) -> int:
+    """+1 when a larger value is better, -1 when smaller is better, 0 when neither (gap)."""
+    if metric.startswith("ac") or metric in ("mrr5", "auroc"):
+        return 1
+    if metric in ("brier", "aurc") or metric.startswith("risk@"):
+        return -1
+    return 0
+
+
+def ci_reading(lo: float, hi: float, metric: str, sesoi: float | None = None) -> str | None:
+    """Reading of the CI of `a - b` (a DiD reads the same way)."""
+    if lo is None or hi is None or np.isnan(lo) or np.isnan(hi):
+        return None
+    if sesoi is not None and -sesoi < lo and hi < sesoi:
+        return "excludes_practical_effect"
+    if lo <= 0 <= hi:
+        return "insufficient_evidence"
+    d = direction(metric)
+    if d == 0:
+        return "nonzero"
+    return "evidence_of_benefit" if (lo > 0) == (d > 0) else "evidence_of_harm"
+
+
+def _selects_exploratory(spec: dict) -> bool:
+    sels = [spec.get(k) or {} for k in ("a", "b", "c", "d", "within")]
+    return any(v in EXPLORATORY_ARMS for s in sels for v in ([s.get("arm")] if not isinstance(s.get("arm"), list)
+                                                              else s.get("arm")))
 ASSUMPTIONS = {
     "sign_flip": ("paired sign-flip on per-injection differences: injections independent; under H0 each "
                   "difference symmetric about 0 (tests a zero mean only under that symmetry)"),
@@ -114,8 +154,15 @@ def _per_injection(diff: np.ndarray, inj: np.ndarray, w: np.ndarray) -> pd.Serie
     return d["d"].sum() / d["w"].sum()
 
 
+def _groups_of_injections(a0: pd.DataFrame, group_col: str) -> pd.Series:
+    g = a0.groupby("injection_id")[group_col].nunique(dropna=False)
+    if (g > 1).any():
+        raise ValueError(f"injection(s) in several {group_col} values: {list(g[g > 1].index[:3])}")
+    return a0.groupby("injection_id")[group_col].first()
+
+
 def evaluate(df: pd.DataFrame, spec: dict, n_boot: int = 10000, n_perm: int = 10000, seed: int = 0,
-             restrict: list | None = None) -> dict:
+             restrict: list | None = None, group_col: str | None = None, sesoi: float | None = None) -> dict:
     arms, common, dropped = intersect(df, spec)
     if restrict is not None:
         common = [u for u in common if u in set(restrict)]
@@ -129,6 +176,7 @@ def evaluate(df: pd.DataFrame, spec: dict, n_boot: int = 10000, n_perm: int = 10
            "n_injections": int(len(set(inj))), **{f"dropped_{k}": v for k, v in dropped.items()}}
     if not common:
         return {**row, "est": np.nan, "lo": np.nan, "hi": np.nan, "p": np.nan, "test": None}
+    grouped = group_col is not None and group_col in a0 and a0[group_col].notna().all()
     sc = {k: spec[k].get("score", "consensus") for k in arms}
     if metric in DECOMPOSABLE:
         v = {k: record_values(g.loc[common], metric, sc[k]) for k, g in arms.items()}
@@ -140,6 +188,10 @@ def evaluate(df: pd.DataFrame, spec: dict, n_boot: int = 10000, n_perm: int = 10
         skew = float(((d - d.mean()) ** 3).mean() / d.std() ** 3) if d.std() > 0 else 0.0
         row.update(est=float(per.mean()), lo=float(boot["lo"]), hi=float(boot["hi"]), p=sf["p"], test="sign_flip",
                    skew_per_injection=skew)
+        if grouped:
+            grp = _groups_of_injections(a0, group_col).reindex(per.index).to_numpy()
+            gb = metrics.cluster_bootstrap_means(per.to_numpy(), grp, None, n=n_boot, seed=seed)
+            row.update(lo_group=float(gb["lo"]), hi_group=float(gb["hi"]), n_groups=int(gb["n_clusters"]))
         if metric == "ac1" and kind == "diff" and "representative" in a0:
             rep = a0["representative"].astype(bool).to_numpy()
             mc = metrics.mcnemar(v["a"][rep].astype(bool), v["b"][rep].astype(bool))
@@ -157,19 +209,31 @@ def evaluate(df: pd.DataFrame, spec: dict, n_boot: int = 10000, n_perm: int = 10
             return float(np.dot(sign, vals))
         boot = metrics.cluster_bootstrap(X, inj, w, fn=fn, n=n_boot, seed=seed)
         row.update(est=boot["est"], lo=boot["lo"], hi=boot["hi"], p=boot["p"], test="cluster_bootstrap")
+        if grouped:
+            gb = metrics.cluster_bootstrap(X, a0[group_col].to_numpy(), w, fn=fn, n=n_boot, seed=seed)
+            row.update(lo_group=gb["lo"], hi_group=gb["hi"], n_groups=gb["n_clusters"])
+    s = spec.get("sesoi", sesoi)
+    row["ci_reading"] = ci_reading(row["lo"], row["hi"], metric, s)
+    if grouped:
+        row["ci_reading_group"] = ci_reading(row["lo_group"], row["hi_group"], metric, s)
     return row
 
 
 def run(df: pd.DataFrame, specs: list[dict], families: dict | None = None, n_boot: int = 10000,
-        n_perm: int = 10000, seed: int = 0) -> pd.DataFrame:
+        n_perm: int = 10000, seed: int = 0, group_col: str | None = None, sesoi: float | None = None) -> pd.DataFrame:
     """One row per contrast (and a second, `require_changed`, row when requested); Holm per family."""
+    in_family = {n for names in (families or {}).values() for n in names}
+    bad = [s["name"] for s in specs if s["name"] in in_family and _selects_exploratory(s)]
+    if bad:
+        raise ValueError(f"contrasts {bad} select an exploratory IM1 arm and cannot belong to a family")
     rows = []
     for spec in specs:
-        rows.append({**evaluate(df, spec, n_boot, n_perm, seed), "filter": "none"})
+        rows.append({**evaluate(df, spec, n_boot, n_perm, seed, group_col=group_col, sesoi=sesoi), "filter": "none"})
         if spec.get("require_changed"):
             arms, common, _ = intersect(df, spec)
             note = None if "same_as_full" in df else "same_as_full unavailable (no visibility join): filter not applied"
-            rows.append({**evaluate(df, spec, n_boot, n_perm, seed, restrict=_changed(arms, common)),
+            rows.append({**evaluate(df, spec, n_boot, n_perm, seed, restrict=_changed(arms, common),
+                                    group_col=group_col, sesoi=sesoi),
                          "filter": "require_changed", "note": note})
     out = pd.DataFrame(rows)
     if not len(out):

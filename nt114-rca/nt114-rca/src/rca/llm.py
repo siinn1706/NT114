@@ -113,18 +113,20 @@ class LLM:
     def execution_signature(self) -> str:
         return hashlib.sha256(json.dumps(self.execution(), sort_keys=True).encode()).hexdigest()[:16]
 
-    def key(self, messages, candidates) -> str:
+    def key(self, messages, candidates, scope: str | None = None) -> str:
+        """`scope`: evidence arm other than l0, so arms never share a cache entry even for identical prompts."""
         if self.server_fp is None:
             raise RuntimeError("server fingerprint not set: call server_fingerprint() before asking a live server")
         blob = json.dumps([self.model, self.revision, self.backend, self.n, self.temperature, self.seed, self.max_tokens,
                            PROMPT_VERSION, self.chat_template_kwargs, self.logprobs, self.server_fp, messages, candidates]
-                          # appended only when set, so keys of runs without it stay valid
-                          + ([{"presence_penalty": self.presence_penalty}] if self.presence_penalty is not None else []),
+                          # appended only when set, so keys of runs without them stay valid
+                          + ([{"presence_penalty": self.presence_penalty}] if self.presence_penalty is not None else [])
+                          + ([{"arm": scope}] if scope is not None else []),
                           sort_keys=True)
         return hashlib.sha256(blob.encode()).hexdigest()
 
-    def ask(self, messages, candidates) -> dict:
-        k = self.key(messages, candidates)
+    def ask(self, messages, candidates, scope: str | None = None) -> dict:
+        k = self.key(messages, candidates, scope)
         hit = self.cache.get(k)
         if hit is not None:
             out = {**hit, "cached": True}       # entries written before raw persistence have no "raw"

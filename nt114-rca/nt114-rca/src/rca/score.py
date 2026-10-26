@@ -29,7 +29,20 @@ def correctness(ranking: list[str], truth: Truth, n_candidates: int) -> dict:
             "set_scored": truth.root_service is None, "parse_failed": not ranking}
 
 
-UNIT_COLUMNS = ["incident_uid", "weight", "injection_id", "representative", "cov_logs", "cov_traces", "excluded"]
+OUTCOMES = ("not_applicable", "execution_error", "wrong", "correct")
+
+
+def outcome(correct_at_1: bool, parse_failed: bool, applicable: bool = True) -> str:
+    """Result class of one answer: no evidence path applied, no parseable answer, wrong or correct top-1.
+    Every class stays in the denominator."""
+    if not applicable:
+        return "not_applicable"
+    if parse_failed:
+        return "execution_error"
+    return "correct" if correct_at_1 else "wrong"
+
+
+UNIT_COLUMNS =["incident_uid", "weight", "injection_id", "representative", "cov_logs", "cov_traces", "excluded"]
 
 
 def units(data_home: Path, dataset: str) -> pd.DataFrame:

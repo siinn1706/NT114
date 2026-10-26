@@ -23,7 +23,7 @@ from pathlib import Path
 
 import yaml
 
-from . import ablate, evidence, score
+from . import ablate, evidence, im1_frame, rcl_evidence, score
 from .data import Truth, VisibleCase
 from .llm import LLM, PROMPT_VERSION, Cache, aggregate, build_messages, check_no_secrets
 from .retrieve import CaseStore, Embedder, format_hits
@@ -36,6 +36,10 @@ NONROOT_EV = "blind_nonroot_ev"
 MODEL_ROLES = ("primary", "replication")
 # Packages whose versions the manifest records (distribution names).
 MANIFEST_PACKAGES = ("numpy", "pandas", "scipy", "scikit-learn", "pyarrow", "PyYAML")
+# Evidence arms (amendment a02): `l0` is the existing pipeline (`evidence.py`); the others are the RCLAgent
+# adaptation without recursion-of-thought (`rcl_evidence.py`), one LLM call per answer, `retrieval = none`.
+L0 = "l0"
+ARMS = (L0, *rcl_evidence.ARMS)
 
 
 def load_cfg(path):
@@ -71,6 +75,38 @@ def evidence_dir(cfg) -> Path:
     p = Path(cfg.get("evidence_dir", "results/evidence"))
     p.mkdir(parents=True, exist_ok=True)
     return p
+
+
+def cfg_arms(cfg) -> list[str]:
+    """`arms` of the config (default `[l0]`: the pipeline as before)."""
+    arms = list(cfg.get("arms") or [L0])
+    bad = [a for a in arms if a not in ARMS]
+    if bad or len(set(arms)) != len(arms):
+        raise ValueError(f"arms {arms}: each must be one of {list(ARMS)}, once")
+    if any(rcl_evidence.ARMS[a] for a in arms if a != L0) and not cfg.get("split"):
+        raise ValueError("framed arms need a `split`: IM1 frames come only from its train role")
+    return arms
+
+
+def framed(cfg) -> bool:
+    return any(rcl_evidence.ARMS[a] for a in cfg_arms(cfg) if a != L0)
+
+
+def frames_dir(cfg) -> Path:
+    return Path(cfg.get("im1_frames_dir") or evidence_dir(cfg) / "im1_frames")
+
+
+def im1_frames(cfg, cn: Canon, build: bool = False) -> dict:
+    """IM1 frames of the split's train role. `build`: build and freeze them (a rebuild must give the frozen
+    hashes); otherwise read the frozen files, checking each file's content against its sha256."""
+    if build:
+        return im1_frame.build_all(cn.store, cn.datasets, cn.split_dir, cn.roles, frames_dir(cfg))
+    return im1_frame.load_frozen(frames_dir(cfg))
+
+
+def arm_dir(cfg, arm: str) -> Path:
+    """Evidence files of an R-a arm; `l0` keeps `evidence_dir` itself."""
+    return evidence_dir(cfg) if arm == L0 else evidence_dir(cfg) / "arms" / arm
 
 
 # ---------------------------------------------------------------- canonical source
@@ -177,6 +213,13 @@ class Canon:
                           sort_keys=True)
         return hashlib.sha256(blob.encode()).hexdigest()[:16]
 
+    def arm_fp(self, uid, arm: str, frame_sha: str | None = None) -> str:
+        """Fingerprint of an R-a arm's evidence: the l0 fingerprint (data, view, matrix row), the R-a builder
+        and the arm with its frame."""
+        blob = json.dumps({"base": self.evidence_fp(uid), "builder": rcl_evidence.fingerprint(), "arm": arm,
+                           "frame": frame_sha}, sort_keys=True)
+        return hashlib.sha256(blob.encode()).hexdigest()[:16]
+
 
 def _is_current(path: Path, fp: str, conditions=None) -> bool:
     """An evidence file is reused only when it was built with the same fingerprint (and conditions)."""
@@ -268,6 +311,37 @@ def _canonical_evidence(cn: Canon, vc: VisibleCase, conditions, log: list | None
     return rec
 
 
+def _arm_evidence(cn: Canon, vc: VisibleCase, l0_rec: dict, arm: str, frame: dict | None = None,
+                  log: list | None = None) -> dict:
+    """R-a evidence record of the conditions present in the l0 record. `blind_nonroot_ev` masks the
+    service chosen from the l0 full evidence (same target as l0); other conditions as in l0."""
+    from .legacy_view import evidence_kwargs, legacy_telemetry
+    t0 = time.perf_counter()
+    tel = legacy_telemetry(cn.store, vc.case_id)
+    load_s = time.perf_counter() - t0
+    tr = cn.truth(vc.case_id)
+    target = cn.matrix[vc.case_id]["nonroot_target"]
+    kw = evidence_kwargs(cn.prep_cfg, vc.dataset)
+    fsha = frame.get("sha256") if frame else None
+    rec = {"schema": EVIDENCE_SCHEMA, "arm": arm, "incident_uid": vc.case_id, "system": vc.system,
+           "evidence_fp": cn.arm_fp(vc.case_id, arm, fsha), "candidates": l0_rec["candidates"], "conditions": {},
+           "same_as_full": {}}
+    for cond in l0_rec["conditions"]:
+        t0 = time.perf_counter()
+        if cond == NONROOT_EV:
+            masked = ablate.mask_service_traces(
+                tel, nonroot_ev_target(l0_rec["conditions"]["full"]["text"], tr.root_service, vc.case_id))
+        else:
+            masked = tel if cond == "full" else ablate.apply(tel, cond, tr.root_service, target)
+        rec["conditions"][cond] = rcl_evidence.build(vc, masked, arm, frame, **kw)
+        if log is not None:
+            log.append({**_prep_row(vc.case_id, cond, "query", load_s, time.perf_counter() - t0, masked,
+                                    rec["conditions"][cond], rec["evidence_fp"]), "arm": arm})
+    full = rec["conditions"].get("full")
+    rec["same_as_full"] = {c: full is not None and ev["text"] == full["text"] for c, ev in rec["conditions"].items()}
+    return rec
+
+
 def ablation_log(cn: Canon, uids, ev_dir: Path | None = None) -> list[dict]:
     """Vùng eval-only: dịch vụ bị che của từng biến thể (ghi cạnh kết quả, không ở thư mục bằng chứng)."""
     out = []
@@ -293,6 +367,9 @@ def prepare(cfg):
     if NONROOT_EV in cfg["conditions"] and "full" not in cfg["conditions"]:
         raise ValueError(f"{NONROOT_EV} is chosen from the full evidence: add 'full' to conditions")
     out = evidence_dir(cfg)
+    r_arms = [a for a in cfg_arms(cfg) if a != L0]
+    # frames are built and frozen before any evidence of a framed arm
+    frames = im1_frames(cfg, cn, build=True) if framed(cfg) else {}
     sel = cn.selected()
     print(f"{len(sel)} incidents ({cn.split_id or 'no split'}, roles {cn.split_roles()})")
     plog = prepare_log_path(cfg)
@@ -303,15 +380,24 @@ def prepare(cfg):
                 fp_log.write(json.dumps(r, ensure_ascii=False) + "\n")
             fp_log.flush()
 
-        for i, (vc, _) in enumerate(sel, 1):
+        for i, (vc, inc) in enumerate(sel, 1):
             f = out / f"{vc.case_id}.json"
             if _is_current(f, cn.evidence_fp(vc.case_id), cn.conditions(vc.case_id)):
-                continue
-            rows = []
-            rec = _canonical_evidence(cn, vc, cn.conditions(vc.case_id), rows)
-            _write_json(f, rec)
-            flush(rows)
-            print(f"[{i}/{len(sel)}] {vc.case_id}: {list(rec['conditions'])}")
+                with open(f, encoding="utf-8") as fh:
+                    rec = json.load(fh)
+            else:
+                rows = []
+                rec = _canonical_evidence(cn, vc, cn.conditions(vc.case_id), rows)
+                _write_json(f, rec)
+                flush(rows)
+                print(f"[{i}/{len(sel)}] {vc.case_id}: {list(rec['conditions'])}")
+            for arm in r_arms:
+                fr = im1_frame.for_arm(frames, inc, cn.split_id, arm) if rcl_evidence.ARMS[arm] else None
+                fa = arm_dir(cfg, arm) / f"{vc.case_id}.json"
+                if not _is_current(fa, cn.arm_fp(vc.case_id, arm, fr and fr["sha256"]), list(rec["conditions"])):
+                    rows = []
+                    _write_json(fa, _arm_evidence(cn, vc, rec, arm, fr, rows))
+                    flush(rows)
         if any(m != "none" for m in cfg.get("retrieval", ["none"])):
             from .legacy_view import visible_case
             st = cn.store_incidents()
@@ -340,6 +426,29 @@ def load_evidence(cfg) -> list[dict]:
         if r.get("schema") != EVIDENCE_SCHEMA:
             raise RuntimeError(f"{f}: evidence schema {r.get('schema')!r} is not {EVIDENCE_SCHEMA}; rerun `prepare`")
         _check_current(r, cn.evidence_fp(r["incident_uid"]), f)
+        r["vc"] = visible_case(cn.store.incident(r["incident_uid"]))
+        r["truth"] = cn.truth(r["incident_uid"])
+        recs.append(r)
+    return recs
+
+
+def load_arm_evidence(cfg, arm: str) -> list[dict]:
+    """R-a evidence records of `arm` (as `load_evidence`), checked against their fingerprint."""
+    from .legacy_view import visible_case
+    recs = []
+    cn = Canon(cfg)
+    frames = im1_frames(cfg, cn) if rcl_evidence.ARMS[arm] else {}
+    for f in sorted(arm_dir(cfg, arm).glob("*.json")):
+        with open(f, encoding="utf-8") as fh:
+            r = json.load(fh)
+        if r.get("schema") != EVIDENCE_SCHEMA or r.get("arm") != arm:
+            raise RuntimeError(f"{f}: not a schema {EVIDENCE_SCHEMA} record of arm {arm!r}; rerun `prepare`")
+        fsha = next((ev.get("frame_sha256") for ev in r["conditions"].values()), None)
+        if rcl_evidence.ARMS[arm]:      # the evidence must use the frozen frame of its key
+            fr = im1_frame.for_arm(frames, cn.store.incident(r["incident_uid"]), cn.split_id, arm)
+            if (fr and fr["sha256"]) != fsha:
+                raise RuntimeError(f"{f}: frame {fsha} is not the frozen frame {fr and fr['sha256']}; rerun `prepare`")
+        _check_current(r, cn.arm_fp(r["incident_uid"], arm, fsha), f)
         r["vc"] = visible_case(cn.store.incident(r["incident_uid"]))
         r["truth"] = cn.truth(r["incident_uid"])
         recs.append(r)
@@ -476,6 +585,9 @@ def write_manifest(cfg, cn: Canon, server_fps: dict, started: float, executions:
                 "platform": platform.platform(),
                 "packages": _package_versions(), "evidence_builder_version": evidence.BUILDER_VERSION,
                 "legacy_view_version": VIEW_VERSION, "config_sha256": cfg_sha, "config_copy": cfg_path.name,
+                **({"arms": cfg_arms(cfg), "rcl_builder_version": rcl_evidence.BUILDER_VERSION}
+                   if cfg_arms(cfg) != [L0] else {}),
+                **({"im1_frames": im1_frame.manifest(im1_frames(cfg, cn))} if framed(cfg) else {}),
                 "split_sha256": _sha256(cn.split_dir / "split.json") if cn.split_dir else None,
                 "prepare_log_sha256": _sha256(prepare_log_path(cfg))})
     check_no_secrets(man)
@@ -565,10 +677,12 @@ def _check_resumable(rows: list[dict], llms: list[LLM], out_path: Path) -> None:
 def run(cfg):
     cn = Canon(cfg)
     _require_split_for_retrieval(cfg, cn)
-    recs = load_evidence(cfg)
+    arms = cfg_arms(cfg)
     wanted = {vc.case_id for vc, _ in cn.selected()}
-    recs = [r for r in recs if r["vc"].case_id in wanted]
-    print(f"{len(recs)} cases with evidence")
+    sources = [(a, [r for r in (load_evidence(cfg) if a == L0 else load_arm_evidence(cfg, a)) if r["vc"].case_id in wanted])
+               for a in arms]
+    for a, recs in sources:
+        print(f"arm {a}: {len(recs)} cases with evidence")
 
     _check_roles(cfg["models"])
     started = time.time()
@@ -619,27 +733,36 @@ def run(cfg):
         for m, llm, ex in zip(cfg["models"], llms, executions):
             sig = ex["exec_sig"]
             role, rev = m.get("role", "primary"), m.get("revision")
-            for r in recs:
+            for arm, r in ((a, r) for a, recs in sources for r in recs):
                 vc, tr, cands = r["vc"], r["truth"], r["candidates"]
                 grp = frozenset(members.get(cn.group.get(vc.case_id), ()))
                 for cond, ev in r["conditions"].items():
-                    cells = [("none", "-")] + [(meth, mode) for meth in cfg["retrieval"] if meth != "none"
-                                               for mode in cfg["store_modes"]]
+                    # R-a arms run only the `retrieval = none` cell
+                    cells = [("none", "-")] + ([] if arm != L0 else [(meth, mode) for meth in cfg["retrieval"]
+                                                                     if meth != "none" for mode in cfg["store_modes"]])
                     for meth, mode in cells:
-                        if meth == "none" and "none" not in cfg["retrieval"]:
+                        if meth == "none" and "none" not in cfg["retrieval"] and arm == L0:
                             continue
                         # the evidence and store fingerprints and the execution signature are part of the
                         # key: rows produced from stale evidence or other settings are never counted as done
                         key = (f"{m['name']}|{rev}|{PROMPT_VERSION}|{vc.case_id}|{cond}|{meth}|{mode}|{r['evidence_fp']}|"
                                f"{store_fp if meth != 'none' else '-'}|sig={sig}")
+                        if arm != L0:
+                            key += f"|arm={arm}|frame={ev.get('frame_sha256') or '-'}"
                         if key in done:
                             continue
+                        ft = ev.get("features", {})
+                        applicable = arm == L0 or ev["path"] == "trace" or bool(ft.get("has_metrics") or ft.get("has_logs"))
                         t0 = time.perf_counter()
                         hits = (store.search(ev["text"], vc, meth, mode, cfg["top_k"], exclude_ids=exclusions(store, vc, tr, mode, grp))
                                 if meth != "none" else [])
                         retrieval_s = round(time.perf_counter() - t0, 4) if meth != "none" else 0.0
                         msgs = build_messages(vc, cands, ev["text"], format_hits(hits))
-                        res = llm.ask(msgs, cands)
+                        if applicable:
+                            res = llm.ask(msgs, cands, scope=None if arm == L0 else arm)
+                        else:   # no telemetry for any tool: not_applicable, no call, kept in the denominator
+                            res = {"samples": [], "prompt_tokens": 0, "completion_tokens": 0, "latency_s": 0.0,
+                                   "cached": False}
                         if keep_raw and key not in raw_done:   # before the grid row: a done key has its raw record
                             fraw.write(json.dumps({**raw_output_row(key, m["name"], role, vc.case_id, cond, meth, mode, res),
                                                    "exec_sig": sig}, ensure_ascii=False) + "\n")
@@ -671,6 +794,10 @@ def run(cfg):
                             "oracle_store": mode == "no_precedent",
                             "evidence_fp": r["evidence_fp"], "store_fp": store_fp if meth != "none" else None,
                         }
+                        if arm != L0:   # l0 rows keep their schema: a row without `arm` is arm l0
+                            row.update(arm=arm, path=ev["path"], frame_sha256=ev.get("frame_sha256"),
+                                       llm_calls=int(applicable),
+                                       outcome=score.outcome(sc["correct_at_1"], sc["parse_failed"], applicable))
                         fout.write(json.dumps(row) + "\n")
                         fout.flush()
                         done.add(key)

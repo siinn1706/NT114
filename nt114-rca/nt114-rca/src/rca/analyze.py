@@ -52,8 +52,8 @@ class HeadlineGuardError(ValueError):
     pass
 
 
-def _mixed_within(grid: pd.DataFrame, col: str, by: str) -> list:
-    if col not in grid or by not in grid:
+def _mixed_within(grid: pd.DataFrame, col: str, by) -> list:
+    if col not in grid or any(b not in grid for b in ([by] if isinstance(by, str) else by)):
         return []
     n = grid.groupby(by)[col].nunique(dropna=False)
     return sorted(n[n > 1].index)
@@ -77,7 +77,8 @@ def guard_headline(grid: pd.DataFrame) -> None:
             problems.append(f"mixed {col} within model(s) {bad}")
     if "oracle_store" in grid and grid["oracle_store"].fillna(False).astype(bool).any():
         problems.append("oracle_store (no_precedent) rows")
-    bad = _mixed_within(grid, "evidence_fp", "incident_uid")
+    # evidence arms have their own builders and fingerprints: mixing is checked within an arm
+    bad = _mixed_within(grid.assign(arm=selective.arm_column(grid)), "evidence_fp", ["incident_uid", "arm"])
     if bad:
         problems.append(f"mixed evidence fingerprints for {len(bad)} incident(s)")
     if problems:
@@ -101,6 +102,24 @@ def attach_units(df: pd.DataFrame, data_home: Path | None = None, uid_col: str =
     return reweight(out)
 
 
+def attach_groups(df: pd.DataFrame, data_home=None) -> pd.DataFrame:
+    """`group_id` of each record from its split's `assignments.jsonl` (sensitivity clusters, D10); left out
+    when no assignment file is found."""
+    if not data_home or "split_id" not in df:
+        return df
+    groups = {}
+    for sid in df["split_id"].dropna().unique():
+        path = Path(data_home) / "splits" / str(sid) / "assignments.jsonl"
+        if path.is_file():
+            groups.update({a["incident_uid"]: a["group_id_hash"] for a in _read_assignments(path)})
+    return df.assign(group_id=df["incident_uid"].map(groups)) if groups else df
+
+
+def _read_assignments(path):
+    with open(path, encoding="utf-8") as f:
+        return [json.loads(l) for l in f if l.strip()]
+
+
 def reweight(df: pd.DataFrame) -> pd.DataFrame:
     """Equal weight per injection within each evaluated cell: weight = 1 / (records of that injection in
     the cell). The eval-units weights count every record of the dataset, so in a cell holding only part
@@ -112,7 +131,9 @@ def reweight(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def strata_cols(df: pd.DataFrame, extra=()) -> list[str]:
-    return [c for c in ("dataset", "label_granularity", "split_role", "set_scored", *extra, "model", "condition",
+    """Cell keys; `arm` (evidence arm, present when a grid has R-a rows) keeps arms apart in every cell,
+    weight, pool and DEV-fit stratum."""
+    return [c for c in ("dataset", "label_granularity", "split_role", "set_scored", *extra, "model", "arm", "condition",
                         "retrieval", "store_mode") if c in df]
 
 
@@ -352,11 +373,13 @@ def build_frame(cfg: dict) -> tuple[pd.DataFrame, dict]:
     grid = _read_jsonl(cfg["grids"])
     if not len(grid):
         raise ValueError(f"no grid rows in {cfg['grids']}")
+    if "arm" in grid:                   # rows written before the arm field are arm l0
+        grid["arm"] = selective.arm_column(grid)
     raw = {}
     for p in cfg.get("raw") or [Path(g).parent / "llm_raw.jsonl" for g in cfg["grids"]]:
         raw.update(confidence.load_raw(p))
     sc, counts = confidence.scores(grid, raw)
-    df = attach_units(pd.concat([grid, sc], axis=1), cfg.get("data_home"))
+    df = attach_groups(attach_units(pd.concat([grid, sc], axis=1), cfg.get("data_home")), cfg.get("data_home"))
     vis = _read_jsonl(cfg.get("visibility"))
     if len(vis):
         keep = [c for c in ("named", "in_candidates", "same_as_full", "token_anywhere") if c in vis]
@@ -404,6 +427,11 @@ def run(cfg: dict) -> dict:
         main, dev = df, df.iloc[:0]
     if headline:
         guard_headline(main)
+    # IM1 arms are exploratory (D13): never in a headline table, reported in `exploratory_im1_*` files
+    im1 = main.iloc[:0]
+    if headline and "arm" in main:
+        is_im1 = main["arm"].isin(contrasts.EXPLORATORY_ARMS)
+        im1, main = main[is_im1], main[~is_im1]
     names = cfg.get("scores") or list(confidence.REGISTRY)
     bl = _read_jsonl(cfg.get("baselines"))
     validated = [n for n in names if confidence.REGISTRY[n].validated]
@@ -416,9 +444,10 @@ def run(cfg: dict) -> dict:
         "table_confidence": confidence_table(main, validated if headline else names, n_boot, seed),
         "table_selective": selective_table(main, validated if headline else names, dev, cfg.get("selective"),
                                            n_boot, seed),
-        "table_contrasts": contrasts.run(pd.concat([main, joint_baselines(bl, cfg.get("data_home"))], ignore_index=True),
+        "table_contrasts": contrasts.run(pd.concat([main, im1, joint_baselines(bl, cfg.get("data_home"))], ignore_index=True),
                                          cfg.get("contrasts") or [], cfg.get("families"),
-                                         int(cfg.get("n_boot_contrasts", n_boot)), int(cfg.get("n_perm", 10000)), seed),
+                                         int(cfg.get("n_boot_contrasts", n_boot)), int(cfg.get("n_perm", 10000)), seed,
+                                         group_col="group_id" if "group_id" in df else None, sesoi=cfg.get("sesoi")),
         "table_shift": (selective.shift_table(pd.concat([df, _pooled(df, (cfg.get("selective") or {}).get("pools"))],
                                                         ignore_index=True),
                                               strata=[c for c in strata_cols(df) if c != "split_role"])
@@ -439,6 +468,10 @@ def run(cfg: dict) -> dict:
         path = out / f"{prefix}{name}.csv"
         tab.to_csv(path, index=False)
         written[name] = path.name
+    if len(im1):
+        for name, tab in (("table_cells", cell_table(im1, n_boot, seed)), ("table_cost", cost.table_cost(im1, cfg["prepare_log"]))):
+            tab.to_csv(out / f"exploratory_im1_{name}.csv", index=False)
+            written[f"im1_{name}"] = f"exploratory_im1_{name}.csv"
     if headline and set(names) - set(validated):
         extra = confidence_table(main, [n for n in names if n not in validated], n_boot, seed)
         extra.to_csv(out / "exploratory_table_confidence_unvalidated.csv", index=False)

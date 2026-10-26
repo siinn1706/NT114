@@ -1,0 +1,28 @@
+# R-a (RCLAgent adaptation WITHOUT recursion-of-thought, one LLM call per answer) and the existing L0
+# arm on SYNTHETIC data with the mock LLM: a smoke and call-count check, never a model result.
+# Data: the synthetic home of configs/canonical_synthetic.yaml (see its header for the build commands).
+#   PYTHONPATH=src python -m rca.run_grid prepare configs/exp/ra-mock.yaml
+#   PYTHONPATH=src python -m rca.run_grid run     configs/exp/ra-mock.yaml
+# R-a arms run only the `retrieval = none` cell; `arms` defaults to [l0] (the pipeline as before).
+# The framed arms (ra_im1, ra_im1_shuf) need IM1 frames (`im1_frames`), added with the frame builder.
+source: canonical
+data_home: data_synth_home
+canonical_datasets: [rcaeval]
+split: within-rcaeval-retrieval-0
+split_role: test
+systems: [online-boutique, sock-shop, train-ticket]
+limit_per_system: null
+conditions: [full, no_trace, no_log, no_metric, blind_root, blind_nonroot_ev]
+arms: [l0, ra]
+retrieval: [none]
+store_modes: [precedent]
+top_k: 3
+n_samples: 5
+temperature: 0.7
+seed: 0
+embedder: tfidf
+evidence_dir: results_ra_mock/evidence
+cache: results_ra_mock/llm_cache.sqlite
+out: results_ra_mock/grid.jsonl
+models:
+  - {name: mock-small, backend: mock}

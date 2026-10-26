@@ -18,7 +18,8 @@ from rca.retrieve import CaseStore, Embedder, format_hits
 from rca.store import read_jsonl, write_jsonl_atomic
 
 RCA_ROOT = Path(__file__).resolve().parents[1]
-MODEL_FACING = ("evidence.py", "llm.py", "retrieve.py")
+MODEL_FACING = ("evidence.py", "llm.py", "retrieve.py", "rcl_path.py", "rcl_trace_graph.py", "rcl_tools.py",
+                "rcl_evidence.py", "im1_frame.py")
 PERM_CONDITIONS = ["full", "no_metric", "no_log", "no_trace"]
 
 

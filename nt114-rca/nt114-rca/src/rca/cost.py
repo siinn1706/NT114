@@ -16,21 +16,25 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .selective import ARMS
+from .selective import ARMS, L0, arm_column
 
 KEYS = ["dataset", "model", "condition", "retrieval", "store_mode"]
+# Grids with an `arm` field are costed per evidence arm (`arm` after `model`); missing arm = l0.
+ARM_KEYS = ["dataset", "model", "arm", "condition", "retrieval", "store_mode"]
 
 
 def load_prepare_log(paths) -> pd.DataFrame:
-    """Latest row per (incident, condition) of the query incidents; store rows are a retrieval set-up cost."""
+    """Latest row per (incident, condition, arm) of the query incidents; store rows are a retrieval set-up
+    cost. Rows without `arm` are the l0 builder's."""
     frames = [pd.read_json(p, lines=True) for p in paths or [] if Path(p).is_file() and Path(p).stat().st_size]
     if not frames:
-        return pd.DataFrame(columns=["incident_uid", "condition", "prepare_s"])
+        return pd.DataFrame(columns=["incident_uid", "condition", "arm", "prepare_s"])
     log = pd.concat(frames, ignore_index=True)
     if "kind" in log:
         log = log[log["kind"] == "query"]
-    log = log.sort_values("ts").drop_duplicates(["incident_uid", "condition"], keep="last")
-    return log.assign(prepare_s=log["wall_s"].astype(float))[["incident_uid", "condition", "prepare_s"]]
+    log = log.assign(arm=arm_column(log))
+    log = log.sort_values("ts").drop_duplicates(["incident_uid", "condition", "arm"], keep="last")
+    return log.assign(prepare_s=log["wall_s"].astype(float))[["incident_uid", "condition", "arm", "prepare_s"]]
 
 
 def _n_samples(df: pd.DataFrame) -> pd.Series:
@@ -49,7 +53,11 @@ def _frame(df: pd.DataFrame, prep: pd.DataFrame) -> pd.DataFrame:
     if "store_mode" not in d:
         d["store_mode"] = "-"
     uid = "incident_uid" if "incident_uid" in d and d["incident_uid"].notna().any() else "case_id"
-    d = d.merge(prep.rename(columns={"incident_uid": uid}), on=[uid, "condition"], how="left")
+    has_arm = "arm" in d
+    d = d.assign(arm=arm_column(d)).merge(prep.rename(columns={"incident_uid": uid}), on=[uid, "condition", "arm"],
+                                          how="left")
+    if not has_arm:
+        d = d.drop(columns="arm")
     d["e2e_s"] = d["prepare_s"].fillna(0) + d["retrieval_s"].fillna(0) + d["latency_s"]
     return d
 
@@ -61,12 +69,19 @@ def _summary(g: pd.DataFrame) -> dict:
             "latency_s": g["latency_s"].mean(), "cached_share": g["cached"].mean(),
             "latency_replayed": bool((g["cached"] > 0).any()), "retrieval_s": g["retrieval_s"].mean(),
             "prepare_s": g["prepare_s"].mean(), "prepare_logged": float(g["prepare_s"].notna().mean()),
-            "gpu_s": np.nan, "e2e_s": g["e2e_s"].mean()}
+            "gpu_s": np.nan, "e2e_s": g["e2e_s"].mean(),
+            # one call (n samples) per answer; R-a rows record it, rows without `llm_calls` made exactly one
+            **({"llm_calls_per_answer": g["llm_calls"].fillna(1).mean(),
+                "max_llm_calls_per_answer": g["llm_calls"].fillna(1).max()} if "llm_calls" in g else {})}
 
 
 def table_cost(df: pd.DataFrame, prepare_logs=(), arms: dict = ARMS, store_mode: str = "precedent") -> pd.DataFrame:
     d = _frame(df, load_prepare_log(prepare_logs))
-    rows = [{"kind": "cell", **dict(zip(KEYS, k)), **_summary(g)} for k, g in d.groupby(KEYS, dropna=False)]
+    keys = ARM_KEYS if "arm" in d else KEYS
+    if "arm" in d:
+        d["arm"] = arm_column(d)
+    rows = [{"kind": "cell", **dict(zip(keys, k)), **_summary(g)} for k, g in d.groupby(keys, dropna=False)]
+    d = d[arm_column(d) == L0]          # arm paths of the selective evaluator: the l0 builder only
     # arm paths: per incident, sum the cells each path pays (the `retrieve` arm in the non-oracle store)
     ans, ret = arms["answer"], arms["retrieve"]
     uid = "incident_uid" if "incident_uid" in d and d["incident_uid"].notna().any() else "case_id"
