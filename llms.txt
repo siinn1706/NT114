@@ -46,10 +46,21 @@ Giữ bundle bất biến. Không đưa `eval_only`/đáp án, raw data, cache, 
 - [Evidence goldens](nt114-rca/nt114-rca/tests/golden/): Digest evidence của dữ liệu tổng hợp và của fixture RCAEval có lỗi raw cài sẵn; chỉ ghi lại khi evidence được cố ý thay đổi.
 - [Ignored artifacts](nt114-rca/nt114-rca/.gitignore): Các vùng dữ liệu, kết quả, cache và venv không đi theo Git clone; không force-add chúng để chuyển máy.
 
+## Tái hiện RCLAgent trên Kaggle (nhánh `feat/rclagent-harness-budget-guard`, chưa merge `main`)
+
+- [Bàn giao chạy 240 trace train](plans/reports/handoff-261028-0630-rclagent-train-split-kaggle-batches.md): Điểm vào cho người tiếp quản. Gồm thiết lập đóng băng, điều kiện ngoài repo (artifact `W7165616276`, `runtime/harness-env`, tài khoản Kaggle), các file Python, quy trình dựng, đẩy, tải và tóm tắt một lô, 5 lô kèm trace và các quyết định còn mở.
+- [Kaggle README](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/README.md): Cấu hình server vLLM (không chunked prefill từ version 11), model và sampling ghim, ngân sách `search_logs`, dữ liệu theo cửa sổ và giới hạn diễn giải.
+- [Kế hoạch chia lô](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/train-batches.json): 240 trace train thành 5 phiên Kaggle khoảng 6–8 giờ, sinh bởi [plan-train-batches.py](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/plan-train-batches.py); cách ước lượng và rủi ro ở [report đếm span](plans/reports/scan-261028-0619-train-split-span-count-and-batches.md).
+- [Pilot version 11](plans/reports/run-261027-2337-rclagent-kaggle-v11-train-pilot-unchunked.md): 5/5 trace passed với server không chunked; mẫu report cho mỗi lô. Kết quả từ version 11 không so byte được với version 8–10.
+- [Đo prefill T4](plans/reports/bench-261027-2232-t4-prefill-chunked-vs-unchunked.md): Vì sao bỏ chunked prefill: prompt 8.446 token mất 232 giây khi chunked, 9,4 giây khi không.
+- [Bản ghi kiểm CPU ban đầu](plans/261026-1713-rclagent-tai-hien-toi-thieu/README.md): Vị trí code tác giả `3052e7a`, dữ liệu RE2-OB, vai split của 90 ca và receipt kiểm scorer.
+
 ## Optional
 
 - [Instrument audit](research/05_evidence_instrument_audit.md): Visibility, baseline, BARO, leakage store (loại trừ cùng cell; cùng root service vẫn truy cập được) và V8.
 - [Statistics validation](research/06_statistics_validation.md): Hiệu chuẩn bootstrap, sign-flip và MDE theo từng cấu trúc.
 - [Acquisition](nt114-rca/nt114-rca/docs/acquisition_plan.md): Cách tái lấy raw data nếu cần rebuild hoặc raw-parity; không cần cho inference bằng bundle đã kiểm chứng.
 - [Data quality audit](nt114-rca/nt114-rca/docs/dataset_quality_audit.md): Hạn chế nguồn dữ liệu và bằng chứng phục vụ alias sign-off.
+- [Pilot version 10](plans/reports/run-261027-2115-rclagent-kaggle-v10-train-pilot-null-guard.md) và [version 9](plans/reports/run-261027-1922-rclagent-kaggle-v9-train-pilot.md): Lỗi guard `local_root_cause: null` và trace 45 span hết deadline khi còn chunked prefill.
+- [Sửa trước khi chạy train](plans/261027-1624-fix-before-train-split-run/plan.md): Kế hoạch đã hoàn thành, sửa các finding review cho harness Kaggle và `run_grid` trên vai train.
 - [Đối chiếu chuyển máy](plans/reports/docs-261015-1642-repository-transfer-audit.md): Snapshot kiểm tra GitHub/Hugging Face và giới hạn validation; không thay thế runbook hay xác nhận GPU runtime.
