@@ -75,6 +75,26 @@
       "dataset_sources": [
         "siinn1706/rclagent-one-trace-smoke-261026"
       ]
+    },
+    "kaggle-source-v10": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
+    },
+    "kaggle-source-v11": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
     }
   }
 }
