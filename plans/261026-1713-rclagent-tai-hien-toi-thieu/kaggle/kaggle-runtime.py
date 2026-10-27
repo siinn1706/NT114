@@ -87,10 +87,13 @@ def environment():
     if shutil.disk_usage('/tmp').free < 22 * 1024**3:
         raise RuntimeError('Less than 22 GiB temporary disk available for isolated dependencies and model')
     chosen = eligible[0]
-    settings = {'gpu': chosen, 'context': 16384 if chosen['total_mib'] < 22000 else 32768,
+    context = 16384 if chosen['total_mib'] < 22000 else 32768
+    # One prefill step for the whole prompt: on T4, chunked prefill (2.048) made an 8.4k-token
+    # synthesis prompt take ~230 s against the upstream 180 s client timeout.
+    settings = {'gpu': chosen, 'context': context,
                 'dtype': 'half', 'tensor_parallel_size': 1, 'max_num_seqs': 1,
                 'vllm_engine': 'V0',
-                'enable_chunked_prefill': True, 'max_num_batched_tokens': 2048,
+                'enable_chunked_prefill': False, 'max_num_batched_tokens': context,
                 'max_output_tokens': {'self_state': 512, 'consolidate': 512, 'synthesizer': 1024},
                 'max_model_requests_including_retry': 160, 'rcl_deadline_seconds': 1800,
                 'max_tool_rounds_per_span': 4, 'client_retry_attempts': 3,
@@ -537,10 +540,12 @@ def run_once(expected_sha256, expected_manifest_sha256):
             '--host', '127.0.0.1', '--port', '8000', '--dtype', 'half',
             '--tensor-parallel-size', '1', '--max-num-seqs', '1',
             '--max-model-len', str(settings['context']), '--gpu-memory-utilization', '0.85',
-            '--max-num-batched-tokens', '2048', '--enable-chunked-prefill', '--enforce-eager',
+            '--max-num-batched-tokens', str(settings['max_num_batched_tokens']), '--enforce-eager',
             '--enable-auto-tool-choice', '--tool-call-parser', 'hermes',
             '--generation-config', 'vllm', '--disable-log-requests'], env)
         wait_ready(server, 'http://127.0.0.1:8000/health', 600)
+        if 'Chunked prefill is enabled' in (result / 'vllm.log').read_text(encoding='utf-8', errors='replace'):
+            raise RuntimeError('vLLM turned chunked prefill on; each prompt must be prefilled in one step')
         print('C: pinned local model server ready; single GPU, FP16, context', settings['context'])
         status['stage'] = 'D'
         monitor.phase = 'protocol'

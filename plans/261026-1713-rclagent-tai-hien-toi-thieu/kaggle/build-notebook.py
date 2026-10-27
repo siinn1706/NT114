@@ -164,6 +164,15 @@ endpoint gốc với dữ liệu đầy đủ như version 6–8. Các trace c�
 Thứ tự chạy theo gói; mỗi trace có tool server, trần và deadline riêng. Không đổi prompt,
 tool, model, sampling, context, output, retry, số vòng tool hay các trần.
 ''')
+        markdown('''## Từ version 11: server không chunked prefill
+
+Đến version 10, server prefill theo khối 2.048 token. Trên T4, prompt tổng hợp 8.446 token
+của trace 45 span cần khoảng 232 giây, vượt timeout 180 giây của upstream. Từ version 11,
+server prefill cả prompt trong một bước (`--max-num-batched-tokens` bằng context, không
+`--enable-chunked-prefill`). Lượt đo riêng cho prompt đó còn 9,4 giây, và câu trả lời của
+5 prompt đo được giống hệt cấu hình cũ. Cell C dừng nếu log vLLM cho thấy chunked prefill
+vẫn bật. Đây là thay đổi cấu hình server, không đổi các thiết lập đóng băng.
+''')
     code('''# Bootstrap chuẩn thư viện Python; chưa cài hay chạy model.
 import hashlib, importlib.util, json
 from pathlib import Path

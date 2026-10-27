@@ -1,4 +1,5 @@
 """CPU checks for prefill-bench.py against a stand-in server; no model, GPU or Kaggle path."""
+import ast
 import importlib.util
 import json
 import socket
@@ -187,6 +188,31 @@ class Bench(unittest.TestCase):
         bench.CONFIG_BUDGET = 29
         record = self.run_config('unchunked-16384', bench.CONFIGS['unchunked-16384'])
         self.assertTrue(record['rows'] and all('skipped' in r for r in record['rows']))
+
+
+class ServerFlags(unittest.TestCase):
+    def test_unchunked_config_is_the_pilot_server_and_chunked_differs_only_in_scheduling(self):
+        tree = ast.parse((HERE / 'kaggle-runtime.py').read_text(encoding='utf-8'))
+        calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call) and getattr(n.func, 'attr', '') == 'start'
+                 and n.args and isinstance(n.args[0], ast.Constant) and n.args[0].value == 'vllm']
+        self.assertEqual(len(calls), 1)
+        # None marks a value the pilot computes at run time (paths, context, batched tokens).
+        pilot = [e.value if isinstance(e, ast.Constant) else None for e in calls[0].args[1].elts]
+        self.assertNotIn('--enable-chunked-prefill', pilot)
+
+        def same(expected, actual):
+            return len(expected) == len(actual) and all(e is None or e == a for e, a in zip(expected, actual))
+
+        def without(seq, part):
+            at = next(i for i in range(len(seq)) if same(seq[i:i+len(part)], part))
+            return seq[:at] + seq[at+len(part):]
+        rcl = types.SimpleNamespace(PYTHON='python', MODEL=runtime.MODEL, REVISION=runtime.REVISION)
+        unchunked = bench.server_argv(rcl, 'snapshot', 16384, bench.CONFIGS['unchunked-16384'])
+        self.assertTrue(same(pilot, unchunked))
+        pilot_rest = without(pilot, bench.CONFIGS['unchunked-16384'])
+        chunked = bench.CONFIGS['chunked-2048']
+        self.assertTrue(same(pilot_rest, without(bench.server_argv(rcl, 'snapshot', 16384, chunked), chunked)))
+        self.assertEqual(bench.CONFIGS['unchunked-16384'], ['--max-num-batched-tokens', '16384'])
 
 
 if __name__ == '__main__':

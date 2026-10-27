@@ -343,8 +343,10 @@ class Checks(unittest.TestCase):
         previous = runtime.ROOT
         try:
             runtime.ROOT = Path(self.area.name) / 'expanded-test'
-            source = HERE / 'runtime/package'
-            manifest_hash = runtime.digest(source / 'manifest.json')
+            # The staged package that was promoted to the bundle, as Kaggle expands it.
+            manifest_hash = runtime.digest(HERE / 'manifest.json')
+            source = next(p.parent for p in sorted((HERE / 'runtime').glob('package*/manifest.json'))
+                          if runtime.digest(p) == manifest_hash)
             target = runtime.unpack(source, runtime.digest(HERE / 'rclagent-kaggle-bundle.zip'), manifest_hash)
             self.assertEqual(runtime.digest(target / 'manifest.json'), manifest_hash)
             state = json.loads((runtime.ROOT / 'input-verification.json').read_text())
