@@ -9,22 +9,14 @@ must stay byte-identical, and every service the model can name at every span sec
 response it records what each scheme keeps and drops. Unbudgeted numbers are checked against the prior scan CSV.
 No label, groundtruth or result file is read.
 """
-import ast
 import csv
 import importlib.util
 import io
 import json
-import os
 import sys
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
-from types import SimpleNamespace
-from urllib.parse import parse_qsl, urlparse
-
-import pandas as pd
-import requests as real_requests
-from flask import Flask, jsonify, request
 
 sys.dont_write_bytecode = True
 code, data, roles_csv, tokenizer_dir, out, prior_csv = (Path(a) for a in sys.argv[1:7])
@@ -39,104 +31,25 @@ spec = importlib.util.spec_from_file_location('budget', Path(__file__).resolve()
 budget = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(budget)
 SCHEMES = list(budget.SCHEMES)
+spec = importlib.util.spec_from_file_location('common', Path(__file__).resolve().parent / 're2ob-endpoint-common.py')
+common = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(common)
 
 
 def log(*parts):
     print(f'[{time.time() - started:7.1f}s]', *parts, flush=True)
 
 
-# ── Traces, cases, data slices and author endpoints: identical to re2ob-tool-response-scan.py ──
-lines = (data / 'error_traces.txt').read_text(encoding='utf-8').splitlines()
-traces = [{'row': int(p[0]), 'root_ts': int(p[1]), 'root_service': p[2], 'root_span': p[3], 'trace_id': p[4]}
-          for p in (line.split() for line in lines[1:])]
-cases = list(csv.DictReader(roles_csv.open(encoding='utf-8')))
-for t in traces:
-    owners = [c for c in cases if int(c['inject_ts']) * 1000 - 60_000 <= t['root_ts'] <= int(c['inject_ts']) * 1000 + 300_000]
-    assert len(owners) == 1, (t, [c['case_id'] for c in owners])
-    t['case_id'], t['role'] = owners[0]['case_id'], owners[0]['role']
-if only:
-    traces = [t for t in traces if t['trace_id'] in only]
-assert traces
+# ── Traces, cases, data slices, author endpoints and coordinator: re2ob-endpoint-common.py ──
+traces = common.load_traces(data, roles_csv, only)
 log('traces', len(traces), 'cases', len({t['case_id'] for t in traces}))
-
-trace_ids = {t['trace_id'] for t in traces}
-trace_path = data / 'trace/all/trace_jaeger-span.csv'
-
-
-def scan_traces(selector):
-    frames, offset = [], 0
-    for chunk in pd.read_csv(trace_path, chunksize=1_000_000, dtype={'status_code': str}, low_memory=False):
-        chunk.index = range(offset, offset + len(chunk))
-        offset += len(chunk)
-        frames.append(chunk.loc[selector(chunk)])
-    return pd.concat(frames)
-
-
-own = scan_traces(lambda c: c.trace_id.isin(trace_ids))
-span_ids = set(own.span_id)
-extra = scan_traces(lambda c: ~c.trace_id.isin(trace_ids) & (c.span_id.isin(span_ids) | c.parent_span.isin(span_ids)))
-trace_df = pd.concat([own, extra]).sort_index()
+own, extra, trace_df = common.load_trace_rows(data, traces)
 log('trace rows', len(own), 'cross-trace rows', len(extra))
-
-seconds = {int(str(ts)[:10]) for ts in own.timestamp}
-log_seconds = {s + d for s in seconds for d in range(-60, 61)}
-metric_full = pd.read_csv(data / 'metric/all/metrics.csv', low_memory=False)
-log_frames = []
-for chunk in pd.read_csv(data / 'log/all/logs.csv', chunksize=1_000_000, low_memory=False):
-    chunk = chunk.loc[chunk.timestamp.isin(log_seconds)]
-    noise = chunk['value'].astype(str).str.lower().str.contains(r'severity:\s*(?:info|debug)', regex=True, na=False)
-    log_frames.append(chunk.loc[~noise])
-log_full = pd.concat(log_frames, ignore_index=True)
+metric_full, log_full = common.load_slices(data, own)
 log('metric rows', len(metric_full), 'served log rows near traces', len(log_full))
-
-tree = ast.parse((code / 'tool_server.py').read_text(encoding='utf-8'))
-app = Flask('tool-result-budget-impact')
-ns = dict(pd=pd, app=app, jsonify=jsonify, request=request)
-exec(compile(ast.Module(body=[n for n in tree.body if isinstance(n, ast.FunctionDef)], type_ignores=[]),
-             str(code / 'tool_server.py'), 'exec'), ns)
-ns.update(service_node_map={}, trace_df=trace_df)
-client = app.test_client()
-cache = {}
-
-
-def serve(url, params=None, **_):
-    sent = real_requests.Request('GET', url, params=params).prepare().url
-    parsed = urlparse(sent)
-    query = {}
-    for key, value in parse_qsl(parsed.query, keep_blank_values=True):
-        query.setdefault(key, value)
-    if parsed.path in ('/search_logs', '/search_fluctuating_metrics'):
-        second = int(str(query['timestamp'])[:10])
-        key = (parsed.path, query['service_name'], second)
-        if key not in cache:
-            ns['metric_df'] = metric_full.loc[metric_full.timestamp.between(second - 1200, second + 1200)]
-            ns['log_df'] = log_full.loc[log_full.timestamp.between(second - 60, second + 60)]
-            response = client.get(parsed.path, query_string=query)
-            assert response.status_code == 200, (key, response.status_code)
-            cache[key] = response.data.replace(b'\r\n', b'\n')
-        body = cache[key]
-    else:
-        response = client.get(parsed.path, query_string=query)
-        body = response.data
-    return SimpleNamespace(content=body, text=body.decode('utf-8'), status_code=200)
-
-
-os.environ.update(LLM_API_KEY='local-placeholder', DATASET_TYPE='re2ob', MAX_AGENT_PARALLEL='1')
-sys.path.insert(0, str(code))
-import coordinator  # noqa: E402
-from tools_gpt import search_fluctuating_metrics_function, search_logs_function  # noqa: E402
-
-coordinator.requests = SimpleNamespace(get=serve)
-TOOLS = [search_logs_function, search_fluctuating_metrics_function]
-from transformers import AutoTokenizer  # noqa: E402
-
-tokenizer = AutoTokenizer.from_pretrained(str(tokenizer_dir), local_files_only=True)
+serve, cache = common.author_endpoints(code, 'tool-result-budget-impact', trace_df, metric_full, log_full)
+coordinator, tokenizer, template_tokens = common.author_agents(code, tokenizer_dir, serve)
 token_cache = {}
-
-
-def template_tokens(messages):
-    return len(tokenizer.apply_chat_template(messages, tools=TOOLS, tokenize=True,
-                                             add_generation_prompt=True, enable_thinking=False))
 
 
 def count(text):
@@ -151,35 +64,6 @@ parsed_cache, merge_cache = {}, {}
 budget.parse = lambda body: parsed_cache[body] if body in parsed_cache else parsed_cache.setdefault(body, _parse(body))
 budget.merge_exact = lambda rows: merge_cache.setdefault(('exact', id(rows)), _exact(rows))
 budget.merge_template = lambda rows: merge_cache.setdefault(('template', id(rows)), _template(rows))
-
-
-class Captured(BaseException):
-    pass
-
-
-def own_round(agent):
-    service = str(agent.raw.get('cmdb_id', ''))
-    stamp = str(agent.raw.get('timestamp', ''))
-    arguments = json.dumps({'service_name': service, 'timestamp': stamp})
-    seen = []
-
-    def scripted(messages, tools=None):
-        if seen:
-            raise Captured(list(messages))
-        seen.append(True)
-        return '', [{'id': 'scan-' + name, 'type': 'function', 'function': {'name': name, 'arguments': arguments}}
-                    for name in ('search_logs', 'search_fluctuating_metrics')]
-
-    coordinator.chat_api = scripted
-    try:
-        agent.self_state_verification()
-    except Captured as captured:
-        return service, int(stamp[:10]), captured.args[0]
-    raise AssertionError('round-1 prompt not captured')
-
-
-def walk(node):
-    return [node] + [d for child in node['children'] for d in walk(child)]
 
 
 def describe(rows, output):
@@ -247,13 +131,13 @@ rows_out, own_changed, prior_mismatch = [], Counter(), []
 budget_rows = []
 for number, t in enumerate(traces, 1):
     graph = coordinator.build_trace_graph(t['root_span'])
-    nodes = walk(graph)
+    nodes = common.walk(graph)
     agent = coordinator.build_agent_tree(graph, None, coordinator.GlobalEvidenceGraph())
     by_depth = coordinator._collect_agents_by_depth(agent)
     agents = [a for level in sorted(by_depth) for a in by_depth[level]]
     bases, bases0, overheads, own_max = [], [], [], 0
     for a in agents:
-        service, second, messages = own_round(a)
+        service, second, messages = common.own_round(coordinator, a)
         empty = [dict(m, content='') if m.get('role') == 'tool' else m for m in messages]
         base, base0 = template_tokens(empty), template_tokens(messages[:2])
         bodies = [m['content'].encode('utf-8') for m in messages if m.get('role') == 'tool']
