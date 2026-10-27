@@ -51,6 +51,14 @@ def cart_rows(n):
              str(uuid.uuid5(uuid.NAMESPACE_URL, str(i % 50)))) for i in range(n)]
 
 
+def distinct_rows():
+    """1,500 distinct background templates and 10 errors: condensing must truncate to fill the budget."""
+    letters = 'abcdefghijklmnopqrstuvwxyz'
+    words = [a + b + c for a in letters for b in letters for c in letters[:4]]
+    rows = [(SECOND + 30, 'svc', f'severity: unknown, message: background job {w} finished') for w in words[:1500]]
+    return rows + [(SECOND + 50, 'svc', f'severity: error, message: request failed in {w}') for w in words[1500:1510]]
+
+
 def shown_table(text):
     return list(csv.reader(io.StringIO(text.split('\n', 1)[1], newline='')))
 
@@ -94,11 +102,7 @@ class BudgetRules(unittest.TestCase):
         self.assertEqual(sum(int(r[3]) for r in table[1:]), 700)
 
     def test_truncation_keeps_errors_first_and_says_so(self):
-        letters = 'abcdefghijklmnopqrstuvwxyz'
-        words = [a + b + c for a in letters for b in letters for c in letters[:4]]
-        rows = [(SECOND + 30, 'svc', f'severity: unknown, message: background job {w} finished') for w in words[:1500]]
-        rows += [(SECOND + 50, 'svc', f'severity: error, message: request failed in {w}') for w in words[1500:1510]]
-        delivered, audit = run(PARAMS, csv_body(rows))
+        delivered, audit = run(PARAMS, csv_body(distinct_rows()))
         self.assertIn('truncated:', audit['notice'])
         self.assertIn('omitted rows by severity: unknown=', audit['notice'])
         self.assertNotIn('error=', audit['notice'])
@@ -118,17 +122,20 @@ class BudgetRules(unittest.TestCase):
 
 
 class LargeTelemetry(BaseHTTPRequestHandler):
+    log_rows = None
+
     def log_message(self, *args):
         pass
 
     def do_GET(self):
-        body = csv_body(cart_rows(1500)) if self.path.startswith('/search_logs') else 'key,regular_mean\n' + 'x' * 20000
+        body = csv_body(type(self).log_rows or cart_rows(1500)) if self.path.startswith('/search_logs') \
+            else 'key,regular_mean\n' + 'x' * 20000
         self.send_response(200)
         self.end_headers()
         self.wfile.write(body.encode())
 
 
-class WorkerWrapper(unittest.TestCase):
+class WrapperFixture(unittest.TestCase):
     def setUp(self):
         self.server = ThreadingHTTPServer(('127.0.0.1', 5000), LargeTelemetry)
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
@@ -141,7 +148,11 @@ class WorkerWrapper(unittest.TestCase):
         os.environ.update(LLM_API_KEY='local-placeholder', LLM_MODEL='fixture', TOOL_SERVER_HOST='127.0.0.1',
                           LLM_API_URL='http://127.0.0.1:8000/v1/chat/completions',
                           TOOL_SERVER_PORT='5000', MAX_AGENT_PARALLEL='1', DATASET_TYPE='re2ob')
-        self.coordinator, _, _ = worker.install_guards(self.guard, CODE)
+        self.patch_client()
+        self.coordinator, _, self.chat = worker.install_guards(self.guard, CODE)
+
+    def patch_client(self):
+        pass
 
     def tearDown(self):
         self.server.shutdown()
@@ -153,6 +164,8 @@ class WorkerWrapper(unittest.TestCase):
     def events(self):
         return [json.loads(line) for line in (Path(self.area.name) / 'events.jsonl').read_text().splitlines()]
 
+
+class WorkerWrapper(WrapperFixture):
     def test_upstream_tool_call_receives_condensed_logs_and_audit_keeps_original(self):
         delivered = self.coordinator._get('search_logs', PARAMS)
         self.assertTrue(delivered.startswith('[harness tool-result budget 2048 tokens: 1500 rows merged'))
@@ -177,6 +190,42 @@ class WorkerWrapper(unittest.TestCase):
         finally:
             worker.budget.apply = original
         self.assertIn('Tool-result budget', self.guard.fatal)
+
+
+def call(index, name):
+    return {'id': f'fixture-{index}', 'type': 'function', 'function': {'name': name, 'arguments': json.dumps(PARAMS)}}
+
+
+class ResponseBudget(WrapperFixture):
+    """The upstream loop runs every call of one model response before the next request, so the search_logs
+    results of one response share one budget; metric results stay outside it."""
+    def patch_client(self):
+        LargeTelemetry.log_rows = distinct_rows()
+        self.addCleanup(setattr, LargeTelemetry, 'log_rows', None)
+        sys.path.insert(0, str(CODE))
+        import llm
+        llm.chat_api = lambda messages, tools: ('', self.calls)
+
+    def respond(self, names):
+        self.calls = [call(i, name) for i, name in enumerate(names)]
+        _, calls = self.chat([{'role': 'user', 'content': 'fixture'}], [{'function': {'name': 'search_logs'}}])
+        return [self.coordinator._get(c['function']['name'], json.loads(c['function']['arguments'])) for c in calls]
+
+    def audits(self):
+        return [e for e in self.events() if e['kind'] == 'tool_result_budget']
+
+    def test_two_log_calls_in_one_response_fit_one_budget_together(self):
+        self.respond(['search_logs', 'search_fluctuating_metrics', 'search_logs'])
+        audits = self.audits()
+        self.assertLessEqual(sum(a['condensed_tokens'] for a in audits), BUDGET)
+        self.assertEqual([a['budget_tokens'] for a in audits], [BUDGET // 2] * 2)
+
+    def test_single_log_call_keeps_the_full_budget_and_next_response_is_independent(self):
+        alone = self.coordinator._get('search_logs', PARAMS)
+        self.respond(['search_logs', 'search_logs', 'search_logs'])
+        delivered = self.respond(['search_fluctuating_metrics', 'search_logs'])
+        self.assertEqual([a['budget_tokens'] for a in self.audits()], [BUDGET] + [BUDGET // 3] * 3 + [BUDGET])
+        self.assertEqual(delivered[1], alone)
 
 
 if __name__ == '__main__':

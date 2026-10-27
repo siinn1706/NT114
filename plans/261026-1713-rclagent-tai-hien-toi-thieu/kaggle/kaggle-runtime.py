@@ -30,6 +30,7 @@ PINS = ['vllm==0.10.2', 'pandas==2.2.3', 'numpy==2.2.6', 'flask==3.1.2',
         'transformers==4.55.4', 'huggingface-hub==0.34.4']
 PINS += ['openai==1.101.0', 'fastapi==0.116.1', 'pydantic==2.11.7', 'tokenizers==0.21.4']
 ROOT = Path('/kaggle/working/rclagent-smoke')
+INPUT = Path('/kaggle/input')
 TEMP = Path('/tmp/rclagent-smoke')
 PYTHON = TEMP / 'env/bin/python'
 
@@ -48,7 +49,7 @@ def dump(path, value):
 
 
 def kaggle_only():
-    if sys.platform != 'linux' or not Path('/kaggle/input').is_dir():
+    if sys.platform != 'linux' or not INPUT.is_dir():
         raise RuntimeError('GPU/model execution is permitted only inside Kaggle, never Windows')
 
 
@@ -101,15 +102,14 @@ def environment():
 
 
 def find_archive():
-    candidates = list(Path('/kaggle/input').rglob('rclagent-kaggle-bundle.zip'))
+    candidates = list(INPUT.rglob('rclagent-kaggle-bundle.zip'))
     if len(candidates) == 1:
         return candidates[0]
     if candidates:
         raise RuntimeError('Multiple bundle archives attached')
     # Kaggle Dataset ingestion expands ZIPs. Bind the expanded content to the
     # manifest digest embedded in the notebook, then verify every member.
-    manifests = [p for p in Path('/kaggle/input').rglob('manifest.json')
-                 if (p.parent / 'selection.json').is_file() and (p.parent / 'upstream/coordinator.py').is_file()]
+    manifests = [p for p in INPUT.rglob('manifest.json') if (p.parent / 'upstream/coordinator.py').is_file()]
     if len(manifests) != 1:
         raise RuntimeError(f'Attach exactly one private bundle dataset; found {len(manifests)} expanded packages')
     return manifests[0].parent
@@ -387,6 +387,95 @@ def export_results(result):
     return archive
 
 
+def trace_entries(package):
+    return json.loads((package / 'manifest.json').read_text())['traces']
+
+
+def set_aside(path):
+    """Keep a partial directory from an interrupted attempt as evidence instead of overwriting it."""
+    if path.exists():
+        index = 0
+        while path.with_name(f'{path.name}.previous-{index}').exists():
+            index += 1
+        path.rename(path.with_name(f'{path.name}.previous-{index}'))
+
+
+def load_progress(path, bundle_sha256):
+    if not path.exists():
+        return {'bundle_sha256': bundle_sha256, 'traces': {}}
+    progress = json.loads(path.read_text())
+    if progress['bundle_sha256'] != bundle_sha256:
+        raise RuntimeError('Recorded progress belongs to another bundle; refusing to mix runs')
+    return progress
+
+
+def run_traces(package, result, bundle_sha256, run_trace, model_alive):
+    """Run every packaged trace once, in package order, recording progress after each state change.
+
+    A trace with a final status (passed or failed) is skipped when the batch is resumed; one cut off mid-run
+    (still running) runs again, its partial output set aside. A failed trace is recorded with its reason and the
+    batch moves on, without retry or configuration change. A dead model server stops the batch with the
+    remaining traces pending.
+    """
+    path = result / 'progress.json'
+    progress = load_progress(path, bundle_sha256)
+    for entry in trace_entries(package):
+        state = progress['traces'].setdefault(entry['trace_id'], {'case': entry['case'], 'attempts': []})
+        if state.get('status') in ('passed', 'failed'):
+            continue
+        if not model_alive():
+            dump(path, progress)
+            raise RuntimeError('Model server is not running; remaining traces stay pending for a resumed run')
+        out = result / 'traces' / entry['trace_id']
+        if state.get('status') == 'running':
+            state['attempts'][-1]['outcome'] = 'interrupted'
+            set_aside(out)
+        state['status'] = 'running'
+        state['attempts'].append({'started': time.time()})
+        dump(path, progress)
+        try:
+            run_trace(package / entry['dir'], out)
+            state['status'] = 'passed'
+        except Exception as exc:  # An interrupt (BaseException) leaves the trace running, so a resume reruns it.
+            state.update(status='failed', reason=repr(exc))
+        state['attempts'][-1].update(outcome=state['status'], finished=time.time())
+        dump(path, progress)
+    return progress
+
+
+def import_prior(result, bundle_sha256):
+    """Continue a batch from the results of an earlier session attached as input, zip or expanded."""
+    sources = [p for p in INPUT.rglob('rclagent-smoke-results.zip')] + \
+              [p.parent.parent for p in INPUT.rglob('progress.json') if p.parent.name == 'run']
+    if not sources:
+        return False
+    if len(sources) != 1:
+        raise RuntimeError(f'Attach at most one earlier result set; found {len(sources)}')
+    if (result / 'progress.json').exists():
+        raise RuntimeError('This session already has progress; refusing to merge an attached result set')
+    source = sources[0]
+    zipped = zipfile.ZipFile(source) if source.is_file() else None
+    try:
+        progress = json.loads(zipped.read('run/progress.json') if zipped else (source / 'run/progress.json').read_text())
+        if progress['bundle_sha256'] != bundle_sha256:
+            raise RuntimeError('Attached results belong to another bundle')
+        if zipped:
+            for entry in zipped.infolist():
+                if entry.filename.startswith('run/traces/') and not entry.is_dir():
+                    target = (result / entry.filename.removeprefix('run/')).resolve()
+                    if not target.is_relative_to(result.resolve()):
+                        raise RuntimeError('Unsafe path in attached results')
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_bytes(zipped.read(entry))
+        elif (source / 'run/traces').is_dir():
+            shutil.copytree(source / 'run/traces', result / 'traces', dirs_exist_ok=True)
+    finally:
+        if zipped:
+            zipped.close()
+    dump(result / 'progress.json', progress)
+    return True
+
+
 def preparation_failure(stage):
     """Make A/B/early-C errors downloadable even before a model process exists."""
     output = ROOT / ('preparation-' + stage)
@@ -403,16 +492,24 @@ def run_once(expected_sha256, expected_manifest_sha256):
     if json.loads((ROOT / 'compatibility/status.json').read_text())['status'] != 'passed':
         raise RuntimeError('Run the synthetic GPU kernel compatibility check before starting the model')
     marker = ROOT / 'run-once.json'
-    with marker.open('x', encoding='utf-8') as f:
-        json.dump({'started': time.time(), 'bundle_sha256': expected_sha256,
-                   'policy': 'One attempt only; rerunning after failure needs a new user decision.'}, f)
+    if marker.exists():
+        state = json.loads(marker.read_text())
+        if state['bundle_sha256'] != expected_sha256:
+            raise RuntimeError('A run of another bundle exists here; stop without altering it')
+        state['resumed'] = state.get('resumed', []) + [time.time()]
+    else:
+        state = {'started': time.time(), 'bundle_sha256': expected_sha256,
+                 'policy': 'One pass over the packaged traces. A resumed run continues pending traces only; a '
+                           'finished trace, passed or failed, never runs again. A new pass needs a new user decision.'}
+    dump(marker, state)
     result = ROOT / 'run'
-    result.mkdir()
+    result.mkdir(exist_ok=True)
+    imported = import_prior(result, expected_sha256)
     proc = Processes(result)
     monitor = Resources(proc, result)
     atexit.register(proc.cleanup)
-    status = {'status': 'failed', 'stage': 'C', 'started': time.time(), 'score': 'not-run'}
-    rcl_started = None
+    status = {'status': 'failed', 'stage': 'C', 'started': time.time(), 'score': 'not-run',
+              'resumed_from_attached_results': imported}
     env = clean_env()
     env.update(CUDA_VISIBLE_DEVICES=str(settings['gpu']['index']), LLM_MODEL=MODEL,
                LLM_API_URL='http://127.0.0.1:8000/v1/chat/completions',
@@ -420,6 +517,7 @@ def run_once(expected_sha256, expected_manifest_sha256):
                TOOL_SERVER_HOST='127.0.0.1', TOOL_SERVER_PORT='5000', LLM_FORCE_STREAM='false',
                VLLM_USE_V1='0', VLLM_NO_USAGE_STATS='1', VLLM_DO_NOT_TRACK='1')
     monitor.thread.start()
+    progress = None
     try:
         for port in (8000, 5000):
             assert_free_port(port)  # Never kill another session or increment ports.
@@ -454,49 +552,55 @@ def run_once(expected_sha256, expected_manifest_sha256):
             wait_ready(child, 'http://127.0.0.1:5000/search_span?span_id=probe', 90)
             return child
         tools = start_tools('tools-synthetic', synth)
-        def worker(phase, data, timeout):
-            out = result / phase
-            out.mkdir()
+        def worker(phase, data, out, timeout, trace_dir=None):
+            out.mkdir(parents=True)
             worker_env = dict(env, DATA_ROOT=str(data))
-            child = proc.start('worker-' + phase, [str(PYTHON), str(package / 'smoke-worker.py'), phase,
+            child = proc.start('worker-' + out.name, [str(PYTHON), str(package / 'smoke-worker.py'), phase,
                 '--package', str(package), '--output', str(out), '--model-path', str(snapshot),
-                '--context', str(settings['context'])], worker_env)
+                '--context', str(settings['context'])] + (['--trace-dir', str(trace_dir)] if trace_dir else []), worker_env)
             try:
                 exit_code = child.wait(timeout=timeout)
             except subprocess.TimeoutExpired:
                 proc.stop(child)
                 raise TimeoutError(phase + ' wall-clock limit reached; partial logs retained')
             proc.record()
-            if exit_code:
-                raise RuntimeError(phase + ' failed; stopping without a telemetry retry or model change')
-            state = json.loads((out / 'worker-status.json').read_text())
-            if state['status'] != 'passed':
-                raise RuntimeError('Worker failed its stage gate')
-        worker('protocol', synth, 480)
+            state = json.loads((out / 'worker-status.json').read_text()) if (out / 'worker-status.json').exists() else {}
+            if exit_code or state.get('status') != 'passed':
+                raise RuntimeError(f"{phase} failed: {state.get('fatal') or state.get('error') or 'exit ' + str(exit_code)}")
+        protocol = result / 'protocol'
+        set_aside(protocol)  # A resumed session checks its own server again.
+        worker('protocol', synth, protocol, 480)
         proc.stop(tools)
         print('D: synthetic structured tool calls, tool-role round trip, print_results and request field checks passed')
         status['stage'] = 'E'
         monitor.phase = 'trace'
-        started = time.monotonic()
-        rcl_started = started
-        tools = start_tools('tools-telemetry', package / 'input')
-        worker('trace', package / 'input', max(0.1, 1800-(time.monotonic()-started)))
-        status['rcl_elapsed_seconds'] = time.monotonic()-started
-        proc.stop(tools)
-        print('E: one preselected trace completed; no retries selected using its label')
+        def run_trace(trace_dir, out):
+            started = time.monotonic()  # Per-trace 30-minute deadline, tool server start included.
+            tools = start_tools('tools-' + out.name, trace_dir / 'input')
+            try:
+                worker('trace', trace_dir / 'input', out, max(0.1, 1800-(time.monotonic()-started)), trace_dir)
+            finally:
+                proc.stop(tools)
+            print('E:', out.name, 'completed in', round(time.monotonic()-started), 's')
+        progress = run_traces(package, result, expected_sha256, run_trace, lambda: server.poll() is None)
+        print('E: every packaged trace has a final status; failed traces are recorded, not retried')
         status['stage'] = 'F'
         monitor.phase = 'scoring'
         # Stop model inference before opening any groundtruth file.
         proc.stop(server)
-        scoring = result / 'scoring'
-        (scoring / 'result').mkdir(parents=True)
-        shutil.copyfile(package / 'scoring/groundtruth.csv', scoring / 'groundtruth.csv')
-        shutil.copyfile(package / 'input/error_traces.txt', scoring / 'error_traces.txt')
-        shutil.copyfile(result / 'trace/result.json', scoring / 'result/conversation_trace_1.txt')
-        with (scoring / 'author-score.txt').open('w', encoding='utf-8') as log:
-            subprocess.run([str(PYTHON), str(package / 'upstream/evaluate.py'), str(scoring), 'result'],
-                           env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=60)
-        status.update(status='passed', score='author scorer, one selected trace only; descriptive smoke result, not an accuracy estimate')
+        shutil.rmtree(result / 'scoring', ignore_errors=True)
+        for entry in trace_entries(package):
+            if progress['traces'][entry['trace_id']]['status'] != 'passed':
+                continue
+            trace_dir, scoring = package / entry['dir'], result / 'scoring' / entry['trace_id']
+            (scoring / 'result').mkdir(parents=True)
+            shutil.copyfile(trace_dir / 'scoring/groundtruth.csv', scoring / 'groundtruth.csv')
+            shutil.copyfile(trace_dir / 'input/error_traces.txt', scoring / 'error_traces.txt')
+            shutil.copyfile(result / 'traces' / entry['trace_id'] / 'result.json', scoring / 'result/conversation_trace_1.txt')
+            with (scoring / 'author-score.txt').open('w', encoding='utf-8') as log:
+                subprocess.run([str(PYTHON), str(package / 'upstream/evaluate.py'), str(scoring), 'result'],
+                               env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=60)
+        status.update(status='passed', score='author scorer per passed trace; descriptive pilot result, not an accuracy estimate')
     except BaseException as exc:
         status['error'] = repr(exc)
         (result / 'error.txt').write_text(traceback.format_exc(), encoding='utf-8')
@@ -508,22 +612,22 @@ def run_once(expected_sha256, expected_manifest_sha256):
             monitor.finish()
             status['finished'] = time.time()
             status['elapsed_seconds'] = status['finished']-status['started']
-            if rcl_started is not None and 'rcl_elapsed_seconds' not in status:
-                status['rcl_elapsed_seconds'] = time.monotonic()-rcl_started
+            if (result / 'progress.json').exists():
+                progress = json.loads((result / 'progress.json').read_text())
+                outcomes = [t.get('status', 'pending') for t in progress['traces'].values()]
+                status['traces'] = {s: outcomes.count(s) for s in sorted(set(outcomes))}
             status['observed_requests'] = {}
-            for phase in ('protocol', 'trace'):
-                events = result / phase / 'events.jsonl'
+            for events in sorted(result.glob('*/events.jsonl')) + sorted(result.glob('traces/*/events.jsonl')):
                 count = 0
-                if events.exists():
-                    for line in events.read_text(encoding='utf-8').splitlines():
-                        try:
-                            count += json.loads(line).get('kind') == 'request'
-                        except json.JSONDecodeError:
-                            continue
-                status['observed_requests'][phase] = count
+                for line in events.read_text(encoding='utf-8').splitlines():
+                    try:
+                        count += json.loads(line).get('kind') == 'request'
+                    except json.JSONDecodeError:
+                        continue
+                status['observed_requests'][events.parent.relative_to(result).as_posix()] = count
             dump(result / 'status.json', status)
             archive = export_results(result)
             atexit.unregister(proc.cleanup)
     if status['status'] != 'passed':
-        raise RuntimeError('Smoke test stopped; download partial results: ' + str(archive))
+        raise RuntimeError('Run stopped; download partial results, then resume with them attached: ' + str(archive))
     return archive

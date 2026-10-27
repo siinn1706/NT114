@@ -20,16 +20,18 @@ class HarnessStop(BaseException):
     """A fatal operational stop must bypass upstream's catch-and-continue blocks."""
 
 
-# Deviation from upstream, applied to every search_logs result: above this many tokens the result is
-# condensed (exact-duplicate merge, then message-template merge, then marked truncation). 2,048 keeps four
-# tool rounds plus 512 output tokens within a 16,384 context. Smaller results pass byte-for-byte.
+# Deviation from upstream, applied to search_logs results: the search_logs calls of one model response share
+# this many tokens equally (floor(2,048 / n) each); a result above its share is condensed (exact-duplicate merge,
+# then message-template merge, then marked truncation). Smaller results pass byte-for-byte. 2,048 keeps four tool
+# rounds plus 512 output tokens within a 16,384 context. Metric results are not budgeted: on RE2-OB they are at
+# most 10 tokens; a larger one surfaces as the context-overflow stop, never as truncation.
 LOG_RESULT_BUDGET = 2048
 _spec = importlib.util.spec_from_file_location('tool_result_budget', Path(__file__).with_name('tool-result-budget.py'))
 budget = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(budget)
 
 
-def budget_log_result(tokenizer, params, response):
+def budget_log_result(tokenizer, params, response, share=LOG_RESULT_BUDGET):
     """(text the model receives, audit record). Raises ValueError when the result cannot be fitted."""
     counted = {}
 
@@ -37,18 +39,18 @@ def budget_log_result(tokenizer, params, response):
         if text not in counted:
             counted[text] = len(tokenizer(text, add_special_tokens=False)['input_ids'])
         return counted[text]
-    audit = {'budget_tokens': LOG_RESULT_BUDGET, 'original_bytes': len(response.encode('utf-8')),
+    audit = {'budget_tokens': share, 'original_bytes': len(response.encode('utf-8')),
              'original_sha256': hashlib.sha256(response.encode('utf-8')).hexdigest()}
-    if audit['original_bytes'] <= LOG_RESULT_BUDGET:  # A token spans at least one byte.
+    if audit['original_bytes'] <= share:  # A token spans at least one byte.
         return response, dict(audit, applied=False)
     audit['original_tokens'] = count(response)
-    if audit['original_tokens'] <= LOG_RESULT_BUDGET:
+    if audit['original_tokens'] <= share:
         return response, dict(audit, applied=False)
     try:
         second = int(str(params.get('timestamp', '')).strip()[:10])  # Same parse as the upstream endpoint.
     except ValueError:
         raise ValueError('search_logs result over budget with an unparseable timestamp')
-    condensed = budget.apply('ladder', response, second, LOG_RESULT_BUDGET, count)
+    condensed = budget.apply('ladder', response, second, share, count)
     if condensed is None:
         raise ValueError('search_logs result over budget and not condensable without guessing')
     return condensed, dict(audit, applied=True, notice=condensed.split('\n', 1)[0], condensed_tokens=count(condensed),
@@ -262,6 +264,8 @@ def install_guards(guard, upstream):
             guard.stop('Per-span tool round budget exceeded (4)')
         try:
             content, calls = original_chat(messages, tools)
+            # Upstream executes every call of this response, in this thread, before its next request.
+            guard.local.log_calls = sum(c['function']['name'] == 'search_logs' for c in calls)
             if calls and not final and rounds >= 4:
                 guard.stop('Per-span tool round budget exceeded (4); no further tool executed')
             if not calls and not content.strip():
@@ -287,7 +291,8 @@ def install_guards(guard, upstream):
         if name != 'search_logs':
             return response
         try:
-            delivered, audit = budget_log_result(guard.tokenizer, params, response)
+            share = LOG_RESULT_BUDGET // max(1, getattr(guard.local, 'log_calls', 1))
+            delivered, audit = budget_log_result(guard.tokenizer, params, response, share)
         except ValueError as exc:
             guard.stop('Tool-result budget: ' + str(exc))
         guard.event('tool_result_budget', name=name, params=params, delivered=delivered if audit['applied'] else None,
@@ -334,6 +339,15 @@ def install_guards(guard, upstream):
     return coordinator, llm, chat
 
 
+def graph_nodes(graph, selection):
+    """Every node of the upstream trace graph; the count and identifiers must match the packaged selection."""
+    def walk(node):
+        return [node] + [descendant for child in node['children'] for descendant in walk(child)]
+    nodes = walk(graph)
+    assert len(nodes) == selection['span_count'] and len({n['span_id'] for n in nodes}) == len(nodes)
+    return nodes
+
+
 def protocol_check(guard, coordinator, chat):
     from tools_gpt import search_logs_function, print_result_function
     prompt = [{'role': 'system', 'content': 'This is a synthetic protocol test. Follow the requested tool protocol.'},
@@ -375,13 +389,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('phase', choices=('protocol', 'trace'))
     parser.add_argument('--package', required=True)
+    parser.add_argument('--trace-dir', help='Trace sub-package with selection.json (trace phase)')
     parser.add_argument('--output', required=True)
     parser.add_argument('--model-path', required=True)
     parser.add_argument('--context', type=int, required=True)
     args = parser.parse_args()
     from transformers import AutoTokenizer
     package, output = Path(args.package), Path(args.output)
-    selection = json.loads((package / 'selection.json').read_text())
+    selection = json.loads((Path(args.trace_dir) / 'selection.json').read_text()) if args.phase == 'trace' else {}
     tokenizer = AutoTokenizer.from_pretrained(args.model_path, local_files_only=True, trust_remote_code=False)
     guard = Guard(output, selection, tokenizer, args.context, args.phase,
                   time.monotonic() + (1800 if args.phase == 'trace' else 480),
@@ -394,10 +409,7 @@ def main():
             protocol_check(guard, coordinator, chat)
         else:
             graph = coordinator.build_trace_graph(selection['root_span_id'])
-            def walk(node):
-                return [node] + [descendant for child in node['children'] for descendant in walk(child)]
-            nodes = walk(graph)
-            assert len(nodes) == 33 and len({n['span_id'] for n in nodes}) == 33
+            graph_nodes(graph, selection)
             (output / 'trace-graph.json').write_text(json.dumps(graph, indent=2), encoding='utf-8')
             result = coordinator.inspect_trace(graph, max_parallel=1)
             guard.check()

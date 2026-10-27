@@ -153,15 +153,18 @@ def cap(body, second, budget, count):
     return None if best is None or best[0] == 0 else best[1]
 
 
-def template_only(body, second, budget, count):
-    rows = parse(body)
-    if rows is None or not rows:
-        return None
-    groups = merge_template(rows)
+def merged_templates(rows, groups, budget, count):
     text = note(budget, f'{len(rows)} rows merged into {len(groups)} message templates ({MASK_TEXT}); '
                         'count, first/last second, distinct values and the first verbatim '
                         'value kept; log_id omitted; no row omitted') + render(TEMPLATE_HEADER, template_rows(groups))
     return text if count(text) <= budget else None
+
+
+def template_only(body, second, budget, count):
+    rows = parse(body)
+    if rows is None or not rows:
+        return None
+    return merged_templates(rows, merge_template(rows), budget, count)
 
 
 def ladder(body, second, budget, count):
@@ -174,10 +177,10 @@ def ladder(body, second, budget, count):
         + render(['cmdb_id', 'log_name', 'value', 'count', 'first_timestamp', 'last_timestamp'], exact)
     if count(text) <= budget:
         return text
-    text = template_only(body, second, budget, count)
+    groups = merge_template(rows)
+    text = merged_templates(rows, groups, budget, count)
     if text is not None:
         return text
-    groups = merge_template(rows)
 
     def build(kept):
         shown, kept = [groups[i] for i in kept], set(kept)

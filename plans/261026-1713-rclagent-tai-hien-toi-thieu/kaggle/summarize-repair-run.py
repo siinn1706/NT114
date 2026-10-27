@@ -1,4 +1,4 @@
-"""Validate a downloaded repair run without issuing any inference requests."""
+"""Validate a downloaded run, single trace (versions 4-8) or batch, without issuing any inference requests."""
 import argparse
 import hashlib
 import json
@@ -30,7 +30,11 @@ with zipfile.ZipFile(archive) as zipped:
                'settings': read('settings.json'), 'phases': {},
                'artifact': archive.name, 'artifact_bytes': source.stat().st_size,
                'artifact_sha256': digest}
-    for phase, limit in [('protocol', 8), ('trace', 160)]:
+    progress = read('run/progress.json')
+    summary['progress'] = progress
+    # A batch runs each trace in run/traces/<trace_id>/ with its own 160-request cap; scores per trace.
+    phases = [('protocol', 8)] + ([('traces/' + t, 160) for t in progress['traces']] if progress else [('trace', 160)])
+    for phase, limit in phases:
         event_name = f'run/{phase}/events.jsonl'
         events = [json.loads(line) for line in zipped.read(event_name).decode().splitlines()] if event_name in names else []
         worker = read(f'run/{phase}/worker-status.json')
@@ -39,7 +43,7 @@ with zipfile.ZipFile(archive) as zipped:
         assert len(requests) <= limit
         if worker:
             assert len(requests) == worker['model_requests_including_retries']
-        if 'observed_requests' in status:
+        if 'observed_requests' in status and phase in status['observed_requests']:
             assert status['observed_requests'][phase] == len(requests)
         summary['phases'][phase] = {'worker': worker, 'request_count': len(requests),
             'response_http_statuses': [r['status'] for r in responses],
@@ -58,12 +62,24 @@ with zipfile.ZipFile(archive) as zipped:
     verified = read('input-verification.json')
     assert verified and verified['all_member_hashes_verified']
     summary['input_verification'] = verified
-    summary['result'] = read('run/trace/result.json')
-    summary['scoring_ran'] = 'run/scoring/author-score.txt' in names
-    if summary['scoring_ran']:
-        assert summary['phases']['trace']['worker']['status'] == 'passed'
-        summary['author_score_text'] = zipped.read('run/scoring/author-score.txt').decode()
-    if summary['phases']['trace']['request_count']:
+    if progress:
+        summary['results'], summary['author_score_text'] = {}, {}
+        for trace_id, state in progress['traces'].items():
+            summary['results'][trace_id] = read(f'run/traces/{trace_id}/result.json')
+            score = f'run/scoring/{trace_id}/author-score.txt'
+            if score in names:
+                assert state['status'] == 'passed' and summary['phases']['traces/' + trace_id]['worker']['status'] == 'passed'
+                summary['author_score_text'][trace_id] = zipped.read(score).decode()
+        summary['scoring_ran'] = bool(summary['author_score_text'])
+        trace_requests = sum(summary['phases'][p]['request_count'] for p, _ in phases[1:])
+    else:
+        summary['result'] = read('run/trace/result.json')
+        summary['scoring_ran'] = 'run/scoring/author-score.txt' in names
+        if summary['scoring_ran']:
+            assert summary['phases']['trace']['worker']['status'] == 'passed'
+            summary['author_score_text'] = zipped.read('run/scoring/author-score.txt').decode()
+        trace_requests = summary['phases']['trace']['request_count']
+    if trace_requests:
         assert summary['phases']['protocol']['events']['protocol_pass'] == 1
     for mode in ('before', 'after'):
         row = summary['compatibility'][mode]

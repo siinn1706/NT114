@@ -18,7 +18,9 @@ def main():
     def code(text):
         cells.append({'cell_type': 'code', 'metadata': {}, 'execution_count': None,
                       'outputs': [], 'source': text.splitlines(keepends=True)})
-    markdown('''# RCLAgent: một trace trên Kaggle GPU
+    traces = json.loads((HERE / 'manifest.json').read_text())['traces']
+    listed = '\n'.join(f"- `{t['trace_id']}` ({t['case']}, {t['span_count']} span)" for t in traces)
+    markdown('''# RCLAgent: ''' + (f'{len(traces)} trace train' if len(traces) > 1 else 'một trace') + ''' trên Kaggle GPU
 
 Notebook smoke test với backbone thay thế. Giữ nguyên code/prompt/tool tác giả tại
 `3052e7a6a9598d984ba1482f3dc41123c8823a99`; giữ suy luận theo span và gộp đệ quy.
@@ -29,8 +31,10 @@ Chưa tái hiện Table I, chưa đo độ chính xác, chưa chạy H1/IM1/R-a.
 Cấu hình cố định này hỗ trợ GPU compute capability ≥7.5, ít nhất 13.000 MiB VRAM trống
 trên **một** thiết bị; không hỗ trợ P100. Nếu được T4 ×2, chỉ dùng một T4.
 
-Chạy các cell từ trên xuống. Cell C–F chỉ chạy **một lần**; lỗi sẽ dừng và xuất log.
-Không tự xóa run-once.json để thử lại, đổi model hoặc tăng trần.
+Chạy các cell từ trên xuống. Cell C–F chạy mỗi trace **đúng một lần**; lỗi sẽ dừng và xuất log.
+Nếu phiên bị ngắt, chạy lại cell C–F, hoặc gắn ZIP kết quả cũ làm input của phiên mới,
+để chạy tiếp các trace còn lại. Trace đã xong, kể cả thất bại, không chạy lại.
+Không tự xóa run-once.json hay progress.json để thử lại, đổi model hoặc tăng trần.
 ''')
     native_path = HERE / 'kaggle-native-summary.json'
     if native_path.exists():
@@ -107,6 +111,9 @@ chọn bước đầu tiên vừa ngân sách: gộp dòng trùng hệt (giữ s
 rồi gộp theo mẫu thông điệp (che UUID và từ có chữ số thành `<*>`, giữ số lần và giá trị
 nguyên văn đầu tiên), cuối cùng mới cắt theo ưu tiên severity, có ghi rõ `truncated`.
 Model thấy một dòng thông báo `[harness tool-result budget ...]` ở đầu kết quả.
+Từ bản batch, các `search_logs` trong cùng một lượt trả lời của model chia đều ngân sách:
+mỗi kết quả nhận ⌊2.048 / n⌋ token. Khi lượt chỉ có một `search_logs` (mọi lượt của
+version 7 và 8), ngân sách vẫn là 2.048 và kết quả không đổi byte nào.
 Kết quả metric, prompt, model, sampling, context, output, retry, số vòng tool và các trần
 giữ nguyên; guard vẫn dừng khi vượt context, không cắt ngữ cảnh.
 
@@ -127,7 +134,7 @@ còn 454 token, không bỏ dòng nào. E chạy 60 requests HTTP 200 trong 620,
 model gọi search_fluctuating_metrics với timestamp `1808475368747` (sai một chữ số),
 guard chặn vì ngoài cửa sổ trace. Chưa có kết quả cuối hoặc điểm chấm; process đã dọn.
 ''')
-        markdown('''## Bản này: timestamp ngoài toàn bộ dữ liệu
+        markdown('''## Từ version 8: timestamp ngoài toàn bộ dữ liệu
 
 Trên dữ liệu đầy đủ, tool tác giả trả rỗng cho query của version 7 vì mọi dòng metric/log
 nằm trong giây [1.705.339.822, 1.708.489.861]; gói cũng trả rỗng, nên guard version 7
@@ -135,6 +142,27 @@ chặt hơn tác giả. Guard nay cho qua thêm query có cửa sổ endpoint (�
 ±60 giây log) nằm hoàn toàn ngoài khoảng dữ liệu đầy đủ, ghi trong `selection.json`.
 Mọi timestamp khác ngoài cửa sổ trace vẫn bị chặn. Không đổi prompt, tool, model,
 ngân sách hay các trần; cùng trace và cấu hình với version 7.
+''')
+    v8_path = HERE / 'kaggle-repair-v8-summary.json'
+    if v8_path.exists():
+        v8 = json.loads(v8_path.read_text())
+        assert v8['status']['status'] == 'passed' and v8['phases']['trace']['request_count'] == 106
+        markdown('''## Kết quả version 8
+
+Chạy trọn A–F trên một T4: 106 model requests trong 1.332,9 giây, 38 kết quả search_logs
+(1 kết quả được rút gọn), có kết quả cuối và điểm chấm của tác giả cho trace này.
+Đây là một trace smoke, không phải ước lượng độ chính xác.
+''')
+        markdown('''## Bản này: chạy nhiều trace train
+
+Gói chứa một thư mục con cho mỗi trace (`traces/<trace_id>/`): dữ liệu của riêng trace,
+`selection.json`, báo cáo tương đương CPU và nhãn chấm điểm. Mỗi gói con được đối chiếu
+endpoint gốc với dữ liệu đầy đủ như version 6–8. Các trace của lượt này:
+
+''' + listed + '''
+
+Thứ tự chạy theo gói; mỗi trace có tool server, trần và deadline riêng. Không đổi prompt,
+tool, model, sampling, context, output, retry, số vòng tool hay các trần.
 ''')
     code('''# Bootstrap chuẩn thư viện Python; chưa cài hay chạy model.
 import hashlib, importlib.util, json
@@ -181,7 +209,7 @@ except BaseException:
     rcl.preparation_failure('B')
     raise
 ''')
-    markdown('''## C–F. Server localhost → gate tổng hợp → một trace → xuất kết quả và dọn process
+    markdown('''## C–F. Server localhost → gate tổng hợp → từng trace → xuất kết quả và dọn process
 
 Các bước C–F nằm trong cùng một cell có `try/finally` để dọn process cả khi lỗi hoặc
 người dùng Interrupt. Không có server nào được giữ lại giữa các cell.
@@ -194,8 +222,8 @@ search_logs, trả kết quả bằng role=tool, gọi print_results theo schema
 Chuyển enable_thinking sang chat_template_kwargs; chặn trường lạ. D thất bại thì
 không khởi động tool server trên dữ liệu benchmark; không có parser văn bản vá lỗi.
 
-**E:** đúng trace `68791e1f360d910bd01428c3cd9748ef` / root `6752e26884a7fee8`,
-33 span. Trần 160 model requests **tính cả retry**, 30 phút từ lúc bắt đầu E,
+**E:** lần lượt từng trace trong `manifest.json` của gói. Mỗi trace có tool server riêng
+trên dữ liệu của chính nó, trần 160 model requests **tính cả retry** và 30 phút riêng,
 concurrency=1, tối đa 4 vòng tool/span; retry client gốc tối đa 3 attempt.
 Output tối đa 512 token cho self-state/consolidation, 1.024 cho synthesizer.
 Input+output vượt context, output bị cắt, OOM, sai schema hoặc không có kết quả hợp lệ
@@ -203,10 +231,13 @@ Input+output vượt context, output bị cắt, OOM, sai schema hoặc không c
 của trace dừng vì gói không bao phủ. Kết quả search_logs trên 2.048 token được rút gọn
 theo ngân sách ở trên; bản gốc và bản model nhận đều được ghi trong events.jsonl.
 Không cắt context, không tự tăng giới hạn, không chạy lại để chọn đáp án.
+Một trace dừng (guard, deadline, lỗi HTTP) được ghi `failed` kèm lý do trong
+`run/progress.json`, rồi lượt chuyển sang trace kế tiếp, không retry. Nếu model server
+chết thì cả lượt dừng; các trace còn lại giữ trạng thái chờ để chạy tiếp.
 
 **F:** lưu request/response, lỗi, số lời gọi, token khi server trả usage, thời gian,
 RAM/VRAM đỉnh lấy mẫu (~1 giây). Chỉ sau khi E kết thúc và đã tắt model server mới
-mở scoring/groundtruth.csv rồi chạy scorer tác giả. File ZIP được xuất cả khi thất bại.
+mở nhãn của từng trace đã qua rồi chạy scorer tác giả cho trace đó. File ZIP được xuất cả khi thất bại.
 SIGKILL/khởi động lại kernel không cho Python thực hiện finally; lỗi và Interrupt thông thường có cleanup.
 ''')
     code('''from IPython.display import display, FileLink
@@ -225,13 +256,14 @@ finally:
     markdown('''## Đọc kết quả
 
 Tải `/kaggle/working/rclagent-smoke/rclagent-smoke-results.zip` và file .sha256.
-Trong ZIP: `run/status.json`, `run/trace/worker-status.json`, `run/trace/events.jsonl`,
-`run/trace/result.json` (nếu có), `run/scoring/author-score.txt` (chỉ khi hoàn thành),
-resource-peaks.json, resources.jsonl và log server/process. Marker protocol_pass nằm
-trong `run/protocol/events.jsonl`. Thất bại luôn được giữ, không loại khỏi báo cáo.
+Trong ZIP: `run/status.json`, `run/progress.json` (trạng thái và lý do của từng trace),
+`run/traces/<trace_id>/worker-status.json`, `events.jsonl`, `result.json` (nếu có),
+`run/scoring/<trace_id>/author-score.txt` (chỉ trace đã qua), resource-peaks.json,
+resources.jsonl và log server/process. Marker protocol_pass nằm trong
+`run/protocol/events.jsonl`. Thất bại luôn được giữ, không loại khỏi báo cáo.
 
-Log tool có thể rỗng theo cách lọc upstream; không bổ sung tín hiệu. Một trace không
-dùng best-of-traces. Đầu ra cuối không cung cấp confidence cho H1. Kết quả đúng/sai
+Log tool có thể rỗng theo cách lọc upstream; không bổ sung tín hiệu. Mỗi trace được chấm
+riêng, không dùng best-of-traces. Đầu ra cuối không cung cấp confidence cho H1. Kết quả đúng/sai
 của backbone 4B này không tự chứng minh chất lượng phương pháp gốc.
 
 Chuẩn bị CPU đã đối chiếu tool với dữ liệu đầy đủ; xem cpu-equivalence.json trong

@@ -1,20 +1,99 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "upstream_commit": "3052e7a6a9598d984ba1482f3dc41123c8823a99",
   "upstream_url": "https://github.com/LLM4AIOps/RCLAgent-V2",
   "benchmark_url": "https://zenodo.org/records/14590730",
   "benchmark_file": "RE2-OB.zip",
   "benchmark_zip_sha256": "0605a36cdcad8a6ae0107f2357c9c91ecee2c4ab5d72579bffea0372d9747513",
-  "case": "checkoutservice_cpu_2",
+  "cases": [
+    "currencyservice_mem_3",
+    "emailservice_socket_2",
+    "productcatalogservice_delay_3",
+    "productcatalogservice_mem_1",
+    "recommendationservice_socket_3"
+  ],
   "partition": "train",
-  "selection_rule": "Previously selected longest author-chosen trace of the first unambiguous train case in author processing order; original error_traces data row 442.",
+  "selection_rule": "Train traces stratified by span count, one per case, excluding the trace of versions 1-8: the largest, then the smallest, lower quartile, median and upper quartile of the span-ordered list (ties by error-trace row); a case already used moves the pick to the nearest unused position.",
+  "traces": [
+    {
+      "trace_id": "2095688a1eb7e72f9efbd9fad2b36a50",
+      "case": "productcatalogservice_delay_3",
+      "span_count": 45,
+      "metric_rows": 104317,
+      "log_rows": 1378,
+      "endpoint_comparisons": 1097,
+      "dir": "traces/2095688a1eb7e72f9efbd9fad2b36a50"
+    },
+    {
+      "trace_id": "3753f2a8b337506fffccb4eb515f7530",
+      "case": "recommendationservice_socket_3",
+      "span_count": 4,
+      "metric_rows": 106630,
+      "log_rows": 1700,
+      "endpoint_comparisons": 122,
+      "dir": "traces/3753f2a8b337506fffccb4eb515f7530"
+    },
+    {
+      "trace_id": "c603394090ba1fe134efa14ef4851a65",
+      "case": "emailservice_socket_2",
+      "span_count": 23,
+      "metric_rows": 106630,
+      "log_rows": 1772,
+      "endpoint_comparisons": 578,
+      "dir": "traces/c603394090ba1fe134efa14ef4851a65"
+    },
+    {
+      "trace_id": "1e527c6a967e105118fdc1acdf739e02",
+      "case": "currencyservice_mem_3",
+      "span_count": 25,
+      "metric_rows": 108766,
+      "log_rows": 1557,
+      "endpoint_comparisons": 734,
+      "dir": "traces/1e527c6a967e105118fdc1acdf739e02"
+    },
+    {
+      "trace_id": "f6526e739db68628e96673f25da39305",
+      "case": "productcatalogservice_mem_1",
+      "span_count": 33,
+      "metric_rows": 103752,
+      "log_rows": 1131,
+      "endpoint_comparisons": 997,
+      "dir": "traces/f6526e739db68628e96673f25da39305"
+    }
+  ],
   "model": "Qwen/Qwen3-4B-Instruct-2507",
   "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
   "raw_case_file_hashes": {
-    "traces.csv": "f9500387b6ff0a11018633d521b448ebcf7c68ca632660bbfebb78bdcec18b42",
-    "simple_metrics.csv": "9e33f6bddfa5c1956cbb8723aed96297d7417e1421280801775d8dd8f052463d",
-    "logs.csv": "ad145789c46b22ef004673ca6315a65631f183ad9d2760090393c676ff0d6921",
-    "inject_time.txt": "e235854dec09d738024021b17feff34c647f3610d3e669e08f027bbb9b7bd3df"
+    "productcatalogservice_delay_3": {
+      "traces.csv": "e72c2d355c56734a53179a48ccd7bd8fe0c1176017fc9e709f4e576adc254399",
+      "simple_metrics.csv": "5d1c77420320569e29c6023434b852023f951faa43b92aa5ad12060a947b1c3b",
+      "logs.csv": "7347543c95b1f8ba7699a6584d066b840ac5a61a5099a412a58744833bd0d9a2",
+      "inject_time.txt": "2eea62172576543bb1d64edaec13f3bcb619241264cd83ea7058720f154eb425"
+    },
+    "recommendationservice_socket_3": {
+      "traces.csv": "afca8004d5a98b59abb4ebe09835180035431fafed2666d5beea0a3c2b4e1c4f",
+      "simple_metrics.csv": "ef313076e4193db2d4492d85ee837abb5dda26910e05a1fa7db9130bf5bb6479",
+      "logs.csv": "0295794f1e5235b405e5b10d8f7ab4caf712eeecaf8e71dc1abf96c08fe6b973",
+      "inject_time.txt": "05b5b0fcf7eb0b83e316b776a4f60feb7013af050243929d3741cccc56da9191"
+    },
+    "emailservice_socket_2": {
+      "traces.csv": "89070667a1cbfbcbb02d27b095c2815559dcea41811e094cff17bfdaf903de78",
+      "simple_metrics.csv": "446988683205c36d594397f1686e9b447edfb469e387c1dd337ce885850558e1",
+      "logs.csv": "c3c242e9b8eb1e4ee42ede27fb4b575195da8761849005dc4aec326a27bfea83",
+      "inject_time.txt": "74826033bc742446202dd5d53a0c3e8bd63bbdd6311bc22d6d76fda8308d11bc"
+    },
+    "currencyservice_mem_3": {
+      "traces.csv": "957d18ff0c968fdfb7ee4f4ebdaf52bc1ff57b7348507d28a235ea9c450ed2d0",
+      "simple_metrics.csv": "b2981dbf1227af8f2301cf96ddada2ad81d901db765bfdea6b0093384c952647",
+      "logs.csv": "ee8874dd92546b1cafce56dee894668f1cc7a8c78df5aaa1ae4ae6201949a9f3",
+      "inject_time.txt": "1d3384826a795d9533cd0cc40673999550a14c9a05e6a3b3842a0f3f3c93c03c"
+    },
+    "productcatalogservice_mem_1": {
+      "traces.csv": "6494f64916c047ac38ed582047574646bdc489100874a7eb8aa6f7af205e0907",
+      "simple_metrics.csv": "957eb1d287b1ce62b350cde0cfde3f6ad8a1559e66210809227349bcdc71fe38",
+      "logs.csv": "f53411dedbe38caed5515d7a5cc7e554046b85daf2bf603590fa72f2f4fff519",
+      "inject_time.txt": "ff597adbcb262a8133a4af8d573db8718ea81dc1c5b76b355755f7851be5e909"
+    }
   },
   "full_preprocessed_hashes": {
     "trace\\all\\trace_jaeger-span.csv": "078a222fae514b98dc35028abaa188cafb13925495039ebd68211fd189ca87f4",
@@ -22,53 +101,211 @@
     "log\\all\\logs.csv": "dbf02f0e1630167708a8ca30c1c370575bebbdc77340be4bc3a9bac78c31a3e7"
   },
   "metrics_source": "simple_metrics.csv, the upstream preprocessing default; all KPIs of all services in the window retained.",
-  "tool_query_domain": "Any service_name; query second within the selected trace span seconds. Package holds every full-data metric row within 1200 s and every served log row within 60 s of that window; all belong to the selected case.",
-  "data_policy": "Only selected case. Labels in scoring/; never forwarded to model. Private Kaggle use only.",
+  "tool_query_domain": "Any service_name; query second within the selected trace span seconds. Each trace package holds every full-data metric row within 1200 s and every served log row within 60 s of its window; all belong to its case.",
+  "data_policy": "Only selected train cases. Labels in traces/*/scoring/; never forwarded to model. Private Kaggle use only.",
   "upstream_patch": null,
+  "tool_result_budget": {
+    "deviation_from_upstream": true,
+    "endpoint": "search_logs",
+    "budget_tokens": 2048,
+    "tokenizer": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+    "scheme": "ladder",
+    "module": "tool-result-budget.py",
+    "share": "The search_logs calls of one model response share the budget equally: floor(2048 / n) tokens each. Metric results are not budgeted.",
+    "rule": "Results within their share pass byte-for-byte. Larger results are merged by exact duplicates, then by masked message template, then truncated by severity priority, whichever first fits; a notice line tells the model. Applied by smoke-worker.py outside the unchanged upstream code."
+  },
   "files": {
-    "cpu-equivalence.json": {
-      "sha256": "053c78258cb3a95767aa6341fc4a7c3f6c9c25a4daf7e6962ec5f32adfe73ce0",
-      "bytes": 268024
-    },
-    "input/error_traces.txt": {
-      "sha256": "76bd0b27d96a0039b0c722695f467753c4d0be05eed48baa6f084d394084d82f",
-      "bytes": 297
-    },
-    "input/log/all/logs.csv": {
-      "sha256": "c4468cb40e0a5b025060de314a540b9f5ff4814440a6e453b63af38dddd890cb",
-      "bytes": 301004
-    },
-    "input/metric/all/metrics.csv": {
-      "sha256": "a305bb7c0c8c3f583b644c93247f4dbdc10e245e995f3c307f125ec2f8b51270",
-      "bytes": 3166413
-    },
-    "input/metric/node_service_map.pkl": {
-      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
-      "bytes": 5
-    },
-    "input/metric/service_node_map.pkl": {
-      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
-      "bytes": 5
-    },
-    "input/trace/all/trace_jaeger-span.csv": {
-      "sha256": "68cdd4721c848f022691bc541aeda10fe4360ff2a6240aba14df432d8e8c8241",
-      "bytes": 5143
-    },
     "kaggle-runtime.py": {
-      "sha256": "b148ce54ec05f8d642b6a5e2f71b8aaea4240fee101361c63ccc53707ebf705a",
-      "bytes": 28244
-    },
-    "scoring/groundtruth.csv": {
-      "sha256": "80e8b86cc47a0c0cdde38bab64bce845d951f22a02946393f151b0a379f837c3",
-      "bytes": 78
-    },
-    "selection.json": {
-      "sha256": "ebd0677d8fd217cf345af92c616e91a12306c4bc1d425c3912cdf6a95bfa96a3",
-      "bytes": 553
+      "sha256": "632dd89739f9cd79275f45600563aa2e9b8914e54793b648c46fbf654c0c2787",
+      "bytes": 33898
     },
     "smoke-worker.py": {
-      "sha256": "c6dff827c1871d114dab52283fdf33d85324c03029950121796c9f9c5e73de12",
-      "bytes": 21240
+      "sha256": "77dfed1ad6a5d0db5fb14dbcaed96da6150a9ebf14074c52896a760d6f63d4c0",
+      "bytes": 22090
+    },
+    "tool-result-budget.py": {
+      "sha256": "a17f50c90eb2f213167e8b756315ca4f3cb4dac7c2211269e2a3a5887206d9ea",
+      "bytes": 8913
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/cpu-equivalence.json": {
+      "sha256": "ff9d5493d3c996a119b56662d53e15f81fee638dcb1c65d1fa3d622d32049b30",
+      "bytes": 240006
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/input/error_traces.txt": {
+      "sha256": "741dcde5056c5cabb5cd028abc4bbba0c685f19a3ef1edce15d54fa405cab59e",
+      "bytes": 298
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/input/log/all/logs.csv": {
+      "sha256": "5280ece4cb1c8257f353eddee6acda9be8cd33922dd1c9b544c04151b1325a36",
+      "bytes": 269893
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/input/metric/all/metrics.csv": {
+      "sha256": "4634243d4698c053b4df6ddb046b522de1e53c5d36f692098768eacf2f2b7e56",
+      "bytes": 5078925
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/input/metric/node_service_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/input/metric/service_node_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/input/trace/all/trace_jaeger-span.csv": {
+      "sha256": "d1234323cc9fe657ca24ce368d230a4edf1a42f1b2fa4acbb3103feda5629782",
+      "bytes": 3771
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/scoring/groundtruth.csv": {
+      "sha256": "48ec836506425d777efdf4163fd8ef6562d1d882c0d929c982ea597d005771b3",
+      "bytes": 78
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02/selection.json": {
+      "sha256": "a7f46c46c7b0fab86b01aba6bb45dffe925081d415566104862753815fc4f989",
+      "bytes": 553
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/cpu-equivalence.json": {
+      "sha256": "bf5820fe9e658192e0ac58d8e6639a9a2aa68de0e9cb095feb3d8215c29c76bc",
+      "bytes": 356531
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/input/error_traces.txt": {
+      "sha256": "f8c6151922d210826232eb66a3147ae1118b4ad5ce9da6f7146bc52b923a530b",
+      "bytes": 298
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/input/log/all/logs.csv": {
+      "sha256": "46e76a877ff95f7a782adfb19f8622bf9d69fddf18feb275f53b10e498cc488d",
+      "bytes": 249498
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/input/metric/all/metrics.csv": {
+      "sha256": "80a152657e9a4409000ee37dcccda88b5021bab7b9b668421df3d102170e969b",
+      "bytes": 4887998
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/input/metric/node_service_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/input/metric/service_node_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/input/trace/all/trace_jaeger-span.csv": {
+      "sha256": "fd024fffaa89cbff2a2c65eaf1a4f6d61413f1cc7fb389bd3d5a36cf7672570a",
+      "bytes": 7053
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/scoring/groundtruth.csv": {
+      "sha256": "53f8505f056cfc7fa45411fc68f26a904bcf2514d710f6784b96b5150c6b665d",
+      "bytes": 86
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50/selection.json": {
+      "sha256": "260bc4d23963571ec3975d783febc79de2d8d6b1a21a8936ee71fd8b62f5dea4",
+      "bytes": 553
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/cpu-equivalence.json": {
+      "sha256": "5b274b6a3c9682d5693e7aad3555c0a41e32323f0fa5fa4e5f8a4e296360b441",
+      "bytes": 41358
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/input/error_traces.txt": {
+      "sha256": "fad5f0763450fd3bbbf567195e201e4ae89fb20730ad10125efb15ce18ca1507",
+      "bytes": 297
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/input/log/all/logs.csv": {
+      "sha256": "61e6cb2891d7c027ad53f1c13574002187bba8e6528372d6884ad1150a26e93d",
+      "bytes": 310581
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/input/metric/all/metrics.csv": {
+      "sha256": "145f9da294094ac5b8e6d09eb9839a0f759de060a1a12e5c4c1bf544f6d1f4af",
+      "bytes": 5010956
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/input/metric/node_service_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/input/metric/service_node_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/input/trace/all/trace_jaeger-span.csv": {
+      "sha256": "7ed9370ccc392ce3bbfe5da2e2145eecc77bdf16e2147ef3fb799225875b1a4b",
+      "bytes": 648
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/scoring/groundtruth.csv": {
+      "sha256": "217aec1adf8a588f4bd9ad2f249c58149984bc2b87cba87d77ba9fbf1ab177ff",
+      "bytes": 87
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530/selection.json": {
+      "sha256": "4c61d659a7095894e73d557bc3d96a1cab97c6d29c03eaed19fcba05a8d9e8ba",
+      "bytes": 552
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/cpu-equivalence.json": {
+      "sha256": "8f034822b6c46d27852b6da9e6665f3c89a9905eb6a763f784cc25deaff4d9a4",
+      "bytes": 188606
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/input/error_traces.txt": {
+      "sha256": "312439bfa385b760b953e13e223f6ab7fe70fb51040e4f70dc495c670f294d61",
+      "bytes": 298
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/input/log/all/logs.csv": {
+      "sha256": "64701249327ebd754f0e37dd8bc46deabf278ea9166f8536cdfbc4c139a8ab68",
+      "bytes": 306332
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/input/metric/all/metrics.csv": {
+      "sha256": "fd59e63dcb59b2aeb181efef4e04200791cd646deb1db8ea3b795ed8d9271670",
+      "bytes": 5011314
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/input/metric/node_service_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/input/metric/service_node_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/input/trace/all/trace_jaeger-span.csv": {
+      "sha256": "510016ffe0ce2b83b41ef348a38230a4a5ab732b3fc92fbafc600dbf259ad086",
+      "bytes": 3623
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/scoring/groundtruth.csv": {
+      "sha256": "551d8e2b265aec3477ca215a607e15661c065a336a0de5ad085a9f2b8d572831",
+      "bytes": 78
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65/selection.json": {
+      "sha256": "cba301c467059a0e27e26a6b21b3891724da2b2b5864735cecae5f95fd8d22f3",
+      "bytes": 553
+    },
+    "traces/f6526e739db68628e96673f25da39305/cpu-equivalence.json": {
+      "sha256": "edda5f47afdd54af6244113d94886c3ceb03d3d66196139be441293c6ab411a6",
+      "bytes": 325747
+    },
+    "traces/f6526e739db68628e96673f25da39305/input/error_traces.txt": {
+      "sha256": "d957f72de81f7774c1af1a38d296e44faee4339ff05e71fd3e842f15608b0279",
+      "bytes": 298
+    },
+    "traces/f6526e739db68628e96673f25da39305/input/log/all/logs.csv": {
+      "sha256": "b7cbf4ef6afcaa304095a18cf2d8d393ed866a07c61a23217b6fa8cadd952443",
+      "bytes": 200414
+    },
+    "traces/f6526e739db68628e96673f25da39305/input/metric/all/metrics.csv": {
+      "sha256": "8efd9bb90e4d22dad110c0526f77339fcc0192207c06348a4e0e721a5941c93c",
+      "bytes": 4894298
+    },
+    "traces/f6526e739db68628e96673f25da39305/input/metric/node_service_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/f6526e739db68628e96673f25da39305/input/metric/service_node_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "traces/f6526e739db68628e96673f25da39305/input/trace/all/trace_jaeger-span.csv": {
+      "sha256": "b50eb075b30c2630edcdd9cbcdbbee55d3cb73cdb51e6979897cfa0794912594",
+      "bytes": 5149
+    },
+    "traces/f6526e739db68628e96673f25da39305/scoring/groundtruth.csv": {
+      "sha256": "1d36cecc754e54aa1d74fdf0c2a91f8859aed970faa464eb9900b742f5d15cfc",
+      "bytes": 84
+    },
+    "traces/f6526e739db68628e96673f25da39305/selection.json": {
+      "sha256": "78ccc65af50e865b07b7583dcef00e6f2ae969c10d16693f127f74f3ce0cdbc1",
+      "bytes": 553
     },
     "upstream/config.py": {
       "sha256": "970171f965af253e6575e2dba2529abb9394b6d84fad31eb2565a211bc387c52",
@@ -117,19 +354,6 @@
     "vllm-t4-compat.py": {
       "sha256": "4fc7748277a9b643c3af47bc8d8e6a8b570605582dcd52acc9a47c6bcccfe6a9",
       "bytes": 2375
-    },
-    "tool-result-budget.py": {
-      "sha256": "331366d5b956748b2a61da17e8d88996d9271855bcf42baaf557bf24ca0833fa",
-      "bytes": 8820
     }
-  },
-  "tool_result_budget": {
-    "deviation_from_upstream": true,
-    "endpoint": "search_logs",
-    "budget_tokens": 2048,
-    "tokenizer": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
-    "scheme": "ladder",
-    "module": "tool-result-budget.py",
-    "rule": "Results within the budget pass byte-for-byte. Larger results are merged by exact duplicates, then by masked message template, then truncated by severity priority, whichever first fits; a notice line tells the model. Applied by smoke-worker.py outside the unchanged upstream code."
   }
 }

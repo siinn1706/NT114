@@ -1,40 +1,170 @@
 {
   "status": "pass",
-  "files_in_bundle": 25,
-  "trace_rows": 33,
-  "metric_rows": 66846,
-  "log_rows": 1747,
-  "notebook_code_cells": 4,
-  "bundle_sha256": "f270e386345e2719fe8beaa71261900c983c5a77858d521f53e36a9ba87ac763",
-  "bundle_bytes": 375690,
-  "notebook_sha256": "cef36a75e0070b54711bffbd21ea378aa9e5ce9a780e1e664338da196597e50c",
-  "code_cells_identical_to_native_version_3": false,
-  "latest_downloaded_native_version": 7,
-  "code_cells_identical_to_latest_downloaded_native": false,
-  "cpu_endpoint_comparisons": 822,
-  "query_window": {
-    "start_second": 1708475368,
-    "end_second": 1708475369,
-    "service_name": "any",
-    "metric_rows_seconds": [
-      1708474168,
-      1708476569
-    ],
-    "log_rows_seconds": [
-      1708475308,
-      1708475429
-    ],
-    "full_data_seconds": {
-      "metric": [
-        1705339822,
-        1708489861
-      ],
-      "log": [
-        1705339822,
-        1708489860
-      ]
+  "files_in_bundle": 61,
+  "traces": [
+    {
+      "trace_id": "2095688a1eb7e72f9efbd9fad2b36a50",
+      "case": "productcatalogservice_delay_3",
+      "trace_rows": 45,
+      "metric_rows": 104317,
+      "log_rows": 1378,
+      "cpu_endpoint_comparisons": 1097,
+      "query_window": {
+        "start_second": 1705517087,
+        "end_second": 1705517090,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705515887,
+          1705518290
+        ],
+        "log_rows_seconds": [
+          1705517027,
+          1705517150
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    },
+    {
+      "trace_id": "3753f2a8b337506fffccb4eb515f7530",
+      "case": "recommendationservice_socket_3",
+      "trace_rows": 4,
+      "metric_rows": 106630,
+      "log_rows": 1700,
+      "cpu_endpoint_comparisons": 122,
+      "query_window": {
+        "start_second": 1705542979,
+        "end_second": 1705542979,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705541779,
+          1705544179
+        ],
+        "log_rows_seconds": [
+          1705542919,
+          1705543039
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    },
+    {
+      "trace_id": "c603394090ba1fe134efa14ef4851a65",
+      "case": "emailservice_socket_2",
+      "trace_rows": 23,
+      "metric_rows": 106630,
+      "log_rows": 1772,
+      "cpu_endpoint_comparisons": 578,
+      "query_window": {
+        "start_second": 1705728604,
+        "end_second": 1705728605,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705727404,
+          1705729805
+        ],
+        "log_rows_seconds": [
+          1705728544,
+          1705728665
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    },
+    {
+      "trace_id": "1e527c6a967e105118fdc1acdf739e02",
+      "case": "currencyservice_mem_3",
+      "trace_rows": 25,
+      "metric_rows": 108766,
+      "log_rows": 1557,
+      "cpu_endpoint_comparisons": 734,
+      "query_window": {
+        "start_second": 1705690314,
+        "end_second": 1705690317,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705689114,
+          1705691517
+        ],
+        "log_rows_seconds": [
+          1705690254,
+          1705690377
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    },
+    {
+      "trace_id": "f6526e739db68628e96673f25da39305",
+      "case": "productcatalogservice_mem_1",
+      "trace_rows": 33,
+      "metric_rows": 103752,
+      "log_rows": 1131,
+      "cpu_endpoint_comparisons": 997,
+      "query_window": {
+        "start_second": 1705357820,
+        "end_second": 1705357828,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705356620,
+          1705359028
+        ],
+        "log_rows_seconds": [
+          1705357760,
+          1705357888
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
     }
-  },
+  ],
+  "notebook_code_cells": 4,
+  "bundle_sha256": "bf069dbadc46c94bac4f3039f391abfc56e09de535752ffe32aaf488280d3110",
+  "bundle_bytes": 2422297,
+  "notebook_sha256": "fda30bce218b64d5052142b732b92fd6362b968ec9b0eab7decbea3d28756eb4",
+  "code_cells_identical_to_native_version_3": false,
+  "latest_downloaded_native_version": 8,
+  "code_cells_identical_to_latest_downloaded_native": false,
   "tool_result_budget": {
     "deviation_from_upstream": true,
     "endpoint": "search_logs",
@@ -42,7 +172,8 @@
     "tokenizer": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
     "scheme": "ladder",
     "module": "tool-result-budget.py",
-    "rule": "Results within the budget pass byte-for-byte. Larger results are merged by exact duplicates, then by masked message template, then truncated by severity priority, whichever first fits; a notice line tells the model. Applied by smoke-worker.py outside the unchanged upstream code.",
+    "share": "The search_logs calls of one model response share the budget equally: floor(2048 / n) tokens each. Metric results are not budgeted.",
+    "rule": "Results within their share pass byte-for-byte. Larger results are merged by exact duplicates, then by masked message template, then truncated by severity priority, whichever first fits; a notice line tells the model. Applied by smoke-worker.py outside the unchanged upstream code.",
     "cpu_check": {
       "services": [
         "adservice",

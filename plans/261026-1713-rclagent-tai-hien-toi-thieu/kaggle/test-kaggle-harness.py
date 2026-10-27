@@ -9,6 +9,7 @@ import tempfile
 import threading
 import time
 import unittest
+import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -313,6 +314,16 @@ class Checks(unittest.TestCase):
         finally:
             runtime.ROOT = previous
 
+    def test_known_services_follow_upstream_config(self):
+        prepare = load('prepare_under_test', 'prepare-bundle.py')
+        self.assertEqual(prepare.KNOWN_SERVICES, tuple(self.coordinator._KNOWN_SERVICES))
+        with tempfile.TemporaryDirectory() as area:
+            text = (CODE / 'config.py').read_text(encoding='utf-8')
+            edited = text.replace('"shippingservice", "redis",', '"shippingservice", "redis", "fixtureservice",')
+            self.assertNotEqual(edited, text)
+            (Path(area) / 'config.py').write_text(edited, encoding='utf-8')
+            self.assertEqual(prepare.upstream_known_services(Path(area)), prepare.KNOWN_SERVICES + ('fixtureservice',))
+
     def test_original_recursion_with_33_spans_and_no_model(self):
         path = HERE / 'runtime/package/input/trace/all/trace_jaeger-span.csv'
         rows = list(csv.DictReader(path.open(encoding='utf-8')))
@@ -333,6 +344,129 @@ class Checks(unittest.TestCase):
         for row in rows:
             if row['parent_span']:
                 self.assertLess(consolidated.index(row['span_id']), consolidated.index(row['parent_span']))
+
+
+class BatchRuntime(unittest.TestCase):
+    """The trace loop with an injected per-trace runner; no model, server or Kaggle path."""
+    def setUp(self):
+        self.area = tempfile.TemporaryDirectory(dir=HERE / 'runtime')
+        self.package, self.result = Path(self.area.name) / 'package', Path(self.area.name) / 'run'
+        self.package.mkdir()
+        self.result.mkdir()
+        self.ids = ['trace-a', 'trace-b', 'trace-c']
+        (self.package / 'manifest.json').write_text(json.dumps({'traces': [
+            {'dir': 'traces/' + t, 'trace_id': t, 'case': 'case-' + t[-1], 'span_count': 3} for t in self.ids]}))
+        self.calls, self.failing, self.alive = [], set(), True
+
+    def tearDown(self):
+        self.area.cleanup()
+
+    def run_trace(self, trace_dir, out):
+        self.calls.append(trace_dir.name)
+        out.mkdir(parents=True)
+        if trace_dir.name in self.failing:
+            raise RuntimeError('synthetic HarnessStop for ' + trace_dir.name)
+
+    def run_batch(self, bundle='bundle-1'):
+        return runtime.run_traces(self.package, self.result, bundle, self.run_trace, lambda: self.alive)
+
+    def test_failed_trace_is_recorded_and_the_next_trace_runs(self):
+        self.failing = {'trace-b'}
+        progress = self.run_batch()
+        self.assertEqual(self.calls, self.ids)
+        states = progress['traces']
+        self.assertEqual([states[t]['status'] for t in self.ids], ['passed', 'failed', 'passed'])
+        self.assertIn('synthetic HarnessStop', states['trace-b']['reason'])
+        self.assertEqual(json.loads((self.result / 'progress.json').read_text()), progress)
+
+    def test_resume_skips_finished_traces_and_reruns_an_interrupted_one(self):
+        self.failing = {'trace-b'}
+        self.run_batch()
+        progress = json.loads((self.result / 'progress.json').read_text())
+        progress['traces']['trace-c'].update(status='running')
+        (self.result / 'progress.json').write_text(json.dumps(progress))
+        self.calls, self.failing = [], set()
+        progress = self.run_batch()
+        self.assertEqual(self.calls, ['trace-c'])  # The failed trace is never retried.
+        self.assertEqual(progress['traces']['trace-b']['status'], 'failed')
+        attempts = progress['traces']['trace-c']['attempts']
+        self.assertEqual([a['outcome'] for a in attempts], ['interrupted', 'passed'])
+        self.assertTrue((self.result / 'traces/trace-c.previous-0').is_dir())
+
+    def test_dead_model_server_stops_the_batch_and_leaves_traces_pending(self):
+        self.alive = False
+        with self.assertRaises(RuntimeError):
+            self.run_batch()
+        self.assertEqual(self.calls, [])
+        self.assertNotIn('status', json.loads((self.result / 'progress.json').read_text())['traces'].get('trace-a', {}))
+
+    def test_progress_of_another_bundle_is_refused(self):
+        self.run_batch()
+        with self.assertRaises(RuntimeError):
+            self.run_batch('bundle-2')
+
+    def test_prior_results_are_imported_from_an_attached_archive(self):
+        self.failing = {'trace-b'}
+        self.run_batch()
+        prior = Path(self.area.name) / 'input/previous-version'
+        prior.mkdir(parents=True)
+        with zipfile.ZipFile(prior / 'rclagent-smoke-results.zip', 'w') as zipped:
+            for path in sorted(self.result.rglob('*')):
+                if path.is_file():
+                    zipped.write(path, 'run/' + path.relative_to(self.result).as_posix())
+        fresh = Path(self.area.name) / 'fresh-run'
+        fresh.mkdir()
+        previous = runtime.INPUT
+        try:
+            runtime.INPUT = Path(self.area.name) / 'input'
+            self.assertTrue(runtime.import_prior(fresh, 'bundle-1'))
+            with self.assertRaises(RuntimeError):
+                runtime.import_prior(fresh, 'bundle-2')
+        finally:
+            runtime.INPUT = previous
+        self.calls = []
+        progress = runtime.run_traces(self.package, fresh, 'bundle-1', self.run_trace, lambda: True)
+        self.assertEqual(self.calls, [])
+        self.assertEqual(progress['traces']['trace-b']['status'], 'failed')
+
+    def test_span_count_comes_from_selection(self):
+        graph = {'span_id': 'r', 'children': [{'span_id': 'a', 'children': []}, {'span_id': 'b', 'children': []}]}
+        self.assertEqual(len(worker.graph_nodes(graph, {'span_count': 3})), 3)
+        with self.assertRaises(AssertionError):
+            worker.graph_nodes(graph, {'span_count': 33})
+
+
+class PackageValidator(unittest.TestCase):
+    """verify-package's per-trace check over the single-trace package, mounted as one of two batch traces."""
+    ENTRY = {'trace_id': '68791e1f360d910bd01428c3cd9748ef', 'case': 'checkoutservice_cpu_2', 'span_count': 33}
+
+    @classmethod
+    def setUpClass(cls):
+        cls.verify = load('verify_under_test', 'verify-package.py')
+        package = HERE / 'runtime/package'
+        cls.files = {}
+        for path in package.rglob('*'):
+            relative = path.relative_to(package).as_posix()
+            if path.is_file() and relative.startswith(('input/', 'scoring/', 'selection.json', 'cpu-equivalence.json')):
+                for base in ('traces/a/', 'traces/b/'):
+                    cls.files[base + relative] = path.read_bytes()
+
+    def check(self, files, base='traces/b', **entry):
+        return self.verify.check_trace(files.__getitem__, list(files), dict(self.ENTRY, dir=base, **entry))
+
+    def test_each_trace_directory_is_checked_on_its_own(self):
+        self.assertEqual(self.check(self.files, 'traces/a')['trace_rows'], 33)
+        self.assertEqual(self.check(self.files)['log_rows'], self.check(self.files, 'traces/a')['log_rows'])
+
+    def test_rows_of_another_case_label_columns_and_wrong_span_counts_fail(self):
+        logs = 'traces/b/input/log/all/logs.csv'
+        foreign = dict(self.files, **{logs: self.files[logs].replace(b're2ob_checkoutservice_cpu_2_', b're2ob_checkoutservice_cpu_3_', 1)})
+        metrics = 'traces/b/input/metric/all/metrics.csv'
+        labelled = dict(self.files, **{metrics: self.files[metrics].replace(b'kpi_name', b'label', 1)})
+        for files, entry in ((foreign, {}), (labelled, {}), (self.files, {'span_count': 34}), (self.files, {'case': 'checkoutservice_cpu_3'})):
+            with self.assertRaises(AssertionError):
+                self.check(files, **entry)
+        self.check(self.files, 'traces/a')  # The other trace stays valid.
 
 
 if __name__ == '__main__':
