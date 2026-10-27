@@ -45,6 +45,12 @@ with zipfile.ZipFile(archive) as zipped:
             'response_http_statuses': [r['status'] for r in responses],
             'events': {kind: sum(e['kind'] == kind for e in events) for kind in ('protocol_pass', 'fatal', 'worker_error')},
             'last_error_events': [e for e in events if e['kind'] in ('fatal', 'worker_error')][-2:]}
+        budgeted = [e for e in events if e['kind'] == 'tool_result_budget']
+        summary['phases'][phase]['tool_result_budget'] = {
+            'search_logs_results': len(budgeted), 'condensed': sum(e['applied'] for e in budgeted),
+            'spans_with_condensed_result': len({e['span_id'] for e in budgeted if e['applied']}),
+            'condensed_detail': [{k: e.get(k) for k in ('span_id', 'params', 'original_bytes', 'original_tokens',
+                                                        'condensed_tokens', 'notice')} for e in budgeted if e['applied']]}
     processes = read('run/processes.json') or []
     assert all(p['exit'] is not None for p in processes), 'Owned process not stopped'
     summary['processes'] = [{'name': p['name'], 'exit': p['exit']} for p in processes]

@@ -70,7 +70,71 @@ Server/process đã dọn; log và phần đã hoàn thành được giữ trong
 
 Đây là kết quả smoke bị dừng ở E, không phải pass end-to-end hoặc kết luận
 về accuracy/phương pháp gốc. Không mở rộng dữ liệu, sửa prompt/tool hay chạy lại
-để chọn đáp án. Code cell bên dưới khớp source version 5 đã chạy; chỉ thêm ghi chú.
+để chọn đáp án trong lượt đó.
+''')
+        markdown('''## Version 6: phạm vi query theo cửa sổ thời gian
+
+Chẩn đoán sau version 5: tool tác giả nhận mọi service_name/timestamp và phục vụ
+toàn bộ dữ liệu gộp; dữ liệu đầy đủ có log cartservice trong ±60 giây quanh root span.
+Query đó hợp lệ theo contract tác giả; gói cũ chỉ chứa các cặp service/giây của span
+nên guard chặt hơn tác giả. Bản này đóng gói mọi dòng metric trong ±1.200 giây và mọi
+dòng log trong ±60 giây quanh các giây của trace, mọi service, đều thuộc đúng ca này;
+phản hồi endpoint gốc khớp byte với dữ liệu đầy đủ (cpu-equivalence.json). Guard cho
+mọi service, chỉ chặn timestamp ngoài cửa sổ. Không đổi prompt, tool, model hoặc trần.
+
+Rủi ro đã biết trước khi chạy: kết quả log cartservice gốc khoảng 125 nghìn token.
+Nếu model gọi lại query này, request tiếp theo vượt context và lượt chạy dừng vì
+overflow, không cắt ngữ cảnh.
+''')
+    v6_path = HERE / 'kaggle-repair-v6-summary.json'
+    if v6_path.exists():
+        v6 = json.loads(v6_path.read_text())
+        assert v6['status']['status'] == 'failed' and v6['status']['stage'] == 'E'
+        markdown('''## Kết quả version 6
+
+D đạt. E dừng sau 2 model requests: model hỏi cartservice, tool trả đúng dữ liệu đầy đủ
+(272.734 byte), và request thứ ba cần 126.088 token, vượt context 16.384. Guard dừng
+trước khi gửi, không cắt ngữ cảnh. Chưa có kết quả cuối hoặc điểm chấm; process đã dọn.
+Quét CPU 450 error trace của 90 ca RE2-OB: mọi trace đều có query search_logs hợp lệ
+(cartservice) vượt context ngay vòng tool đầu.
+''')
+        markdown('''## Từ version 7: ngân sách kết quả search_logs (sai lệch so với tác giả)
+
+Theo quyết định của chủ dự án, wrapper ngoài upstream đặt ngân sách **2.048 token**
+(tokenizer Qwen đúng revision) cho mỗi kết quả `search_logs`, áp như nhau cho mọi ca.
+Kết quả trong ngân sách được trả **nguyên byte**. Kết quả lớn hơn được rút gọn theo bậc,
+chọn bước đầu tiên vừa ngân sách: gộp dòng trùng hệt (giữ số lần, giây đầu/cuối),
+rồi gộp theo mẫu thông điệp (che UUID và từ có chữ số thành `<*>`, giữ số lần và giá trị
+nguyên văn đầu tiên), cuối cùng mới cắt theo ưu tiên severity, có ghi rõ `truncated`.
+Model thấy một dòng thông báo `[harness tool-result budget ...]` ở đầu kết quả.
+Kết quả metric, prompt, model, sampling, context, output, retry, số vòng tool và các trần
+giữ nguyên; guard vẫn dừng khi vượt context, không cắt ngữ cảnh.
+
+Kiểm CPU trước khi chạy: query đúng chỉ dẫn của prompt không đổi byte nào trên 450 trace;
+không bỏ dòng log hay dòng ERROR nào; tái dựng request thứ ba của version 6 từ 126.088
+còn 1.589 token. Kết quả của notebook này là của bản thích nghi có ngân sách,
+không so trực tiếp với Table I.
+''')
+    v7_path = HERE / 'kaggle-repair-v7-summary.json'
+    if v7_path.exists():
+        v7 = json.loads(v7_path.read_text())
+        assert v7['status']['status'] == 'failed' and v7['status']['stage'] == 'E'
+        markdown('''## Kết quả version 7
+
+Ngân sách hoạt động: root span lại hỏi cartservice, phản hồi 124.953 token được gộp
+còn 454 token, không bỏ dòng nào. E chạy 60 requests HTTP 200 trong 620,7 giây,
+27/33 span qua self-state, prompt lớn nhất 1.719 token. Lượt chạy dừng ở request 60:
+model gọi search_fluctuating_metrics với timestamp `1808475368747` (sai một chữ số),
+guard chặn vì ngoài cửa sổ trace. Chưa có kết quả cuối hoặc điểm chấm; process đã dọn.
+''')
+        markdown('''## Bản này: timestamp ngoài toàn bộ dữ liệu
+
+Trên dữ liệu đầy đủ, tool tác giả trả rỗng cho query của version 7 vì mọi dòng metric/log
+nằm trong giây [1.705.339.822, 1.708.489.861]; gói cũng trả rỗng, nên guard version 7
+chặt hơn tác giả. Guard nay cho qua thêm query có cửa sổ endpoint (±1.200 giây metric,
+±60 giây log) nằm hoàn toàn ngoài khoảng dữ liệu đầy đủ, ghi trong `selection.json`.
+Mọi timestamp khác ngoài cửa sổ trace vẫn bị chặn. Không đổi prompt, tool, model,
+ngân sách hay các trần; cùng trace và cấu hình với version 7.
 ''')
     code('''# Bootstrap chuẩn thư viện Python; chưa cài hay chạy model.
 import hashlib, importlib.util, json
@@ -135,7 +199,9 @@ không khởi động tool server trên dữ liệu benchmark; không có parser
 concurrency=1, tối đa 4 vòng tool/span; retry client gốc tối đa 3 attempt.
 Output tối đa 512 token cho self-state/consolidation, 1.024 cho synthesizer.
 Input+output vượt context, output bị cắt, OOM, sai schema hoặc không có kết quả hợp lệ
-đều dừng. Query tool ngoài cặp service/time của trace cũng dừng vì gói không bao phủ.
+đều dừng. Query tool cho mọi service được trả như dữ liệu đầy đủ; timestamp ngoài các giây
+của trace dừng vì gói không bao phủ. Kết quả search_logs trên 2.048 token được rút gọn
+theo ngân sách ở trên; bản gốc và bản model nhận đều được ghi trong events.jsonl.
 Không cắt context, không tự tăng giới hạn, không chạy lại để chọn đáp án.
 
 **F:** lưu request/response, lỗi, số lời gọi, token khi server trả usage, thời gian,

@@ -4,6 +4,8 @@ Invoked only in Kaggle by kaggle-runtime.py. Importing this module never loads a
 """
 import argparse
 import functools
+import hashlib
+import importlib.util
 import json
 import os
 import sys
@@ -16,6 +18,41 @@ from types import SimpleNamespace
 
 class HarnessStop(BaseException):
     """A fatal operational stop must bypass upstream's catch-and-continue blocks."""
+
+
+# Deviation from upstream, applied to every search_logs result: above this many tokens the result is
+# condensed (exact-duplicate merge, then message-template merge, then marked truncation). 2,048 keeps four
+# tool rounds plus 512 output tokens within a 16,384 context. Smaller results pass byte-for-byte.
+LOG_RESULT_BUDGET = 2048
+_spec = importlib.util.spec_from_file_location('tool_result_budget', Path(__file__).with_name('tool-result-budget.py'))
+budget = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(budget)
+
+
+def budget_log_result(tokenizer, params, response):
+    """(text the model receives, audit record). Raises ValueError when the result cannot be fitted."""
+    counted = {}
+
+    def count(text):
+        if text not in counted:
+            counted[text] = len(tokenizer(text, add_special_tokens=False)['input_ids'])
+        return counted[text]
+    audit = {'budget_tokens': LOG_RESULT_BUDGET, 'original_bytes': len(response.encode('utf-8')),
+             'original_sha256': hashlib.sha256(response.encode('utf-8')).hexdigest()}
+    if audit['original_bytes'] <= LOG_RESULT_BUDGET:  # A token spans at least one byte.
+        return response, dict(audit, applied=False)
+    audit['original_tokens'] = count(response)
+    if audit['original_tokens'] <= LOG_RESULT_BUDGET:
+        return response, dict(audit, applied=False)
+    try:
+        second = int(str(params.get('timestamp', '')).strip()[:10])  # Same parse as the upstream endpoint.
+    except ValueError:
+        raise ValueError('search_logs result over budget with an unparseable timestamp')
+    condensed = budget.apply('ladder', response, second, LOG_RESULT_BUDGET, count)
+    if condensed is None:
+        raise ValueError('search_logs result over budget and not condensable without guessing')
+    return condensed, dict(audit, applied=True, notice=condensed.split('\n', 1)[0], condensed_tokens=count(condensed),
+                           condensed_sha256=hashlib.sha256(condensed.encode('utf-8')).hexdigest())
 
 
 def validate_calls(message, tools, required=False):
@@ -159,10 +196,22 @@ class Guard:
             self.stop('Unexpected telemetry tool: ' + name)
         if set(params) != {'service_name', 'timestamp'}:
             self.stop('Unsupported telemetry tool parameters')
-        pair = (str(params['service_name']), str(params['timestamp'])[:10])
-        allowed = {(p['service_name'], p['timestamp']) for p in self.selection['query_pairs']}
-        if pair not in allowed:
-            self.stop('Tool request outside the packaged service/time domain; refusing incomplete evidence')
+        # Upstream filters only by timestamp window and service substring. Every full-data row inside the
+        # packaged window is present, so any service name yields the full-data answer; time decides coverage.
+        try:
+            second = int(str(params['timestamp']).strip()[:10])  # Same parse as the upstream endpoints.
+        except ValueError:
+            self.stop('Telemetry timestamp is not parseable by the upstream endpoint')
+        window = self.selection['query_window']
+        if window['start_second'] <= second <= window['end_second']:
+            return
+        # The endpoints read rows within +-60 s (logs) or +-1200 s (metrics) of the second. A window wholly
+        # outside every full-data row is empty on the full data and on the package, so the answer is exact.
+        half, source = (60, 'log') if name == 'search_logs' else (1200, 'metric')
+        full = window.get('full_data_seconds', {}).get(source)
+        if full and (second + half < full[0] or second - half > full[1]):
+            return
+        self.stop('Tool request timestamp outside the packaged time window; refusing incomplete evidence')
 
 
 def install_guards(guard, upstream):
@@ -170,7 +219,7 @@ def install_guards(guard, upstream):
     import llm
     import coordinator as coordinator
     import requests
-    from urllib.parse import urlparse
+    from urllib.parse import parse_qsl, urlparse
     tool_session = requests.Session()
     tool_session.trust_env = False
 
@@ -179,6 +228,13 @@ def install_guards(guard, upstream):
         parsed = urlparse(url)
         if parsed.scheme != 'http' or parsed.netloc != '127.0.0.1:5000':
             guard.stop('Refusing non-local telemetry endpoint')
+        if guard.phase == 'trace' and parsed.path in ('/search_logs', '/search_fluctuating_metrics'):
+            # Upstream joins arguments without URL encoding; check what the server will actually read.
+            sent = requests.Request('GET', url, params=kwargs.get('params')).prepare().url
+            received = {}
+            for key, value in parse_qsl(urlparse(sent).query, keep_blank_values=True):
+                received.setdefault(key, value)  # Flask request.args.get returns the first value.
+            guard.validate_query(parsed.path[1:], received)
         try:
             response = tool_session.get(url, **kwargs)
             if response.status_code != 200:
@@ -228,7 +284,15 @@ def install_guards(guard, upstream):
                     span_id=getattr(guard.local, 'span_id', None))
         if response.startswith('[tool error]'):
             guard.stop('Telemetry tool transport failure')
-        return response
+        if name != 'search_logs':
+            return response
+        try:
+            delivered, audit = budget_log_result(guard.tokenizer, params, response)
+        except ValueError as exc:
+            guard.stop('Tool-result budget: ' + str(exc))
+        guard.event('tool_result_budget', name=name, params=params, delivered=delivered if audit['applied'] else None,
+                    span_id=getattr(guard.local, 'span_id', None), **audit)
+        return delivered
 
     coordinator._get = get_tool
     original_pool = coordinator.AgentPool
