@@ -1,0 +1,211 @@
+{
+  "traces": 2,
+  "cases": 2,
+  "output_reserve": 512,
+  "additivity_check": {
+    "samples": 10,
+    "max_abs_error_tokens": 0,
+    "errors": {
+      "0": 10
+    }
+  },
+  "request_budget": 160,
+  "by_role": {
+    "all": {
+      "traces": 2,
+      "cases": 2,
+      "traces_over_request_budget_min": {
+        "count": 0,
+        "of": 2
+      },
+      "spans": {
+        "min": 10,
+        "max": 33
+      },
+      "16384": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 2,
+          "of": 2
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 2
+        }
+      },
+      "32768": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 2,
+          "of": 2
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 2
+        }
+      }
+    },
+    "train": {
+      "traces": 2,
+      "cases": 2,
+      "traces_over_request_budget_min": {
+        "count": 0,
+        "of": 2
+      },
+      "spans": {
+        "min": 10,
+        "max": 33
+      },
+      "16384": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 2,
+          "of": 2
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 2
+        }
+      },
+      "32768": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 2,
+          "of": 2
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 2
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 2,
+          "of": 2
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 2
+        }
+      }
+    }
+  },
+  "own_overflow_services_16384": {},
+  "possible_overflow_services_16384": {
+    "cartservice": 2
+  },
+  "by_queried_service": {
+    "max_round1_tokens": {
+      "adservice": 1026,
+      "cartservice": 125965,
+      "checkoutservice": 1026,
+      "currencyservice": 1026,
+      "emailservice": 1026,
+      "frontend": 35976,
+      "frontendservice": 1025,
+      "paymentservice": 1026,
+      "productcatalogservice": 1026,
+      "recommendationservice": 1179,
+      "redis": 1409,
+      "shippingservice": 1026
+    },
+    "16384": {
+      "traces_where_query_overflows": {
+        "cartservice": 2,
+        "frontend": 1
+      },
+      "traces_overflow_excluding_cartservice": 1
+    },
+    "32768": {
+      "traces_where_query_overflows": {
+        "cartservice": 2,
+        "frontend": 1
+      },
+      "traces_overflow_excluding_cartservice": 1
+    }
+  },
+  "own_max_tokens_overall": 1050,
+  "elapsed_seconds": 173.6
+}

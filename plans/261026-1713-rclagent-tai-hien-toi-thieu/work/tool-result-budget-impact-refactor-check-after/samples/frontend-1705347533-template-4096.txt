@@ -1,0 +1,5 @@
+[harness tool-result budget 4096 tokens: 771 rows merged into 3 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]
+cmdb_id,log_name,severity,message_template,count,first_timestamp,last_timestamp,distinct_values,first_value
+frontend,log_frontend,unknown,env platform is either empty or invalid,128,1705347473,1705347593,1,"severity: unknown, message: env platform is either empty or invalid"
+frontend,log_frontend,warning,failed to get product recommendations,642,1705347504,1705347592,1,"severity: warning, message: failed to get product recommendations"
+frontend,log_frontend,warning,failed to retrieve ads,1,1705347533,1705347533,1,"severity: warning, message: failed to retrieve ads"

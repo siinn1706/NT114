@@ -1,0 +1,205 @@
+[
+ {
+  "span_id": "3a328b656b1d7589",
+  "service": "frontendservice",
+  "tokens": 1026,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "dab9d9d73e0ea2ab",
+  "service": "frontendservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "e26f78a8d175ae10",
+  "service": "frontendservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "52f2c4d49d1b1183",
+  "service": "frontendservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "1c57e1627f68f449",
+  "service": "frontendservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "97046e7657b9299a",
+  "service": "frontendservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "7681db844d2c21d6",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "6425de38ea75bb6c",
+  "service": "frontendservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "a94f55c38642d955",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "66c4d249def274b6",
+  "service": "checkoutservice",
+  "tokens": 1295,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "712f1a88b11253db",
+  "service": "recommendationservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "7f3ff15acb51909a",
+  "service": "productcatalogservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "c4725f5ecec4c647",
+  "service": "productcatalogservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "0f4d3a2a237bb0bc",
+  "service": "productcatalogservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "1da8b5ea68844d8e",
+  "service": "productcatalogservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "6d59776792019a84",
+  "service": "productcatalogservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "78588e3fd40d78e0",
+  "service": "currencyservice",
+  "tokens": 1051,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "80b95b2aa2c4241a",
+  "service": "checkoutservice",
+  "tokens": 1293,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "e66263d2aa0b5e9d",
+  "service": "checkoutservice",
+  "tokens": 1294,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "572886f45baa580a",
+  "service": "checkoutservice",
+  "tokens": 1294,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "be8d950b9918f493",
+  "service": "checkoutservice",
+  "tokens": 1292,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "374bcd660973c2f4",
+  "service": "checkoutservice",
+  "tokens": 1293,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "40a1716501659f2d",
+  "service": "checkoutservice",
+  "tokens": 1294,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "12ce6cf884fc1d9c",
+  "service": "checkoutservice",
+  "tokens": 1295,
+  "log_bytes": 952,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "bb4330d20a36c9f3",
+  "service": "recommendationservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "79f782e1bdb7674d",
+  "service": "productcatalogservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "0137741bd68e2bca",
+  "service": "paymentservice",
+  "tokens": 1041,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "1cf5ced90ccf48ed",
+  "service": "emailservice",
+  "tokens": 1036,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "5a1ddc37f522db92",
+  "service": "productcatalogservice",
+  "tokens": 1041,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ }
+]
