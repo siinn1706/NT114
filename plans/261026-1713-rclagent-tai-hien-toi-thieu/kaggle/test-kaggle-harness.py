@@ -62,6 +62,15 @@ class Handler(BaseHTTPRequestHandler):
             elif prompt.startswith('You are analysing span: '):
                 raw = json.loads(prompt.split('\n', 1)[0].removeprefix('You are analysing span: '))
                 text = {'span_id': raw['span_id'], 'local_root_cause': 'synthetic'}
+                if type(self).mode == 'null-root-cause':
+                    # the shape of the v9 leaf answers that stopped two traces
+                    text = {'span_id': raw['span_id'], 'service_name': raw['cmdb_id'], 'local_root_cause': None,
+                            'has_error_logs': False, 'reason': 'No downstream child spans are available.',
+                            'confidence': 0.0}
+                elif type(self).mode == 'missing-root-cause':
+                    del text['local_root_cause']
+                elif type(self).mode == 'numeric-root-cause':
+                    text['local_root_cause'] = 0
             else:
                 text = {'fixture': True}
             message = {'role': 'assistant', 'content': json.dumps(text), 'tool_calls': []}
@@ -189,6 +198,38 @@ class Checks(unittest.TestCase):
                 with self.assertRaises(worker.HarnessStop):
                     self.chat([{'role': 'user', 'content': 'fixture'}], None)
                 self.assertEqual(len(Handler.hits), before+1)
+
+    def leaf_trace(self):
+        """The paymentservice leaf of trace 2095688a and its parent, as the v9 run saw them."""
+        common = {'operation_name': 'grpc.hipstershop.PaymentService/Charge', 'status_code': '0',
+                  'trace_id': '2095688a1eb7e72f9efbd9fad2b36a50', 'type': 'rpc'}
+        leaf = dict(common, cmdb_id='paymentservice', duration='253', parent_span='149400ec465d7e63',
+                    span_id='b81ba52867406a5c', timestamp='1705517089465')
+        parent = dict(common, cmdb_id='checkoutservice', duration='1012', parent_span='',
+                      span_id='149400ec465d7e63', timestamp='1705517089400')
+        return {'span_id': parent['span_id'], 'raw': parent,
+                'children': [{'span_id': leaf['span_id'], 'raw': leaf, 'children': []}]}
+
+    def test_version9_null_local_root_cause_regression(self):
+        """Cause: v9 stopped two traces on a leaf answering local_root_cause null, which upstream passes upward."""
+        Handler.mode = 'null-root-cause'
+        result = self.coordinator.inspect_trace(self.leaf_trace(), max_parallel=1)
+        self.assertIsNone(self.guard.fatal)
+        self.assertEqual(len(result['root_causes']), 10)
+        events = [json.loads(line) for line in (Path(self.area.name) / 'events.jsonl').read_text().splitlines()]
+        consolidated = [json.loads(e['output']) for e in events
+                        if e['kind'] == 'agent_complete' and e['operation'] == 'consolidate']
+        self.assertEqual([c['span_id'] for c in consolidated], ['b81ba52867406a5c', '149400ec465d7e63'])
+        self.assertTrue(all(c['local_root_cause'] is None for c in consolidated))
+
+    def test_consolidation_without_a_local_root_cause_field_still_stops(self):
+        for mode in ('missing-root-cause', 'numeric-root-cause'):
+            with self.subTest(mode=mode):
+                self.guard.fatal = None
+                Handler.mode = mode
+                with self.assertRaises(worker.HarnessStop):
+                    self.coordinator.inspect_trace(self.leaf_trace(), max_parallel=1)
+                self.assertIn('local_root_cause', self.guard.fatal)
 
     def test_deadline_blocks_request(self):
         self.guard.deadline = time.monotonic()-1

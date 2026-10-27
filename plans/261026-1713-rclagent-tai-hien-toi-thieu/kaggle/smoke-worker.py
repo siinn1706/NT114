@@ -327,7 +327,8 @@ def install_guards(guard, upstream):
                     if operation == 'self_state_verification':
                         if type(parsed.get('is_abnormal')) is not bool:
                             raise ValueError('Missing boolean is_abnormal')
-                    elif not isinstance(parsed.get('local_root_cause'), str):
+                    # upstream passes a leaf's null ("no cause found here") upward unchanged
+                    elif 'local_root_cause' not in parsed or not isinstance(parsed['local_root_cause'], (str, type(None))):
                         raise ValueError('Missing local_root_cause')
                 except Exception as exc:
                     guard.stop('Invalid agent JSON output: ' + str(exc))
