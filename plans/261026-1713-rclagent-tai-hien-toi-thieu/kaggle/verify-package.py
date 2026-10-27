@@ -28,7 +28,7 @@ def main():
             assert not any(part in name.lower() for part in ('credential', 'transcript', '.env', 'canonical', 'test-result'))
             if name.endswith('.py'):
                 ast.parse(data.decode('utf-8'), filename=name)
-        for name in ('kaggle-runtime.py', 'smoke-worker.py', 'vllm-t4-compat.py', 'verify-t4-prefix-kernel.py'):
+        for name in ('kaggle-runtime.py', 'smoke-worker.py', 'tool-result-budget.py', 'vllm-t4-compat.py', 'verify-t4-prefix-kernel.py'):
             assert zipped.read(name) == (HERE / name).read_bytes(), 'Stale packaged wrapper'
         trace = list(csv.DictReader(io.StringIO(zipped.read('input/trace/all/trace_jaeger-span.csv').decode())))
         metrics = list(csv.DictReader(io.StringIO(zipped.read('input/metric/all/metrics.csv').decode())))
@@ -44,6 +44,31 @@ def main():
         assert len(list(csv.DictReader(io.StringIO(zipped.read('scoring/groundtruth.csv').decode())))) == 1
         parity = json.loads(zipped.read('cpu-equivalence.json'))
         assert parity['status'] == 'pass' and all(c['equal'] for c in parity['comparisons'])
+        # The worker guard trusts this window; the packaged rows must cover it from the selected case only.
+        window = json.loads(zipped.read('selection.json'))['query_window']
+        seconds = {int(r['timestamp'][:10]) for r in trace}
+        assert (window['start_second'], window['end_second']) == (min(seconds), max(seconds))
+        assert window['service_name'] == 'any'
+        assert window['metric_rows_seconds'] == [window['start_second'] - 1200, window['end_second'] + 1200]
+        assert window['log_rows_seconds'] == [window['start_second'] - 60, window['end_second'] + 60]
+        assert parity['query_window'] == {k: window[k] for k in ('start_second', 'end_second', 'metric_rows_seconds', 'log_rows_seconds')}
+        # The guard also answers windows wholly outside all full data. The range was measured independently by
+        # work/scripts/re2ob-full-data-time-range.py; the packaged rows must lie inside it.
+        full = window['full_data_seconds']
+        assert full == {'metric': [1705339822, 1708489861], 'log': [1705339822, 1708489860]}
+        for source in ('metric', 'log'):
+            assert full[source][0] <= window['start_second'] <= window['end_second'] <= full[source][1]
+            assert full[source][0] <= window[source + '_rows_seconds'][0] <= window[source + '_rows_seconds'][1] <= full[source][1]
+        # The search_logs budget is a declared deviation; its CPU check must cover the shipped code.
+        budget_check = json.loads((HERE / 'tool-result-budget-check.json').read_text())
+        assert budget_check['status'] == 'pass' and budget_check['budget_tokens'] == manifest['tool_result_budget']['budget_tokens']
+        assert budget_check['module_sha256'] == manifest['files']['tool-result-budget.py']['sha256']
+        assert budget_check['worker_sha256'] == manifest['files']['smoke-worker.py']['sha256']
+        assert manifest['tool_result_budget']['deviation_from_upstream'] is True
+        low, high = window['metric_rows_seconds']
+        assert all(low <= int(r['timestamp']) <= high for r in metrics)
+        low, high = window['log_rows_seconds']
+        assert all(low <= int(r['timestamp']) <= high and r['log_id'].startswith('re2ob_checkoutservice_cpu_2_') for r in logs)
     notebook = json.loads(notebook_path.read_text(encoding='utf-8'))
     assert notebook['nbformat'] == 4
     code_cells = [c for c in notebook['cells'] if c['cell_type'] == 'code']
@@ -86,6 +111,9 @@ def main():
               'latest_downloaded_native_version': repair_version,
               'code_cells_identical_to_latest_downloaded_native': repair_code_match,
               'cpu_endpoint_comparisons': parity['endpoint_comparisons'],
+              'query_window': window,
+              'tool_result_budget': {**manifest['tool_result_budget'], 'cpu_check': budget_check['grid'],
+                                     'version6_request3': budget_check['version6_request3']},
               'scope': 'Static package and completed CPU checks only; actual GPU/server compatibility requires Kaggle execution.'}
     (HERE / 'package-validation.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(result, indent=2))

@@ -1,16 +1,83 @@
 {
   "status": "pass",
-  "files_in_bundle": 24,
+  "files_in_bundle": 25,
   "trace_rows": 33,
-  "metric_rows": 38048,
-  "log_rows": 0,
+  "metric_rows": 66846,
+  "log_rows": 1747,
   "notebook_code_cells": 4,
-  "bundle_sha256": "d26df6d13743f23e8b481aa09dea8920329b790effd2493f84fd62168a717f21",
-  "bundle_bytes": 221399,
-  "notebook_sha256": "86311b54e8121cb672e1887bb16f960dd3da4871b87829f80fb97768ce031193",
+  "bundle_sha256": "f270e386345e2719fe8beaa71261900c983c5a77858d521f53e36a9ba87ac763",
+  "bundle_bytes": 375690,
+  "notebook_sha256": "cef36a75e0070b54711bffbd21ea378aa9e5ce9a780e1e664338da196597e50c",
   "code_cells_identical_to_native_version_3": false,
-  "latest_downloaded_native_version": 5,
-  "code_cells_identical_to_latest_downloaded_native": true,
-  "cpu_endpoint_comparisons": 86,
+  "latest_downloaded_native_version": 7,
+  "code_cells_identical_to_latest_downloaded_native": false,
+  "cpu_endpoint_comparisons": 822,
+  "query_window": {
+    "start_second": 1708475368,
+    "end_second": 1708475369,
+    "service_name": "any",
+    "metric_rows_seconds": [
+      1708474168,
+      1708476569
+    ],
+    "log_rows_seconds": [
+      1708475308,
+      1708475429
+    ],
+    "full_data_seconds": {
+      "metric": [
+        1705339822,
+        1708489861
+      ],
+      "log": [
+        1705339822,
+        1708489860
+      ]
+    }
+  },
+  "tool_result_budget": {
+    "deviation_from_upstream": true,
+    "endpoint": "search_logs",
+    "budget_tokens": 2048,
+    "tokenizer": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+    "scheme": "ladder",
+    "module": "tool-result-budget.py",
+    "rule": "Results within the budget pass byte-for-byte. Larger results are merged by exact duplicates, then by masked message template, then truncated by severity priority, whichever first fits; a notice line tells the model. Applied by smoke-worker.py outside the unchanged upstream code.",
+    "cpu_check": {
+      "services": [
+        "adservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "frontend",
+        "frontendservice",
+        "paymentservice",
+        "productcatalogservice",
+        "recommendationservice",
+        "shippingservice",
+        "redis"
+      ],
+      "seconds": [
+        1708475368,
+        1708475369
+      ],
+      "queries": 48,
+      "unchanged": 40,
+      "condensed": 8,
+      "condensed_services": [
+        "cartservice",
+        "frontend"
+      ],
+      "max_condensed_tokens": 454,
+      "rows_omitted": 0
+    },
+    "version6_request3": {
+      "raw_prompt_tokens": 126088,
+      "budgeted_prompt_tokens": 1589,
+      "reserved_output": 512,
+      "context": 16384
+    }
+  },
   "scope": "Static package and completed CPU checks only; actual GPU/server compatibility requires Kaggle execution."
 }

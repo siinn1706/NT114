@@ -1,0 +1,365 @@
+{
+  "notebook_version": 6,
+  "status": {
+    "status": "failed",
+    "stage": "E",
+    "started": 1793070026.8722255,
+    "score": "not-run",
+    "error": "RuntimeError('trace failed; stopping without a telemetry retry or model change')",
+    "finished": 1793070159.4748657,
+    "elapsed_seconds": 132.60264015197754,
+    "rcl_elapsed_seconds": 25.037979019999966,
+    "observed_requests": {
+      "protocol": 3,
+      "trace": 2
+    }
+  },
+  "compatibility": {
+    "before": {
+      "mode": "before",
+      "gpu": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "head_size": 128,
+      "query_heads": 32,
+      "kv_heads": 8,
+      "dtype": "float16",
+      "cases": [],
+      "status": "expected-shared-memory-failure",
+      "error": "OutOfResources(98304, 65536, 'shared memory')",
+      "peak_cuda_allocated_bytes": 3368960,
+      "peak_cuda_reserved_bytes": 23068672
+    },
+    "after": {
+      "mode": "after",
+      "gpu": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "head_size": 128,
+      "query_heads": 32,
+      "kv_heads": 8,
+      "dtype": "float16",
+      "cases": [
+        {
+          "query_length": 1,
+          "cached_context": 0,
+          "max_absolute_error": 0.0,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 1,
+          "cached_context": 17,
+          "max_absolute_error": 5.911290645599365e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 63,
+          "cached_context": 0,
+          "max_absolute_error": 0.00017777085304260254,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 63,
+          "cached_context": 17,
+          "max_absolute_error": 7.396936416625977e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 64,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016936659812927246,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 64,
+          "cached_context": 17,
+          "max_absolute_error": 7.359683513641357e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 65,
+          "cached_context": 0,
+          "max_absolute_error": 0.0002117753028869629,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 65,
+          "cached_context": 17,
+          "max_absolute_error": 7.934868335723877e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 127,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016191601753234863,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 127,
+          "cached_context": 17,
+          "max_absolute_error": 7.449090480804443e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 128,
+          "cached_context": 0,
+          "max_absolute_error": 0.0002480149269104004,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 128,
+          "cached_context": 17,
+          "max_absolute_error": 6.119906902313232e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 129,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016516447067260742,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 129,
+          "cached_context": 17,
+          "max_absolute_error": 6.80387020111084e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 2048,
+          "cached_context": 2048,
+          "max_absolute_error": 8.07829201221466e-06,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        }
+      ],
+      "status": "passed",
+      "peak_cuda_allocated_bytes": 415894016,
+      "peak_cuda_reserved_bytes": 478150656
+    },
+    "patch": {
+      "vllm": "0.10.2",
+      "source": "/tmp/rclagent-smoke/env/lib/python3.13/site-packages/vllm/attention/ops/prefix_prefill.py",
+      "before_sha256": "8055f9dc80be1727ac9255ac8a2e565ef08e3572325e0b69e170b2249b4b789a",
+      "after_sha256": "89e27bc3caedba18ac8bed4913b4f56d4c2a5c5414486650ae8c8c477aef03a0",
+      "official_wheel_sha256": "e0cba6110483d9bf25c4402d8655cf78d366dd13e4155210980cc3480ed98b7b",
+      "reason": "SM75 non-ALiBi prefix kernel requests 98304 bytes shared memory with BLOCK_M=128; T4 limit is 65536. Use 64 query rows per tile on Turing only. Grid already uses ceil(query_length/BLOCK_M); no tokens or attention terms removed.",
+      "changes": {
+        "Turing_BLOCK_M": 64,
+        "other_architectures_BLOCK_M": 128
+      },
+      "unchanged": [
+        "BLOCK_N=64",
+        "num_stages=1",
+        "kernel math",
+        "RCLAgent source/prompt/tools",
+        "context and request limits"
+      ]
+    },
+    "status": {
+      "status": "passed",
+      "original_reproduced_or_supported": true,
+      "patched_dense_reference_cases": 15,
+      "model_requests": 0
+    }
+  },
+  "settings": {
+    "gpu": {
+      "index": 0,
+      "name": "Tesla T4",
+      "uuid": "GPU-94db8954-5e61-9ab5-9ea2-20b2461937a4",
+      "total_mib": 15360.0,
+      "free_mib": 14912.0,
+      "driver": "580.178.04",
+      "compute_capability": 7.5
+    },
+    "context": 16384,
+    "dtype": "half",
+    "tensor_parallel_size": 1,
+    "max_num_seqs": 1,
+    "vllm_engine": "V0",
+    "enable_chunked_prefill": true,
+    "max_num_batched_tokens": 2048,
+    "max_output_tokens": {
+      "self_state": 512,
+      "consolidate": 512,
+      "synthesizer": 1024
+    },
+    "max_model_requests_including_retry": 160,
+    "rcl_deadline_seconds": 1800,
+    "max_tool_rounds_per_span": 4,
+    "client_retry_attempts": 3,
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "vllm": "0.10.2",
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "seed": 20261026
+    },
+    "context_overflow": "fatal, never truncate",
+    "concurrency": 1
+  },
+  "phases": {
+    "protocol": {
+      "worker": {
+        "status": "passed",
+        "phase": "protocol",
+        "model_requests_including_retries": 3,
+        "token_usage": {
+          "prompt_tokens": 858,
+          "completion_tokens": 140,
+          "responses_with_usage": 3
+        },
+        "error": null,
+        "fatal": null
+      },
+      "request_count": 3,
+      "response_http_statuses": [
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 1,
+        "fatal": 0,
+        "worker_error": 0
+      },
+      "last_error_events": []
+    },
+    "trace": {
+      "worker": {
+        "status": "failed",
+        "phase": "trace",
+        "model_requests_including_retries": 2,
+        "token_usage": {
+          "prompt_tokens": 1925,
+          "completion_tokens": 170,
+          "responses_with_usage": 2
+        },
+        "error": "HarnessStop('Context overflow: input=126088, reserved_output=512, context=16384; no truncation')",
+        "fatal": "Context overflow: input=126088, reserved_output=512, context=16384; no truncation"
+      },
+      "request_count": 2,
+      "response_http_statuses": [
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 0,
+        "fatal": 1,
+        "worker_error": 1
+      },
+      "last_error_events": [
+        {
+          "time": 1793070155.352158,
+          "kind": "fatal",
+          "reason": "Context overflow: input=126088, reserved_output=512, context=16384; no truncation"
+        },
+        {
+          "time": 1793070155.359327,
+          "kind": "worker_error",
+          "error": "HarnessStop('Context overflow: input=126088, reserved_output=512, context=16384; no truncation')",
+          "traceback": "Traceback (most recent call last):\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 350, in main\n    result = coordinator.inspect_trace(graph, max_parallel=1)\n  File \"/kaggle/working/rclagent-smoke/package/upstream/coordinator.py\", line 439, in inspect_trace\n    agent.self_evidence = f.result()\n                          ~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 453, in result\n    return self.__get_result()\n           ~~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 402, in __get_result\n    raise self._exception\n  File \"/usr/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 265, in wrapped\n    result = original(agent, *args, **kwargs)\n  File \"/kaggle/working/rclagent-smoke/package/upstream/coordinator.py\", line 244, in self_state_verification\n    content, tool_calls = chat_api(messages, tools=tools)\n                          ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 220, in chat\n    content, calls = original_chat(messages, tools)\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/rclagent-smoke/package/upstream/llm.py\", line 78, in chat_api\n    return client.generate(prompts, tools)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/tmp/rclagent-smoke/env/lib/python3.13/site-packages/tenacity/__init__.py\", line 338, in wrapped_f\n    return copy(f, *args, **kw)\n  File \"/tmp/rclagent-smoke/env/lib/python3.13/site-packages/tenacity/__init__.py\", line 477, in __call__\n    do = self.iter(retry_state=retry_state)\n  File \"/tmp/rclagent-smoke/env/lib/python3.13/site-packages/tenacity/__init__.py\", line 378, in iter\n    result = action(retry_state)\n  File \"/tmp/rclagent-smoke/env/lib/python3.13/site-packages/tenacity/__init__.py\", line 400, in <lambda>\n    self._add_action_func(lambda rs: rs.outcome.result())\n                                     ~~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 453, in result\n    return self.__get_result()\n           ~~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 402, in __get_result\n    raise self._exception\n  File \"/tmp/rclagent-smoke/env/lib/python3.13/site-packages/tenacity/__init__.py\", line 480, in __call__\n    result = fn(*args, **kwargs)\n  File \"/kaggle/working/rclagent-smoke/package/upstream/llm.py\", line 113, in generate\n    response = requests.post(\n        self.api_url,\n    ...<3 lines>...\n        timeout=180,\n    )\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 113, in post\n    self.stop(f'Context overflow: input={prompt_tokens}, reserved_output={maximum}, context={self.context}; no truncation')\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 89, in stop\n    raise HarnessStop(self.fatal)\nHarnessStop: Context overflow: input=126088, reserved_output=512, context=16384; no truncation\n"
+        }
+      ]
+    }
+  },
+  "artifact": "rclagent-kaggle-repair-v6-results.zip",
+  "artifact_bytes": 54916,
+  "artifact_sha256": "091a1975abe2faeabc117023ae56d39e51f2b335617b96f3e2cb65d2712bd8b9",
+  "processes": [
+    {
+      "name": "vllm",
+      "exit": 0
+    },
+    {
+      "name": "tools-synthetic",
+      "exit": -15
+    },
+    {
+      "name": "worker-protocol",
+      "exit": 0
+    },
+    {
+      "name": "tools-telemetry",
+      "exit": -15
+    },
+    {
+      "name": "worker-trace",
+      "exit": 1
+    }
+  ],
+  "resource_peaks": {
+    "by_phase": {
+      "setup": {
+        "sampled_peak_owned_rss_bytes": 7762432000,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-94db8954-5e61-9ab5-9ea2-20b2461937a4": 12674.0
+        },
+        "samples": 89
+      },
+      "protocol": {
+        "sampled_peak_owned_rss_bytes": 9015742464,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-94db8954-5e61-9ab5-9ea2-20b2461937a4": 13122.0
+        },
+        "samples": 14
+      },
+      "trace": {
+        "sampled_peak_owned_rss_bytes": 9176907776,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-94db8954-5e61-9ab5-9ea2-20b2461937a4": 13232.0
+        },
+        "samples": 24
+      }
+    },
+    "method": "Owned process-tree RSS and nvidia-smi compute-app memory, sampled every ~1s. Device peaks remain separate; RSS may double-count shared pages. Missing GPU metrics are unknown, not zero. Brief allocation peaks between samples can be missed."
+  },
+  "input_verification": {
+    "source": "/kaggle/input/datasets/siinn1706/rclagent-one-trace-smoke-261026",
+    "container": "expanded Kaggle dataset",
+    "manifest_sha256": "876d23da7b50620d832642d551aa96292da8820aa6f8248d2543efdbb297b40d",
+    "all_member_hashes_verified": true,
+    "original_bundle_sha256": "1a3dcf928c769518d58ecfea5bd5e5542adbaa0f61dbb660d2ff4458ee9863fa",
+    "container_zip_hash_checked": false
+  },
+  "result": null,
+  "scoring_ran": false,
+  "code_matches_downloaded_native_source": true,
+  "private_notebook_metadata_verified": true
+}

@@ -1,0 +1,573 @@
+{
+  "status": "pass",
+  "budget_tokens": 2048,
+  "module_sha256": "331366d5b956748b2a61da17e8d88996d9271855bcf42baaf557bf24ca0833fa",
+  "worker_sha256": "c6dff827c1871d114dab52283fdf33d85324c03029950121796c9f9c5e73de12",
+  "tokenizer": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "pandas_version": "2.2.3",
+  "grid": {
+    "services": [
+      "adservice",
+      "cartservice",
+      "checkoutservice",
+      "currencyservice",
+      "emailservice",
+      "frontend",
+      "frontendservice",
+      "paymentservice",
+      "productcatalogservice",
+      "recommendationservice",
+      "shippingservice",
+      "redis"
+    ],
+    "seconds": [
+      1708475368,
+      1708475369
+    ],
+    "queries": 48,
+    "unchanged": 40,
+    "condensed": 8,
+    "condensed_services": [
+      "cartservice",
+      "frontend"
+    ],
+    "max_condensed_tokens": 454,
+    "rows_omitted": 0
+  },
+  "version6_request3": {
+    "raw_prompt_tokens": 126088,
+    "budgeted_prompt_tokens": 1589,
+    "reserved_output": 512,
+    "context": 16384
+  },
+  "rows": [
+    {
+      "params": {
+        "service_name": "adservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "adservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "adservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "adservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "cartservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 272734,
+      "original_sha256": "62c1c03e534d14de0321a6eba395c49dd248f69e3621a3f5c6f6e86b1a24f4ed",
+      "original_tokens": 124953,
+      "applied": true,
+      "condensed_tokens": 454,
+      "condensed_sha256": "d5d060da9e7f507c9c1a37c5fcd51cf0a1128fc4edb3e77dcafc5da1f4578a4d",
+      "notice": "[harness tool-result budget 2048 tokens: 1557 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]",
+      "original_rows": 1557,
+      "rows_represented": 1557
+    },
+    {
+      "params": {
+        "service_name": "cartservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 272734,
+      "original_sha256": "62c1c03e534d14de0321a6eba395c49dd248f69e3621a3f5c6f6e86b1a24f4ed",
+      "original_tokens": 124953,
+      "applied": true,
+      "condensed_tokens": 454,
+      "condensed_sha256": "d5d060da9e7f507c9c1a37c5fcd51cf0a1128fc4edb3e77dcafc5da1f4578a4d",
+      "notice": "[harness tool-result budget 2048 tokens: 1557 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]",
+      "original_rows": 1557,
+      "rows_represented": 1557
+    },
+    {
+      "params": {
+        "service_name": "cartservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 272096,
+      "original_sha256": "ae4db6b88b5c24906b3bab3ec2e89a7833592621053df8070b1c4ebbc5e3e192",
+      "original_tokens": 124702,
+      "applied": true,
+      "condensed_tokens": 449,
+      "condensed_sha256": "6479600bdf948c747ef271c2b6dec229dac15fd9799bbf27c03629e920ce3ee9",
+      "notice": "[harness tool-result budget 2048 tokens: 1553 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]",
+      "original_rows": 1553,
+      "rows_represented": 1553
+    },
+    {
+      "params": {
+        "service_name": "cartservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 272096,
+      "original_sha256": "ae4db6b88b5c24906b3bab3ec2e89a7833592621053df8070b1c4ebbc5e3e192",
+      "original_tokens": 124702,
+      "applied": true,
+      "condensed_tokens": 449,
+      "condensed_sha256": "6479600bdf948c747ef271c2b6dec229dac15fd9799bbf27c03629e920ce3ee9",
+      "notice": "[harness tool-result budget 2048 tokens: 1553 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]",
+      "original_rows": 1553,
+      "rows_represented": 1553
+    },
+    {
+      "params": {
+        "service_name": "checkoutservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "checkoutservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "checkoutservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "checkoutservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "currencyservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "currencyservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "currencyservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "currencyservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "emailservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "emailservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "emailservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "emailservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "frontend",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 24015,
+      "original_sha256": "3d53bcf0bbcc3f79e7616202ec25fed5dde3331cc779edfabe5ccf6bd50997f3",
+      "original_tokens": 7888,
+      "applied": true,
+      "condensed_tokens": 109,
+      "condensed_sha256": "be2e3561c1a7a6273e45711c98f63283f00282990994065719a5cb69160c7a06",
+      "notice": "[harness tool-result budget 2048 tokens: 175 rows merged into 1 identical (cmdb_id, log_name, value) entries; count and first/last second kept; log_id omitted; no row omitted]",
+      "original_rows": 175,
+      "rows_represented": 175
+    },
+    {
+      "params": {
+        "service_name": "frontend",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 24015,
+      "original_sha256": "3d53bcf0bbcc3f79e7616202ec25fed5dde3331cc779edfabe5ccf6bd50997f3",
+      "original_tokens": 7888,
+      "applied": true,
+      "condensed_tokens": 109,
+      "condensed_sha256": "be2e3561c1a7a6273e45711c98f63283f00282990994065719a5cb69160c7a06",
+      "notice": "[harness tool-result budget 2048 tokens: 175 rows merged into 1 identical (cmdb_id, log_name, value) entries; count and first/last second kept; log_id omitted; no row omitted]",
+      "original_rows": 175,
+      "rows_represented": 175
+    },
+    {
+      "params": {
+        "service_name": "frontend",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 23741,
+      "original_sha256": "302fc178b6c18153b2211cbe476d1d39f22d6a69b9532fae6ef4ca3b592aed4f",
+      "original_tokens": 7798,
+      "applied": true,
+      "condensed_tokens": 109,
+      "condensed_sha256": "254d5562e36c30cbd37dbee94e495846dd70fd237867adbf750774065b230d6d",
+      "notice": "[harness tool-result budget 2048 tokens: 173 rows merged into 1 identical (cmdb_id, log_name, value) entries; count and first/last second kept; log_id omitted; no row omitted]",
+      "original_rows": 173,
+      "rows_represented": 173
+    },
+    {
+      "params": {
+        "service_name": "frontend",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 23741,
+      "original_sha256": "302fc178b6c18153b2211cbe476d1d39f22d6a69b9532fae6ef4ca3b592aed4f",
+      "original_tokens": 7798,
+      "applied": true,
+      "condensed_tokens": 109,
+      "condensed_sha256": "254d5562e36c30cbd37dbee94e495846dd70fd237867adbf750774065b230d6d",
+      "notice": "[harness tool-result budget 2048 tokens: 173 rows merged into 1 identical (cmdb_id, log_name, value) entries; count and first/last second kept; log_id omitted; no row omitted]",
+      "original_rows": 173,
+      "rows_represented": 173
+    },
+    {
+      "params": {
+        "service_name": "frontendservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "frontendservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "frontendservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "frontendservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "paymentservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "paymentservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "paymentservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "paymentservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "productcatalogservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "productcatalogservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "productcatalogservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "productcatalogservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "recommendationservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "recommendationservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "recommendationservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "recommendationservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "shippingservice",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "shippingservice",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "shippingservice",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "shippingservice",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "redis",
+        "timestamp": "1708475368"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "redis",
+        "timestamp": "1708475368662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "redis",
+        "timestamp": "1708475369"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    },
+    {
+      "params": {
+        "service_name": "redis",
+        "timestamp": "1708475369662"
+      },
+      "budget_tokens": 2048,
+      "original_bytes": 40,
+      "original_sha256": "1f8863d270a417184b04b8d9448fc04377da20eb24f34a30d54cd649e435dd3e",
+      "applied": false
+    }
+  ]
+}

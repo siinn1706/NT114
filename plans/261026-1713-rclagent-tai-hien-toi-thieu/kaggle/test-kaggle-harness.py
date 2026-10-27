@@ -92,7 +92,7 @@ class Checks(unittest.TestCase):
     def setUp(self):
         Handler.hits, Handler.mode = [], 'valid'
         self.area = tempfile.TemporaryDirectory(dir=HERE / 'runtime')
-        self.selection = {'query_pairs': [{'service_name': 'synthetic', 'timestamp': '1700000000'}]}
+        self.selection = {'query_window': {'start_second': 1700000000, 'end_second': 1700000001}}
         self.guard = worker.Guard(self.area.name, self.selection, TokenizerFixture(), 16384,
                                  'trace', time.monotonic()+60)
         for name in ('config', 'llm', 'coordinator', 'tools_gpt'):
@@ -163,6 +163,22 @@ class Checks(unittest.TestCase):
             self.chat([{'role': 'user', 'content': 'fixture'}], None)
         self.assertEqual(len(Handler.hits), 0)
 
+    def test_oversized_tool_result_stops_before_sending(self):
+        class CharacterTokenizer:
+            def apply_chat_template(self, messages, **kwargs):
+                return [0] * sum(len(m.get('content') or '') for m in messages)
+        self.guard.tokenizer = CharacterTokenizer()
+        messages = [{'role': 'user', 'content': 'fixture'},
+                    {'role': 'assistant', 'content': '', 'tool_calls': [{'id': 'a', 'type': 'function',
+                     'function': {'name': 'search_logs', 'arguments': '{}'}}]},
+                    {'role': 'tool', 'tool_call_id': 'a', 'content': 'x' * 20000}]
+        with self.assertRaises(worker.HarnessStop):
+            self.chat(messages, None)
+        self.assertIn('Context overflow', self.guard.fatal)
+        self.assertIn('no truncation', self.guard.fatal)
+        self.assertEqual(len(Handler.hits), 0)
+        self.assertEqual(self.guard.count, 0)
+
     def test_oom_and_output_length_are_fatal(self):
         for mode in ('oom', 'length'):
             with self.subTest(mode=mode):
@@ -179,10 +195,97 @@ class Checks(unittest.TestCase):
             self.chat([{'role': 'user', 'content': 'fixture'}], None)
         self.assertEqual(len(Handler.hits), 0)
 
-    def test_query_domain_is_bounded(self):
-        self.guard.validate_query('search_logs', {'service_name': 'synthetic', 'timestamp': '1700000000123'})
+    def test_query_window_allows_any_service(self):
+        for service in ('synthetic', 'cartservice', 'another-service'):
+            for stamp in ('1700000000123', '1700000001', ' 1700000000 '):
+                self.guard.validate_query('search_logs', {'service_name': service, 'timestamp': stamp})
+                self.guard.validate_query('search_fluctuating_metrics', {'service_name': service, 'timestamp': stamp})
+        self.assertIsNone(self.guard.fatal)
+
+    def test_query_outside_window_is_refused(self):
+        for stamp in ('1699999999999', '1700000002', 'not-a-time'):
+            with self.subTest(stamp=stamp):
+                self.guard.fatal = None
+                with self.assertRaises(worker.HarnessStop):
+                    self.guard.validate_query('search_logs', {'service_name': 'cartservice', 'timestamp': stamp})
+        self.guard.fatal = None
         with self.assertRaises(worker.HarnessStop):
-            self.guard.validate_query('search_logs', {'service_name': 'another-case', 'timestamp': '1700000000'})
+            self.guard.validate_query('search_logs', {'service_name': 'cartservice', 'timestamp': '1700000000', 'extra': 1})
+
+    def test_windows_outside_all_full_data_are_answerable_and_bounded(self):
+        selection = {'query_window': {'start_second': 1700000000, 'end_second': 1700000001,
+                                      'full_data_seconds': {'log': [1000, 2000], 'metric': [1000, 2000]}}}
+        guard = worker.Guard(self.area.name, selection, TokenizerFixture(), 16384, 'trace', time.monotonic()+60)
+        cases = [('search_logs', 939, True), ('search_logs', 940, False), ('search_logs', 2061, True),
+                 ('search_logs', 2060, False), ('search_fluctuating_metrics', 3201, True),
+                 ('search_fluctuating_metrics', 3200, False), ('search_fluctuating_metrics', 1500, False),
+                 ('search_fluctuating_metrics', -201, True)]
+        for name, second, allowed in cases:
+            with self.subTest(name=name, second=second):
+                guard.fatal = None
+                params = {'service_name': 'cartservice', 'timestamp': str(second)}
+                if allowed:
+                    guard.validate_query(name, params)
+                    self.assertIsNone(guard.fatal)
+                else:
+                    with self.assertRaises(worker.HarnessStop):
+                        guard.validate_query(name, params)
+        guard.session.close()
+
+    def test_version7_mistyped_metric_timestamp_regression(self):
+        """Cause: v7 stopped on a timestamp 3 years after all data, which upstream answers as empty."""
+        package = HERE / 'runtime/package'
+        selection = json.loads((package / 'selection.json').read_text())
+        call = {'service_name': 'productcatalogservice', 'timestamp': '1808475368747'}
+        old = {'query_window': {k: v for k, v in selection['query_window'].items() if k != 'full_data_seconds'}}
+        old_guard = worker.Guard(self.area.name, old, TokenizerFixture(), 16384, 'trace', time.monotonic()+60)
+        with self.assertRaises(worker.HarnessStop):
+            old_guard.validate_query('search_fluctuating_metrics', call)
+        guard = worker.Guard(self.area.name, selection, TokenizerFixture(), 16384, 'trace', time.monotonic()+60)
+        guard.validate_query('search_fluctuating_metrics', call)
+        guard.validate_query('search_logs', call)
+        self.assertIsNone(guard.fatal)
+        # The packaged endpoints give the empty answers the full data gives for that second.
+        spec = importlib.util.spec_from_file_location('prepare_bundle_test', HERE / 'prepare-bundle.py')
+        prepare = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(prepare)
+        ns, client = prepare.endpoint_module()
+        import pandas as pd
+        ns['metric_df'] = pd.read_csv(package / 'input/metric/all/metrics.csv', low_memory=False)
+        ns['log_df'] = pd.read_csv(package / 'input/log/all/logs.csv', low_memory=False)
+        self.assertEqual(client.get('/search_fluctuating_metrics', query_string=call).get_json(),
+                         {'message': 'No matching records found.'})
+        self.assertEqual(client.get('/search_logs', query_string=call).data.decode().splitlines(),
+                         ['log_id,timestamp,cmdb_id,log_name,value'])
+        old_guard.session.close()
+        guard.session.close()
+
+    def test_url_parameter_injection_is_checked_where_the_server_reads_it(self):
+        # Upstream builds the URL without encoding; a second timestamp would reach the server first.
+        with self.assertRaises(worker.HarnessStop):
+            self.coordinator._get('search_logs', {'service_name': 'x&timestamp=1', 'timestamp': '1700000000'})
+        self.assertIn('outside the packaged time window', self.guard.fatal)
+
+    def test_version5_cartservice_request_regression(self):
+        """Cause: v5 allowed only trace-span pairs. Fix: the exact v5 call is covered and answered as full data."""
+        old = json.loads((HERE / 'runtime/package-v5/selection.json').read_text())
+        new = json.loads((HERE / 'runtime/package/selection.json').read_text())
+        call = {'service_name': 'cartservice', 'timestamp': '1708475368662'}
+        old_pairs = {(p['service_name'], p['timestamp']) for p in old['query_pairs']}
+        self.assertNotIn((call['service_name'], call['timestamp'][:10]), old_pairs)
+        self.assertNotIn('cartservice', {service for service, _ in old_pairs})
+        guard = worker.Guard(self.area.name, new, TokenizerFixture(), 16384, 'trace', time.monotonic()+60)
+        guard.validate_query('search_logs', call)
+        guard.validate_query('search_fluctuating_metrics', call)
+        self.assertIsNone(guard.fatal)
+        parity = json.loads((HERE / 'runtime/package/cpu-equivalence.json').read_text())
+        matched = [c for c in parity['comparisons'] if c['params'] == call]
+        self.assertEqual({c['endpoint'] for c in matched}, {'search_logs', 'search_fluctuating_metrics'})
+        self.assertTrue(all(c['equal'] for c in matched))
+        logs = next(c for c in matched if c['endpoint'] == 'search_logs')
+        self.assertEqual(logs['response_bytes'], 274292)  # 1,570 full-data cartservice rows; v5 had none.
+        self.assertIn('cartservice', parity['nonempty_log_responses'])
+        guard.session.close()
 
     def test_local_model_guard_rejects_other_endpoints(self):
         with self.assertRaises(worker.HarnessStop):

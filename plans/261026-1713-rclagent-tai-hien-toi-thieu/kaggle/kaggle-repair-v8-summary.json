@@ -1,0 +1,501 @@
+{
+  "notebook_version": 8,
+  "status": {
+    "status": "passed",
+    "stage": "F",
+    "started": 1793080774.5125422,
+    "score": "author scorer, one selected trace only; descriptive smoke result, not an accuracy estimate",
+    "rcl_elapsed_seconds": 1332.894688319,
+    "finished": 1793082218.7173364,
+    "elapsed_seconds": 1444.2047941684723,
+    "observed_requests": {
+      "protocol": 3,
+      "trace": 106
+    }
+  },
+  "compatibility": {
+    "before": {
+      "mode": "before",
+      "gpu": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "head_size": 128,
+      "query_heads": 32,
+      "kv_heads": 8,
+      "dtype": "float16",
+      "cases": [],
+      "status": "expected-shared-memory-failure",
+      "error": "OutOfResources(98304, 65536, 'shared memory')",
+      "peak_cuda_allocated_bytes": 3368960,
+      "peak_cuda_reserved_bytes": 23068672
+    },
+    "after": {
+      "mode": "after",
+      "gpu": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "head_size": 128,
+      "query_heads": 32,
+      "kv_heads": 8,
+      "dtype": "float16",
+      "cases": [
+        {
+          "query_length": 1,
+          "cached_context": 0,
+          "max_absolute_error": 0.0,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 1,
+          "cached_context": 17,
+          "max_absolute_error": 5.911290645599365e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 63,
+          "cached_context": 0,
+          "max_absolute_error": 0.00017777085304260254,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 63,
+          "cached_context": 17,
+          "max_absolute_error": 7.396936416625977e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 64,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016936659812927246,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 64,
+          "cached_context": 17,
+          "max_absolute_error": 7.359683513641357e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 65,
+          "cached_context": 0,
+          "max_absolute_error": 0.0002117753028869629,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 65,
+          "cached_context": 17,
+          "max_absolute_error": 7.934868335723877e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 127,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016191601753234863,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 127,
+          "cached_context": 17,
+          "max_absolute_error": 7.449090480804443e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 128,
+          "cached_context": 0,
+          "max_absolute_error": 0.0002480149269104004,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 128,
+          "cached_context": 17,
+          "max_absolute_error": 6.119906902313232e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 129,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016516447067260742,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 129,
+          "cached_context": 17,
+          "max_absolute_error": 6.80387020111084e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 2048,
+          "cached_context": 2048,
+          "max_absolute_error": 8.07829201221466e-06,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        }
+      ],
+      "status": "passed",
+      "peak_cuda_allocated_bytes": 415894016,
+      "peak_cuda_reserved_bytes": 478150656
+    },
+    "patch": {
+      "vllm": "0.10.2",
+      "source": "/tmp/rclagent-smoke/env/lib/python3.13/site-packages/vllm/attention/ops/prefix_prefill.py",
+      "before_sha256": "8055f9dc80be1727ac9255ac8a2e565ef08e3572325e0b69e170b2249b4b789a",
+      "after_sha256": "89e27bc3caedba18ac8bed4913b4f56d4c2a5c5414486650ae8c8c477aef03a0",
+      "official_wheel_sha256": "e0cba6110483d9bf25c4402d8655cf78d366dd13e4155210980cc3480ed98b7b",
+      "reason": "SM75 non-ALiBi prefix kernel requests 98304 bytes shared memory with BLOCK_M=128; T4 limit is 65536. Use 64 query rows per tile on Turing only. Grid already uses ceil(query_length/BLOCK_M); no tokens or attention terms removed.",
+      "changes": {
+        "Turing_BLOCK_M": 64,
+        "other_architectures_BLOCK_M": 128
+      },
+      "unchanged": [
+        "BLOCK_N=64",
+        "num_stages=1",
+        "kernel math",
+        "RCLAgent source/prompt/tools",
+        "context and request limits"
+      ]
+    },
+    "status": {
+      "status": "passed",
+      "original_reproduced_or_supported": true,
+      "patched_dense_reference_cases": 15,
+      "model_requests": 0
+    }
+  },
+  "settings": {
+    "gpu": {
+      "index": 0,
+      "name": "Tesla T4",
+      "uuid": "GPU-65e982fd-35ba-87d7-fa9f-27242c516fff",
+      "total_mib": 15360.0,
+      "free_mib": 14912.0,
+      "driver": "580.178.04",
+      "compute_capability": 7.5
+    },
+    "context": 16384,
+    "dtype": "half",
+    "tensor_parallel_size": 1,
+    "max_num_seqs": 1,
+    "vllm_engine": "V0",
+    "enable_chunked_prefill": true,
+    "max_num_batched_tokens": 2048,
+    "max_output_tokens": {
+      "self_state": 512,
+      "consolidate": 512,
+      "synthesizer": 1024
+    },
+    "max_model_requests_including_retry": 160,
+    "rcl_deadline_seconds": 1800,
+    "max_tool_rounds_per_span": 4,
+    "client_retry_attempts": 3,
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "vllm": "0.10.2",
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "seed": 20261026
+    },
+    "context_overflow": "fatal, never truncate",
+    "concurrency": 1
+  },
+  "phases": {
+    "protocol": {
+      "worker": {
+        "status": "passed",
+        "phase": "protocol",
+        "model_requests_including_retries": 3,
+        "token_usage": {
+          "prompt_tokens": 858,
+          "completion_tokens": 140,
+          "responses_with_usage": 3
+        },
+        "error": null,
+        "fatal": null
+      },
+      "request_count": 3,
+      "response_http_statuses": [
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 1,
+        "fatal": 0,
+        "worker_error": 0
+      },
+      "last_error_events": [],
+      "tool_result_budget": {
+        "search_logs_results": 1,
+        "condensed": 0,
+        "spans_with_condensed_result": 0,
+        "condensed_detail": []
+      }
+    },
+    "trace": {
+      "worker": {
+        "status": "passed",
+        "phase": "trace",
+        "model_requests_including_retries": 106,
+        "token_usage": {
+          "prompt_tokens": 108220,
+          "completion_tokens": 11512,
+          "responses_with_usage": 106
+        },
+        "error": null,
+        "fatal": null
+      },
+      "request_count": 106,
+      "response_http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 0,
+        "fatal": 0,
+        "worker_error": 0
+      },
+      "last_error_events": [],
+      "tool_result_budget": {
+        "search_logs_results": 38,
+        "condensed": 1,
+        "spans_with_condensed_result": 1,
+        "condensed_detail": [
+          {
+            "span_id": "6752e26884a7fee8",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1708475368662"
+            },
+            "original_bytes": 272734,
+            "original_tokens": 124953,
+            "condensed_tokens": 454,
+            "notice": "[harness tool-result budget 2048 tokens: 1557 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          }
+        ]
+      }
+    }
+  },
+  "artifact": "rclagent-kaggle-repair-v8-results.zip",
+  "artifact_bytes": 105679,
+  "artifact_sha256": "29b07b58799237e3e619d118bd0626e8e571c20e749d5c6b65572642fe0a8934",
+  "processes": [
+    {
+      "name": "vllm",
+      "exit": 0
+    },
+    {
+      "name": "tools-synthetic",
+      "exit": -15
+    },
+    {
+      "name": "worker-protocol",
+      "exit": 0
+    },
+    {
+      "name": "tools-telemetry",
+      "exit": -15
+    },
+    {
+      "name": "worker-trace",
+      "exit": 0
+    }
+  ],
+  "resource_peaks": {
+    "by_phase": {
+      "setup": {
+        "sampled_peak_owned_rss_bytes": 7782313984,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-65e982fd-35ba-87d7-fa9f-27242c516fff": 12674.0
+        },
+        "samples": 90
+      },
+      "protocol": {
+        "sampled_peak_owned_rss_bytes": 9043881984,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-65e982fd-35ba-87d7-fa9f-27242c516fff": 13122.0
+        },
+        "samples": 14
+      },
+      "trace": {
+        "sampled_peak_owned_rss_bytes": 9208909824,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-65e982fd-35ba-87d7-fa9f-27242c516fff": 13568.0
+        },
+        "samples": 1285
+      },
+      "scoring": {
+        "sampled_peak_owned_rss_bytes": 8135475200,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-65e982fd-35ba-87d7-fa9f-27242c516fff": 13568.0
+        },
+        "samples": 3
+      }
+    },
+    "method": "Owned process-tree RSS and nvidia-smi compute-app memory, sampled every ~1s. Device peaks remain separate; RSS may double-count shared pages. Missing GPU metrics are unknown, not zero. Brief allocation peaks between samples can be missed."
+  },
+  "input_verification": {
+    "source": "/kaggle/input/datasets/siinn1706/rclagent-one-trace-smoke-261026",
+    "container": "expanded Kaggle dataset",
+    "manifest_sha256": "685127cbe2728ed1c9ed9c3dff5722874361e875ff7f788f98e2381ee9ab9336",
+    "all_member_hashes_verified": true,
+    "original_bundle_sha256": "f270e386345e2719fe8beaa71261900c983c5a77858d521f53e36a9ba87ac763",
+    "container_zip_hash_checked": false
+  },
+  "result": {
+    "root_causes": [
+      "checkoutservice",
+      "paymentservice",
+      "productcatalogservice",
+      "currencyservice",
+      "emailservice",
+      "recommendationservice",
+      "shippingservice",
+      "adservice",
+      "frontendservice",
+      "redis"
+    ]
+  },
+  "scoring_ran": true,
+  "author_score_text": "Error in sitecustomize; set PYTHONVERBOSE for traceback:\nModuleNotFoundError: No module named 'wrapt'\n\nResults  (1 faults evaluated out of 1 groundtruth, 1 traces, data_root=/kaggle/working/rclagent-smoke/run/scoring)\n  R@1  : 1.0000  (1/1)\n  R@3  : 1.0000  (1/1)\n  R@5  : 1.0000  (1/1)\n  R@10 : 1.0000  (1/1)\n  MRR  : 1.0000\n",
+  "code_matches_downloaded_native_source": true,
+  "private_notebook_metadata_verified": true
+}

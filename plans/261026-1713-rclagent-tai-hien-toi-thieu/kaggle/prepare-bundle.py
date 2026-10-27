@@ -10,7 +10,6 @@ import importlib.util
 import json
 import os
 import pickle
-import re
 import shutil
 import subprocess
 import sys
@@ -34,6 +33,18 @@ MODEL_REV = 'cdbee75f17c01a7cc42f958dc650907174af0554'
 UPSTREAM_FILES = ('config.py', 'llm.py', 'coordinator.py', 'tool_server.py',
                   'tools_gpt.py', 'evaluate.py', 'LICENSE', 'README.md',
                   'requirements.txt', 'preprocess/preprocess_re2ob.py')
+# Service names the upstream re2ob system prompt lists; the model may query any of them.
+KNOWN_SERVICES = ('adservice', 'cartservice', 'checkoutservice', 'currencyservice', 'emailservice',
+                  'frontend', 'frontendservice', 'paymentservice', 'productcatalogservice',
+                  'recommendationservice', 'shippingservice', 'redis')
+TOOL_RESULT_BUDGET = {
+    'deviation_from_upstream': True, 'endpoint': 'search_logs', 'budget_tokens': 2048,
+    'tokenizer': 'Qwen/Qwen3-4B-Instruct-2507@' + MODEL_REV, 'scheme': 'ladder', 'module': 'tool-result-budget.py',
+    'rule': 'Results within the budget pass byte-for-byte. Larger results are merged by exact duplicates, then by '
+            'masked message template, then truncated by severity priority, whichever first fits; a notice line '
+            'tells the model. Applied by smoke-worker.py outside the unchanged upstream code.'}
+# Substring, case and unknown-name probes of the endpoints' str.contains predicates.
+SERVICE_PROBES = ('service', 'cart', 'Frontend', 'CARTSERVICE', 'node-1', 'unknownservice')
 
 
 def sha(path):
@@ -68,6 +79,21 @@ def collect_csv(path, selector):
     return pd.concat(frames, ignore_index=True)
 
 
+def full_data_seconds():
+    """First and last second of all full-data metric and log rows (logs before the INFO/DEBUG filter, a superset).
+
+    An endpoint window lying wholly outside this range is empty on the full data and on the package alike.
+    """
+    result = {}
+    for name, path in (('metric', FULL / 'metric/all/metrics.csv'), ('log', FULL / 'log/all/logs.csv')):
+        low = high = None
+        for chunk in pd.read_csv(path, usecols=['timestamp'], chunksize=2_000_000):
+            low = int(chunk.timestamp.min()) if low is None else min(low, int(chunk.timestamp.min()))
+            high = int(chunk.timestamp.max()) if high is None else max(high, int(chunk.timestamp.max()))
+        result[name] = [low, high]
+    return result
+
+
 def run():
     assert subprocess.check_output(['git', '-C', str(CODE), 'rev-parse', 'HEAD'], text=True).strip() == COMMIT
     assert not subprocess.check_output(['git', '-C', str(CODE), 'status', '--porcelain', '--untracked-files=no'], text=True).strip()
@@ -86,7 +112,11 @@ def run():
     trace = case_trace[case_trace.trace_id == TRACE_ID].copy()
     assert len(trace) == 33 and trace.span_id.nunique() == 33
     assert ROOT_SPAN in set(trace.span_id)
-    pairs = sorted({(str(row.cmdb_id), str(row.timestamp)[:10]) for row in trace.itertuples()})
+    # The model sees span timestamps; upstream endpoints parse the first ten digits as seconds.
+    seconds = sorted({int(str(ts)[:10]) for ts in trace.timestamp})
+    lo, hi = seconds[0], seconds[-1]
+    metric_lo, metric_hi = lo - 1200, hi + 1200  # search_fluctuating_metrics baseline window.
+    log_lo, log_hi = lo - 60, hi + 60  # search_logs window.
     span_ids = set(trace.span_id)
     seen, pending = set(), [ROOT_SPAN]
     while pending:
@@ -126,36 +156,40 @@ def run():
     ns.pop('trace_df', None)
     gc.collect()
 
-    # Every KPI matched by the author's service predicate; no anomaly selection.
+    # Every row of every service inside the window: no service or anomaly selection. A row outside it
+    # fails the endpoint's timestamp predicate for every allowed query second, so it can never be returned.
     case_metric = pp._convert_one_metric_simple(str(RAW), 'checkoutservice_cpu_2').drop(columns='_case_id')
 
     def metric_mask(frame):
-        mask = pd.Series(False, index=frame.index)
-        for service, ts in pairs:
-            mask |= frame.service_name.str.contains(service, case=False, na=False) & frame.timestamp.between(int(ts)-1200, int(ts)+1200)
-        return mask
+        return frame.timestamp.between(metric_lo, metric_hi)
 
     full_metric = pd.read_csv(metric_path, low_memory=False)
     expected_case_rows = case_metric[metric_mask(case_metric)].reset_index(drop=True)
     expected_case_rows['node_id'] = expected_case_rows['node_id'].replace('', float('nan'))
-    # Provenance only: independent raw conversion can differ in the final bit across
-    # pandas versions. Actual package rows are copied VERBATIM from the author CSV.
+    # Provenance: the full merged rows in the window are exactly this case's rows, so no other case
+    # (and no val/test case) overlaps it. Independent raw conversion can differ in the final bit across
+    # pandas versions; actual package rows are copied VERBATIM from the author CSV.
     pd.testing.assert_frame_equal(full_metric.loc[metric_mask(full_metric)].reset_index(drop=True),
                                   expected_case_rows, check_dtype=False, check_exact=False, rtol=1e-14, atol=0)
     with metric_path.open('r', encoding='utf-8', newline='') as source, (data / 'metric/all/metrics.csv').open('w', encoding='utf-8', newline='') as target:
         target.write(next(source))
         for line in source:
-            fields = next(csv.reader([line]))
-            ts, service = int(fields[0]), fields[2]
-            if any(re.search(svc, service, re.IGNORECASE) and int(at)-1200 <= ts <= int(at)+1200 for svc, at in pairs):
+            if metric_lo <= int(next(csv.reader([line]))[0]) <= metric_hi:
                 target.write(line)
     small_metric = pd.read_csv(data / 'metric/all/metrics.csv', low_memory=False)
-    # Stronger than response equality: the complete baseline rows must be identical.
+    # Stronger than response equality: the complete window rows must be identical.
     pd.testing.assert_frame_equal(full_metric.loc[metric_mask(full_metric)].reset_index(drop=True),
                                   small_metric.reset_index(drop=True), check_exact=True)
-    for service, ts in pairs:
-        compare('search_fluctuating_metrics', {'service_name': service, 'timestamp': ts},
-                full_metric, small_metric, 'metric_df')
+    services = sorted(set(trace.cmdb_id.astype(str)) | set(small_metric.service_name.dropna().astype(str))
+                      | set(KNOWN_SERVICES) | set(SERVICE_PROBES))
+    # Seconds plus the millisecond strings the model actually sees in span data. Each full-dataframe
+    # metric query scans 9.4 million rows, so it uses one millisecond form per second.
+    stamps = sorted({str(s) for s in seconds} | {str(ts) for ts in trace.timestamp})
+    metric_stamps = sorted({str(s) for s in seconds} | {min(t for t in stamps if t[:10] == str(s) and len(t) > 10) for s in seconds})
+    for service in services:
+        for ts in metric_stamps:
+            compare('search_fluctuating_metrics', {'service_name': service, 'timestamp': ts},
+                    full_metric, small_metric, 'metric_df')
     metric_count = len(small_metric)
     del case_metric, expected_case_rows, full_metric, small_metric
     ns.pop('metric_df', None)
@@ -166,22 +200,22 @@ def run():
         shutil.copyfile(FULL / 'metric' / name, data / 'metric' / name)
 
     def log_mask(frame):
-        mask = pd.Series(False, index=frame.index)
-        for service, ts in pairs:
-            mask |= frame.cmdb_id.astype(str).str.contains(service, na=False) & frame.timestamp.between(int(ts)-60, int(ts)+60)
+        # The upstream loader drops INFO/DEBUG lines before serving; then only the time window filters.
         noise = frame.value.astype(str).str.lower().str.contains(r'severity:\s*(?:info|debug)', regex=True, na=False)
-        return mask & ~noise
+        return frame.timestamp.between(log_lo, log_hi) & ~noise
 
     case_log = pp._convert_one_log(str(RAW), 'checkoutservice_cpu_2').drop(columns='_case_id')
     logs = case_log[log_mask(case_log)]
     logs.to_csv(data / 'log/all/logs.csv', index=False)
-    # Scan the entire merged log dataset, applying precisely the endpoint predicate.
+    # Scan the entire merged log dataset. Equal frames also prove that only this case lies in the window.
     full_log_queries = collect_csv(log_path, log_mask)
+    assert full_log_queries.log_id.str.startswith('re2ob_checkoutservice_cpu_2_').all()
     small_logs = pd.read_csv(data / 'log/all/logs.csv', low_memory=False)
     pd.testing.assert_frame_equal(full_log_queries.reset_index(drop=True), small_logs,
                                   check_dtype=False, check_exact=True)
-    for service, ts in pairs:
-        compare('search_logs', {'service_name': service, 'timestamp': ts}, full_log_queries, small_logs, 'log_df')
+    for service in services:
+        for ts in stamps:
+            compare('search_logs', {'service_name': service, 'timestamp': ts}, full_log_queries, small_logs, 'log_df')
     log_count = len(small_logs)
     del case_log, logs, full_log_queries, small_logs
     ns.pop('log_df', None)
@@ -194,8 +228,10 @@ def run():
     tokens = selected[0].split()
     tokens[0] = '0'
     (data / 'error_traces.txt').write_text(lines[0] + '\n' + ' '.join(tokens) + '\n', encoding='utf-8')
-    write_json(stage / 'selection.json', {'trace_id': TRACE_ID, 'root_span_id': ROOT_SPAN,
-               'span_count': 33, 'query_pairs': [{'service_name': a, 'timestamp': b} for a, b in pairs]})
+    write_json(stage / 'selection.json', {'trace_id': TRACE_ID, 'root_span_id': ROOT_SPAN, 'span_count': 33,
+               'query_window': {'start_second': lo, 'end_second': hi, 'service_name': 'any',
+                                'metric_rows_seconds': [metric_lo, metric_hi], 'log_rows_seconds': [log_lo, log_hi],
+                                'full_data_seconds': full_data_seconds()}})
     gt = pd.read_csv(FULL / 'groundtruth.csv')
     gt = gt[gt.timestamp == int((RAW / 'inject_time.txt').read_text())]
     assert len(gt) == 1
@@ -207,11 +243,16 @@ def run():
         original = subprocess.check_output(['git', '-C', str(CODE), 'show', COMMIT + ':' + name])
         assert original.replace(b'\r\n', b'\n') == (CODE / name).read_bytes().replace(b'\r\n', b'\n'), name
         destination.write_bytes(original)
-    for name in ('kaggle-runtime.py', 'smoke-worker.py', 'vllm-t4-compat.py', 'verify-t4-prefix-kernel.py'):
+    for name in ('kaggle-runtime.py', 'smoke-worker.py', 'tool-result-budget.py', 'vllm-t4-compat.py', 'verify-t4-prefix-kernel.py'):
         shutil.copyfile(HERE / name, stage / name)
-    report = {'status': 'pass', 'method': 'Unchanged upstream Flask endpoint bodies; byte-for-byte HTTP responses. Full merged CSV scans, complete metric dataframe, exact full baseline row equality.',
+    report = {'status': 'pass', 'method': 'Unchanged upstream Flask endpoint bodies; byte-for-byte HTTP responses. Full merged CSV scans, complete metric dataframe, exact window row equality.',
               'trace_rows': 33, 'metric_rows': metric_count, 'log_rows': log_count,
-              'query_pairs': len(pairs), 'endpoint_comparisons': len(comparisons),
+              'query_window': {'start_second': lo, 'end_second': hi, 'metric_rows_seconds': [metric_lo, metric_hi],
+                               'log_rows_seconds': [log_lo, log_hi]},
+              'coverage_argument': 'Upstream metric and log endpoints return only rows with timestamp in [t-1200, t+1200] and [t-60, t+60] for the parsed query second t. For t in the query window these lie inside the packaged row windows, which equal the full merged data exactly, so any service_name gives the full-data response.',
+              'queried_services': services, 'queried_timestamps': {'search_logs': stamps, 'search_fluctuating_metrics': metric_stamps},
+              'nonempty_log_responses': sorted({c['params']['service_name'] for c in comparisons if c['endpoint'] == 'search_logs' and c['response_bytes'] > 41}),
+              'endpoint_comparisons': len(comparisons),
               'comparisons': comparisons, 'pandas_version': pd.__version__,
               'source_inputs_unchanged': raw_hashes == {name: sha(RAW / name) for name in raw_hashes}}
     assert report['source_inputs_unchanged']
@@ -226,9 +267,10 @@ def run():
                 'selection_rule': 'Previously selected longest author-chosen trace of the first unambiguous train case in author processing order; original error_traces data row 442.',
                 'model': 'Qwen/Qwen3-4B-Instruct-2507', 'model_revision': MODEL_REV,
                 'raw_case_file_hashes': raw_hashes, 'full_preprocessed_hashes': full_hashes,
-                'metrics_source': 'simple_metrics.csv, the upstream preprocessing default; all matched KPIs retained.',
+                'metrics_source': 'simple_metrics.csv, the upstream preprocessing default; all KPIs of all services in the window retained.',
+                'tool_query_domain': 'Any service_name; query second within the selected trace span seconds. Package holds every full-data metric row within 1200 s and every served log row within 60 s of that window; all belong to the selected case.',
                 'data_policy': 'Only selected case. Labels in scoring/; never forwarded to model. Private Kaggle use only.',
-                'upstream_patch': None, 'files': {}}
+                'upstream_patch': None, 'tool_result_budget': TOOL_RESULT_BUDGET, 'files': {}}
     manifest['files'] = {str(p.relative_to(stage)).replace('\\', '/'): {'sha256': sha(p), 'bytes': p.stat().st_size}
                          for p in sorted(stage.rglob('*')) if p.is_file()}
     write_json(stage / 'manifest.json', manifest)
