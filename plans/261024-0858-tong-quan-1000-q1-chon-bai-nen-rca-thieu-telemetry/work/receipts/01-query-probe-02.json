@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "01-query-probe-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/queries.py probe query-probe-02.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/01-query-probe-02.out",
+ "egress_trace_reference": "work/logs/01-query-probe-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:19:44.954210+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "cf3cda1b5f805dba54a740318a9cb7747f1f10dc20e64927a8ca582b5c4eb0b9"
+ ],
+ "output_hashes": [
+  "76a3b2b66a4db85da41f5e9426fa2599600ca4cbe9d752c8f90dc3969714ec35"
+ ],
+ "checks": [
+  "re-probe after D1/D6 pre-freeze correction"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "bd23733e6cf48e569eca021c2c97379971914b9caccece11915edc3dd68d59d1",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/queries.py probe query-probe-02.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "ffe53d2dba27b8dcf21751ab7e734247797cd7aa97ac0b5e3c0d9d5839bf7377",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "protocol.md",
+   "sha256_before": "cf3cda1b5f805dba54a740318a9cb7747f1f10dc20e64927a8ca582b5c4eb0b9",
+   "sha256_after": "cf3cda1b5f805dba54a740318a9cb7747f1f10dc20e64927a8ca582b5c4eb0b9",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/query-probe-02.csv",
+   "sha256": "76a3b2b66a4db85da41f5e9426fa2599600ca4cbe9d752c8f90dc3969714ec35",
+   "created_this_attempt": true
+  }
+ ]
+}

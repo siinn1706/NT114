@@ -1,0 +1,90 @@
+{
+ "schema_version": 2,
+ "id": "05-concat-snow-s1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/concat-screen.py work/records/t0snow2-t0.csv work/screen/all2-s1-merged.csv work/screen/all-s1-merged.csv work/screen/snow-s1-merged.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-concat-snow-s1-01.out",
+ "egress_trace_reference": "work/logs/05-concat-snow-s1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T15:51:14.501526+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+  "a84de3e28ca97a4aaac73fe998ceb36b4eb2d8f6232faa0ca995c0f204f3c406",
+  "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43"
+ ],
+ "output_hashes": [
+  "491fc234ff97908468b004bd9cee54d76a7f1acf83ceabe9b9dad9554494ee34"
+ ],
+ "checks": [
+  "screening table for T0 after snowball r1"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "aec9b595f47c87383b79c0921590bacaab88a1d859365ca6d519f780555c4bce",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/concat-screen.py work/records/t0snow2-t0.csv work/screen/all2-s1-merged.csv work/screen/all-s1-merged.csv work/screen/snow-s1-merged.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "4eb1bf0cdf757ae36b4b1807a93e7395a4545f5bb6604ae8e0a50eeea67f0c7f",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/all-s1-merged.csv",
+   "sha256_before": "a84de3e28ca97a4aaac73fe998ceb36b4eb2d8f6232faa0ca995c0f204f3c406",
+   "sha256_after": "a84de3e28ca97a4aaac73fe998ceb36b4eb2d8f6232faa0ca995c0f204f3c406",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/snow-s1-merged.csv",
+   "sha256_before": "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43",
+   "sha256_after": "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/all2-s1-merged.csv",
+   "sha256": "491fc234ff97908468b004bd9cee54d76a7f1acf83ceabe9b9dad9554494ee34",
+   "created_this_attempt": true
+  }
+ ]
+}

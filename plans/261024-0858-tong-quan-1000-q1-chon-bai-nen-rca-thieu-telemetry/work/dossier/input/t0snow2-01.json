@@ -1,0 +1,420 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Failure Prediction of Hard Disk Drives Based on Adaptive Rao–Blackwellized Particle Filter Error Tracking Method",
+   "identifiers": {
+    "openalex": "W3049121962",
+    "doi": "10.1109/tii.2020.3016121"
+   },
+   "abstract": "Active failure prediction of hard disk drives (HDDs) is critical to prevent data loss and spare parts replacement decisions. Existing methods for failure predictions of HDDs always used a binary classifier to distinguish the healthy or failed HDDs and cannot address the problem of variable degradation states. In this article, an adaptive error tracking method is proposed for the HDD failure prediction. This method regards the extracted degradation feature as time serials and uses a state filter to estimate the real-time HDD's health status. Then, the HDD failure online prediction is achieved according to the alarm threshold determined by the adaptive error tracking. The degradation of an HDD is described by a first-order Markov hybrid jump degradation model, and the advanced Rao-Blackwellized particle filter algorithm, together with the expectation-maximization (EM) algorithm, is derived to estimate the model parameters adaptively. Finally, to verify the effectiveness of the proposed method, an accelerated degradation test (ADT) based on the vibration was carried out. And the data from ADT and real data center show that the proposed method performs much better than the previous methods, such as Kalman filter, SVM, MD, and recurrent neural network (RNN) based methods, with respect to failure prediction and the alarm distance, which helps to backup data and optimize maintenance decision costs for users.",
+   "status": "current"
+  },
+  {
+   "title": "OILog: An online incremental log keyword extraction approach based on MDP-LSTM neural network",
+   "identifiers": {
+    "openalex": "W3049528565",
+    "doi": "10.1016/j.is.2020.101618"
+   },
+   "abstract": "Abstract Log keyword extraction is an indispensable part of log anomaly detection. There are two main challenges in keyword extraction, one is that the essence of logs is unstructured, and different vendors usually define different log formats, the other one is that the most of the traditional method cannot update the log keywords incrementally to match the newly generated log data, so the extraction accuracy is low. To solve these problems, we introduce an online incremental keyword extraction method OILog. The essential idea of this method is that log templates are usually the longest combination of high-frequency words. OILog builds models by using a deep Long Short-Term Memory network (LSTM) for capturing both high-frequency log keywords in real-time and new log keywords generated by the system, which can transform unstructured raw logs into structured logs quickly. To improve the efficiency and accuracy of the model, we proposed an improved particle swarm optimization algorithm, which changes the traditional topology structure of Particle Swarm Optimization algorithm (PSO) into a multilayer structure and applies a new particle velocity update formula to increase the attraction between particles. We summarized the previous works and validated OILog using real log data collected from four systems. The results show that OILog has superiority in terms of both accuracy and robustness.",
+   "status": "current"
+  },
+  {
+   "title": "Using black-box performance models to detect performance regressions under varying workloads: an empirical study",
+   "identifiers": {
+    "openalex": "W3082803092",
+    "doi": "10.1007/s10664-020-09866-z"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "A trusted feature aggregator federated learning for distributed malicious attack detection",
+   "identifiers": {
+    "openalex": "W3083130672",
+    "doi": "10.1016/j.cose.2020.102033"
+   },
+   "abstract": "Abstract With the rapid development of IoT technology, millions of physical devices embedded with electronics or software are put into regular production. Each IoT device is connected to the user’s life and property privacy. Without a credible intrusion detection and defense mechanism installed on the device, it may be attacked by hackers, such as monitoring events of home cameras and control of smart devices. These attack events will have a serious impact on users’ production and life. This paper proposes a Blockchained-Federated Learning based cloud intrusion detection scheme. The scheme sends the local training parameters of the IoT intrusion alarm set to the cloud computing center for global prediction, and stores the model training process information and behavior on the blockchain. In order to solve the high probability of false alerts affecting the accuracy of the federated learning model, the scheme proposes an alert filter identification module. At the same time, through the erasure code-based blockchain storage solution, the traditional blockchain storage performance is improved to meet the storage needs of a large number of alert training data in real scenarios.",
+   "status": "current"
+  },
+  {
+   "title": "Diagnosing root causes of intermittent slow queries in cloud databases",
+   "identifiers": {
+    "openalex": "W3083560262",
+    "doi": "10.14778/3389133.3389136"
+   },
+   "abstract": "With the growing market of cloud databases, careful detection and elimination of slow queries are of great importance to service stability. Previous studies focus on optimizing the slow queries that result from internal reasons (e.g., poorly-written SQLs). In this work, we discover a different set of slow queries which might be more hazardous to database users than other slow queries. We name such queries Intermittent Slow Queries (iSQs), because they usually result from intermittent performance issues that are external (e.g., at database or machine levels). Diagnosing root causes of iSQs is a tough but very valuable task. This paper presents iSQUAD, Intermittent Slow QUery Anomaly Diagnoser, a framework that can diagnose the root causes of iSQs with a loose requirement for human intervention. Due to the complexity of this issue, a machine learning approach comes to light naturally to draw the interconnection between iSQs and root causes, but it faces challenges in terms of versatility, labeling overhead and interpretability. To tackle these challenges, we design four components, i.e., Anomaly Extraction, Dependency Cleansing, Type-Oriented Pattern Integration Clustering (TOPIC) and Bayesian Case Model. iSQUAD consists of an offline clustering & explanation stage and an online root cause diagnosis & update stage. DBAs need to label each iSQ cluster only once at the offline stage unless a new type of iSQs emerges at the online stage. Our evaluations on real-world datasets from Alibaba OLTP Database show that iSQUAD achieves an iSQ root cause diagnosis average F1-score of 80.4%, and outperforms existing diagnostic tools in terms of accuracy and efficiency.",
+   "status": "current"
+  },
+  {
+   "title": "Fairness-Efficiency Scheduling for Cloud Computing With Soft Fairness Guarantees",
+   "identifiers": {
+    "openalex": "W3083685379",
+    "doi": "10.1109/tcc.2020.3021084"
+   },
+   "abstract": "Fairness and efficiency are two important metrics for users in modern data center computing system. Due to the heterogeneous resource demands of CPU, memory, and network I/O for users’ tasks, it cannot achieve the strict 100 percent fairness and the maximum efficiency at the same time. Existing fairness-efficiency schedulers (e.g., Tetris) can balance such a tradeoff elastically by relaxing fairness constraint for improved efficiency using the knob. However, their approaches areunawareof fairness degradation under different knob configurations, which makes several drawbacks. First, it cannot tell how muchrelaxedfairness can be guaranteed given a knob value. Second, it fails to meet several essential properties such as sharing incentive. To address these issues, we propose a new fairness-efficiency scheduler,QKnober, to balance the fairness and efficiency elastically and flexibly using a tunable fairness knob. QKnober is afairness-sensitivescheduler that can maximize the system efficiency while guaranteeing the$\\theta$-soft fairness by modeling the whole allocation as a combination offairness-orientedallocation andefficiency-orientedallocation. Moreover, QKnober satisfies fairness properties of sharing incentive, envy-freeness and pareto efficiency given a proper knob value. We have implemented QKnober in YARN and evaluated it using both testbed and simulated experiments. The results show that QKnober outperforms its alternatives DRF and Tetris by 31.2 and 4.5 percent, respectively.",
+   "status": "current"
+  },
+  {
+   "title": "Workflow-Aware Automatic Fault Diagnosis for Microservice-Based Applications With Statistics",
+   "identifiers": {
+    "openalex": "W3084013135",
+    "doi": "10.1109/tnsm.2020.3022028"
+   },
+   "abstract": "Microservice architectures bring many benefits, e.g., faster delivery, improved scalability, and greater autonomy, so they are widely adopted to develop and operate Internet-based applications. How to effectively diagnose the faults of applications with lots of dynamic microservices has become a key to guarantee applications' performance and reliability. As a microservice performs various behaviors in different workflows of processing requests, existing approaches often cannot accurately locate the root cause of an application with interactive microservices in a dynamic deployment environment. We propose a workflow-aware automatic fault diagnosis approach for microservice-based applications with statistics. We characterize traces across microservices with calling trees, and then learn trace patterns as baselines. For the faults affecting the workflows of processing requests, we estimate the workflows' anomaly degrees, and then locate the microservices causing anomalies by comparing the difference between current traces and learned baselines with tree edit distance. For performance anomalies causing significantly increased response time, we employ principal component analysis to extract suspicious microservices with large fluctuation in response time. Finally, we evaluate our approach on three typical microservice-based applications with a series of experiments. The results show that our approach can accurately locate the microservices causing anomalies.",
+   "status": "current"
+  },
+  {
+   "title": "An Attribute-Based Access Control for Cloud Enabled Industrial Smart Vehicles",
+   "identifiers": {
+    "openalex": "W3084020249",
+    "doi": "10.1109/tii.2020.3022759"
+   },
+   "abstract": "Smart cities' vision will encompass connected industrial vehicles, which will offer data-driven and intelligent services to the user. Such interaction within dispersed connected objects are sometimes referred as the industrial Internet-of-Vehicles (IIoV). The prime motivation of an intelligent transportation system (ITS) is ensuring the safety of the drivers and offering a comfortable experience to the user. However, such complex infrastructures opens broad attack surfaces to the adversaries, which can remotely exploit and control the critical mechanics in the smart vehicles, including engine and brake systems. Security and privacy concerns are significant barriers to the wide adoption of this revolutionary technology that has to be addressed before a comprehensive implementation of the real vision of ITS. This article is a stepping stone to address access control issues in the IIoV ecosystem and propose a formal attribute-based access control system (referred to ITS-ABACG). The proposed model introduces the notion of groups, which are assigned to various smart entities based on the different attributes. It also offers the implementation of fine-grained security policies and considers individualized privacy preferences along with system-wide policies to accept or reject notification, alerts, and advertisements from different participating smart entities. We present the prototype implementation of our proposed model in the Amazon Web Services IoT platform together with extensive performance to reflect the practicality and wide-scale adoption of the proposed system.",
+   "status": "current"
+  },
+  {
+   "title": "Sentinel",
+   "identifiers": {
+    "openalex": "W3086099593",
+    "doi": "10.14778/3407790.3407856"
+   },
+   "abstract": "Systems continue to grow in complexity in response to the need to support vast quantities of data and a wide variety of workloads. Small changes in workloads and system configuration can result in significantly different system behaviour and performance characteristics. As a result, system administrators and developers spend many hours diagnosing and debugging performance problems in data systems and the applications that use them. In this paper, we present Sentinel, an analysis tool that assists these users by constructing fine-grained models of system behaviour and comparing these models to pinpoint differences in system behaviour for different workloads and system configurations. Importantly, Sentinel's insights are derived from built-in debug logging libraries without necessitating that their log messages be written to disk, thereby generalizing to all systems that use debug logging without incurring its overheads. Our experiments demonstrate Sentinel's superiority in analyzing the execution behaviour and performance characteristics of database systems, client applications, and web servers compared to prior approaches.",
+   "status": "current"
+  },
+  {
+   "title": "Computational intelligence intrusion detection techniques in mobile cloud computing environments: Review, taxonomy, and open research issues",
+   "identifiers": {
+    "openalex": "W3087196177",
+    "doi": "10.1016/j.jisa.2020.102582"
+   },
+   "abstract": "Abstract With the increasing utilization of the Internet and its provided services, an increase in cyber-attacks to exploit the information occurs. A technology to store and maintain user's information that is mostly used for its simplicity and low-cost services is cloud computing (CC). Also, a new model of computing that is noteworthy today is mobile cloud computing (MCC) that is used to reduce the limitations of mobile devices by allowing them to offload certain computations to the remote cloud. The cloud environment may consist of critical or essential information of an organization; therefore, to prevent this environment from possible attacks a security solution is needed. An intrusion detection system (IDS) is a solution to these security issues. An IDS is a hardware or software device that can examine all inside and outside network activities and recognize doubtful patterns that may demonstrate a network attack and automatically alert the network (or system) administrator. Because of the ability of an IDS to detect known/unknown (inside/outside) attacks, it is an excellent choice for securing cloud computing. Various methods are used in an intrusion detection system to recognize attacks more accurately. Unlike survey papers presented so far, this paper aims to present a comprehensive survey of intrusion detection systems that use computational intelligence (CI) methods in a (mobile) cloud environment. We firstly provide an overview of CC and MCC paradigms and service models, also reviewing security threats in these contexts. Previous literature is critically surveyed, highlighting the advantages and limitations of previous work. Then we define a taxonomy for IDS and classify CI-based techniques into single and hybrid methods. Finally, we highlight open issues and future directions for research on this topic.",
+   "status": "current"
+  },
+  {
+   "title": "A Machine-Learning-Based Distributed System for Fault Diagnosis With Scalable Detection Quality in Industrial IoT",
+   "identifiers": {
+    "openalex": "W3087888346",
+    "doi": "10.1109/jiot.2020.3026211"
+   },
+   "abstract": "In this article, a methodology based on machine learning for fault detection in continuous processes is presented. It aims to monitor fully distributed scenarios, such as the Tennessee Eastman process (TEP), selected as the use case of this work, where sensors are distributed throughout an industrial plant. A hybrid feature selection approach based on filters and wrappers, called hybrid Fisher wrapper method, is proposed to select the most representative sensors to get the highest detection quality for fault identification. The proposed methodology provides a complete design space of solutions differing in the sensing effort, the processing complexity, and the obtained detection quality. It constitutes an alternative to the typical scheme in Industry 4.0, where multiple distributed sensor systems collect and send data to a centralized cloud. Differently, the proposed technique follows a distributed approach, in which processing can be done eventually close to the sensors where data is generated, i.e., at the edge of the Internet of Things. This approach overcomes the bandwidth, privacy, and latency limitations that centralized approaches may suffer. The experimental results show that the proposed methodology provides TEP fault-detection solutions with state-of-the-art detection quality figures. In terms of latency, solutions obtained outperform in 37.5 times the implementation with the highest detection quality, using 1.99 times fewer features, on average. Also, the scalability of the framework provides a design space where the optimal implementation can be chosen according to the application needs.",
+   "status": "current"
+  },
+  {
+   "title": "Fault Injection Analytics: A Novel Approach to Discover Failure Modes in Cloud-Computing Systems",
+   "identifiers": {
+    "openalex": "W3088795029",
+    "doi": "10.1109/tdsc.2020.3025289",
+    "arxiv": "2010.00331"
+   },
+   "abstract": "Cloud computing systems fail in complex and unexpected ways due to unexpected combinations of events and interactions between hardware and software components. Fault injection is an effective means to bring out these failures in a controlled environment. However, fault injection experiments produce massive amounts of data, and manually analyzing these data is inefficient and error-prone, as the analyst can miss severe failure modes that are yet unknown. This article introduces a new paradigm (fault injection analytics) that applies unsupervised machine learning on execution traces of the injected system, to ease the discovery and interpretation of failure modes. We evaluated the proposed approach in the context of fault injection experiments on the OpenStack cloud computing platform, where we show that the approach can accurately identify failure modes with a low computational cost.",
+   "status": "current"
+  },
+  {
+   "title": "In-Home Floor Based Sensor System-Smart Carpet- to Facilitate Healthy Aging in Place (AIP)",
+   "identifiers": {
+    "openalex": "W3091534396",
+    "doi": "10.1109/access.2020.3027535"
+   },
+   "abstract": "With the rapidly aging population, there is a need to detect elderly's activity, monitor their health, alert health care personnel, and provide real-time and long-term access to the generated sensor data. With the advances in sensor technologies, communication protocols, computing power, and cloud and edge services, it is now possible to build smart assistive living systems to improve people's lives. In this research, we present a Context-aware and private real-time reporting aging in place system. The proposed system, we call it smart carpet, consists of a sensor pad placed under a carpet; the electronics reads walking activity to provide an automated health monitoring and alert system. We extended the system's functionalities to improve its ability to detect falls, measure gait, and count the number of people traversing the carpet (socializing). In an urgent and time-sensitive situation, we need to provide a real-time notification. We propose a cooperative cloudlet model, where the sensors' data will be sent to the nearest Cloudlet for analysis and extracting real-time decisions in minimal delay. Results showed that our system could assist the elderly in detecting falls with 95% sensitivity and 85% specificity. Measuring and estimating their gait with a mean percentage error difference to GAITRite 1.43% in walking speed; hence, predicting a fall risk and counting people's plurality socializing with the elderly with an average accuracy of 100%. We evaluated our system's improvements in a controlled environment. We are looking forward to deploying the system in a nursing home (after the COVID -19 is over) for more data gathering and validations.",
+   "status": "current"
+  },
+  {
+   "title": "Assembly Line Anomaly Detection and Root Cause Analysis Using Machine Learning",
+   "identifiers": {
+    "openalex": "W3091899017",
+    "doi": "10.1109/access.2020.3029826"
+   },
+   "abstract": "Anomaly detection is becoming widely used in Manufacturing Industry to enhance product quality. At the same time, it plays a great role in several other domains due to the fact that anomaly may reveal rare but represent an important phenomenon. The objective of this paper is to detect anomalies and identify the possible variables that caused these anomalies on historical assembly data for two series of products. Multiple anomaly detection techniques were performed; HBOS, IForest, KNN, CBLOF, OCSVM, LOF, and ABOD. Moreover, we used AUROC and Rank Power as performance metrics, followed by Boosting ensemble learning method to ensure the best anomaly detectors robustness. The techniques that gave the highest performance are KNN, ABOD for both product series datasets with 0.95 and 0.99 AUROC respectively. Finally, we applied a statistical root cause analysis on the detected anomalies with the use of Pareto chart to visualize the frequency of the possible causes and its cumulative occurrence. The results showed that there are seven rejection causes for both product series, whereas the first three causes are responsible for 85% of the rejection rates. Besides, assembly machines engineers reported a significant reduction in the rejection rates in both assembly machines after tuning the specification limits of the rejection causes identified by this research results.",
+   "status": "current"
+  },
+  {
+   "title": "Improving Predictability of User-Affecting Metrics to Support Anomaly Detection in Cloud Services",
+   "identifiers": {
+    "openalex": "W3092501433",
+    "doi": "10.1109/access.2020.3028571"
+   },
+   "abstract": "Anomaly detection systems aim to detect and report attacks or unexpected behavior in networked systems. Previous work has shown that anomalies have an impact on system performance, and that performance signatures can be effectively used for implementing an IDS. In this paper, we present an analytical and an experimental study on the trade-off between anomaly detection based on performance signatures and system scalability. The proposed approach combines analytical modeling and load testing to find optimal configurations for the signature-based IDS. We apply a heavy-tail bi-modal modeling approach, where “long” jobs represent large resource consuming transactions, e.g., generated by DDoS attacks; the model was parametrized using results obtained from controlled experiments. For performance purposes, mean response time is the key metric to be minimized, whereas for security purposes, response time variance and classification accuracy must be taken into account. The key insights from our analysis are: (i) there is an optimal number of servers which minimizes the response time variance, (ii) the sweet-spot number of servers that minimizes response time variance and maximizes classification accuracy is typically smaller than or equal to the one that minimizes mean response time. Therefore, for security purposes, it may be worth slightly sacrificing performance to increase classification accuracy.",
+   "status": "current"
+  },
+  {
+   "title": "A Spatiotemporal Deep Learning Approach for Unsupervised Anomaly Detection in Cloud Systems",
+   "identifiers": {
+    "openalex": "W3093074257",
+    "doi": "10.1109/tnnls.2020.3027736"
+   },
+   "abstract": "Anomaly detection is a critical task for maintaining the performance of a cloud system. Using data-driven methods to address this issue is the mainstream in recent years. However, due to the lack of labeled data for training in practice, it is necessary to enable an anomaly detection model trained on contaminated data in an unsupervised way. Besides, with the increasing complexity of cloud systems, effectively organizing data collected from a wide range of components of a system and modeling spatiotemporal dependence among them become a challenge. In this article, we propose TopoMAD, a stochastic seq2seq model which can robustly model spatial and temporal dependence among contaminated data. We include system topological information to organize metrics from different components and apply sliding windows over metrics collected continuously to capture the temporal dependence. We extract spatial features with the help of graph neural networks and temporal features with long short-term memory networks. Moreover, we develop our model based on variational auto-encoder, enabling it to work well robustly even when trained on contaminated data. Our approach is validated on the run-time performance data collected from two representative cloud systems, namely, a big data batch processing system and a microservice-based transaction processing system. The experimental results show that TopoMAD outperforms some state-of-the-art methods on these two data sets.",
+   "status": "current"
+  },
+  {
+   "title": "Feature selection and embedding based cross project framework for identifying crashing fault residence",
+   "identifiers": {
+    "openalex": "W3093205319",
+    "doi": "10.1016/j.infsof.2020.106452"
+   },
+   "abstract": "Abstract Context: The automatically produced crash reports are able to analyze the root of fault causing the crash (crashing fault for short) which is a critical activity for software quality assurance. Objective: Correctly predicting the existence of crashing fault residence in stack traces of crash report can speed up program debugging process and optimize debugging efforts. Existing work focused on the collected label information from bug-fixing logs, and the extracted features of crash instances from stack traces and source code for Identification of Crashing Fault Residence (ICFR) of newly-submitted crashes. This work develops a novel cross project ICFR framework to address the data scarcity problem by using labeled crash data of other project for the ICFR task of the project at hand. This framework removes irrelevant features, reduces distribution differences, and eases the class imbalance issue of cross project data since these factors may negatively impact the ICFR performance. Method: The proposed framework, called FSE, combines Feature Selection and feature Embedding techniques. The FSE framework first uses an information gain ratio based feature ranking method to select a relevant feature subset for cross project data, and then employs a state-of-the-art Weighted Balanced Distribution Adaptation (WBDA) method to map features of cross project data into a common space. WBDA considers both marginal and conditional distributions as well as their weights to reduce data distribution discrepancies. Besides, WBDA balances the class proportion of each project data to alleviate the class imbalance issue. Results: We conduct experiments on 7 projects to evaluate the performance of our FSE framework. The results show that FSE outperforms 25 methods under comparison. Conclusion: This work proposes a cross project learning framework for ICFR, which uses feature selection and embedding to remove irrelevant features and reduce distribution differences, respectively. The results illustrate the performance superiority of our FSE framework.",
+   "status": "current"
+  },
+  {
+   "title": "Root-cause analysis for time-series anomalies via spatiotemporal graphical modeling in distributed complex systems",
+   "identifiers": {
+    "openalex": "W3093376707",
+    "doi": "10.1016/j.knosys.2020.106527",
+    "arxiv": "1805.12296"
+   },
+   "abstract": "Performance monitoring, anomaly detection, and root-cause analysis in complex cyber-physical systems (CPSs) are often highly intractable due to widely diverse operational modes, disparate data types, and complex fault propagation mechanisms. This paper presents a new data-driven framework for root-cause analysis, based on a spatiotemporal graphical modeling approach built on the concept of symbolic dynamics for discovering and representing causal interactions among sub-systems of complex CPSs. We formulate the root-cause analysis problem as a minimization problem via the proposed inference based metric and present two approximate approaches for root-cause analysis, namely the sequential state switching ($S^3$, based on free energy concept of a restricted Boltzmann machine, RBM) and artificial anomaly association ($A^3$, a classification framework using deep neural networks, DNN). Synthetic data from cases with failed pattern(s) and anomalous node(s) are simulated to validate the proposed approaches. Real dataset based on Tennessee Eastman process (TEP) is also used for comparison with other approaches. The results show that: (1) $S^3$ and $A^3$ approaches can obtain high accuracy in root-cause analysis under both pattern-based and node-based fault scenarios, in addition to successfully handling multiple nominal operating modes, (2) the proposed tool-chain is shown to be scalable while maintaining high accuracy, and (3) the proposed framework is robust and adaptive in different fault conditions and performs better in comparison with the state-of-the-art methods.",
+   "status": "current"
+  },
+  {
+   "title": "FLAGS: A methodology for adaptive anomaly detection and root cause analysis on sensor data streams by fusing expert knowledge with machine learning",
+   "identifiers": {
+    "openalex": "W3094146027",
+    "doi": "10.1016/j.future.2020.10.015"
+   },
+   "abstract": "Anomalies and faults can be detected, and their causes verified, using both data-driven and knowledge-driven techniques. Data-driven techniques can adapt their internal functioning based on the raw input data but fail to explain the manifestation of any detection. Knowledge-driven techniques inherently deliver the cause of the faults that were detected but require too much human effort to set up. In this paper, we introduce FLAGS, the Fused-AI interpretabLe Anomaly Generation System, and combine both techniques in one methodology to overcome their limitations and optimize them based on limited user feedback. Semantic knowledge is incorporated in a machine learning technique to enhance expressivity. At the same time, feedback about the faults and anomalies that occurred is provided as input to increase adaptiveness using semantic rule mining methods. This new methodology is evaluated on a predictive maintenance case for trains. We show that our method reduces their downtime and provides more insight into frequently occurring problems.",
+   "status": "current"
+  },
+  {
+   "title": "Few-Shot Learning and Self-Training for eNodeB Log Analysis for Service-Level Assurance in LTE Networks",
+   "identifiers": {
+    "openalex": "W3094379557",
+    "doi": "10.1109/tnsm.2020.3032156"
+   },
+   "abstract": "With the increasing network topology complexity and continuous evolution of the new wireless technology, it is challenging to address the network service outage with traditional methods. In the long-term evolution (LTE) networks, a large number of base stations called eNodeBs are deployed to cover the entire service areas spanning various kinds of geographical regions. Each eNodeB generates a large number of key performance indicators (KPIs). Hundreds of thousands of eNodeBs are typically deployed to cover a nation-wide service area. Operators need to handle hundreds of millions of KPIs to cover the areas. It is impractical to handle manually such a huge amount of KPI data, and automation of data processing is therefore desired. To improve network operation efficiency, a suitable machine learning technique is used to learn and classify individual eNodeBs into different states based on multiple performance metrics during a specific time window. However, an issue with supervised learning requires a large amount of labeled dataset, which takes costly human-labor and time to annotate data. To mitigate the cost and time issues, we propose a method based on few-shot learning that uses Prototypical Networks algorithm to complement the eNodeB states analysis. Using a dataset from a live LTE network that consists of thousand of eNodeB, our experiment results show that the proposed technique provides high performance while using a low number of labeled data.",
+   "status": "current"
+  },
+  {
+   "title": "HitAnomaly: Hierarchical Transformers for Anomaly Detection in System Log",
+   "identifiers": {
+    "openalex": "W3095840026",
+    "doi": "10.1109/tnsm.2020.3034647"
+   },
+   "abstract": "Enterprise systems often produce a large volume of logs to record runtime status and events. Anomaly detection from system logs is crucial for service management and system maintenance. Most existing log-based anomaly detection methods use log event indexes parsed from log data to detect anomalies. Those methods cannot handle unseen log templates and lead to inaccurate anomaly detection. Some recent studies focused on the semantics of log templates but ignored the information of parameter values. Therefore, their approaches failed to address the abnormal logs caused by parameter values. In this article, we propose HitAnomaly, a log-based anomaly detection model utilizing a hierarchical transformer structure to model both log template sequences and parameter values. We designed a log sequence encoder and a parameter value encoder to obtain their representations correspondingly. We then use an attention mechanism as our final classification model. In this way, HitAnomaly is able to capture the semantic information in both log template sequence and parameter values and handle various types of anomalies. We evaluated our proposed method on three log datasets. Our experimental results demonstrate that HitAnomaly has outperformed other existing log-based anomaly detection methods. We also assess the robustness of our proposed model on unstable log data.",
+   "status": "current"
+  },
+  {
+   "title": "An Alternative Body Temperature Measurement Solution: Combination of a Highly Accurate Monitoring System and a Visualized Public Health Cloud Platform",
+   "identifiers": {
+    "openalex": "W3095849114",
+    "doi": "10.1109/jiot.2020.3034024"
+   },
+   "abstract": "To quickly isolate suspected cases to control the epidemics, this study proposes a body temperature monitoring system with a thermography based on the Internet of Things (IoT) architecture. The collected data are transmitted to a back-end platform via wireless communication. Using the analyzed data, the platform provides services, such as instant alerts for any anomalies, infectious disease outbreak prediction, and risk level assessment for a given area, and it will be a great help to epidemic prevention. The mean absolute percentage error and root mean square error of the proposed monitoring system under an extensive series of experiments are 0.04% and 0.0204°C, respectively. It shows that the body temperature measured by the thermal imaging sensor in the system can accurately represent the actual body temperature after specific calibrations that take the environmental temperature into account. It can also be expanded to a decision supporting system to help schools or government agencies to make proper decisions to stop the spread of infectious diseases.",
+   "status": "current"
+  },
+  {
+   "title": "Detecting anomalies in microservices with execution trace comparison",
+   "identifiers": {
+    "openalex": "W3096738151",
+    "doi": "10.1016/j.future.2020.10.040"
+   },
+   "abstract": "Abstract More and more developers and companies have adopted the concept of microservice. Detecting anomalies and locating root causes are important for improving the reliability of microservices. Current approaches typically monitor the metrics of physical resources, and manually set alarm rules. However, they often require domain knowledge to detect anomalies, and cannot locate faulty microservices causing the anomalies accurately. To address the above issues, we propose an anomaly detection approach for microservice application by comparing execution traces. First, we use dynamic instrumentations to collect execution traces across microservices, and then use call trees to describe an application’s execution traces. Then, we calculate the anomaly degree of traces with tree edit distance to detect structural anomalies, and then analyze the difference between traces to locate the components causing the anomalies. Third, we locate suspicious component calls causing the response time fluctuation with principal component analysis to detect response time anomalies. Finally, we have evaluated the approach with a TPC-W based benchmark called as Bench4Q and a typical microservice-based application called as Social Network. The results demonstrate that the approach achieves 81%–97% precision and 75%–99% recall in detecting anomalies caused by injected CPU, network, memory and service faults.",
+   "status": "current"
+  },
+  {
+   "title": "An adaptive fault detector strategy for scientific workflow scheduling based on improved differential evolution algorithm in cloud",
+   "identifiers": {
+    "openalex": "W3100845793",
+    "doi": "10.1016/j.asoc.2020.106895"
+   },
+   "abstract": "Abstract With the increasing popularity and acceptance of cloud computing, it is being applied in services like executing large-scale applications, where cloud environment is selected by the scientific associations to easily execute the computation intensive workflows. However, cloud computing can have higher failure rates due to the larger number of servers and components filled with the intensive workloads. These failures may lead to the unavailability of virtual machines (VMs) for computation. Hence, this issue of fault occurrences can be tolerated by adopting an effective and efficient fault tolerant strategy. The goal of our research in this paper is to develop an adaptive fault detector strategy based on Improved Differential Evolution (IDE) algorithm in cloud computing that can minimize the energy consumption, the makespan, the total cost and, at the same time, tolerate up faults when scheduling scientific workflows. This proposed work applies an adaptive network-based fuzzy inference system (ANFIS) prediction model to proactively control resource load fluctuation that increases the failure prediction accuracy before fault/failure occurrence. In addition, it applies a reactive fault tolerance technique for when a processor fails and the scheduler must allocate a new VM to execute the workflow tasks. The experimental results show that compared with existing techniques, the proposed approach significantly improves the overall scheduling performance, achieves a higher degree of fault tolerance with high HyperVolume (HV) compared with the ICFWS, IDE, and ACO algorithms, minimizes the makespan, the energy consumption and task fault ratio, and reduces the total cost.",
+   "status": "current"
+  },
+  {
+   "title": "A practical method utilizing multi-spectral LiDAR to aid points cloud matching in SLAM",
+   "identifiers": {
+    "openalex": "W3106444911",
+    "doi": "10.1186/s43020-020-00029-5"
+   },
+   "abstract": "Abstract Light Detection and Ranging (LiDAR) sensors are popular in Simultaneous Localization and Mapping (SLAM) owing to their capability of obtaining ranging information actively. Researchers have attempted to use the intensity information that accompanies each range measurement to enhance LiDAR SLAM positioning accuracy. However, before employing LiDAR intensities in SLAM, a calibration operation is usually carried out so that the intensity is independent of the incident angle and range. The range is determined from the laser beam transmitting time. Therefore, the key to using LiDAR intensities in SLAM is to obtain the incident angle between the laser beam and target surface. In a complex environment, it is difficult to obtain the incident angle robustly. This procedure also complicates the data processing in SLAM and as a result, further application of the LiDAR intensity in SLAM is hampered. Motivated by this problem, in the present study, we propose a Hyperspectral LiDAR (HSL)-based-intensity calibration-free method to aid point cloud matching in SLAM. HSL employed in this study can obtain an eight-channel range accompanied by corresponding intensity measurements. Owing to the design of the laser, the eight-channel range and intensity were collected with the same incident angle and range. According to the laser beam radiation model, the ratio values between two randomly selected channels’ intensities at an identical target are independent of the range information and incident angle. To test the proposed method, the HSL was employed to scan a wall with different coloured papers pasted on it (white, red, yellow, pink, and green) at four distinct positions along a corridor (with an interval of 60 cm in between two consecutive positions). Then, a ratio value vector was constructed for each scan. The ratio value vectors between consecutive laser scans were employed to match the point cloud. A classic Iterative Closest Point (ICP) algorithm was employed to estimate the HSL motion using the range information from the matched point clouds. According to the test results, we found that pink and green papers were distinctive at 650, 690, and 720 nm. A ratio value vector was constructed using 650-nm spectral information against the reference channel. Furthermore, compared with the classic ICP using range information only, the proposed method that matched ratio value vectors presented an improved performance in heading angle estimation. For the best case in the field test, the proposed method enhanced the heading angle estimation by 72%, and showed an average 25.5% improvement in a featureless spatial testing environment. The results of the primary test indicated that the proposed method has the potential to aid point cloud matching in typical SLAM of real scenarios.",
+   "status": "current"
+  },
+  {
+   "title": "Intelligent Drone-Assisted Fault Diagnosis for B5G-Enabled Space-Air-Ground-Space Networks",
+   "identifiers": {
+    "openalex": "W3110747503",
+    "doi": "10.1109/tnse.2020.3043624"
+   },
+   "abstract": "The ubiquitous network services provided by the Beyond 5G enabled space-air-ground-sea networks (B5G-SAGS) depends on the reliability of each intelligent device within. However, the QoS of B5G-SAGS could be compromised if there exists faults on individual network. That suggests the significance of fault-diagnosis in the B5G-SAGS design. Previous works on fault diagnosis were designed without extra information to improve diagnosis accuracy. In this paper, we propose an Intelligent Drone-assisted Fault-diagnosis Algorithm (IDFA) utilizing B5G-enabled Multiple-access Edge Computing/Cloud (B5G-MEC) services to detect faulty buoys. Specifically, IFDA first employs a Cubature Kalman Filter based Radial Bias Function Neural Network (CKF-RBFNN) for each fault-diagnosis center to perform preliminary fault detection based on the data provided by both buoys and drones. The data collection path is planned utilizing the deep reinforcement learning algorithm, Deep Deterministic Policy Gradient (DDPG), on B5G-MEC servers for energy efficiency. Eventually, the collective decision made by all fault-diagnosis centers determines the faulty status of each buoy. The theoretical analysis and validation experiments show that: (i) the IDFA has a better diagnosis accuracy in both single fault detection and multi-fault classification while compared with contemporary algorithms; (ii) the IDFA obtains a high aggregation ratio and a low energy cost.",
+   "status": "current"
+  },
+  {
+   "title": "DGTL-Net: A Deep Generative Transfer Learning Network for Fault Diagnostics on New Hard Disks",
+   "identifiers": {
+    "openalex": "W3111479335",
+    "doi": "10.1016/j.eswa.2020.114379"
+   },
+   "abstract": "Abstract Intelligent fault diagnosis of hard disks becomes significantly important to guarantee reliability of current cloud-based industrial systems. Most intelligent diagnostic methods are commonly based on assumptions that data from different disks are subject to the same distribution and there are sufficient faulty samples for training the models. However, in reality, there are types of hard disks from different manufacturers and their SMART encoding varies widely across manufacturers. It results in distribution discrepancy among disks and influences the generalization of machine learning methods. Moreover, hard disks usually work in healthy state that faulty events rarely happen on most of them, or especially never occur on new ones. Thus, this paper proposes a deep generative transfer learning network (DGTL-Net) for intelligent fault diagnostics on new hard disks. The DGTL-Net combines the deep generative network that generates fake faulty samples and the deep transfer network that solves the problem of distribution discrepancy between hard disks. An iterative end-end training strategy is also proposed for DGTL-Net to get the most optimal parameters of generative and transfer network simultaneously. Experiments have been conducted to prove that our method achieves better performance.",
+   "status": "current"
+  },
+  {
+   "title": "An Anomaly Detection Algorithm for Microservice Architecture Based on Robust Principal Component Analysis",
+   "identifiers": {
+    "openalex": "W3113082031",
+    "doi": "10.1109/access.2020.3044610"
+   },
+   "abstract": "Microservice architecture (MSA) is a new software architecture, which divides a large single application and service into dozens of supporting microservices. With the increasingly popularity of MSA, the security issues of MSA get a lot of attention. In this paper, we propose an algorithm for mining causality and the root cause. Our algorithm consists of two parts: invocation chain anomaly analysis based on robust principal component analysis (RPCA) and a single indicator anomaly detection algorithm. The single indicator anomaly detection algorithm is composed of Isolation Forest (IF) algorithm, One-Class Support Vector Machine (SVM) algorithm, Local Outlier Factor (LOF) algorithm, and$3\\sigma $principle. For general and network time-consuming anomaly in the process of the MSA, we formulate different anomaly time-consuming detection strategies. We select a batch of sample data and three batches of test data of the 2020 International AIOps Challenge to debug our algorithm. According to the scoring criteria of the competition organizers, our algorithm has an average score of 0.8304 (The full score is 1) in the four batches of data. Our proposed algorithm has higher accuracy than some traditional machine learning algorithms in anomaly detection.",
+   "status": "current"
+  },
+  {
+   "title": "Energy efficient IoT-Fog based architectural paradigm for prevention of Dengue fever infection",
+   "identifiers": {
+    "openalex": "W3114871180",
+    "doi": "10.1016/j.jpdc.2020.12.002"
+   },
+   "abstract": "Abstract Dengue is one of the most common and widespread infectious illnesses in humans transmitted by female Aedes albopictis. The prevalence of Dengue cases has increased substantially leading to human morbidity. Inadequate availability of healthcare professionals and inaccessibility to healthcare institutions have aggravated the problem. The traditional medical technologies are too antiquated to serve the purpose. The innovative latest technologies like Internet of Things (IoT), Cloud Computing, Fog Computing have made real-time and remote healthcare possible with huge success. In this paper, an IoT based Fog–Cloud enabled system for monitoring, assessment and control of Dengue Fever has been proposed. IoT sensors acquire data about a large spectrum of health as well as environmental factors that contribute to infection. The battery constrained sensors set their sampling rate according to the degree of cruciality that saves power to make battery long lasting. The Fog layer employs Support Vector Machine (SVM) for Dengue infection evaluation with least latency and sends alerts including precautionary measures to the users, hospital officials and government agencies. Moreover, the proposed system utilizes Temporal Network Analysis (TNA) and Google map service to categorize areas as infected, uninfected or risk prone. The experimental results are evaluated by a number of analytical parameters to investigate the effect of proposed system. SVM performs the best in terms of accuracy, recall, specificity, precision and f-measure with values 93%, 95%, 89%, 94% and 95% respectively. Furthermore, TNA based outbreak assessment gives valuable inputs for the government institutions to control the outbreak.",
+   "status": "current"
+  },
+  {
+   "title": "Forensic Recovery of SQL Server Database: Practical Approach",
+   "identifiers": {
+    "openalex": "W3121885773",
+    "doi": "10.1109/access.2021.3052505"
+   },
+   "abstract": "Database forensics is becoming more important for investigators with the increased use of the information system. Although various database forensic methods such as log analysis and investigation model development have been studied, among the database forensic methods, recovering deleted data is a key technique in database investigation for DB tampering and anti-forensics. Previous studies mainly focused on transaction or journal log to recover deleted data, but if logs are set to be deleted periodically or logs containing critical evidence are overwritten by new logs, the log-based recovery method can not be used practically. For this reason, an engine-based recovery method that analyzes data file at a raw level has been also introduced. There is research to recover small-sized databases such as SQLite and EDB, but there is no prior work describing the structure of data file and technology to recover deleted data of large databases used by enterprises or large organizations. In this context, we investigate Microsoft SQL Server (MSSQL), which is one of the most used large databases. Our method focuses on a storage engine of MSSQL. Through analyzing the storage engine, we identify the internal structure of MSSQL data files and the storage mechanism. Based on these findings, a method to recover tables and records is presented by empirical examination. It is compatible with various versions of MSSQL because it accesses data at the raw level. Our proposed method is verified by a comparative experiment with forensic tools implemented to recover deleted MSSQL data. The experimental results show that our method recovers all deleted records from the unallocated area. It recovers all data types including multimedia data, called Large Objects (LOB) in the database field. To contribute digital forensic community, we also provide the source code of the implementation; it facilitates the knowledge sharing of database forensics.",
+   "status": "current"
+  },
+  {
+   "title": "Log-Based Anomaly Detection With Robust Feature Extraction and Online Learning",
+   "identifiers": {
+    "openalex": "W3121951581",
+    "doi": "10.1109/tifs.2021.3053371"
+   },
+   "abstract": "Cloud technology has brought great convenience to enterprises as well as customers. System logs record notable events and are becoming valuable resources to track and investigate system status. Detecting anomaly from logs as fast as possible can improve the quality of service significantly. Although many machine learning algorithms (e.g., SVM, Logistic Regression) have high detection accuracy, we find that they assume data are clean and might have high training time. Facing these challenges, in this paper, we propose Robust Online Evolving Anomaly Detection (ROEAD) framework which adopts Robust Feature Extractor (RFE) to remove the effects of noise and Online Evolving Anomaly Detection (OEAD) to dynamic update parameters. We propose Online Evolving SVM (OES) algorithm as the example of online anomaly detection methods. We analyze the performance of OES in theory and prove the performance difference between OES and the best hypothesis tends to zero as time goes infinity. We compare the performance of ROEAD against state-of-the-art anomaly detection algorithms using public log datasets. The results demonstrate that ROEAD is able to remove the effects of noise and OES can improve the detection accuracy by more than 40%.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly Detection and Bottleneck Identification of The Distributed Application in Cloud Data Center using Software–Defined Networking",
+   "identifiers": {
+    "openalex": "W3124661381",
+    "doi": "10.1016/j.eij.2021.01.001"
+   },
+   "abstract": "Cloud computing applications have grown rapidly in the last decade, where many organizations are migrating their applications to cloud data center as they expected high performance, reliability, and the best quality of service. Data centers deploy a variety of technologies, such as software-defined networks (SDN), to effectively manage their resources. The SDN approach is a highly flexible network architecture that automates network configuration using a centralized controller to overcome traditional network limitations. This paper proposes an SDN-based monitoring algorithm to detect the performance anomaly and identify the bottleneck of the distributed application in the cloud data center using the support vector machine algorithm. It collects the data from the network devices and calculates the performance metrics for the distributed application components that are used to train the SVM algorithm and build a baseline model of the normal behavior of the distributed application. The SVM model detects performance anomaly behavior and identifies the root cause of bottlenecks using one-class support vector machine (OCSVM) and multi-class support vector machine (MCSVM) algorithms. The proposed method does not require any knowledge about the running applications or depends on static threshold values for performance measurements. Simulation results show that the proposed method can detect and locate the failure occurrences efficiently with high precision and low overhead compared to statistical methods, Naive Bayes Classifier and the decision tree machine learning method.",
+   "status": "current"
+  },
+  {
+   "title": "Online Virtual Machine Evacuation for Disaster Resilience in Inter-Data Center Networks",
+   "identifiers": {
+    "openalex": "W3128861740",
+    "doi": "10.1109/tnsm.2021.3056766"
+   },
+   "abstract": "With the risk of natural disaster occurrence rising globally, the interest in innovative disaster resilience techniques is greatly increasing. In particular, Data Center (DC) operators are investigating techniques to avoid data-loss and service downtime in case of disaster occurrence. In cloud DC networks, DCs host Virtual Machines (VM) that support cloud services. A VM can be migrated, i.e., transferred, across DCs without service disruption, using a technique known as “online VM migration”. In this article, we investigate how to schedule online VMs migrations in an alerted disaster scenario (i.e., for those disasters, such as tsunami and hurricanes, that grant an alert time to DC operators) where VMs are migrated from a risky DC, i.e., a DC at risk to be affected by a disaster, to a DC in safe locations, within a deadline set by the alert time of the incoming disaster. We propose a multi-objective Integer Linear Programming (ILP) model and heuristic algorithms for efficient online VMs migration to maximize number of VMs migrated, minimize service downtime and minimize network resource occupation. The proposed approaches perform scheduling, destination DC selection and assign route and bandwidth to VM migrations. Compared to baseline approaches, our proposed algorithms eliminate service downtime in exchange of an acceptable additional network resource occupation. Results also give insights on how to calculate the minimum amount of time required to evacuate all VMs with no service downtime. Moreover, since the proposed approaches exhibit different execution times, we design an ‘alert-aware VM evacuation’ tool to intelligently select the most suitable approach based on the number and size of VMs, alert time and available network capacity.",
+   "status": "current"
+  },
+  {
+   "title": "LogClass: Anomalous Log Identification and Classification With Partial Labels",
+   "identifiers": {
+    "openalex": "W3128928262",
+    "doi": "10.1109/tnsm.2021.3055425"
+   },
+   "abstract": "Logs are imperative in the management process of networks and services. However, manually identifying and classifying anomalous logs is time-consuming, error-prone, and labor-intensive. Additionally, rule-based approaches cannot tackle the challenges underlying anomalous log identification and classification resulting from new types of logs and partial labels. We propose LogClass, a framework to automatically and robustly identify and classify anomalous logs for network and service based onpartial labels. LogClass combines a word representation method, a positive and unlabeled learning (PU learning) model, and a machine learning classifier. Besides, we propose a novel Inverse Location Frequency (ILF) method to weight the words of logs in feature construction properly. We evaluate the performance of LogClass based on 18 million+ real-world switch logs and six public log datasets. It achieves 99.56% and 98% F1 scores in anomalous log identification on switch logs and publicly available supercomputer logs, respectively, and very-close-to-one F1 score in anomalous log classification. Moreover, we have conducted extensive experiments to demonstrate LogClass’ superior performance in addressing partial labels and new types of logs.",
+   "status": "current"
+  },
+  {
+   "title": "QLLog: A log anomaly detection method based on Q-learning algorithm",
+   "identifiers": {
+    "openalex": "W3129163867",
+    "doi": "10.1016/j.ipm.2021.102540"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Collaborative deep learning framework for fault diagnosis in distributed complex systems",
+   "identifiers": {
+    "openalex": "W3129318029",
+    "doi": "10.1016/j.ymssp.2021.107650"
+   },
+   "abstract": "Abstract In distributed complex systems, condition monitoring and fault diagnosis have received considerable attention, especially for recent developments of data-driven methods with deep learning structures, which greatly enhance the performance as of superior representation capacity over big data. To apply these methods, massive data needs to be collected from distributed systems, requiring high costs for data transmission and causing more and more concerns on privacy issues. For the naturally distributed data in such scenario, this work presents a novel collaborative deep learning framework with the idea that the features, as representations of data, can be transmitted through latent parameters of deep learning structure while the raw data won’t be shared in the distributed network. Based on the collaborative learning setup, the proposed framework adopts a secure communicating strategy with no need of transmitting raw data, and obtains a consensus for distributed deep learning models that can be geographically located. To validate the proposed scheme, four case studies are carried out and the results show that it is able to improve the diagnosis accuracy compared with local learning models. Also, it is robust and adaptive for diagnosis problems with data that is imbalanced or from different distributions.",
+   "status": "current"
+  },
+  {
+   "title": "Privacy-preserving in smart contracts using blockchain and artificial intelligence for cyber risk measurements",
+   "identifiers": {
+    "openalex": "W3130822964",
+    "doi": "10.1016/j.jisa.2021.102749"
+   },
+   "abstract": "Abstract Blockchain application and cyber-physical systems play a crucial role to modernize the traditional industrial process, technical procedures, and business models. It uses frame resilient and smart contracts to reduce the complexities of service costs. The blockchain applications associate the key features such as self-verification, and self-integrity to eliminate the role of trusted third parties access. It evolves scientific and industrial progress to reform as Industry 4.0 that uses Artificial Intelligence (AI) to process and extract the significant information of the real-time systems. Moreover, it applies digital analytics to link the data with blockchain and cloud repositories to improve system efficiencies. However, the security and privacy issues are still challenging to investigate the AI techniques and tools. Thus, this paper proposes a privacy-preserving in smart contracts using blockchain and artificial intelligence (PPSC-BCAI) framework that simplifies human interaction, system activities, service alerts, security risks, and fraudulent claims. To analyze the data transaction and sharing, an extreme gradient boosting (XGBoost) is applied. It analyses the transaction service to optimize the network load that reveals whether the transmission rate changes over the connectivity of unreliable networks.",
+   "status": "current"
+  },
+  {
+   "title": "OP-MLB: An Online VM Prediction-Based Multi-Objective Load Balancing Framework for Resource Management at Cloud Data Center",
+   "identifiers": {
+    "openalex": "W3131645226",
+    "doi": "10.1109/tcc.2021.3059096"
+   },
+   "abstract": "The elasticity of cloud resources allows cloud clients to expand and shrink their demand for resources dynamically over time. However, fluctuations in the resource demands and pre-defined size of virtual machines (VMs) lead to lack of resource utilization, load imbalance, and excessive power consumption. To address these issues and to improve the performance of data center, an efficient resource management framework is proposed, which anticipates resource utilization of the servers and balances the load accordingly. It facilitates power saving, by minimizing the number of active servers, VM migrations, and maximizing the resource utilization. An online resource prediction system, is developed and deployed at each VM to minimize the risk of Service Level Agreement (SLA) violations and performance degradation due to under/overloaded servers. In addition, multi-objective VM placement and migration algorithms are proposed to reduce the network traffic and power consumption within data center. The proposed framework is evaluated by executing experiments on three real world workload datasets namely, Google Cluster dataset, Planet Lab, and Bitbrains VM traces. The comparison of proposed framework with the state-of-the-art approaches reveals its superiority in terms of different performance metrics. The improvement in power saving achieved by OP-MLB framework is upto 85.3 percent over the Best-Fit approach.",
+   "status": "current"
+  },
+  {
+   "title": "Spatial-Temporal Learning-Based Artificial Intelligence for IT Operations in the Edge Network",
+   "identifiers": {
+    "openalex": "W3133071953",
+    "doi": "10.1109/mnet.011.2000278"
+   },
+   "abstract": "With the rapid increase of edge network scale and the complexity of service interaction, it takes more time for operation staff to analyze anomalies from complex scenarios. To maintain the normal network operation, various key performance indicators, such as link delay, throughput, and memory usage, are monitored for timely anomaly detection and troubleshooting. We introduce artificial intelligence for IT operations to assist operators in performing anomaly detection, anomaly localization, and root cause analysis, and building an intelligent operation and maintenance platform over the software-defined networking (SON)-based edge network. In this article, the graph-based gated convolutional network for anomaly detection (GAD) is first proposed to solve the anomaly detection problem of time series data with topology information. Specifically, GAD uses a gated convolutional encoder to encode spatial-temporal time series, and a graph convolutional network is developed to capture the spatial dependence. Then, based on the features, a convolutional layer is used to decode features and reconstruct input sequence. Finally, the residual between input and reconstructed sequences is further utilized to detect anomalies. Our experimental results demonstrate that GAD outperforms the state-of-the-art anomaly detection baselines in terms of F-scores on the datasets collected by an SDN simulation platform.",
+   "status": "current"
+  },
+  {
+   "title": "Enhancing Robustness of On-line Learning Models on Highly Noisy Data",
+   "identifiers": {
+    "openalex": "W3134574182",
+    "doi": "10.1109/tdsc.2021.3063947",
+    "arxiv": "2103.10824"
+   },
+   "abstract": "Classification algorithms have been widely adopted to detect anomalies for various systems, e.g., IoT, cloud and face recognition, under the common assumption that the data source is clean, i.e., features and labels are correctly set. However, data collected from the wild can be unreliable due to careless annotations or malicious data transformation for incorrect anomaly detection. In this article, we extend a two-layer on-line data selection framework: Robust Anomaly Detector (RAD) with a newly designed ensemble prediction where both layers contribute to the final anomaly detection decision. To adapt to the on-line nature of anomaly detection, we consider additional features of conflicting opinions of classifiers, repetitive cleaning, and oracle knowledge. We on-line learn from incoming data streams and continuously cleanse the data, so as to adapt to the increasing learning capacity from the larger accumulated data set. Moreover, we explore the concept of oracle learning that provides additional information of true labels for difficult data points. We specifically focus on three use cases, (i) detecting 10 classes of IoT attacks, (ii) predicting 4 classes of task failures of big data jobs, and (iii) recognising 100 celebrities faces. Our evaluation results show that RAD can robustly improve the accuracy of anomaly detection, to reach up to 98.95 percent for IoT device attacks (i.e., +7%), up to 85.03 percent for cloud task failures (i.e., +14%) under 40 percent label noise, and for its extension, it can reach up to 77.51 percent for face recognition (i.e., +39%) under 30 percent label noise. The proposed RAD and its extensions are general and can be applied to different anomaly detection algorithms.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0snow2-01"
+}

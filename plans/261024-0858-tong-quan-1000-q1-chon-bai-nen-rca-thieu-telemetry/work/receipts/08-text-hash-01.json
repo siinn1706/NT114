@@ -1,0 +1,61 @@
+{
+ "schema_version": 2,
+ "id": "08-text-hash-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/check-text-hashes.py work/t3-text-hash-check.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/08-text-hash-01.out",
+ "egress_trace_reference": "work/logs/08-text-hash-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T21:05:45.780543+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [
+  "b09f994ced0d1ee9da8247746485d31d7f3690923c507ac93b773f06b38baa15"
+ ],
+ "checks": [
+  "phase 07 text_sha256 equals LF-normalised bytes of each T3 text file"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "f58dbf008c464c3b643d900129aaa32b02cd320eafcefbd00de1d059d2cf5456",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/check-text-hashes.py work/t3-text-hash-check.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "7bd430512d05df8423dc153312a34c3116c2d45dc58dca51cc6e8586fece2b15",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": [
+  {
+   "path": "work/t3-text-hash-check.csv",
+   "sha256": "b09f994ced0d1ee9da8247746485d31d7f3690923c507ac93b773f06b38baa15",
+   "created_this_attempt": true
+  }
+ ]
+}

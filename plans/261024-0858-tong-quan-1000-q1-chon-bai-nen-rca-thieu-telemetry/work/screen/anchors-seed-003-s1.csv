@@ -1,0 +1,6 @@
+openalex_id,decision,codes,R1,R2,R3,R4,R5,R6,R_total,read_level,evidence
+W7147293258,exclude,I1|I3,1,1,0,0,0,0,2,abstract,"""leverages Large Language Models (LLMs) for intelligent microservice monitoring""; ""fine-tuning Small Language Models (SLMs) for intent classification"""
+W4391951374,needs-review,E6,1,0,0,0,0,0,1,title-only,"""A survey on intelligent management of alerts and incidents in IT services"" (empty abstract)"
+W4378194859,exclude,E1,0,0,0,0,1,0,1,abstract,"""we use the benchmark Tennessee Eastman to perform experiments""; ""anomaly detection capabilities"""
+W3183619936,context-survey,I1|E5,1,0,0,0,0,0,1,abstract,"""This survey presents a detailed overview of automated log analysis research""; ""employ logs to detect anomalies predict failures and facilitate diagnosis"""
+W7124465704,context-survey,I1|E5,1,0,0,0,0,0,1,abstract,"""This article reviews ML-based anomaly detection approaches for cloud-native architecture"""

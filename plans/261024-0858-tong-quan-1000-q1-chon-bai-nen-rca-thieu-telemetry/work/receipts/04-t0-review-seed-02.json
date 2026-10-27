@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "04-t0-review-seed-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/apply-t0-review.py t0seed4 W3168854585,W3177840693,W4308374518,W4386969744,W4389117757,W4414399837,W4416118167,W7114766074,W7115597831,W7117615650,W7125675592,W7128421366,W7154602585,W7163007909,W7163046909",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-t0-review-seed-02.out",
+ "egress_trace_reference": "work/logs/04-t0-review-seed-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:49:58.080073+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "bf4b4638c5fb9ccbec4762b36fe746c56e9ec0e3580990d699b5735da5f2ad22",
+  "447adfa2cc3894f99bf1bf607f61826c24608b1e7f9af9eb27017ea3bd7c520e"
+ ],
+ "output_hashes": [
+  "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d"
+ ],
+ "checks": [
+  "title-only decisions of 04-t0-review-seed-01 carried to t0seed4"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "40d967c076243de45f6b9fa3ec85b53f914e0d9d1c35fdce833abadd609cd6f2",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/apply-t0-review.py t0seed4 W3168854585,W3177840693,W4308374518,W4386969744,W4389117757,W4414399837,W4416118167,W7114766074,W7115597831,W7117615650,W7125675592,W7128421366,W7154602585,W7163007909,W7163046909",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "68c2348e0b97f03f193011a211538207a474f6089c64644b2aba4f1f60c073e9",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0seed4-candidates.csv",
+   "sha256_before": "bf4b4638c5fb9ccbec4762b36fe746c56e9ec0e3580990d699b5735da5f2ad22",
+   "sha256_after": "bf4b4638c5fb9ccbec4762b36fe746c56e9ec0e3580990d699b5735da5f2ad22",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0seed4-needs-review-t0.csv",
+   "sha256_before": "447adfa2cc3894f99bf1bf607f61826c24608b1e7f9af9eb27017ea3bd7c520e",
+   "sha256_after": "447adfa2cc3894f99bf1bf607f61826c24608b1e7f9af9eb27017ea3bd7c520e",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0seed4-t0.csv",
+   "sha256": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "created_this_attempt": true
+  }
+ ]
+}

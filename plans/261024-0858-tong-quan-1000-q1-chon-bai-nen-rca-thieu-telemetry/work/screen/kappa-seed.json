@@ -1,0 +1,51 @@
+{
+ "n": 90,
+ "kappa_include": 1.0,
+ "kappa_inc_exc": 1.0,
+ "n_inc_exc": 28,
+ "kappa_include_abstract": 1.0,
+ "n_abstract": 32,
+ "confusion_s1_rows_s2_cols": {
+  "include": {
+   "include": 11,
+   "exclude": 0,
+   "needs-review": 0,
+   "context-survey": 0
+  },
+  "exclude": {
+   "include": 0,
+   "exclude": 17,
+   "needs-review": 0,
+   "context-survey": 0
+  },
+  "needs-review": {
+   "include": 0,
+   "exclude": 0,
+   "needs-review": 58,
+   "context-survey": 0
+  },
+  "context-survey": {
+   "include": 0,
+   "exclude": 1,
+   "needs-review": 0,
+   "context-survey": 3
+  }
+ },
+ "abs_agreement": {
+  "R1": 0.9333,
+  "R2": 0.9778,
+  "R3": 0.9889
+ },
+ "threshold": 0.7,
+ "disagreements": [
+  {
+   "openalex_id": "W4412623423",
+   "reason": "stratified-10pct:context-survey",
+   "s1": "context-survey",
+   "s2": "exclude",
+   "s1_R": "0",
+   "s2_R": "1"
+  }
+ ],
+ "pass": true
+}

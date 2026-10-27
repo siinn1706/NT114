@@ -1,0 +1,7 @@
+openalex_id,gate,result,evidence,locator,note
+W4415933773,G1,fail,"No repository or code statement; checklist incomplete: diffusion steps/noise schedule, FFT top-k, window length, GAT depth, T1 normal-run corpus and cleaning rules unspecified",§IV.B.4 p.9; §III.A-B p.3-6,"algorithm and prompt are complete (Eq.1-25, Fig.3); batch, mu, beta, epochs, lr given"
+W4415933773,G2,pass,"Zenodo record 7615394 open, HTTP 200 on 2026-10-25 (SN and TT zip files); dataset A competition site unreachable from here",§IV.B.1 p.7; https://zenodo.org/records/7615394,dataset B only; neither A nor B is in the NT114 bundle
+W4415933773,G3,pass,static-estimate: tools 10.96M params on one RTX 3090; GPT-4 only writes the report and can be replaced by a local 4-9B model,Table IV p.10; §III.D p.7; §IV.B.4 p.9,VRAM not reported; T1 diffusion memory unmeasured
+W4415933773,G4,pass,non-LLM tools T1-T3 are the core and one LLM already consumes their output,§III p.3-7,LLM adds no measured accuracy; core kept is T2 localisation probabilities
+W4415933773,G5,pass,logs + metrics + traces,§III.A-C p.3-6,
+W4415933773,h1-compat,yes,T2 outputs a per-entity probability; top-5 evaluated (Acc@5),Eq.19 p.6; Table II p.8,"BCE multi-label probabilities, calibration unverified"

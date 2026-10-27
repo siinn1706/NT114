@@ -1,0 +1,87 @@
+{
+ "schema_version": 2,
+ "id": "04-t0-review-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/apply-t0-review.py t0r2b W3048902333,W3082803092,W3168854585,W3177840693,W4308374518,W4309947338,W4320036460,W4368362966,W4386969744,W4389117757,W4399915649,W4403601582,W4404247226,W4407869912,W4409797071,W4414171345,W4414399837,W4416118167,W7114766074,W7115597831,W7117615650,W7125675592,W7128421366,W7140572754,W7154602585,W7163007909,W7163046909,W7165922617,W4205160849,W4380575599,W4290652751,W4399774065",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-t0-review-r2-01.out",
+ "egress_trace_reference": "work/logs/04-t0-review-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:15:41.910030+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "027c5cac35d18984b3028e837a14678dbcb77f0c16dd1e259e37f14c4e6e4cb5",
+  "44fc4f36d6bc79683a2d9ff500325b617bc81d1ee9df9e6c4b30612d0fda7190"
+ ],
+ "output_hashes": [
+  "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+  "f942c7facbc95698de3b439130fa35f955f38eab64a8fd0c424d249da6276ff3"
+ ],
+ "checks": [
+  "title+venue review r2"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "6b3507753068b747821f7ab82b3833c564db9759f2580b63e3f3e3c13a7902ae",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/apply-t0-review.py t0r2b W3048902333,W3082803092,W3168854585,W3177840693,W4308374518,W4309947338,W4320036460,W4368362966,W4386969744,W4389117757,W4399915649,W4403601582,W4404247226,W4407869912,W4409797071,W4414171345,W4414399837,W4416118167,W7114766074,W7115597831,W7117615650,W7125675592,W7128421366,W7140572754,W7154602585,W7163007909,W7163046909,W7165922617,W4205160849,W4380575599,W4290652751,W4399774065",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "4118e782d05a8027bc55ca3dc747a6fca95e3380c4e6fccad39578475e79be31",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2b-needs-review-t0.csv",
+   "sha256_before": "027c5cac35d18984b3028e837a14678dbcb77f0c16dd1e259e37f14c4e6e4cb5",
+   "sha256_after": "027c5cac35d18984b3028e837a14678dbcb77f0c16dd1e259e37f14c4e6e4cb5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0r2b-candidates.csv",
+   "sha256_before": "44fc4f36d6bc79683a2d9ff500325b617bc81d1ee9df9e6c4b30612d0fda7190",
+   "sha256_after": "44fc4f36d6bc79683a2d9ff500325b617bc81d1ee9df9e6c4b30612d0fda7190",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0r2b-t0.csv",
+   "sha256": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0r2b-t0-review-decisions.csv",
+   "sha256": "f942c7facbc95698de3b439130fa35f955f38eab64a8fd0c424d249da6276ff3",
+   "created_this_attempt": true
+  }
+ ]
+}

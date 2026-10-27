@@ -1,0 +1,61 @@
+{
+ "protocol": {
+  "frozen_sha256": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+  "on_disk_sha256": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+  "match": true
+ },
+ "precision_t0": {
+  "include": 121,
+  "screened": 1085,
+  "precision": 0.1115,
+  "wilson95": [
+   0.0941,
+   0.1316
+  ],
+  "n_x_precision": 121.0
+ },
+ "q1": {
+  "t0_rows": 1085,
+  "t0_q1_weak": 160,
+  "excluded_q1_noncs": 2000,
+  "excluded_q7_mdpi": 826
+ },
+ "saturation": [
+  {
+   "step": "seed",
+   "n_t0": 338
+  },
+  {
+   "step": "search",
+   "n_t0": 863,
+   "new": 525,
+   "dropped": 0,
+   "net": 525,
+   "dropped_ids": []
+  },
+  {
+   "step": "snowball-r1",
+   "n_t0": 967,
+   "new": 105,
+   "dropped": 1,
+   "net": 104,
+   "dropped_ids": [
+    "W3005115843"
+   ]
+  },
+  {
+   "step": "snowball-r2+synonyms",
+   "n_t0": 1085,
+   "new": 118,
+   "dropped": 0,
+   "net": 118,
+   "dropped_ids": []
+  }
+ ],
+ "t3_pubyear": {
+  "papers": 10,
+  "cs_q1_in_pub_year_yes": 10,
+  "sjr_year_differs_from_pub_year": 5,
+  "jcr_checked": 0
+ }
+}

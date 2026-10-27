@@ -1,0 +1,100 @@
+{
+ "schema_version": 2,
+ "id": "09-design-check-04",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/check-design.py",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/09-design-check-04.out",
+ "egress_trace_reference": "work/logs/09-design-check-04.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T21:35:34.264678+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "30e7103e14254d8e25a9332516ffa6061beb6df0eb98aeae18359703165e28d5",
+  "9415608ee002b765932f862109c589151829e208799335234d2d0ca709a3cda6",
+  "659ccda9a805c630891f6bc12b0cf8f9be6ed86f9d19f88bdd3d8632e6f92f86",
+  "67da71c29056eb7ce789c406fa12d645d1fa894fd9896e2d082049553c581dfb",
+  "843724514d82194040297dc3bc6a18a74275efbf9ff40e9031773e291ddcabc4"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "phase 09 mechanical design checks after re-review fixes A-E"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/check-design.py",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "cea1d7ab21487fb6eb2ebe46174e1c3b6206c23515c3d97e858550c4aafb6246",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "design/reproduction-protocol.md",
+   "sha256_before": "30e7103e14254d8e25a9332516ffa6061beb6df0eb98aeae18359703165e28d5",
+   "sha256_after": "30e7103e14254d8e25a9332516ffa6061beb6df0eb98aeae18359703165e28d5",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "design/improvement-hypotheses.md",
+   "sha256_before": "9415608ee002b765932f862109c589151829e208799335234d2d0ca709a3cda6",
+   "sha256_after": "9415608ee002b765932f862109c589151829e208799335234d2d0ca709a3cda6",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "design/test-matrix.md",
+   "sha256_before": "659ccda9a805c630891f6bc12b0cf8f9be6ed86f9d19f88bdd3d8632e6f92f86",
+   "sha256_after": "659ccda9a805c630891f6bc12b0cf8f9be6ed86f9d19f88bdd3d8632e6f92f86",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "design/mvp-outline.md",
+   "sha256_before": "67da71c29056eb7ce789c406fa12d645d1fa894fd9896e2d082049553c581dfb",
+   "sha256_after": "67da71c29056eb7ce789c406fa12d645d1fa894fd9896e2d082049553c581dfb",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/prior-work-improvements.csv",
+   "sha256_before": "843724514d82194040297dc3bc6a18a74275efbf9ff40e9031773e291ddcabc4",
+   "sha256_after": "843724514d82194040297dc3bc6a18a74275efbf9ff40e9031773e291ddcabc4",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

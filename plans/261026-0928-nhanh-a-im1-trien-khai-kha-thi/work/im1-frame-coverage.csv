@@ -1,0 +1,5 @@
+role,arm,trace,no_trace,frame_free,records
+test,ra,138,0,147,285
+test,"ra_im1, ra_im1_shuf",138,39,108,285
+val,ra,108,0,102,210
+val,"ra_im1, ra_im1_shuf",108,54,48,210

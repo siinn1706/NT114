@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-double-all2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 double-search-snow 05-kappa-snow-01 --in work/screen/input/dbl-search-manifest.json --in work/screen/input/dbl-snow-manifest.json --out work/screen/kappa-search.json --out work/screen/kappa-snow.json --out work/screen/all2-resolution-a02.csv --note kappa include abstract 1.0 search n61 and 0.871 snow n16",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-double-all2-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-double-all2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:03:48.819994+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "e6b6d6ff485d86422b083a6f47927cdff6f5813e1d29c89b4443fb2ea688f5f0",
+  "3a3200802d5f7abaa603fb25ef8e91d35b8bcc5e765ae005872b938bffdf87c6"
+ ],
+ "output_hashes": [
+  "d460b02cc1a6a4d48767233c8cd4a89ee4268fb20fb14ccaaf2ee70248dce13a"
+ ],
+ "checks": [
+  "phase 05 double screening search+snow committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "ab267b595642a28fb64188ff9acbddd1440a9ca2a0d6459fe58d7bf2ff6c95b2",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 double-search-snow 05-kappa-snow-01 --in work/screen/input/dbl-search-manifest.json --in work/screen/input/dbl-snow-manifest.json --out work/screen/kappa-search.json --out work/screen/kappa-snow.json --out work/screen/all2-resolution-a02.csv --note kappa include abstract 1.0 search n61 and 0.871 snow n16",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "0b302e180c7fa35b28f8fc45763b80c810f4c9505fd57115df597cf2390e7275",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/kappa-search.json",
+   "sha256_before": "e6b6d6ff485d86422b083a6f47927cdff6f5813e1d29c89b4443fb2ea688f5f0",
+   "sha256_after": "e6b6d6ff485d86422b083a6f47927cdff6f5813e1d29c89b4443fb2ea688f5f0",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/kappa-snow.json",
+   "sha256_before": "3a3200802d5f7abaa603fb25ef8e91d35b8bcc5e765ae005872b938bffdf87c6",
+   "sha256_after": "3a3200802d5f7abaa603fb25ef8e91d35b8bcc5e765ae005872b938bffdf87c6",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "d460b02cc1a6a4d48767233c8cd4a89ee4268fb20fb14ccaaf2ee70248dce13a",
+   "created_this_attempt": true
+  }
+ ]
+}

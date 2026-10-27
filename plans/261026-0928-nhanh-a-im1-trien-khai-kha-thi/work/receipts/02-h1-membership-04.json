@@ -1,0 +1,78 @@
+{
+ "schema_version": 2,
+ "id": "02-h1-membership-04",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/h1-membership-recheck.py ../../nt114-rca/nt114-rca/data within-rcaeval-grouped-0-e9b2c81c work/h1-membership-recheck.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-h1-membership-04.out",
+ "egress_trace_reference": "work/logs/02-h1-membership-04.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:01:49.344627+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "0bb9dadfe6082e82ffec6c38186bedf157cdfbef45bb4d418b05754ca01e5e08"
+ ],
+ "output_hashes": [
+  "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1",
+  "4cf105c35bebf2936f34a74decc7608a2b096900bfd6b7476b5f65541f3aa95b"
+ ],
+ "checks": [
+  "pool single_modality recount vs 108/285 test, 78/210 val, 69 traced, 39 RE2-SS; train-role traced incidents per subset x system"
+ ],
+ "limitations": [
+  "label-free inputs only (eval_only/labels and split.json strata not opened); data-home inputs sit outside the plan workspace, so their sha256 are in work/h1-membership-recheck.inputs.json instead of input_files; supersedes 02-h1-membership-03 whose external input paths fail check-receipt (path traversal)"
+ ],
+ "closure_hash": "6ebae57dfcf0d80a60758d1b4c0e3049e5cecba0c475c0cd59d6ee9cdf4081a6",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/h1-membership-recheck.py ../../nt114-rca/nt114-rca/data within-rcaeval-grouped-0-e9b2c81c work/h1-membership-recheck.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "2a747e5db34ffda3b9c5997f2ca5f5bdde9c7dfb5cfe08ce81017dbd2beb7d01",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/h1-membership-recheck.py",
+   "sha256_before": "0bb9dadfe6082e82ffec6c38186bedf157cdfbef45bb4d418b05754ca01e5e08",
+   "sha256_after": "0bb9dadfe6082e82ffec6c38186bedf157cdfbef45bb4d418b05754ca01e5e08",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/h1-membership-recheck.csv",
+   "sha256": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/h1-membership-recheck.inputs.json",
+   "sha256": "4cf105c35bebf2936f34a74decc7608a2b096900bfd6b7476b5f65541f3aa95b",
+   "created_this_attempt": true
+  }
+ ]
+}

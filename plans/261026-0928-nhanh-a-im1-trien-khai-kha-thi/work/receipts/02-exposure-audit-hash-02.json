@@ -1,0 +1,73 @@
+{
+ "schema_version": 2,
+ "id": "02-exposure-audit-hash-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/sha256-files.py work/test-exposure-audit.md",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-exposure-audit-hash-02.out",
+ "egress_trace_reference": "work/logs/02-exposure-audit-hash-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:01:49.708132+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "9c0b1467324fdd684c6a4ed524be1c2b43b9bf456540b067ecf075107154595a",
+  "ccd70c7032a5b13f58b1b16b43d112c4ba4eb71263f0c7de59cdf643cb45d457"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "sha256 of work/test-exposure-audit.md (a01)"
+ ],
+ "limitations": [
+  "hash only; supersedes the -01 receipt whose python -c argument check-receipt reads as a compound command"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/sha256-files.py work/test-exposure-audit.md",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "56af0193e318351996e7a06cf984a1e63fbfa4f6cd58f72e2d1eeedbb3ecb5ad",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/sha256-files.py",
+   "sha256_before": "9c0b1467324fdd684c6a4ed524be1c2b43b9bf456540b067ecf075107154595a",
+   "sha256_after": "9c0b1467324fdd684c6a4ed524be1c2b43b9bf456540b067ecf075107154595a",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/test-exposure-audit.md",
+   "sha256_before": "ccd70c7032a5b13f58b1b16b43d112c4ba4eb71263f0c7de59cdf643cb45d457",
+   "sha256_after": "ccd70c7032a5b13f58b1b16b43d112c4ba4eb71263f0c7de59cdf643cb45d457",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

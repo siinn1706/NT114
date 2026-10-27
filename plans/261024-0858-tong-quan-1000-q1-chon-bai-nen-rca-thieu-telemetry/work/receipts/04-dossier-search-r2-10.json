@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-dossier-search-r2-10",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I C:/Users/Siinn/.claude/skills/nckh-literature/references/_shared/scripts/search-literature.py --project F:\\Nam\\UIT\\NT114 - NCKH\\plans\\261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry --input work/dossier/input/t0r2b-10.json --output work/dossier/search/t0r2b-10.json",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-dossier-search-r2-10.out",
+ "egress_trace_reference": "work/logs/04-dossier-search-r2-10.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:17:32.994593+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "082b2385c18873780302dce326cfdd9a373507097860c117e82f2bab07d2f129"
+ ],
+ "output_hashes": [
+  "10f5568d2fcfe2f884279957ae5a6d5bf5772e93ebe4776e8e1f7aa42f1f6718"
+ ],
+ "checks": [
+  "nckh-literature offline import"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "21188237ce86f003c5eddb8c08605a562ab794e318543034bbcd778bfbc5043c",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I C:/Users/Siinn/.claude/skills/nckh-literature/references/_shared/scripts/search-literature.py --project F:\\Nam\\UIT\\NT114 - NCKH\\plans\\261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry --input work/dossier/input/t0r2b-10.json --output work/dossier/search/t0r2b-10.json",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "7f05ec581aea3ec1bc9e815e4d110b882a544037dc39a3fb2138a907bd8f9196",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/dossier/input/t0r2b-10.json",
+   "sha256_before": "082b2385c18873780302dce326cfdd9a373507097860c117e82f2bab07d2f129",
+   "sha256_after": "082b2385c18873780302dce326cfdd9a373507097860c117e82f2bab07d2f129",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/dossier/search/t0r2b-10.json",
+   "sha256": "10f5568d2fcfe2f884279957ae5a6d5bf5772e93ebe4776e8e1f7aa42f1f6718",
+   "created_this_attempt": true
+  }
+ ]
+}

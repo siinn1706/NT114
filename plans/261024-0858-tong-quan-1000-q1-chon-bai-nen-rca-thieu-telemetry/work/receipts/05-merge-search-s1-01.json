@@ -1,0 +1,276 @@
+{
+ "schema_version": 2,
+ "id": "05-merge-search-s1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/merge-screen.py search s1 work/screen/anchors-seed-000-s1.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-merge-search-s1-01.out",
+ "egress_trace_reference": "work/logs/05-merge-search-s1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T05:55:43.600389+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3250762578d0ffbea5c7ee000e01f7747a29cf70fe3af8d8cc505d1c276bb217",
+  "76d13446f9a10b65b9a795e436e0a1f7f91d86f2de676c0deac1fc22be1d18ad",
+  "be5438125ab473999d2e53a2995201defdf51d09b89c4a37c2b840a0b872123b",
+  "aa257affba8807f168761611b28db4d6073be43fdad1b2b9398a1e2510d4d2ac",
+  "1338dd905e7dea68ad5edea66d296cf13e5e3521de00c7c94d81ea2a15d60b6e",
+  "9ab43eeed85268edfba369f2eacea6efd860ed3b5d810ec36edac4df4f55b709",
+  "01b8c68f84412f8885579663f98d8002e8226dfa9531bfefefa685c1e6e5851b",
+  "374479917b2cefac146def825e422219cd7b76f2e511652908d560e79a311e08",
+  "1045a50e611a0b428b9af7d9983494f0c6e52359c9753f02f3d64377719104a5",
+  "35b7931cc204c14d025b050ca93cf94c16e168b99f081fbc3dbd6a1429bb9abb",
+  "274cb975bc0276b5a0df73ef7f7fbab9e95797a40bd6eeb8356a9700270bbd6e",
+  "5e4271be532a22ea347e6d4292550e2892febb59e4aad0d8921038aaa1739b63",
+  "f173d19a841108d382b303f39b3e851f1571c9a61f17f3fe51e9d27d53901903",
+  "006179f29390fd65f3c35d7863bbdb81aabe12191e77995a0ac4cd64aa56054b",
+  "fc7d2b7cd76d31fc9b6b8b23fa6adba6a1b233459047dc0418d7005326f86657",
+  "1afd1850dbd07a3041f8cf6ba8452f0932c13f357a61d7bd495ebfd3f320311b",
+  "1caeecd904b571baa00f20d45d090cf0b70ecb15f7852e0f70a04039c7de33f6",
+  "1af4e23ab91d4c4ab263fce6a5a5487d07c6a05018db86907a5d34a9eed58450",
+  "b782b1b6398ac019d5d63ce58c383f9abd353ad3f977cfdbc8781012c52a69ca",
+  "ea5490a586ada55f45bf27887f5ba120f3293a291a3855fbb87877bbd2388b91",
+  "67790c839917393a6ce10a8d6557dcd6ab7ff7193addce5adccb577880fa284b",
+  "80dc849bdcd39f897e663aedef0f4868fd146b1f2e9cb06f450a5cffd654f5c1",
+  "6fb17d8c676cb35ce01be77cb11a3e426e88206c7a6833454abe35cda200e700"
+ ],
+ "output_hashes": [
+  "233805db19115df174dab93c1e47a1de33dc140896da93beab84d75ee75f4338",
+  "e4437f54901f9008f98dddb6e47d4332813ee467136e08d92711c2d07f241f6c"
+ ],
+ "checks": [
+  "s1 search screening validated, anchor drift vs seed-000"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "45b4c0c1d0305fd69edcadfc3283a8a173f20bff9d06315ad868da9ec4716159",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/merge-screen.py search s1 work/screen/anchors-seed-000-s1.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "1ca14e8dac83bf3f276f4ba482b2eeae29a84b8f5870788c0833c4ed6703116e",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/search-000-s1.csv",
+   "sha256_before": "3250762578d0ffbea5c7ee000e01f7747a29cf70fe3af8d8cc505d1c276bb217",
+   "sha256_after": "3250762578d0ffbea5c7ee000e01f7747a29cf70fe3af8d8cc505d1c276bb217",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-000-s1.csv",
+   "sha256_before": "76d13446f9a10b65b9a795e436e0a1f7f91d86f2de676c0deac1fc22be1d18ad",
+   "sha256_after": "76d13446f9a10b65b9a795e436e0a1f7f91d86f2de676c0deac1fc22be1d18ad",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-001-s1.csv",
+   "sha256_before": "be5438125ab473999d2e53a2995201defdf51d09b89c4a37c2b840a0b872123b",
+   "sha256_after": "be5438125ab473999d2e53a2995201defdf51d09b89c4a37c2b840a0b872123b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-001-s1.csv",
+   "sha256_before": "aa257affba8807f168761611b28db4d6073be43fdad1b2b9398a1e2510d4d2ac",
+   "sha256_after": "aa257affba8807f168761611b28db4d6073be43fdad1b2b9398a1e2510d4d2ac",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-002-s1.csv",
+   "sha256_before": "1338dd905e7dea68ad5edea66d296cf13e5e3521de00c7c94d81ea2a15d60b6e",
+   "sha256_after": "1338dd905e7dea68ad5edea66d296cf13e5e3521de00c7c94d81ea2a15d60b6e",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-002-s1.csv",
+   "sha256_before": "9ab43eeed85268edfba369f2eacea6efd860ed3b5d810ec36edac4df4f55b709",
+   "sha256_after": "9ab43eeed85268edfba369f2eacea6efd860ed3b5d810ec36edac4df4f55b709",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-003-s1.csv",
+   "sha256_before": "01b8c68f84412f8885579663f98d8002e8226dfa9531bfefefa685c1e6e5851b",
+   "sha256_after": "01b8c68f84412f8885579663f98d8002e8226dfa9531bfefefa685c1e6e5851b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-003-s1.csv",
+   "sha256_before": "374479917b2cefac146def825e422219cd7b76f2e511652908d560e79a311e08",
+   "sha256_after": "374479917b2cefac146def825e422219cd7b76f2e511652908d560e79a311e08",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-004-s1.csv",
+   "sha256_before": "1045a50e611a0b428b9af7d9983494f0c6e52359c9753f02f3d64377719104a5",
+   "sha256_after": "1045a50e611a0b428b9af7d9983494f0c6e52359c9753f02f3d64377719104a5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-004-s1.csv",
+   "sha256_before": "35b7931cc204c14d025b050ca93cf94c16e168b99f081fbc3dbd6a1429bb9abb",
+   "sha256_after": "35b7931cc204c14d025b050ca93cf94c16e168b99f081fbc3dbd6a1429bb9abb",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-005-s1.csv",
+   "sha256_before": "274cb975bc0276b5a0df73ef7f7fbab9e95797a40bd6eeb8356a9700270bbd6e",
+   "sha256_after": "274cb975bc0276b5a0df73ef7f7fbab9e95797a40bd6eeb8356a9700270bbd6e",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-005-s1.csv",
+   "sha256_before": "5e4271be532a22ea347e6d4292550e2892febb59e4aad0d8921038aaa1739b63",
+   "sha256_after": "5e4271be532a22ea347e6d4292550e2892febb59e4aad0d8921038aaa1739b63",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-006-s1.csv",
+   "sha256_before": "f173d19a841108d382b303f39b3e851f1571c9a61f17f3fe51e9d27d53901903",
+   "sha256_after": "f173d19a841108d382b303f39b3e851f1571c9a61f17f3fe51e9d27d53901903",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-006-s1.csv",
+   "sha256_before": "006179f29390fd65f3c35d7863bbdb81aabe12191e77995a0ac4cd64aa56054b",
+   "sha256_after": "006179f29390fd65f3c35d7863bbdb81aabe12191e77995a0ac4cd64aa56054b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-007-s1.csv",
+   "sha256_before": "fc7d2b7cd76d31fc9b6b8b23fa6adba6a1b233459047dc0418d7005326f86657",
+   "sha256_after": "fc7d2b7cd76d31fc9b6b8b23fa6adba6a1b233459047dc0418d7005326f86657",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-007-s1.csv",
+   "sha256_before": "1afd1850dbd07a3041f8cf6ba8452f0932c13f357a61d7bd495ebfd3f320311b",
+   "sha256_after": "1afd1850dbd07a3041f8cf6ba8452f0932c13f357a61d7bd495ebfd3f320311b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-008-s1.csv",
+   "sha256_before": "1caeecd904b571baa00f20d45d090cf0b70ecb15f7852e0f70a04039c7de33f6",
+   "sha256_after": "1caeecd904b571baa00f20d45d090cf0b70ecb15f7852e0f70a04039c7de33f6",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-008-s1.csv",
+   "sha256_before": "1af4e23ab91d4c4ab263fce6a5a5487d07c6a05018db86907a5d34a9eed58450",
+   "sha256_after": "1af4e23ab91d4c4ab263fce6a5a5487d07c6a05018db86907a5d34a9eed58450",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-009-s1.csv",
+   "sha256_before": "b782b1b6398ac019d5d63ce58c383f9abd353ad3f977cfdbc8781012c52a69ca",
+   "sha256_after": "b782b1b6398ac019d5d63ce58c383f9abd353ad3f977cfdbc8781012c52a69ca",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-009-s1.csv",
+   "sha256_before": "ea5490a586ada55f45bf27887f5ba120f3293a291a3855fbb87877bbd2388b91",
+   "sha256_after": "ea5490a586ada55f45bf27887f5ba120f3293a291a3855fbb87877bbd2388b91",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/search-010-s1.csv",
+   "sha256_before": "67790c839917393a6ce10a8d6557dcd6ab7ff7193addce5adccb577880fa284b",
+   "sha256_after": "67790c839917393a6ce10a8d6557dcd6ab7ff7193addce5adccb577880fa284b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-search-010-s1.csv",
+   "sha256_before": "80dc849bdcd39f897e663aedef0f4868fd146b1f2e9cb06f450a5cffd654f5c1",
+   "sha256_after": "80dc849bdcd39f897e663aedef0f4868fd146b1f2e9cb06f450a5cffd654f5c1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-000-s1.csv",
+   "sha256_before": "6fb17d8c676cb35ce01be77cb11a3e426e88206c7a6833454abe35cda200e700",
+   "sha256_after": "6fb17d8c676cb35ce01be77cb11a3e426e88206c7a6833454abe35cda200e700",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/search-s1-merged.csv",
+   "sha256": "233805db19115df174dab93c1e47a1de33dc140896da93beab84d75ee75f4338",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/screen/search-s1-check.json",
+   "sha256": "e4437f54901f9008f98dddb6e47d4332813ee467136e08d92711c2d07f241f6c",
+   "created_this_attempt": true
+  }
+ ]
+}

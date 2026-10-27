@@ -1,0 +1,2 @@
+# Matplotlib SVG path data has intentional line-end spaces; preserve published bytes.
+docs/figures/*.svg whitespace=-blank-at-eol

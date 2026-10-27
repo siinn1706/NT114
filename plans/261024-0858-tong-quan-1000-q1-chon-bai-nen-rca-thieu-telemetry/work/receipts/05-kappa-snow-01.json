@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "05-kappa-snow-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/kappa.py snow s1 s2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-kappa-snow-01.out",
+ "egress_trace_reference": "work/logs/05-kappa-snow-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:02:56.737232+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "38115f46e16d347d32ccd725ed48cb796e84efc3ad43d7ac2e666df67786dfa8",
+  "6d09ad82d4b04501e873f310f27ef71f75dbb8d54db715126e9b4d7257fc2021"
+ ],
+ "output_hashes": [
+  "3a3200802d5f7abaa603fb25ef8e91d35b8bcc5e765ae005872b938bffdf87c6"
+ ],
+ "checks": [
+  "kappa include on abstract rows >= 0.7"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "5499aaf8465cedb71cbc1ef226939330766f24819f8016fed393fe7b1136b122",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/kappa.py snow s1 s2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "88f595a48f3cae1c2ccd1ffe0cb6fec01d41509d7c1610842ebac9be9b752cf8",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/dbl-snow-000-s2.csv",
+   "sha256_before": "38115f46e16d347d32ccd725ed48cb796e84efc3ad43d7ac2e666df67786dfa8",
+   "sha256_after": "38115f46e16d347d32ccd725ed48cb796e84efc3ad43d7ac2e666df67786dfa8",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/kappa.py",
+   "sha256_before": "6d09ad82d4b04501e873f310f27ef71f75dbb8d54db715126e9b4d7257fc2021",
+   "sha256_after": "6d09ad82d4b04501e873f310f27ef71f75dbb8d54db715126e9b4d7257fc2021",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/kappa-snow.json",
+   "sha256": "3a3200802d5f7abaa603fb25ef8e91d35b8bcc5e765ae005872b938bffdf87c6",
+   "created_this_attempt": true
+  }
+ ]
+}

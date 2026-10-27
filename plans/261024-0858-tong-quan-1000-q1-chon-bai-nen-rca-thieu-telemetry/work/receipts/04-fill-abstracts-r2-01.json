@@ -1,0 +1,87 @@
+{
+ "schema_version": 2,
+ "id": "04-fill-abstracts-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts.py t0r2a",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fill-abstracts-r2-01.out",
+ "egress_trace_reference": "work/logs/04-fill-abstracts-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:05:36.275175+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "06b99c954a428229bcf8f4dbf41128f5cae8e28a1fc0f43f5c293b399306e830",
+  "49aa910fdb5a95cffcefbe077ae30e37030a91e70a89f1c673eea3776bb66aca"
+ ],
+ "output_hashes": [
+  "acb8fd939872d62718387180f597f4bb101eb060097799b51b5961a4aaeabf07",
+  "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1"
+ ],
+ "checks": [
+  "Crossref lane r2"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "4b76ce45c2d23416de726e35e8c13b71115f29a0933f71ede38b1fafbacf3da5",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts.py t0r2a",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "4e3656a1b250611626918511e43da8575ce0c756557a1faa956ef5e5a0934a0b",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2a-candidates.csv",
+   "sha256_before": "06b99c954a428229bcf8f4dbf41128f5cae8e28a1fc0f43f5c293b399306e830",
+   "sha256_after": "06b99c954a428229bcf8f4dbf41128f5cae8e28a1fc0f43f5c293b399306e830",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0r2a-excluded.csv",
+   "sha256_before": "49aa910fdb5a95cffcefbe077ae30e37030a91e70a89f1c673eea3776bb66aca",
+   "sha256_after": "49aa910fdb5a95cffcefbe077ae30e37030a91e70a89f1c673eea3776bb66aca",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/abstract-fill-t0r2a.csv",
+   "sha256": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/abstract-fill-log-t0r2a.csv",
+   "sha256": "acb8fd939872d62718387180f597f4bb101eb060097799b51b5961a4aaeabf07",
+   "created_this_attempt": true
+  }
+ ]
+}

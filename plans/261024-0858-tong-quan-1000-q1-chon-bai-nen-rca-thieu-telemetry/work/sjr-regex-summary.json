@@ -1,0 +1,14 @@
+{
+ "sha256": "6f20399957173a13e3c1729a5fb3b5821844ba75e8d640c8b3040ab19a6f7180",
+ "expected": "6f20399957173a13e3c1729a5fb3b5821844ba75e8d640c8b3040ab19a6f7180",
+ "types": {
+  "journal": 30412,
+  "book series": 913,
+  "conference and proceedings": 688,
+  "trade journal": 180
+ },
+ "journal_best_q1": 9399,
+ "journal_cs_q1": 562,
+ "regex_positive_pass": "21/30",
+ "regex_negative_pass": "8/30"
+}

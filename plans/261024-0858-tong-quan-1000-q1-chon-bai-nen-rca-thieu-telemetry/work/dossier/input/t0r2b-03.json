@@ -1,0 +1,421 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Security Enhanced Emergency Situation Detection System for Ambient Assisted Living",
+   "identifiers": {
+    "openalex": "W3180233645",
+    "doi": "10.1109/ojcs.2021.3095341"
+   },
+   "abstract": "Typical wearable devices use a dedicated mobile phone as relay node to transfer the collected sensor data to a server. However, such relay nodes can be faulty or inactive due to various reasons, leading to interruptions of the communication link. To mitigate this challenge, we propose a novel security-enhanced emergency situation detection system, where 3rdparty unknown mobile relays are used instead of dedicated gateways as opposed to many existing solutions for IoT healthcare applications. The proposed underlying key agreement and authentication scheme ensures anonymity and untraceability for both sensors (wearable devices) and relay nodes, and relies on symmetric key-based operations to function under resource-constrained environments. We have also developed a prototype of the system using commercial off-the-shelf devices to verify the proposed method's validity and evaluate the performance advantage over existing approaches. Bluetooth Low Energy (BLE) communication technology is used to connect sensor nodes (wearable devices) and mobile relays. After sending medical data to the cloud server, the relay node is responsible for emergency detection and alert generation.",
+   "status": "current"
+  },
+  {
+   "title": "Trusted audit with untrusted auditors: A decentralized data integrity Crowdauditing approach based on blockchain",
+   "identifiers": {
+    "openalex": "W3182719754",
+    "doi": "10.1002/int.22548"
+   },
+   "abstract": "Edge computing emerges as an alternative to cloud computing in the scenarios where the end devices require lower latency and faster access speeds. Edge nodes are deployed at the proximity of the end devices to reduce response time. On the other hand, the edge nodes are usually owned by small organizations that have limited operations and maintenance capabilities. Data on the edge may be easily damaged, due to external attacks or internal hardware failures. Therefore, it is essential to verify data integrity in edge computing. However, edge environment requires a different trust model compared with other computing and storage paradigm. Besides, compared with cloud storage, edge storage is decentralized and storage service participants may pose greater internal and external threats. This paper proposes a blockchain-based intelligent crowdsourcing audit approach (Crowdauditing) to achieve on-chain and off-chain credibility of audit results. The model relies on an untrusted auditor committee from the crowd to audit data integrity and uses smart contracts as the core of the intelligent system to ensure the reliability of result submission, the accuracy of the result judgment, and reasonable punishments and rewards. Specifically, an unbiased selection algorithm is proposed to achieve fairness during the auditor committee construction. An innovative two-stage submission strategy is proposed to ensure that the auditor committee can reach a consensus on the off-chain audit results. An incentive mechanism is carefully designed to force auditors providing audit services honestly to maximize their own rewards. Moreover, we modeled that as a game of n players, which proves the reliability of the result. Finally, we implement a prototype of Crowdauditing based on smart contracts. The extensive experimental results demonstrate the effectiveness of Crowdauditing.",
+   "status": "current"
+  },
+  {
+   "title": "Is the Reign of Interactive Search Eternal? Findings from the Video Browser Showdown 2020",
+   "identifiers": {
+    "openalex": "W3183241901",
+    "doi": "10.1145/3445031"
+   },
+   "abstract": "Comprehensive and fair performance evaluation of information retrieval systems represents an essential task for the current information age. Whereas Cranfield-based evaluations with benchmark datasets support development of retrieval models, significant evaluation efforts are required also for user-oriented systems that try to boost performance with an interactive search approach. This article presents findings from the 9th Video Browser Showdown, a competition that focuses on a legitimate comparison of interactive search systems designed for challenging known-item search tasks over a large video collection. During previous installments of the competition, the interactive nature of participating systems was a key feature to satisfy known-item search needs, and this article continues to support this hypothesis. Despite the fact that top-performing systems integrate the most recent deep learning models into their retrieval process, interactive searching remains a necessary component of successful strategies for known-item search tasks. Alongside the description of competition settings, evaluated tasks, participating teams, and overall results, this article presents a detailed analysis of query logs collected by the top three performing systems, SOMHunter, VIRET, and vitrivr. The analysis provides a quantitative insight to the observed performance of the systems and constitutes a new baseline methodology for future events. The results reveal that the top two systems mostly relied on temporal queries before a correct frame was identified. An interaction log analysis complements the result log findings and points to the importance of result set and video browsing approaches. Finally, various outlooks are discussed in order to improve the Video Browser Showdown challenge in the future.",
+   "status": "current"
+  },
+  {
+   "title": "A Survey on Automated Log Analysis for Reliability Engineering",
+   "identifiers": {
+    "openalex": "W3183619936",
+    "doi": "10.1145/3460345",
+    "arxiv": "2009.07237"
+   },
+   "abstract": "Logs are semi-structured text generated by logging statements in software source code. In recent decades, software logs have become imperative in the reliability assurance mechanism of many software systems, because they are often the only data available that record software runtime information. As modern software is evolving into a large scale, the volume of logs has increased rapidly. To enable effective and efficient usage of modern software logs in reliability engineering, a number of studies have been conducted on automated log analysis. This survey presents a detailed overview of automated log analysis research, including how to automate and assist the writing of logging statements, how to compress logs, how to parse logs into structured event templates, and how to employ logs to detect anomalies, predict failures, and facilitate diagnosis. Additionally, we survey work that releases open-source toolkits and datasets. Based on the discussion of the recent advances, we present several promising future directions toward real-world and next-generation automated log analysis.",
+   "status": "current"
+  },
+  {
+   "title": "An Empirical Study of the Impact of Data Splitting Decisions on the Performance of AIOps Solutions",
+   "identifiers": {
+    "openalex": "W3184231327",
+    "doi": "10.1145/3447876"
+   },
+   "abstract": "AIOps (Artificial Intelligence for IT Operations) leverages machine learning models to help practitioners handle the massive data produced during the operations of large-scale systems. However, due to the nature of the operation data, AIOps modeling faces several data splitting-related challenges, such as imbalanced data, data leakage, and concept drift. In this work, we study the data leakage and concept drift challenges in the context of AIOps and evaluate the impact of different modeling decisions on such challenges. Specifically, we perform a case study on two commonly studied AIOps applications: (1) predicting job failures based on trace data from a large-scale cluster environment and (2) predicting disk failures based on disk monitoring data from a large-scale cloud storage environment. First, we observe that the data leakage issue exists in AIOps solutions. Using a time-based splitting of training and validation datasets can significantly reduce such data leakage, making it more appropriate than using a random splitting in the AIOps context. Second, we show that AIOps solutions suffer from concept drift. Periodically updating AIOps models can help mitigate the impact of such concept drift, while the performance benefit and the modeling cost of increasing the update frequency depend largely on the application data and the used models. Our findings encourage future studies and practices on developing AIOps solutions to pay attention to their data-splitting decisions to handle the data leakage and concept drift challenges.",
+   "status": "current"
+  },
+  {
+   "title": "TSAGen: Synthetic Time Series Generation for KPI Anomaly Detection",
+   "identifiers": {
+    "openalex": "W3184338320",
+    "doi": "10.1109/tnsm.2021.3098784"
+   },
+   "abstract": "A key performance indicator (KPI) consists of critical time series data that reflect the runtime states of network systems (e.g., response time and available bandwidth). Despite the importance of KPI, datasets for KPI anomaly detection available to the public are very limited, due to privacy concerns and the high overhead in manually labelling the data. The insufficiency of public KPI data poses a great barrier for network researchers and practitioners to evaluate and test what-if scenarios in the development of artificial intelligence for IT operations (AIOps) and anomaly detection algorithms. To tackle the difficulty, we develop a univariate time series generation tool called TSAGen, which can generate KPI data with anomalies and controllable characteristics for KPI anomaly detection. Experiment results show that the data generated by TSAGen can be used for comprehensive evaluation of anomaly detection algorithms with diverse user-defined what-if scenarios.",
+   "status": "current"
+  },
+  {
+   "title": "Quality-Discriminative Localization of Multisensor Signals for Root Cause Analysis",
+   "identifiers": {
+    "openalex": "W3185363980",
+    "doi": "10.1109/tsmc.2021.3096529"
+   },
+   "abstract": "Root cause analysis (RCA) methods for effectively identifying the critical causes of abnormal processes have attracted attention because manufacturing processes have grown in scale and complexity. However, the existing methods for building automatic RCA models suffer from the disadvantage of typically requiring expert knowledge. In addition, without a dataset representing the causal relationship of multivariate processes, it is difficult to provide useful information for RCA. Although data-driven RCA methods have been proposed, most are based on classification models. Given that product quality is defined as a continuous variable in many manufacturing industries, classification models are limited in deriving root causes affecting the product quality level. In this article, we propose a regression model-based RCA method, which we call quality-discriminative localization, consisting of a convolutional neural network (CNN)-based activation mapping of multisensor signal data. In our proposed method, the CNN predicts the product quality of a continuous variable. Activation mapping then extracts causal maps that highlight significant sensor signals for each product. To identify the root causes, we generate a root cause map from the weighted sum of quality and causal maps. We consider root causes as locations of abnormal processes and processing times from localized activation scores on the root cause map. We experimentally demonstrate the usefulness of the proposed method with simulated data and real process data from a steel manufacturing process. Our results show that the proposed method successfully identifies root causes with distinct sensor signal patterns.",
+   "status": "current"
+  },
+  {
+   "title": "Operation and maintenance(O&M) for data center: An intelligent anomaly detection approach",
+   "identifiers": {
+    "openalex": "W3186988750",
+    "doi": "10.1016/j.comcom.2021.06.030"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "A big data-driven root cause analysis system: Application of Machine Learning in quality problem solving",
+   "identifiers": {
+    "openalex": "W3190028216",
+    "doi": "10.1016/j.cie.2021.107580"
+   },
+   "abstract": "Root cause analysis for quality problem solving is critical to improve product quality performance and reduce the quality risk for manufacturers. Subjective conventional methods have been applied frequently in past decades. However, due to increasingly complex product and supply chain structures, diverse working conditions, and massive amounts of components, accuracy and efficiency of root cause analysis are progressively challenged in practice. Therefore, data-driven root cause analysis methods have attracted attention lately. In this paper, taking advantage of the availability of big operations data and the rapid development of data science, we design a big data-driven root cause analysis system utilizing Machine Learning techniques to improve the performance of root cause analysis. More specifically, we first propose a conceptual framework of the big data-driven root cause analysis system including three modules of Problem Identification, Root Cause Identification, and Permanent Corrective Action. Furthermore, in the Problem Identification Module, we construct a unified feature-based approach to describe multiple and different types of quality problems by applying a data mining method. In the Root Cause Identification Module, we use supervised Machine Learning (classification) methods to automatically predict the root causes of multiple quality problems. Finally, we illustrate the accuracy and efficiency of the proposed system and algorithms based on actual quality data from a case company. This study contributes to the literature from the following aspects: (i) the integrated system and algorithms can be used directly to develop a computer application to manage and solve quality problems with high concurrences and complexities in any manufacturing process; (ii) a general procedure and method are provided to formulate and describe a large quantity and different types of quality problems; (iii) compared with traditional methods, it is demonstrated using real case data that manufacturing companies can save significant time and cost with our proposed data-driven root cause analysis system; (iv) this study not only aims at improving the quality problem solving practices for a complex manufacturing process but also bridges a gap between the theoretical development of Machining Learning methods and their application in the operations management domain.",
+   "status": "current"
+  },
+  {
+   "title": "Proactive Failure-Aware Task Scheduling Framework for Cloud Computing",
+   "identifiers": {
+    "openalex": "W3190414341",
+    "doi": "10.1109/access.2021.3101147"
+   },
+   "abstract": "Cloud computing is a widely adopted platform for executing tasks of different application types that belong to the end users. In the cloud, application task is prone to failure for several reasons, such as software bug or exception, virtual or physical infrastructure failure. Cloud service providers are responsible for managing availability of scheduled computing tasks in order to provide high level QoS for their customers. Protecting task against failure is a challenging and not a trivial mission due to dynamic, heterogeneous and large distributed structure of the cloud environment. The existing works in the literature focus on task failure prediction and neglect the remedy (post) actions. In this work, we first study and analyze three publicly available large cluster datasets from Google, Alibaba, and Trinity, to characterize task failure in cloud computing platform. We then propose a failure-aware task scheduling framework that can predict the termination status for a set of given tasks during the runtime, and take the appropriate remedy actions. The framework uses deep learning methods named Artificial and Convolutional Neural Network, ANN and CNN, for different prediction purposes. In addition, we formalize the actions selection problem as Integer Linear Programming (ILP) model and propose a heuristic optimization solution that aims to minimize the failure probability of tasks and their resources usage. The results show ANN and CNN can achieve prediction accuracy of up to 94% and 92%, respectively using Google dataset. Moreover, the framework can protect up to 40% of tasks that are predicted as failed using Alibaba dataset by taking the appropriate remedy actions, and hence save many of cluster's resources such as CPU and RAM.",
+   "status": "current"
+  },
+  {
+   "title": "Consortium Blockchain-Based Public Integrity Verification in Cloud Storage for IoT",
+   "identifiers": {
+    "openalex": "W3193159056",
+    "doi": "10.1109/jiot.2021.3102236"
+   },
+   "abstract": "The applications of Internet of Things have emerged in every aspect of people’s life. The volume of data gathered can be enormous. Enterprises and personal consumers are increasingly reliant on cloud storage services instead of local storage. While they enjoy the convenience of cloud storage services, they also worry about the integrity of the cloud-stored data since they do not physically own the data. To enable public integrity auditing, third-party auditors as trusted ones verify data integrity on behalf of the data owner. However, the vulnerability of auditors should also be considered. We propose a consortium blockchain-based public integrity verification system (CBPIV). In CBPIV, the auditor behaviors are recorded in the consortium blockchain so that authorized parties can audit the auditor to see if the verification results are correct. A smart contract is deployed to check the behavior of the auditor automatically, which can trigger alerts for unusual behaviors. The evaluation on both security and performance shows that our proposed scheme is secure and alleviates the burden on data owners of limited computation capability.",
+   "status": "current"
+  },
+  {
+   "title": "The sense of logging in the Linux kernel",
+   "identifiers": {
+    "openalex": "W3195715707",
+    "doi": "10.1007/s10664-022-10136-3",
+    "arxiv": "2208.06640"
+   },
+   "abstract": "Logging plays a crucial role in software engineering because it is key to perform various tasks including debugging, performance analysis, and detection of anomalies. Despite the importance of log data, the practice of logging still suffers from the lack of common guidelines and best practices. Recent studies investigated logging in C/C++ and Java open-source systems. In this paper, we complement these studies by conducting the first empirical study on logging practices in the Linux kernel, one of the most elaborate open-source development projects in the computer industry. We analyze 22 Linux releases with a focus on three main aspects: the pervasiveness of logging in Linux, the types of changes made to logging statements, and the rationale behind these changes. Our findings show that logging code accounts for 3.73% of the total source code in the Linux kernel, distributed across 72.36% of Linux files. We also found that the distribution of logging statements across Linux subsystems and their components vary significantly with no apparent reasons, suggesting that developers use different criteria when logging. In addition, we observed a slow decrease in the use of logging—reduction of 9.27% between versions v4.3 and v5.3. The majority of changes in logging code are made to fix language issues, modify log levels, and upgrade logging code to use new logging libraries, with the overall goal of improving the precision and consistency of the log output. Many recommendations are derived from our findings such as the use of static analysis tools to detect log-related issues, the adoption of common writing styles to improve the quality of log messages, the development of conventions to guide developers when selecting log levels, the establishment of review sessions to review logging code, and so on. Our recommendations can serve as a basis for developing logging guidelines as well as better logging processes, tools, and techniques.",
+   "status": "current"
+  },
+  {
+   "title": "A fog assisted intelligent framework based on cyber physical system for safe evacuation in panic situations",
+   "identifiers": {
+    "openalex": "W3196591078",
+    "doi": "10.1016/j.comcom.2021.08.022"
+   },
+   "abstract": "In the current scenario of the COVID-19 pandemic and worldwide health emergency, one of the major challenges is to identify and predict the panic health of persons. The management of panic health and on-time evacuation prevents COVID-19 infection incidences in educational institutions and public places. Therefore, a system is required to predict the infection and suggests a safe evacuation path to people that control panic scenarios with mortality. In this paper, a fog-assisted cyber physical system is introduced to control panic attacks and COVID-19 infection risk in public places. The proposed model uses the concept of physical and cyber space. The physical space helps in real time data collection and transmission of the alert generation to the stakeholders. Cyberspace consists of two spaces, fog space, and cloud-space. The fog-space facilitates panic health and COVID-19 symptoms determination with alert generation for risk-affected areas. Cloud space monitors and predicts the person’s panic health and symptoms using the SARIMA model. Furthermore, it also identifies risk-prone regions in the affected place using Geographical Population Analysis. The performance evaluation acknowledges the efficiency related to panic health determination and prediction based on the SARIMA with risks mapping accuracy. The proposed system provides an efficient on time evacuation with priority from risk-affected places that protect people from attacks due to panic and infection caused by COVID-19.",
+   "status": "current"
+  },
+  {
+   "title": "openGauss",
+   "identifiers": {
+    "openalex": "W3196849431",
+    "doi": "10.14778/3476311.3476380"
+   },
+   "abstract": "Although learning-based database optimization techniques have been studied from academia in recent years, they have not been widely deployed in commercial database systems. In this work, we build an autonomous database framework and integrate our proposed learning-based database techniques into an open-source database system openGauss. We propose effective learning-based models to build learned optimizers (including learned query rewrite, learned cost/cardinality estimation, learned join order selection and physical operator selection) and learned database advisors (including self-monitoring, self-diagnosis, self-configuration, and self-optimization). We devise an effective validation model to validate the effectiveness of learned models. We build effective training data management and model management platforms to easily deploy learned models. We have evaluated our techniques on real-world datasets and the experimental results validated the effectiveness of our techniques. We also provide our learnings of deploying learning-based techniques.",
+   "status": "current"
+  },
+  {
+   "title": "AI-Enabled IIoT for Live Smart City Event Monitoring",
+   "identifiers": {
+    "openalex": "W3197447116",
+    "doi": "10.1109/jiot.2021.3109435"
+   },
+   "abstract": "Recent advancements of the Industrial Internet of Things (IIoT) have revolutionized modern urbanization and smart cities. While IIoT data contain rich events and objects of interest, processing a massive amount of IIoT data and making predictions in real-time are challenging. Recent advancements in artificial intelligence (AI) allow processing such a massive amount of IIoT data and generating insights for further decision-making processes. In this article, we propose several key aspects of AI-enabled IIoT data for smart city monitoring. First, we have combined a human-intelligence-enabled crowdsourcing application with that of an AI-enabled IIoT framework to capture events and objects from IIoT data in real time. Second, we have combined multiple AI algorithms that can run on distributed edge and cloud nodes to automatically categorize the captured events and objects and generate analytics, reports, and alerts from the IIoT data in real time. The results can be utilized in two scenarios. In the first scenario, the smart city authority can authenticate the AI-processed events and assign these events to the appropriate authority for managing the events. In the second scenario, the AI algorithms are allowed to interact with humans or IIoT for further processes. Finally, we will present the implementation details of the scenarios mentioned above and the test results. The test results show that the framework has the potential to be deployed within a smart city.",
+   "status": "current"
+  },
+  {
+   "title": "Improved data-driven root cause analysis in fog computing environment",
+   "identifiers": {
+    "openalex": "W3197476033",
+    "doi": "10.1007/s40860-021-00158-x"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "DBMind",
+   "identifiers": {
+    "openalex": "W3197917898",
+    "doi": "10.14778/3476311.3476334"
+   },
+   "abstract": "We demonstrate a self-driving system DBMind, which provides three autonomous capabilities in database, including self-monitoring, self-diagnosis and self-optimization. First, self-monitoring judiciously collects database metrics and detects anomalies (e.g., slow queries and IO contention), which can profile database status while only slightly affecting system performance (<5%). Then, self-diagnosis utilizes an LSTM model to analyze the root causes of the anomalies and automatically detect root causes from a pre-defined failure hierarchy. Next, self-optimization automatically optimizes the database performance using learning-based techniques, including deep reinforcement learning based knob tuning, reinforcement learning based index selection, and encoder-decoder based view selection. We have implemented DBMind in an open source database openGauss and demonstrated real scenarios.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly detection on software log based on Temporal Memory",
+   "identifiers": {
+    "openalex": "W3199351682",
+    "doi": "10.1016/j.compeleceng.2021.107433"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "IoT Inspired Intelligent Monitoring and Reporting Framework for Education 4.0",
+   "identifiers": {
+    "openalex": "W3201381148",
+    "doi": "10.1109/access.2021.3114286"
+   },
+   "abstract": "Education 4.0 contemplates the involvement of emerging technologies like IoT (Internet of Things), Fog and cloud computing. Ubiquitous real-time monitoring under the challenging environment of an educational institution is the key requirement for proper implementation of Education 4.0 around the world. Conspicuously, this research presents a novel monitoring and irregularity detection framework for educational institutions. In this research, acquisition of data while deploying IoT is being suggested in the comprehensive environs of the educational institutions. Pre-processing of acquired data for feature extraction is implemented using the Fog-Cloud nodes. Subsequently, the Temporal Chunk (TC)which is articulated with Temporal Data mining, is further employed to detect irregularities based on SoTL (Set of threshold limits)and HAA (Historical Adversity Approximation). Successively, Multi-Layered Bi-Directional Long Short Term Memory (M-Bi-LSTM) oriented irregularity prediction model is deployed. Furthermore, a fog-inspired alert generation and reporting module are employed for real-time reporting to notify the concerned stakeholder for in-time preventive action corresponding to predicted irregularity. To authenticate the proposed framework and to avoid the experimental implementation cost, the experimental simulations are performed. The experimental results verify that the proposed framework is capable to perform better in comparison to other contemporary decision-making methods for Delay Efficiency, Data Classification, Irregularity Prediction and System Stability. Moreover, the proposed framework can successfully estimate most of the irregularities in an educational environment and provide support for the proper implementation of Education 4.0 in a proficient and realistic manner.",
+   "status": "current"
+  },
+  {
+   "title": "Service Configuration Optimization in Edge–Cloud Networks Leveraging Log Analysis",
+   "identifiers": {
+    "openalex": "W3201625307",
+    "doi": "10.1109/jiot.2021.3112609"
+   },
+   "abstract": "The edge–cloud collaboration network is promising to support complex requirements with temporal constraints, where a requirement can be achieved through the composition of computation-demanding and delay-sensitive services. In this setting, most services should be optimally configured at the network edge, in order to decrease service response latency and reducing network resource consumption. To address this challenge, this article proposes an optimal service configuration mechanism, where temporal constraints between services are mined from event logs through our temporal interval discovery mechanism. Service configuration is formulated as a constrained multiobjective optimization problem, which is solved by our improved nondominated sorting geneticalgorithm II. Extensive experiments are conducted, and evaluation results demonstrate that our approach can find the close-to-optimal service configuration in comparison with the state-of-the-art techniques in terms of delay sensitivity and energy efficiency, especially when edge nodes can co-host a relatively large number of services.",
+   "status": "current"
+  },
+  {
+   "title": "Adaptive Privacy-Preserving Federated Learning for Fault Diagnosis in Internet of Ships",
+   "identifiers": {
+    "openalex": "W3202645507",
+    "doi": "10.1109/jiot.2021.3115817"
+   },
+   "abstract": "The recent appearance of Internet of Things (IoT) technologies applied in the maritime industry has introduced the Internet of Ships (IoS) paradigm. By leveraging IoS and deep learning (DL), various DL-based fault diagnosis methods have been proposed to improve shipping companies’ maintenance performance and reduce operational costs. However, the traditional centralized learning approach (CL), which centralizes the data resources of different shipping companies to a cloud server for model training, is restricted in real industrial scenarios due to privacy concerns and business competitions. In this article, we propose a novel adaptive privacy-preserving federated learning approach, named AdaPFL, for fault diagnosis in IoS, which can organize different shipping agents to collaboratively develop a model by sharing model parameters with no risk of data leakage. First, we use two common tasks as examples to demonstrate that a small part of the model parameters might reveal the shipping agents’ raw information. Based on this, the Paillier-based communication scheme is designed to preserve the raw information of the shipping agents. Furthermore, to deal with the harsh marine environment, a control algorithm is proposed to adaptively change the model aggregation interval during the training process for reducing cryptography computation and communication costs. Theoretical analysis and experiments prove the high effectiveness of the AdaPFL on a real nonindependent and identically distributed (non-i.i.d) fault data set.",
+   "status": "current"
+  },
+  {
+   "title": "AI-Assisted Edge Vision for Violence Detection in IoT-Based Industrial Surveillance Networks",
+   "identifiers": {
+    "openalex": "W3203160579",
+    "doi": "10.1109/tii.2021.3116377"
+   },
+   "abstract": "Analyzing surveillance videos is mandatory for the public and industrial security. Overwhelming growth in computer vision fields has been made to automate the surveillance system in terms of human activity recognition, such as behavior analysis and violence detection (VD). However, it is challenging to detect and analyze the violent scenes intelligently to fulfill the notion of Industrial Internet of Things (IIoT)-based surveillance buoyed by constrained resources to reduce computational power. To tackle this challenge, in this article, an artificial intelligence enabled IIoT-based framework with VD-Network (VD-Net) is proposed. First, the input video frames are passed to light-weight convolutional neural network model for important information collection including humans or suspicious objects such as knives/guns. Upon suspicious object detection, an alert is generated as an earlier VD in IIoT network while the information is shared with concern departments. Only the frames with objects are forwarded to cloud for detail investigation where features are extracted using convolutional long short-term memory (ConvLSTM). The latter from ConvLSTM is propagated to gated recurrent unit for final VD. The conducted experiments and ablation study on the existing surveillance and nonsurveillance datasets empirically validate the effectiveness of the proposed VD-Net by improving 3.9% increase in the accuracy compared with the state-of-the-art VD methods.",
+   "status": "current"
+  },
+  {
+   "title": "Trends in Workplace Wearable Technologies and Connected‐Worker Solutions for Next‐Generation Occupational Safety, Health, and Productivity",
+   "identifiers": {
+    "openalex": "W3203923637",
+    "doi": "10.1002/aisy.202100099"
+   },
+   "abstract": "The workplace influences the safety, health, and productivity of workers at multiple levels. To protect and promote total worker health, smart hardware, and software tools have emerged for the identification, elimination, substitution, and control of occupational hazards. Wearable devices enable constant monitoring of individual workers and the environment, whereas connected worker solutions provide contextual information and decision support. Here, the recent trends in commercial workplace technologies to monitor and manage occupational risks, injuries, accidents, and diseases are reviewed. Workplace safety wearables for safe lifting, ergonomics, hazard identification, sleep monitoring, fatigue management, and heat and cold stress are discussed. Examples of workplace productivity wearables for asset tracking, augmented reality, gesture and motion control, brain wave sensing, and work stress management are given. Workplace health wearables designed for work‐related musculoskeletal disorders, functional movement disorders, respiratory hazards, cardiovascular health, outdoor sun exposure, and continuous glucose monitoring are shown. Connected worker platforms are discussed with information about the architecture, system modules, intelligent operations, and industry applications. Predictive analytics provide contextual information about occupational safety risks, resource allocation, equipment failure, and predictive maintenance. Altogether, these examples highlight the ground‐level benefits of real‐time visibility about frontline workers, work environment, distributed assets, workforce efficiency, and safety compliance.",
+   "status": "current"
+  },
+  {
+   "title": "Real-time epileptic seizure recognition using Bayesian genetic whale optimizer and adaptive machine learning",
+   "identifiers": {
+    "openalex": "W3204608165",
+    "doi": "10.1016/j.future.2021.09.032"
+   },
+   "abstract": "Abstract The electroencephalogram (EEG) has been commonly used to identify epileptic seizures, but identification of seizures from EEG remains a challenging task that requires qualified neurophysiologists. It is important to detect seizures in real time, which can be achieved in an internet of things (IoT)-based cloud platform to alert patients of impending seizures. Therefore, in this study, we propose a new model to recognize seizure states (e.g., ictal, preictal, interictal) from EEG in the IoT framework to monitor patients remotely. The proposed model uses an efficient hybrid genetic whale optimization algorithm (GWOA) based on naive Bayes (NB-GWOA) for feature selection, and an adaptive extreme learning machine (ELM) based on a differential evolutionary (DE) algorithm (DEELM) for classification. In the NB-GWOA method, the genetic algorithm serves to enhance the exploitation of the whale optimization algorithm in the search of the optimal solutions, while the naive Bayes method is used to determine a fitness function to assess every agent in the search space. GWOA has strong robustness and is capable of finding the best solutions in less than five iterations, so it is suitable for selecting discriminative features from a huge number of neurofeatures obtained from EEG. Further, the classification model is constructed based on ELM, which uses the DE algorithm for a fast and efficient learning solution. Results show that the proposed NB-GWOA-DEELM model can avoid over- and under-fitting and can provide better and more accurate performance in classifying seizure states from EEG than its competitors.",
+   "status": "current"
+  },
+  {
+   "title": "Deep State Inference: Toward Behavioral Model Inference of Black-Box Software Systems",
+   "identifiers": {
+    "openalex": "W3205783487",
+    "doi": "10.1109/tse.2021.3128820",
+    "arxiv": "2101.04948"
+   },
+   "abstract": "Many software engineering tasks, such as testing, debugging, and anomaly detection can benefit from the ability to infer a behavioral model of the software. Most existing inference approaches assume access to code to collect execution sequences. In this paper, we investigate a black-box scenario, where the system under analysis cannot be instrumented in this fashion. This scenario is particularly common when it comes to the analysis of control system logs, which often take the form of continuous signals. In this situation, an execution trace amounts to a multivariate time-series of input and output signals, where different states of the system correspond to different “phases” in the time-series. From an inference perspective, the challenge is to detect when these phase changes take place. Unfortunately, most existing solutions are either univariate, make assumptions about the data distribution, or have limited learning power. In this paper we propose a hybrid deep neural network that accepts as input a multivariate time series and applies a set of convolutional and recurrent layers to learn the non-linear correlations between signals and the patterns over time. We show how this approach can be used to accurately detect state changes, and how the inferred models can be successfully applied to transfer-learning scenarios, to accurately process traces from different products with similar execution characteristics. Our experimental results on two UAV autopilot case studies (one industrial and one open-source) indicate that our approach is highly accurate (over 90% F1 score for state classification) and significantly improves baselines (by up to 102% for change point detection). Using transfer learning we also show that up to 90% of the maximum achievable F1 scores in the open-source case study can be achieved by reusing the trained models from the industrial case and only fine tuning them using as low as 5 labeled samples, which reduces the manual labeling effort by 98%.",
+   "status": "current"
+  },
+  {
+   "title": "Causality-based accountability mechanisms for socio-technical systems",
+   "identifiers": {
+    "openalex": "W3208788558",
+    "doi": "10.1016/j.jrt.2021.100016"
+   },
+   "abstract": "With the rapid deployment of socio-technical systems into all aspects of daily life, we need to be prepared for their failures. It is inherently impractical to specify all the lawful interactions of these systems, in turn, the possibility of invalid interactions cannot be excluded at design time. As modern systems might harm people, or compromise assets if they fail, they ought to be accountable. Accountability is an interdisciplinary concept that cannot be easily described as a holistic technical property of a system. Thus, in this paper, we propose a bottom-up approach to enable accountability using goal-specific accountability mechanisms. Each mechanism provides forensic capabilities that help us to identify the root cause for a specific type of events, both to eliminate the underlying (technical) problem and to assign blame. This paper presents the different ingredients that are required to design and build an accountability mechanism and focuses on the technical and practical utilization of causality theories as a cornerstone to achieve our goal. To the best of our knowledge, the literature lacks a systematic methodology to envision, design, and implement abilities that promote accountability in systems. With a case study from the area of microservice-based systems, which we deem representative of modern complex systems, we demonstrate the effectiveness of the approach as a whole. We show that it is generic enough to accommodate different accountability goals and mechanisms.",
+   "status": "current"
+  },
+  {
+   "title": "Large scale log anomaly detection via spatial pooling",
+   "identifiers": {
+    "openalex": "W3210298562",
+    "doi": "10.1016/j.cogr.2021.10.001"
+   },
+   "abstract": "Log data is an important clue to understanding the behaviour of a system at runtime, but the complexity of software systems in recent years has made the data that engineers need to analyse enormous and difficult to understand. While log-based anomaly detection methods based on deep learning have enabled highly accurate detection, the computational performance required to operate the models has become very high. In this study, we propose an anomaly detection method, SPClassifier, based on sparse features and the internal state of the model, and investigate the feasibility of anomaly detection that can be utilized in environments without computing resources such as GPUs. Benchmark with the latest deep learning models on the BGL dataset shows that the proposed method can achieve competitive accuracy with these methods and has a high level of anomaly detection performance even when the amount of training data is small.",
+   "status": "current"
+  },
+  {
+   "title": "Towards a Consistent Interpretation of AIOps Models",
+   "identifiers": {
+    "openalex": "W3211945175",
+    "doi": "10.1145/3488269",
+    "arxiv": "2202.02298"
+   },
+   "abstract": "Artificial Intelligence for IT Operations (AIOps) has been adopted in organizations in various tasks, including interpreting models to identify indicators of service failures. To avoid misleading practitioners, AIOps model interpretations should be consistent (i.e., different AIOps models on the same task agree with one another on feature importance). However, many AIOps studies violate established practices in the machine learning community when deriving interpretations, such as interpreting models with suboptimal performance, though the impact of such violations on the interpretation consistency has not been studied. In this article, we investigate the consistency of AIOps model interpretation along three dimensions: internal consistency, external consistency, and time consistency. We conduct a case study on two AIOps tasks: predicting Google cluster job failures and Backblaze hard drive failures. We find that the randomness from learners, hyperparameter tuning, and data sampling should be controlled to generate consistent interpretations. AIOps models with AUCs greater than 0.75 yield more consistent interpretation compared to low-performing models. Finally, AIOps models that are constructed with the Sliding Window or Full History approaches have the most consistent interpretation with the trends presented in the entire datasets. Our study provides valuable guidelines for practitioners to derive consistent AIOps model interpretation.",
+   "status": "current"
+  },
+  {
+   "title": "IT Infrastructure Anomaly Detection and Failure Handling: A Systematic Literature Review Focusing on Datasets, Log Preprocessing, Machine & Deep Learning Approaches and Automated Tool",
+   "identifiers": {
+    "openalex": "W3211990428",
+    "doi": "10.1109/access.2021.3128283"
+   },
+   "abstract": "Nowadays, reliability assurance is crucial in components of IT infrastructures. Unavailability of any element or connection results in downtime and triggers monetary and performance casualties. Thus, reliability engineering has been a topic of investigation recently. The system logs become obligatory in IT infrastructure monitoring for failure detection, root cause analysis, and troubleshooting. This Systematic Literature Review (SLR) focuses on detailed analysis based on the various qualitative and performance merits of datasets used, technical approaches utilized, and automated tools developed. The full-text review was directed by Preferred Reporting Items for Systematic Reviews and Meta-Analysis (PRISMA) methodology. 102 articles were extracted from Scopus, IEEE Explore, WoS, and ACM for a thorough examination. Also, a few more supplementary articles were studied by applying Snowballing technique. The study emphasizes the use of system logs for anomaly or failure detection and prediction. The survey encapsulates the automated tools under various quality merit criteria. This SLR ascertained that machine learning and deep learning-based classification approaches employed on selected features enable enhanced performance than traditional rule-based and method-based approaches. Additionally, the paper discusses research gaps in the existing literature and provides future research directions. The primary intent of this SLR is to perceive and inspect various tools and techniques proposed to mitigate IT infrastructure downtime in the existing literature. This survey will encourage prospective researchers to understand the pros and cons of current methods and pick an excellent approach to solve their identified problems in the field of IT infrastructure.",
+   "status": "current"
+  },
+  {
+   "title": "Blockchain-Enabled Telehealth Services Using Smart Contracts",
+   "identifiers": {
+    "openalex": "W3212019037",
+    "doi": "10.1109/access.2021.3126025"
+   },
+   "abstract": "Telehealth has gained a huge traction during the Coronavirus (COVID-19) pandemic. Telehealth enables physicians and medical care providers to remotely care for patients and monitor their symptoms. Today’s telehealth systems fall short in providing transparent, immutable, traceable, auditable, secure, and trustworthy services. In addition, they are centralized and subject to the single point of control and failure. In this paper, we propose a private blockchain-based solution to overcome the aforementioned challenges. We demonstrate how specifically three important telehealth services; namely, teleconsultation, drug administration, and medical testing can be enhanced using blockchain technology. Our proposed solution also ensures integrity, immutability, accountability, and non-repudiation for telehealth transactions initiated by multiple actors. For storing and keeping track of large-size digital content, such as images and audio and video recordings of telehealth service sessions, our proposed solution is integrated with off-chain storage systems including cloud storage or a decentralized storage system as that of the Interplanetary File System (IPFS). The registered participants are provided with access privileges based on their roles to ensure that restrictions are enforced on-chain. Smart contracts are developed to maintain data provenance and generate reliable alerts and notifications. The implementation and testing details of the algorithms are presented. We discuss, compare, and analyze the security features of our solution.",
+   "status": "current"
+  },
+  {
+   "title": "LightLog: A lightweight temporal convolutional network for log anomaly detection on the edge",
+   "identifiers": {
+    "openalex": "W3212722888",
+    "doi": "10.1016/j.comnet.2021.108616"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "FFNLFD: Fault Diagnosis of Multiprocessor Systems at Local Node with Fault-Free Neighbors under PMC Model and MM* Model",
+   "identifiers": {
+    "openalex": "W3214000487",
+    "doi": "10.1109/tpds.2021.3126257"
+   },
+   "abstract": "Fault diagnosability is utilized as a significant measure that reflects the reliability of a multiprocessor system. However, people frequently pay close attention to the entire systems diagnosability while ignoring the systems important local information. The m-fault-free-neighbor local fault diagnosability (for short, m-FFNLFD) is a novel indicator, which describes the diagnosability of a system at a local node with m fault-free neighbors. In this paper, we propose the m-FFNLFD of general networks at local node under the Preparata Metze Chien model. Moreover, we also characterize some important properties of m-FFNLFD of a multiprocessor system under the comparison model. Furthermore, we apply our proposed conclusions to directly obtain the m-FFNLFD of 11 well-known networks under PMC-M and MM*-M, including hypercubes, locally twisted cubes, k-ary n-cubes, crossed cubes, twisted hypercubes, exchanged hypercubes, star graphs, (n, k)-star graphs, (n, k)-arrangement graphs, data center network DCells and BCDCs. Finally, we compare the m-FFNLFD with both diagnosability and conditional diagnosability, and it is shown that the m-FFNLFD is greater than all the other fault diagnosabilities.",
+   "status": "current"
+  },
+  {
+   "title": "PEN: Process Estimator neural Network for root cause analysis using graph convolution",
+   "identifiers": {
+    "openalex": "W3214809650",
+    "doi": "10.1016/j.jmsy.2021.11.008"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Lifespan and Failures of SSDs and HDDs: Similarities, Differences, and Prediction Models",
+   "identifiers": {
+    "openalex": "W3215220453",
+    "doi": "10.1109/tdsc.2021.3131571"
+   },
+   "abstract": "Data center downtime typically centers around IT equipment failure. Storage devices are the most frequently failing components in data centers. We present a comparative study of hard disk drives (HDDs) and solid state drives (SSDs) that constitute the typical storage in data centers. Using six-year field data of 100,000 HDDs of different models from the same manufacturer from the Backblaze dataset and six-year field data of 30,000 SSDs of three models from a Google data center, we characterize the workload conditions that lead to failures. We illustrate that their root failure causes differ from common expectations and that they remain difficult to discern. For the case of HDDs we observe that young and old drives do not present many differences in their failures. Instead, failures may be distinguished by discriminating drives based on the time spent for head positioning. For SSDs, we observe high levels of infant mortality and characterize the differences between infant and non-infant failures. We develop several machine learning failure prediction models that are shown to be surprisingly accurate, achieving high recall and low false positive rates. These models are used beyond simple prediction as they aid us to untangle the complex interaction of workload characteristics that lead to failures and identify failure root causes from monitored symptoms.",
+   "status": "current"
+  },
+  {
+   "title": "Enjoy your observability: an industrial survey of microservice tracing and analysis",
+   "identifiers": {
+    "openalex": "W3216137074",
+    "doi": "10.1007/s10664-021-10063-9"
+   },
+   "abstract": "Microservice systems are often deployed in complex cloud-based environments and may involve a large number of service instances being dynamically created and destroyed. It is thus essential to ensure observability to understand these microservice systems’ behaviors and troubleshoot their problems. As an important means to achieve the observability, distributed tracing and analysis is known to be challenging. While many companies have started implementing distributed tracing and analysis for microservice systems, it is not clear whether existing approaches fulfill the required observability. In this article, we present our industrial survey on microservice tracing and analysis through interviewing developers and operation engineers of microservice systems from ten companies. Our survey results offer a number of findings. For example, large microservice systems commonly adopt a tracing and analysis pipeline, and the implementations of the pipeline in different companies reflect different tradeoffs among a variety of concerns. Visualization and statistic-based metrics are the most common means for trace analysis, while more advanced analysis techniques such as machine learning and data mining are seldom used. Microservice tracing and analysis is a new big data problem for software engineering, and its practices breed new challenges and opportunities.",
+   "status": "current"
+  },
+  {
+   "title": "Locating Performance Regression Root Causes in the Field Operations of Web-based Systems: An Experience Report",
+   "identifiers": {
+    "openalex": "W3216303224",
+    "doi": "10.1109/tse.2021.3131529"
+   },
+   "abstract": "Software developers usually rely on in-house performance testing to detect performance regressions and locate their root causes. Such performance testing is typically resource and time-consuming, making it impractical to conduct when the software is delivered in fast-paced release cycles. On the other hand, the operational data generated in the eld environment provides rich information about the performance of a software system and its runtime activities. Therefore, this work explores the idea of leveraging the readily-available eld operational data to locate the root causes of performance regression instead of running expensive performance tests. However, due to the ever-changing workloads from the end users and the noise from the eld, directly analyzing performance metrics such as response time of the system may not be able to help locate the root causes of performance regressions. In this paper, we report our experience of designing and adopting an approach that automatically locates the root causes of performance regressions while the software systems are deployed and running in the eld. First, our approach uses black-box performance models to capture the relationship between the performance of a system and its runtime activities. Then, our approach analyzes the performance models and uses statistical techniques to suggest the problematic system runtime activities (i.e., the root causes) that are related to a performance regression. Our evaluation considered three open-source projects and one industrial product. In the three open-source systems, we nd that our approach can successfully locate the root causes of all arbitrarily injected synthetic performance regressions. Our approach has successfully detected and located the root causes of three performance regressions in an industry system and it has been adopted by our industrial partner and used in practice on a daily basis over a 12-month period. In addition, we share the challenges that we encountered during the design and adoption of our approach, how we address those challenges, and the lessons that we learned during the process. We believe that our novel approach together with our documented experience can benet practitioners and researchers who wish to leverage the eld-operation data of a software system to conduct performance assurance activities.",
+   "status": "current"
+  },
+  {
+   "title": "A Survey of AIOps Methods for Failure Management",
+   "identifiers": {
+    "openalex": "W3217360625",
+    "doi": "10.1145/3483424"
+   },
+   "abstract": "Modern society is increasingly moving toward complex and distributed computing systems. The increase in scale and complexity of these systems challenges O&M teams that perform daily monitoring and repair operations, in contrast with the increasing demand for reliability and scalability of modern applications. For this reason, the study of automated and intelligent monitoring systems has recently sparked much interest across applied IT industry and academia. Artificial Intelligence for IT Operations (AIOps) has been proposed to tackle modern IT administration challenges thanks to Machine Learning, AI, and Big Data. However, AIOps as a research topic is still largely unstructured and unexplored, due to missing conventions in categorizing contributions for their data requirements, target goals, and components. In this work, we focus on AIOps for Failure Management (FM), characterizing and describing 5 different categories and 14 subcategories of contributions, based on their time intervention window and the target problem being solved. We review 100 FM solutions, focusing on applicability requirements and the quantitative results achieved, to facilitate an effective application of AIOps solutions. Finally, we discuss current development problems in the areas covered by AIOps and delineate possible future trends for AI-based failure management.",
+   "status": "current"
+  },
+  {
+   "title": "A directed graph convolutional neural network for edge-structured signals in link-fault detection",
+   "identifiers": {
+    "openalex": "W4200165678",
+    "doi": "10.1016/j.patrec.2021.12.003"
+   },
+   "abstract": "Kipf and Welling [1] The growing interest in graph deep learning has led to a surge of research focusing on learning various characteristics of graph-structured data. Directed graphs have generally been treated as incidental to definitions on the more general class of undirected graphs. The implicit class imbalance in some graph problems also proves difficult to tackle. Moreover, a body of work has begun to grow that considers how to learn signals structured on the edges of graphs. In this paper, we propose the directed graph convolutional neural network (DGCNN), and describe a simple way to mitigate the inherent class imbalance in graphs. The model is applied to edge-structured signals from datacenter simulations using the structure of a directed linegraph to represent the second-order structure of its underlying graph. We demonstrate that the DGCNN’s improves over undirected models and other directed models by applying our model to locating link-faults in a datacenter simulation.",
+   "status": "current"
+  },
+  {
+   "title": "Cyber threat intelligence using PCA-DNN model to detect abnormal network behavior",
+   "identifiers": {
+    "openalex": "W4200336673",
+    "doi": "10.1016/j.eij.2021.12.001"
+   },
+   "abstract": "Security issues are the most critical challenges facing new technologies associated with the internet of things (IoT), big data, and cloud computing. A secure and efficient intrusion detection system (IDS) is crucial to detect security threats. Existing IDSs are known to suffer from many problems, most notably the high rate of false positive alerts, the long time required to detect attacks, and the inability to detect zero-day attacks, which can ruin companies. The weakness of IDS backend engines costs companies time in the investigation process. This paper proposes and enhances IDS detection mechanisms via two processes: using a deep neural network (DNN) model with new features for threat detection based on two assumptions related to handling zero-day attacks, with low computing power and resources, and a comprehensive solution for detection by merging the DNN model and principle component analysis (PCA) to increase security and performance. The proposed detection mechanism combines DNN, PCA, statistical, and knowledge-based approaches to offer significantly greater efficiency than existing IDS, as indicated by analytical and software results. A simulation model is used with up-to-date web attacks, distributed denial of service (DDoS), denial of service (DoS), brute force, insider infiltration, Botnet, and Heartbleed attacks. The proposed detection techniques for large networks are analyzed and complexity in the design is avoided by reducing the number of DNN model layers, thus minimizing detection time delay and false positives, while increasing security against network attacks. Integrating the proposed DNN with PCA, an innovative contribution, introduces robust IDS to significantly improve the detection time delay and security performance. The proposed model showed a 98% accuracy rate. To best of our knowledge, the highest accuracy rate stated based on a large number of attacks is 97%, which makes our model state of art.",
+   "status": "current"
+  },
+  {
+   "title": "AutoLog: Anomaly detection by deep autoencoding of system logs",
+   "identifiers": {
+    "openalex": "W4200415345",
+    "doi": "10.1016/j.eswa.2021.116263"
+   },
+   "abstract": "",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0r2b-03"
+}

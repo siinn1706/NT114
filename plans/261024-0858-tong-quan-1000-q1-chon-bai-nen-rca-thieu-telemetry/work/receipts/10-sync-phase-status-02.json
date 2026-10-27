@@ -1,0 +1,87 @@
+{
+ "schema_version": 2,
+ "id": "10-sync-phase-status-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/sync-phase-status.py work/phase-status-spec-10b.json work/phase-status-sync-10b.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-sync-phase-status-02.out",
+ "egress_trace_reference": "work/logs/10-sync-phase-status-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T02:06:17.018565+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "781b0e1d5b252cfa3ecb0b6941b4a9c83d2960bff3a4d560011cc1cdd5706c98",
+  "1aae6ffc67952fe38fe12a0bf40f76b08e05f631a8c2cd208f0e40fd75797f1c"
+ ],
+ "output_hashes": [
+  "313c154734f1f3174eb6731033a06165fe5b88440ec2b5d497b3c63af08f147a",
+  "6513e3947229a23e52d783242cf084d3305c472dc662d15bec42920a11944dd0"
+ ],
+ "checks": [
+  "phase 10 batch committed and receipt 10-check-plan-01 exists"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "798916dbc588b9716fd6ec1b084a02e7bc60f6ed64f2025df54eefcd7d579686",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/sync-phase-status.py work/phase-status-spec-10b.json work/phase-status-sync-10b.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "eeb8991a15972b3449826f6b5da3ca588e3ed2ad67517b9dbaf504e3dac1ef15",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/phase-status-spec-10b.json",
+   "sha256_before": "781b0e1d5b252cfa3ecb0b6941b4a9c83d2960bff3a4d560011cc1cdd5706c98",
+   "sha256_after": "781b0e1d5b252cfa3ecb0b6941b4a9c83d2960bff3a4d560011cc1cdd5706c98",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/sync-phase-status.py",
+   "sha256_before": "1aae6ffc67952fe38fe12a0bf40f76b08e05f631a8c2cd208f0e40fd75797f1c",
+   "sha256_after": "1aae6ffc67952fe38fe12a0bf40f76b08e05f631a8c2cd208f0e40fd75797f1c",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "313c154734f1f3174eb6731033a06165fe5b88440ec2b5d497b3c63af08f147a",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/phase-status-sync-10b.csv",
+   "sha256": "6513e3947229a23e52d783242cf084d3305c472dc662d15bec42920a11944dd0",
+   "created_this_attempt": true
+  }
+ ]
+}

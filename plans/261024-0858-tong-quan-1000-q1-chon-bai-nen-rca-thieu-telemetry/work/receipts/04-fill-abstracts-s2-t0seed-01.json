@@ -1,0 +1,78 @@
+{
+ "schema_version": 2,
+ "id": "04-fill-abstracts-s2-t0seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts-s2.py t0seed",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fill-abstracts-s2-t0seed-01.out",
+ "egress_trace_reference": "work/logs/04-fill-abstracts-s2-t0seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:44:40.464945+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "062de85b7ca22376c0e736ee9b6715f8d8d49d4ba2308f4f4c9f0559b95c0cd5"
+ ],
+ "output_hashes": [
+  "26040c758bb526bcbc3ce248093a1dbbb653c19144c5bf81dcf483e7817e35b7",
+  "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68"
+ ],
+ "checks": [
+  "S2 batch abstract lane"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "6028cc2d2ac3e1c9488109392f8395a5b24db7672c831548d25333cb1f62d510",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts-s2.py t0seed",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "1997acc90e8892d3c37946336d5d2a0bd1f550f906c9ea85267a626a0a1044e8",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/abstract-fill-log-t0seed.csv",
+   "sha256_before": "062de85b7ca22376c0e736ee9b6715f8d8d49d4ba2308f4f4c9f0559b95c0cd5",
+   "sha256_after": "062de85b7ca22376c0e736ee9b6715f8d8d49d4ba2308f4f4c9f0559b95c0cd5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/abstract-fill-s2-t0seed.csv",
+   "sha256": "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/abstract-fill-s2-log-t0seed.csv",
+   "sha256": "26040c758bb526bcbc3ce248093a1dbbb653c19144c5bf81dcf483e7817e35b7",
+   "created_this_attempt": true
+  }
+ ]
+}

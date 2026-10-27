@@ -1,0 +1,126 @@
+{
+ "frames": {
+  "0cdb86bf6b6c0c7f": {
+   "key": [
+    "rcaeval",
+    "RE1",
+    "train-ticket",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 0,
+   "n_edges": 0,
+   "real_sha256": "38084c7ea55589cb87324a5c505679c955294ce0b9d094ae59a936382cf589f0",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "599d0f429fa46aef5b99858f8693f50dfd3866da1b39f9001fc1e4e98b60fd53",
+   "valid": false
+  },
+  "41814a52c7a905a3": {
+   "key": [
+    "rcaeval",
+    "RE2",
+    "online-boutique",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 48,
+   "n_edges": 9,
+   "real_sha256": "639565bc01530f6a37aa28181a75109a35d97b4279630e983ab778ef8e89dc7e",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "892e8463030c97ae8c356cacbd6b9890210ea6869eabf5e5633f4cc1d71d1a8c",
+   "valid": true
+  },
+  "9fc7e564a9fabd4d": {
+   "key": [
+    "rcaeval",
+    "RE2",
+    "sock-shop",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 0,
+   "n_edges": 0,
+   "real_sha256": "79e7fc0892ccaf2afd25fd8c29f4f43ee51ed9a7c90b1cf035a31354fdfb52df",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "1338ecef70e37ea3bffe468571c55bcc8c1b48321724c781bb5ee484a42e154b",
+   "valid": false
+  },
+  "a8d2d2e389e50761": {
+   "key": [
+    "rcaeval",
+    "RE3",
+    "online-boutique",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 15,
+   "n_edges": 9,
+   "real_sha256": "c323b3d01a9a7cb9a018570bad0c69e09ed56a3e56a93a8a4751c2ce8aef9c27",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "6b308e13afba6e27874ab3eb91555fa4327a0edde3aab6f9572a45deeea61910",
+   "valid": true
+  },
+  "af91acbe7dfdd422": {
+   "key": [
+    "rcaeval",
+    "RE3",
+    "sock-shop",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 0,
+   "n_edges": 0,
+   "real_sha256": "7d17bdb024e1beb1673b1179fde43c56e6ba73b6d30a10f875443a9889ee7dd8",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "8bec2d6f95b3b3bf7f3bb5d20adfca1cddfc9da18e031d38e9d38263413a38fe",
+   "valid": false
+  },
+  "bc5d88832dcd2dd3": {
+   "key": [
+    "rcaeval",
+    "RE1",
+    "online-boutique",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 0,
+   "n_edges": 0,
+   "real_sha256": "b60165c6bc01f30450f92dad418ca8bbbad0ab64d6ccc5b53c164052adfb377e",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "e43a6209f07ecaf8e466438711ec880296d38152b212282c598843563dd58ddf",
+   "valid": false
+  },
+  "dffcebff495e64c8": {
+   "key": [
+    "rcaeval",
+    "RE2",
+    "train-ticket",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 53,
+   "n_edges": 55,
+   "real_sha256": "9b898d89fd512b5e05519051d0174c6259b89e21c6169a4efad95393c900eb3a",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "fa92a76c3403170941ae7454b98f4b9761b2ce6c396ee981baa11a6c8f953939",
+   "valid": true
+  },
+  "fab498343922d1d4": {
+   "key": [
+    "rcaeval",
+    "RE1",
+    "sock-shop",
+    "within-rcaeval-grouped-0-e9b2c81c"
+   ],
+   "n_contributing": 0,
+   "n_edges": 0,
+   "real_sha256": "c29a87e11b85c8ae1bca45a6c8041e0c5e4e1306b677156aa3ad8c027eb317da",
+   "retained_real_share": 0.0,
+   "shuffle_informative": true,
+   "shuffled_sha256": "784408dbdc0db9ce973385b22733331bca52d7950a748f3fbe3c69605e517909",
+   "valid": false
+  }
+ },
+ "min_contributing": 3,
+ "split": "within-rcaeval-grouped-0-e9b2c81c"
+}

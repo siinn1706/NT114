@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-rank-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 rank-seed-provisional 05-rank-seed-01 --in work/records/t0seed4-t0.csv --in work/screen/seed-s1-merged.csv --in work/screen/seed-resolution-a01.csv --out work/records/seed-t1-ranked.csv --out work/records/seed-t1.json --note PROVISIONAL: seed only; phase 03 search, snowball and 58 E6 needs-review pending; no F score may be recorded before T1 is final (late-record rule)",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-rank-seed-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-rank-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:04:43.388329+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "2d9063ce70bd3389acc5d0097fc6f8bc9bab74d89568c46b18bf25e2862d9027"
+ ],
+ "output_hashes": [
+  "803cd4ac32fbfee2515e4679972dcbe2a66e7e7f6146ea3a90d27631c80ac944"
+ ],
+ "checks": [
+  "provisional ranking committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "42d2a462b1158f3cd54766ddb0d6c3fee65521e1aed1141fdae5a428c1b8e509",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 rank-seed-provisional 05-rank-seed-01 --in work/records/t0seed4-t0.csv --in work/screen/seed-s1-merged.csv --in work/screen/seed-resolution-a01.csv --out work/records/seed-t1-ranked.csv --out work/records/seed-t1.json --note PROVISIONAL: seed only; phase 03 search, snowball and 58 E6 needs-review pending; no F score may be recorded before T1 is final (late-record rule)",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "1bb875f2bc17d08516592ff9e7d1db2832de998c3e906e95c1490a26d0bf595f",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/seed-t1.json",
+   "sha256_before": "2d9063ce70bd3389acc5d0097fc6f8bc9bab74d89568c46b18bf25e2862d9027",
+   "sha256_after": "2d9063ce70bd3389acc5d0097fc6f8bc9bab74d89568c46b18bf25e2862d9027",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "803cd4ac32fbfee2515e4679972dcbe2a66e7e7f6146ea3a90d27631c80ac944",
+   "created_this_attempt": true
+  }
+ ]
+}

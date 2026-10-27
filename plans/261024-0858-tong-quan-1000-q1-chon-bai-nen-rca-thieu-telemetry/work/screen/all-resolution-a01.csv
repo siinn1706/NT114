@@ -1,0 +1,4 @@
+openalex_id,final_decision,R1,R2,R3,R4,R5,R6,note
+W4412623423,context-survey,,,,,,,re-read: survey -> E5 context-survey per §6 regardless of Population; s2 exclude; R1=0 so no ranking effect
+W3005115843,needs-review,,,,,,,"title-only survey: E6 precedes E5 (abstract lane first); prompt convention conflict, see search-s1-drift-review.md"
+W4360980888,needs-review,,,,,,,"title-only survey: E6 precedes E5 (abstract lane first); prompt convention conflict, see search-s1-drift-review.md"

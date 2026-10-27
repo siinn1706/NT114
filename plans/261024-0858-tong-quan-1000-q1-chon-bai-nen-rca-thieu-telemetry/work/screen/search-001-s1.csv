@@ -1,0 +1,51 @@
+openalex_id,decision,codes,R1,R2,R3,R4,R5,R6,R_total,read_level,evidence
+W4205907838,exclude,I3|E1,0,0,0,0,0,0,0,abstract,event logs from ships electric propulsion systems
+W4414871463,exclude,I3,0,0,0,0,0,0,0,abstract,Light-Based IoT-Enabled Battery-Free Active Product Monitoring for Sustainable Smart Packaging Applications
+W4394564317,exclude,I1|I3|E7,1,1,0,0,1,0,3,abstract,anomaly detection tasks within system logs; F1 score improvement of up to 31.2% and 46.7% on BGL and Thunderbird datasets
+W4402350447,exclude,I3|E1,0,0,0,0,0,0,0,abstract,industrial fault diagnosis
+W4402895803,exclude,I3|E2,0,0,0,0,0,0,0,abstract,software vulnerability location method to push the attack investigation further
+W4415481131,exclude,I3|E1,0,0,0,0,0,0,0,abstract,Fault Diagnosis of Lithium-Ion Battery Packs
+W7154566508,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,timely anomaly detection enables early intervention and fault prevention; anomaly detection method for metrics
+W4403474955,exclude,I3|E3,0,0,0,0,1,0,1,abstract,leverages the Backblaze hard disk drives (HDDs) data and makes several contributions to hard drive failure prediction
+W7170047582,exclude,I1|I3|E2,0,0,0,0,0,0,0,abstract,digital forensics: malicious code often runs entirely in memory and vanishes when the container terminates
+W4226319939,exclude,I3|E2,0,0,0,1,0,1,2,abstract,"extract features obtained from different sources, including alerts, system resources, logs, network traffic; dataset can be publicly accessed"
+W4416400420,needs-review,E6|E7,1,0,0,0,0,0,1,title-only,"LogHGAD: A hypergraph-based log anomaly detection method for AIoT systems; no abstract, scored from title"
+W4393488462,needs-review,E6|E1,0,0,0,0,0,0,0,title-only,"fault diagnosis of rotating machinery; no abstract, scored from title"
+W4404540367,context-survey,E5,0,0,0,0,0,0,0,abstract,This scoping review aims to summarize best practices and technologies to overcome interoperability issues in IoMT platform development
+W4417201861,exclude,I1|I3,0,0,0,0,0,0,0,abstract,root cause of WQE cache misses is the mismatch between the production rate of the CPU and the consumption rate of the RNIC
+W4411949419,exclude,I3,0,0,0,0,0,0,0,abstract,IoT-enabled automated system to optimize energy usage and treatment efficiency in STPs
+W3023080778,context-survey,E5,0,0,0,0,0,0,0,abstract,Requirements of Health Data Management Systems for Biomedical Care and Research: Scoping Review
+W7128639499,exclude,I3,0,0,0,0,0,0,0,abstract,"FogZoneSim, an advanced modular fog computing simulator specifically designed to manage large-scale IoT environments"
+W7115950852,exclude,I3|E1|E2,0,0,0,0,1,0,1,abstract,"Industrial Control Systems (ICS) in water distribution and treatment face cyber-physical attacks; Evaluated on water-related datasets SWaT, WADI, and HAI"
+W4285090569,exclude,I3,0,0,0,0,0,0,0,abstract,A log analysis revealed that students wrote most of the posts
+W7118121981,exclude,I3,0,0,0,0,0,0,0,abstract,large-scale similarity search in training log embeddings
+W7222487341,exclude,I1|I3|E2,0,0,0,0,1,0,1,abstract,AI-driven cybersecurity framework; evaluation on NSL-KDD and UNSW-NB15
+W4408166137,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,Log anomaly detection aims to discover abnormal events from massive log data to ensure the security and reliability of software systems
+W4309487475,needs-review,E6|E1,0,0,0,0,0,0,0,title-only,"root cause analysis of equipment spot inspection failures; no abstract, scored from title"
+W4411725588,exclude,I2|I3,0,0,0,1,0,0,1,abstract,automatically identifying the root causes of network failures; collect diagnostic metrics; SNMP Traps and Syslog data
+W7165809021,exclude,I1|I3,1,0,0,0,0,0,1,abstract,"real-time data analysis model that covers prediction, classification, anomaly detection, fault diagnosis, and recovery functions"
+W4390204278,exclude,I3|E2,0,0,0,0,0,0,0,abstract,insider attacks remain a significant challenge; logs every action performed on user data
+W4402891703,exclude,I3|E2,0,0,0,0,1,0,1,abstract,detecting the DDoS attack types; tested on the CICIoT2023 dataset
+W3004174466,exclude,I3|E2,0,0,0,0,0,0,0,abstract,"Host-based IDPS for Android (HIDROID), which runs completely on a mobile device"
+W7134853503,exclude,I1|I3,1,0,0,0,1,0,2,abstract,case study on three large-scale public operation datasets: two trace datasets from the cloud computing platforms of Google and Alibaba
+W4400447378,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,Log Anomaly Detection (LAD); benchmark data from the Hadoop Distributed File System (HDFS)
+W4406348806,context-survey,E5,0,0,0,0,0,0,0,abstract,"Utilizing Multivocal Literature Review (MLR), 80 gathered documents are thoroughly examined"
+W3171436672,exclude,I3|E1,0,0,0,0,0,0,0,abstract,digital-twin-assisted fault diagnosis using deep transfer learning to analyze the operational conditions of machining tools
+W4385453584,exclude,I1|I3|E2,0,0,0,0,0,0,0,abstract,data provenance is an effective approach for data security supervision; Hadoop-based big data system
+W4389795886,needs-review,E6|E1,0,0,0,0,0,0,0,title-only,"fault diagnosis of rolling bearings; no abstract, scored from title"
+W4415159194,exclude,I3,0,0,0,0,0,0,0,abstract,Task-Driven Quantum Device Fingerprinting (TD-QDF) identification method based on quantum task outputs
+W4408716056,exclude,I3,0,0,0,0,0,0,0,abstract,"smartwatch to collect vital data such as blood pressure, heart rate, and glucose levels"
+W4413105630,needs-review,E6,0,0,0,0,0,0,0,title-only,"Edge-assisted framework for instant anomaly detection and cloud-based anomaly recognition in smart surveillance; no abstract, scored from title"
+W7203600768,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,real-world artificial intelligence for IT operations (AIOps) key performance indicator (KPI) data
+W3025035827,exclude,I1|I3,1,0,0,0,0,0,1,abstract,failure prediction algorithm based on multi-layer Bidirectional Long Short Term Memory (Bi-LSTM) to identify task and job failures in the cloud
+W7163413338,exclude,I3,0,1,0,0,0,0,1,abstract,on-device large language model (LLM) reasoning; underground coal mining
+W4286365856,exclude,I1|I3,1,1,0,0,0,0,2,abstract,categorisation of the events and log messages that characterize an incident into pre-defined operational groups; pre-trained language models and word embeddings
+W3137779654,exclude,I3,0,0,0,0,0,0,0,abstract,transaction log analysis (TLA) method was used to explore the use patterns of HEC e-books databases
+W4411799670,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,Log-based anomaly detection (LAD) is one of the dominant approaches to improving the reliability and security of software systems
+W4411027770,exclude,I3|E3,0,0,0,0,0,0,0,abstract,"hard drive fault prediction model based on pretraining and fine-tuning, named DiskAdapt"
+W4384028523,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"Service Function Chain (SFC) failure localization; classifying and locating failures, and the other is conducting root cause analysis"
+W4413259116,exclude,I1|I3|E2,0,0,0,0,0,0,0,abstract,three-layer security stack for fully managed serverless applications
+W7211949643,needs-review,I1|I2|E6,2,0,0,0,0,0,2,title-only,"Component-Based Reliability Assessment and Fault Diagnosis of Data Center Networks; no abstract, scored from title"
+W3193159056,exclude,I3|E2,0,0,0,0,0,0,0,abstract,consortium blockchain-based public integrity verification system (CBPIV)
+W4415624423,exclude,I3,0,0,0,0,0,0,0,abstract,unified anomaly detection framework for fraud detection at the identity level
+W4296367942,exclude,I1|I3,1,0,0,0,1,0,2,abstract,"comprehensive comparison and model evaluation for predictive models for job and task failure; benchmark dataset, called Google Cloud Traces"

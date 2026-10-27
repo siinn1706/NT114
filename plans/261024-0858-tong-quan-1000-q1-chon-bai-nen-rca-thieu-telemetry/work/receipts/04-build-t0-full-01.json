@@ -1,0 +1,264 @@
+{
+ "schema_version": 2,
+ "id": "04-build-t0-full-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0full1 work/records/seed-reused.csv work/records/search-A1-a03.csv work/records/search-A2-a01.csv work/records/search-A3-a01.csv work/records/search-A4-a01.csv work/records/search-B1-a01.csv work/records/search-B2-a01.csv work/records/search-C1-a01.csv work/records/search-C2-a01.csv work/records/search-C3-a01.csv work/records/search-D1-a01.csv work/records/search-D2-a01.csv work/records/search-D3-a01.csv work/records/search-D4-a01.csv work/records/search-D5-a01.csv work/records/search-D6-a01.csv work/records/search-D7-a01.csv work/records/search-D8-a01.csv work/records/abstract-fill-t0seed.csv work/records/abstract-fill-s2-t0seed.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-build-t0-full-01.out",
+ "egress_trace_reference": "work/logs/04-build-t0-full-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:21:38.101985+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+  "4421999d0773dd33e82c190e30f940c2888657472f2ba05c29b2f1fb0a6e5cc5",
+  "0d18b5f22aba66dc85fc29ebde0bb6ba25f3414cde2a6a7895a3acdd081d7449",
+  "51e980c4ae8c3b047635242d3cc5e8b0a80400b60098722ee5b0659022aaad8a",
+  "6f493b63e577726fffc17ec9c84405576b139b78f20a3e64a9f7b2ec43755ed9",
+  "593fd5a04593a18bda186d0dd081031c98bbb8ecff163c2d9db44d14e552922f",
+  "4065fd88dcedff97eb6ff0cc30b6b37e3ab037a3b649ac589c8cb3300b407fb2",
+  "6425538c80c21d6f0ec74ace1d6d59ed96ac9753040f120313a25bdefd358051",
+  "4de6c5b295a927df996146331383c9a3bf5c7316fa9813a051616fc6d8af30d0",
+  "3c0220cf9832e784292aaf5b884b4c8ed2398e8aafff917b26b60e61b572d1f7",
+  "99044c84918d35a37891422e865752e6d877bc0396300691d336905f0d81f1b3",
+  "891fda59bd34035303298b4522fd2e09143c4ac24030a30fb5bd69a912e505cf",
+  "2884eb8f8d8904f4afc9eb402516864db386cd2cd6099fc57f3e85a03a09932a",
+  "8899aace72b74f1893bc3eb9bea2d781351b8c51ac848f44588b8f3df66f6716",
+  "b240d209b47431f3df052273d89561daf6b5fdba0a561cafdd79027c13106dfc",
+  "73d2f474a1f34fd03dce56aff1646c1334933db7d4280a5324b680a028a07beb",
+  "c029f181b9e8f6c93c4596c448b84a8a42b8df0b6958378afa677ed061f923f8",
+  "9fba599626fbf449af79bcedfcd20efeec11b52e9862790077520d1fdda036cc",
+  "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+  "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+  "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec"
+ ],
+ "output_hashes": [
+  "04aee3a53b3a88b2ed133b42fb943365ab9c208cf1f508980f06dcc5daa823f1",
+  "f3bf83ac6563b5f9026529616edbcb3c7c52bc85e319ec132dc05b27b4ede9bd",
+  "fa7ef70f601e2266ee07bc6467f23d5ddc9c86c2940172e04ba54f5994261618"
+ ],
+ "checks": [
+  "T0 from seed + 17 search queries"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "5e0db14e064e25e7476adb08b8a4f0cced1fbec53f0d4303e9ae7b326281af11",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0full1 work/records/seed-reused.csv work/records/search-A1-a03.csv work/records/search-A2-a01.csv work/records/search-A3-a01.csv work/records/search-A4-a01.csv work/records/search-B1-a01.csv work/records/search-B2-a01.csv work/records/search-C1-a01.csv work/records/search-C2-a01.csv work/records/search-C3-a01.csv work/records/search-D1-a01.csv work/records/search-D2-a01.csv work/records/search-D3-a01.csv work/records/search-D4-a01.csv work/records/search-D5-a01.csv work/records/search-D6-a01.csv work/records/search-D7-a01.csv work/records/search-D8-a01.csv work/records/abstract-fill-t0seed.csv work/records/abstract-fill-s2-t0seed.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "27c1c7aca5ea3861c39a3b69ccab926f9d5d5a0dfea986c0cdcc3385c6b505aa",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/seed-reused.csv",
+   "sha256_before": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "sha256_after": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-A1-a03.csv",
+   "sha256_before": "4421999d0773dd33e82c190e30f940c2888657472f2ba05c29b2f1fb0a6e5cc5",
+   "sha256_after": "4421999d0773dd33e82c190e30f940c2888657472f2ba05c29b2f1fb0a6e5cc5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-A2-a01.csv",
+   "sha256_before": "0d18b5f22aba66dc85fc29ebde0bb6ba25f3414cde2a6a7895a3acdd081d7449",
+   "sha256_after": "0d18b5f22aba66dc85fc29ebde0bb6ba25f3414cde2a6a7895a3acdd081d7449",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-A3-a01.csv",
+   "sha256_before": "51e980c4ae8c3b047635242d3cc5e8b0a80400b60098722ee5b0659022aaad8a",
+   "sha256_after": "51e980c4ae8c3b047635242d3cc5e8b0a80400b60098722ee5b0659022aaad8a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-A4-a01.csv",
+   "sha256_before": "6f493b63e577726fffc17ec9c84405576b139b78f20a3e64a9f7b2ec43755ed9",
+   "sha256_after": "6f493b63e577726fffc17ec9c84405576b139b78f20a3e64a9f7b2ec43755ed9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-B1-a01.csv",
+   "sha256_before": "593fd5a04593a18bda186d0dd081031c98bbb8ecff163c2d9db44d14e552922f",
+   "sha256_after": "593fd5a04593a18bda186d0dd081031c98bbb8ecff163c2d9db44d14e552922f",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-B2-a01.csv",
+   "sha256_before": "4065fd88dcedff97eb6ff0cc30b6b37e3ab037a3b649ac589c8cb3300b407fb2",
+   "sha256_after": "4065fd88dcedff97eb6ff0cc30b6b37e3ab037a3b649ac589c8cb3300b407fb2",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-C1-a01.csv",
+   "sha256_before": "6425538c80c21d6f0ec74ace1d6d59ed96ac9753040f120313a25bdefd358051",
+   "sha256_after": "6425538c80c21d6f0ec74ace1d6d59ed96ac9753040f120313a25bdefd358051",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-C2-a01.csv",
+   "sha256_before": "4de6c5b295a927df996146331383c9a3bf5c7316fa9813a051616fc6d8af30d0",
+   "sha256_after": "4de6c5b295a927df996146331383c9a3bf5c7316fa9813a051616fc6d8af30d0",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-C3-a01.csv",
+   "sha256_before": "3c0220cf9832e784292aaf5b884b4c8ed2398e8aafff917b26b60e61b572d1f7",
+   "sha256_after": "3c0220cf9832e784292aaf5b884b4c8ed2398e8aafff917b26b60e61b572d1f7",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D1-a01.csv",
+   "sha256_before": "99044c84918d35a37891422e865752e6d877bc0396300691d336905f0d81f1b3",
+   "sha256_after": "99044c84918d35a37891422e865752e6d877bc0396300691d336905f0d81f1b3",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D2-a01.csv",
+   "sha256_before": "891fda59bd34035303298b4522fd2e09143c4ac24030a30fb5bd69a912e505cf",
+   "sha256_after": "891fda59bd34035303298b4522fd2e09143c4ac24030a30fb5bd69a912e505cf",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D3-a01.csv",
+   "sha256_before": "2884eb8f8d8904f4afc9eb402516864db386cd2cd6099fc57f3e85a03a09932a",
+   "sha256_after": "2884eb8f8d8904f4afc9eb402516864db386cd2cd6099fc57f3e85a03a09932a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D4-a01.csv",
+   "sha256_before": "8899aace72b74f1893bc3eb9bea2d781351b8c51ac848f44588b8f3df66f6716",
+   "sha256_after": "8899aace72b74f1893bc3eb9bea2d781351b8c51ac848f44588b8f3df66f6716",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D5-a01.csv",
+   "sha256_before": "b240d209b47431f3df052273d89561daf6b5fdba0a561cafdd79027c13106dfc",
+   "sha256_after": "b240d209b47431f3df052273d89561daf6b5fdba0a561cafdd79027c13106dfc",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D6-a01.csv",
+   "sha256_before": "73d2f474a1f34fd03dce56aff1646c1334933db7d4280a5324b680a028a07beb",
+   "sha256_after": "73d2f474a1f34fd03dce56aff1646c1334933db7d4280a5324b680a028a07beb",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D7-a01.csv",
+   "sha256_before": "c029f181b9e8f6c93c4596c448b84a8a42b8df0b6958378afa677ed061f923f8",
+   "sha256_after": "c029f181b9e8f6c93c4596c448b84a8a42b8df0b6958378afa677ed061f923f8",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/search-D8-a01.csv",
+   "sha256_before": "9fba599626fbf449af79bcedfcd20efeec11b52e9862790077520d1fdda036cc",
+   "sha256_after": "9fba599626fbf449af79bcedfcd20efeec11b52e9862790077520d1fdda036cc",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/abstract-fill-t0seed.csv",
+   "sha256_before": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "sha256_after": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/abstract-fill-s2-t0seed.csv",
+   "sha256_before": "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+   "sha256_after": "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/common.py",
+   "sha256_before": "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec",
+   "sha256_after": "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0full1-candidates.csv",
+   "sha256": "fa7ef70f601e2266ee07bc6467f23d5ddc9c86c2940172e04ba54f5994261618",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0full1-excluded.csv",
+   "sha256": "f3bf83ac6563b5f9026529616edbcb3c7c52bc85e319ec132dc05b27b4ede9bd",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0full1-needs-review-t0.csv",
+   "sha256": "04aee3a53b3a88b2ed133b42fb943365ab9c208cf1f508980f06dcc5daa823f1",
+   "created_this_attempt": true
+  }
+ ]
+}

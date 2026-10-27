@@ -1,0 +1,418 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Application of Artificial Intelligence to Network Forensics: Survey, Challenges and Future Directions",
+   "identifiers": {
+    "openalex": "W4312273550",
+    "doi": "10.1109/access.2022.3214506"
+   },
+   "abstract": "Network forensics focuses on the identification and investigation of internal and external network attacks, the reverse engineering of network protocols, and the uninstrumented investigation of networked devices. It lies at the intersection of digital forensics, incident response and network security. Network attacks exploit software and hardware vulnerabilities and communication protocols. The scope of a network forensic investigation can range from Internet-wide down to a single device’s network traffic. Network analysis tools (NATs) aid security professionals and law enforcement in the capturing, identification and analysis of network traffic. However, in most instances, the sheer volume of data to be analyzed is enormous and, despite some built-in NAT automation, the investigation of network traffic is often an arduous process. Furthermore, significant expert time remains wasted in the investigation of a high frequency of false positive alerting from automated systems. To address this globally impacting problem, artificial intelligence based approaches are becoming increasingly employed to automatically detect attacks and increase network traffic classification accuracy. This paper provides a comprehensive survey of the state-of-the-art in network forensics and the application of expert systems, machine learning, deep learning, and ensemble/hybrid approaches to a range of application areas in the field. These include network traffic analysis, intrusion detection systems, Internet-of-Things devices, cloud forensics, DNS tunneling, smart grid forensics, and vehicle forensics. In addition, the current challenges and future research directions for each of the aforementioned application areas is discussed.",
+   "status": "current"
+  },
+  {
+   "title": "OceanBase",
+   "identifiers": {
+    "openalex": "W4312357089",
+    "doi": "10.14778/3554821.3554830"
+   },
+   "abstract": "We have designed and developed OceanBase, a distributed relational database system from the very basics for a decade. Being a scale-out multi-tenant system, OceanBase is cross-region fault tolerant, which is based on the shared-nothing architecture. Besides sharing many similar goals with alternative distributed DBMS, such as horizontal scalability, fault-tolerance, etc., our design has been driven by the demands of typical RDBMS compatibility as well as both on-premise and off-premise deployments. OceanBase has fulfilled its design goal. It implements the salient features of certain mainstream classical RDBMS, and most applications on them can run on OceanBase, with or without a few minor modifications. Tens of thousands of OceanBase servers have been deployed in Alipay.com as well as many other commercial organizations. It has also successfully passed the TPC-C benchmark test and seized the first place with more than 707 million tpmC. This paper presents the goals, design criteria, infrastructure, and key components of OceanBase including its engines for storage and transaction processing. Further, it details how OceanBase achieves the above leading TPC-C benchmark in a distributed cluster with more than 1,500 servers from 3 zones. It also describes lessons what we have learnt in building OceanBase for more than a decade.",
+   "status": "current"
+  },
+  {
+   "title": "A Zero-Day Cloud Timing Channel Attack",
+   "identifiers": {
+    "openalex": "W4312445662",
+    "doi": "10.1109/access.2022.3227420"
+   },
+   "abstract": "The Intrusion Detection and Prevention System (IDPS) services of a North American cloud service provider were ineffective against a simulated network timing channel attack. During the tests, three conspiring white hat agents exchanged a total of 33,024 network packets. As the proxy based attack executed, the vendor’s intrusion detection service did not generate a warning, nor did its intrusion prevention service drop packets. Throughout the experiment, 4,096 bytes of randomized data (simulating covert traffic) were exchanged over a 2.06 hour period (4.4 bits-per-second); however, the vendor’s Artificial Intelligence (AI) enabled threat detection service did not issue an alert. A Wilcoxon Ranked Sum test on the before-and-after throughput confirmed none of the vendor’s countermeasures triggered/intervened to a statistically significant degree (threat intel:p= 0.703, IDPS:p= 0.998, threat intel + IDPS:p= 0.118). These results indicate those accountable for data-oriented Service Organization Control (SOC) 2/3 reports (e.g., auditors, cybersecurity executives, etc.) should carefully examine the assurances offered by cloud service providers with regard to their network steganography defenses.",
+   "status": "current"
+  },
+  {
+   "title": "Detection of Microgrid Cyberattacks Using Network and System Management",
+   "identifiers": {
+    "openalex": "W4312650043",
+    "doi": "10.1109/tsg.2022.3218934"
+   },
+   "abstract": "Microgrids, as a major domain of smart grids, facilitate the integration of distributed and renewable energy sources. They are capable of operating autonomously when the connection to the main grid is difficult or cost-ineffective. As the presence of microgrids in the smart grid becomes more common, it becomes more urgent to protect the microgrid from cyberattacks. In this paper, we present the first design and implementation of a microgrid security monitoring platform based on IEC 62351–7:2017 Network and System Management (NSM). The capabilities of this platform are demonstrated on a detailed microgrid model that is deployed on a real-time co-simulation testbed. A hybrid rule-based and machine learning anomaly detection approach is developed to detect attacks targeting the microgrid. To investigate the effectiveness of the NSM security monitoring platform, evaluate the proposed detection schemes, and observe the impact of cyberattacks on the microgrid operation, several formulated attacks against the microgrid are simulated. The effectiveness of different parameters and architectures for the anomaly detection schemes are compared against one another, including Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU). The obtained results demonstrate the strengths and gaps of security monitoring based on NSM, and can be seen as first step towards the design of more comprehensive monitoring platforms that integrate NSM along with complementary mechanisms such as passive network traffic inspection and device log analysis.",
+   "status": "current"
+  },
+  {
+   "title": "A Survey of Log-Correlation Tools for Failure Diagnosis and Prediction in Cluster Systems",
+   "identifiers": {
+    "openalex": "W4312672690",
+    "doi": "10.1109/access.2022.3231454"
+   },
+   "abstract": "System logs are the first source of information available to system designers to analyze and troubleshoot their cluster systems. For example, High-Performance Computing (HPC) systems generate a large volume of heterogeneous data from multiple sub-systems, so the idea of using a single source of data to achieve a given goal, such as identification of failures, is losing its validity. System log-analysis tools assist system designers gain understanding into a large volume of system logs. They enable system designers to perform various analyses (e.g., diagnosing node failures or predicting node failures). Current system log-analysis tools vary significantly in their function and design. We conduct a systematic review of literature on system log-analysis tools and select 46 representative articles out of 3,758 initial articles. To the best of our knowledge, there is no work that studied the characteristics of log-correlation tools (LogCTs) with respect to four quality attributes including (a) spurious correlations, (b) correlation threshold settings, (c) outliers in the data and (d) missing data. In this paper, we (a) propose a quality model to evaluate LogCTs and (b) use this quality model to evaluate and recommend current LogCTs. Through our review, we (a) identify papers on LogCTs, (b) build a quality model consisting of the four quality attributes and (c) discuss several open challenges for future research. Our study highlights the advantages and limitations of existing LogCTs and identifies research opportunities that could facilitate better failure handling in large cluster systems.",
+   "status": "current"
+  },
+  {
+   "title": "Exploiting Semi-Tensor Product Compressed Sensing and Hybrid Cloud for Secure Medical Image Transmission",
+   "identifiers": {
+    "openalex": "W4312677948",
+    "doi": "10.1109/jiot.2022.3228781"
+   },
+   "abstract": "With the development of telemedicine diagnosis technology, the collection, storage, and transmission of medical data has become a pivotal problem. To solve these problems, in terms of semi-tensor product compressed sensing (STP-CS) and hybrid cloud, a new medical data transmission framework is presented in this article, which can ensure the efficiency, confidentiality, and verifiability of data transmission. According to the edge detection, the authentication information is embedded into the insignificant area of the medical image to protect the authenticity of the data. STP-CS is utilized to measure and encrypt the medical image, which improves the efficiency of data transmission. In order to make the image data more secure, an adaptive cyclic shift diffusion algorithm based on chaotic sequence is used to effectively diffuse the measurement results. In addition, we also apply encoding for the quantized measurement value to be used as tamper proof authentication. The simulation results prove that the presented medical data transmission scheme can effectively improve the image reconstruction effect, transmission efficiency, and security.",
+   "status": "current"
+  },
+  {
+   "title": "A Study on the Aging and Fault Tolerance of Microservices in Kubernetes",
+   "identifiers": {
+    "openalex": "W4312930724",
+    "doi": "10.1109/access.2022.3231191"
+   },
+   "abstract": "Microservice-based applications are increasingly being adopted along with cloud service models, and nowadays serve millions of customers daily. They are supported by container-based architectures which are managed by orchestration platforms, such as Kubernetes, that monitor, manage, and automate most of the tasks. Although these tools provide failover capabilities, it is not yet studied how effective they are in dealing with diverse types of faults. Fault injection is an effective methodology for validating components that are supposed to detect the malfunctions and report/correct them. This paper studies the effectiveness of Kubernetes in dealing with faults and aging in microservices, and on the possibility of using faults to accelerate aging effects for testing purposes. For this, we conducted an analysis of the implementation and tuning of Kubernetes probes, followed by experiments with varying load and fault injection into two distinct and representative microservice testbeds to analyze the capacity of probes in detecting issues in applications. The goal is to improve the knowledge of researchers and developers on whether Kubernetes can detect different faults and aging issues. Also, even though some services tend to accumulate aging effects, with increasing resource consumption, Kubernetes does not detect them nor acts on them, indicating that probes may be insufficient for aging scenarios. Results also showed that fault injection is useful to accelerate aging effects for the testing and evaluation purposes.",
+   "status": "current"
+  },
+  {
+   "title": "Semi-Supervised Range-Based Anomaly Detection for Cloud Systems",
+   "identifiers": {
+    "openalex": "W4312949663",
+    "doi": "10.1109/tnsm.2022.3225753"
+   },
+   "abstract": "The inherent characteristics of cloud systems often lead to anomalies, which pose challenges for high availability, reliability, and high performance. Detecting anomalies in cloud key performance indicators (KPI) is a critical step towards building a secure and trustworthy system with early mitigation features. This work is motivated by (i) the efficacy of recent reconstruction-based anomaly detection (AD), (ii) the misrepresentation of the accuracy of time series anomaly detection because point-basedPrecisionandRecallare used to evaluate the efficacy for range-based anomalies, and (iii) detects performance and security anomalies when distributions shift and overlaps. In this paper, we propose a novel semi-supervised dynamic density-based detection rule that uses the reconstruction error vectors in order to detect anomalies. We use long short-term memory networks based on encoder-decoder (LSTM-ED) architecture to reconstruct the normal KPI time series. We experiment with both testbed and a diverse set of real-world datasets. The experimental results show that the dynamic density approach exhibits better performance compared to other detection rules using both standard and range-based evaluation metrics. We also compare the performance of our approach with state-of-the-art methods, outperforms in detecting both performance and security anomalies.",
+   "status": "current"
+  },
+  {
+   "title": "Concept Drift-based Checkpoint-restart for Edge Services Rejuvenation",
+   "identifiers": {
+    "openalex": "W4312958720",
+    "doi": "10.1109/tsc.2022.3210086"
+   },
+   "abstract": "As a nascent technique, Mobile Edge Computing (MEC) is mushrooming with a broad application prospect. By transferring abundant computing and storage resources from cloud to edge servers close to users, it allows services to be hosted on edge servers, which greatly reduces service latency. However, due to environmental dynamics, the edge services' reliability fluctuates in real-time. When the reliability of an edge service degrades severely, it may be suffering an anomaly, which can seriously impact its real-time performance and users' quality of experience. To ensure the real-time performance of edge services, this paper presents CDCrest, a concept drift-based checkpoint restart approach for edge service rejuvenation. CDCrest employs L-Detection, a concept drift-based approach to detect edge services' runtime reliability anomalies. L-Detection leverages a sliding window and Locality Sensitive Hashing (LSH)-based sampling to extract features from an edge service's real-time and historic reliability data streams. Then, it calculates the real-time Distribution Change Degree (DCD) based on Jensen-Shannon (JS) divergence to infer whether the edge service is suffering a reliability anomaly. Once an anomaly for an edge service is identified, CDCrest employs a checkpoint restart mechanism to ensure the rapid rejuvenation of the edge service. Extensive experiments conducted based on a popular real-world dataset demonstrate the effectiveness and efficiency of CDCrest against the state-of-the-art approaches.",
+   "status": "current"
+  },
+  {
+   "title": "Noise-Boosted Convolutional Neural Network for Edge-Based Motor Fault Diagnosis With Limited Samples",
+   "identifiers": {
+    "openalex": "W4312960164",
+    "doi": "10.1109/tii.2022.3228902"
+   },
+   "abstract": "Convolutional neural networks (CNNs) have been widely applied to motor fault diagnosis. However, to obtain high recognition accuracy, massive training data are typically required and transmitted to the cloud/local server for training, which may suffer from security and privacy problems. In this article, a noise-boosted CNN (NBCNN) model is developed to achieve accelerated training and improved recognition accuracy with limited training samples. First, the NBCNN model with a noise-injection fully connected layer is established. Then, a strategy for noise selection and injection is proposed to obtain an optimal matching among the data, model, and noise. Finally, the optimal injected noise accelerates the convergence of model training and improves the accuracy of motor fault diagnosis. Compared with the conventional CNN without noise injection and the state-of-the-art models, the effectiveness and superiority of the proposed NBCNN model are validated by two benchmark datasets. In addition, the algorithm is deployed onto an edge device and the results show that the training speed of the developed NBCNN can reach nine times faster than the conventional CNN. The proposed method shows remarkable potential for distributed model training, federal learning, and real-time motor fault diagnosis.",
+   "status": "current"
+  },
+  {
+   "title": "Low-Latency Anomaly Detection on the Edge-Cloud Continuum for Industry 4.0 Applications: the SEAWALL Case Study",
+   "identifiers": {
+    "openalex": "W4312985749",
+    "doi": "10.1109/iotm.001.2200120"
+   },
+   "abstract": "Several emerging Industry 4.0 applications related to the monitoring and fault diagnostic of critical equipment introduce strict bounds on the latency of the data processing. Edge computing has emerged as a viable approach to mitigate the latency by offloading tasks to nodes nearby the data sources; at the same time, few industrial case studies have been reported so far. In this paper, we describe the design, implementation and evaluation of the SEAWALL platform for the heterogeneous data acquisition and low-latency processing in Industry 4.0 scenarios. The framework has been developed within the homonymous project founded by the Italian BIREX industrial consortium and involving both academic and industrial partners. The proposed framework supports data collection from heterogeneous production line machines mapped to different IoT protocols. In addition, it enables the seamless orchestration of workloads in the edge-cloud continuum so that the latency of the alerting service is minimized requirement of the processing task is continuously met, while taking into account the constrained resources of the edge servers. We evaluate the SEAWALL framework in a small-case industrial testbed and quantify the performance gain provided by the dynamic workload allocation on the continuum.",
+   "status": "current"
+  },
+  {
+   "title": "Blockchain Assisted Multi-Copy Provable Data Possession With Faults Localization in Multi-Cloud Storage",
+   "identifiers": {
+    "openalex": "W4313058932",
+    "doi": "10.1109/tifs.2022.3211642"
+   },
+   "abstract": "Cloud storage service provides a convenient way for users to store massive data. To guarantee the integrity of the outsourced data, provable data possession (PDP) schemes for multi-copy data and multi-cloud have been proposed respectively. To avoid a single point of failure and to increase the security of the outsourced data, many users store multiple copies on multiple cloud servers. However, few protocols support multi-copy data and multi-cloud at the same time. Considering that three entities (third-party auditor, cloud organizer and cloud storage servers) participate in the auditing process, it is difficult for users to locate the position of the faults, including entity position, file position and data block corruption position, when the auditor reports data corruption. In this paper we propose a certificateless multi-copy public auditing protocol in multi-cloud storage, which supports to locate the faults entities and corrupted data blocks. Specifically, instead of relying on a trusted centralized judgement entity to deal with the faults detection, smart contracts combined with the binary search technique are utilized to help achieve the reliability of faults localization result and the accuracy of the judgement. Additionally, the proposed protocol supports data dynamics update, including data modification, insertion and deletion. Theoretical analysis and experiment results show that our protocol is efficient and practical.",
+   "status": "current"
+  },
+  {
+   "title": "TencentCLS",
+   "identifiers": {
+    "openalex": "W4313166319",
+    "doi": "10.14778/3554821.3554837"
+   },
+   "abstract": "With the trend of cloud computing, the cloud log service is becoming increasingly important, as it plays a critical role in tasks such as root cause analysis, service monitoring and security audition. To meet these needs, we provide Tencent Cloud Log Service (TencentCLS), a one-stop solution for log collection, storage, analysis and dumping. It currently hosts more than a million tenants, of which the largest ones can generate up to PB-level logs per day. The most important challenge that TencentCLS faces is to support both low-latency and resource-efficient queries on such large quantities of log data. To address that challenge, we propose a novel search engine based upon Lucene. The system features a novel procedure for querying logs within a time range, an indexing technique for the time field, as well as optimized query algorithms dedicated to multiple critical and common query types. As a result, the search engine at TencentCLS gains significant performance improvements against Lucene. It achieves 20x performance increase with standard queries, and 10x performance increase with histogram queries in massive log query scenarios. In addition, TencentCLS also supports storing and querying with microsecond-level time precision, as well as the microsecond-level time order preservation capability.",
+   "status": "current"
+  },
+  {
+   "title": "Practical autoencoder based anomaly detection by using vector reconstruction error",
+   "identifiers": {
+    "openalex": "W4313590336",
+    "doi": "10.1186/s42400-022-00134-9"
+   },
+   "abstract": "Abstract Nowadays, cloud computing provides easy access to a set of variable and configurable computing resources based on user demand through the network. Cloud computing services are available through common internet protocols and network standards. In addition to the unique benefits of cloud computing, insecure communication and attacks on cloud networks cannot be ignored. There are several techniques for dealing with network attacks. To this end, network anomaly detection systems are widely used as an effective countermeasure against network anomalies. The anomaly-based approach generally learns normal traffic patterns in various ways and identifies patterns of anomalies. Network anomaly detection systems have gained much attention in intelligently monitoring network traffic using machine learning methods. This paper presents an efficient model based on autoencoders for anomaly detection in cloud computing networks. The autoencoder learns a basic representation of the normal data and its reconstruction with minimum error. Therefore, the reconstruction error is used as an anomaly or classification metric. In addition, to detecting anomaly data from normal data, the classification of anomaly types has also been investigated. We have proposed a new approach by examining an autoencoder’s anomaly detection method based on data reconstruction error. Unlike the existing autoencoder-based anomaly detection techniques that consider the reconstruction error of all input features as a single value, we assume that the reconstruction error is a vector. This enables our model to use the reconstruction error of every input feature as an anomaly or classification metric. We further propose a multi-class classification structure to classify the anomalies. We use the CIDDS-001 dataset as a commonly accepted dataset in the literature. Our evaluations show that the performance of the proposed method has improved considerably compared to the existing ones in terms of accuracy, recall, false-positive rate, and F1-score metrics.",
+   "status": "current"
+  },
+  {
+   "title": "DyCause: Crowdsourcing to Diagnose Microservice Kernel Failure",
+   "identifiers": {
+    "openalex": "W4313591680",
+    "doi": "10.1109/tdsc.2022.3233915"
+   },
+   "abstract": "Today many web applications in the cloud (apps) are built based on microservices. However, as the anomaly propagates in a highly dynamic and complex way, troubleshooting them becomes full of challenges. Existing diagnostic methods are mostly designed based on monitoring metrics retrieved from the microservice system kernel. Therefore, application owners and even site reliability engineers (SREs) cannot effectively resort to those methods when the microservice systems lack such a comprehensive monitoring infrastructure. In this article, we develop DyCause, a crowdsourcing solution to the asymmetric diagnostic information problem. Our solution collects the operational status of kernel services collaboratively from the user space and initiates diagnosis on demand. Without the requirement of any architectural or functional infrastructure, it is both fast and lightweight to deploy DyCause in a microservice system. In order to discover the fine-grained dynamic causalities between services during the anomaly, we also design an efficient algorithm based on statistical analysis. Based on this algorithm, we can also analyze the anomaly propagation paths within the microservice system and generate a better interpretable diagnosis. In our evaluation, we test DyCause in a controlled simulation environment and a real-world cloud system. Our results have shown that DyCause has the best accuracy and efficiency among several state-of-the-art methods and is more robust in terms of parameters.",
+   "status": "current"
+  },
+  {
+   "title": "Run-time failure detection via non-intrusive event analysis in a large-scale cloud computing platform",
+   "identifiers": {
+    "openalex": "W4313650003",
+    "doi": "10.1016/j.jss.2023.111611"
+   },
+   "abstract": "Cloud computing systems fail in complex and unforeseen ways due to unexpected combinations of events and interactions among hardware and software components.These failures are especially problematic when they are silent, i.e., not accompanied by any explicit failure notification, hindering the timely detection and recovery. In this work, we propose an approach to run-time failure detection tailored for monitoring multi-tenant and concurrent cloud computing systems. The approach uses a non-intrusive form of event tracing, without manual changes to the system's internals to propagate session identifiers (IDs), and builds a set of lightweight monitoring rules from fault-free executions. We evaluated the effectiveness of the approach in detecting failures in the context of the OpenStack cloud computing platform, a complex and \"off-the-shelf\" distributed system, by executing a campaign of fault injection experiments in a multi-tenant scenario. Our experiments show that the approach detects the failure with an F_1 score (0.85) and accuracy (0.77) higher than the ones provided by the OpenStack failure logging mechanisms (0.53 and 0.50) and two non--session-aware run-time verification approaches (both lower than 0.15). Moreover, the approach significantly decreases the average time to detect failures at run-time (~114 seconds) compared to the OpenStack logging mechanisms.",
+   "status": "current"
+  },
+  {
+   "title": "Robust and accurate performance anomaly detection and prediction for cloud applications: a novel ensemble learning-based framework",
+   "identifiers": {
+    "openalex": "W4316116055",
+    "doi": "10.1186/s13677-022-00383-6"
+   },
+   "abstract": "Abstract Effectively detecting run-time performance anomalies is crucial for clouds to identify abnormal performance behavior and forestall future incidents. To be used for real-world applications, an effective anomaly detection framework should meet three main challenging requirements: high accuracy for identifying anomalies, good robustness when application patterns change, and prediction ability for upcoming anomalies. Unfortunately, existing research about performance anomaly detection usually focuses on improving detection accuracy, while little research tackles the three challenges simultaneously. We conduct experiments for existing detection methods on multiple application monitoring data, and results show that existing detection methods usually focus on different features in data, which will lead to their diverse performance on different data patterns. Therefore, existing anomaly detection methods have difficulty improving detection accuracy and robustness and predicting anomalies. To address the three requirements, we propose an Ensemble Learning-Based Detection (ELBD) framework which integrates existing well-selected detection methods. The framework includes three classic linear ensemble methods (maximum, average, and weighted average) and a novel deep ensemble method. Our experiments show that the ELBD framework realizes better detection accuracy and robustness, where the deep ensemble method can achieve the most accurate and robust detection for cloud applications. In addition, it can predict anomalies in the next four minutes with an F1 score higher than 0.8. The paper also proposes a new indicator $$ARP\\_score$$ A R P _ s c o r e to measure detection accuracy, robustness, and multi-step prediction ability. The $$ARP\\_score$$ A R P _ s c o r e of the deep ensemble method is 5.1821, which is much higher than other detection methods.",
+   "status": "current"
+  },
+  {
+   "title": "Edge Computing on IoT for Machine Signal Processing and Fault Diagnosis: A Review",
+   "identifiers": {
+    "openalex": "W4318148761",
+    "doi": "10.1109/jiot.2023.3239944"
+   },
+   "abstract": "Edge computing is an emerging paradigm that offloads the computations and analytics workloads onto the Internet of Things (IoT) edge devices to accelerate the computation efficiency, reduce the channel occupation of signal transmission, and reduce the storage and computation workloads on the cloud servers. These distinct merits make it a promising tool for IoT-based machine signal processing and fault diagnosis. This article reviews the edge computing methods in signal processing-based machine fault diagnosis from the aspects of concepts, state-of-the-art methods, case studies, and research prospects. In particular, the lightweight designed algorithms and application-specific hardware platforms of edge computing in the typical fault diagnosis procedures, including signal acquisition, signal preprocessing, feature extraction, and pattern recognition, are reviewed and discussed in detail. The review provides an insight into the edge computing framework, methods, and applications, so as to meet the requirements of IoT-based machine real-time signal processing, low-latency fault diagnosis, and high-efficient predictive maintenance.",
+   "status": "current"
+  },
+  {
+   "title": "TrinityRCL: Multi-Granular and Code-Level Root Cause Localization Using Multiple Types of Telemetry Data in Microservice Systems",
+   "identifiers": {
+    "openalex": "W4318830451",
+    "doi": "10.1109/tse.2023.3241299"
+   },
+   "abstract": "The microservice architecture has been commonly adopted by large scale software systems exemplified by a wide range of online services. Service monitoring through anomaly detection and root cause analysis (RCA) is crucial for these microservice systems to provide stable and continued services. However, compared with monolithic systems, software systems based on the layered microservice architecture are inherently complex and commonly involve entities at different levels of granularity. Therefore, for effective service monitoring, these systems have a special requirement of multi-granular RCA. Furthermore, as a large proportion of anomalies in microservice systems pertain to problematic code, to timely troubleshoot these anomalies, these systems have another special requirement of RCA at the finest code-level. Microservice systems rely on telemetry data to perform service monitoring and RCA of service anomalies. The majority of existing RCA approaches are only based on a single type of telemetry data and as a result can only support uni-granular RCA at either application-level or service-level. Although there are attempts to combine metric and tracing data in RCA, their objective is to improve RCA's efficiency or accuracy rather than to support multi-granular RCA. In this article, we propose a new RCA solutionTrinityRCLthat is able to localize the root causes of anomalies at multiple levels of granularity including application-level, service-level, host-level, and metric-level, with the unique capability of code-level localization by harnessing all three types of telemetry data to construct a causal graph representing the intricate, dynamic, and nondeterministic relationships among the various entities related to the anomalies. By implementing and deployingTrinityRCLin a real production environment, we evaluateTrinityRCLagainst two baseline methods and the results show thatTrinityRCLhas a significant performance advantage in terms of accuracy at the same level of granularity with comparable efficiency and is particularly effective to support large-scale systems with massive telemetry data.",
+   "status": "current"
+  },
+  {
+   "title": "MPGE and RootRank: A sufficient root cause characterization and quantification framework for industrial process faults",
+   "identifiers": {
+    "openalex": "W4319066509",
+    "doi": "10.1016/j.neunet.2023.01.030"
+   },
+   "abstract": "Root cause diagnosis can locate abnormalities of industrial processes, ensuring production safety and manufacturing efficiency. However, existing root cause diagnosis models only consider pairwise direct causality and ignore the multi-level fault propagation, which may lead to incomplete root cause descriptions and ambiguous root cause candidates. To address the above issue, a novel framework, named multi-level predictive graph extraction (MPGE) and RootRank scoring, is proposed and applied to the root cause diagnosis for industrial processes. In this framework, both direct and indirect Granger causalities are characterized by multi-level predictive relationships to provide a sufficient characterization of root cause variables. First, a predictive graph structure with a sparse constrained adjacency matrix is constructed to describe the information transmission between variables. The information of variables is deeply fused according to the adjacency matrix to consider multi-level fault propagation. Then, a hierarchical adjacency pruning (HAP) mechanism is designed to automatically capture vital predictive relationships through adjacency redistribution. In this way, the multi-level causalities between variables are extracted to fully describe both direct and indirect fault propagation and highlight the root cause. Further, a RootRank scoring algorithm is proposed to analyze the predictive graph and quantify the fault propagation contribution of each variable, thereby giving definite root cause identification results. Three examples are adopted to verify the diagnostic performance of the proposed framework, including a numerical example, the Tennessee Eastman benchmark process, and a real cut-made process of cigarette. Both theoretical analysis and experimental verification show the high interpretability and reliability of the proposed framework.",
+   "status": "current"
+  },
+  {
+   "title": "Federated Zero-Shot Industrial Fault Diagnosis With Cloud-Shared Semantic Knowledge Base",
+   "identifiers": {
+    "openalex": "W4319338551",
+    "doi": "10.1109/jiot.2023.3243401"
+   },
+   "abstract": "Recently, a considerable literature has grown up around the few-sample fault diagnosis task, in which few samples of fault data are available for model training. The lack of fault samples usually causes significant degradation of diagnosis performance, which is referred as few-sample problem. Many federated learning-based fault diagnosis methods are proposed as a popular strategy to solve this problem. However, the vast majority of these algorithms assume that few-sample categories of the local client are well-sampled in some clients. In this sense, they are unable to cope with faults that have rare or even no sample in all clients, namely, global unseen faults. To diagnosis global unseen fault categories, a federated zero-shot fault diagnosis framework is proposed in this article. First, we propose a general approach for building a semantic knowledge base, which provides auxiliary discriminant descriptions of different faults. Second, a bidirectional alignment network is designed using two coupled variational autoencoders, enabling the fusion of data and attributes and allowing attribute descriptions to assist in fault diagnosis tasks. Third, a cloud–edge collaboration model aggregation strategy is developed, which utilizes a generative replay mechanism and integrates the knowledge of each client, thus, enhancing the generalization and generation ability of the global model. Experiments conducted on the thermal power plant group illustrate the feasibility and effectiveness of the proposed framework to categorize local and global unseen classes.",
+   "status": "current"
+  },
+  {
+   "title": "Reinforcement learning-based distant supervision relation extraction for fault diagnosis knowledge graph construction under industry 4.0",
+   "identifiers": {
+    "openalex": "W4319594316",
+    "doi": "10.1016/j.aei.2023.101900"
+   },
+   "abstract": "Fault diagnosis is the key concern in the operation and maintenance of industrial assets. A fault diagnosis knowledge graph (KG) can provide decision support to the engineers to efficiently conduct maintenance tasks. However, as a type of domain KG, it would be time-consuming to manually label the corpus collected from the multi-source including the maintenance log, handbook and article. Meanwhile, the existence of the noisy sentence in the multi-source corpus jeopardises the performance of relation extraction modelling. In order to address this issue, this paper proposes a distant supervision relation extraction (DSRE)-based approach to construct a fault diagnosis KG. In this approach, the ontology of the fault diagnosis KG is firstly designed. Subsequently, a DSRE algorithm named relation-aware-based sentence-level attention enhanced piecewise convolutional neural network with reinforcement learning strategy (PCNN-ATTRA-RL) is proposed. The algorithm can effectively lower the impact of noisy sentences and accurately label the relation of different entities when the labelled data is insufficient. In this algorithm, PCNN-ATTRA is designed as the DSRE classifier to effectively extract the relation between entity pairs. RL is conducted to remove the noisy sentence so as to further improve the performance. An experimental study based on the multi-source corpus collected from the real world reveals that the proposed approach shows merits in comparison with the state-of-the-art algorithms. Meanwhile, a fault diagnosis KG, which can greatly support the decision-making of the engineers in the fault diagnosis, is established via the proposed approach.",
+   "status": "current"
+  },
+  {
+   "title": "Self-supervised log parsing using semantic contribution difference",
+   "identifiers": {
+    "openalex": "W4319874037",
+    "doi": "10.1016/j.jss.2023.111646"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "An Instability-Resilient Renewable Energy Allocation System for a Cloud Datacenter",
+   "identifiers": {
+    "openalex": "W4319988718",
+    "doi": "10.1109/tpds.2023.3235957"
+   },
+   "abstract": "Renewable energy supply is a promising solution for datacenters' increasing electricity monetary cost, energy consumption and harmful gas emissions. However, due to the instability of renewable energy, insufficient renewable energy supply may lead to the use of stored energy or brown energy. To handle this problem, in this paper, we propose an instability-resilient renewable energy allocation system. We define a job's service-level-objective (SLO) as the successful running probability by only using supplied renewable energy. The system allocates jobs with the same SLO level to the same physical machine (PM) group, and powers each PM group with renewable energy generators that have probability no less than its SLO to produce the amount no less than its energy demand. We use a deep learning technique to predict the probability of producing the amount no less than each value of each renewable energy source, and predict the energy demands of each PM area. We formulate an optimization problem to match renewable energy resources with different instabilities to different PM groups for supply, and use reinforcement learning method and linear programming method to solve it. We further propose an energy-driven computing resource assignment method, which adjusts the amount of computing resource of each job based on job deadline and failure probability in each PM group, and a failure prediction based energy saving method. Real trace driven experiments show that our methods achieve much lower SLO violations, total energy monetary cost and total carbon emission compared to other methods and the effectiveness of individual methods.",
+   "status": "current"
+  },
+  {
+   "title": "System Log Parsing: A Survey",
+   "identifiers": {
+    "openalex": "W4319990463",
+    "doi": "10.1109/tkde.2022.3222417",
+    "arxiv": "2212.14277"
+   },
+   "abstract": "Modern information and communication systems have become increasingly challenging to manage. The ubiquitous system logs contain plentiful information and are thus widely exploited as an alternative source for system management. As log files usually encompass large amounts of raw data, manually analyzing them is laborious and error-prone. Consequently, many research endeavors have been devoted to automatic log analysis. However, these works typically expect structured input and struggle with the heterogeneous nature of raw system logs. Log parsing closes this gap by converting the unstructured system logs to structured records. Many parsers were proposed during the last decades to accommodate various log analysis applications. However, due to the ample solution space and lack of systematic evaluation, it is not easy for practitioners to find ready-made solutions that fit their needs. This paper aims to provide a comprehensive survey on log parsing. We begin with an exhaustive taxonomy of existing log parsers. Then we empirically analyze the critical performance and operational features for 17 open-source solutions both quantitatively and qualitatively, and whenever applicable discuss the merits of alternative approaches. We also elaborate on future challenges and discuss the relevant research directions. We envision this survey as a helpful resource for system administrators and domain experts to choose the most desirable open-source solution or implement new ones based on application-specific requirements.",
+   "status": "current"
+  },
+  {
+   "title": "LogEncoder: Log-Based Contrastive Representation Learning for Anomaly Detection",
+   "identifiers": {
+    "openalex": "W4319993380",
+    "doi": "10.1109/tnsm.2023.3239522"
+   },
+   "abstract": "In recent years, cloud computing centers have grown rapidly in size. Analyzing system logs is an important way for the quality of service monitoring. However, systems produce massive amounts of logs, and it is impractical to analyze them manually. Automatic and accurate log analysis to detect abnormal events in systems has become extremely important. However, due to the nature of the log analysis problem, such as discrete property, class imbalance, and quality of log, log-based anomaly detection remains a difficult problem. To address these challenges, we propose LogEncoder, a framework of log sequence encoding for semi-supervised anomaly detection. LogEncoder utilizes a pre-trained model to obtain a semantic vector for each log event. To separate normal and abnormal log event sequences and preserve their contextual information, we integrate one-class and contrastive learning objectives training into the representation model. Finally, we propose two methods, one for offline and one for online, to detect system anomalies. Compared to six state-of-the-art baselines on three benchmark datasets, LogEncoder outperforms five unsupervised and semi-supervised methods, and the performance is comparable to the supervised method LogRobust.",
+   "status": "current"
+  },
+  {
+   "title": "An interview study about the use of logs in embedded software engineering",
+   "identifiers": {
+    "openalex": "W4320036460",
+    "doi": "10.1007/s10664-022-10258-8"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Framework for automatic detection of anomalies in DevOps",
+   "identifiers": {
+    "openalex": "W4320921281",
+    "doi": "10.1016/j.jksuci.2023.02.010"
+   },
+   "abstract": "Log-based anomaly detection is important for improving the reliability and availability of software systems, especially those evolving using DevOps, owing to the huge number of logs generated during continuous practices. However, DevOps practitioners typically inspect and interpret the generated data and logs manually on specific occasions as part of the troubleshooting process. This process of manual inspection is time consuming and challenging because these data and logs have grown to an unmanageable size owing to the increasing size and complexity of the systems. In this research paper, we introduce the DevOps Anomaly Detection Framework (DADF). DADF is composed of two components that rely on Machine Learning (ML) and Artificial Intelligence (AI) to analyze the data and logs generated during DevOps practices to automatically detect anomalies. The first component is Anomaly Detection Before Production (ADBP), which intends to detect anomalies in the prospective release before its operation in the production environment by adopting the Local Outlier Factor (LOF) technique on the data collected during implementation, building, testing, and deployment. The second component is Anomaly Detection After Staging (ADAS), which intends to detect anomalies after the operation of the released system by adopting the Vector Auto-Regression (VAR) technique on the data collected during monitoring from the system log, application log, and performance metrics (CPU and memory). We experimentally evaluated ADBP and ADAS in two different real-world industrial projects. The experimental results demonstrated that the accuracy, precision, recall, and F1-score of the ADBP component were 96%, 87.5%, 100%, and 93.3%, respectively, and the normalized Root Mean Squared Error (nRMSE) of the ADAS component was 2–19%. Hence, the results demonstrate the effectiveness of DADF in helping DevOps practitioners and researchers automatically detect anomalies throughout the lifecycle of DevOps by monitoring all DevOps’ practices.",
+   "status": "current"
+  },
+  {
+   "title": "White-Box Fuzzing RPC-Based APIs with EvoMaster: An Industrial Case Study",
+   "identifiers": {
+    "openalex": "W4321482783",
+    "doi": "10.1145/3585009"
+   },
+   "abstract": "Remote Procedure Call (RPC) is a communication protocol to support client-server interactions among services over a network. RPC is widely applied in industry for building large-scale distributed systems, such as Microservices. Modern RPC frameworks include, for example, Thrift, gRPC, SOFARPC, and Dubbo. Testing such systems using RPC communications is very challenging, due to the complexity of distributed systems and various RPC frameworks the system could employ. To the best of our knowledge, there does not exist any tool or solution that could enable automated testing of modern RPC-based services. To fill this gap, in this article we propose the first approach in the literature, together with an open source tool, for fuzzing modern RPC-based APIs. The approach is in the context of white-box testing with search-based techniques. To tackle schema extraction of various RPC frameworks, we formulate a RPC schema specification along with a parser that allows the extraction from source code of any JVM RPC-based APIs. Then, with the extracted schema we employ a search to produce tests by maximizing white-box heuristics and newly defined heuristics specific to the RPC domain. We built our approach as an extension to an open source fuzzer (i.e., EvoMaster ), and the approach has been integrated into a real industrial pipeline that could be applied to a real industrial development process for fuzzing RPC-based APIs. To assess our novel approach, we conducted an empirical study with two artificial and four industrial web services selected by our industrial partner. In addition, to further demonstrate its effectiveness and application in industrial settings, we report results of employing our tool for fuzzing another 50 industrial APIs autonomously conducted by our industrial partner in their testing processes. Results show that our novel approach is capable of enabling automated test case generation for industrial RPC-based APIs (i.e., 2 artificial and 54 industrial). We also compared with a simple gray-box technique and existing manually written tests. Our white-box solution achieves significant improvements on code coverage. Regarding fault detection, by conducting a careful review with our industrial partner of the tests generated by our novel approach in the selected four industrial APIs, a total of 41 real faults were identified, which have now been fixed. Another 8,377 detected faults are currently under investigation.",
+   "status": "current"
+  },
+  {
+   "title": "Health Monitoring and Diagnosis for Geo-Distributed Edge Ecosystem in Smart City",
+   "identifiers": {
+    "openalex": "W4321483888",
+    "doi": "10.1109/jiot.2023.3247640"
+   },
+   "abstract": "With the increasing number of Internet of Things (IoT) devices being deployed and used in daily life, the load on computational devices has grown exponentially. This situation is more prevalent in smart cities where such devices are used for autonomous control and monitoring. Smart cities have different kinds of applications that are aided through IoT devices that collect data, send it to computational processing and storage devices, and get back decisions or actuate the actions based on the input data. There has been a stringent requirement to reduce the end-to-end delay in this process owing to the remote deployment of cloud data centres. This eventually led to the revolution of edge computing, wherein nano–micro-processing devices can be deployed closer to the premises of the smart application and process the data generated with a lower turnaround time. However, due to the limited computational power and storage, controlling the workload diverted to the edge devices has been challenging. The workload scheduling policies and task allocation schemes often fail to consider the run time health of the edge devices due to a lack of proper monitoring infrastructure. Thus, in this article, we proposed a health monitoring and diagnosis framework for geo-distributed edge clusters processing big data generated by smart city applications. This framework is built over the Map-Reduce approach for distributed processing of big data on edge clusters deployed across the smart city. Within this framework, SmartMonit (a monitoring agent) is deployed that collects the health statistics of edge devices and predicts the potential failures using an artificial neural network-based self-organising maps approach. The proposed framework is deployed over different clusters to test the efficacy concerning failure detection.",
+   "status": "current"
+  },
+  {
+   "title": "Cloud-Edge Collaboration-Based Distribution Network Reconfiguration for Voltage Preventive Control",
+   "identifiers": {
+    "openalex": "W4321484245",
+    "doi": "10.1109/tii.2023.3247028"
+   },
+   "abstract": "The distribution network reconfiguration (DNR) can realize the voltage preventive control of the distribution network (DN) under alert state, which solves the voltage security issues and maintains the safe operation of the DN. However, since the great scale and complexity of the DN would make the traditional centralized DN reconfiguration method have a heavy computing burden, a DNR method based on cloud-edge collaborative architecture for voltage preventive control is proposed in this article, which can reduce the huge computational pressure caused by the excessive concentration of computing tasks. In order to formulate the optimal topology reconfiguration strategy according to the specifics of voltage alerts, a differential hybrid Petri-net model with event-triggered strategy is constructed based on the cloud-edge collaborative architecture to characterize the logical relations of the solution process of the reconfiguration strategy. Considering the short time scale characteristic of preventive control, corresponding to the solution process described by the constructed model, an evaluation network based on the graph convolutional neural network (GCN) is proposed for the reachability discrimination of solutions to significantly reduce the number of candidate solutions, as well as a decision network based on multilayer perceptron is proposed for the selection of the optimal solution among the reachable solutions. Numerical tests are conducted on the modified IEEE 33-bus and IEEE 118-bus distribution systems to validate the effectiveness of the proposed method in dealing with voltage alert problems.",
+   "status": "current"
+  },
+  {
+   "title": "LPV: A Log Parsing Framework Based on Vectorization",
+   "identifiers": {
+    "openalex": "W4321608187",
+    "doi": "10.1109/tnsm.2023.3248124"
+   },
+   "abstract": "Logs are pervasive in modern computing systems, and are valuable to service and system management. Nevertheless, with the rapidly growing size and complexity of computing systems, the log volume is exploding, which makes automatic log analysis imperative. Generally, in automatic log analysis, the first and fundamental step is log parsing, to which a lot of effort has been devoted. However, in most existing log parsing methods, log messages are merely treated as plain text. In natural language processing (NLP) area, it is a common practice to represent words and sentences with vectors, then the similarity between two words or sentences can be measured by the distance between their vectors. Inspired by these, we put forward a novel log parsing framework, named LPV (LogParser based onVectorization), which performs log parsing by converting log messages and log templates into vectors, with the help of a vectorization method in NLP. LPV incorporates offline and online log parsing. In the offline log parsing, the central idea is to first represent log messages with vectors, so that the similarity between two log messages can be measured by the distance between their vectors, then we cluster log messages via clustering the vectors, and finally we extract log templates from the resultant clusters. By the end of the offline log parsing, each log template is assigned with an average vector, so that in the online log parsing, the similarity between an incoming log message and each log template can also be measured by the distance between their vectors. Extensive experiments have been conducted based on several public log datasets to evaluate LPV with three different vectorization methods. The results demonstrate that, with a proper vectorization method, LPV performs competitive with state-of-the-art log parsing methods, in both effectiveness and efficiency.",
+   "status": "current"
+  },
+  {
+   "title": "Flexible and scalable ML-based diagnosis module for optical networks: a security use case [Invited]",
+   "identifiers": {
+    "openalex": "W4322627591",
+    "doi": "10.1364/jocn.482932"
+   },
+   "abstract": "To support the pervasive digital evolution, optical network infrastructures must be able to quickly and effectively adapt to changes arising from traffic dynamicity or external factors such as faults and attacks. Network automation is crucial for enabling dynamic, scalable, resource-efficient, and trustworthy network operations. Novel telemetry solutions enable optical network management systems to obtain fine-grained monitoring data from devices and channels as the first step toward the near-real-time diagnosis of anomalies such as security threats and soft failures. However, the collection of large amounts of data creates a scalability challenge related to processing the data within the desired monitoring cycle regardless of the number of optical services being analyzed. This paper proposes a module that leverages the cloud native software deployment approach to achieve near-real-time machine learning (ML)-assisted diagnosis of optical channels. The results obtained over an emulated physical-layer security scenario demonstrate that the architecture successfully scales the necessary components according to the computational load and consistently achieves the desired monitoring cycle duration over a varying number of monitored optical channels.",
+   "status": "current"
+  },
+  {
+   "title": "Cybersecurity Alert Prioritization in a Critical High Power Grid With Latent Spaces",
+   "identifiers": {
+    "openalex": "W4323797275",
+    "doi": "10.1109/access.2023.3255101"
+   },
+   "abstract": "High-Power electric grid networks require extreme security in their associated telecommunication network to ensure protection and control throughout power transmission. Accordingly, supervisory control and data acquisition systems form a vital part of any critical infrastructure, and the safety of the associated telecommunication network from intrusion is crucial. Whereas events related to operation and maintenance are often available and carefully documented, only some tools have been proposed to discriminate the information dealing with the heterogeneous data from intrusion detection systems and to support the network engineers. In this work, we present the use of deep learning techniques, such as Autoencoders or conventional Multiple Correspondence Analysis, to analyze and prune the events on power communication networks in terms of categorical data types often used in anomaly and intrusion detection (such as addresses or anomaly description). This analysis allows us to quantify and statistically describe high-severity events. Overall, portions of alerts around 5-10% have been prioritized in the analysis as first to handle by managers. Moreover, probability clouds of alerts have been shown to configure explicit manifolds in latent spaces. These results offer a homogeneous framework for implementing anomaly detection prioritization in power communication networks.",
+   "status": "current"
+  },
+  {
+   "title": "Identifying performance anomalies in fluctuating cloud environments: A robust correlative-GNN-based explainable approach",
+   "identifiers": {
+    "openalex": "W4327718158",
+    "doi": "10.1016/j.future.2023.03.020"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "SCAFE: A Service-Centered Cloud-Native Workflow Engine Architecture",
+   "identifiers": {
+    "openalex": "W4352977754",
+    "doi": "10.1109/tsc.2023.3259989"
+   },
+   "abstract": "With the rapid development of manufacturing and cloud computing, more and more emerged cloud services provide a promising way to perform complex requirements efficiently. Workflow offers an effective way to assemble disparate services and interacts with them to construct business logic for user requests. Meanwhile, workflow engines are responsible for the control of workflow execution. However, existing engines usually support interaction between workflows and services or computing resources by tight binding approaches, which lack flexibility and scalability. Therefore, a flexible and decoupled architecture is essential to support automatic workflow management. To fill this gap, this paper proposes a novelservice-centered cloud-native workflow architecture- SCAFE. The introduction of the service layer in SCAFE decouples the upper business services and lower execution resources, facilitating the independent and joint management of three execution objects (request - service - execution instance) involved in the cloud workflow lifecycle. We present a 2-stage scheduling model for the new architecture to support customized service optimization and resource-aware task scheduling. In addition, a fault-tolerant mechanism is integrated into resolving task execution exceptions quickly. We have successfully implemented a prototype tool to verify its flexibility and crucial functions, thus advancing the field workflow engines in cloud-native environments.",
+   "status": "current"
+  },
+  {
+   "title": "A Systematic Review of Anomaly Detection for Business Process Event Logs",
+   "identifiers": {
+    "openalex": "W4360980888",
+    "doi": "10.1007/s12599-023-00794-y"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "TraceGra: A trace-based anomaly detection for microservice using graph deep learning",
+   "identifiers": {
+    "openalex": "W4361285721",
+    "doi": "10.1016/j.comcom.2023.03.028"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "DeLag: Using Multi-Objective Optimization to Enhance the Detection of Latency Degradation Patterns in Service-Based Systems",
+   "identifiers": {
+    "openalex": "W4363677085",
+    "doi": "10.1109/tse.2023.3266041"
+   },
+   "abstract": "Performance debugging in production is a fundamental activity in modern service-based systems. The diagnosis of performance issues is often time-consuming, since it requires thorough inspection of large volumes of traces and performance indices. In this paper we present DeLag, a novel automated search-based approach for diagnosing performance issues in service-based systems. DeLag identifies subsets of requests that show, in the combination of their Remote Procedure Call execution times, symptoms of potentially relevant performance issues. We call such symptomsLatency Degradation Patterns. DeLag simultaneously searches for multiplelatency degradation patternswhile optimizing precision, recall and latency dissimilarity. Experimentation on 700 datasets of requests generated from two microservice-based systems shows that our approach provides better and more stable effectiveness than three state-of-the-art approaches and general purpose machine learning clustering algorithms. DeLag is more effective than all baseline techniques in at least one case study (with$p\\leq 0.05$and non-negligible effect size). Moreover, DeLag outperforms in terms of efficiency the second and the third most effective baseline techniques on the largest datasets used in our evaluation (up to 22%).",
+   "status": "current"
+  },
+  {
+   "title": "Real-Time IoT-Based Connected Vehicle Infrastructure for Intelligent Transportation Safety",
+   "identifiers": {
+    "openalex": "W4365420278",
+    "doi": "10.1109/tits.2023.3263271"
+   },
+   "abstract": "The transportation sector faces severe consequences due to the incrementing population influx yielding congestions, fatalities and haphazard traffic scenarios. Advanced Driver Assistance Systems (ADAS) assists highly in such scenarios by eradicating probable accidents and ensures traffic safety. This paper presents intelligent transportation systems (ITS) approach through the connected vehicle technology infrastructure. YOLO v4 (You Only Look Once) inspired real-time computer vision capable of detecting vehicles, pedestrians and animals at high efficiency (0.9777 mean average precision) is deployed on the GPU (Graphics Processing Unit) which offered higher frame rate of detection (74.26 fps). The locations of animals and potholes were mapped through consistent survey and mobile app which relayed the detected locations to the cloud server forming a geospatial database. Clustered locations from the geospatial database on dense transportation network were utilized for constructing animal and pothole hotspot zones. A basic level of display warning was triggered when the vehicle approached animal and pothole areas. Furthermore, advanced alert comprising of display and sound alert was trigger when the vehicle approached hotspot zones. This was implemented using real-time Internet of things (IoT) and cloud infrastructure applications for continuous vehicle’s location monitoring and triggering as per the hotspot geo-locations. The proposed system ensured traffic safety and assisted in avoiding probable crashes and accidents that generally led to congestions and fatalities.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0snow2-05"
+}

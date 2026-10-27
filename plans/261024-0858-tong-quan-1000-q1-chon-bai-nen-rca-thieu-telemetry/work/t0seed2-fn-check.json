@@ -1,0 +1,15 @@
+{
+ "source": "records/t0seed2-fn-sample.csv",
+ "rule": "protocol \u00a74: >1 FN borderline or >0 FN neither -> regex amendment",
+ "borderline": {
+  "n": 25,
+  "fn": 2,
+  "cp95_upper": 0.2603
+ },
+ "neither": {
+  "n": 25,
+  "fn": 0,
+  "cp95_upper": 0.1372
+ },
+ "amendment_required": true
+}

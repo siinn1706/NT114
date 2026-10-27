@@ -1,0 +1,108 @@
+{
+ "schema_version": 2,
+ "id": "04-build-t0-seed-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0seed2 work/records/seed-reused.csv work/records/abstract-fill-t0seed.csv work/records/abstract-fill-s2-t0seed.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-build-t0-seed-02.out",
+ "egress_trace_reference": "work/logs/04-build-t0-seed-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:45:05.327279+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+  "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+  "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68"
+ ],
+ "output_hashes": [
+  "5c6bde82b9239a584deaf4a5a4a4dab9b0f0d03880c70005c828136e31c3a7d9",
+  "65e39b8c4ca60083198a7193df42894ff713fc63ecad744ed44421b4e0a8688f",
+  "92ea82dd4fa67ceabf90413632255d18d8a974b5ecdf95066193a67168cbee52",
+  "ffac32636b8900803044682d89f8d4d3765218c457c2a63cd4761adce57a18ab"
+ ],
+ "checks": [
+  "seed T0 after abstract fill; title-only topic failures to needs-review"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "839cc151f45715bea2dd4d779457b49e113cc99aaa040007774a058064792e0d",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0seed2 work/records/seed-reused.csv work/records/abstract-fill-t0seed.csv work/records/abstract-fill-s2-t0seed.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "c2179989b04ac833bc66e42046b1f572a5df1ab6c290e77818a3ab27b72b473f",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/seed-reused.csv",
+   "sha256_before": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "sha256_after": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/abstract-fill-t0seed.csv",
+   "sha256_before": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "sha256_after": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/abstract-fill-s2-t0seed.csv",
+   "sha256_before": "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+   "sha256_after": "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0seed2-candidates.csv",
+   "sha256": "92ea82dd4fa67ceabf90413632255d18d8a974b5ecdf95066193a67168cbee52",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0seed2-excluded.csv",
+   "sha256": "ffac32636b8900803044682d89f8d4d3765218c457c2a63cd4761adce57a18ab",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0seed2-needs-review-t0.csv",
+   "sha256": "65e39b8c4ca60083198a7193df42894ff713fc63ecad744ed44421b4e0a8688f",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0seed2-summary.json",
+   "sha256": "5c6bde82b9239a584deaf4a5a4a4dab9b0f0d03880c70005c828136e31c3a7d9",
+   "created_this_attempt": true
+  }
+ ]
+}

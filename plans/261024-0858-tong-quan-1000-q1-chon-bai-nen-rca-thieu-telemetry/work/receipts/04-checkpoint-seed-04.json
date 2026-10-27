@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-seed-04",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-seed 04-fn-judge-seed-03 --in work/records/t0seed4-excluded.csv --in work/records/t0seed4-t0.csv --out work/records/t0seed4-fn-judged.csv --out work/t0seed4-fn-check.json --out work/t0seed4-q1-sample.csv --out work/t0seed4-q1-check.md --out work/dossier/input/t0seed4-manifest.json --note FN 0/25+0/25 after amendment; Q1 manual 30/30; check-literature exit 0 x9",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-seed-04.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-seed-04.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:53:01.392376+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "a46cad1350fd97c8cd4966f279c94a19d5d6ffb981f46a268ccd7797f47d8cba"
+ ],
+ "output_hashes": [
+  "578d7ec2306c42d3145278f118f2b3d14afbc9a7cbfef6aa9de495ded0535f43"
+ ],
+ "checks": [
+  "phase 04 seed QA batches committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "36cc00ed6123b114d1be3ea27e279d0200976ed7e8acdaad3a85d1adb036b3cc",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-seed 04-fn-judge-seed-03 --in work/records/t0seed4-excluded.csv --in work/records/t0seed4-t0.csv --out work/records/t0seed4-fn-judged.csv --out work/t0seed4-fn-check.json --out work/t0seed4-q1-sample.csv --out work/t0seed4-q1-check.md --out work/dossier/input/t0seed4-manifest.json --note FN 0/25+0/25 after amendment; Q1 manual 30/30; check-literature exit 0 x9",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "1c14fd92116b6222350f6e97cafd76dd378e9e0f11cf96d24b0d7f5654a54d6c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/t0seed4-fn-check.json",
+   "sha256_before": "a46cad1350fd97c8cd4966f279c94a19d5d6ffb981f46a268ccd7797f47d8cba",
+   "sha256_after": "a46cad1350fd97c8cd4966f279c94a19d5d6ffb981f46a268ccd7797f47d8cba",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "578d7ec2306c42d3145278f118f2b3d14afbc9a7cbfef6aa9de495ded0535f43",
+   "created_this_attempt": true
+  }
+ ]
+}

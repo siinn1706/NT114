@@ -1,0 +1,51 @@
+openalex_id,decision,codes,R1,R2,R3,R4,R5,R6,R_total,read_level,evidence
+W3211945175,exclude,I1|I3,1,0,0,0,1,0,2,abstract,predicting Google cluster job failures and Backblaze hard drive failures
+W7124457284,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,proposed for both conventional and cross-domain log anomaly detection
+W7117361639,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,Log anomaly detection is a critical task for ensuring the reliability of complex systems; real-world datasets (HDFS and BGL)
+W4308740425,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,Deep neural networks (DNNs) have been widely employed to solve log anomaly detection
+W3199351682,needs-review,I1|E6|E7,1,0,0,0,0,0,1,title-only,Anomaly detection on software log based on Temporal Memory
+W4380606958,exclude,I3|E3,0,0,0,0,0,0,0,abstract,Proactive Drive Failure Prediction for Cloud Storage System Through Semi-Supervised Learning
+W4322627591,exclude,I3|E1,0,0,0,0,0,0,0,abstract,machine learning (ML)-assisted diagnosis of optical channels
+W4412081701,exclude,I1|I3|E7,1,1,0,0,0,0,2,abstract,A Fine-Tuned BERT-Based Model for Individual Log Anomaly Detection in Operational Monitoring at Paranal Observatory
+W4408399550,exclude,I3|E1,0,0,0,0,0,0,0,abstract,"In intelligent manufacturing systems, accurate and timely fault diagnosis is crucial"
+W4396612980,needs-review,E1|E6,0,0,0,0,0,0,0,title-only,Automotive digital forensics through data and log analysis of vehicle diagnosis Android apps
+W7123735605,exclude,I1|I3|E7,1,1,0,0,1,0,3,abstract,Anomaly detection in system logs; rigorous and fully supervised evaluation on the HDFS benchmark dataset
+W4413236961,exclude,I3,0,0,0,0,0,0,0,abstract,AI-enabled Smart Video Solution (SVS) designed to enhance safety in the real world
+W4401323078,exclude,I3|E2,0,0,0,0,0,0,0,abstract,we propose an algorithmic security model based on the widely deployed technologies DNS(SEC) and Web PKI
+W4415048237,exclude,I3,0,0,0,0,0,0,0,abstract,pothole detection framework powered by Generative AI (GAI) that is shadow-resilient
+W7124455170,exclude,I1|I3|E7,1,1,0,0,1,0,3,abstract,"Automatically detecting anomalous patterns in system logs; Experiments on the HDFS, BGL, and Thunderbird public datasets"
+W4415048880,exclude,I3|E1,0,0,0,0,0,0,0,abstract,inconsistency risk calculation algorithm for fault diagnosis
+W3214809650,needs-review,I2|E6,2,0,0,0,0,0,2,title-only,PEN: Process Estimator neural Network for root cause analysis using graph convolution
+W4407767767,needs-review,I1|E6|E7,1,1,0,0,0,0,2,title-only,LogAnomEX: An Unsupervised Log Anomaly Detection Method Based on Electra-DP and Gated Bilinear Neural Networks
+W4407900341,exclude,I3|E1,0,0,0,0,0,0,0,abstract,real-world industrial fault diagnosis
+W3087888346,exclude,I3|E1,0,0,0,0,1,0,1,abstract,"fault detection in continuous processes; the Tennessee Eastman process (TEP), selected as the use case of this work"
+W7165909416,context-survey,I1|E5,1,0,0,0,1,0,2,abstract,"Log-based anomaly detection is essential for the reliability and security of modern software systems; baseline experiments via ANN-to-SNN conversion on HDFS, BGL, and Thunderbird"
+W4414110651,exclude,I3|E1,0,0,0,0,0,0,0,abstract,Contrastive Learning and Root-Cause Inference With Causality for Explainable Smart Manufacturing
+W4255661557,exclude,I3|E1,0,0,0,0,0,0,0,abstract,"relate these to process parameters, which can be interpreted as root causes (RC) of the object shape defects"
+W4385299245,exclude,I3|E1,0,0,0,0,0,0,0,abstract,equipment fault diagnosis
+W4312960164,exclude,I3|E1,0,0,0,0,0,0,0,abstract,Noise-Boosted Convolutional Neural Network for Edge-Based Motor Fault Diagnosis With Limited Samples
+W4413209357,needs-review,E1|E6,0,0,0,0,0,0,0,title-only,A two-phase federated learning framework for machinery fault diagnosis with cloud-edge collaborative computing
+W3177116411,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,Identifying the failure modes of cloud computing systems is a difficult and time-consuming task; analyzing failure data from cloud systems
+W7163139944,exclude,E4,0,0,0,0,0,0,0,abstract,"The result is a deployment-oriented blueprint that helps practitioners build interoperable, privacy-aware, and scalable edge-enhanced collaborative computing systems"
+W4394987717,needs-review,I1|E6|E7,1,0,0,0,0,0,1,title-only,LogGT: Cross-system log anomaly detection via heterogeneous graph feature and transfer learning
+W4415373829,exclude,I3,0,0,0,0,0,0,0,abstract,"Zync, a modular and extensible software platform designed to manage IoT ecosystems and support Complex Event Processing (CEP) in real time"
+W4360980888,context-survey,E5|E6,0,0,0,0,0,0,0,title-only,A Systematic Review of Anomaly Detection for Business Process Event Logs
+W4412605458,exclude,I3|E1,0,0,0,0,0,0,0,abstract,RGB-3D Noisy-Resistant Industrial Anomaly Detection via Multimodal Denoising
+W7221977823,exclude,I3,0,0,0,0,0,0,0,abstract,An Empirical Analysis of LLM Usage in Software Engineering Course Projects
+W7170171891,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,Fault Diagnosis in Large-Scale Industrial Processes; Experiments on a real hot strip mill process (HSMP)
+W4416926032,context-survey,E2|E5,0,0,0,0,0,1,1,abstract,this survey systematically analyzes the security of RSs; this survey also provides a repository of resources for attacks and defenses
+W4402393692,needs-review,I1|E6|E7,1,0,0,0,0,0,1,title-only,Interpretable Spatial-Temporal Graph Convolutional Network for System Log Anomaly Detection
+W7164744291,needs-review,E1|E6,0,2,0,0,0,0,2,title-only,zero-shot industrial fault diagnosis via large language model distillation
+W4213258821,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,"identification of abnormal log patterns in large-scale IoT systems; two publicly available and widely used real-world datasets (i.e., HDFS and BGL)"
+W4220771867,needs-review,E2|E6,0,0,0,0,0,0,0,title-only,A collaborative cloud-based self-protecting software communities framework - Focus on the alert coordination system
+W4405934431,exclude,I3,0,0,0,0,0,0,0,abstract,SafeTrax uses deep learning to predict traffic accidents and car crashes
+W7125611776,exclude,I1|I3|E2,1,0,0,0,0,0,1,abstract,most anomaly detection methods rely on offline learning using system call data; cloud-native microservice environments
+W7147688402,exclude,I3|E1,0,0,0,0,0,0,0,abstract,pipeline leak detection using fiber Bragg grating-based pressure sensors
+W4382658138,exclude,I3,0,0,0,0,0,0,0,abstract,Log analysis is the main approach to analyzing the root cause of bugs
+W7204465610,needs-review,I1|E6,1,0,0,0,0,0,1,title-only,Time-to-aging-failure prediction of software systems via multi-scale spatio-temporal graph learning and frequency-domain transformer
+W4395470989,exclude,I3|E1,0,0,0,0,0,0,0,abstract,collaborative fault diagnosis of distributed edge WTs
+W3001972873,exclude,I3,0,0,0,0,0,0,0,abstract,"automated shelf monitoring, using a consumer-grade depth sensor"
+W4405974340,exclude,I3|E1,0,0,0,0,0,0,0,abstract,Anomaly Detection in High-Pressure Grinding Rolls
+W3092501433,exclude,I1|I3|E2,1,0,0,0,0,0,1,abstract,Improving Predictability of User-Affecting Metrics to Support Anomaly Detection in Cloud Services
+W3013867504,exclude,I3|E2,0,0,0,0,0,0,0,abstract,"PHYAlert, an identity spoofing attack alert system designed to protect a Wi-Fi-based edge network"
+W4319874037,needs-review,I1|E6,1,0,0,0,0,0,1,title-only,Self-supervised log parsing using semantic contribution difference

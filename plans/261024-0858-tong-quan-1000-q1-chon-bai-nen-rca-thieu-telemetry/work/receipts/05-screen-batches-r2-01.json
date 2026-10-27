@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-screen-batches-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-screen-batches.py work/records/t0r2b-t0.csv r2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-screen-batches-r2-01.out",
+ "egress_trace_reference": "work/logs/05-screen-batches-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:17:55.104458+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b"
+ ],
+ "output_hashes": [
+  "2a56a757a4481aeb008be84d9e289864c09d2e206ee352d7f5876dd0f389e97d"
+ ],
+ "checks": [
+  "screening batches for section 10 records"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "f10feabb83bcebb30ba54e6ffaf5341de69fec2aa7526db3fc19d07a8ff01c0c",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-screen-batches.py work/records/t0r2b-t0.csv r2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "52270da0349ee17da7f7a636cfd88aba7ba7a0436012e9628a324760b23740c8",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2b-t0.csv",
+   "sha256_before": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "sha256_after": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/input/r2-manifest.json",
+   "sha256": "2a56a757a4481aeb008be84d9e289864c09d2e206ee352d7f5876dd0f389e97d",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W4416888443,F1,5,5,Sec 5.1.1; Sec 5.1.3 Eq. 12-13,unchanged
+W4416888443,F2,3,3,Sec 4.1.1; Sec 6.2,unchanged; no telemetry-removal experiment
+W4416888443,F3_code,2,2,"GitHub repo Apache-2.0, README lists two training scripts only (HTTP 200, 2026-10-25)",unchanged; license exists but run guide and data are missing
+W4416888443,F3_data,2,2,Zenodo 19176851 HTTP 200,"unchanged; AIOps2022 public, Train-Ticket set private"
+W4416888443,F3_compute,3,3,Sec 5.1.4; Sec 6.4; HF weights,unchanged; T2 already counted inference within 12 GB and training on larger GPUs
+W4416888443,F3_desc,1,0,"Sec 4.1.2 (actual prompt more complex than Fig. 6, not given); Sec 4.2.3 and 4.3.2 (lambda1, lambda2, A, B, C, learning rate absent); Sec 4.3.1, 5.1.5 (no train/test split)","Prompt, several hyperparameters and the split are missing, which is at least two rubric items"
+W4416888443,F4,3,3,Sec 5.1.2; Sec 5.1.3; Sec 5.4,"unchanged; single runs, no CI, possible train/test overlap"
+W4416888443,F5,2,2,Sec 5.7 Fig. 11; Sec 6.5,unchanged
+W4416888443,F6,3,3,"Sec 5.1.1 (HipsterShop spans), Sec 5.9 Train-Ticket; Recall@k/MRR",unchanged

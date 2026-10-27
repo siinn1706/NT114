@@ -1,0 +1,84 @@
+{
+ "schema_version": 2,
+ "id": "04-build-t0-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0seed work/records/seed-reused.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-build-t0-seed-01.out",
+ "egress_trace_reference": "work/logs/04-build-t0-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:40:41.169592+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac"
+ ],
+ "output_hashes": [
+  "151f9c0504c2240877b69131e014ed56a2fdbfdd60370512b488629e6184142b",
+  "b5a671a20898e08608fceaf8a916178ed437570e6d74de2f60d4b79eff51b335",
+  "e88f6c6f2af317891eaa241c010b80f85d2d09408e0cd8d0321ce96c01836f1e"
+ ],
+ "checks": [
+  "Q-1..Q-9 and topic gate on seed only (search pending)"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "d020904b017f8e9304af47e5803cd3e7f72be262dac40c17e9fde2068e46ddae",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0seed work/records/seed-reused.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "34d8a7405f65cdb579494100d2e7585ce999b6749133c3f0f0d0cabfad3d6945",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/seed-reused.csv",
+   "sha256_before": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "sha256_after": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0seed-candidates.csv",
+   "sha256": "e88f6c6f2af317891eaa241c010b80f85d2d09408e0cd8d0321ce96c01836f1e",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0seed-excluded.csv",
+   "sha256": "151f9c0504c2240877b69131e014ed56a2fdbfdd60370512b488629e6184142b",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0seed-summary.json",
+   "sha256": "b5a671a20898e08608fceaf8a916178ed437570e6d74de2f60d4b79eff51b335",
+   "created_this_attempt": true
+  }
+ ]
+}

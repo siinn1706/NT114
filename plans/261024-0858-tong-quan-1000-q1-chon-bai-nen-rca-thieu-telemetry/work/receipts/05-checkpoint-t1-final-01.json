@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-t1-final-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 t1-final 05-rank-final-01 --in work/records/t0r2b-t0.csv --in work/screen/all3-s1-merged.csv --in work/screen/all3-resolution-a02.csv --out work/records/final-t1-ranked.csv --out work/records/final-t1.json --out work/saturation-curve.json --note T1 final: 100 of 121 eligible, no fill, no reserve",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-t1-final-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-t1-final-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:27:38.942226+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5"
+ ],
+ "output_hashes": [
+  "bcbdbff30ba5540aceed5aafad6ba6119b11b5cc6605cba26f36db759c16b491"
+ ],
+ "checks": [
+  "T1 final committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "49610fc299d79e99b601a161baad2db9c210f9a84d9cc14470f824d0054ae1a2",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 t1-final 05-rank-final-01 --in work/records/t0r2b-t0.csv --in work/screen/all3-s1-merged.csv --in work/screen/all3-resolution-a02.csv --out work/records/final-t1-ranked.csv --out work/records/final-t1.json --out work/saturation-curve.json --note T1 final: 100 of 121 eligible, no fill, no reserve",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "f588fd4913f1ea8724d98d2825e77752b7d3470a1e5426b7e274b09a14156bd7",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/final-t1-ranked.csv",
+   "sha256_before": "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5",
+   "sha256_after": "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "bcbdbff30ba5540aceed5aafad6ba6119b11b5cc6605cba26f36db759c16b491",
+   "created_this_attempt": true
+  }
+ ]
+}

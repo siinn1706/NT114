@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-anchors-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/pick-anchors.py work/screen/input/seed-000.jsonl",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-anchors-01.out",
+ "egress_trace_reference": "work/logs/05-anchors-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:53:16.012997+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "a660abae7734edd7e5134c4ef775277a2642473eb78d79deff349e2b9cef946d"
+ ],
+ "output_hashes": [
+  "a8c7a5311c205d5321245e518f747b46827c0208242a0d56487acdad63e1b991"
+ ],
+ "checks": [
+  "5 drift anchors from the first batch"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "4035822ee2a3784040b94e23f8851aa504aa02d8a588dc459399615291e9e0c1",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/pick-anchors.py work/screen/input/seed-000.jsonl",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "94e597466ddd8e3c375eeac94de4726a881efcb33b280328492c4078921da99f",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/input/seed-000.jsonl",
+   "sha256_before": "a660abae7734edd7e5134c4ef775277a2642473eb78d79deff349e2b9cef946d",
+   "sha256_after": "a660abae7734edd7e5134c4ef775277a2642473eb78d79deff349e2b9cef946d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/input/anchors.jsonl",
+   "sha256": "a8c7a5311c205d5321245e518f747b46827c0208242a0d56487acdad63e1b991",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,420 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Quality Monitoring and Assessment of Deployed Deep Learning Models for Network AIOps",
+   "identifiers": {
+    "openalex": "W4205159675",
+    "doi": "10.1109/mnet.001.2100227",
+    "arxiv": "2202.13642"
+   },
+   "abstract": "Artificial intelligence (AI) has recently attracted a lot of attention, transitioning from research labs to a wide range of successful deployments in many fields, which is particularly true for deep learning (DL) techniques. Ultimately, DL models, being software artifacts, need to be regularly maintained and updated: AIOps is the logical extension of the DevOps software development practices to AI software applied to network operation and management. In the life cycle of a DL model deployment, it is important to assess the quality of deployed models, to detect “stale” models and prioritize their update. In this article, we cover the issue in the context of network management, proposing simple but effective techniques for quality assessment of individual inference, and for overall model quality tracking over multiple inferences, that we apply to two use cases, representative of the network management and image recognition fields.",
+   "status": "current"
+  },
+  {
+   "title": "On the Feasibility of Anomaly Detection with Fine-Grained Program Tracing Events",
+   "identifiers": {
+    "openalex": "W4205160849",
+    "doi": "10.1007/s10922-021-09635-3"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "EdgeFireSmoke: A Novel Lightweight CNN Model for Real-Time Video Fire–Smoke Detection",
+   "identifiers": {
+    "openalex": "W4205231989",
+    "doi": "10.1109/tii.2021.3138752"
+   },
+   "abstract": "The planet Earth is being affected by a series of wildfires, which have been steadily increasing over the last two decades. Forests have undergone deforestation due to natural forest fires and forest fires caused by man. These events are occurring on a global scale, and in Brazil, these wildfires are having an extreme impact on the Amazon forest as well as other forest biomes. This article proposes a novel lightweight convolutional neural network (CNN) model for wildfire detection through RGB images. This new method presents more advantages than the other methods used for the same task. Our CNN architecture can be used with aerial images from unmanned aerial vehicles and from video surveillance systems, combined with edge computing devices for image processing with a CNN. The proposed system is able to send wildfire alerts. The images do not have to be sent to a cloud computer as they can be processed in an edge device. However, it sends a string of alerts whenever a wildfire is detected. The evaluation of our proposed method showed that it required about 30 ms for the classification time, per image, and achieved an accuracy of 98.97% and an$F1$-score of 95.77%, which is a very promising result.",
+   "status": "current"
+  },
+  {
+   "title": "A Survey of Challenges in Spectrum-Based Software Fault Localization",
+   "identifiers": {
+    "openalex": "W4205250223",
+    "doi": "10.1109/access.2022.3144079"
+   },
+   "abstract": "In software debugging, fault localization is the most difficult, expensive, tedious, and time-consuming task, particularly for large-scale software systems. This is due to the fact that it requires significant human participation and it is difficult to automate its sub-tasks. Therefore, there is a high demand for automatic fault localization techniques that can help software engineers effectively find the locations of faults with minimal human intervention. This has led to the proposal of implementing different types of such techniques. However, Spectrum Based Fault Localization (SBFL) is considered amongst the most prominent techniques in this respect due to its efficiency and effectiveness. In SBFL, the probability of each program element (e.g., statement, block, or function) being faulty is calculated based on the results of executing test cases and their corresponding code coverage information. However, SBFL techniques are not yet widely adopted in the industry. The rationale behind this is that they pose a number of issues and their performance is affected by several influential factors. For example, the characteristics of bugs, target programs, test suites, and supporting tools make their effectiveness differ dramatically from one case to another. There are massive studies on SBFL that cover its usage, formulas, performance, etc. So far, no dedicated survey points out comprehensively the issues of SBFL. In this paper, various SBFL challenges and issues have been identified, categorized, and discussed alongside many directions. Also, the paper raises awareness of the works being achieved to address the identified issues and suggests some potential solutions too.",
+   "status": "current"
+  },
+  {
+   "title": "Extending the Space of Software Test Monitoring: Practical Experience",
+   "identifiers": {
+    "openalex": "W4205887330",
+    "doi": "10.1109/access.2021.3136138"
+   },
+   "abstract": "Software reliability depends on the performed tests. Bug detection and diagnosis are based on test outcome (oracle) analysis. Most practical test reports do not provide sufficient information for localizing and correcting bugs. We have found the need to extend the space of test result observation in data and time perspectives. This resulted in tracing supplementary test result features in event logs. They are explored with combined text mining and log parsing techniques. Another important point is correlating test life cycle with project development history journaled in issue tracking and software version control repositories. Dealing with the outlined problems, neglected in the literature, we have introduced original analysis schemes. They focus on assessing test coverage, reasons of low diagnosability, and test result profiles. Multidimensional investigation of test features and their management is supported with the developed test infrastructure. This assures a holistic insight into the test efficiency to identify test scheme deficiencies (e.g., functional inadequacy, aging, insufficient coverage) and possible improvements (test set updates). Our studies have been verified in relevance to a real commercial project (industrial case study) and confronted with the experience of testers engaged in other projects.",
+   "status": "current"
+  },
+  {
+   "title": "Multiple Instance Learning With Random Forest for Event Logs Analysis and Predictive Maintenance in Ship Electric Propulsion System",
+   "identifiers": {
+    "openalex": "W4205907838",
+    "doi": "10.1109/tii.2022.3144177"
+   },
+   "abstract": "In this article, a novel weakly supervised machine learning approach is proposed for intelligent predictive maintenance (IPdM). It employs balanced random forest and multiple instance learning based on event logs from ships’ electric propulsion systems. The objectives are predicting failure likelihood, time to failure, and explainable predictions to ensure timely crew intervention. The IPdM approach uncovers, then learns, and classifiessequences ofevents that represent early causes or symptoms to forecast imminent failures. In particular, this article contributes effective solutions to irregular, imbalanced, and unlabeled data issues where conventional methods become obsolete. First, the events occur at irregular intervals; they include alarms, warnings, and operational information collected across multiple units and control systems. Second, the datasets exhibit extreme imbalance due to few failures and multiple failure modes; this entails biased predictions. Third, the training datasets are weakly labeled; only the failure timestamp is known without any expert input on prior causes or early symptoms. Temporal random indexing is proposed to transform textual log messages into a numerical lower dimensional space where timeseries analyses are applicable. Balanced random-forest models are developed for unbiased classification and regression. The overall approach learns recursively the ungiven data labels while training the base learners. The IPdM approach is validated through millions of events of multithousand types collected from two years of seagoing vessels. It successfully forecasts actual propulsion failures and performs better when compared with contemporary methods.",
+   "status": "current"
+  },
+  {
+   "title": "Deep residual networks-based intelligent fault diagnosis method of planetary gearboxes in cloud environments",
+   "identifiers": {
+    "openalex": "W4205995849",
+    "doi": "10.1016/j.simpat.2021.102469"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Network Services Anomalies in NFV: Survey, Taxonomy, and Verification Methods",
+   "identifiers": {
+    "openalex": "W4206324092",
+    "doi": "10.1109/tnsm.2022.3144582",
+    "arxiv": "2203.02589"
+   },
+   "abstract": "Network Function Virtualization (NFV) has emerged as a disruptive networking architecture whose galloping evolution is prompting enterprises to outsource network functions to the cloud and ultimately harvest the fruits of cloud computing, including elasticity, pay-as-you-go billing model, and on-demand services provisioning. However, many reluctant enterprises oppose the benefits of this outsourcing to their critical and pressing concerns about security, trust, and compliance. The latter anticipate possible security and QoS policy violations stemming from dishonest behaviors by cloud providers, attacks by co-resident competitors, misconfiguration by cloud administrators, or implementations flaws by NFV developers. As a result, migrating sensitive workloads to the cloud requires enterprises to first assess risks by gaining knowledge of possible network services’ anomalies and second, to build trust in the cloud by designing effective mechanisms to detect such anomalies. This survey provides scrutiny of network services anomalies that may occur in the NFV environments. We first present a taxonomy of network service anomalies and analyze their negative impacts on critical service attributes, including security and performance. Second, we compare and classify the existing anomalies’ verification mechanisms from the literature. Finally, we point out the literature gap and identify future research directions for anomalies verification in NFV.",
+   "status": "current"
+  },
+  {
+   "title": "Hunting for Insider Threats Using LSTM-Based Anomaly Detection",
+   "identifiers": {
+    "openalex": "W4206342677",
+    "doi": "10.1109/tdsc.2021.3135639"
+   },
+   "abstract": "Insider threats are one of the most difficult problems to solve, given the privileges and information available to insiders to launch different types of attacks. Current security systems can record and analyze sequences from a deluge of log data, potentially becoming a tool to detect insider threats. The issue is that insiders mix the sequence of attack steps with valid actions, reducing the capacity of security systems to programmatically detect the attacks. To address this shortcoming, we introduce LADOHD, an anomaly detection framework based on Long-Short Term Memory (LSTM) models, which learns the expected event patterns in a computer system to identify attack sequences even when attacks span for a long time. The applicability of the framework is demonstrated on a dataset of 38.9 million events collected from a commercial network of 30 computers over twenty days and where a 4-day long insider threat attack occurs. Results show that LADOHD outperforms the anomaly detection system used to protect the commercial network with a True Positive Rate of 97.29% and a False Positive Rate of 0.38%. Experiments also show that LSTMs have higher prediction precision in variable-length sequences than methods like Hidden Markov Models, a crucial requirement in sequence-analysis-based anomaly detection techniques.",
+   "status": "current"
+  },
+  {
+   "title": "Model Inversion Attack by Integration of Deep Generative Models: Privacy-Sensitive Face Generation From a Face Recognition System",
+   "identifiers": {
+    "openalex": "W4206426144",
+    "doi": "10.1109/tifs.2022.3140687"
+   },
+   "abstract": "Cybersecurity in front of attacks to a face recognition system is an emerging issue in the cloud era, especially due to its strong bonds with the privacy of the users registered to the system. A possible attack is the model inversion attack (MIA) which aims to reveal the identity of a targeted user by generating the most proper datapoint input to the system with maximum corresponding confidence score at the output. The generated data of a registered user can be maliciously used as a serious invasion of the user privacy. In literature, MIA processes are categorized into white-box and black-box scenarios which are respectively with and without information about the system structure, parameters, and partially about the users. This research work assumes the MIA under semi-white box scenario of availability of system model structure and parameters but not any user data information, and verifies it as a severe threat even for a deep-learning-based face recognition system despite its complex structure and the diversity of registered user data. The alert state is promoted by Deep MIA which is the integration of deep generative models in MIA, and$\\alpha $-GAN integrated MIA-initilized by a face based seed ($\\alpha $-GAN-MIA-FS) is proposed. As a novel MIA search strategy, a pre-trained deep generative model with capability of generating a face image from a random feature vector is used for narrowing down the image search space to the feature vectors space, which has much lower dimensions. This allows the MIA process to efficiently search for a low-dimensional feature vector whose corresponding face image maximizes the confidence score. We have experimentally evaluated the proposed method by two objective criteria and three subjective criteria in comparison to$\\alpha $-GAN-integrated MIA initialized with a random seed ($\\alpha $-GAN-MIA-RS), DCGAN-integrated MIA (DCGAN-MIA), and the conventional MIA. The evaluation results approve the efficiency and superiority of the proposed technique in generating natural looking face clones with high recognizability as the targeted users.",
+   "status": "current"
+  },
+  {
+   "title": "Development of young sago palm environmental monitoring system with wireless sensor networks",
+   "identifiers": {
+    "openalex": "W4206930868",
+    "doi": "10.1016/j.compag.2022.106723"
+   },
+   "abstract": "Environmental monitoring plays a significant role in the agriculture field as it manages the critical factors required for sustainable growth of plants, and thus enhancing the quality and productivity of the crops. In this paper, the development of a wireless sensor network (WSN) monitoring system for young sago palms in mist chambers is presented. The effect of the functional system with respect to the environmental factors monitored is also discussed. The system was set up to monitor three environmental factors i.e., temperature, relative humidity, and light intensity. Instantaneous readings of the monitored parameters were made possible through a wireless network and a web portal connection. The system recorded the environmental reading at every 15-min interval and transmitted the data from node to base using the Zigbee network. The data was then stored in an online cloud platform through the general radio packet service (GPRS) gateway. Linear actuators were also installed to control the mist chamber doors opening for natural ventilation and they were automatically triggered by the threshold temperature. Besides, a smart alert system was added to the system prompting for actions via short messaging services (SMS) when triggered. The developed system achieved a reliable data transmission with a low packet loss rate (PLR) of 2.3%. The use of the GPRS gateway also enabled the system to operate at a lower cost as the mobile data consumption was low (10 MB per month). In conclusion, a WSN system for mist chambers in a sago palm greenhouse was successfully developed to real-time monitor the plant growing environment through data acquisition, data transmission and data visualisation. The developed WSN system had laid a foundation for smart farming. For future applications, the system could be further modified and developed for precision agriculture.",
+   "status": "current"
+  },
+  {
+   "title": "A mixture modeling approach for clustering log files with coreset and user feedback",
+   "identifiers": {
+    "openalex": "W4210540905",
+    "doi": "10.1016/j.patrec.2022.01.027"
+   },
+   "abstract": "Machine-generated log data can provide valuable insights into many critical areas such as system failures, network security, and performance optimization. The increasing prominence of this data in both volume and complexity requires data mining approaches that are both scalable and flexible. In this paper, we propose a new approach for clustering machine-generated logs which contains a novel combination of the use of the coreset with user feedback. The coreset allows us to efficiently summarize the data in a principled manner such that performance after fitting model parameters on the coreset is similar to the performance that would have been achieved with the full dataset. Furthermore, the formal approach we propose allows users to incorporate two different types of feedback, in the forms of labels and pairwise constraints, to further improve results and better deal with the increasing complexity and variety of log datasets.",
+   "status": "current"
+  },
+  {
+   "title": "Capturing Request Execution Path for Understanding Service Behavior and Detecting Anomalies Without Code Instrumentation",
+   "identifiers": {
+    "openalex": "W4210856516",
+    "doi": "10.1109/tsc.2022.3149949"
+   },
+   "abstract": "With the increasing scale and complexity of cloud platforms and big-data analytics platforms, it is becoming more and more challenging to understand and diagnose the processing of a service request across multi-layer software stacks of such platforms. One way that helps to deal with this problem is to accurately capture the complete end-to-end execution path of service requests among all involved components. This paper presents REPTrace, a generic methodology for capturing such execution paths in a transparent fashion. Moreover, this paper demonstrates the effectiveness of REPTrace by presenting how REPTrace can be leveraged for knowledge extraction and anomaly detection on the platforms’ request processing. Our experimental results show that, REPTrace enables capturing a holistic view of the request processing across multiple layers of the platforms (which is missing in official documentation) and discovering important undocumented features of the platforms. Fault injection experiments show execution anomalies are detected with 93% precision and 96% recall with aid of REPTrace.",
+   "status": "current"
+  },
+  {
+   "title": "Application of deep reinforcement learning for extremely rare failure prediction in aircraft maintenance",
+   "identifiers": {
+    "openalex": "W4210860816",
+    "doi": "10.1016/j.ymssp.2022.108873"
+   },
+   "abstract": "The use of aircraft operational logs to predict potential failure that may lead to disruption poses many challenges and has yet to be fully explored. Given that aircraft are high-integrity assets, failures are extremely rare, and hence the distribution of relevant log data containing prior indicators will be highly skewed to the normal (healthy) case. This will present a significant challenge in using data-driven techniques because the model will be biased to the heavily weighted no-fault outcomes. This paper presents a novel approach for predicting unscheduled aircraft maintenance action based on deep reinforcement learning techniques using aircraft central maintenance system logs. The algorithm transforms the rare failure prediction problem into a sequential decision-making process that is optimised using a reward system that penalises proposed predictions that result in a false diagnosis and preferentially favours predictions that result in the right diagnosis. The validation data is directly associated with the physical health aspects of the aircraft components. The influence of extremely rare failure prediction on the proposed method is analysed. The effectiveness of the new approach is verified by comparison with previous studies, cost-sensitive and oversampling methods. Performance was evaluated based on G-mean and false-positives rates. The proposed approach shows the superior performance of 20.3% improvement in G-mean and 97% reduction in false-positive rate.",
+   "status": "current"
+  },
+  {
+   "title": "System Failure Detection Using Deep Learning Models Integrating Timestamps With Nonuniform Intervals",
+   "identifiers": {
+    "openalex": "W4210976656",
+    "doi": "10.1109/access.2022.3150342"
+   },
+   "abstract": "System logs play an important role in software development and system maintenance. Many system software programs continuously generate system logs during software runtimes for failure detection and diagnosis purposes. Currently, the analysis of system log data is mainly a manual process that highly depends on human knowledge and experience. This time-consuming task has become a problem because of the ever-increasing volume of log data. Existing studies have investigated machine learning and deep learning techniques to automate the failure detection task. This paper takes the deep learning approach and proposes two detection structures based on recurrent and convolutional neural networks. More importantly, this paper takes a step further by closely examining the timestamps of log data which existing studies have generally ignored. This study found that time information can be a distinguishing factor between regular and abnormal log sequences. Inspired by this observation, a novel method is proposed to integrate log timestamps in deep learning models using interpolation techniques. The evaluation results show that the log timestamps can significantly improve the performance of failure detection. Cross-comparison of the different models demonstrates that the proposed network structure can successfully utilize the timestamp information. The code is available on GitHub:https://github.com/hfyxin/Ts-models-log-data-analysis.git.",
+   "status": "current"
+  },
+  {
+   "title": "CrackEmbed: Point feature embedding for crack segmentation from disaster site point clouds with anomaly detection",
+   "identifiers": {
+    "openalex": "W4211111745",
+    "doi": "10.1016/j.aei.2022.101550"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Fortifying Smart Transportation Security Through Public Blockchain",
+   "identifiers": {
+    "openalex": "W4211121277",
+    "doi": "10.1109/jiot.2022.3150842"
+   },
+   "abstract": "Smart vehicles-enabled intelligent transportation system (ITS) supports a wide range of applications, such as, but not limited to, traffic planning and management, collision avoidance alert system, automated road speed enforcement, electronic toll collection, and real-time parking management, to name a few. However, it suffers from various types of security and privacy issues due to insecure communication among the entities over public channels. Therefore, an efficient and lightweight security mechanism is essential to protect the data that is both at rest as well as in transit. To this direction, we propose a public blockchain-envisioned secure communication framework for ITS (PBSCF-ITS). The proposed PBSCF-ITS guarantees access control and key management among the vehicle to vehicle, vehicle to roadside unit, and roadside unit to cloud server. We analyze the security of PBSCF-ITS to prove its resilience against various types of possible attacks. Furthermore, the performance of PBSCF-ITS with other related competing schemes has been compared. The obtained results illustrate that PBSCF-ITS outperforms the existing ones. Additionally, the pragmatic study of PBSCF-ITS is conducted to check its influence on various network-related performance parameters, like the number of mined blocks and transactions per block.",
+   "status": "current"
+  },
+  {
+   "title": "Monolithic vs. Microservice Architecture: A Performance and Scalability Evaluation",
+   "identifiers": {
+    "openalex": "W4213108923",
+    "doi": "10.1109/access.2022.3152803"
+   },
+   "abstract": "Context. Since its proclamation in 2012, microservices-based architecture has gained widespread popularity due to its advantages, such as improved availability, fault tolerance, and horizontal scalability, as well as greater software development agility. Motivation. Yet, refactoring a monolith to microservices by smaller businesses and expecting that the migration will bring benefits similar to those reported by top global companies, such as Netflix, Amazon, eBay, and Uber, might be an illusion. Indeed, for systems that do not have thousands of concurrent users and can be scaled vertically, the benefits of such migration have not been sufficiently investigated, while the existing evidence is inconsistent. Objective. The purpose of this paper is to compare the performance and scalability of monolithic and microservice architectures on a reference web application. Method. The application was implemented in four different versions, covering not only two different architectural styles (monolith vs. microservices) but also two different implementation technologies (Java vs. C#.NET). Next, we conducted a series of controlled experiments in three different deployment environments (local, Azure Spring Cloud, and Azure App Service). Findings. The key lessons learned are as follows: (1) on a single machine, a monolith performs better than its microservice-based counterpart; (2) The Java platform makes better use of powerful machines in case of computation-intensive services when compared to.NET; the technology platform effect is reversed when non-computationally intensive services are run on machines with low computational capacity; (3) vertical scaling is more cost-effective than horizontal scaling in the Azure cloud; (4) scaling out beyond a certain number of instances degrades the application performance; (5) implementation technology (either Java or C#.NET) does not have a noticeable impact on the scalability performance.",
+   "status": "current"
+  },
+  {
+   "title": "Transmissibility-Based Health Monitoring of the Future Connected Autonomous Vehicles Networks",
+   "identifiers": {
+    "openalex": "W4213142258",
+    "doi": "10.1109/tvt.2022.3151326"
+   },
+   "abstract": "Transmissibility is a mathematical model that relates a subset of a system’s outputs to another subset of outputs of the same system without knowledge of the external excitation or the dynamics of the system. This study investigates fault detection, localization, and mitigation of connected autonomous vehicles (CAV) platoons using transmissibility operators. A CAV platoon is a network of connected autonomous vehicles that communicate together to move in a specific path with the desired velocity. Failure in a physical component of a vehicle, or failure in the form of an internal delay, a cyber-attack, or a communication time-delay affects the safety and security of the CAV platoons. In this paper, we use measurements from sensors available in CAV platoons to identify transmissibility operators, which are used for health monitoring, fault localization, and fault mitigation in the platoon. We first consider the case of vehicle-to-cloud communication (V2C) to monitor the platoon’s health. Then, we assume that the platoon loses communication with the cloud, and we monitor the health of the platoon based on vehicle-to-vehicle (V2V) communication. We apply the proposed technique to a model of the platoon obtained using the bond graph approach, and an experimental setup consisting of three connected autonomous robots.",
+   "status": "current"
+  },
+  {
+   "title": "Landscape of Automated Log Analysis: A Systematic Literature Review and Mapping Study",
+   "identifiers": {
+    "openalex": "W4213184629",
+    "doi": "10.1109/access.2022.3152549"
+   },
+   "abstract": "Logging is a common practice in software engineering to provide insights into working systems. The main uses of log files have always been failure identification and root cause analysis. In recent years, novel applications of logging have emerged that benefit from automated analysis of log files, for example, real-time monitoring of system health, understanding users’ behavior, and extracting domain knowledge. Although nearly every software system produces log files, the biggest challenge in log analysis is the lack of a common standard for both the content and format of log data. This paper provides a systematic review of recent literature (covering the period between 2000 and June 2021, concentrating primarily on the last five years of this period) related to automated log analysis. Our contribution is three-fold: we present an overview of various research areas in the field; we identify different types of log files that are used in research, and we systematize the content of log files. We believe that this paper serves as a valuable starting point for new researchers in the field, as well as an interesting overview for those looking for other ways of utilizing log information.",
+   "status": "current"
+  },
+  {
+   "title": "Federated Anomaly Detection on System Logs for the Internet of Things: A Customizable and Communication-Efficient Approach",
+   "identifiers": {
+    "openalex": "W4213258821",
+    "doi": "10.1109/tnsm.2022.3152620"
+   },
+   "abstract": "Runtime log-based anomaly detection is one of several key building blocks in ensuring system security, as well as post-incident forensic investigations. However, existing log-based anomaly detection approaches that are implemented on large-scale Internet of Things (IoT) systems generally upload local data from edge devices to a centralized (cloud) server for processing and analysis. Such a workflow incurs significant communication and computation overheads, with potential privacy implications. Hence, in this paper, we propose a customizable and communication-efficient federated anomaly detection scheme (hereafter referred to as FedLog), designed to facilitate the identification of abnormal log patterns in large-scale IoT systems. Specifically, we first craft a Temporal Convolutional Network-Attention Mechanism-based Convolutional Neural Network (TCN-ACNN) model, to effectively extract fine-grained features from system logs. Second, we develop a new federated learning framework to support IoT devices in establishing a comprehensive anomaly detection model in a collaborative and privacy-preserving manner. Third, a lottery ticket hypothesis based masking strategy is designed to achieve customizable and communication-efficient federated learning in handling non-Independent and Identically Distributed (non-IID) log datasets. We then evaluate the performance of our proposed scheme with those of DeepLog (published in CCS, 2017) and Loganomaly (published in IJCAI, 2019) in both centralized learning and federated learning settings, using two publicly available and widely used real-world datasets (i.e., HDFS and BGL). The findings demonstrate the utility of the proposed FedLog scheme, in terms of log-based anomaly detection.",
+   "status": "current"
+  },
+  {
+   "title": "Mechatronics",
+   "identifiers": {
+    "openalex": "W4213309107",
+    "doi": "10.1109/tmech.2022.3145611"
+   },
+   "abstract": "Focused Section on Real-time monitoring, diagnosis, and prognosis and health management for electric vehicles Electric vehicles (EVs) represent one of the most promising technologies to green the transportation systems.To achieve zero carbon, many countries have set the timelines or are planning on the shift to EVs.For instance, in Norway, all new passenger cars and vans sold by 2025 should be zero emission vehicles.In the UK, sales of new petrol and diesel cars will end by 2030.All new vehicles sold in China must be powered by 'new-energy' by 2035.The USA will ban new car sales of diesel only and gasoline-only vehicles by 2035.As a result, EVs have become the development trend in the automotive industries around the world.EVs are composed of electric battery system, motor system, and electronic control system, which are safety-critical systems, therefore, there is a high demand to improve the operation performance, reliability, safety, and availability of the EVs by using real-time monitoring, fault diagnosis, fault prediction, and health management.Different from conventional automobiles, EVs have many alternatives in electric drive and control systems due to the different energy consumption types, leading to different fault types, accident types and accident causes.This has motivated ongoing research, but also brought challenges, for real-time monitoring, fault detection and diagnosis, fault prognosis and remaining useful life prediction, and health management for EVs.It is evident that the key for promoting EVs is the battery, as the operation performance, safety, and reliability of the EVs are highly dependent on the batteries' performance and capabilities.As a result, it is paramount to develop health monitoring and prognosis techniques for electric vehicle batteries to improve the reliability and availability of the EVs.On the other hand, electronic control, and drive systems in EVs are also important to be real-time monitored, diagnosed, prognosed, so that appropriate control and management decisions can be taken to ensure a reliable operation performance of EVs.Thanks to large amount historical data and real-time data collected from a variety of sensors equipped in EVs, and powerful machine learning and artificial intelligence techniques, the research and development of health monitoring and management techniques for EVs has been much promoted.Recent developments on internet of things (IoT), cyber-physical systems, digital-twin, and cloud computation will further facilitate the monitoring, diagnosis, prognosis and health management techniques and applications for EVs.This focus section aims to provide a platform for academic and industrial communities to report recent results and emerging research direction in real-time monitoring, fault diagnosis, prognosis, and health management for EVs.Topics include, but are not limited to, the following research topics and technologies: • Condition monitoring techniques for EVs • Fault diagnosis and prognosis techniques for EV components and systems • Remaining useful life prediction of EV components and systems • Health management for EV batteries • Fault diagnosis and fault tolerant control for EV motors • Resilient design techniques for EVs using hardware and software redundancy • Diagnosis, prognosis, and health management for EVs using cloud data and computation • IoT based remote monitoring, diagnosis, and prognosis for EVs • Digital-twin based monitoring, fault diagnosis and fault prediction for EV components and systems • Emerging research methods and application techniques for EVs • Real-time implementation and application techniques for EVs • Emerging standards and standards development in the relevant scope of EV topics",
+   "status": "current"
+  },
+  {
+   "title": "Real-Time Analysis of Multiple Root Causes for Anomalies Assisted by Digital Twin in NFV Environment",
+   "identifiers": {
+    "openalex": "W4213351796",
+    "doi": "10.1109/tnsm.2022.3151249"
+   },
+   "abstract": "Network Function Virtualization (NFV) is a promising paradigm that enables the employment of novel service types with lower deployment cost and faster time-to-value, but it introduces new fault management problems and challenges. In NFV environment, anomalies occurred in virtual machines (VMs) can be caused by faulty components of their hosting servers or anomaly propagation from other ones. If the performance of VMs degrades, we need to find out the root causes accurately, i.e., locate the exact faulty components, to recover the networks as soon as possible. In this paper, we first use digital twin to establish a virtual instance of the physical network to capture the real-time anomaly-fault dependency relationship. When the network environment changes, transfer learning is leveraged to utilize the learned knowledge of dependency relationship in historical periods to avoid huge time and computation cost of learning from scratch. Assisted by the learned dependency relationship, a dynamic set-covering (DSC) based root caused analysis problem is formulated and modeled with a set of parallel hidden Markov models to capture the dynamics of component states, which can best explain the sequence of anomalous VMs. We use alternating direction method of multipliers to decompose the DSC problem into a set of independent sub-problems and solve it in a distributed fashion. Since the state variables of each component in the DSC problem are coupled between any two successive time epochs, each sub-problem is solved by the Viterbi decoding and an incremental function is designed to construct the feasible solution that covers all anomalous VMs. Simulation results show the availability and superiority of the digital-twin assisted root cause analysis algorithm for NFV environment.",
+   "status": "current"
+  },
+  {
+   "title": "A novel generalized fuzzy intelligence-based ant lion optimization for internet of things based disease prediction and diagnosis",
+   "identifiers": {
+    "openalex": "W4213436206",
+    "doi": "10.1007/s10586-022-03565-8"
+   },
+   "abstract": "In the modern healthcare system, the function of the Internet of Things (IoT) and the data mining methods with cloud computing plays an essential role in controlling a large number of big data for predicting and diagnosing various categories of diseases. However, when the patients suffer from more than one disease, the physician may not identify it properly. Therefore, in this research, the predictive method using the cloud with IoT-based database is proposed for forecasting the diseases that utilized the biosensors to estimate the constraints of patients. In addition, a novel Generalized Fuzzy Intelligence-based Ant Lion Optimization (GFIbALO) classifier along with a regression rule is proposed for predicting the diseases accurately. Initially, the dataset is filtered and feature extracted using the regression rule that data is processed on the proposed GFIbALO approach for classifying diseases. Moreover, suppose the patient has been affected by any diseases, in that case, the warning signal will be alerted to the patients via text or any other way, and the patients can get advice from doctors or any other medical support. The implementation of the proposed GFIbALO classifier is done with the use of the MATLAB tool. Subsequently, the results from the presented model are compared with state of the art techniques, and it shows that the presented method is more beneficial in diagnosis and disease forecast.",
+   "status": "current"
+  },
+  {
+   "title": "Communizer: A collaborative cloud-based self-protecting software communities framework - Focus on the alert coordination system",
+   "identifiers": {
+    "openalex": "W4220771867",
+    "doi": "10.1016/j.cose.2022.102692"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "An AI-Empowered Framework for Cross-Layer Softwarized Infrastructure State Assessment",
+   "identifiers": {
+    "openalex": "W4220822635",
+    "doi": "10.1109/tnsm.2022.3161872"
+   },
+   "abstract": "Network softwarization technologies challenge legacy fault management systems. Coordination and dependency among different novel software components for orchestration, switching, virtual machine and container management creates novel monitoring points, besides novel sources of faults, bugs and vulnerabilities. To cope with the high heterogeneity and granularity of software components, we propose a modular network AI framework to detect anomalies, toward closed-loop automation. We design an AI-empowered anomaly detection framework able to assess the running state and the state deviations of a softwarized infrastructure, monitored through different features grouped depending on their layer and connect-compute stack component. Our framework learns the nominal working conditions of the infrastructure, with respect to which anomalies are detected, and characterized tracing back the layer and component root cause; it includes a network state assessment technique that leverages anomalies characterization through their most visible symptoms. We implement and validate the proposed framework through experimental tests on a containerized IP Multimedia Subsystem platform.",
+   "status": "current"
+  },
+  {
+   "title": "A rare failure detection model for aircraft predictive maintenance using a deep hybrid learning approach",
+   "identifiers": {
+    "openalex": "W4221125840",
+    "doi": "10.1007/s00521-022-07167-8"
+   },
+   "abstract": "Abstract The use of aircraft operation logs to develop a data-driven model to predict probable failures that could cause interruption poses many challenges and has yet to be fully explored. Given that aircraft is high-integrity assets, failures are exceedingly rare. Hence, the distribution of relevant log data containing prior signs will be heavily skewed towards the typical (healthy) scenario. Thus, this study presents a novel deep learning technique based on the auto-encoder and bidirectional gated recurrent unit networks to handle extremely rare failure predictions in aircraft predictive maintenance modelling. The auto-encoder is modified and trained to detect rare failures, and the result from the auto-encoder is fed into the convolutional bidirectional gated recurrent unit network to predict the next occurrence of failure. The proposed network architecture with the rescaled focal loss addresses the imbalance problem during model training. The effectiveness of the proposed method is evaluated using real-world test cases of log-based warning and failure messages obtained from the fleet database of aircraft central maintenance system records. The proposed model is compared to other similar deep learning approaches. The results indicated an 18% increase in precision, a 5% increase in recall, and a 10% increase in G-mean values. It also demonstrates reliability in anticipating rare failures within a predetermined, meaningful time frame.",
+   "status": "current"
+  },
+  {
+   "title": "Anomalous distributed traffic: Detecting cyber security attacks amongst microservices using graph convolutional networks",
+   "identifiers": {
+    "openalex": "W4224245486",
+    "doi": "10.1016/j.cose.2022.102728"
+   },
+   "abstract": "Currently, microservices are trending as the most popular software application design architecture. Software organisations are also being targeted by more cyber-attacks every day and newer security measures are in high demand. One available measure is the application of anomaly detection, which is defined as the discovery of irregular or unusual activity that occurs to a greater or lesser degree than normal occurrences in a data series. In this paper, we continue existing work where various real-world cyber-attacks are executed against a running microservices application, and the application traffic is logged and returned in the form of distributed traces. A Diffusion Convolutional Recurrent Neural Network is used to model the set of distributed traces and learn the spatial and temporal dependencies of the application traffic. Subsequently, the model is used to make predictions for ongoing microservice activity and threshold-based anomaly detection is applied to detect irregular microservice activity indicating the presence of seeded cyber security attacks, or anomalies. The cyber-attacks used to evaluate this approach include a brute force attack, a batch registration of bot accounts and a distributed denial of service attack.",
+   "status": "current"
+  },
+  {
+   "title": "Trustable service discovery for highly dynamic decentralized workflows",
+   "identifiers": {
+    "openalex": "W4225912859",
+    "doi": "10.1016/j.future.2022.03.035"
+   },
+   "abstract": "The quantity and capabilities of smart devices and sensors deployed as part of the Internet of Things (IoT) and accessible via remote microservices is set to rise dramatically as the provision of interactive data streaming increases. This introduces opportunities to rapidly construct new applications by interconnecting these microservices in different workflow configurations. The challenge is to discover the required microservices, including those from trusted partners and the wider community, whilst being able to operate robustly under diverse networking conditions. This paper outlines a workflow approach that provides decentralized discovery and orchestration of verifiably trustable services in support of multi-party operations. The approach is based on adoption of patterns from self-sovereign identity research, notably Verifiable Credentials, to share information amongst peers based on attestations of service descriptions and prior service usage in a privacy preserving and secure manner. This provides a dynamic, trust-based framework for ratifying and evaluating the qualities of different services. Collating these new service descriptions and integrating with existing decentralized workflow research based on vector symbolic architecture (VSA) provides an enhanced semantic search space for efficient and trusted service discovery that is necessary to support a diverse range of emerging edge-computing environments. An architecture for a dynamic decentralized service discovery system, is designed, and described through application to a scenario which uses trusted peers’ reported experiences of an anomaly detection service to determine service selection.",
+   "status": "current"
+  },
+  {
+   "title": "SwissLog: Robust Anomaly Detection and Localization for Interleaved Unstructured Logs",
+   "identifiers": {
+    "openalex": "W4226065059",
+    "doi": "10.1109/tdsc.2022.3162857"
+   },
+   "abstract": "Modern distributed systems generate interleaved logs when running in parallel. Identifiers (ID) are always attached to them to trace running instances or entities in logs. Therefore, log messages can be grouped by the same IDs to help anomaly detection and localization. The existing approaches to achieve this still fall short meeting these challenges: 1) Log is solely processed in single components without mining log dependencies. 2) Log formats are continually changing in modern software systems. 3) It is challenging to detect latent performance issues non-intrusively by trivial monitoring tools. To remedy the above shortcomings, we propose SwissLog, a robust anomaly detection and localization tool for interleaved unstructured logs. SwissLog focuses on log sequential anomalies and tries to dig out possible performance issues. SwissLog constructs ID relation graphs across distributed components and groups log messages by IDs. Moreover, we propose an online data-driven log parser without parameter tuning. The grouped log messages are parsed via the novel log parser and transformed with semantic and temporal embedding. Finally, SwissLog utilizes an attention-based Bi-LSTM model and a heuristic searching algorithm to detect and localize anomalies in instance-granularity, respectively. The experiments on real-world and synthetic datasets confirm the effectiveness, efficiency, and robustness of SwissLog.",
+   "status": "current"
+  },
+  {
+   "title": "Informer: Irregular traffic detection for containerized microservices RPC in the real world",
+   "identifiers": {
+    "openalex": "W4226128060",
+    "doi": "10.1016/j.hcc.2022.100050"
+   },
+   "abstract": "Containerized microservices have been widely deployed in the industry. Meanwhile, security issues also arise. Many security enhancement mechanisms for containerized microservices require predefined rules and policies. However, it is challenging when it comes to thousands of microservices and a massive amount of real-time unstructured data. Hence, automatic policy generation becomes indispensable. In this paper, we focus on the automatic solution for the security problem: irregular traffic detection for RPCs. We propose Informer, a two-phase machine learning framework to track the traffic of each RPC and automatically report anomalous points. We first identify RPC chain patterns using density-based clustering techniques and build a graph for each critical pattern. Next, we solve the irregular RPC traffic detection problem as a prediction problem for attributed graphs with time series by leveraging spatial-temporal graph convolution networks. Since the framework builds multiple models and makes individual predictions for each RPC chain pattern, it can be efficiently updated upon legitimate changes in any graphs. In evaluations, we applied Informer to a dataset containing more than 7 billion lines of raw RPC logs sampled from a large Kubernetes system for two weeks. We provide two case studies of detected real-world threats. As a result, our framework found fine-grained RPC chain patterns and accurately captured the anomalies in a dynamic and complicated microservice production scenario, which demonstrates the effectiveness of Informer. Furthermore, we extensively evaluated the risk of adversarial attacks for our prediction model under different reality constraints and showed that the model is robust to such attacks in most real-world scenarios.",
+   "status": "current"
+  },
+  {
+   "title": "Detection of Localization Failures Using Markov Random Fields With Fully Connected Latent Variables for Safe LiDAR-Based Automated Driving",
+   "identifiers": {
+    "openalex": "W4226180932",
+    "doi": "10.1109/tits.2022.3164397"
+   },
+   "abstract": "Most of the recent automated driving systems assume the accurate functioning of localization. Unanticipated errors cause localization failures and result in failures in automated driving. An exact localization failure detection is necessary to ensure safety in automated driving; however, detection of the localization failures is challenging because sensor measurement is assumed to be independent of each other in the localization process. Owing to the assumption, the entire relation of the sensor measurement is ignored. Consequently, it is difficult to recognize the misalignment between the sensor measurement and the map when partial sensor measurement overlaps with the map. This paper proposes a method for the detection of localization failures using Markov random fields with fully connected latent variables. The full connection enables to take the entire relation into account and contributes to the exact misalignment recognition. Additionally, this paper presents localization failure probability calculation and efficient distance field representation methods. We evaluate the proposed method using two types of datasets. The first dataset is the SemanticKITTI dataset, whereby four methods are compared with the proposed method. The comparison results reveal that the proposed method achieves the most accurate failure detection. The second dataset is created based on log data acquired from the demonstrations that we conducted in Japanese public roads. The dataset includes several localization failure scenes. We apply the failure detection methods to the dataset and confirm that the proposed method achieves exact and immediate failure detection.",
+   "status": "current"
+  },
+  {
+   "title": "QoS-Aware Cloud Resource Prediction for Computing Services",
+   "identifiers": {
+    "openalex": "W4226248752",
+    "doi": "10.1109/tsc.2022.3164256"
+   },
+   "abstract": "Computing services are increasingly located in computing clouds, which allows for on-demand scalability but may also increase operating costs. It is believed that cloud expenses constitute a significant budget item in companies of all sizes. There is a considerable body of work dedicated to reducing the costs of cloud computing, which is mainly focused on optimizing the use of cloud resources. Such optimization, however, tends to result in the deterioration of computing service responsiveness and, as a result, quality of service parameters, especially when applied to real-world, noisy data which include anomalies. This article presents a novel approach which involves a six-stage optimization process incorporating load prediction supported by machine learning, the discovery of computing service characteristics and long-term planning of resource usage alongside anomaly detection and continuous monitoring with a self-adapting ability. The solution proposed works autonomously, builds knowledge about the optimized system and its load patterns, calculates cost-optimal resource provisioning plans and adapts to rapid environmental changes. Our evaluation using Microsoft’s Azure cloud environment demonstrates savings ranging from 31% to 89% depending on the test scenario; cost reductions for other cloud computing providers were estimated as well.",
+   "status": "current"
+  },
+  {
+   "title": "Practical and Scalable ML-Driven Cloud Performance Debugging With Sage",
+   "identifiers": {
+    "openalex": "W4226265071",
+    "doi": "10.1109/mm.2022.3169445"
+   },
+   "abstract": "Cloud applications are increasingly shifting from large monolithic services to complex graphs of loosely coupled microservices. Despite their benefits, microservices are prone to cascading performance issues, and can lead to prolonged periods of degraded performance. We present Sage, a machine-learning-driven root cause analysis system for interactive cloud microservices that is both accurate and practical. We show that Sage correctly identifies the root causes of performance issues across a diverse set of microservices and takes action to address them, leading to more predictable, performant, and efficient cloud systems.",
+   "status": "current"
+  },
+  {
+   "title": "LAnoBERT: System log anomaly detection based on BERT masked language model",
+   "identifiers": {
+    "openalex": "W4226289522",
+    "doi": "10.1016/j.asoc.2023.110689",
+    "arxiv": "2111.09564"
+   },
+   "abstract": "The system log generated in a computer system refers to large-scale data that are collected simultaneously and used as the basic data for determining errors, intrusion and abnormal behaviors. The aim of system log anomaly detection is to promptly identify anomalies while minimizing human intervention, which is a critical problem in the industry. Previous studies performed anomaly detection through algorithms after converting various forms of log data into a standardized template using a parser. Particularly, a template corresponding to a specific event should be defined in advance for all the log data using which the information within the log key may get lost. In this study, we propose LAnoBERT, a parser free system log anomaly detection method that uses the BERT model, exhibiting excellent natural language processing performance. The proposed method, LAnoBERT, learns the model through masked language modeling, which is a BERT-based pre-training method, and proceeds with unsupervised learning-based anomaly detection using the masked language modeling loss function per log key during the test process. In addition, we also propose an efficient inference process to establish a practically applicable pipeline to the actual system. Experiments on three well-known log datasets, i.e., HDFS, BGL, and Thunderbird, show that not only did LAnoBERT yield a higher anomaly detection performance compared to unsupervised learning-based benchmark models, but also it resulted in a comparable performance with supervised learning-based benchmark models.",
+   "status": "current"
+  },
+  {
+   "title": "Edge-IIoTset: A New Comprehensive Realistic Cyber Security Dataset of IoT and IIoT Applications for Centralized and Federated Learning",
+   "identifiers": {
+    "openalex": "W4226319939",
+    "doi": "10.1109/access.2022.3165809"
+   },
+   "abstract": "In this paper, we propose a new comprehensive realistic cyber security dataset of IoT and IIoT applications, called Edge-IIoTset, which can be used by machine learning-based intrusion detection systems in two different modes, namely, centralized and federated learning. Specifically, the dataset has been generated using a purpose-built IoT/IIoT testbed with a large representative set of devices, sensors, protocols and cloud/edge configurations. The IoT data are generated from various IoT devices (more than 10 types) such as Low-cost digital sensors for sensing temperature and humidity, Ultrasonic sensor, Water level detection sensor, pH Sensor Meter, Soil Moisture sensor, Heart Rate Sensor, Flame Sensor, etc.). Furthermore, we identify and analyze fourteen attacks related to IoT and IIoT connectivity protocols, which are categorized into five threats, including, DoS/DDoS attacks, Information gathering, Man in the middle attacks, Injection attacks, and Malware attacks. In addition, we extract features obtained from different sources, including alerts, system resources, logs, network traffic, and propose new 61 features with high correlations from 1176 found features. After processing and analyzing the proposed realistic cyber security dataset, we provide a primary exploratory data analysis and evaluate the performance of machine learning approaches (i.e., traditional machine learning as well as deep learning) in both centralized and federated learning modes. The Edge-IIoTset dataset can be publicly accessed fromhttp://ieee-dataport.org/8939.",
+   "status": "current"
+  },
+  {
+   "title": "Logging Practices in Software Engineering: A Systematic Mapping Study",
+   "identifiers": {
+    "openalex": "W4226483168",
+    "doi": "10.1109/tse.2022.3166924"
+   },
+   "abstract": "Background:Logging practices provide the ability to record valuable runtime information of software systems to support operations tasks such as service monitoring and troubleshooting. However, current logging practices face common challenges. On the one hand, although the importance of logging practices has been broadly recognized, most of them are still conducted in an arbitrary or ad-hoc manner, ending up with questionable or inadequate support to perform these tasks. On the other hand, considerable research effort has been carried out on logging practices, however, few of the proposed techniques or methods have been widely adopted in industry.Objective:This study aims to establish a comprehensive understanding of the research state of logging practices, with a focus on unveiling possible problems and gaps which further shed light on the potential future research directions.Method:We carried out a systematic mapping study on logging practices with 56 primary studies.Results:This study provides a holistic report of the existing research on logging practices by systematically synthesizing and analyzing the focus and inter-relationship of the existing research in terms of issues, research topics and solution approaches. Using3W1H—Why to log,Where to log,What to logandHow well is the logging—as the categorization standard, we find that: (1) the best known issues in logging practices have been repeatedly investigated; (2) the issues are often studied separately without considering their intricate relationships; (3) theWhere and Whatquestions have attracted the majority of research attention while little research effort has been made on theWhyandHow wellquestions; and (4) the relationships between issues, research topics, and approaches regarding logging practices appear many-to-many, which indicates a lack of profound understanding of the issues in practice and how they should be appropriately tackled.Conclusions:This study indicates a need to advance the state of research on logging practices. For example, more research effort should be invested onwhy to logto set the anchor of logging practices as well as onhow well is the loggingto close the loop. In addition, a holistic process perspective should be taken into account in both the research and the adoption related to logging practices.",
+   "status": "current"
+  },
+  {
+   "title": "Object Shape Error Response Using Bayesian 3-D Convolutional Neural Networks for Assembly Systems With Compliant Parts",
+   "identifiers": {
+    "openalex": "W4255661557",
+    "doi": "10.1109/tii.2020.3043226"
+   },
+   "abstract": "This article proposes a novel object shape error response (OSER) approach to estimate the dimensional and geometric variation of assembled products and then, relate these to process parameters, which can be interpreted as root causes (RC) of the object shape defects. The OSER approach leverages Bayesian 3-D convolutional neural networks integrated with computer-aided engineering simulations for RC isolation. Compared with the existing methods, the proposed approach: 1) addresses a novel problem of applying deep learning for object shape error identification instead of object detection; 2) overcomes fundamental performance limitations of current linear approaches for RC analysis (RCA) of assembly systems that cannot be used on point cloud data; and 3) provides capabilities for unsolved challenges such as ill-conditioning, fault-multiplicity, RC prediction with uncertainty quantification, and learning at design phase when no measurement data are available. Comprehensive benchmarking with existing machine learning models demonstrates superior performance with R2= 0.98 and MAE = 0.05 mm, thus improving RCA capabilities by 29%.",
+   "status": "current"
+  },
+  {
+   "title": "Classifying jobs towards power-aware HPC system operation through long-term log analysis",
+   "identifiers": {
+    "openalex": "W4281261651",
+    "doi": "10.1016/j.array.2022.100179"
+   },
+   "abstract": "The efficient utilization of high-performance computing (HPC) system resources under rigorous electric power budget or I/O workload constraints is among the most important goals set by system operators to deal with the demanding requirements of application users. In most cases, the effective utilization of CPU and memory devices, which is tightly linked to electric power consumption, is a counterpart metric of I/O activities in most HPC jobs. Towards higher utilization of HPC systems under strict electric power consumption and I/O activity management constrains, we must be careful to prevent hot-spots from developing in power consumption or I/O operations that could lead to unstable system operations by exceeding electric power supply or I/O subsystem capabilities. One of the feasible solutions is arranging compute node assignment not to have such hot-spots in electric power or I/O operations. To address this issue, we analyzed vast amounts of log data collected from the K computer and found strong positive correlations between CPU and memory device utilization rates and electric power consumption levels. On the one hand, we also observed strong negative correlations and reduced electric power consumption in relation to file I/O activities in a specific compute node-layout, thereby indicating unique characteristics in some I/O-intensive HPC jobs in the node-layout. Our investigation revealed that HPC jobs could be divided into two groups when classified in terms of required electric power — jobs consuming high electric power levels and I/O-intensive jobs with reduced electric power levels. Then, we achieved high levels of accuracy when classifying jobs in terms of electric power levels using RandomForestClassifier among multiple machine learning classification models provided from scikit-learn. The classification can prevent us from hot-spots in electric power consumption in compute node assignment in job scheduling. Thus we demonstrated efficient job classifications towards power-aware system operations in the supercomputer Fugaku, which is the successor to the K computer.",
+   "status": "current"
+  },
+  {
+   "title": "Predicting severely imbalanced data disk drive failures with machine learning models",
+   "identifiers": {
+    "openalex": "W4282982805",
+    "doi": "10.1016/j.mlwa.2022.100361"
+   },
+   "abstract": "Datasets related to hard drive failure, particularly BackBlaze Hard Drive Data, have been widely studied in the literature using many statistical, machine learning, and deep learning techniques. These datasets are severely imbalanced due to the presence of a small number of failed drives compared to huge amounts of healthy drives in the operational data centers. It is challenging to mitigate the adverse consequence of the class imbalance due to the presence of bias towards the majority class during learning. SMART (self monitoring analysis and reporting technology) attributes of the disk drives were utilized in the past to design standard classification or regression algorithms. Although few machine learning (ML) models, for instance, tree based methods and ensemble learning algorithms, addressed the failure prediction, the effects of class imbalance were rarely properly considered under the ML framework. This study, based on a review of the state-of-the-art in the area, evaluates current methodologies to identify areas that were either overlooked or lacking, proposes methods for remediating these issues, and performs some baseline experiments to demonstrate the proposed methodologies including data sampling techniques and cost-sensitive learning.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0r2b-04"
+}

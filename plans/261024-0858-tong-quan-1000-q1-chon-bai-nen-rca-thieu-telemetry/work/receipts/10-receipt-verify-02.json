@@ -1,0 +1,61 @@
+{
+ "schema_version": 2,
+ "id": "10-receipt-verify-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10-a02.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-receipt-verify-02.out",
+ "egress_trace_reference": "work/logs/10-receipt-verify-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T01:55:19.719282+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [
+  "7050a02950e083d3f81e6f585aa09eac68a888aa0b4d5087397034a0ca25312e"
+ ],
+ "checks": [
+  "re-verify all receipts with check-receipt.py; classes must match work/receipt-verify-10.csv except the 10-* receipts added after it"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "39057626cfdd2b5fbb2d0738e91708f816794f21334a0bd913cdf851ce89060b",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10-a02.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "edc026eab16415c9e52c23960c874c95ba9431f86a6a48c1974237db3c64ef2c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": [
+  {
+   "path": "work/receipt-verify-10-a02.csv",
+   "sha256": "7050a02950e083d3f81e6f585aa09eac68a888aa0b4d5087397034a0ca25312e",
+   "created_this_attempt": true
+  }
+ ]
+}

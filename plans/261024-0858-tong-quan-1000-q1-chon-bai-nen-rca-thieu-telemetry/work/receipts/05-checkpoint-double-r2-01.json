@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-double-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 double-r2 05-kappa-r2-01 --in work/screen/input/dbl-r2-manifest.json --out work/screen/kappa-r2.json --out work/screen/all3-resolution-a02.csv --note kappa include abstract 0.881 n17",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-double-r2-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-double-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:27:38.616397+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "674ee58b8a88ebeb157ec9899728de80408fe5bb4a8c17bd73cdeb3532fac753"
+ ],
+ "output_hashes": [
+  "218b55224fa522dacb93de756f0e28b4053cdbecf2f7c4298352aac6b98ac802"
+ ],
+ "checks": [
+  "phase 05 r2 double screening committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "4705e51bca90f5b2cd8e5fb10b3df8e0c087f85bdd3db82418ea445dd1053b6a",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 double-r2 05-kappa-r2-01 --in work/screen/input/dbl-r2-manifest.json --out work/screen/kappa-r2.json --out work/screen/all3-resolution-a02.csv --note kappa include abstract 0.881 n17",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "00d9d9008acd7440d046f2171b222bb28ead5b938a38d2e34482909b2a2b18a4",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/kappa-r2.json",
+   "sha256_before": "674ee58b8a88ebeb157ec9899728de80408fe5bb4a8c17bd73cdeb3532fac753",
+   "sha256_after": "674ee58b8a88ebeb157ec9899728de80408fe5bb4a8c17bd73cdeb3532fac753",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "218b55224fa522dacb93de756f0e28b4053cdbecf2f7c4298352aac6b98ac802",
+   "created_this_attempt": true
+  }
+ ]
+}

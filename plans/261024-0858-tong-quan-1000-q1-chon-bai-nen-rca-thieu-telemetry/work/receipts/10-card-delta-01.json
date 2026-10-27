@@ -1,0 +1,153 @@
+{
+ "schema_version": 2,
+ "id": "10-card-delta-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/check-card-deltas.py work/t3-card-delta-10.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-card-delta-01.out",
+ "egress_trace_reference": "work/logs/10-card-delta-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T02:30:02.089807+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "99892185fe9feb37c84d12ead2aed668d50febe11f95ac286f98cb920a38fdd0",
+  "a3c9564eb12afed5314e529f02e6fd7bd4525d6eb5857b45a7d4c55d2b3f63e4",
+  "87f4db4dbd4fd35643caeef147fe55a418d9fd40b2fc36f42ae888d32335331c",
+  "39935d3f8177e993128755553823ff9791214a6f8676027c298a5ae30ac15456",
+  "c82581397a54482b6f9561349e3f972f15a6ce29749c620db2ad96544da84b02",
+  "30e5831afc64aa018e167c3ee8801d4ff02ec9b6132b484725eb0a2dd105dad6",
+  "84b6728860b39ca643fdcd7a4d51c48e01cdc33d8122ea09db1740294bda2e4d",
+  "11a2a6adc9f20ba44634676a60d6a53a17e60966087562ef6435dcba0e0f2796",
+  "313c154734f1f3174eb6731033a06165fe5b88440ec2b5d497b3c63af08f147a",
+  "55b7b09f29518117bdfa7fff9a746ccfb40ceb9310d610ca0195d5b2c354f494"
+ ],
+ "output_hashes": [
+  "2ff2b20f52dfe2c42a15717bf72360a0e1a45b8b19d679d21675bca03371af0a"
+ ],
+ "checks": [
+  "each of the 8 changed T3 cards minus appended controller notes hashes to its phase 08 recorded sha256"
+ ],
+ "limitations": [
+  "the appended notes are text only; their content was not re-reviewed beyond the exact strings recovered from the 2026-10-26 session transcript"
+ ],
+ "closure_hash": "a2b98386916ae5eb29edc77277a23e7b71b5ac6069b8bc9a9f5badf5b1a079d9",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/check-card-deltas.py work/t3-card-delta-10.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "9a6601d4b1c2cdad96ce37e20c2cc9ba5444ea760c3de665c63897fa73a11a6f",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "research/cards/t3/W4417508611.md",
+   "sha256_before": "99892185fe9feb37c84d12ead2aed668d50febe11f95ac286f98cb920a38fdd0",
+   "sha256_after": "99892185fe9feb37c84d12ead2aed668d50febe11f95ac286f98cb920a38fdd0",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "research/cards/t3/W4382203537.md",
+   "sha256_before": "a3c9564eb12afed5314e529f02e6fd7bd4525d6eb5857b45a7d4c55d2b3f63e4",
+   "sha256_after": "a3c9564eb12afed5314e529f02e6fd7bd4525d6eb5857b45a7d4c55d2b3f63e4",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "research/cards/t3/W7165616276.md",
+   "sha256_before": "87f4db4dbd4fd35643caeef147fe55a418d9fd40b2fc36f42ae888d32335331c",
+   "sha256_after": "87f4db4dbd4fd35643caeef147fe55a418d9fd40b2fc36f42ae888d32335331c",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "research/cards/t3/W7204187534.md",
+   "sha256_before": "39935d3f8177e993128755553823ff9791214a6f8676027c298a5ae30ac15456",
+   "sha256_after": "39935d3f8177e993128755553823ff9791214a6f8676027c298a5ae30ac15456",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "research/cards/t3/W4372338130.md",
+   "sha256_before": "c82581397a54482b6f9561349e3f972f15a6ce29749c620db2ad96544da84b02",
+   "sha256_after": "c82581397a54482b6f9561349e3f972f15a6ce29749c620db2ad96544da84b02",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "research/cards/t3/W7203837764.md",
+   "sha256_before": "30e5831afc64aa018e167c3ee8801d4ff02ec9b6132b484725eb0a2dd105dad6",
+   "sha256_after": "30e5831afc64aa018e167c3ee8801d4ff02ec9b6132b484725eb0a2dd105dad6",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "research/cards/t3/W4410538768.md",
+   "sha256_before": "84b6728860b39ca643fdcd7a4d51c48e01cdc33d8122ea09db1740294bda2e4d",
+   "sha256_after": "84b6728860b39ca643fdcd7a4d51c48e01cdc33d8122ea09db1740294bda2e4d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "research/cards/t3/W7131638922.md",
+   "sha256_before": "11a2a6adc9f20ba44634676a60d6a53a17e60966087562ef6435dcba0e0f2796",
+   "sha256_after": "11a2a6adc9f20ba44634676a60d6a53a17e60966087562ef6435dcba0e0f2796",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/state.json",
+   "sha256_before": "313c154734f1f3174eb6731033a06165fe5b88440ec2b5d497b3c63af08f147a",
+   "sha256_after": "313c154734f1f3174eb6731033a06165fe5b88440ec2b5d497b3c63af08f147a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/check-card-deltas.py",
+   "sha256_before": "55b7b09f29518117bdfa7fff9a746ccfb40ceb9310d610ca0195d5b2c354f494",
+   "sha256_after": "55b7b09f29518117bdfa7fff9a746ccfb40ceb9310d610ca0195d5b2c354f494",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/t3-card-delta-10.csv",
+   "sha256": "2ff2b20f52dfe2c42a15717bf72360a0e1a45b8b19d679d21675bca03371af0a",
+   "created_this_attempt": true
+  }
+ ]
+}

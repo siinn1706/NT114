@@ -1,0 +1,87 @@
+{
+ "schema_version": 2,
+ "id": "10-sync-phase-status-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/sync-phase-status.py work/phase-status-spec-10.json work/phase-status-sync-10.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-sync-phase-status-01.out",
+ "egress_trace_reference": "work/logs/10-sync-phase-status-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T01:56:31.992763+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "1352927f9e53385ef93a0620354b985fcc4464c59ef61ffde58ae61849e07c06",
+  "1aae6ffc67952fe38fe12a0bf40f76b08e05f631a8c2cd208f0e40fd75797f1c"
+ ],
+ "output_hashes": [
+  "a69c6d4ca26f7bd33472d00a124baf0f1adbaf0a347b417831cf662d9e6556e9",
+  "b4fd1cb8750de2afbb35c3d8b9696e9fcee8a3305f093d187bf7930b8db29760"
+ ],
+ "checks": [
+  "every batch of phases 01-09 committed and cited receipt exists before a phase status changes"
+ ],
+ "limitations": [
+  "work/state.json is both mutated and recorded as output; earlier receipts that hash state.json become superseded-state"
+ ],
+ "closure_hash": "f0bd9450b139c4033ccf789a07636545b1e962776e95859fc901c19a1c89103f",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/sync-phase-status.py work/phase-status-spec-10.json work/phase-status-sync-10.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "141f5401776b3d1f6e10fac2cbb8f87d25946453781ea0b8fa63f9e095708d38",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/phase-status-spec-10.json",
+   "sha256_before": "1352927f9e53385ef93a0620354b985fcc4464c59ef61ffde58ae61849e07c06",
+   "sha256_after": "1352927f9e53385ef93a0620354b985fcc4464c59ef61ffde58ae61849e07c06",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/sync-phase-status.py",
+   "sha256_before": "1aae6ffc67952fe38fe12a0bf40f76b08e05f631a8c2cd208f0e40fd75797f1c",
+   "sha256_after": "1aae6ffc67952fe38fe12a0bf40f76b08e05f631a8c2cd208f0e40fd75797f1c",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "b4fd1cb8750de2afbb35c3d8b9696e9fcee8a3305f093d187bf7930b8db29760",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/phase-status-sync-10.csv",
+   "sha256": "a69c6d4ca26f7bd33472d00a124baf0f1adbaf0a347b417831cf662d9e6556e9",
+   "created_this_attempt": true
+  }
+ ]
+}

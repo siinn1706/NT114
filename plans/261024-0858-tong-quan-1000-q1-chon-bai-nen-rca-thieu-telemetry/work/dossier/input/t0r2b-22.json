@@ -1,0 +1,418 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "IMPACT Framework: Establishing Global Standards for Artificial Intelligence Implementation, Methodology, and Translation in Drug Discovery",
+   "identifiers": {
+    "openalex": "W7143656485",
+    "doi": "10.1002/wcms.70072"
+   },
+   "abstract": "ABSTRACT Artificial intelligence (AI) is reshaping drug discovery by accelerating timelines and reducing costs, yet its impact remains constrained by a persistent gap between computational promise and translational delivery. This gap stems from upstream preclinical failures, including weak target validation, biologically irrelevant models, and insufficient accountability for overstated methodological claims that contribute to late‐stage attrition. The Implementation, Methodology, Productivity, Assessment, Collaboration, Translation (IMPACT) framework addresses these root causes by establishing global standards that reinforce biological grounding, methodological credibility, and equitable collaboration. Implementation emphasizes Findable, Accessible, Interoperable, and Reusable (FAIR)‐compliant datasets, standardized vocabularies, and clear gradients of AI involvement from assisted to fully AI‐driven workflows. Methodology prioritizes reproducibility through model cards, containerized environments, and transparent reporting to support robust models. Productivity aligns AI efforts with urgent therapeutic priorities, including rare diseases, antimicrobial resistance, drug repurposing, and natural‐product discovery. Assessment promotes rigorous benchmarking, blind validation, and uncertainty quantification, drawing on the long‐established CASP model as a historical gold standard while critically examining emerging initiatives such as CACHE and Polaris Hub, which remain comparatively recent and evolving. Collaboration leverages federated learning, pre‐competitive consortia, and interdisciplinary teams integrating AI specialists with domain experts. Translation ensures outputs are explainable, clinically relevant, ethically aligned, and regulatory‐ready, consistent with emerging frameworks such as the FDA Draft Guidance on AI in Drug Development and the EU AI Act. By integrating technical standards with operational governance mechanisms, IMPACT provides a structured pathway toward transparent and translationally reliable AI‐driven drug discovery. This article is categorized under: Data Science > Artificial Intelligence/Machine Learning Software > Molecular Modeling Data Science > Chemoinformatics",
+   "status": "current"
+  },
+  {
+   "title": "Temporal causal discovery-enhanced hierarchical monitoring for root cause diagnosis of aero-engine faults",
+   "identifiers": {
+    "openalex": "W7147210494",
+    "doi": "10.1016/j.knosys.2026.115921"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Token interdependency parsing (Tipping)—A map-reduced based statistical log parser",
+   "identifiers": {
+    "openalex": "W7147276650",
+    "doi": "10.1016/j.infsof.2026.108137"
+   },
+   "abstract": "Context: Over the last decade, impressive growth in software adaptations has led to a surge in log data production, making manual log analysis impractical and underscoring the need for automated methods. On the other hand, most automated analysis tools benefit from a component that separates log templates from their parameters, commonly referred to as a “log parser”. Effectiveness and efficiency are inherently competing attributes, such that enhancing one typically requires compromising the other, making the simultaneous maximization of both challenging. Objective: This paper aims to introduce a new log parser capable of processing logs faster than the statistics-based methods while maintaining a respectable effectiveness, named “Tipping”. Method: Tipping combines rule-based tokenizers, interdependency token graphs, strongly connected components, and various techniques to ensure rapid, scalable, and precise log parsing. Furthermore, Tipping was designed with map-reduce principles to be parallelizable, enabling it to run on multiple processing cores to speed up the process. We evaluated Tipping against other statistics-based log parsers in terms of effectiveness, efficiency, and the downstream task of anomaly detection. Results: Accordingly, our evaluations demonstrate that Tipping outperforms most statistics-based parsing methods in both effectiveness and efficiency. More in-depth, Tipping can parse 11 million lines of logs in less than 20 s on a development machine. Furthermore, Tipping ranks among the top performers in terms of effectiveness and efficiency across the Loghub-2k, Loghub-2.0, LogPM, and LogLead benchmarks. Conclusion: Tipping’s robustness, versatility, efficiency, and scalability make it a viable tool for modern automated log analysis. However, Tipping currently cannot operate in online or streaming mode, which limits its applicability in environments where logs arrive continuously and must be processed incrementally in real time.",
+   "status": "current"
+  },
+  {
+   "title": "LEMON: LLM-Enabled Monitoring for Microservices Orchestration",
+   "identifiers": {
+    "openalex": "W7147293258",
+    "doi": "10.1109/tsc.2026.3679374"
+   },
+   "abstract": "The complexity of modern microservice architectures has surpassed the capabilities of traditional orchestration tools, which rely on static, manual workflows. This limits scalability and adaptability, especially to dynamic workloads. This paper argues for a paradigm shift towards self-managing, intent-driven microservices orchestration systems, where human operators express high-level goals in natural language. As a foundational step towards this vision of autonomous orchestration agents, we introduce LEMON: a new architecture that leverages Large Language Models (LLMs) for intelligent microservice monitoring. We also propose a comprehensive classification to structure this emerging field. Our evaluation demonstrates that fine-tuning Small Language Models (SLMs) for intent classification significantly enhances accuracy while ensuring the model's output is reliably structured for automation. Furthermore, our analysis of the trade-offs between model size, precision, and latency provides a practical guide for deploying these systems. We foresee this monitoring capability as the critical ”sense” component toward autonomous microservices orchestration loops. By diagnosing performance bottlenecks from natural language queries, LEMON enables future systems to automatically suggest and execute solutions. This work lays the groundwork for truly self-managing, intent-driven systems.",
+   "status": "current"
+  },
+  {
+   "title": "LLMRCA: Multilevel Root Cause Analysis for LLM Applications Using Multimodal Observability Data",
+   "identifiers": {
+    "openalex": "W7147356587",
+    "doi": "10.1145/3806200"
+   },
+   "abstract": "Ensuring the reliability of large language model (LLM) applications in production environments is critical as LLMs are widely integrated into software systems. However, fault diagnosis in these applications is challenging due to distributed deployment and complex component interactions. Existing root cause analysis (RCA) methods fall short when applied to LLM applications because they ignore two key challenges: unstable response times and response quality-related silent faults. To address these challenges, we propose LLMRCA, the first multilevel and unsupervised RCA framework that leverages multimodal observability data to identify root causes in LLM applications. LLMRCA constructs a heterogeneous causal graph from metrics, logs, and traces, and employs a Residual Graph Attention autoencoder to calculate reconstruction errors for RCA. LLMRCA also introduces request classification to handle unstable response times and verification to reduce false positives. Experiments on a retrieval-augmented generation LLM application show that LLMRCA outperforms eight baseline methods, achieving up to \\(5.1\\times\\) more accurate results than baselines for performance problems and 92.86% top-1 ranking accuracy for response-quality problems. Furthermore, the ablation studies confirm the contributions of each data modality and different framework modules to effectiveness. Generally, our framework provides a practical approach for diagnosing both performance and quality faults in LLM applications.",
+   "status": "current"
+  },
+  {
+   "title": "H4PLC: Designing PLC Honeypoints Based on Invariants for Industrial Control System Security",
+   "identifiers": {
+    "openalex": "W7147361467",
+    "doi": "10.1109/tmc.2026.3678913"
+   },
+   "abstract": "Unlike traditional Programmable Logic Controller (PLC) honeypots, a PLC honeypoint is a lightweight, easily deployable decoy that emulates realistic Industrial Control System (ICS) services to deceive attackers and uncover their malicious intent. PLC honeypoints are an effective mechanism for enhancing ICS defense against cyber attackers. However, existing PLC honeypoints lack realism in their services, failing to sufficiently engage attackers during reconnaissance or interaction phases. To address this gap, we introduce H4PLC, a novel PLC honeypoint that employs an invariant-based approach to incorporate realistic ICS physical process properties. H4PLC overcomes challenges in characterizing and integrating these properties into PLC services by leveraging ICS log data to construct Physical Process Trees and control rule transitions, enabling dynamic and authentic responses to attacker reconnaissance and malicious code injections. To the best of our knowledge, H4PLC is the first PLC honeypoint to generate contextually variable, appropriate, and responsive ICS messages tailored to Advanced Persistent Threat (APT) attackers. Experimental evaluations demonstrate that H4PLC provides diverse realistic PLC services and effectively reports anomalies under malicious code injections.",
+   "status": "current"
+  },
+  {
+   "title": "Machine Learning Models for Analyzing FBG Pressure Sensor Data in Monitoring Leak in Water Pipeline",
+   "identifiers": {
+    "openalex": "W7147688402",
+    "doi": "10.1109/jiot.2026.3679428"
+   },
+   "abstract": "Aging water and sewage pipelines require effective monitoring as leakage and burst incidents pose environmental, economic, and public safety risks. Many existing studies rely on laboratory or simulated data from electrical sensors installed in harsh sewer environments, which require regular cleaning and calibration. The novelty of this work lies in presenting a systematic, real-world evaluation of machine learning models for pipeline leak detection using fiber Bragg grating-based pressure sensors deployed in an operational pipeline test facility for the first time. The models evaluated include supervised models, such as Random Forest and Extreme Gradient Boosting (XGBoost), and unsupervised models, such as Long Short-Term Memory (LSTM) and LSTM Autoencoder. These models are compared under identical experimental conditions and were evaluated under both serial (single sensor) and parallel (multi-sensor) configurations, using sliding windows of varying lengths. Weighted precision and F1-scores were used to address strong class imbalance across leak sizes. Results show that XGBoost achieved the best overall performance, reaching 77% precision and 52% F1-score at a 45-point window length. The results obtained are better than those reported in previous work, most of which rely on simulations or laboratory datasets and critically do not evaluate models under real operational pipeline conditions, as is done here. The findings demonstrate the robustness of supervised XGBoost when applied to small, noisy real-world datasets and they highlight the feasibility of integrating ML-based FBG sensors into cloud-enabled pipeline monitoring systems.",
+   "status": "current"
+  },
+  {
+   "title": "Leveraging LLM for Enhanced Incident Management in Wireless Networks",
+   "identifiers": {
+    "openalex": "W7148397615",
+    "doi": "10.1109/jsac.2026.3680419"
+   },
+   "abstract": "Incident management in telecommunications networks generates large volumes of incident management tickets (IMTs), each containing heterogeneous and often unstructured text describing service outages, performance degradations, or security issues. Accurately categorizing these IMTs into multiple impact and cause labels is essential for rapid diagnosis and resolution. However, existing rule-based and standard language-model-based approaches struggle with noisy data, overlapping categories, and limited contextual understanding. To address these challenges, we propose two complementary solutions for automated multi-label classification of IMTs. To mitigate the effects of noisy data and overlapping categories, the first solution employs an encoder-based language model (i.e., Bidirectional Encoder Representations from Transformers (BERT)) with a relevance-guided feature selection strategy that focuses on semantically meaningful attributes. To improve contextual understanding and label consistency, the second solution leverages a decoder-based large language model (i.e., Phi-3.5) enhanced with retrieval-augmented generation (RAG) and a novel probabilistic re-ranking mechanism to refine label predictions. Experimental results show that our encoder-only model achieves an F1 score of 79.20%, while our RAG-enhanced decoder model achieves 94.98%, outperforming traditional machine learning models and BERT baselines by 23.59% and 29% on average, respectively. These findings demonstrate that combining fine-tuned language models with intelligent retrieval and re-ranking significantly improves classification accuracy in incident management systems.",
+   "status": "current"
+  },
+  {
+   "title": "From literature to research-based learning: An AI-powered information extraction system to enhance undergraduate thesis completion",
+   "identifiers": {
+    "openalex": "W7150895814",
+    "doi": "10.1016/j.caeai.2026.100591"
+   },
+   "abstract": "Undergraduate thesis completion in STEM education is often constrained by limited timeframes, insufficient training, and the difficulty of navigating unstructured scientific literature. This study describes the design and evaluation of an AI-powered information extraction system that converts research publications into structured, traceable, and comparable datasets to support literature-driven comparison. The system is positioned as an epistemic scaffold that enables the inspection of evidence claim relationships through source traceability and structured comparisons while reducing low-level data-handling demands. A mixed-methods pilot study was conducted with 20 undergraduates from four schools and four academic supervisors within the same university, combining system log analysis, post-task surveys, and semi-structured interviews. Across 80 uploaded documents, students successfully extracted and standardized over 90% of the targeted experimental parameters and performance entries. Students’ self-reported literature review time decreased by approximately 65%, and their ability to identify at least three influential variables in experimental designs increased by 50% in a brief pre/post variable-identification prompt. Survey and interview findings indicated that the structured outputs enabled students to transition from isolated reading toward cross-study comparison and evidence-based justification. Meanwhile, supervisors reported a reduced need for repeated instruction and improved students’ reasoning capacity. The pedagogical implications for data-informed supervision are discussed, along with limitations related to sample size, domain specificity, and the need to mitigate overreliance on automation through explicit verification routines. The modular architecture of the system suggests its transfer potential to other STEM domains in which parameter-based comparison is central. Given the exploratory, single-institution pilot design, quantitative results are interpreted as descriptive and mechanism-oriented rather than statistically generalizable.",
+   "status": "current"
+  },
+  {
+   "title": "Lightweight Edge Intelligence: Adapting 1.5B LLM via LoRA for Log Analysis in Campus Networks",
+   "identifiers": {
+    "openalex": "W7151008425",
+    "doi": "10.1109/access.2026.3681475"
+   },
+   "abstract": "The practical adoption of Large Language Models (LLMs) in cybersecurity remains constrained by computational cost, deployment complexity, and increasingly strict data-privacy requirements. These challenges are particularly acute in resource-limited environments such as vocational colleges and similar resource-constrained institutional environments, where cloud-based security analytics may be undesirable or infeasible, while traditional rule-based intrusion detection systems often struggle with noisy alerts and limited semantic understanding of network events. To address this gap, I propose Edge-SecGPT, an on-premise framework for lightweight log screening under constrained campus deployment conditions. Built on the Qwen2.5-1.5B backbone, Edge-SecGPT adopts parameter-efficient adaptation through Low-Rank Adaptation (LoRA) together with 4-bit NF4 quantization. Rather than targeting maximal model scale, the framework is designed for deployment on resource-constrained single-GPU edge-oriented hardware and operates as a task-restricted binary log-screening module for privacy-conscious campus-network analysis. To improve methodological rigor, I evaluate the framework using a stricter temporal file-holdout protocol, where one earlier log window is used for training, a subsequent window is used for validation, and a later unseen temporal holdout window is reserved for final evaluation. Across 32,762 desensitized campus log records, the revised study frames Edge-SecGPT as a localized lightweight LoRA-based log-screening framework together with a controlled serialization study under the stricter temporal file-holdout protocol and an additional same-protocol conventional baseline. On the later unseen temporal holdout, the conventional logistic-regression baseline achieved 77.96% precision, 98.48% recall, and 87.03% F1-score, with an estimated 826.5 false alarms/day. Under the same temporal split, the TinyLlama-1.1B LoRA baseline achieved 94.37% precision, 100.00% recall, and 97.10% F1-score, while the raw-JSON Qwen2.5-1.5B configuration achieved the strongest empirical performance among the compared configurations under the present single-site temporal-holdout protocol and current label-construction regime (94.68% precision, 100.00% recall, and 97.27% F1-score). The corresponding structured configuration achieved 93.81% precision, 99.18% recall, and 96.42% F1-score. These results suggest that serialization choice materially affects deployment behavior in the present within-site setting, while broader attack-semantic generalization remains to be validated.",
+   "status": "current"
+  },
+  {
+   "title": "SLMFL: Structural and semantic fusion for fault localization based on Small Language Models",
+   "identifiers": {
+    "openalex": "W7151100156",
+    "doi": "10.1016/j.infsof.2026.108143"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Applications of Large Language Models in Radiation Oncology: From Workflow Automation to Clinical Intelligence",
+   "identifiers": {
+    "openalex": "W7151398194",
+    "doi": "10.1016/j.metrad.2026.100244"
+   },
+   "abstract": "Large language models (LLMs) have emerged as transformative tools in medicine, with strong capabilities in language understanding, reasoning, and structured information extraction. Radiation oncology is particularly well suited for LLM integration due to its data-intensive workflows, reliance on structured guidelines, and documentation burden. This review summarizes recent applications, including domain-specific fine-tuning for decision support, automated nomenclature standardization, registry curation using autonomous LLM agents, and protocol-aware radiotherapy plan evaluation using modular retrieval-augmented generation (RAG). Additional applications include patient safety analysis through incident classification and root cause analysis, electronic health record (EHR)-integrated communication, CT simulation order summarization, daily readiness briefings, and patient education systems. Emerging multimodal approaches enable context-aware contouring, while early studies show LLMs can assist treatment planning by interpreting dosimetric feedback. Together, these advances highlight a shift toward clinically grounded, auditable, and workflow-integrated AI systems that enhance efficiency, safety, and patient engagement.",
+   "status": "current"
+  },
+  {
+   "title": "Engineering AIOps Controllers for High-Performance Software Operations: An Action Design Research Study",
+   "identifiers": {
+    "openalex": "W7151613853",
+    "doi": "10.1109/tcc.2026.3681823"
+   },
+   "abstract": "Efficient memory allocation is critical for controlling and optimizing High-Performance Computing (HPC) infrastructures. This action design research study aims to identify the best principles, practices, and patterns for improving the precision and efficiency of control and optimization mechanisms in large-scale HPC infrastructure. To achieve this, we explore the use of Artificial Intelligence Operations (AIOps), which applies artificial intelligence to manage software infrastructure operations. In this context, we propose Job Prophet (JP), a machine-learning-based application. JP is designed to regulate and continuously optimize HPC resource management, enhancing operational efficiency and performance. The tool integrates continuous training, inference, monitoring, and CI/CD pipelines, ensuring adaptability to dynamic workloads. By leveraging historical execution data from heterogeneous sources, JP enhances scheduling efficiency while maintaining model reliability through continuous retraining and monitoring. We evaluate JP on real-world HPC workloads, demonstrating significant improvements in resource utilization and job performance. Our findings highlight the benefits of AI-driven memory allocation and provide insights into scalable, automated machine-learning integration within HPC environments.",
+   "status": "current"
+  },
+  {
+   "title": "LMAT: An adaptive tracing approach based on efficient system behavior analysis using language models",
+   "identifiers": {
+    "openalex": "W7151880451",
+    "doi": "10.1016/j.jss.2026.112890"
+   },
+   "abstract": "We introduce LMAT, a Language Model-based Adaptive Tracing framework designed for host-level observability that provides granular monitoring without excessive overhead. LMAT leverages a multi-task architecture to jointly predict kernel event sequences and classify event durations, thereby capturing both control-flow and temporal dynamics. By continuously comparing live trace data against model predictions, LMAT automatically signals deviations, dynamically adjusting trace granularity only when needed. This approach significantly reduces trace volume, along with associated energy and storage costs, achieving a 70.6% reduction in our experiments. Additionally, LMAT utilizes prediction discrepancies to drive an efficient root-cause classifier, mapping detected anomalies directly to their potential fault sources and providing actionable feedback for operations teams. We evaluate LMAT on two architecturally distinct single-host environments—an Apache2 web-server stack and the Sock Shop containerized microservice benchmark—using kernel traces that include standard workloads, duration-centric noise scenarios, and controlled CPU, disk, memory, and network stress injections. On the Apache workload, LMAT demonstrates up to 97.7% accuracy in anomaly detection and root-cause identification, surpassing state-of-the-art methods relying solely on event sequences. On Sock Shop, the same design remains effective for host-local change detection, while root-cause attribution in the microservice setting remains more challenging. A deployment-oriented overhead study shows that under a stable load, asynchronous LMAT inference introduces no measurable additional tail-latency overhead beyond tracing, while maintaining consistent throughput. Our findings illustrate that LMAT is a practical approach for adaptive tracing in the evaluated single-host environments, improving detection quality while keeping deployment overhead negligible.",
+   "status": "current"
+  },
+  {
+   "title": "A generalizable BERT-GNN hybrid framework for unified log anomaly detection",
+   "identifiers": {
+    "openalex": "W7151976840",
+    "doi": "10.1016/j.dcan.2026.04.001"
+   },
+   "abstract": "Logs are essential for monitoring large-scale distributed systems, yet their volume and structural heterogeneity pose substantial challenges for automated analysis. Conventional approaches often struggle to jointly model semantic information and temporal dependencies, which limits feature generalization across diverse environments. We propose Log2graphs, a generalizable framework for unified, unsupervised log analysis. Its core component, the Multi-Graph Autoencoder (MGAE), integrates Bidirectional Encoder Representations from Transformers (BERT) with a Graph Neural Network (GNN). Within MGAE, BERT extracts contextual semantic embeddings from raw log messages, while the GNN captures the chronological and topological correlations among log events. By reconstructing complex multi-graph structures, MGAE transforms sequential dependencies into low-dimensional representations without relying on labeled data. Experiments on widely used benchmark datasets, such as HDFS and BGL, show that the features extracted by MGAE improve downstream anomaly detection performance, outperforming baselines including LogFiT and LogFormer with F1 score gains of up to 11%. To extend benchmark validation to real-world settings with limited labeled datasets (e.g., HPC, Proxifier, and Zookeeper), we introduce a rigorous evaluation strategy using three domain-adaptive, label-free clustering metrics: Silhouette Score, Davies-Bouldin Index, and Calinski-Harabasz Index. This strategy enables quantitative assessment of the learned feature space in unsupervised environments and reduces reliance on ground-truth logs.",
+   "status": "current"
+  },
+  {
+   "title": "Hidden-Uncertainty Assessment via Non-Verbalized Signatures for LLM Medical QA",
+   "identifiers": {
+    "openalex": "W7152404002",
+    "doi": "10.1109/access.2026.3682338"
+   },
+   "abstract": "Large Language Models (LLMs) have shown growing potential in medical applications, yet reliable uncertainty estimation remains a key safety bottleneck in medical QA. Reasoning-capable models can still produce incorrect answers with high confidence, both when confidence is self-reported and when inferred fromanswer-probabilityproxies (answer log-probabilities / option-softmax). While self-consistency can improve reliability, it requires multiple forward passes and is costly at inference time. We propose a lightweight Trust–Abstain supervised classifier that predicts error risk from asinglereasoning trace, shifting attention from answer tokens to the reasoning process by combining trace-level log-probability dynamics, textual markers, and medical-domain signals. We evaluate five open-weight reasoning LLMs, including GPT-oss-120B and DeepSeek-R1-Distill-32B, across ten medical benchmarks (N= 21,324) under a Leave-One-Dataset-Out protocol. Our approach improves ROC–AUC by 2.4–6.0 points over strong single-pass baselines, including self-verbalized confidence and answer-probability proxies. In selective answering regimes (10–40% coverage), it reduces absolute error rate by up to 9.7 percentage points and consistently increases Accuracy–Coverage AUC. A simple logistic regression matches non-linear alternatives. Finally, we identify 12 generalizable features that remain stable across model families. Freezing the feature space to these predictors incurs a small degradation (mean < 1%) relative to model-specific selection, supporting largely model-agnostic uncertainty signals. We release code, datasets, and demos to support reproducibility.",
+   "status": "current"
+  },
+  {
+   "title": "LogHyper-IB: Spatio-Temporal Hypergraph Representation Learning via Information Bottleneck for Anomaly Detection in Distributed Systems",
+   "identifiers": {
+    "openalex": "W7152617813",
+    "doi": "10.1109/access.2026.3682603"
+   },
+   "abstract": "The operational integrity of High-Performance Computing (HPC) architectures like BlueGene/L is increasingly threatened by the “redundancy problem”, where critical failure signatures are submerged beneath ephemeral telemetry. This study introduces LogHyper-IB, a bifurcated architectural innovation that displaces traditional sequential paradigms by integrating Hypergraph Convolutional Networks (HGCN) with a Variational Information Bottleneck (VIB). By modeling log templates as nodes within a hyper-relational topology, the framework captures higher-order, non-pairwise dependencies often obscured in linear time-series. The VIB objective enforces a rigorous compression constraint, distilling “minimal sufficient statistics” by filtering out uninformative system heartbeats. Empirical validation on the BGL dataset yields a Matthews Correlation Coefficient (MCC) of 0.9888 and an F1-score of 0.9899, significantly outperforming legacy models. With a sub-50ms inference latency and robust root-cause localization capabilities, LogHyper-IB establishes a new performance ceiling for automated, real-time supercomputing diagnostics.",
+   "status": "current"
+  },
+  {
+   "title": "InspectCoder: Dynamic Analysis-Driven Self Repair through Interactive LLM-Debugger Collaboration",
+   "identifiers": {
+    "openalex": "W7153127543",
+    "doi": "10.1145/3798238"
+   },
+   "abstract": "Complex logic errors in LLM-generated code are challenging to diagnose and repair. While existing LLM-based self-repair approaches conduct intensive static semantic analysis or rely on superficial execution logs, they miss the in-depth runtime behaviors that often expose bug root causes—lacking the interactive dynamic analysis capabilities that make human debugging effective. We present InspectCoder, the first agentic program repair system that empowers LLMs to actively conduct dynamic analysis via interactive debugger control. Our dual-agent framework enables strategic breakpoint placement, targeted state inspection, and incremental runtime experimentation within stateful debugger sessions. Unlike existing methods that follow fixed log collection procedures, InspectCoder adaptively inspects and perturbs relevant intermediate states at runtime, and leverages immediate process rewards from debugger feedback to guide multi-step reasoning, transforming LLM debugging paradigm from blind trial-and-error into systematic root cause diagnosis. We conduct comprehensive experiments on two challenging self-repair benchmarks: BigCodeBench-R and LiveCodeBench-R. InspectCoder achieves 5.10%–60.37% relative improvements in repair accuracy over the strongest baseline, while delivering 1.67x-2.24x superior bug-fix efficiency respectively.We also contribute InspectWare, an open-source middleware that abstracts debugger complexities and maintains stateful debugging sessions across mainstream Python testing frameworks. Our work provides actionable insight into the interactive LLM-debugger systems, demonstrating the significant potential of LLM-driven dynamic analysis for automated software engineering.",
+   "status": "current"
+  },
+  {
+   "title": "Temporal adaptive neural ordinary differential equations with deep spatio-temporal point processes for real-time network intrusion detection",
+   "identifiers": {
+    "openalex": "W7153614778",
+    "doi": "10.1007/s40747-026-02291-7"
+   },
+   "abstract": "Network attacks exploit complex temporal dependencies spanning microseconds to months, requiring unified modelling of continuous system dynamics and discrete event occurrences. This paper introduces a framework integrating Temporal Adaptive Batch Normalization Neural Ordinary Differential Equations (TA-BN-ODE) with Deep Spatio-Temporal Point Processes (DSTPP) for real-time adaptive intrusion detection. We present five fundamental contributions validated on the Integrated Cloud Security 3Datasets comprising 18.9 million security records across container orchestration, IoT/IIoT networks, and enterprise security operations. First, we develop security-specific TA-BN-ODE architectures achieving 97.3% accuracy with 60–90% parameter reduction through continuous-depth adaptation and stability guarantees. Second, we introduce transformer-enhanced marked temporal point processes with log-barrier optimization reducing complexity from cubic to quadratic scaling while capturing multi-scale temporal patterns. Third, we present structured variational Bayesian inference providing calibrated uncertainty quantification with 91.7% coverage probability and PAC-Bayesian generalisation bounds. Fourth, we demonstrate Large Language Model integration achieving 87.6% F1-score on zero-shot detection of novel attacks. Fifth, we provide theoretical convergence guarantees for online learning under concept drift with differential privacy preservation. Our framework processes 12.3 million events per second with sub-100 ms latency, achieving 99.4% accuracy on container security, 98.6% on IoT networks, and 92.7% F1-score on enterprise incident triage. Comprehensive evaluation on standard benchmarks (CIC-IDS2018, UNSW-NB15, CIC-IoT-2023) and comparison with continuous-time models demonstrate state-of-the-art performance with 82% parameter reduction. Cross-domain validation on speech processing and healthcare monitoring confirms broad applicability beyond network security.",
+   "status": "current"
+  },
+  {
+   "title": "From logs to tactics: unsupervised reconstruction of APT campaigns with MITRE-enriched meta-alerts",
+   "identifiers": {
+    "openalex": "W7154016164",
+    "doi": "10.1007/s10207-026-01254-w"
+   },
+   "abstract": "Abstract The operational effectiveness of Security Operation Centres (SOCs) is increasingly hindered as analysts are overwhelmed with low-signal alerts from heterogeneous detection systems, leading to cognitive fatigue and impairing the ability to detect complex, multi-stage intrusions like Advanced Persistent Threats (APTs). To overcome the limitations of heuristic-based aggregation and the brittleness of supervised models in data-scarce environments, we present a fully unsupervised framework for the automated generation of high-level, MITRE ATT&CK-enriched meta-alerts. Our pipeline systematically integrates Graph Neural Networks (GNNs) to reconstruct coherent event sequences from noisy telemetry, Large Language Models (LLMs) for contextual summarization, and an advanced semantic clustering module based on transformer embeddings to group alerts with high contextual fidelity. The core of our contribution is a novel hybrid mapping engine that synergistically fuses a symbolic cybersecurity ontology with a BERT-based semantic classifier, demonstrably overcoming the individual weaknesses of each approach. We present a rigorous empirical evaluation using large-scale datasets from the NATO CCDCOE Crossed Swords exercise (XS), intentionally retaining their inherent noise and heterogeneity to validate the real-world applicability of our framework. Our results demonstrate that the framework achieves a significant reduction in alert triage volume while ensuring that no critical threats are dropped. Notably, our hybrid mapping engine achieves an F1-score of 87%, outperforming non-hybrid baselines. This work provides a validated blueprint for moving from reactive alert triage to proactive, context-aware threat investigation in modern SOCs.",
+   "status": "current"
+  },
+  {
+   "title": "Explainable AI-based root-cause diagnosis of maritime engine anomalies with external factors",
+   "identifiers": {
+    "openalex": "W7154451270",
+    "doi": "10.1016/j.cie.2026.112028"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "NER-AD: Noise-Robust Reconstruction Enhanced by Representation-Learning for Metric Anomaly Detection in Online Service Systems",
+   "identifiers": {
+    "openalex": "W7154566508",
+    "doi": "10.1109/tsc.2026.3684516"
+   },
+   "abstract": "Online service systems operate under high concurrency, dynamic workloads, and distributed execution environments, which increase their susceptibility to faults and performance degradation. To ensure stable operation, these systems commonly monitor performance metrics, where timely anomaly detection enables early intervention and fault prevention. Existing metrics-based anomaly detection methods are typically unsupervised, reconstructing unlabeled data to model normal patterns and detecting anomalies as deviations from these patterns. However, they often overlook the presence of unlabeled anomalous data (noise) within the training set, which hinders the model’s ability to accurately learn normal behavior and degrades detection accuracy. To address this limitation, we propose a noise-robust, representation-enhanced reconstruction-based anomaly detection method for metrics. The method trains a reconstruction model to capture normal time-series patterns and identifies noisy samples based on their deviation from the latent representation center, assigning them lower training weights. Both the reconstruction outputs and the representation centers jointly define the normal pattern of each sample, reducing the influence of anomalous noise during modeling. Extensive experiments show that our method achieves an F1 score of 97.00% on four widely used datasets, surpassing existing state-of-the-art approaches. Ablation studies further confirm the effectiveness of each module.",
+   "status": "current"
+  },
+  {
+   "title": "LogNER: Enhancing log semantics with LLM-driven entity recognition",
+   "identifiers": {
+    "openalex": "W7154602585",
+    "doi": "10.1016/j.jss.2026.112892"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Low-Overhead Passive Resilience Monitoring for AIoT Gateways: End-to-End Anomaly Detection via eBPF Timing Traces and Autoencoders",
+   "identifiers": {
+    "openalex": "W7154686167",
+    "doi": "10.1109/access.2026.3685156"
+   },
+   "abstract": "Modern AIoT services are vulnerable to complex, cross-domain failures spanning wireless sensor networks, edge AI inference, and cloud reporting. Conventional monitoring typically relies on isolated single-node metrics that lack an integrated end-to-end perspective, or on exhaustive active probing that incurs prohibitive resource overhead. To address this gap, this paper presents a lightweight, gateway-centric resilience-monitoring framework that provides comprehensive end-to-end observability purely at the edge. By hooking into kernel-level TCP state transitions via Linux eBPF, the proposed system decouples network-induced delays from application computational bottlenecks. We reconstruct fine-grained discrete latency segments—including device-to-gateway transmission (Tde), IoT service execution (Tis), AI inference (Tai), and cloud reporting (Tec)—completely eliminating injected measurement traffic. Based on these non-intrusive metrics, we design a hybrid detection architecture: (i) protocol-oriented static thresholds for immediate, interpretable localization of hard outages, and (ii) a window-based behavioral layer integrating Autoencoders (AE) and Cumulative Sum (CUSUM) to handle subtle concept drifts and coupled performance degradations. Extensive evaluations on a physical AIoT testbed demonstrate that the framework localizes failures with minimal CPU overhead (less than 1%). Furthermore, the learning-based layer successfully captures the elusive performance fluctuations arising from the dynamic interplay between network conditions and edge computing workloads. Ultimately, this approach facilitates a paradigm shift from reactive failure handling to proactive early warning and autonomous anomaly detection, offering a highly deployable foundation for robust AIoT operations.",
+   "status": "current"
+  },
+  {
+   "title": "LogRMC: Robust Log Anomaly Detection in IoT Systems via Multifield Fusion, Contrastive Learning, and Pseudo-Label Refinement",
+   "identifiers": {
+    "openalex": "W7154944759",
+    "doi": "10.1109/jiot.2026.3685253"
+   },
+   "abstract": "In large-scale Internet of Things (IoT) environments, the reliability and security of complex cloud-edge ecosystems critically depend on accurate anomaly detection from system logs. However, most existing methods rely primarily on log templates, often ignoring the diagnostic signals embedded in heterogeneous fields (e.g., timestamps, components, and severity levels). Furthermore, they struggle to learn discriminative representations for rare anomalies due to severe class imbalance, causing models to become biased toward normal patterns. Finally, these approaches often fail to capture the latent structure of unlabeled data, limiting their ability to generalize to unseen anomalies. These limitations render them unreliable in practice. To address the above challenges, we propose LogRMC, a semi-supervised framework for robust log anomaly detection through multi-field log feature fusion, contrastive representation learning, and pseudo-label refinement. First, LogRMC extracts features from diverse log fields and fuses them into unified contextual embeddings that encode inter-field dependencies. Next, it applies contrastive learning on normal samples to learn discriminative and stable representations, thereby improving the separation of normal and anomalous sequence embeddings. To exploit unlabeled data, LogRMC further introduces a cluster-refined pseudo-labeling strategy: it performs density-based clustering on contrastively learned embeddings and applies density ratio estimation within each cluster to generate confidence-aware pseudo-labels. Finally, an attention-based GRU network is trained jointly on labeled and pseudo-labeled log sequences. Extensive experiments on public log datasets demonstrate that LogRMC outperforms state-of-the-art unsupervised and semi-supervised methods, and achieves performance comparable to fully supervised approaches.",
+   "status": "current"
+  },
+  {
+   "title": "LLM4Log: A Systematic Review of Large Language Model-based Log Analysis",
+   "identifiers": {
+    "openalex": "W7155029538",
+    "doi": "10.1145/3842759",
+    "arxiv": "2604.16359"
+   },
+   "abstract": "Software systems generate massive, evolving, semi-structured logs that are central to reliability engineering and AIOps, yet difficult to analyze at scale under drift and limited labels. Recent advances in pretrained Transformer models and instructiontuned large language models (LLMs) have reshaped log analysis by enabling semantic generalization and cross-source evidence integration, but also introducing deployment risks such as context limits, latency and cost, privacy constraints, and hallucinations. This paper presents LLM4Log , a systematic review of LLM-based log analysis across the end-to-end pipeline, from upstream logging-statement generation and maintenance to log parsing/structuring and downstream tasks including anomaly detection, failure prediction, root cause analysis, and log summarization. Following a structured search and manual screening protocol, we completed literature collection in November 2025 and identified 145 unique papers across seven logging tasks. We organize the research area through a unified, task-driven taxonomy, summarize common design patterns (prompting/ICL, retrieval grounding, fine-tuning, tool/agent augmentation, and verification), and analyze evaluation practices, datasets, metrics, and reproducibility. Based on these cross-paper analyses, we summarize key lessons and open challenges for reliable real-world adoption. We emphasize robustness under drift and long-tail events, grounding and faithfulness for operator-facing outputs, and deployment-oriented designs with verifiable behavior.",
+   "status": "current"
+  },
+  {
+   "title": "Advanced IoT intrusion detection using hybrid attention-based deep learning with DenseNet-ViT and AlexNet-BERT",
+   "identifiers": {
+    "openalex": "W7155047485",
+    "doi": "10.1186/s13677-025-00825-x"
+   },
+   "abstract": "The rapid growth of the Internet of Things (IoT) has significantly impacted modern industries by allowing seamless connection and automation. However, this has also contributed to a growing number of sophisticated cyber threats that are taking advantage of IoT’s distributed structure, limited computational power, and varied communication protocols. Current Intrusion Detection Systems (IDS) perform poorly with regard to detecting complex, zero-day, and adversarial attacks mainly due to its generalization deficiency and high false alarm rate. Hence, there is an urgent need for an intelligent, adaptive, and lightweight IDS which is capable of ensuring real-time protection in a dynamic IoT environment. To overcome this challenge, his research introduces a hybrid attention-based deep learning architecture called DAIV-ABID (DenseNet–AlexNet Integrated Vision with Attention-Based Intrusion Detection). The proposed framework consists of Attention-Enhanced AlexNet–BERT for log-based anomaly detection in textual format, and Self-Attention DenseNet–ViT for analyzing traffic patterns in the network spatial and contextual properties. The Dense-Level Feature Fusion process combines multimodal representations. At the same time, the Self-Adaptive Model-Agnostic Meta-Learning (SA-MAML) optimizer enables the model to adapt to changing and previously unseen adversarial threats. The experimental results using benchmark datasets, including the UNSW-NB15 dataset, indicate that the DAIV-ABID algorithm achieves approximately 99% accuracy and very high sensitivity and specificity, while reducing false-positive and false-negative rates compared with RNN, LSTM, GRU, and CNN baselines. These results demonstrate that the proposed model can provide reliable, scalable, and low-latency intrusion detection, which is well-suited to real-time security for IoT applications. Future work will aim to enhance adversarial robustness and to study federated learning for decentralized IoT deployments.",
+   "status": "current"
+  },
+  {
+   "title": "A tolerance analysis framework for microservice-based systems against cascading failures",
+   "identifiers": {
+    "openalex": "W7155101892",
+    "doi": "10.1186/s42400-025-00399-w"
+   },
+   "abstract": "Abstract Microservice has become a dominant approach for building large-scale Internet applications. The microservice-based system (MS) consists of thousands of services, and its complex interactions make it highly susceptible to unforeseen cascading failures. Cascading failure models are commonly used to analyze the system’s tolerance, while the existing models overlook MS’s features and fail to incorporate real-world events, leading to bias in simulation results. To address these, we proposed a comprehensive tolerance analysis framework of MS named the MSTAF. Specifically, we extracted the real-world failure-triggering scenarios and constructed the Workload-based Cascading Failure Model (WL-CFM) to model the load initialization and redistribution. Then, we implemented the Business Loss Assessment Method (BLAM) to quantify the impact by calculating the workload loss. To validate our MSTAF, we conducted experiments on the WL-CFM and BMAL and performed an analysis on the TrainTicket (TT). The results confirm the MSTAF’s superiority. Specifically, the WL-CFM outperforms baselines, reducing simulation error by 10– 48%. The BMAL demonstrates greater accuracy, with deviations from the ground truth ranging from $$-45$$ - 45 % to + 7%. Overall, the MSTAF offers valuable insights for enhancing tolerance and provides an effective solution for developers and researchers.",
+   "status": "current"
+  },
+  {
+   "title": "LLMEdgeSec: LLM-Enabled Log Reasoning for Zero-Day IoT Threat Detection",
+   "identifiers": {
+    "openalex": "W7155104764",
+    "doi": "10.1109/jiot.2026.3686053"
+   },
+   "abstract": "The proliferation of IoT devices has expanded the attack surface, making zero-day threat detection an urgent priority. This paper proposes LLMEdgeSec, a framework that leverages large language models (LLMs) for log reasoning to detect and contextualize zero-day exploits in real-time. Unlike conventional anomaly detectors that rely on static signatures or pre-defined rules, LLMEdgeSec applies prompt-based reasoning over system logs, communication metadata, and device telemetry, enabling proactive identification of previously unseen attack vectors. The framework employs a dual-stream architecture: (1) a lightweight transformer encoder on edge nodes for local feature extraction, and (2) a cloud-based LLM interface for contextual reasoning and cross-device threat correlation. A zero-shot calibration method mitigates hallucinations and reduces false positives. Evaluation on TON IoT, CIC-IDS2018, and a real-world smart factory dataset demonstrates F1 scores exceeding 92% on zero-day samples with communication overhead below 8MB per federated round. Results show significant improvements in accuracy, interpretability, and adaptability over state-of-the-art baselines.",
+   "status": "current"
+  },
+  {
+   "title": "C-ADL: A causal architecture description language for design-time root cause analysis and counterfactual reasoning in distributed systems",
+   "identifiers": {
+    "openalex": "W7155208139",
+    "doi": "10.1016/j.jss.2026.112902"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Explaining Performance Issues of Cloud Applications From Logs Using Rule Induction and Dempster–Shafer Theory",
+   "identifiers": {
+    "openalex": "W7155397182",
+    "doi": "10.1109/access.2026.3686885"
+   },
+   "abstract": "This study focuses on the explainability of AI operations for diagnosing degradations in cloud applications. Log data can provide essential contextual information on misbehaving applications in monitoring, evaluated against a key performance indicator (KPI). We describe an approach to learning conditions that lead to unacceptable KPI states using tree-based and rule-induction algorithms, including a rule-validation framework based on the Dempster-Shafer theory of evidence. The latter also provides a \"what-if\" analysis mechanism to test user or expert hypotheses about the application’s performance. These algorithms produce specific rules that explain anomalous behavior as disturbances in log event-type distributions. Event types (clusters of similar log messages) significantly reduce log volume and enable efficient analytics (e.g., anomaly and change detection) on these structures. Our methods infer event types exhibiting frequency imbalances, which can degrade application performance, and then trace those types back to raw log messages for complete interpretation and root-cause analysis (RCA). We present experimental insights from Elastic Sky X Integrated (ESXi) hosts in a private cloud environment that demonstrate the viability of the proposed framework for explainable cloud administration. This combines time-series and unstructured data from data center resources. Experimental validation across three distinct failure scenarios (compute thrashing, network congestion, and storage saturation) demonstrated the model’s robustness. The approach achieved a true positive rate of 98% for compute anomalies, 97% for network failures, and 99% for storage bottlenecks. Compared to traditional threshold-based monitoring, the proposed method significantly reduces false positives by distinguishing benign high-latency states from true system failures. In particular, event-log-only models achieved low recall (0.118), while the proposed multi-modal fusion substantially improved detection performance and interpretability.",
+   "status": "current"
+  },
+  {
+   "title": "DCGFI: Robust and Interpretable Failure Identification Using Dual Causal Graph for Microservices on Multimodal Observability Data",
+   "identifiers": {
+    "openalex": "W7155524634",
+    "doi": "10.1109/tdsc.2026.3687558"
+   },
+   "abstract": "Accurate failure identification is crucial for ensuring the reliability of microservice systems. However, existing failure identification approaches are usually based on data-driven correlation learning strategies. These approaches focus on statistical correlation in observability data and ignore the causal mechanism in microservice systems, which leads to insufficient robustness and interpretability. In this study, we propose DCGFI, a robust and interpretable failure identification approach based on multimodal observability data, which uses dual causal graphs to integrate causal modeling, data-driven strategy and knowledge driven strategy to achieve effective failure identification for microservice systems. DCGFI first constructs data causal graphs and knowledge causal graphs based on multimodal observability data. Then, DCGFI uses a causal graph convolutional network to learn data causal graphs and update knowledge causal graphs. Finally, DCGFI combines data causal graphs with knowledge causal graphs to jointly optimize the failure identification process. Experimental results on two datasets demonstrate that DCGFI outperforms all baselines on both Macro-F1 and Micro-F1 and exhibits good robustness across different datasets.",
+   "status": "current"
+  },
+  {
+   "title": "Understanding Hallucinations in Large Visual and Language Models",
+   "identifiers": {
+    "openalex": "W7155813136",
+    "doi": "10.1145/3811409"
+   },
+   "abstract": "The rapid deployment of large language and vision models in real-world applications has intensified the need to address hallucinations—instances where models generate incorrect or incoherent outputs. These failures can spread misinformation and degrade workflows, causing financial and operational harm. Despite extensive research efforts, our understanding of hallucinations remains limited and fragmented. Without clear understanding, solutions risk addressing disparate symptoms rather than root causes, which undermines their effectiveness and generalisability during deployment. To address this, we first introduce a unified, multi-level framework to characterise both image and text hallucinations across broad applications, helping reduce conceptual fragmentation. Then, we trace their root causes to identifiable mechanisms within a model’s lifecycle in a task-modality interleaved manner, fostering a deeper and more holistic understanding. Our investigations reveal hallucinations as predictable consequences of underlying distributions and biases. By enhancing our understanding of hallucinations, this survey lays the groundwork for more effective solutions to hallucinations in generative AI systems.",
+   "status": "current"
+  },
+  {
+   "title": "Test-free fault localization using large language models and a Transformer-Mamba hybrid architecture",
+   "identifiers": {
+    "openalex": "W7156164861",
+    "doi": "10.1016/j.infsof.2026.108165"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Ten Years of Chaos Engineering … Now What?",
+   "identifiers": {
+    "openalex": "W7156344830",
+    "doi": "10.1109/mic.2026.3687071"
+   },
+   "abstract": "Modern software systems are increasingly built on distributed cloud-native architectures that offer scalability and agility but also introduce significant complexity and fragility. Chaos engineering aims to help make complex systems resilient to various failures that can occur in production environments. This article examines the evolution of chaos engineering over the past decade in academia and industry. Our analysis suggests that chaos engineering has evolved from a niche testing strategy to a foundational discipline for building dependable systems at scale. The next generation of this testing practice should focus on LLM-assisted test automation, hybrid testing frameworks, and integration of chaos engineering into compliance and governance workflows.",
+   "status": "current"
+  },
+  {
+   "title": "LogRAIL: A Retrieval-Augmented LLM Reverification Layer for Log Anomaly Detection",
+   "identifiers": {
+    "openalex": "W7160021814",
+    "doi": "10.1109/access.2026.3688834"
+   },
+   "abstract": "Android logs vary across devices, build versions, and deployment cycles and may contain missing or out-of-order entries, making reliable anomaly detection difficult. To address this problem, we propose LogRAIL, a two-stage framework in which the first stage selects candidate anomaly windows and the second stage performs reverification. Raw logs are normalized into templates, and a transformer-based sequence classifier processes fixed-length windows of log templates to produce anomaly decisions and scores. A retrieval-augmented large language model inference layer (RAIL) then re-evaluates only windows near the decision threshold and applies either a precision-oriented mode to reduce false positives or a recall-oriented mode to reduce false negatives. The model also provides a concise reason for each decision. In both operating modes, LogRAIL improves F1-score over Stage 1 while enabling controlled precision–recall trade-offs aligned with operational objectives. These results show that LogRAIL provides per-window decision explanations and supporting templates, offering template-based rationales for post-detection review and reporting.",
+   "status": "current"
+  },
+  {
+   "title": "LogPhi: A multi-level anomaly detection method for heterogeneous logs using large language models and dynamic domain knowledge",
+   "identifiers": {
+    "openalex": "W7160067388",
+    "doi": "10.1016/j.neucom.2026.133840"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "CyberFluxAI: A GenAI-Powered System for Rapid and Explainable Cybersecurity Incident Response",
+   "identifiers": {
+    "openalex": "W7160077267",
+    "doi": "10.1109/access.2026.3688669"
+   },
+   "abstract": "This study explores how security teams often detect threats quickly but respond slowly. Actions like isolating hosts, blocking accounts, and preparing reports still rely on manual triage, which increases damage, cost, and compliance risk. This paper presents CyberFluxAI, an integrated incident-response architecture augmented with generative AI capabilities that monitors enterprise logs, reasons about suspicious activity with contextual knowledge, triggers guardrailed actions (e.g., account disablement, host isolation), and produces human-readable explanations and compliance-ready reports. The design combines log normalization (ELK), a threat taxonomy aligned to MITRE ATT&CK, retrieval augmented reasoning over playbooks and policies, and a decision layer that enforces safety, approvals, and rollbacks. The system is evaluated using simulated attacks and controlled scenarios, focusing on detection and response latency (MTTD/MTTR), action correctness, and explanation faithfulness By integrating generative and explainable AI, the framework demonstrates the potential to improve response efficiency and transparency while retaining human oversight for critical decisions. However, the system is currently a research prototype and has not yet been validated in a live SOC or production environment. We also discuss risks such as prompt injection and over-automation, along with safeguards including input sanitization, constrained tool usage, allow-listed actions, PII minimization, and audit logging.",
+   "status": "current"
+  },
+  {
+   "title": "Arash : Token-Efficient LLM-Assisted Crash Root Cause Analysis in Fuzz Driver Generation",
+   "identifiers": {
+    "openalex": "W7160087277",
+    "doi": "10.1145/3811034"
+   },
+   "abstract": "Fuzz driver generation (FDG) has improved coverage and automation in modern fuzzing. Yet a persistent challenge remains: many crashes in generated drivers stem from incorrect API usage rather than genuine library defects. Consequently, root cause analysis (RCA) becomes essential for distinguishing true library bugs from driver-induced crashes. However, existing FDG systems lack dedicated RCA capabilities, whereas statistical RCA methods representative of recent top-tier works (e.g., Aurora, Racing, OptRCA) rely on simplifying assumptions, such as treating the first observable divergence as the true cause, which often fail to capture the underlying fault semantics in practice. In this paper, we propose Arash , an RCA framework for fuzz driver crashes that couples semantic checking with tokenefficient code slicing to enable precise and efficient analysis. Arash introduces two complementary components: (i) Fuzz Driver–Oriented Checker (FDOC), which captures two dominant classes of API misuse in the fuzz driver, namely propertyrelated crashes and extent-related crashes , and correlates these violations with crash traces; (ii) Parameter-Guided Code Slicing (PGCS), which reduces token consumption and contextual noise by preserving only statements relevant to parameters involved in the crash. We implement and evaluate Arash across a diverse corpus of fuzz driver crashes. Arash achieves a recall rate of 85.3%, successfully analyzing cases that all other tools fail to handle, and outperforms the current state-of-the-art by 52.6% in diagnostic accuracy. Moreover, Arash is highly token-efficient, achieving an average token reduction of 46.8% relative to a large language model (LLM) baseline that consumes windowed raw code context, and 24.5% relative to a retrieval-augmented LLM baseline that retrieves full stack-frame functions. Integrated into OSS-Fuzz-Gen, so far 30 genuine library bugs identified by Arash have been confirmed by developers, including one assigned a CVE (CVE-2024-9143), demonstrating its substantial real-world impact in large-scale fuzzing workflows.",
+   "status": "current"
+  },
+  {
+   "title": "Cognitive sovereignty in 6G: architecting a Neuro-Symbolic knowledge plane for verifiable agentic automation",
+   "identifiers": {
+    "openalex": "W7160253330",
+    "doi": "10.1016/j.dcan.2026.04.004"
+   },
+   "abstract": "This paper proposes a cognitive sovereignty architecture for sixth Generation (6G) networks based on a Neuro-Symbolic Knowledge Plane (NSKP) and Large Action Models (LAMs). Unlike traditional knowledge planes that serve as static information repositories, the proposed NSKP integrates neural intuition with symbolic rigor to enable verifiable reasoning. The NSKP maintains a unified knowledge graph with logical constraints, while LAMs translate high-level intents into verifiable network actions. To support distributed operation under locality and privacy constraints, we introduce a federated causal discovery algorithm that learns a global causal graph from edge telemetry without moving raw data. Synthetic experiments show that Fed-DAG recovers causal structure close to a centralised upper bound, provides clear gains for causal root cause analysis over correlation and topology based baselines, and maintains accuracy under sparse gradient communication. The results demonstrate that a neuro-symbolic control layer can deliver agentic yet verifiable automation for 6G management.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0r2b-22"
+}

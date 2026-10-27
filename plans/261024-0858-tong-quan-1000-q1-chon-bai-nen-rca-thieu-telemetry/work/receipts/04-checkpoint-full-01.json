@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-full-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-full 04-t0-review-full-01 --in work/records/seed-reused.csv --in work/records/search-A1-a03.csv --in work/records/search-A2-a01.csv --in work/records/search-A3-a01.csv --in work/records/search-A4-a01.csv --in work/records/search-B1-a01.csv --in work/records/search-B2-a01.csv --in work/records/search-C1-a01.csv --in work/records/search-C2-a01.csv --in work/records/search-C3-a01.csv --in work/records/search-D1-a01.csv --in work/records/search-D2-a01.csv --in work/records/search-D3-a01.csv --in work/records/search-D4-a01.csv --in work/records/search-D5-a01.csv --in work/records/search-D6-a01.csv --in work/records/search-D7-a01.csv --in work/records/search-D8-a01.csv --in work/scripts/common.py --out work/records/t0full2-candidates.csv --out work/records/t0full2-excluded.csv --out work/records/t0full2-needs-review-t0.csv --out work/records/t0full2-t0.csv --note seed plus 17 search queries, N(T0)=863",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-full-01.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-full-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:35:32.397120+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847"
+ ],
+ "output_hashes": [
+  "f36bf16f39a6dbca8d079f82252dad53057e0e34340d064afdfeb0c79dc0bdc5"
+ ],
+ "checks": [
+  "phase 04 full T0 committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "57464dfb8d5249d05be9a1554a0aaa609467defbeb993e0fd322f02c3ca2dcc7",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-full 04-t0-review-full-01 --in work/records/seed-reused.csv --in work/records/search-A1-a03.csv --in work/records/search-A2-a01.csv --in work/records/search-A3-a01.csv --in work/records/search-A4-a01.csv --in work/records/search-B1-a01.csv --in work/records/search-B2-a01.csv --in work/records/search-C1-a01.csv --in work/records/search-C2-a01.csv --in work/records/search-C3-a01.csv --in work/records/search-D1-a01.csv --in work/records/search-D2-a01.csv --in work/records/search-D3-a01.csv --in work/records/search-D4-a01.csv --in work/records/search-D5-a01.csv --in work/records/search-D6-a01.csv --in work/records/search-D7-a01.csv --in work/records/search-D8-a01.csv --in work/scripts/common.py --out work/records/t0full2-candidates.csv --out work/records/t0full2-excluded.csv --out work/records/t0full2-needs-review-t0.csv --out work/records/t0full2-t0.csv --note seed plus 17 search queries, N(T0)=863",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "146f57dbf0bbd5fa3020a2a6045c30a292d17f5e49a8f82cc42ef39381f2ecf8",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0full2-t0.csv",
+   "sha256_before": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "sha256_after": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "f36bf16f39a6dbca8d079f82252dad53057e0e34340d064afdfeb0c79dc0bdc5",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "prefix": "seed",
+ "screener": "s1",
+ "batches": {
+  "seed-000": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "seed-001": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W3183619936"
+   ]
+  },
+  "seed-002": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "seed-003": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "seed-004": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "seed-005": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "seed-006": {
+   "n": 38,
+   "errors": [],
+   "anchor_drift": []
+  }
+ },
+ "anchor_drift": [
+  "seed-001:W3183619936:('context-survey', '1')->('context-survey', '2')"
+ ],
+ "n": 338,
+ "decisions": {
+  "context-survey": 33,
+  "exclude": 162,
+  "include": 85,
+  "needs-review": 58
+ },
+ "valid": true
+}

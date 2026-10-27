@@ -1,0 +1,84 @@
+{
+ "schema_version": 2,
+ "id": "02-reuse-extras-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/reuse-extras.py",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-reuse-extras-01.out",
+ "egress_trace_reference": "work/logs/02-reuse-extras-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:36:51.948969+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac"
+ ],
+ "output_hashes": [
+  "08342bd8c4abd6925906d207c52c261b32a380163bc576eb84f81997ccf16648",
+  "5ce67196195fe7dc481b95979f20be29c2c30c2b70cebd3cba7a1a037ab2bcec",
+  "73ea16accddd62f6e306f1b353b118e676946435841836bafc860c047dcfc41c"
+ ],
+ "checks": [
+  "full-text hash map; non-journal split"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "0d2024c9cd4cc6697026e7997295e65cb777aa20da1d9c0fbbd6ee11e9460824",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/reuse-extras.py",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "0e411009ac33d686fd818479bd1b386d5ff00162ab6fc6f82bbfc074d0421867",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/seed-reused.csv",
+   "sha256_before": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "sha256_after": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/reuse-fulltext-map.csv",
+   "sha256": "5ce67196195fe7dc481b95979f20be29c2c30c2b70cebd3cba7a1a037ab2bcec",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/prior-work-pool.csv",
+   "sha256": "73ea16accddd62f6e306f1b353b118e676946435841836bafc860c047dcfc41c",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/reuse-summary.json",
+   "sha256": "08342bd8c4abd6925906d207c52c261b32a380163bc576eb84f81997ccf16648",
+   "created_this_attempt": true
+  }
+ ]
+}

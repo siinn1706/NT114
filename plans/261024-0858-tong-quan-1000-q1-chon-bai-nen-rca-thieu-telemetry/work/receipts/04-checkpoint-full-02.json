@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-full-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-full 04-fn-judge-full-01 --in work/records/t0full2-excluded.csv --in work/records/t0full2-t0.csv --out work/records/t0full2-fn-judged.csv --out work/t0full2-fn-check.json --out work/t0full2-q1-sample.csv --out work/t0full2-q1-check.md --out work/dossier/input/t0full2-manifest.json --note FN 0/25+0/25; Q1 manual 30/30; check-literature pass x22",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-full-02.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-full-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:35:32.726299+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "9c87cde7686b3a65dad56e626c1d9f14c59896b66c2c3265ee619a1dff9e28d0"
+ ],
+ "output_hashes": [
+  "75b52278219142510ab4a56e22520ed54fe981429c3e1f0fbbe6bc749e047cf1"
+ ],
+ "checks": [
+  "phase 04 full QA committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "f4d1ee4c150418589a9d3ae1a156879b61b8a09152b3eb0630e9740d83f01290",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-full 04-fn-judge-full-01 --in work/records/t0full2-excluded.csv --in work/records/t0full2-t0.csv --out work/records/t0full2-fn-judged.csv --out work/t0full2-fn-check.json --out work/t0full2-q1-sample.csv --out work/t0full2-q1-check.md --out work/dossier/input/t0full2-manifest.json --note FN 0/25+0/25; Q1 manual 30/30; check-literature pass x22",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "414bf074fbb64efdc4f7bcbacdd67a0b1d2bb6eaa6726f8a9ca68ae581409e65",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/t0full2-fn-check.json",
+   "sha256_before": "9c87cde7686b3a65dad56e626c1d9f14c59896b66c2c3265ee619a1dff9e28d0",
+   "sha256_after": "9c87cde7686b3a65dad56e626c1d9f14c59896b66c2c3265ee619a1dff9e28d0",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "75b52278219142510ab4a56e22520ed54fe981429c3e1f0fbbe6bc749e047cf1",
+   "created_this_attempt": true
+  }
+ ]
+}

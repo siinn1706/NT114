@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "03-search-04",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/search-openalex-cursor.py A1",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/03-search-04.out",
+ "egress_trace_reference": "work/logs/03-search-04.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:18:12.802520+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d"
+ ],
+ "output_hashes": [
+  "45ae296dc108be69da4c5af2fb036dd55ca53be36e254f29f9b70563113a4a86"
+ ],
+ "checks": [
+  "A1 with API key"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "963e70a1b9cf11ad6e39e7a68d583fb65a0ca084a3aa5305b4d6dc5e02cea7f6",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/search-openalex-cursor.py A1",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "5f244160f8e4ebb943025a1eed79a38f9b3a371d5afb8f659457b0261114e3b6",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "protocol.md",
+   "sha256_before": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "sha256_after": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "45ae296dc108be69da4c5af2fb036dd55ca53be36e254f29f9b70563113a4a86",
+   "created_this_attempt": true
+  }
+ ]
+}

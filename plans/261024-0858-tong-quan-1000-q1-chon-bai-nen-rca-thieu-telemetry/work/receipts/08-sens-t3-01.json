@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "08-sens-t3-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/sensitivity.py work/f-rescore.csv 10 work/sensitivity.csv --xcheck work/appraisal/xcheck-r2.csv --focus W7165616276",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/08-sens-t3-01.out",
+ "egress_trace_reference": "work/logs/08-sens-t3-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T20:56:38.202447+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "c68561f0b8040fdc19461fda1af9950abbb2a26e6ac847dcadc4c0af39e5171b",
+  "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321"
+ ],
+ "output_hashes": [
+  "c242f126250b35a2fd75ad57b45fb3664a151b352e77828b4f9e1987a71590de"
+ ],
+ "checks": [
+  "18 weight scenarios on rescored F of all 10 T3 records with gates dropped (single-eligible rule); focus RCLAgent"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "2db0a887b067cff82ef3a4eb7903fe295d327937905d51ab31bc3e954d31301c",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/sensitivity.py work/f-rescore.csv 10 work/sensitivity.csv --xcheck work/appraisal/xcheck-r2.csv --focus W7165616276",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "9477c94ae4c827e8f0abac6cf9d4a8d6fd06d764c3ef689ce5324124865424cf",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/f-rescore.csv",
+   "sha256_before": "c68561f0b8040fdc19461fda1af9950abbb2a26e6ac847dcadc4c0af39e5171b",
+   "sha256_after": "c68561f0b8040fdc19461fda1af9950abbb2a26e6ac847dcadc4c0af39e5171b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/appraisal/xcheck-r2.csv",
+   "sha256_before": "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321",
+   "sha256_after": "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/sensitivity.csv",
+   "sha256": "c242f126250b35a2fd75ad57b45fb3664a151b352e77828b4f9e1987a71590de",
+   "created_this_attempt": true
+  }
+ ]
+}

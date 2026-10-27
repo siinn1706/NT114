@@ -1,0 +1,61 @@
+{
+ "schema_version": 2,
+ "id": "10-receipt-verify-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-receipt-verify-01.out",
+ "egress_trace_reference": "work/logs/10-receipt-verify-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T21:42:22.231109+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [
+  "17d747c6e78067e085e9353e74239525b60ee01029d2cd2317864b252092ecbc"
+ ],
+ "checks": [
+  "check-receipt.py verify on every receipt; classified"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "25f7cd4bbcd314214d96558d22703174d4f576f4ac15063421dc2f92a86cb337",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "b51cedfe4fedc63127e31a8177eeebbb06579090e8760c0c3ebbabe4e9b93019",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": [
+  {
+   "path": "work/receipt-verify-10.csv",
+   "sha256": "17d747c6e78067e085e9353e74239525b60ee01029d2cd2317864b252092ecbc",
+   "created_this_attempt": true
+  }
+ ]
+}

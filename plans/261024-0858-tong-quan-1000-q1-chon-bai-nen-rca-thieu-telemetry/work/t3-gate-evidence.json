@@ -1,0 +1,31 @@
+{
+ "checked_utc": "2026-10-25T21:09:13+00:00",
+ "archive": {
+  "bytes": 15251524,
+  "sha256": "e578ab69f552b01b95b26a019ee20032e0264f83483ad422dd4027e5a29b5e60",
+  "entries": 68,
+  "top_level": [
+   "CHASE/data",
+   "CHASE/log",
+   "CHASE/models",
+   "CHASE/main.py",
+   "CHASE/public_function.py"
+  ],
+  "py7zr": "0.22.0",
+  "license_like": [
+   "CHASE/log/logparser/LICENSE.md"
+  ],
+  "readme_like": [
+   "CHASE/log/logparser/logparser/Drain/README.md",
+   "CHASE/log/logparser/README.md"
+  ]
+ },
+ "zenodo": {
+  "http": 200,
+  "title": "AIOps 2022",
+  "license": "cc-by-4.0",
+  "files": [
+   "aiops2022.zip"
+  ]
+ }
+}

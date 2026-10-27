@@ -1,0 +1,102 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Evaluating Self-Reflective LLM Agents for Autonomous Kubernetes Troubleshooting",
+   "identifiers": {
+    "openalex": "W7222353773",
+    "doi": "10.1109/access.2026.3743626"
+   },
+   "abstract": "Resolving Kubernetes incidents demands considerable operational knowledge, and the dependability of large language model (LLM) agents for autonomous remediation is unclear. This paper examines whether Reflexion, a verbal reinforcement learning method driven by self-produced failure analysis, improves LLM agents on Kubernetes troubleshooting tasks. We built a Reflexion-based remediation system with a deterministic programmatic evaluator and assessed it in 1,500 controlled runs over five Claude models, ten fault scenarios, and three configurations (one-shot baseline, two-try without reflection, and full Reflexion with at most one reflection per run). Permitting a second attempt raised overall success from 38.6% to 68.4%, whereas adding Reflexion increased it only to 69.2%. Reflexion slightly reduced single-fault success (-2.0 percentage points). Its 12.0-point gain in the multi-fault cases rests on one double-fault and one triple-fault scenario and is therefore a preliminary observation, not a main finding. Post-hoc controls on the three currently available models qualify these results. Forwarding the evaluator’s verbatim failure reason without reflection outperformed full Reflexion, whose reflection module had not received that reason, on identically instantiated multi-fault scenarios (76.4% versus 26.0%). Given the same reason, reflection matched the feedback-only control (79.1%) but did not exceed it, so the gap was informational. Allowing the actor to verify its own fix within one attempt recovered about half of the retry effect on single-fault scenarios (67.5% to 80.8%), while the externally verified second attempt remained superior (92.5%). Mid-capability models benefited most, weaker models did not use reflection effectively, and the strongest model showed a ceiling effect. The results do not support routine self-reflection after every failure; a verified retry and the evaluator’s raw feedback should come first, and any benefit for complex incidents remains preliminary.",
+   "status": "current"
+  },
+  {
+   "title": "An intelligent IoT-Based system for real-time electrical anomaly detection and protective relay actuation using machine learning",
+   "identifiers": {
+    "openalex": "W7222426877",
+    "doi": "10.1016/j.array.2026.101340"
+   },
+   "abstract": "Protecting sensitive electrical equipment used in residential, laboratory, and commercial environments from power anomalies is critical to ensure operational safety and reliability. This paper presents a real-time intelligent monitoring and protection system that combines Internet of Things (IoT) sensing with embedded Machine Learning (ML) for anomaly detection. The system is implemented on the M5StickC (ESP32-based) microcontroller using a custom TinyML model developed with Edge Impulse. Device behavior is classified into normal and off states, while anomalous behavior is detected using an unsupervised clustering-based diagnostic layer. Detected anomalies, including unexpected power surges or fluctuations, trigger automated alerts and can optionally disconnect power via an integrated relay. To ensure robustness, the model was trained and tested on multiple devices with diverse power ratings, simulating a wide range of operating conditions without risking sensitive equipment. Sensor data is securely transmitted to the Arduino IoT Cloud, enabling real-time remote monitoring, control, and historical analytics. Experimental evaluation on three representative loads (a 12 W LED lamp, a 24-port PoE network switch, and a ∼1000 W toaster/heater) and a one-week commercial-building deployment demonstrates the feasibility of the proposed prototype as an initial step towards real-time monitoring and anomaly-aware protection of low- and medium-power electrical devices; validation as a fault-protection solution for mission-critical, medical, or industrial-safety applications is outside the scope of this work.",
+   "status": "current"
+  },
+  {
+   "title": "An AI-driven cybersecurity framework for GSaaS: Threat detection in emerging space ecosystems",
+   "identifiers": {
+    "openalex": "W7222487341",
+    "doi": "10.1016/j.array.2026.101365"
+   },
+   "abstract": "Ground Station as a Service (GSaaS) is transforming satellite ground-segment operations through cloud-native, shared, and multi-tenant infrastructure, creating cybersecurity requirements that extend beyond conventional intrusion detection. This study proposes an AI-driven cybersecurity framework that integrates behavioural anomaly detection, supervised threat classification, contextual risk assessment, risk-aware edge–cloud processing, and policy-constrained response orchestration. A key contribution is the Analyst-Capacity-Aware False-Alarm Burden (AC-FAB) model, which extends conventional false-positive evaluation by relating generated false alarms to available analyst capacity and distinguishing detector-level false positives from those ultimately requiring human investigation. The framework is evaluated through complementary GSaaS-specific and benchmark experiments. A 100,000-event synthetic GSaaS dataset comprising 1,000 operational episodes is used to evaluate the integrated decision pipeline. Incorporating the autoencoder anomaly score into supervised classification reduces the false-positive rate from 7.61% to 6.98%, while risk-aware routing retains 80.09% of evaluated events for local edge processing. Policy validation across 20,000 generated response plans records no tenant-scope, session-scope, or action allow-list violations. Response orchestration reduces analyst-facing false positives from 1,272 to 530, corresponding to a 58.33% reduction in estimated false-alarm burden. Complementary evaluation on NSL-KDD and UNSW-NB15 demonstrates the effect of reconstruction-error threshold calibration, reducing false-positive rates from 38.68% to 3.61% and from 65.69% to 9.52%, respectively, relative to the 50th-percentile reference configuration. These findings show that GSaaS cybersecurity should be evaluated not only by detection performance, but also by operational risk, processing location, response-policy correctness, tenant isolation, and the human capacity required to investigate alerts.",
+   "status": "current"
+  },
+  {
+   "title": "DeCoR: decoupled multiplex causal ranking for microservice root cause analysis",
+   "identifiers": {
+    "openalex": "W7222783047",
+    "doi": "10.1186/s13677-026-01009-x"
+   },
+   "abstract": "Failures in microservice systems can produce correlated symptoms across services, motivating the study of structural information for root-cause localization alongside anomaly-based approaches. We study service-level localization from multivariate monitoring metrics under known fault-onset and metric-to-service mapping assumptions. Existing temporal and multilayer ranking methods rarely use relation-estimation reliability to control node-level information exchange between contemporaneous and lagged evidence. We propose Decoupled Multiplex Causal Ranking (DeCoR) and its core algorithm, Regime-aware Innovation Causal Estimation with Confidence-aware Multiplex Coupling (RICE-CM). RICE-CM derives both evidence types from a shared dynamics model fitted to the pre-fault normal segment. It aggregates edge confidence scores into node reliability, applies nonuniform diagonal coupling between same-metric replicas, and ranks services through reverse PageRank on a supra-adjacency matrix. We evaluated RICE-CM on a 300-case subset drawn from three RCAEval datasets: Sock Shop 1 (SS1), Sock Shop 2 (SS2), and Online Boutique (OB). With dataset-specific coupling settings selected on the same benchmark cases, it achieved Avg@5 scores of 0.6000, 0.7040, and 0.4864 on SS1, SS2, and OB, respectively. It achieved the highest Avg@5 among the evaluated methods on all three datasets and exceeded RUN on OB by 0.0288, while requiring approximately 1/33 of RUN’s runtime per case. Compared with RICE-only, RICE-CM improved Avg@5 by 0.0640, 0.0704, and 0.0624, respectively. Paired tests supported these gains on SS1 and SS2 after Holm correction, but not on OB. Against fixed-coupling RICE-MX, the gains were 0.0720, 0.0400, and 0.0336, respectively, with a Holm-adjusted p value of 0.0456 on each dataset. Positive observed gains over RICE-only occurred across all 12 dataset-fault-type combinations, whereas the coupling-parameter sweep showed dataset-dependent sensitivity. These results support node-reliability-driven nonuniform coupling over fixed coupling within the evaluated benchmarks and task assumptions.",
+   "status": "current"
+  },
+  {
+   "title": "IoT-enabled, multi-sensor fire detection and deep-learning acoustic recognition of illegal logging for forest protection",
+   "identifiers": {
+    "openalex": "W7223036732",
+    "doi": "10.1016/j.array.2026.101382"
+   },
+   "abstract": "Forest fires and illegal logging are major drivers of deforestation, biodiversity loss, and climate instability, yet both are difficult to monitor in remote forests that lack communication infrastructure. Existing forest-protection systems address fire or illegal logging separately, and commonly rely on Wi-Fi or other short-range links to relay sensor data. This paper presents a system that addresses both threats within a single sensor node. The constituent technologies which include multi-sensor threshold-based fire detection, convolutional neural network (CNN) acoustic classification, and LoRaWAN communication are individually established; the contribution of this work is their integration into one forest-protection architecture built from low-cost commodity component and its end-to-end demonstration from in-forest sensing to cloud alerting. A multi-sensor node built around an ESP32 microcontroller interfaces temperature, humidity, smoke, carbon dioxide, and infrared flame sensors, and applies conjunctive threshold logic for early fire detection. A MAX9814 acoustic sensor captures environmental audio, which is classified by a convolutional neural network trained on Mel-frequency cepstral coefficient (MFCC) features to distinguish chainsaw and axe-cutting sounds from natural forest sounds. Sensor data is transmitted through an RF98 LoRa transceiver to a Dragino LPS8 gateway registered on The Things Network (TTN) and forwarded via webhook to a cloud dashboard that visualizes readings and issues automated alerts. Experimental results demonstrate clear separation between fire and no-fire conditions under controlled testing, successful end-to-end LoRaWAN transmission, and a CNN classification accuracy of 92% across four acoustic classes, demonstrating the feasibility of an integrated, long-range forest-monitoring node intended for low-cost deployment in forest-deficient regions such as Pakistan.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0r2b-27"
+}

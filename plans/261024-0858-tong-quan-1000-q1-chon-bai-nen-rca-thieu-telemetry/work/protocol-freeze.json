@@ -1,0 +1,26 @@
+{
+ "protocol": "protocol.md",
+ "protocol_sha256": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+ "frozen_at_utc": "2026-10-24T02:34:10+00:00",
+ "git_head": "1fe2b8bed9c45b1a1109cfe76e21c9b064f7c4a2",
+ "to_publication_date": "2026-10-24",
+ "pre_freeze_changes": "work/amendments.md (section 'Tr\u01b0\u1edbc freeze')",
+ "query_probe_final": {
+  "file": "work/query-probe-04.csv",
+  "sha256": "c439a97c541fd383ce6643330cc0bcb52834adf3c69051ff918b105cf0d2268d",
+  "note": "17 queries, all HTTP 200, page-1 AND-clause hit rate >= 0.854"
+ },
+ "regex_calibration": {
+  "file": "work/regex-calibration-02.json",
+  "sha256": "4096c2f2bcb6918e0fd6b43cb7e1a66cda226392021e441aad577dc2fc906964"
+ },
+ "protocol_review": {
+  "file": "research/protocol-review.md",
+  "sha256": "e1192c2ed570dff9f413d400e9280ec238eae14e6cd4350d8e52749211e5795c"
+ },
+ "phase01_deviations": [
+  "step 4 probed with per-page 5 then 200 (not 1); the final probe file is query-probe-04.csv",
+  "step 5 (30+30 regex check) replaced by calibration on 736 labelled records (amendment)"
+ ],
+ "screening_files_before_freeze": []
+}

@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-double-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 double-seed 05-kappa-seed-01 --in work/screen/seed-s1-merged.csv --out work/screen/input/dbl-seed-manifest.json --out work/screen/dbl-seed-000-s2.csv --out work/screen/dbl-seed-001-s2.csv --out work/screen/anchors-dbl-seed-000-s2.csv --out work/screen/anchors-dbl-seed-001-s2.csv --out work/screen/kappa-seed.json --out work/screen/seed-resolution-a01.csv --note kappa_include_abstract 1.0 on n=32; same model family; ranks 90-110 not applicable (85 eligible)",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-double-seed-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-double-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:04:43.133949+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "6c3578526eea322e2302502ead3ec3ba26111c74bd80e9901978c1b1e998a0a3"
+ ],
+ "output_hashes": [
+  "237efb8905ae76ded7c3f0d7ecf042de39fdac8b1dd57292d9ab9ae08effa5f4"
+ ],
+ "checks": [
+  "double screening committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "3fb1b86e4f4469e905f98e7937a14de2e72b6e38b891589544837f59de2ff8c1",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 double-seed 05-kappa-seed-01 --in work/screen/seed-s1-merged.csv --out work/screen/input/dbl-seed-manifest.json --out work/screen/dbl-seed-000-s2.csv --out work/screen/dbl-seed-001-s2.csv --out work/screen/anchors-dbl-seed-000-s2.csv --out work/screen/anchors-dbl-seed-001-s2.csv --out work/screen/kappa-seed.json --out work/screen/seed-resolution-a01.csv --note kappa_include_abstract 1.0 on n=32; same model family; ranks 90-110 not applicable (85 eligible)",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "ea966caef14786cc2cb219d51cb6a64714c0c91582a85981595d6b6f3f0b3cbc",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/kappa-seed.json",
+   "sha256_before": "6c3578526eea322e2302502ead3ec3ba26111c74bd80e9901978c1b1e998a0a3",
+   "sha256_after": "6c3578526eea322e2302502ead3ec3ba26111c74bd80e9901978c1b1e998a0a3",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "237efb8905ae76ded7c3f0d7ecf042de39fdac8b1dd57292d9ab9ae08effa5f4",
+   "created_this_attempt": true
+  }
+ ]
+}

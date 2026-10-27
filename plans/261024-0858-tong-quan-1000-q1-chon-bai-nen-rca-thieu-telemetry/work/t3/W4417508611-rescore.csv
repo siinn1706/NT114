@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W4417508611,F1,5,5,Sec. I-III; Sec. IV-A.3 AC@k,unchanged
+W4417508611,F2,3,3,"Sec. III-C Eq. 1,3; Sec. IV-B/C/E; Sec. V-B",unchanged
+W4417508611,F3_code,2,2,GitHub contents API 2026-10-25; README run commands,"unchanged (public repo, README, no licence)"
+W4417508611,F3_data,2,2,Table I; aiops.cn page 200; repo pickles HEAD 200,unchanged
+W4417508611,F3_compute,3,3,Sec. IV-A.4; Table VI; main.py --device cpu,unchanged
+W4417508611,F3_desc,1,1,"Sec. III-C (k and w absent in paper; repo defaults event_len 20, seq_len 6)",unchanged
+W4417508611,F4,4,3,Sec. IV-B p.1668 (intervals omitted); repo main.py seed_everything(2024); Sec. IV-D test size 35,"Uncertainty point is not demonstrable: no interval shown, code seeds once, 95% CI +/-1% is below one test failure (2.9 pp). Other three points kept."
+W4417508611,F5,3,3,"Sec. V-A, V-B",unchanged
+W4417508611,F6,2,2,Sec. IV-A.1; Sec. IV-A.3,unchanged

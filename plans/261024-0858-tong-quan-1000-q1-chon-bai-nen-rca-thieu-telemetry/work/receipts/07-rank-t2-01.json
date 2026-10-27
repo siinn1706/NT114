@@ -1,0 +1,87 @@
+{
+ "schema_version": 2,
+ "id": "07-rank-t2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/rank-t2.py work/appraisal/overrides-a01.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/07-rank-t2-01.out",
+ "egress_trace_reference": "work/logs/07-rank-t2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:57:16.071004+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "7642afab27210ffbd5a6aa7d04ddd6ac97e6c0b1c9de3d3eb0d0578c9304aeab",
+  "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321"
+ ],
+ "output_hashes": [
+  "055860d68bd95e817c0513377c49abdfa959429828cc5d626bba5622cb476e27",
+  "65f969876e37864f1299b0cab4b4d30681d3d747778499baf1ea9c305ecc8c39"
+ ],
+ "checks": [
+  "T2 top 10 after cross-check"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "d795e245883f1ab1d2c5dd4b9f6d5a99942186087e15d9c3ddbd87e25a919e38",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/rank-t2.py work/appraisal/overrides-a01.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "e3957e89f9560de60ca12f463ef5a2968e2af2b0ad9d1c8c712a5848764232fe",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/appraisal/overrides-a01.csv",
+   "sha256_before": "7642afab27210ffbd5a6aa7d04ddd6ac97e6c0b1c9de3d3eb0d0578c9304aeab",
+   "sha256_after": "7642afab27210ffbd5a6aa7d04ddd6ac97e6c0b1c9de3d3eb0d0578c9304aeab",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/appraisal/xcheck-r2.csv",
+   "sha256_before": "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321",
+   "sha256_after": "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/appraisal/f-scores.csv",
+   "sha256": "65f969876e37864f1299b0cab4b4d30681d3d747778499baf1ea9c305ecc8c39",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t2-top10.csv",
+   "sha256": "055860d68bd95e817c0513377c49abdfa959429828cc5d626bba5622cb476e27",
+   "created_this_attempt": true
+  }
+ ]
+}

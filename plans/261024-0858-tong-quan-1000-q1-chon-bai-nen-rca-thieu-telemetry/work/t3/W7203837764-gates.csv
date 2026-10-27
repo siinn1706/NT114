@@ -1,0 +1,7 @@
+openalex_id,gate,result,evidence,locator,note
+W7203837764,G1,fail,"Code only as Drive archive CHASE.7z (HTTP 200); no GitHub repo (1 query, 0 results); license/entry point unverifiable; paper checklist lacks lr/epochs/batch and preprocessing",§I fn.1 p.2; §IV-A2 p.8,would flip only if the archive contains a LICENSE and a README run command
+W7203837764,G2,pass,"GAIA-DataSet GitHub landing 200 and API 200 on 2026-10-25, GPL-2.0, MicroSS folder",§IV-A1 fn.3 p.7; https://github.com/CloudWise-OpenSource/GAIA-DataSet,not in NT114 bundle
+W7203837764,G3,pass,"static-estimate: no LLM; 3 attention layers, 8 heads, d=128, one hypergraph layer, graphs of ~10 nodes",§IV-A2 p.8; §IV-A1a p.7,compute unreported by authors; estimate from architecture only
+W7203837764,G4,pass,non-LLM core (heterogeneous modality attention + causal hypergraph conv) emits per-instance scores that one local LLM can consume or explain,§III-B-C p.5-7; §V p.10,composition with an LLM is untested; the paper's LLM mention is future work only
+W7203837764,G5,pass,traces + logs + metrics,§III-A p.4-5,
+W7203837764,h1-compat,yes,softmax over instances gives full ranking with score,Eq.15 p.7,ranking is over <=10 instances per trace on GAIA; confidence calibration untested

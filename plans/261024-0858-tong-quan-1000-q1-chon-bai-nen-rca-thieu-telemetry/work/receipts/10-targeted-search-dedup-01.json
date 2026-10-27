@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "10-targeted-search-dedup-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/dedup-targeted-search.py work/targeted-search-261026.csv work/targeted-search-261026-dedup.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-targeted-search-dedup-01.out",
+ "egress_trace_reference": "work/logs/10-targeted-search-dedup-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T02:35:57.570731+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "c1ee0bde159aa771fcb136fd31c3b7bba3177d990236e6eb08638f77b770897e",
+  "5d1af4ced7280f55f19c6eab2ebf91621012fb06e53eab224c90b0eff3bcc1f2"
+ ],
+ "output_hashes": [
+  "30c3488435bfa1e58506a97a0f8bad3a58d779085b91004870b7fdb7d9e0deed"
+ ],
+ "checks": [
+  "each targeted-search row matched by DOI, arXiv id or title fragment against work/**/*.csv and research/cards"
+ ],
+ "limitations": [
+  "search rows were transcribed by hand from Perplexity answers and verified against arxiv.org, Crossref or OpenAlex; Perplexity answer text itself is not evidence"
+ ],
+ "closure_hash": "ca678644f71a0383f109af0f8926053fe7af7307b0daccaa6205848bd9bbf634",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/dedup-targeted-search.py work/targeted-search-261026.csv work/targeted-search-261026-dedup.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "023ff8eff0c6b0d6183271d1259b73ad5087b0df62bb18ec01c5a62d80a20b4f",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/targeted-search-261026.csv",
+   "sha256_before": "c1ee0bde159aa771fcb136fd31c3b7bba3177d990236e6eb08638f77b770897e",
+   "sha256_after": "c1ee0bde159aa771fcb136fd31c3b7bba3177d990236e6eb08638f77b770897e",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/dedup-targeted-search.py",
+   "sha256_before": "5d1af4ced7280f55f19c6eab2ebf91621012fb06e53eab224c90b0eff3bcc1f2",
+   "sha256_after": "5d1af4ced7280f55f19c6eab2ebf91621012fb06e53eab224c90b0eff3bcc1f2",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/targeted-search-261026-dedup.csv",
+   "sha256": "30c3488435bfa1e58506a97a0f8bad3a58d779085b91004870b7fdb7d9e0deed",
+   "created_this_attempt": true
+  }
+ ]
+}

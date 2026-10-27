@@ -1,0 +1,67 @@
+{
+ "schema_version": 2,
+ "id": "01-sjr-regex-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/check-sjr-and-regex.py",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/01-sjr-regex-01.out",
+ "egress_trace_reference": "work/logs/01-sjr-regex-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:21:09.671667+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [
+  "baf68df8d31d0eaa020cc154907270587978964414f4cbbd8f0647d3d33f473e",
+  "ed6eda041a83d4f9f58862fb7307bf03c4cc8c3bd56ffa24ae580330808fb4ff"
+ ],
+ "checks": [
+  "SJR hash and counts; regex positive/negative sample"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "8718dca0d72cb3fa58d84f57d377a47b20a7459f8f038658d49d20799334b21d",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/check-sjr-and-regex.py",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "a98994eb8849aeceeb96b98efd02c785e99768cf4ca30aa05382aa1cf1b37161",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": [
+  {
+   "path": "work/regex-check.csv",
+   "sha256": "baf68df8d31d0eaa020cc154907270587978964414f4cbbd8f0647d3d33f473e",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/sjr-regex-summary.json",
+   "sha256": "ed6eda041a83d4f9f58862fb7307bf03c4cc8c3bd56ffa24ae580330808fb4ff",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "schema_version": 2,
+ "id": "02-check-plan-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 C:/Users/Siinn/.claude/skills/nckh-plan/references/_shared/scripts/check-plan.py .",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-check-plan-01.out",
+ "egress_trace_reference": "work/logs/02-check-plan-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:01:20.901887+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "b91101bfe281d0ed3a8cca6ef917299da76b188305dc73481f6b0d86fa927478"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "check-plan structure, links and status receipts"
+ ],
+ "limitations": [
+  "structural only"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 C:/Users/Siinn/.claude/skills/nckh-plan/references/_shared/scripts/check-plan.py .",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "cf5edfddd53aa3385f66398dd734c8417878d0d68bfe2786828a2dc86fae0aac",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "plan.md",
+   "sha256_before": "b91101bfe281d0ed3a8cca6ef917299da76b188305dc73481f6b0d86fa927478",
+   "sha256_after": "b91101bfe281d0ed3a8cca6ef917299da76b188305dc73481f6b0d86fa927478",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

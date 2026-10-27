@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-screen-batches-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-screen-batches.py work/records/t0seed4-t0.csv seed",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-screen-batches-seed-01.out",
+ "egress_trace_reference": "work/logs/05-screen-batches-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:52:45.205034+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d"
+ ],
+ "output_hashes": [
+  "b7f8ac793e49fe1f123ff25a5009345d7c683c1c30e8f888e2deeeb88a0f239a"
+ ],
+ "checks": [
+  "seeded screening batches of 50"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "729379ba1d4092f419a94b32968be07ba8c4173dc52758373549c4fd91a885a6",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-screen-batches.py work/records/t0seed4-t0.csv seed",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "b28ee5b2bfba7e23b7468e47d6738aea8bf7a7b7b2957fe61940dac29e45e940",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0seed4-t0.csv",
+   "sha256_before": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "sha256_after": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/input/seed-manifest.json",
+   "sha256": "b7f8ac793e49fe1f123ff25a5009345d7c683c1c30e8f888e2deeeb88a0f239a",
+   "created_this_attempt": true
+  }
+ ]
+}

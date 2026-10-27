@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-sample-full-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0full2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-sample-full-01.out",
+ "egress_trace_reference": "work/logs/04-fn-sample-full-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:33:45.067560+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "f3bf83ac6563b5f9026529616edbcb3c7c52bc85e319ec132dc05b27b4ede9bd"
+ ],
+ "output_hashes": [
+  "b6110fa4353af8aba44393623ef5aa09e68fa1b72f5be6c0c80e40ca495829eb"
+ ],
+ "checks": [
+  "FN sample on full T0"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "44a7f44ac5b81dc9ccdaac5271a7af5021905707562dae23e13d5029304d6f36",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0full2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "57bf18e69e653842d139663373e5b111391030d9f67ad82e8468ffcb8454dd2a",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0full2-excluded.csv",
+   "sha256_before": "f3bf83ac6563b5f9026529616edbcb3c7c52bc85e319ec132dc05b27b4ede9bd",
+   "sha256_after": "f3bf83ac6563b5f9026529616edbcb3c7c52bc85e319ec132dc05b27b4ede9bd",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0full2-fn-sample.csv",
+   "sha256": "b6110fa4353af8aba44393623ef5aa09e68fa1b72f5be6c0c80e40ca495829eb",
+   "created_this_attempt": true
+  }
+ ]
+}

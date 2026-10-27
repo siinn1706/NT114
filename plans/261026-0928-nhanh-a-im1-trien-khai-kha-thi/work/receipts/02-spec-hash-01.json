@@ -1,0 +1,64 @@
+{
+ "schema_version": 2,
+ "id": "02-spec-hash-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -c import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest(), sys.argv[1]) work/path-selection-spec.md",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-spec-hash-01.out",
+ "egress_trace_reference": "work/logs/02-spec-hash-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:00:21.933813+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "90623a22e8af8048d69cf00e14b363270149f474f0e2b4244a89fd4f805da913"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "sha256 of path-selection-spec a01 recorded before any evaluation"
+ ],
+ "limitations": [
+  "hash only; spec not yet implemented (phase 03)"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -c import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],'rb').read()).hexdigest(), sys.argv[1]) work/path-selection-spec.md",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "0ec3bb54a516a53149a91fd08bce4229cb76c7b620b7bc9f1b21b78f9eca27ff",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/path-selection-spec.md",
+   "sha256_before": "90623a22e8af8048d69cf00e14b363270149f474f0e2b4244a89fd4f805da913",
+   "sha256_after": "90623a22e8af8048d69cf00e14b363270149f474f0e2b4244a89fd4f805da913",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

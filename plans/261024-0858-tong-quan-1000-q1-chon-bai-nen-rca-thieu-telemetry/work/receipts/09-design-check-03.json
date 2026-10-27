@@ -1,0 +1,100 @@
+{
+ "schema_version": 2,
+ "id": "09-design-check-03",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/check-design.py",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/09-design-check-03.out",
+ "egress_trace_reference": "work/logs/09-design-check-03.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T21:33:35.098052+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "9d62a73c3245ee4d38b649f1d423823d7210f5a92f974d7c0424db994e7490ed",
+  "2da20eca71e3f9321a0f626f17331543ea6e39f08d7669b190f2f7ca4ddef4ca",
+  "810e9074aae7dc6194cf4e8be54a88f95ebd9ba7a73017fbf6f87e1e71c4ba02",
+  "eaddcbcf51cc59e15e05ee586983735af9d95539f322f7164d2f9e4c953034c0",
+  "843724514d82194040297dc3bc6a18a74275efbf9ff40e9031773e291ddcabc4"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "phase 09 mechanical design checks after review fixes"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/check-design.py",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "cea1d7ab21487fb6eb2ebe46174e1c3b6206c23515c3d97e858550c4aafb6246",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "design/reproduction-protocol.md",
+   "sha256_before": "9d62a73c3245ee4d38b649f1d423823d7210f5a92f974d7c0424db994e7490ed",
+   "sha256_after": "9d62a73c3245ee4d38b649f1d423823d7210f5a92f974d7c0424db994e7490ed",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "design/improvement-hypotheses.md",
+   "sha256_before": "2da20eca71e3f9321a0f626f17331543ea6e39f08d7669b190f2f7ca4ddef4ca",
+   "sha256_after": "2da20eca71e3f9321a0f626f17331543ea6e39f08d7669b190f2f7ca4ddef4ca",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "design/test-matrix.md",
+   "sha256_before": "810e9074aae7dc6194cf4e8be54a88f95ebd9ba7a73017fbf6f87e1e71c4ba02",
+   "sha256_after": "810e9074aae7dc6194cf4e8be54a88f95ebd9ba7a73017fbf6f87e1e71c4ba02",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "design/mvp-outline.md",
+   "sha256_before": "eaddcbcf51cc59e15e05ee586983735af9d95539f322f7164d2f9e4c953034c0",
+   "sha256_after": "eaddcbcf51cc59e15e05ee586983735af9d95539f322f7164d2f9e4c953034c0",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/prior-work-improvements.csv",
+   "sha256_before": "843724514d82194040297dc3bc6a18a74275efbf9ff40e9031773e291ddcabc4",
+   "sha256_after": "843724514d82194040297dc3bc6a18a74275efbf9ff40e9031773e291ddcabc4",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

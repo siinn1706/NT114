@@ -1,0 +1,96 @@
+{
+ "schema_version": 2,
+ "id": "10-rerun-t1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/rank-t1.py work/records/t0r2b-t0.csv work/screen/all3-s1-merged.csv work/screen/all3-resolution-a02.csv final",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-rerun-t1-01.out",
+ "egress_trace_reference": "work/logs/10-rerun-t1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T21:41:15.324488+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+  "2c117c541b72e42c3d0cb9ac9fbefe234fcd37c5ace526876d81c030100e18a4",
+  "a5c1af164776ea5578107765b900a721d6a6651091b26ff838e2d55917a87c01"
+ ],
+ "output_hashes": [
+  "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5",
+  "a6806416726c3da09afe2d649403f7ef522984a22bf03d39e25ceda035675973"
+ ],
+ "checks": [
+  "determinism: output hashes must equal 87334400... and a6806416..."
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "256fc07db75bb88539f3d0556f383b6134b4887aaa651ff06e2fb9e4699299d2",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/rank-t1.py work/records/t0r2b-t0.csv work/screen/all3-s1-merged.csv work/screen/all3-resolution-a02.csv final",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "498d294df0cca1449749225fa8a4cd2d82e11e9df1d27c43c0920b6ec4b14de5",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2b-t0.csv",
+   "sha256_before": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "sha256_after": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/all3-s1-merged.csv",
+   "sha256_before": "2c117c541b72e42c3d0cb9ac9fbefe234fcd37c5ace526876d81c030100e18a4",
+   "sha256_after": "2c117c541b72e42c3d0cb9ac9fbefe234fcd37c5ace526876d81c030100e18a4",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/all3-resolution-a02.csv",
+   "sha256_before": "a5c1af164776ea5578107765b900a721d6a6651091b26ff838e2d55917a87c01",
+   "sha256_after": "a5c1af164776ea5578107765b900a721d6a6651091b26ff838e2d55917a87c01",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/final-t1-ranked.csv",
+   "sha256": "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/final-t1.json",
+   "sha256": "a6806416726c3da09afe2d649403f7ef522984a22bf03d39e25ceda035675973",
+   "created_this_attempt": true
+  }
+ ]
+}

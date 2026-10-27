@@ -1,0 +1,87 @@
+{
+ "schema_version": 2,
+ "id": "05-im1-coverage-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -X utf8 work/scripts/im1-frame-coverage.py ../../nt114-rca/nt114-rca/data within-rcaeval-grouped-0-e9b2c81c work/h1-membership-recheck.csv work/im1-frames/within-rcaeval-grouped-0-e9b2c81c work/im1-frame-coverage.json work/im1-frame-coverage.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-im1-coverage-01.out",
+ "egress_trace_reference": "work/logs/05-im1-coverage-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:45:00.996386+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "760ca8b21506da0822bfe9cae8a7bae6ef3e86bd7ca2e6f06a0eaa860ccec56a",
+  "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1"
+ ],
+ "output_hashes": [
+  "4640342ab4f3f80f1e0eda978e6db21ab46456547ff42748ee10927f6b4ef82d",
+  "e14e932afaa0dd90f9501945e34487fcd789c22a1a8ddfd945c8108b105de0de"
+ ],
+ "checks": [
+  "build IM1 frames (K2, threshold 3) on the train role of within-rcaeval-grouped-0-e9b2c81c and measure frame coverage of the H1 pool"
+ ],
+ "limitations": [
+  "reads train-role pre-anchor trace rows only (5 columns); trace-path counts assume a valid span on traced systems (val/test traces not read); data home inputs hashed in h1-membership-recheck.inputs.json; frames written to work/im1-frames/"
+ ],
+ "closure_hash": "dce481de6ee18a54a367af940643218c5575db828b99e4e72872cbf37a38c118",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -X utf8 work/scripts/im1-frame-coverage.py ../../nt114-rca/nt114-rca/data within-rcaeval-grouped-0-e9b2c81c work/h1-membership-recheck.csv work/im1-frames/within-rcaeval-grouped-0-e9b2c81c work/im1-frame-coverage.json work/im1-frame-coverage.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "116f4cf3622774a889fcacc586ec4804f3b601ee86d8af06c7aaf424ec537632",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/im1-frame-coverage.py",
+   "sha256_before": "760ca8b21506da0822bfe9cae8a7bae6ef3e86bd7ca2e6f06a0eaa860ccec56a",
+   "sha256_after": "760ca8b21506da0822bfe9cae8a7bae6ef3e86bd7ca2e6f06a0eaa860ccec56a",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/h1-membership-recheck.csv",
+   "sha256_before": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1",
+   "sha256_after": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/im1-frame-coverage.json",
+   "sha256": "e14e932afaa0dd90f9501945e34487fcd789c22a1a8ddfd945c8108b105de0de",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/im1-frame-coverage.csv",
+   "sha256": "4640342ab4f3f80f1e0eda978e6db21ab46456547ff42748ee10927f6b4ef82d",
+   "created_this_attempt": true
+  }
+ ]
+}

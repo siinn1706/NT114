@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-snow-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-snow 04-fn-judge-snow-01 --in work/records/t0snow2-excluded.csv --in work/records/t0snow2-t0.csv --out work/records/t0snow2-fn-judged.csv --out work/t0snow2-fn-check.json --out work/records/t0snow2-q1-sample.csv --out work/t0snow2-q1-check.md --out work/dossier/input/t0snow2-manifest.json --note FN 0/25 and 0/25, Q1 manual 30/30, check-literature pass x25",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-snow-02.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-snow-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:14:11.329322+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9"
+ ],
+ "output_hashes": [
+  "e4711549478d23c4a6ba73b8e103afec523bdc08594b640345127f3612c38a79"
+ ],
+ "checks": [
+  "phase 04 QA after snowball r1 committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "884f0d0cf59f8492b735570aee1e0cefa080dff43dd7333f74d07c12df5cb312",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-snow 04-fn-judge-snow-01 --in work/records/t0snow2-excluded.csv --in work/records/t0snow2-t0.csv --out work/records/t0snow2-fn-judged.csv --out work/t0snow2-fn-check.json --out work/records/t0snow2-q1-sample.csv --out work/t0snow2-q1-check.md --out work/dossier/input/t0snow2-manifest.json --note FN 0/25 and 0/25, Q1 manual 30/30, check-literature pass x25",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "7f3ad588270be332fb3554fa2b70e93267017d9dfbf73e21a210c134e91f1b74",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "e4711549478d23c4a6ba73b8e103afec523bdc08594b640345127f3612c38a79",
+   "created_this_attempt": true
+  }
+ ]
+}

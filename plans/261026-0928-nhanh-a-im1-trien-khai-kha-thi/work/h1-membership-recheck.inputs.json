@@ -1,0 +1,10 @@
+{
+ "data_home": "..\\..\\nt114-rca\\nt114-rca\\data",
+ "split": "within-rcaeval-grouped-0-e9b2c81c",
+ "inputs": {
+  "splits/within-rcaeval-grouped-0-e9b2c81c/assignments.jsonl": "e9b2c81c96cee6064bf2ca43c20d37d3a9890944cae26695458192b8e0eb5902",
+  "canonical/v1/rcaeval/visible/incidents.jsonl": "4f71e0a6655c3bbfd22163daf9bf0895d23d603d1ed7ef7714f803be5e7333ee",
+  "reports/condition-matrix-rcaeval.json": "89996556b554adda09125138facdae82c63c44f9431f9b3f93d8648fbc415015",
+  "reports/eval-units-rcaeval.json": "97883d392edc3656808526de921b0d5f7ecd450466a0b92f4b8ca01e8b810258"
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-fill-abstracts-s2-r2-tonly-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts-s2.py t0r2a --title-only",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fill-abstracts-s2-r2-tonly-01.out",
+ "egress_trace_reference": "work/logs/04-fill-abstracts-s2-r2-tonly-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:14:53.187072+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "c01feb537ab2554595aff834f2e2f9d3d6f5d362b59d2eb47e742314c0c34e05"
+ ],
+ "output_hashes": [
+  "8d61c4ed6bc5dadb686722c93d1981bfc3e8ad2469c40e688b328b64b622dce6"
+ ],
+ "checks": [
+  "S2 lane r2 title-only"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "8c60c42ffe9b03c903d432d98a4f2bf7109eadef36f745a6ce635b3ca4ed539a",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts-s2.py t0r2a --title-only",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "45ee192b61e16cc5b7a270e19ad598cfb68cbea3fcce91fd897ec80fd5cdb829",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/abstract-fill-log-t0r2a-tonly.csv",
+   "sha256_before": "c01feb537ab2554595aff834f2e2f9d3d6f5d362b59d2eb47e742314c0c34e05",
+   "sha256_after": "c01feb537ab2554595aff834f2e2f9d3d6f5d362b59d2eb47e742314c0c34e05",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/abstract-fill-s2-t0r2a-tonly.csv",
+   "sha256": "8d61c4ed6bc5dadb686722c93d1981bfc3e8ad2469c40e688b328b64b622dce6",
+   "created_this_attempt": true
+  }
+ ]
+}

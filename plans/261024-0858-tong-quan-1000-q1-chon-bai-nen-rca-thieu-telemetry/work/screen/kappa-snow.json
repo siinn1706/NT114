@@ -1,0 +1,51 @@
+{
+ "n": 28,
+ "kappa_include": 0.9,
+ "kappa_inc_exc": 0.8649,
+ "n_inc_exc": 15,
+ "kappa_include_abstract": 0.871,
+ "n_abstract": 16,
+ "confusion_s1_rows_s2_cols": {
+  "include": {
+   "include": 6,
+   "exclude": 1,
+   "needs-review": 0,
+   "context-survey": 0
+  },
+  "exclude": {
+   "include": 0,
+   "exclude": 8,
+   "needs-review": 0,
+   "context-survey": 0
+  },
+  "needs-review": {
+   "include": 0,
+   "exclude": 0,
+   "needs-review": 12,
+   "context-survey": 0
+  },
+  "context-survey": {
+   "include": 0,
+   "exclude": 0,
+   "needs-review": 0,
+   "context-survey": 1
+  }
+ },
+ "abs_agreement": {
+  "R1": 0.8929,
+  "R2": 1.0,
+  "R3": 1.0
+ },
+ "threshold": 0.7,
+ "disagreements": [
+  {
+   "openalex_id": "W4392909546",
+   "reason": "forced-borderline",
+   "s1": "include",
+   "s2": "exclude",
+   "s1_R": "3",
+   "s2_R": "2"
+  }
+ ],
+ "pass": true
+}

@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-r2-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-r2 04-fn-judge-r2-01 --in work/records/t0r2b-excluded.csv --in work/records/t0r2b-t0.csv --out work/t0r2b-fn-check.json --out work/records/t0r2b-q1-sample.csv --out work/t0r2b-q1-check.md --out work/dossier/input/t0r2b-manifest.json --note FN 0/25 and 0/25, Q1 manual 30/30",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-r2-02.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-r2-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:17:54.777654+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b"
+ ],
+ "output_hashes": [
+  "960d89eb7fefc9c4b6a809d1fd1611a97bae9cdf6be56e45200538ab6b384ea1"
+ ],
+ "checks": [
+  "phase 04 QA after section 10 committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "7f4b562b7ad9f39d3d2dbbfdd588b2d3292abe65833a25e6e9b7e39e08176557",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 qa-r2 04-fn-judge-r2-01 --in work/records/t0r2b-excluded.csv --in work/records/t0r2b-t0.csv --out work/t0r2b-fn-check.json --out work/records/t0r2b-q1-sample.csv --out work/t0r2b-q1-check.md --out work/dossier/input/t0r2b-manifest.json --note FN 0/25 and 0/25, Q1 manual 30/30",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "39999ec485a99f9ad28ad2d134ab9817b1ad464234f2a1278913734b3ad845ce",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2b-t0.csv",
+   "sha256_before": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "sha256_after": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "960d89eb7fefc9c4b6a809d1fd1611a97bae9cdf6be56e45200538ab6b384ea1",
+   "created_this_attempt": true
+  }
+ ]
+}

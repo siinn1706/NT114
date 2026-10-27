@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-fill-abstracts-s2-snow-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts-s2.py t0snow1",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fill-abstracts-s2-snow-01.out",
+ "egress_trace_reference": "work/logs/04-fill-abstracts-s2-snow-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:08:12.856826+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "9cb9cbb2d6837290dc420f8a5ef5cd2e6a55ec666b9c61b4c737d76ced9f51b5"
+ ],
+ "output_hashes": [
+  "44ff2444207b0a2fa689c8fe4254890fa766b3ea48f1297744f95bcd388b4ab5"
+ ],
+ "checks": [
+  "S2 lane with key"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "fc86bd1a317c6bda12ffd5b7f921f5c3845de3e2d23d63d507d9b2b8a788479b",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts-s2.py t0snow1",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "ef4eff6011142e8839857dee21be7026b3995affd64d2da8ea1331e80c459a5e",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/abstract-fill-log-t0snow1.csv",
+   "sha256_before": "9cb9cbb2d6837290dc420f8a5ef5cd2e6a55ec666b9c61b4c737d76ced9f51b5",
+   "sha256_after": "9cb9cbb2d6837290dc420f8a5ef5cd2e6a55ec666b9c61b4c737d76ced9f51b5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/abstract-fill-s2-t0snow1.csv",
+   "sha256": "44ff2444207b0a2fa689c8fe4254890fa766b3ea48f1297744f95bcd388b4ab5",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W7203837764,F1,5,5,§IV-A3 Eq.16-17 p.8,unchanged
+W7203837764,F2,3,3,§III-A-B p.4-6; no missing-modality experiment,unchanged
+W7203837764,F3_code,2,2,§I fn.1 p.2; Drive landing 200 on 2026-10-25,"unchanged: live archive link, license/README not verifiable"
+W7203837764,F3_data,2,2,§IV-A1 fn.3-4 p.7; GitHub 200 both,unchanged
+W7203837764,F3_compute,2,3,§IV-A1-2 p.7-8,"no LLM and no closed API; 3-layer d=128 GNN on ~10-node graphs fits CPU or 12 GB by static estimate, so bucket 3 (bucket 2 is for closed-LLM dependence)"
+W7203837764,F3_desc,1,0,§IV-A1-2 p.7-8; Eq.1 p.5,"two items missing: training hyperparameters (lr, epochs, batch, optimizer, seed, metric window, transformer config) and preprocessing (train/val/test ratio; log template extraction deferred to [19])"
+W7203837764,F4,3,3,§IV-A2-3 p.8; Table II p.8,unchanged: |D| formula present but value unreported; no repeats
+W7203837764,F5,1,1,§V p.10,unchanged: no limitations section
+W7203837764,F6,2,2,§IV-A1 p.7,unchanged: GAIA not in NT114 list; A@k transferable; offline data

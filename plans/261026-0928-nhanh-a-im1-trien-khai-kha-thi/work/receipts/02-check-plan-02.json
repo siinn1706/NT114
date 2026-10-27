@@ -1,0 +1,91 @@
+{
+ "schema_version": 2,
+ "id": "02-check-plan-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 C:/Users/Siinn/.claude/skills/nckh-plan/references/_shared/scripts/check-plan.py .",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-check-plan-02.out",
+ "egress_trace_reference": "work/logs/02-check-plan-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:02:13.673190+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "6b150ca5914977e84b7942a474e34878c8b6b6400a11e074e8303897dc092b0f",
+  "895df97e7eb9fb954f2bee0af0bfd281fa6d86073c0e62e537c7bbf11bb2f418",
+  "fcbd06bbddae5c41fc675953379ba391bd23a7e77c3eb979d3e878ea0aa5db36",
+  "d42cf40f24764cdd1c64a7a9ab53d586b96f46202233f2477596ff20be28ea69"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "check-plan after status, dependency and receipt updates"
+ ],
+ "limitations": [
+  "structural only"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 C:/Users/Siinn/.claude/skills/nckh-plan/references/_shared/scripts/check-plan.py .",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "cf5edfddd53aa3385f66398dd734c8417878d0d68bfe2786828a2dc86fae0aac",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "plan.md",
+   "sha256_before": "6b150ca5914977e84b7942a474e34878c8b6b6400a11e074e8303897dc092b0f",
+   "sha256_after": "6b150ca5914977e84b7942a474e34878c8b6b6400a11e074e8303897dc092b0f",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-01-phu-luc-data-contract-va-ma-arm.md",
+   "sha256_before": "895df97e7eb9fb954f2bee0af0bfd281fa6d86073c0e62e537c7bbf11bb2f418",
+   "sha256_after": "895df97e7eb9fb954f2bee0af0bfd281fa6d86073c0e62e537c7bbf11bb2f418",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-02-kiem-truoc-trien-khai.md",
+   "sha256_before": "fcbd06bbddae5c41fc675953379ba391bd23a7e77c3eb979d3e878ea0aa5db36",
+   "sha256_after": "fcbd06bbddae5c41fc675953379ba391bd23a7e77c3eb979d3e878ea0aa5db36",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-03-thanh-phan-chung-va-tool-tat-dinh.md",
+   "sha256_before": "d42cf40f24764cdd1c64a7a9ab53d586b96f46202233f2477596ff20be28ea69",
+   "sha256_after": "d42cf40f24764cdd1c64a7a9ab53d586b96f46202233f2477596ff20be28ea69",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

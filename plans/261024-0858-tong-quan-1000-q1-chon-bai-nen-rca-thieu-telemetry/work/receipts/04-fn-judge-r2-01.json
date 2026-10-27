@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-judge-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0r2b",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-judge-r2-01.out",
+ "egress_trace_reference": "work/logs/04-fn-judge-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:16:32.643697+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "648089fe3805f53ed35be4ad0695abbfcaf810fd945589677836854476939227"
+ ],
+ "output_hashes": [
+  "b09af8bb1d610674232173ebdcf5d63190df6d90d4a8f819bebec6a4a76b8c98"
+ ],
+ "checks": [
+  "FN thresholds"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "ed4bb1f11fac47adeb0b09b74db65ce214dc7af6d1b3954c603e897e93ec3edc",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0r2b",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "2e21d01995cf6006385fbd734b9fd49d87f54c0119b449d078a95ca812beb337",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2b-fn-sample.csv",
+   "sha256_before": "648089fe3805f53ed35be4ad0695abbfcaf810fd945589677836854476939227",
+   "sha256_after": "648089fe3805f53ed35be4ad0695abbfcaf810fd945589677836854476939227",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/t0r2b-fn-check.json",
+   "sha256": "b09af8bb1d610674232173ebdcf5d63190df6d90d4a8f819bebec6a4a76b8c98",
+   "created_this_attempt": true
+  }
+ ]
+}

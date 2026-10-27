@@ -1,0 +1,26 @@
+openalex_id,decision,codes,R1,R2,R3,R4,R5,R6,R_total,read_level,evidence
+W4382119071,exclude,I1|I3|E7,1,0,0,0,1,1,3,abstract,"we propose MLog, a hybrid deep neural network for detecting anomalies in log sequences; two well-known benchmark datasets, HDFS and BGL"
+W4387739952,exclude,I3,0,0,0,0,0,0,0,abstract,analysis of open-source AIOps projects to understand the characteristics of AIOps in practice
+W4391468252,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,proposes a method based on periodic self-discovery and historical anomaly filtering
+W4320921281,exclude,I1|I3|E7,1,0,0,1,0,0,2,abstract,"automatically detect anomalies; data collected during monitoring from the system log, application log, and performance metrics (CPU and memory)"
+W4365420278,exclude,I3,0,0,0,0,0,0,0,abstract,Real-Time IoT-Based Connected Vehicle Infrastructure for Intelligent Transportation Safety
+W7140127785,exclude,I3|E1,0,0,0,0,1,1,2,abstract,tool wear fault diagnosis framework that integrates deep learning with collaborative edge computing; the source code is publicly available
+W7166070741,exclude,I3,0,0,0,0,0,0,0,abstract,intelligent system for smart garden watering using fuzzy logic
+W4410341664,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,"OMLog, a semi-supervised online meta-learning method; two publicly available log datasets, HDFS and BGL"
+W4403510285,exclude,I3|E3,0,0,0,0,0,0,0,abstract,predicting solid state drive(SSD) failures
+W7162186637,needs-review,I1|E6|E7,1,0,0,0,0,0,1,title-only,Log-based anomaly detection for evolving software: An incremental deep-learning approach [abstract empty]
+W4399525963,exclude,I3,0,0,0,0,0,0,0,abstract,Predicting Yellow Fever Outbreak
+W7167210656,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,structural deviation detection over reconstructed service-interaction traces; Alibaba Microservices Trace 2021 dataset (MSCallGraph)
+W4389665063,context-survey,E5,1,0,0,0,0,0,1,abstract,systematic mapping study analyzing research conducted on log files for smart-troubleshooting in Industry 4.0
+W4386857748,exclude,I3|E2,0,0,0,0,0,0,0,abstract,lightweight mutual authentication scheme
+W7128816612,exclude,I3,0,1,0,0,0,0,1,abstract,leverages a large language model (LLM)-driven web scraping tool to collect data on underreported disaster events
+W4415500225,needs-review,I1|E6|E7,1,0,0,0,0,0,1,title-only,X-HEART: eXplainable heterogeneous log anomaly detection using robust transformers [abstract empty]
+W7214659792,exclude,I3,0,0,0,0,0,0,0,abstract,estimating absolute floodwater levels in urban environments
+W4414663037,exclude,I3,0,0,0,0,0,0,0,abstract,fog-based framework designed to address the rising incidence of heatstroke
+W4213309107,exclude,E1|E4,0,0,0,0,0,0,0,abstract,"Real-time monitoring, diagnosis, and prognosis and health management for electric vehicles"
+W3197476033,needs-review,I1|I2|E6,2,0,0,0,0,0,2,title-only,Improved data-driven root cause analysis in fog computing environment [abstract empty]
+W4393105416,exclude,I3,0,0,0,0,0,0,0,abstract,testbed that can be used to conduct research in intelligent and cooperative driving
+W3042463260,exclude,I3,0,0,0,0,0,1,1,abstract,interactive visualization tool; A free copy of this paper and source code are available at osf.io/h4p7g
+W4412085670,exclude,I3|E2,0,0,0,0,0,0,0,abstract,secure clustering scheme that can identify malicious behaviors
+W4200336673,exclude,I3|E2,0,0,0,0,0,0,0,abstract,intrusion detection system (IDS) is crucial to detect security threats
+W4389903433,needs-review,E6,0,0,0,0,0,0,0,title-only,A cloud model-based interval-valued evidence fusion method and its application in fault diagnosis [abstract empty]

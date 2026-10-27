@@ -1,0 +1,31 @@
+openalex_id,decision,codes,R1,R2,R3,R4,R5,R6,R_total,read_level,evidence
+W2987006149,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,automates the root cause analysis on structured logs with improved scalability
+W4396242546,exclude,E3,0,0,0,0,1,0,1,abstract,predict impending disk failures by leveraging the SMART attributes of disks
+W7203600768,exclude,I3,1,0,0,0,1,0,2,abstract,real-world artificial intelligence for IT operations (AIOps) key performance indicator (KPI) data
+W3020982579,exclude,,0,0,0,0,0,0,0,abstract,A transaction log analysis of EBSCO Discovery Service using Google Analytics: the methodology
+W4285284219,exclude,I3,0,0,0,0,0,0,0,abstract,Real-Time Student Stress Monitoring in an IoT-Fog-Cloud Environment
+W4413105630,needs-review,E6,0,0,0,0,0,0,0,title-only,Edge-assisted framework for instant anomaly detection and cloud-based anomaly recognition in smart surveillance
+W7125597760,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,"detecting log anomalies within unstructured, continually changing logs; as well as with three public log datasets"
+W4412045825,exclude,I1|I3|E2|E7,1,0,2,0,1,0,4,abstract,struggle with multi-metric correlations and missing data; it maintains 96.55% accuracy even with 20% missing data
+W4379116564,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,we leverage structured logs and association rule mining (ARM) to automate RCA
+W3212722888,needs-review,E6|E7,1,0,0,0,0,0,1,title-only,LightLog: A lightweight temporal convolutional network for log anomaly detection on the edge
+W7163925144,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,"Experiments on the HDFS, OpenStack, and BGL datasets show that CECO-LAD achieves state-of-the-art anomaly detection performance"
+W4408568331,needs-review,E6|E7,1,0,0,0,0,0,1,title-only,MidLog: An automated log anomaly detection method based on multi-head GRU
+W3083560262,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,Diagnosing root causes of intermittent slow queries in cloud databases
+W4396612980,needs-review,E1|E6,0,0,0,0,0,0,0,title-only,Automotive digital forensics through data and log analysis of vehicle diagnosis Android apps
+W3152687894,needs-review,E6,1,0,0,0,0,0,1,title-only,A novel robust prediction algorithm based on REMD-MWNN for AIOps
+W4400975288,exclude,I3|E2,0,0,0,0,0,0,0,abstract,ultralow latency threat alerting over IoT systems
+W4416400420,needs-review,E6|E7,1,0,0,0,0,0,1,title-only,LogHGAD: A hypergraph-based log anomaly detection method for AIoT systems
+W4405906990,exclude,I1|I3,1,0,0,0,1,0,2,abstract,Comprehensive experiments conducted on 16 log datasets reveal that our TCMS outperforms seven other parsing methods
+W4393488462,needs-review,E1|E6,0,0,0,0,0,0,0,title-only,Cloud-edge collaborative transfer fault diagnosis of rotating machinery via federated fine-tuning and target self-adaptation
+W4393965267,needs-review,E1|E6,0,0,0,0,0,0,0,title-only,Cross-Domain Online Machinery Fault Diagnosis via Customized Contrastive Learning
+W3124661381,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,detect the performance anomaly and identify the bottleneck of the distributed application in the cloud data center
+W3214809650,needs-review,I1|I2|E6,2,0,0,0,0,0,2,title-only,PEN: Process Estimator neural Network for root cause analysis using graph convolution
+W4387502245,needs-review,I1|I2|E6,2,0,0,0,0,0,2,title-only,Sparse and semi-attention guided faults diagnosis approach for distributed online services
+W3048902333,needs-review,E6,0,0,0,0,0,0,0,title-only,A study of the performance of general compressors on log files
+W7140572754,needs-review,E6,0,0,0,0,0,0,0,title-only,Logfun: An efficient function-Level log management framework for systems implemented with python
+W7135219636,exclude,,0,0,0,0,0,0,0,abstract,ethical considerations regarding LLM-induced hallucinations to medical questions
+W3084020249,exclude,I3|E2,0,0,0,0,0,0,0,abstract,An Attribute-Based Access Control for Cloud Enabled Industrial Smart Vehicles
+W7162186637,needs-review,E6|E7,1,0,0,0,0,0,1,title-only,Log-based anomaly detection for evolving software: An incremental deep-learning approach
+W4407343850,exclude,,0,0,0,0,0,0,0,abstract,Digital twins in dermatology: a new era of personalized skin care
+W4404956335,needs-review,E6|E7,1,0,0,0,0,0,1,title-only,LogOW: A semi-supervised log anomaly detection model in open-world setting

@@ -1,0 +1,99 @@
+{
+ "schema_version": 2,
+ "id": "05-kappa-search-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/kappa.py search s1 s2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-kappa-search-01.out",
+ "egress_trace_reference": "work/logs/05-kappa-search-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:02:54.430706+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "cf590041ce3210eeacb0728603fbcc35909acba67450482f7ed0c68d9a8abc5c",
+  "5c5e152a14321fc6c37777fa3b20f32a719e60925935c7c63e3f4fca15bc70af",
+  "8de8f5c27029d9b7ab97e0b86e3557928802c6dac15af057e14e5d44fe20e44c",
+  "6d09ad82d4b04501e873f310f27ef71f75dbb8d54db715126e9b4d7257fc2021"
+ ],
+ "output_hashes": [
+  "e6b6d6ff485d86422b083a6f47927cdff6f5813e1d29c89b4443fb2ea688f5f0"
+ ],
+ "checks": [
+  "kappa include on abstract rows >= 0.7"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "0fa31d10e52c4334da1c8af46438f87f1812e05aa8a1c6007ba8f34c85231786",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/kappa.py search s1 s2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "414dd016da09c817494229a123af0661006c066267ebf0fea931ba5d47e39108",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/dbl-search-000-s2.csv",
+   "sha256_before": "cf590041ce3210eeacb0728603fbcc35909acba67450482f7ed0c68d9a8abc5c",
+   "sha256_after": "cf590041ce3210eeacb0728603fbcc35909acba67450482f7ed0c68d9a8abc5c",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/dbl-search-001-s2.csv",
+   "sha256_before": "5c5e152a14321fc6c37777fa3b20f32a719e60925935c7c63e3f4fca15bc70af",
+   "sha256_after": "5c5e152a14321fc6c37777fa3b20f32a719e60925935c7c63e3f4fca15bc70af",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/dbl-search-002-s2.csv",
+   "sha256_before": "8de8f5c27029d9b7ab97e0b86e3557928802c6dac15af057e14e5d44fe20e44c",
+   "sha256_after": "8de8f5c27029d9b7ab97e0b86e3557928802c6dac15af057e14e5d44fe20e44c",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/kappa.py",
+   "sha256_before": "6d09ad82d4b04501e873f310f27ef71f75dbb8d54db715126e9b4d7257fc2021",
+   "sha256_after": "6d09ad82d4b04501e873f310f27ef71f75dbb8d54db715126e9b4d7257fc2021",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/kappa-search.json",
+   "sha256": "e6b6d6ff485d86422b083a6f47927cdff6f5813e1d29c89b4443fb2ea688f5f0",
+   "created_this_attempt": true
+  }
+ ]
+}

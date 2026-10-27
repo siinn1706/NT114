@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-seed-03",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-seed 04-t0-review-seed-02 --in work/records/seed-reused.csv --in work/records/abstract-fill-t0seed.csv --in work/records/abstract-fill-s2-t0seed.csv --in work/scripts/common.py --out work/records/t0seed4-candidates.csv --out work/records/t0seed4-excluded.csv --out work/records/t0seed4-needs-review-t0.csv --out work/records/t0seed4-t0.csv --note seed-only T0 (338) under the post-freeze SYSTEM_RE amendment; search records pending phase 03",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-seed-03.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-seed-03.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:53:01.121192+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d"
+ ],
+ "output_hashes": [
+  "941bbd70fc7d3bbae56651b124060e5bdb54862eeaa9a68290778c0233976025"
+ ],
+ "checks": [
+  "phase 04 seed batches committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "5c6a2ec85b77caac2fc2090e1e2c39a37de1a477557dfd6911564f295860be16",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-seed 04-t0-review-seed-02 --in work/records/seed-reused.csv --in work/records/abstract-fill-t0seed.csv --in work/records/abstract-fill-s2-t0seed.csv --in work/scripts/common.py --out work/records/t0seed4-candidates.csv --out work/records/t0seed4-excluded.csv --out work/records/t0seed4-needs-review-t0.csv --out work/records/t0seed4-t0.csv --note seed-only T0 (338) under the post-freeze SYSTEM_RE amendment; search records pending phase 03",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "f81356070475636c1f1a0f7db34b44bb2208e74b0768473fdfa1610c24c86f27",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0seed4-t0.csv",
+   "sha256_before": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "sha256_after": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "941bbd70fc7d3bbae56651b124060e5bdb54862eeaa9a68290778c0233976025",
+   "created_this_attempt": true
+  }
+ ]
+}

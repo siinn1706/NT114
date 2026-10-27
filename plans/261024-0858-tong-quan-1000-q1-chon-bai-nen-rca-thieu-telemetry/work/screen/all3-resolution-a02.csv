@@ -1,0 +1,6 @@
+openalex_id,final_decision,R1,R2,R3,R4,R5,R6,note
+W4412623423,context-survey,,,,,,,re-read: survey -> E5 context-survey per §6 regardless of Population; s2 exclude; R1=0 so no ranking effect
+W4360980888,needs-review,,,,,,,"title-only survey: E6 precedes E5 (abstract lane first); prompt convention conflict, see search-s1-drift-review.md"
+W3049528565,exclude,,,,,,,"abstract filled by S2 after title-only screening: log keyword extraction/parsing for anomaly detection, no diagnosis: I2 fails"
+W4392909546,exclude,,,,,,,"s1 include vs s2 exclude; re-read: main task is autoscaling, bottleneck localization (TopoRank) is a component, so I2 (main task RCA/localization) fails"
+W3044276389,exclude,,,,,,,"s1 exclude vs s2 include; re-read: function-level profiling of Ethereum client code (pprof), code-level performance engineering, not operation of a running system: I1 fails, keep s1"

@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "03-synonym-probe-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/queries.py probe query-probe-synonym-01.csv --amend",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/03-synonym-probe-01.out",
+ "egress_trace_reference": "work/logs/03-synonym-probe-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:16:25.475997+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "93487fb79e9a09cc7367677fc1cbaa74c19944a71641a09957a317e23e96fb63",
+  "196e607e731b1aa0755d1b28c5d684c7143ccd8d830c6e35b40278ce3bc4a66d"
+ ],
+ "output_hashes": [
+  "089216fdd6c4b7b3efcfb06147052c2a4343f09405f42840878eb2ed85e56449"
+ ],
+ "checks": [
+  "§10 step-2 page-1 clause coverage"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "e519649bb981553d8864d9429ba7615abac1d5b62fd1bcecb3728fe0fbcdda23",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/queries.py probe query-probe-synonym-01.csv --amend",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "a32646dd42f69e1117dab8cfe57537766ae432b4dcfc9649d907e8cdfa4e8ee3",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/amendments.md",
+   "sha256_before": "93487fb79e9a09cc7367677fc1cbaa74c19944a71641a09957a317e23e96fb63",
+   "sha256_after": "93487fb79e9a09cc7367677fc1cbaa74c19944a71641a09957a317e23e96fb63",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/queries.py",
+   "sha256_before": "196e607e731b1aa0755d1b28c5d684c7143ccd8d830c6e35b40278ce3bc4a66d",
+   "sha256_after": "196e607e731b1aa0755d1b28c5d684c7143ccd8d830c6e35b40278ce3bc4a66d",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/query-probe-synonym-01.csv",
+   "sha256": "089216fdd6c4b7b3efcfb06147052c2a4343f09405f42840878eb2ed85e56449",
+   "created_this_attempt": true
+  }
+ ]
+}

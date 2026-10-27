@@ -1,0 +1,13 @@
+{
+  "command": "python -m pytest -q -m 'not realdata'",
+  "working_directory": "nt114-rca/nt114-rca",
+  "python_environment": "nt114-rca/nt114-rca/.venv",
+  "exit_status": 0,
+  "passed": 418,
+  "deselected_realdata": 56,
+  "warnings": 1,
+  "elapsed_seconds": 526.28,
+  "warning": "sklearn TruncatedSVD invalid value encountered in divide in the synthetic oracle-exclusion fixture",
+  "scope": "Current full non-realdata suite; mocked/synthetic checks only, no LLM inference or new benchmark evaluation",
+  "evidence": "Observed terminal session 91651, exit 0, 2026-10-26 Asia/Saigon"
+}

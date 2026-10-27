@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-q1-sample-snow-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-q1-check.py work/records/t0snow2-t0.csv work/records/t0snow2-q1-sample.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-q1-sample-snow-01.out",
+ "egress_trace_reference": "work/logs/04-q1-sample-snow-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:12:49.804502+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9"
+ ],
+ "output_hashes": [
+  "2eeca3d537c4b824ad1efeca63c1ff710e43bc5fcaadf974e3bf97b5266afc45"
+ ],
+ "checks": [
+  "30 random T0 records with raw SJR rows"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "12793b4df16fce4ae48f695479b0012fc2436d5b970a8480378037c2a39a5c22",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-q1-check.py work/records/t0snow2-t0.csv work/records/t0snow2-q1-sample.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0snow2-q1-sample.csv",
+   "sha256": "2eeca3d537c4b824ad1efeca63c1ff710e43bc5fcaadf974e3bf97b5266afc45",
+   "created_this_attempt": true
+  }
+ ]
+}

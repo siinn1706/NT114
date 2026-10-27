@@ -1,0 +1,42 @@
+{
+ "seed": 20261024,
+ "batches": [
+  {
+   "batch": "dbl-r2-000",
+   "n": 30,
+   "sha256": "cc9af10fbda4fe0b8de34030b1ee294146d2ea099e205a4f34ce9b70f9fbbf1c"
+  }
+ ],
+ "reasons": {
+  "W3036573764": "needs-review",
+  "W4205160849": "needs-review",
+  "W4290652751": "needs-review",
+  "W4380575599": "needs-review",
+  "W4399774065": "needs-review",
+  "W4401260260": "needs-review",
+  "W4406864368": "needs-review",
+  "W4414126118": "needs-review",
+  "W7151100156": "needs-review",
+  "W7154451270": "needs-review",
+  "W7156164861": "needs-review",
+  "W7171664344": "needs-review",
+  "W7172009483": "needs-review",
+  "W4364302701": "stratified-10pct:include",
+  "W3090265966": "stratified-10pct:exclude",
+  "W4394585838": "stratified-10pct:exclude",
+  "W7172255640": "stratified-10pct:exclude",
+  "W3009354171": "stratified-10pct:exclude",
+  "W4288779706": "stratified-10pct:exclude",
+  "W4414799519": "stratified-10pct:exclude",
+  "W3044276389": "stratified-10pct:exclude",
+  "W4417072644": "stratified-10pct:exclude",
+  "W3156885949": "stratified-10pct:exclude",
+  "W3211990428": "stratified-10pct:context-survey",
+  "W4200165678": "forced-borderline",
+  "W4220822635": "forced-borderline",
+  "W4367277115": "forced-borderline",
+  "W4391897269": "forced-borderline",
+  "W7154686167": "forced-borderline",
+  "W7222353773": "forced-borderline"
+ }
+}

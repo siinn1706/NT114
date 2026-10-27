@@ -1,0 +1,64 @@
+{
+ "schema_version": 2,
+ "id": "03-pytest-baseline-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -m pytest -q -p no:cacheprovider -x -q",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/03-pytest-baseline-02.out",
+ "egress_trace_reference": "work/logs/03-pytest-baseline-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:16:31.895193+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "28b2ce05687c3da8898d9ff47588d951129150ef6774134f30aaacd5798c6a3b"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "full pytest before any source change (baseline)"
+ ],
+ "limitations": [
+  "CPU venv in the session scratchpad pinned to requirements-lock.txt versions without torch/sentence-transformers/huggingface (the repo .venv path is blocked by a local hook); realdata tests use the local data home; attempt 01 failed: system Python has no pytest"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -m pytest -q -p no:cacheprovider -x -q",
+   "shell": "none (subprocess argv)",
+   "cwd": "../../nt114-rca/nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "bcf10cd82b553baead9fd681f75d65a5079752f685b7545310b6e8fc0146e878",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/test-env-freeze.txt",
+   "sha256_before": "28b2ce05687c3da8898d9ff47588d951129150ef6774134f30aaacd5798c6a3b",
+   "sha256_after": "28b2ce05687c3da8898d9ff47588d951129150ef6774134f30aaacd5798c6a3b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

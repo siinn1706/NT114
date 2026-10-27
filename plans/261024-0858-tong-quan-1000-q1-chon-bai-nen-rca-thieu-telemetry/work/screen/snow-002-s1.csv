@@ -1,0 +1,6 @@
+openalex_id,decision,codes,R1,R2,R3,R4,R5,R6,R_total,read_level,evidence
+W4285176337,exclude,I1|I3|E7,1,0,1,0,0,0,2,abstract,"""unsupervised KPI anomaly detection approach""; ""they require a long period of KPI data for model training, which is not easy to guarantee with frequent service changes"""
+W3083130672,exclude,I3|E2,0,0,0,0,0,0,0,abstract,"""Blockchained-Federated Learning based cloud intrusion detection scheme"""
+W4413967134,exclude,I3|E2|E7,1,1,0,0,1,0,3,abstract,"""Log anomaly detection is a critical first line of defense""; ""HDFS and BGL datasets""; ""LLM-based log template analysis module"""
+W3130822964,exclude,I3|E2,0,0,0,0,0,0,0,abstract,"""privacy-preserving in smart contracts using blockchain and artificial intelligence (PPSC-BCAI) framework"""
+W4401446880,exclude,I2|I3|E1,0,0,0,0,1,0,1,abstract,"""Federated fault diagnosis has attracted increasing attention in industrial cloud-edge collaboration scenarios""; ""two prevalent industry datasets (TE and CWRU)"""

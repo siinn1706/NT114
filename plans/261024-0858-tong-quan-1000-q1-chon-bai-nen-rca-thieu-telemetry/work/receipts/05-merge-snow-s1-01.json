@@ -1,0 +1,90 @@
+{
+ "schema_version": 2,
+ "id": "05-merge-snow-s1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/merge-screen.py snow s1 work/screen/anchors-seed-000-s1.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-merge-snow-s1-01.out",
+ "egress_trace_reference": "work/logs/05-merge-snow-s1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T15:50:53.413866+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "269a5dbac39fe61b4fbd5c52aca6637a5f207ecc0776475b60421d626e1164da",
+  "a8ea316e7b0667516d4c80f2fcd422c5572cc894a30e60c2148467264ef85295",
+  "121afe01c7545f7a20a798e93a6ba3b8da65b9a857c901026aa7021d0a260d99"
+ ],
+ "output_hashes": [
+  "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43"
+ ],
+ "checks": [
+  "merge snow s1 with anchor drift"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "18f6a7bc6396a5d6c1c40a9790a3202821d54c4903bcb40fc7d68df79cb5ac38",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/merge-screen.py snow s1 work/screen/anchors-seed-000-s1.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "23f9344d2c429d91d5889e8d1df3272148c3936e13034d566bc71c06a8913612",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/snow-000-s1.csv",
+   "sha256_before": "269a5dbac39fe61b4fbd5c52aca6637a5f207ecc0776475b60421d626e1164da",
+   "sha256_after": "269a5dbac39fe61b4fbd5c52aca6637a5f207ecc0776475b60421d626e1164da",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/snow-001-s1.csv",
+   "sha256_before": "a8ea316e7b0667516d4c80f2fcd422c5572cc894a30e60c2148467264ef85295",
+   "sha256_after": "a8ea316e7b0667516d4c80f2fcd422c5572cc894a30e60c2148467264ef85295",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/snow-002-s1.csv",
+   "sha256_before": "121afe01c7545f7a20a798e93a6ba3b8da65b9a857c901026aa7021d0a260d99",
+   "sha256_after": "121afe01c7545f7a20a798e93a6ba3b8da65b9a857c901026aa7021d0a260d99",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/snow-s1-merged.csv",
+   "sha256": "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43",
+   "created_this_attempt": true
+  }
+ ]
+}

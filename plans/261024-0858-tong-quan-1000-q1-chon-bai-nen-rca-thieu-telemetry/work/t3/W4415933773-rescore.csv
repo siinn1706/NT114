@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W4415933773,F1,5,5,§IV.B.3 Eq.26 p.7,unchanged
+W4415933773,F2,4,4,§IV.E Table III p.8-9,"unchanged, borderline: retrained component ablations on B only, no dropped/noisy telemetry at inference"
+W4415933773,F3_code,0,0,whole text; GitHub search 0 hits,unchanged
+W4415933773,F3_data,2,2,§IV.B.1 p.7; Zenodo 200,unchanged: B open; A unverified from this network
+W4415933773,F3_compute,2,2,§III.D p.7; Table IV p.10,"unchanged: as published GPT-4 is required, replaceable"
+W4415933773,F3_desc,1,0,§IV.B.4 p.9; §III.A-B p.3-6,"two items missing: hyperparameters (diffusion steps, noise schedule, FFT top-k, window length, GAT depth) and preprocessing (cleaning rules, T1 normal-run corpus described two ways)"
+W4415933773,F4,3,2,Eq.26 p.7; Table II p.8,denominator point lost: same-dataset rows imply different |S| (A_s 81 vs 224 vs 32) and no |S| is reported; other three points kept
+W4415933773,F5,1,1,§IV.F p.9-10,unchanged: no limitations section
+W4415933773,F6,3,3,§IV.B.1 p.7,unchanged

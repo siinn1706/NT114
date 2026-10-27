@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-snowball-r1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/snowball.py r1 work/records/snowball-r1-seeds.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-snowball-r1-01.out",
+ "egress_trace_reference": "work/logs/05-snowball-r1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T05:56:16.892327+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "b07aaa236dc5585bfc4ef6f9e7340969452b30c9637664df7c09d088c2ec0173"
+ ],
+ "output_hashes": [
+  "abaae4ecd3d17c52bbecd7eb85d07f130240f346bc6d6c01db962cdffef91875"
+ ],
+ "checks": [
+  "snowball round 1 from provisional T1 (100 seeds)"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "0fd2f86b398b2052e342695db37a01562907a9f19cb9127fff0460918ef35c34",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/snowball.py r1 work/records/snowball-r1-seeds.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "fee997c038da8a95ee6d8936953f9b134fb881a8b09625067325a3c93a55d879",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/snowball-r1-seeds.csv",
+   "sha256_before": "b07aaa236dc5585bfc4ef6f9e7340969452b30c9637664df7c09d088c2ec0173",
+   "sha256_after": "b07aaa236dc5585bfc4ef6f9e7340969452b30c9637664df7c09d088c2ec0173",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/snowball-r1.csv",
+   "sha256": "abaae4ecd3d17c52bbecd7eb85d07f130240f346bc6d6c01db962cdffef91875",
+   "created_this_attempt": true
+  }
+ ]
+}

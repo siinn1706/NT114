@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "06-access-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fulltext-access.py work/records/t1-top100.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/06-access-01.out",
+ "egress_trace_reference": "work/logs/06-access-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:28:50.968636+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5",
+  "4a29ab22e2e92172fb46c4e10899357c8b24475481b3817687e74d43e40bb60d"
+ ],
+ "output_hashes": [
+  "bb61d06ee1b173886973c6d3f670880a85ea74e231265e97fcf61ef5d3b0f90c"
+ ],
+ "checks": [
+  "OA full-text access, 10 batches"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "da724fd371dd4d0c61661d22b9be75685716b21007e6aaf1f5a3765688c93991",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fulltext-access.py work/records/t1-top100.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "d81e288f11f608d25d6f03db4ae7c77b3e6d8b74a21ff4d05065f846b1c95e99",
+   "stderr_sha256": "480173c73bb545a78bd93d5c7ce238fe203bb7ffbdb2fda9994513db654b8155",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t1-top100.csv",
+   "sha256_before": "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5",
+   "sha256_after": "87334400be8761f2ad8d8517a523df3d48dbae81190214a78a57b0fbbfbe00f5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/fulltext-access.py",
+   "sha256_before": "4a29ab22e2e92172fb46c4e10899357c8b24475481b3817687e74d43e40bb60d",
+   "sha256_after": "4a29ab22e2e92172fb46c4e10899357c8b24475481b3817687e74d43e40bb60d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/access-ledger.csv",
+   "sha256": "bb61d06ee1b173886973c6d3f670880a85ea74e231265e97fcf61ef5d3b0f90c",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,421 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Brain: Log Parsing With Bidirectional Parallel Tree",
+   "identifiers": {
+    "openalex": "W4367146761",
+    "doi": "10.1109/tsc.2023.3270566"
+   },
+   "abstract": "Automated log analysis can facilitate failure diagnosis for developers and operators using a large volume of logs. Log parsing is a prerequisite step for automated log analysis, which parses semi-structured logs into structured logs. However, existing parsers are difficult to apply to software-intensive systems, due to their unstable parsing accuracy on various software. Although neural network-based approaches are stable, their inefficiency makes it challenging to keep up with the speed of log production. In this work, we found that the longest common pattern among logs is likely to be part of the log template. Inspired by this key insight, we propose a new stable log parsing approach, called Brain, which creates initial groups according to the longest common pattern. Then a bidirectional tree is used to hierarchically complement the constant words to the longest common pattern to form the complete log template efficiently. Experimental results on 16 benchmark datasets show that our approach outperforms the state-of-the-art parsers on two widely-used parsing accuracy metrics, and it only takes around 46 seconds to process one million lines of logs.",
+   "status": "current"
+  },
+  {
+   "title": "LWS: A framework for log-based workload simulation in session-based SUT",
+   "identifiers": {
+    "openalex": "W4368362966",
+    "doi": "10.1016/j.jss.2023.111735",
+    "arxiv": "2301.08851"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "CausalRCA: Causal inference based precise fine-grained root cause localization for microservice applications",
+   "identifiers": {
+    "openalex": "W4372338130",
+    "doi": "10.1016/j.jss.2023.111724"
+   },
+   "abstract": "Effectively localizing root causes of performance anomalies is crucial to enabling the rapid recovery and loss mitigation of microservice applications in the cloud. Depending on the granularity of the causes that can be localized, a service operator may take different actions, e.g., restarting or migrating services if only faulty services can be localized (namely, coarse-grained) or scaling resources if specific indicative metrics on the faulty service can be localized (namely, fine-grained). Prior research mainly focuses on coarse-grained faulty service localization, and there is now a growing interest in fine-grained root cause localization to identify faulty services and metrics. Causal inference (CI) based methods have gained popularity recently for root cause localization, but currently used CI methods have limitations, such as the linear causal relations assumption and strict data distribution requirements. To tackle these challenges, we propose a framework named CausalRCA to implement fine-grained, automated, and real-time root cause localization. The CausalRCA uses a gradient-based causal structure learning method to generate weighted causal graphs and a root cause inference method to localize root cause metrics. We conduct coarse- and fine-grained root cause localization to evaluate the localization performance of CausalRCA. Experimental results show that CausalRCA has significantly outperformed baseline methods in localization accuracy, e.g., the average AC@3 of the fine-grained root cause metric localization in the faulty service is 0.719, and the average increase is 10% compared with baseline methods. In addition, the average Avg@5 has improved by 9.43%. Codes and data are open-sourced and can be found in our Github repository CausalRCA.",
+   "status": "current"
+  },
+  {
+   "title": "Generic and robust root cause localization for multi-dimensional data in online service systems",
+   "identifiers": {
+    "openalex": "W4375948014",
+    "doi": "10.1016/j.jss.2023.111748"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "FedCAE: A New Federated Learning Framework for Edge-Cloud Collaboration Based Machine Fault Diagnosis",
+   "identifiers": {
+    "openalex": "W4376457039",
+    "doi": "10.1109/tie.2023.3273272"
+   },
+   "abstract": "With the coming of the industrial big data era, data-driven fault diagnosis models emerge recently and show potential results in many studies. However, it is impractical to collect massive high-quality data in actual industrial applications, which strongly reduces the performance of fault diagnosis models. Therefore, multiple data owners are motivated to share their own data for training a brilliant model with the aggregated dataset. Notwithstanding, it is unrealistic to share data due to the potential conflict of interest. For addressing the issue of data island, a new federated framework namely FedCAE is proposed for fault diagnosis. In this framework, each client is equipped with a convolutional autoencoder (CAE) trained by its corresponding local data. Then, all CAEs are uploaded to a server and aggregated to a global CAE according to an adaptive weighted selection mechanism. Afterwards, the global CAE is downloaded to all clients for extracting low-level features from local datasets by its encoder and uploading these features to train a global fault diagnosis classifier in the server. At last, the classifier is downloaded to all clients for completing their own diagnosis tasks. Experiment results on two bearing datasets suggest FedCAE offers a promising solution on confidential decentralized learning.",
+   "status": "current"
+  },
+  {
+   "title": "Design and implementation of I/O performance prediction scheme on HPC systems through large-scale log analysis",
+   "identifiers": {
+    "openalex": "W4376875672",
+    "doi": "10.1186/s40537-023-00741-4"
+   },
+   "abstract": "Abstract Large-scale high performance computing (HPC) systems typically consist of many thousands of CPUs and storage units used by hundreds to thousands of users simultaneously. Applications from large numbers of users have diverse characteristics, such as varying computation, communication, memory, and I/O intensity. A good understanding of the performance characteristics of each user application is important for job scheduling and resource provisioning. Among these performance characteristics, I/O performance is becoming increasingly important as data sizes rapidly increase and large-scale applications, such as simulation and model training, are widely adopted. However, predicting I/O performance is difficult because I/O systems are shared among all users and involve many layers of software and hardware stack, including the application, network interconnect, operating system, file system, and storage devices. Furthermore, updates to these layers and changes in system management policy can significantly alter the I/O behavior of applications and the entire system. To improve the prediction of the I/O performance on HPC systems, we propose integrating information from several different system logs and developing a regression-based approach to predict the I/O performance. Our proposed scheme can dynamically select the most relevant features from the log entries using various feature selection algorithms and scoring functions, and can automatically select the regression algorithm with the best accuracy for the prediction task. The evaluation results show that our proposed scheme can predict the write performance with up to 90% prediction accuracy and the read performance with up to 99% prediction accuracy using the real logs from the Cori supercomputer system at NERSC.",
+   "status": "current"
+  },
+  {
+   "title": "Root Cause Identification of Industrial Alarm Floods Using Word Embedding and Few-Shot Learning",
+   "identifiers": {
+    "openalex": "W4377079695",
+    "doi": "10.1109/tii.2023.3274223"
+   },
+   "abstract": "Alarm systems are commonly deployed in modern industrial facilities to monitor process operations. However, due to the presence of nuisance alarms and alarm floods, their efficiencies are much degraded. Especially, alarm floods are among the most difficult issues in industrial alarm management and recognized as the main causes of many industrial accidents. To address alarm floods, this article proposes a root cause identification (RCI) method for industrial alarm floods based on word embedding and few-shot learning. The contributions are threefold: 1) A textual encoding method based on word embedding is proposed to convert alarm messages into numerical word vectors that can be used in the modeling of RCI; 2) an alarm-priority-based adaptive weighting strategy is designed to make the RCI more sensitive to alarms of higher priorities and appearing earlier; 3) a few-shot learning method based on long short-term memory is adapted to identify the root causes of alarm floods based on limited instances of labeled data. The effectiveness and superiority of the proposed method are demonstrated by a case study based on data from the vinyl acetate monomer public model.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly Detection Using Ensemble Classification and Evidence Theory",
+   "identifiers": {
+    "openalex": "W4378194859",
+    "doi": "10.1109/access.2023.3280048"
+   },
+   "abstract": "Multi-class ensemble classification remains a popular focus of investigation within the research community. The popularization of cloud services has sped up their adoption due to the ease of deploying large-scale machine-learning models. It has also drawn the attention of the industrial sector because of its ability to identify common problems in production. However, there are challenges to conform an ensemble classifier, namely a proper selection and effective training of the pool of classifiers, the definition of a proper architecture for multi-class classification, and uncertainty quantification of the ensemble classifier. The robustness and effectiveness of the ensemble classifier lie in the selection of the pool of classifiers, as well as in the learning process. Hence, the selection and the training procedure of the pool of classifiers play a crucial role. An (ensemble) classifier learns to detect the classes that were used during the supervised training. However, when injecting data with unknown conditions, the trained classifier will intend to predict the classes learned during the training. To this end, the uncertainty of the individual and ensemble classifier could be used to assess the learning capability. We present a novel approach for anomaly detection using ensemble classification and evidence theory. A pool selection strategy is presented to build a solid ensemble classifier. We present an architecture for multi-class ensemble classification and an approach to quantify the uncertainty of the base classifiers and the ensemble classifier. We address the problem of detecting unknown conditions (while feeding out-of-distribution data), presenting a novel approach that monitors the uncertainty of the ensemble classifier using evidence theory. Finally, we use the benchmark Tennessee Eastman to perform experiments to test the ensemble classifier’s prediction and anomaly detection capabilities.",
+   "status": "current"
+  },
+  {
+   "title": "FCMCPS-COVID: AI propelled fog–cloud inspired scalable medical cyber-physical system, specific to coronavirus disease",
+   "identifiers": {
+    "openalex": "W4378469629",
+    "doi": "10.1016/j.iot.2023.100828"
+   },
+   "abstract": "Medical cyber–physical systems (MCPS) firmly integrate a network of medical objects. These systems are highly efficacious and have been progressively used in the Healthcare 4.0 to achieve continuous high-quality services. Healthcare 4.0 encompasses numerous emerging technologies and their applications have been realized in the monitoring of a variety of virus outbreaks. As a growing healthcare trend, coronavirus disease (COVID-19) can be cured and its spread can be prevented using MCPS. This virus spreads from human to human and can have devastating consequences. Moreover, with the alarmingly rising death rate and new cases across the world, there is an urgent need for continuous identification and screening of infected patients to mitigate their spread. Motivated by the facts, we propose a framework for early detection, prevention, and control of the COVID-19 outbreak by using novel Industry 5.0 technologies. The proposed framework uses a dimensionality reduction technique in the fog layer, allowing high-quality data to be used for classification purposes. The fog layer also uses the ensemble learning-based data classification technique for the detection of COVID-19 patients based on the symptomatic dataset. In addition, in the cloud layer, social network analysis (SNA) has been performed to control the spread of COVID-19. The experimental results reveal that compared with state-of-the-art methods, the proposed framework achieves better results in terms of accuracy (82.28 %), specificity (91.42 %), sensitivity (90 %) and stability with effective response time. Furthermore, the utilization of CVI-based alert generation at the fog layer improves the novelty aspects of the proposed system.",
+   "status": "current"
+  },
+  {
+   "title": "LogRule: Efficient Structured Log Mining for Root Cause Analysis",
+   "identifiers": {
+    "openalex": "W4379116564",
+    "doi": "10.1109/tnsm.2023.3282270"
+   },
+   "abstract": "Accurate, timely Root Cause Analysis (RCA) is essential to successful IT operations as a primary step to incident remediation. RCA automation using data mining techniques in large heterogeneous systems is, however, a challenging task, because it requires correlating multimodal information across various data sources. An increasing number of services are migrating to structured logging to enable automated monitoring and debugging of complex large-scale systems. In this paper, we leverage structured logs and association rule mining (ARM) to automate RCA. We propose the LogRule algorithm, which automatically analyzes structured logs to generate a list of explanations for an event of interest. It achieves 0.921 F1-score for the diagnosis task, while computing results 37x faster compared to the state-of-the-art solution based on FP-growth, making it a time-efficient, accurate, and interpretable ARM-based RCA algorithm. Evaluation results show that LogRule enables RCA in complex multidimensional datasets, where the execution time of the current state-of-the-art algorithm is prohibitively large.",
+   "status": "current"
+  },
+  {
+   "title": "A Survey of Graph-Based Deep Learning for Anomaly Detection in Distributed Systems",
+   "identifiers": {
+    "openalex": "W4379382413",
+    "doi": "10.1109/tkde.2023.3282898",
+    "arxiv": "2206.04149"
+   },
+   "abstract": "Anomaly detection is a crucial task in complex distributed systems. A thorough understanding of the requirements and challenges of anomaly detection is pivotal to the security of such systems, especially for real-world deployment. While there are many works and application domains that deal with this problem, few have attempted to provide an in-depth look at such systems. In this survey, we explore the potentials of graph-based algorithms to identify anomalies in distributed systems. These systems can be heterogeneous or homogeneous, which can result in distinct requirements. One of our objectives is to provide an in-depth look at graph-based approaches to conceptually analyze their capability to handle real-world challenges such as heterogeneity and dynamic structure. This study gives an overview of the State-of-the-Art (SotA) research articles in the field and compare and contrast their characteristics. To facilitate a more comprehensive understanding, we present three systems with varying abstractions as use cases. We examine the specific challenges involved in anomaly detection within such systems. Subsequently, we elucidate the efficacy of graphs in such systems and explicate their advantages. We then delve into the SotA methods and highlight their strength and weaknesses, pointing out the areas for possible improvements and future works.",
+   "status": "current"
+  },
+  {
+   "title": "SSDLog: a semi-supervised dual branch model for log anomaly detection",
+   "identifiers": {
+    "openalex": "W4380485520",
+    "doi": "10.1007/s11280-023-01174-y"
+   },
+   "abstract": "Abstract With versatility and complexity of computer systems, warning and errors are inevitable. To effectively monitor system’s status, system logs are critical. To detect anomalies in system logs, deep learning is a promising way to go. However, abnormal system logs in the real world are often difficult to collect, and effectively and accurately categorize the logs is an even time-consuming project. Thus, the data incompleteness is not conducive to the deep learning for this practical application. In this paper, we put forward a novel semi-supervised dual branch model that alleviate the need for large scale labeled logs for training a deep system log anomaly detector. Specifically, our model consists of two homogeneous networks that share the same parameters, one is called weak augmented teacher model and the other is termed as strong augmented student model. In the teacher model, the log features are augmented with small Gaussian noise, while in the student model, the strong augmentation is injected to force the model to learn a more robust feature representation with the guidance of teacher model provided soft labels. Furthermore, to further utilize unlabeled samples effectively, we propose a flexible label screening strategy that takes into account the confidence and stability of pseudo-labels. Experimental results show favorable effect of our model on prevalent HDFS and Hadoop Application datasets. Precisely, with only 30% training data labeled, our model can achieve the comparable results as the fully supervised version.",
+   "status": "current"
+  },
+  {
+   "title": "Enhancing Fault Injection Testing of Service Systems via Fault-Tolerance Bottleneck",
+   "identifiers": {
+    "openalex": "W4380520221",
+    "doi": "10.1109/tse.2023.3285357"
+   },
+   "abstract": "Modern large-scale service systems are usually deployed with redundant components to ensure high dependability in distributed and volatile environments. Fault Injection Testing (FIT) is a popular technique for testing such systems, while the application of FIT to validating the correctness of redundant components remains a challenging task, especially when the system's structural information is unavailable when testing starts. In this study, we refer to a minimum set of faults that, when injected, will cut off all execution paths in a service system as afault-tolerance bottleneck, and we propose a novel Fault-tolerance Bottleneck driven Fault Injection (FBFI) approach to the exploration and validation of redundant components without prior knowledge of the system's business structure. The core idea of FBFI is to iteratively infer and inject bottlenecks of the business structure constructed so far. In this way, FBFI is able to discover and test redundant components by repeatedly triggering new system behaviors. The effectiveness and efficiency of FBFI is evaluated using two microservice benchmark systems with different deployment scales. The results reveal that FBFI is more practical and cost-effective than random and lineage-driven FIT approaches in testing service systems of high redundancy levels.",
+   "status": "current"
+  },
+  {
+   "title": "Machine Learning for Industry 4.0 [From the Guest Editors]",
+   "identifiers": {
+    "openalex": "W4380591266",
+    "doi": "10.1109/mra.2023.3266618"
+   },
+   "abstract": "The Fourth Industrial Revolution, also known as Industry 4.0, marks the technological shift from traditional manufacturing systems to smart cyberphysical systems. It leads to an improvement in overall productivity and a reduction in environmental impact and promotes sustainable economic development. Industry 4.0 has been driven by emerging technologies such as the Internet of Things (IoT), also called the Industrial Internet of Things; digital twins; artificial intelligence; cloud computing; and edge/fog computing[1],[2],[3],[4],[5]. It is a hot topic in both academia and industry. The implementation of IoT connects physical assets to cybernetworks and captures a significant amount of data. These data, often “big”, are then fed to AI-based mission-critical systems to perform production monitoring, quality inspection, fault root cause analysis, quality prediction, and process control. The proper adoption of relevant Industry 4.0 technologies should lead to significant efficiency improvements and cost reductions in various industrial sectors.",
+   "status": "current"
+  },
+  {
+   "title": "Proactive Drive Failure Prediction for Cloud Storage System Through Semi-Supervised Learning",
+   "identifiers": {
+    "openalex": "W4380606958",
+    "doi": "10.1109/tdsc.2023.3286093"
+   },
+   "abstract": "Proactive drive failure prediction can help operators handle the failing drives in advance, enhancing the storage system dependability. SSD and HDD failure prediction techniques are currently evolving towards a semi-supervised approach. In this paper, we are dedicated to enhancing the methodology for semi-supervised drive failure prediction from these aspects: design more powerful, robust yet generic models, mine drive failure modes and make the prediction model interpretable. Specifically, we propose two semi-supervised drive failure prediction models, DFP-VL and DFP-FL, from the perspective of reconstructing SMART data and learning SMART data's probability density, respectively. They capture the pattern of healthy drives, and failing drives can be detected when they deviate from the normal pattern. We mine two failure modes, slow deterioration and dramatic deterioration. Based on that, we design two failure detectors, ”ThresholdDetector” and ”HybridDetector”, to determine whether a drive deviates from the normal pattern. We evaluate the proposed methods on both SSD and HDD SMART data. DFP-VL is generic yet effective and can interpret the predicted results. DFP-FL has better performance than DFP-VL, but it cannot interpret the results. ThresholdDetector has low complexity and can detect most failing drives. HybridDetector has high complexity and can further improve the detection performance.",
+   "status": "current"
+  },
+  {
+   "title": "A forensics and compliance auditing framework for critical infrastructure protection",
+   "identifiers": {
+    "openalex": "W4381089834",
+    "doi": "10.1016/j.ijcip.2023.100613"
+   },
+   "abstract": "Contemporary societies are increasingly dependent on products and services provided by Critical Infrastructure (CI) such as power plants, energy distribution networks, transportation systems and manufacturing facilities. Due to their nature, size and complexity, such CIs are often supported by Industrial Automation and Control Systems (IACS), which are in charge of managing assets and controlling everyday operations. As these IACS become larger and more complex, encompassing a growing number of processes and interconnected monitoring and actuating devices, the attack surface of the underlying CIs increases. This situation calls for new strategies to improve Critical Infrastructure Protection (CIP) frameworks, based on evolved approaches for data analytics, able to gather insights from the CI. In this paper, we propose an Intrusion and Anomaly Detection System (IADS) framework that adopts forensics and compliance auditing capabilities at its core to improve CIP. Adopted forensics techniques help to address, for instance, post-incident analysis and investigation, while the support of continuous auditing processes simplifies compliance management and service quality assessment. More specifically, after discussing the rationale for such a framework, this paper presents a formal description of the proposed components and functions and discusses how the framework can be implemented using a cloud-native approach, to address both functional and non-functional requirements. An experimental analysis of the framework scalability is also provided.",
+   "status": "current"
+  },
+  {
+   "title": "Score-VAE: Root Cause Analysis for Federated-Learning-Based IoT Anomaly Detection",
+   "identifiers": {
+    "openalex": "W4382119059",
+    "doi": "10.1109/jiot.2023.3289814"
+   },
+   "abstract": "Root cause analysis is the process of identifying the underlying factors responsible for triggering anomaly detection alarms. In the context of anomaly detection for Internet of Things (IoT) traffic, these alarms can be triggered by various factors, not all of which are malicious attacks. It is crucial to determine whether a malicious attack or benign operations cause an alarm. To address this challenge, we propose an innovative root cause analysis system called score-variational autoencoder (VAE), designed to complement existing IoT anomaly detection systems based on the federated learning (FL) framework. Score-VAE harnesses the full potential of the VAE network by integrating its training and testing schemes strategically. This integration enables Score-VAE to effectively utilize the generation and reconstruction capabilities of the VAE network. As a result, it exhibits excellent generalization, lifelong learning, collaboration, and privacy protection capabilities, all of which are essential for performing root cause analysis on IoT systems. We evaluate Score-VAE using real-world IoT trace data collected from various scenarios. The evaluation results demonstrate that Score-VAE accurately identifies the root causes behind alarms triggered by IoT anomaly detection systems. Furthermore, Score-VAE outperforms the baseline methods, providing superior performance in discovering root causes and delivering more accurate results.",
+   "status": "current"
+  },
+  {
+   "title": "MLog: Mogrifier LSTM-Based Log Anomaly Detection Approach Using Semantic Representation",
+   "identifiers": {
+    "openalex": "W4382119071",
+    "doi": "10.1109/tsc.2023.3289488"
+   },
+   "abstract": "Streaming logs provide valuable information for complex systems in diagnosing system faults or conducting security analysis. Although the log sequence anomaly detection has drawn more and more attention and achieved a satisfactory performance, it remains an extremely difficult task because of several intrinsic challenges including new event occurrences in a continuously evolving environment, making full use of rich dependency hidden in sequential events from the global and local view. To meet these challenges, in this article, we propose MLog, a hybrid deep neural network for detecting anomalies in log sequences. Specifically, MLog leverages the transformer encoder and a novel event Inverse Document Frequency (IDF) weighted mechanism to obtain a semantic vector for an individual log template. Log sequences represented by sequential template semantic vectors are then fed into a deep neural network combing the Mogrifier Long Short Term Memory (LSTM) with Convolutional Neural Network (CNN) to capture global and local sequential patterns simultaneously. We implement MLog and evaluate it by conducting extensive experiments on two well-known benchmark datasets, HDFS and BGL, from the aspects of detection accuracy and robustness. The results show that MLog outperforms the state-of-the-art approaches and is robust to the evolving logs. To encourage reproducibility, we make the implementation of MLog available.",
+   "status": "current"
+  },
+  {
+   "title": "Robust Failure Diagnosis of Microservice System Through Multimodal Data",
+   "identifiers": {
+    "openalex": "W4382203537",
+    "doi": "10.1109/tsc.2023.3290018",
+    "arxiv": "2302.10512"
+   },
+   "abstract": "Automatic failure diagnosis is crucial for large microservice systems. Currently, most failure diagnosis methods rely solely on single-modal data (i.e., using either metrics, logs, or traces). In this study, we conduct an empirical study using real-world failure cases to show that combining these sources of data (multimodal data) leads to a more accurate diagnosis. However, effectively representing these data and addressing imbalanced failures remain challenging. To tackle these issues, we proposeDiagFusion, a robust failure diagnosis approach that uses multimodal data. It leverages embedding techniques and data augmentation to represent the multimodal data of service instances, combines deployment data and traces to build a dependency graph, and uses a graph neural network to localize the root cause instance and determine the failure type. Our evaluations using real-world datasets show thatDiagFusionoutperforms existing methods in terms of root cause instance localization (improving by 20.9% to 368%) and failure type determination (improving by 11.0% to 169%).",
+   "status": "current"
+  },
+  {
+   "title": "Root cause analysis for process industry using causal knowledge map under large group environment",
+   "identifiers": {
+    "openalex": "W4382469257",
+    "doi": "10.1016/j.aei.2023.102057"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "A Multimethod Study of Internet of Things Systems Testing in Industry",
+   "identifiers": {
+    "openalex": "W4382658138",
+    "doi": "10.1109/jiot.2023.3291233"
+   },
+   "abstract": "As the Internet of Things (IoT) grows, its failures may have dramatic consequences on the lives of people who depend on it. Yet, it is hard to test IoT systems before they are deployed. Several researchers have provided state-of-the-art approaches for testing IoT systems. However, many of those approaches are based on academia rather than industry. Therefore, we conducted a multimethod study of IoT systems testing in the industry with IoT practitioners. We used three methods: 1) an industry survey; 2) practitioners interviews; and 3) analysis of Eclipse IoT surveys. This study focuses on testing IoT systems by industry practitioners. The findings show the following. 1) Testing focuses more on the device, network, and application layers. IoT testing gives more importance to integration testing than acceptance testing. Test coverage is the most important metric, but metrics may vary depending on the project. 2) IoT system testing mainly uses the model-based approach and is often manual or semi-automated, with low adoption of white box testing. Node-RED is commonly used in testing IoT systems, while Amazon AWS IoT is popular for cloud platform testing of IoT devices. 3) Log analysis is the main approach to analyzing the root cause of bugs. 4) The main challenges in IoT testing include the lack of standards, security, connectivity, and reference architecture. Generating test cases and establishing a standard test approach are recommended for further research. This study’s findings can help IoT practitioners and researchers to identify and tackle challenges in IoT system testing, leading to future research opportunities.",
+   "status": "current"
+  },
+  {
+   "title": "Adaptive Observability for Forensic-Ready Microservice Systems",
+   "identifiers": {
+    "openalex": "W4382724556",
+    "doi": "10.1109/tsc.2023.3290474"
+   },
+   "abstract": "Microservice-based applications may include multiple instances of microservices running on containerised infrastructures. These infrastructures pose challenges to digital investigations of security incidents because digital evidence can be destroyed when containers are terminated. Observability techniques are used to facilitate the investigation of incidents in microservice systems. However, existing observability approaches do not address security incidents when there is a need to perform digital forensic investigations. Furthermore, approaches to proactively support digital forensic investigations are limited to security incidents that are known a priori. In this paper, we propose an adaptive observability approach based on game theory. The approach addresses the challenge of implementing forensic-ready microservice systems while considering uncertainties in security incidents. Our approach provides evidence collection capabilities for microservice systems and continually adapts to improve the forensic readiness of microservices. Specifically, the approach uses game theory to model and reason about the interactions between users and microservices, determining the optimal time and manner for observing microservices before the occurrence of security incidents. The performance of the approach has been assessed and compared with other observability approaches. Results of the evaluation indicate that adaptive observability outperforms other observability approaches, with improvements ranging from 3.1% up to 42.50%.",
+   "status": "current"
+  },
+  {
+   "title": "Graph neural networks based log anomaly detection and explanation",
+   "identifiers": {
+    "openalex": "W4383174304",
+    "doi": "10.1007/s10618-026-01235-6"
+   },
+   "abstract": "Abstract Event logs are widely used to record the status of high-tech systems, making log anomaly detection important for monitoring those systems. Most existing log anomaly detection methods take a log event count matrix or log event sequences as input, exploiting quantitative and/or sequential relationships between log events to detect anomalies. However, only considering quantitative or sequential relationships may result in low detection accuracy. To alleviate this problem, we propose a graph-based method for unsupervised log anomaly detection, dubbed Logs2Graphs , which first converts event logs into attributed, directed, and weighted graphs, and then leverages graph neural networks to perform graph-level anomaly detection. Specifically, we introduce One-Class Digraph Inception Convolutional Networks, abbreviated as OCDiGCN, a novel graph neural network model for detecting graph-level anomalies in a collection of attributed, directed, and weighted graphs. By integrating graph representation and anomaly detection, OCDiGCN learns a specialized representation that leads to high detection accuracy. Crucially, we furnish a concise set of nodes pivotal in OCDiGCN’s prediction as explanations for each detected anomaly, offering valuable insights for subsequent root cause analysis. Experiments on five benchmark datasets show that Logs2Graphs exhibits comparable or superior performance when compared to state-of-the-art log anomaly detection methods.",
+   "status": "current"
+  },
+  {
+   "title": "StreamAD: A cloud platform metrics-oriented benchmark for unsupervised online anomaly detection",
+   "identifiers": {
+    "openalex": "W4383371734",
+    "doi": "10.1016/j.tbench.2023.100121"
+   },
+   "abstract": "Cloud platforms, serving as fundamental infrastructure, play a significant role in developing modern applications. In recent years, there has been growing interest among researchers in utilizing machine learning algorithms to rapidly detect and diagnose faults within complex cloud platforms, aiming to improve the quality of service and optimize system performance. There is a need for online anomaly detection on cloud platform metrics to provide timely fault alerts. To assist Site Reliability Engineers (SREs) in selecting suitable anomaly detection algorithms based on specific use cases, we introduce a benchmark called StreamAD. This benchmark offers three-fold contributions: (1) it encompasses eleven unsupervised algorithms with open-source code; (2) it abstracts various common operators for online anomaly detection which enhances the efficiency of algorithm development; (3) it provides extensive comparisons of various algorithms using different evaluation methods; With StreamAD, researchers can efficiently conduct comprehensive evaluations for new algorithms, which can further facilitate research in this area. The code of StreamAD is published at https://github.com/Fengrui-Liu/StreamAD.",
+   "status": "current"
+  },
+  {
+   "title": "LogGraph: Log Event Graph Learning Aided Robust Fine-Grained Anomaly Diagnosis",
+   "identifiers": {
+    "openalex": "W4383503926",
+    "doi": "10.1109/tdsc.2023.3293111"
+   },
+   "abstract": "Anomaly diagnosis relying on system logs to record runtime events is essential for improving the service quality of distributed systems and reducing economic losses. However, most existing log-based anomaly detection approaches depend on the assumption of the fixed quantitative or sequential patterns of a normal log event sequence. This assumption is challenged in the context of practical distributed and parallel systems due to the dynamic pattern of the log sequence, log data noise as well as concurrency of multiple anomalies. Against these challenges, this paper aims to perform the robust log-based anomaly diagnosis by capturing the event context information of the log event graph, called LogGraph, instead of straightforwardly employing the fixed quantitative or sequential patterns of the log records, thus reducing its sensitivity to the log flaws and the concurrency of multiple anomalies. Specifically, in order to handle multiple anomalies concurrency, LogGraph invokes the association rule to decouple log sequences. It further reinterprets a log record sequence into a log event graph modeled by event semantic embedding and event adjacency matrix. An attention-based Gated Graph Neural Network (GGNN) model is developed to capture the semantic information of the log graph, which enables the fine-grained and robust anomaly identification of the proposed scheme. We use real log data sets collected from Hadoop systems and network switches to verify the effectiveness of the proposed LogGraph in log data scenarios that contain noise and multiple anomalies concurrency problems. The experimental results show that the proposed LogGraph achieves high performance and strong robustness in anomaly diagnosis.",
+   "status": "current"
+  },
+  {
+   "title": "LEON: A New Framework for ML-Aided Query Optimization",
+   "identifiers": {
+    "openalex": "W4383749444",
+    "doi": "10.14778/3598581.3598597"
+   },
+   "abstract": "Query optimization has long been a fundamental yet challenging topic in the database field. With the prosperity of machine learning (ML), some recent works have shown the advantages of reinforcement learning (RL) based learned query optimizer. However, they suffer from fundamental limitations due to the data-driven nature of ML. Motivated by the ML characteristics and database maturity, we propose LEON -a framework for ML-aidEd query OptimizatioN. LEON improves the expert query optimizer to self-adjust to the particular deployment by leveraging ML and the fundamental knowledge in the expert query optimizer. To train the ML model, a pairwise ranking objective is proposed, which is substantially different from the previous regression objective. To help the optimizer to escape the local minima and avoid failure, a ranking and uncertainty-based exploration strategy is proposed, which discovers the valuable plans to aid the optimizer. Furthermore, an ML model-guided pruning is proposed to increase the planning efficiency without hurting too much performance. Extensive experiments offer evidence that the proposed framework can outperform the state-of-the-art methods in terms of end-to-end latency performance, training efficiency, and stability.",
+   "status": "current"
+  },
+  {
+   "title": "LogKG: Log Failure Diagnosis Through Knowledge Graph",
+   "identifiers": {
+    "openalex": "W4383890187",
+    "doi": "10.1109/tsc.2023.3293890"
+   },
+   "abstract": "Logs are one of the most valuable data to describe the running state of services. Failure diagnosis through logs is crucial for service reliability and security. The current automatic log failure diagnosis methods cannot fully use the multiple fields of logs, which fail to capture the relation between them. In this article, we propose LogKG, a new framework for diagnosing failures based on knowledge graphs (KG) of logs. LogKG fully extracts entities and relations from logs to mine multi-field information and their relations through the KG. To fully use the information represented by KG, we propose a failure-oriented log representation (FOLR) method to extract the failure-related patterns. Utilizing the OPTICS clustering method, LogKG aggregates historical failure cases, labels typical failure cases, and trains a failure diagnosis model to identify the root cause. We evaluate the effectiveness of LogKG on a real-world log dataset and a public log dataset, respectively, showing that it outperforms existing methods. With the deployment in a top-tier global Internet Service Provider (ISP), we demonstrate the performance and practicability of LogKG.",
+   "status": "current"
+  },
+  {
+   "title": "DTFL: A Digital Twin-Assisted Graph Neural Network Approach for Service Function Chains Failure Localization",
+   "identifiers": {
+    "openalex": "W4384028523",
+    "doi": "10.1109/tcc.2023.3294506"
+   },
+   "abstract": "Cloud computing enables Network Function Virtualization to dynamically provide and deploy network functions (NFs) to meet business-specific requirements. This approach streamlines NFs’ lifecycle management and lowers the cost of Operation Administration and Maintenance. However, these advantages cause Service Function Chain (SFC) failure to grow in both scope and dimensionality, making it difficult to establish a model to locate the failure effectively. In this paper, we propose a complete analysis scheme DTFL (Digital Twin (DT) based for SFC failure localization (FL)) through the following two steps: one is classifying and locating failures, and the other is conducting root cause analysis. We propose transGNN based on the Graph Neural Network and improved graph search model to achieve the classification and location for SFC failures. On this basis, the FNSG-RCA algorithm (failure based graph model) is proposed to analyze failures. We build a prototype based on the cloud platform and experimental results show that this scheme can achieve an accuracy rate of over 98% in fine-grained classification of 49 failure types. In addition, DTFL delivers desirable performance in RCA, approximately 13% more accurate than SOTA, the state-of-the-art approach. DTFL improves both RCA accuracy and model deployment efficiency compared with the non-DT approaches.",
+   "status": "current"
+  },
+  {
+   "title": "Federated Domain Generalization: A Secure and Robust Framework for Intelligent Fault Diagnosis",
+   "identifiers": {
+    "openalex": "W4385299245",
+    "doi": "10.1109/tii.2023.3296894"
+   },
+   "abstract": "The maturation of sensor network technologies has promoted the emergence of the Industrial Internet of Things, which has been collecting an increasing volume of monitoring data. Transforming these data into actionable intelligence for equipment fault diagnosis can reduce unscheduled downtime and performance degradation. In conventional artificial intelligence paradigms, abundant individual data distributed across clients’ devices needs to be delivered to a central storage for data analysis and knowledge extraction, which may violate data privacy requirements and neglect distribution discrepancy across different clients. To tackle the issue of privacy disclosure, an edge-cloud integrated federated learning framework is developed. Then, a two-stage training mechanism is designed to establish a domain-agnostic fault diagnosis model that can achieve satisfactory diagnostic performance on unseen target domains. Comprehensive simulated experiments on two rotating machines indicate that the proposed method possesses good generalization ability and can meet the requirement of privacy protection.",
+   "status": "current"
+  },
+  {
+   "title": "CauseFormer: Interpretable Anomaly Detection With Stepwise Attention for Cloud Service",
+   "identifiers": {
+    "openalex": "W4385413326",
+    "doi": "10.1109/tnsm.2023.3299846"
+   },
+   "abstract": "The anomaly detection techniques for cloud service focus on alerting the operation engineers about the anomalous running state. However, their shortcoming of anomaly interpretability is an obstacle to understanding and further removing the anomalies. To overcome the abovementioned challenge, we propose a tree-like attention-based detection framework CauseFormer that provides both the metric and sample interpretations. Firstly, we develop stepwise attention based on the multi-head attention mechanism, which imitates the rule-based tree formation process. This network block extracts the higher-order features and generates the metric contribution that can be regarded as metric interpretation. Meanwhile, we design the hyper-circle loss function rather than cross-entropy-based approaches to optimize the representation. Then we introduce the majority voting rule into the classifier. This neighbor classification criterion raises the alarms of anomalies and achieves the sample interpretation. Finally, we conduct extensive experiments in four datasets collected from cloud application cases. The experimental results reveal the superiority of CauseFormer in improving detection accuracy and embodying practical interpretability.",
+   "status": "current"
+  },
+  {
+   "title": "A Near Real-Time Big Data Provenance Generation Method Based on the Conjoint Analysis of Heterogeneous Logs",
+   "identifiers": {
+    "openalex": "W4385453584",
+    "doi": "10.1109/access.2023.3300844"
+   },
+   "abstract": "Data provenance is an effective approach for data security supervision. In the distributed, multi-user, and multi-layer big data system, only the provenance generation method, which leverages the information logged at both application and operating system level, has the capacity to completely obtain the provenance information required for data usage supervision. However, the current research on the conjoint analysis of multiple logs is inadequate, and it is difficult for them to effectively integrate the provenance information extracted from different logs, especially in the big data scenario. For the near real-time provenance generation based on the analysis of multiple heterogeneous logs, this paper employs a Hadoop-based big data system as the research object, and proposes a parallel log analysis method based on auxiliary data structures and multi-threading. For the efficient conjoint analysis of multiple logs, 5 auxiliary data structures are constructed as the medium for the correlation and fusion of log information, and a multi-threading method is presented to parallelize the lookup of provenance information. In order to cope with the complex log record generation rules, log analysis methods for nondeterministic records, non-instantaneous operations, and instantaneous batch operations are proposed to generate provenance information correctly. In addition, a provenance generation framework is established to implement the proposed log analysis method. The experimental results show that the log collection time overhead caused by processing files above MB level is less than 0.1%. The proposed method can analyze logs in near real time and generate provenance information correctly.",
+   "status": "current"
+  },
+  {
+   "title": "Enhanced joint hybrid deep neural network explainable artificial intelligence model for 1-hr ahead solar ultraviolet index prediction",
+   "identifiers": {
+    "openalex": "W4385605282",
+    "doi": "10.1016/j.cmpb.2023.107737"
+   },
+   "abstract": "BACKGROUND AND OBJECTIVE: Exposure to solar ultraviolet (UV) radiation can cause malignant keratinocyte cancer and eye disease. Developing a user-friendly, portable, real-time solar UV alert system especially or wearable electronic mobile devices can help reduce the exposure to UV as a key measure for personal and occupational management of the UV risks. This research aims to design artificial intelligence-inspired early warning tool tailored for short-term forecasting of UV index (UVI) integrating satellite-derived and ground-based predictors for Australian hotspots receiving high UV exposures. The study further improves the trustworthiness of the newly designed tool using an explainable artificial intelligence approach. METHODS: An enhanced joint hybrid explainable deep neural network model (called EJH-X-DNN) is constructed involving two phases of feature selection and hyperparameter tuning using Bayesian optimization. A comprehensive assessment of EJH-X- DNN is conducted with six other competing benchmarked models. The proposed model is explained locally and globally using robust model-agnostic explainable artificial intelligence frameworks such as Local Interpretable Model-Agnostic Explanations (LIME), Shapley additive explanations (SHAP), and permutation feature importance (PFI). RESULTS: The newly proposed model outperformed all benchmarked models for forecasting hourly horizons UVI, with correlation coefficients of 0.900, 0.960, 0.897, and 0.913, respectively, for Darwin, Alice Springs, Townsville, and Emerald hotspots. According to the combined local and global explainable model outcomes, the site-based results indicate that antecedent lagged memory of UVI and solar zenith angle are influential features. Predictions made by EJH-X-DNN model are strongly influenced by factors such as ozone effect, cloud conditions, and precipitation. CONCLUSION: With its superiority and skillful interpretation, the UVI prediction system reaffirms its benefits for providing real-time UV alerts to mitigate risks of skin and eye health complications, reducing healthcare costs and contributing to outdoor exposure policy.",
+   "status": "current"
+  },
+  {
+   "title": "Discrete log anomaly detection: A novel time-aware graph-based link prediction approach",
+   "identifiers": {
+    "openalex": "W4386002464",
+    "doi": "10.1016/j.ins.2023.119576"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Cooperative Partial Task Offloading and Resource Allocation for IIoT Based on Decentralized Multiagent Deep Reinforcement Learning",
+   "identifiers": {
+    "openalex": "W4386025659",
+    "doi": "10.1109/jiot.2023.3306803"
+   },
+   "abstract": "Edge computing has become increasingly important to fulfill the diversified Quality-of-Service (QoS) or Quality-of-Experience (QoE) demands for Industrial Internet of Things (IIoT) applications, such as machine condition monitoring, fault diagnosis, intelligent production scheduling, and production quality control. Due to the heterogeneity of IIoT systems, it is of urgent necessity to concentrate on the cloud–edge–end cooperative partial task offloading and resource allocation (CPTORA) problem for realizing workload balancing, efficient resource utilization, and better QoS/QoE of IIoT applications. However, the challenge lies in how to make real-time, accurate, decentralized task offloading (TO) and resource allocation (RA) decisions for dynamic and device-intensive IIoT. Therefore, this work examines the CPTORA problem for IIoT, aiming at minimizing its long-run overall delay and energy costs. To lower the problem complexity, this problem is decomposed into the TO subproblem and the RA subproblem. Then, an improved soft actor–critic-based decentralized multiagent deep reinforcement learning (MADRL) algorithm is proposed to address the TO subproblem, where each IIoT device can learn its globally optimal policy and make its decisions independently. This algorithm innovatively combines the divergence regularization, the distributional reinforcement learning, and the value function decomposition methods to improve convergence speed and accuracy of the existing MADRL methods. After receiving the TO decisions of every IIoT device, every edge server employs the Lagrange multiplier method and Karush–Kuhn–Tucker condition to solve its RA subproblem. The experimental results show that the proposed algorithm decreases the overall delay and energy costs more effectively, compared to the other state-of-the-art MADRL approaches.",
+   "status": "current"
+  },
+  {
+   "title": "Hierarchical Fault Root Cause Identification in Plant-Wide Processes Using Distributed Direct Causality Analysis",
+   "identifiers": {
+    "openalex": "W4386065125",
+    "doi": "10.1109/tii.2023.3301046"
+   },
+   "abstract": "Process monitoring and fault root cause analysis of industrial processes play a critical role to inform timely maintenance and ensure safe production. Existing distributed monitoring frameworks are able to determine the fault occurrence units, but often fall short on fault causality analysis for deeper insights. Therefore, it is necessary to conduct further analysis on variable correlations to locate the fault variable. Conventional fault root cause analysis methods, such as Granger causality and transfer entropy, ignore the distinction between indirect and direct causations between variables, resulting in unsatisfactory results of fault root cause analysis. Therefore, this article proposes a distributed process monitoring and fault root cause analysis framework via direct causality analysis based on partial cross mapping (PCM). First, fault units are located through distributed process monitoring. Then, PCM is used to locate the root cause variables hierarchically. This framework makes full use of the fault unit information obtained by a distributed monitoring method so that the number of variables for causality analysis is reduced, which increases computational efficiency as well as accuracy of the PCM method. The validity of the proposed framework is verified on the Tennessee–Eastman process and a wastewater treatment process.",
+   "status": "current"
+  },
+  {
+   "title": "MFGAD-INT: in-band network telemetry data-driven anomaly detection using multi-feature fusion graph deep learning",
+   "identifiers": {
+    "openalex": "W4386220653",
+    "doi": "10.1186/s13677-023-00492-w"
+   },
+   "abstract": "Abstract As the cloud services market grows, cloud management tools that detect network anomalies in a non-intrusive manner are critical to improve users’ experience of cloud services. However, some network anomalies, such as Microburst, in cloud systems are very discreet. Network monitoring methods, e.g., SNMP, Ping, are of coarse temporal granularity or low-dimension metrics, have difficulty to identify such anomalies quickly and accurately. Network telemetry is able to collect rich network metrics with fine temporal granularity, which can provide deep insight into network anomalies. However, the rich features in the telemetry data are insufficient exploited in existing research. This paper proposes a Multi-feature Fusion Graph Deep learning approach driven by the In-band Network Telemetry, shorted as MFGAD-INT, to efficiently extract and process the spatial-temporal correlation information in telemetry data and effectively identify the anomalies. The experimental results show that the accuracy performance of the proposed method improves about 10.56% compared to the anomaly detection method without network telemetry and about 9.73% compared to the network telemetry-based method.",
+   "status": "current"
+  },
+  {
+   "title": "A 2-Phase Strategy for Intelligent Cloud Operations",
+   "identifiers": {
+    "openalex": "W4386453452",
+    "doi": "10.1109/access.2023.3312218"
+   },
+   "abstract": "When operating large cloud computing infrastructures, ensuring healthiness of physical resources and software components is of paramount importance to meet the demanding service levels expected by customers. This is only possible using automations that can detect anomalies and alert the on-call personnel, or trigger healing procedures. In production-grade deployments, such automations are generally based on static thresholds or predefined pattern-matching rules, checked against relevant metrics and logs. Defining and maintaining them is cumbersome and, as the infrastructure grows, they need continuous adjustments. To tackle this problem, we propose anintelligentautomation system for cloud operations that learns, from what operators have done in the past, what actions should be applied in response to the observed anomalies. Such system is designed to operate elastic groups of cloud instances realizing typical (replicated) cloud services. The mechanism is based on a 2-phase machine learning pipeline, composed of: a first, lighter, model that automatically detects anomalous patterns, based on past observations of thenormalbehavior, causing activation of the second, more involved, model; this is a model that recommends specific corrective actions, based on historical operational data reporting the actions applied to heal the faulty components. The approach was validated on an OpenStack deployment, where we deployed both a synthetic application and a multi-node Cassandra NoSQL data-store, and injected different types of anomalies while these systems were exercised using synthetic workloads. For both applications, we obtained a remarkable accuracy (mostly beyond 90%, and also going beyond 95% in some cases), for the anomaly detection and corrective action recommendation tasks, by applying the models on the respective test sets. This allows us to conclude that the presented mechanism constitutes an efficient and effective technique to help operating cloud services in presence of a number of faults, albeit the types and heterogeneity of faulty conditions might be expanded in future evolutions of the framework. The implementation and the material needed to reproduce our results are available under an open-source license.",
+   "status": "current"
+  },
+  {
+   "title": "A Clinical Decision Support System for Edge/Cloud ICU Readmission Model Based on Particle Swarm Optimization, Ensemble Machine Learning, and Explainable Artificial Intelligence",
+   "identifiers": {
+    "openalex": "W4386472968",
+    "doi": "10.1109/access.2023.3312343"
+   },
+   "abstract": "ICU readmission is usually associated with an increased number of hospital death. Predicting readmission helps to reduce such risks by avoiding early discharge, providing appropriate intervention, and planning for patient placement after ICU discharge. Unfortunately, ICU scores such as the simplified acute physiology score (SAPS) and Acute Physiology and Chronic Health (APACHE) could help predict mortality or evaluate illness severity. Still, it is ineffective in predicting ICU readmission. This study introduces a clinical monitoring fog-computing-based system for remote prognosis and monitoring of intensive care patients. This proposed monitoring system uses the advantages of machine learning (ML) approaches for generating a real-time alert signal to doctors for supplying e-healthcare, accelerating decision-making, and monitoring and controlling health systems. The proposed system includes three main layers. First, the data acquisition layer, in which we collect the vital signs and lab tests of the patient’s health conditions in real-time. Then, the fog computing layer processes. The results are then sent to the cloud layer, which offers sizable storage space for patient healthcare. Demographic data, lab tests, and vital signs are aggregated from the MIMIC III dataset for 10,465 patients. Feature selection methods: Genetic algorithm (GA) and practical swarm optimization (PSO) are used to choose the optimal feature subset from detests. Moreover, Different traditional ML models, ensemble learning models, and the proposed stacking models are applied to full features and selected features to predict readmission after 30 days of ICU discharge. The proposed stacking models recorded the highest performance compared to other models. The proposed stacking ensemble model with selected features by POS achieved promising results (accuracy=98.42, precision=98.42, recall=98.42, and F1-Score=98.42), compared to full features and selected features. We also, provide model explanations to ensure efficiency, effectiveness, and trust in the developed model through local and global explanations.",
+   "status": "current"
+  },
+  {
+   "title": "TelOps: AI-Driven Operations and Maintenance for Telecommunication Networks",
+   "identifiers": {
+    "openalex": "W4386590500",
+    "doi": "10.1109/mcom.003.2300055",
+    "arxiv": "2412.04731"
+   },
+   "abstract": "Telecommunication Networks (TNs) have become the most important infrastructure for data communications over the last century. Operations and Maintenance (O&M) is extremely important to ensure the availability, effectiveness, and efficiency of TN communications. Different from the popular O&M technique for IT systems (e.g., the cloud), Artificial Intelligence for IT Operations (AIOps), O&M for TNs meets the following three fundamental challenges: topological dependence of network components, highly heterogeneous software, and restricted failure data. This article presents TelOps, the first AI-driven O&M framework for TNs, systematically enhanced with mechanism, data, and empirical knowledge. We provide a comprehensive comparison between TelOps and AIOps, and conduct a proof-of-concept case study on a typical O&M task (failure diagnosis) for a real industrial TN. As the first systematic AI-driven O&M framework for TNs, TelOps opens a new door to applying AI techniques to TN automation.",
+   "status": "current"
+  },
+  {
+   "title": "Efficient end-to-end failure probing matrix construction in data center networks",
+   "identifiers": {
+    "openalex": "W4386737151",
+    "doi": "10.23919/jcn.2023.000029"
+   },
+   "abstract": "Data centers play an essential role in the functioning of modern society. However, failures are unavoidable in data center networks (DCN) and will lead to negative impact on all applications. Therefore, researchers are interested in the rapid detection and localization of failures in DCNs. In this paper, we present a theoretical model to analyze the end-to-end failure detection methods in data center networks. Our numerical results verify that the proposed theoretical model is accurate. In addition, we propose an algorithm to construct probing matrices based on an enhanced probing path selection indicator. We also introduce deep reinforcement learning (DRL) method to solve the problem and propose a DRL-based probing matrix construction algorithm. Our experimental results show that both of the proposed algorithms for constructing probing matrices achieve better performance in detection accuracy than existing methods. We discussed different scenarios that the algorithms are applicable to that can improve detection accuracy or construction speed performance.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0snow2-06"
+}

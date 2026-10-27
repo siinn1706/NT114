@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-r2 04-t0-review-r2-01 --in work/records/snowball-r2.csv --in work/records/t0r2b-needs-review-t0.csv --out work/records/t0r2b-t0.csv --out work/records/t0r2b-t0-review-decisions.csv --note T0 1085 after snowball r2 and synonym queries",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-r2-01.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:17:54.487191+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b"
+ ],
+ "output_hashes": [
+  "47a88de06aac45049c296b56ca59aa5e040c5f866c974e14724b154c0e8c84fb"
+ ],
+ "checks": [
+  "phase 04 T0 after section 10 committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "70e8c35fe6b9fc1afa747f2092362123d5b7a5ca332ea417f6eb3d134606902e",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-r2 04-t0-review-r2-01 --in work/records/snowball-r2.csv --in work/records/t0r2b-needs-review-t0.csv --out work/records/t0r2b-t0.csv --out work/records/t0r2b-t0-review-decisions.csv --note T0 1085 after snowball r2 and synonym queries",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "cafeb264d58aaf2556480800dab8d395612828ce1128f072ba6241cede9af74d",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2b-t0.csv",
+   "sha256_before": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "sha256_after": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "47a88de06aac45049c296b56ca59aa5e040c5f866c974e14724b154c0e8c84fb",
+   "created_this_attempt": true
+  }
+ ]
+}

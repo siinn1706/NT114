@@ -1,0 +1,53 @@
+{
+ "schema_version": 2,
+ "id": "03-pytest-baseline-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -m pytest -q -p no:cacheprovider",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/03-pytest-baseline-01.out",
+ "egress_trace_reference": "work/logs/03-pytest-baseline-01.err",
+ "exit_status": "1",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:13:15.747741+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [],
+ "checks": [
+  "full pytest before any source change (baseline)"
+ ],
+ "limitations": [
+  "CPU only; realdata tests depend on the local data home"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -m pytest -q -p no:cacheprovider",
+   "shell": "none (subprocess argv)",
+   "cwd": "../../nt114-rca/nt114-rca",
+   "exit_status": 1,
+   "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stderr_sha256": "59ac127130debdd262e2cfb27e0042f049dd9e25cca0c77bb37b910f68b36021",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": []
+}

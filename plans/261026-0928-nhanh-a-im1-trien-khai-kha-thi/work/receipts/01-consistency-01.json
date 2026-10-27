@@ -1,0 +1,117 @@
+{
+ "schema_version": 2,
+ "id": "01-consistency-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/check-phase01-consistency.py work work/consistency-check-a01.json",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/01-consistency-01.out",
+ "egress_trace_reference": "work/logs/01-consistency-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:00:21.759335+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "5a3cac356ce694cb2257deefbfc4f1661a0a12595cfa283d01e66f1fc29e82f5",
+  "438f8b17401a045ac20e88311c43cb07f366acb4ba34724783787c4c2c136709",
+  "3be44111f8e2ab141c5d43d6fb2f34b7c3e66aa0737311eaa0e1d3d3ec5f35d6",
+  "24a6ad58147750cbad68b0dbea1fe5144979dab7d47994789ba3235f0e41ff83",
+  "90623a22e8af8048d69cf00e14b363270149f474f0e2b4244a89fd4f805da913",
+  "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1"
+ ],
+ "output_hashes": [
+  "0ff50b4d95b8b7e3e18c95fd1efeecc9044686e0a26154edc3721fae0944bef5"
+ ],
+ "checks": [
+  "arm ids, one call per arm, retrieval none, decision coverage D2-D13, D11 conditions 1-7 mapped, no approval claim, spec path counts sum to recounted pool"
+ ],
+ "limitations": [
+  "mechanical structure and cross-reference checks only; content and owner approval not assessed"
+ ],
+ "closure_hash": "14f3faafc3df4b126366bcfd3f90dd608da4806475daeeb7da24beeca730e6b7",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/check-phase01-consistency.py work work/consistency-check-a01.json",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "26ffc524d220ef8e467651844ce3b23fe893e3a7bf894c05200c00865e923d47",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/check-phase01-consistency.py",
+   "sha256_before": "5a3cac356ce694cb2257deefbfc4f1661a0a12595cfa283d01e66f1fc29e82f5",
+   "sha256_after": "5a3cac356ce694cb2257deefbfc4f1661a0a12595cfa283d01e66f1fc29e82f5",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/data-contract-addendum-im1-draft.md",
+   "sha256_before": "438f8b17401a045ac20e88311c43cb07f366acb4ba34724783787c4c2c136709",
+   "sha256_after": "438f8b17401a045ac20e88311c43cb07f366acb4ba34724783787c4c2c136709",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/arm-ids.csv",
+   "sha256_before": "3be44111f8e2ab141c5d43d6fb2f34b7c3e66aa0737311eaa0e1d3d3ec5f35d6",
+   "sha256_after": "3be44111f8e2ab141c5d43d6fb2f34b7c3e66aa0737311eaa0e1d3d3ec5f35d6",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/decision-check-map.csv",
+   "sha256_before": "24a6ad58147750cbad68b0dbea1fe5144979dab7d47994789ba3235f0e41ff83",
+   "sha256_after": "24a6ad58147750cbad68b0dbea1fe5144979dab7d47994789ba3235f0e41ff83",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/path-selection-spec.md",
+   "sha256_before": "90623a22e8af8048d69cf00e14b363270149f474f0e2b4244a89fd4f805da913",
+   "sha256_after": "90623a22e8af8048d69cf00e14b363270149f474f0e2b4244a89fd4f805da913",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/h1-membership-recheck.csv",
+   "sha256_before": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1",
+   "sha256_after": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/consistency-check-a01.json",
+   "sha256": "0ff50b4d95b8b7e3e18c95fd1efeecc9044686e0a26154edc3721fae0944bef5",
+   "created_this_attempt": true
+  }
+ ]
+}

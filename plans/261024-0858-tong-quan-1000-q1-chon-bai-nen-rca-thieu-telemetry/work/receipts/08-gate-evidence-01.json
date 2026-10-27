@@ -1,0 +1,61 @@
+{
+ "schema_version": 2,
+ "id": "08-gate-evidence-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/check-gate-evidence.py F:/Nam/UIT/nt114-paper-artifacts/W7203837764/CHASE.7z C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/0dafa63d-5ce7-4089-aa3f-8d91b2c90130/scratchpad/pylib7z work/t3-gate-evidence.json",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/08-gate-evidence-01.out",
+ "egress_trace_reference": "work/logs/08-gate-evidence-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T21:09:13.609471+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [
+  "d836bd9a61846b9afeb8dce26855654f752103adcb9f827aa918f7961690764a"
+ ],
+ "checks": [
+  "CHASE.7z hash and entry list (no extraction); Zenodo 19176851 record"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "2c1bd4c3b3cec4dc05b935f7e16856a3aac1c194d939c30923d02fb8e3766e9d",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/check-gate-evidence.py F:/Nam/UIT/nt114-paper-artifacts/W7203837764/CHASE.7z C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/0dafa63d-5ce7-4089-aa3f-8d91b2c90130/scratchpad/pylib7z work/t3-gate-evidence.json",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "82b8f97dab6fdf287fc05ecceb8d0ebacb64a892c212b955a39dc28d0ac66a51",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": [
+  {
+   "path": "work/t3-gate-evidence.json",
+   "sha256": "d836bd9a61846b9afeb8dce26855654f752103adcb9f827aa918f7961690764a",
+   "created_this_attempt": true
+  }
+ ]
+}

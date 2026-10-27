@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-double-sample-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-double-sample.py r2 s1 W4391897269,W4364302701,W4367277115,W4220822635,W4200165678,W7222353773,W7154686167",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-double-sample-r2-01.out",
+ "egress_trace_reference": "work/logs/05-double-sample-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:21:55.189736+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "1663dfd228f63026bab0af54f14c7e60453fd1902fcdd4ddf3aabdf5e9dd9c32"
+ ],
+ "output_hashes": [
+  "299b2b1a5057b916a5c1c6cb126107a2dc4130300a81638bc311ffb90408eee7"
+ ],
+ "checks": [
+  "blind double sample r2 + ranks 90-110 not yet double-screened + borderline"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "39daf693fde13060da21b02cf9e3fb039a99dade78548414680b8981800cb2fb",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-double-sample.py r2 s1 W4391897269,W4364302701,W4367277115,W4220822635,W4200165678,W7222353773,W7154686167",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "f1d13a08e936a3a4ba2cfb7ce5c48c1c9443a08c9bc485fb118d15ab00fd4a1c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/r2-s1-merged.csv",
+   "sha256_before": "1663dfd228f63026bab0af54f14c7e60453fd1902fcdd4ddf3aabdf5e9dd9c32",
+   "sha256_after": "1663dfd228f63026bab0af54f14c7e60453fd1902fcdd4ddf3aabdf5e9dd9c32",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/input/dbl-r2-manifest.json",
+   "sha256": "299b2b1a5057b916a5c1c6cb126107a2dc4130300a81638bc311ffb90408eee7",
+   "created_this_attempt": true
+  }
+ ]
+}

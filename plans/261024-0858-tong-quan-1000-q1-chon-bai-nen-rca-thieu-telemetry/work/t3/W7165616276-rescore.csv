@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W7165616276,F1,5,5,Sec II-B Eq. 1; Table I,unchanged
+W7165616276,F2,3,3,"Sec VI limitations (1)-(2); Sec V-F Fig. 8 (delta sweep is a hyperparameter study, not a telemetry-removal experiment)",unchanged; no controlled drop of a modality or span
+W7165616276,F3_code,2,3,"https://github.com/LLM4AIOps/RCLAgent-V2 (HTTP 200, MIT LICENSE, README quick start; 2026-10-25)",T2 could not see license or run guide in the text; static audit shows both
+W7165616276,F3_data,2,2,README Sec 3; Zenodo 19176851 HTTP 200,unchanged
+W7165616276,F3_compute,2,2,config.py LLM_API_URL; Table III,unchanged; open models tested are 32B and above and weak
+W7165616276,F3_desc,1,0,"Fig. 5-6 (two prompts only); Sec V-A.4 (no decoding settings); Sec II-C 100x latency rule vs config.py DURATION_THRESHOLD_US default 10,000,000 us","Synthesizer prompt and decoding settings missing and paper preprocessing rule differs from the code default, so at least two rubric items are missing"
+W7165616276,F4,4,4,Sec V-A.2; Sec V-B Wilcoxon; Eq. 11,unchanged; flagged: |A| and best-of-traces aggregation not in paper (README Sec 6)
+W7165616276,F5,3,3,Sec VI (1)-(2),unchanged; blind_root and no_trace conditions of NT114 measure it
+W7165616276,F6,3,3,Sec V-A.1 RE2-OB; Table I,unchanged

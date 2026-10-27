@@ -1,0 +1,61 @@
+{
+ "schema_version": 2,
+ "id": "10-receipt-verify-04",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10-a04.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-receipt-verify-04.out",
+ "egress_trace_reference": "work/logs/10-receipt-verify-04.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T02:41:45.576883+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [
+  "77423c43a543c956c7ff83d55cf28729da9a25eda92b9ed140bf7bdce83a8223"
+ ],
+ "checks": [
+  "re-verify all receipts after card recommit and targeted search"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "5a3e5c39bccfcc880509ba1b3a88141fe1055416fd6ecb7cce9e2ccdc5e67436",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10-a04.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "4ec7dd5959b502282140c7e58086b24cf2a236c1abba3211455593423ed0cb0c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": [
+  {
+   "path": "work/receipt-verify-10-a04.csv",
+   "sha256": "77423c43a543c956c7ff83d55cf28729da9a25eda92b9ed140bf7bdce83a8223",
+   "created_this_attempt": true
+  }
+ ]
+}

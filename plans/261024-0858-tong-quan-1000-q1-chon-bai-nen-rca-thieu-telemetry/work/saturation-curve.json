@@ -1,0 +1,68 @@
+{
+ "curve": [
+  {
+   "t0": "seed",
+   "n_t0": 338,
+   "new": null,
+   "new_by_source": null,
+   "new_from_source_only": null
+  },
+  {
+   "t0": "search",
+   "n_t0": 863,
+   "new": 525,
+   "new_by_source": {
+    "base": 525,
+    "snowball-r1": 37,
+    "snowball-r2": 38,
+    "synonyms": 102,
+    "seed": 0
+   },
+   "new_from_source_only": {
+    "base": 405,
+    "snowball-r1": 0,
+    "snowball-r2": 0,
+    "synonyms": 0,
+    "seed": 0
+   }
+  },
+  {
+   "t0": "snowball-r1",
+   "n_t0": 967,
+   "new": 105,
+   "new_by_source": {
+    "base": 24,
+    "snowball-r1": 81,
+    "snowball-r2": 71,
+    "synonyms": 5,
+    "seed": 0
+   },
+   "new_from_source_only": {
+    "base": 24,
+    "snowball-r1": 10,
+    "snowball-r2": 0,
+    "synonyms": 0,
+    "seed": 0
+   }
+  },
+  {
+   "t0": "snowball-r2+synonyms",
+   "n_t0": 1085,
+   "new": 118,
+   "new_by_source": {
+    "base": 0,
+    "snowball-r1": 0,
+    "snowball-r2": 5,
+    "synonyms": 113,
+    "seed": 0
+   },
+   "new_from_source_only": {
+    "base": 0,
+    "snowball-r1": 0,
+    "snowball-r2": 5,
+    "synonyms": 113,
+    "seed": 0
+   }
+  }
+ ]
+}

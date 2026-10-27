@@ -1,0 +1,42 @@
+{
+ "n": 130,
+ "kappa_include": 1.0,
+ "kappa_inc_exc": 1.0,
+ "n_inc_exc": 58,
+ "kappa_include_abstract": 1.0,
+ "n_abstract": 61,
+ "confusion_s1_rows_s2_cols": {
+  "include": {
+   "include": 16,
+   "exclude": 0,
+   "needs-review": 0,
+   "context-survey": 0
+  },
+  "exclude": {
+   "include": 0,
+   "exclude": 42,
+   "needs-review": 0,
+   "context-survey": 0
+  },
+  "needs-review": {
+   "include": 0,
+   "exclude": 0,
+   "needs-review": 69,
+   "context-survey": 0
+  },
+  "context-survey": {
+   "include": 0,
+   "exclude": 0,
+   "needs-review": 0,
+   "context-survey": 3
+  }
+ },
+ "abs_agreement": {
+  "R1": 0.9769,
+  "R2": 0.9923,
+  "R3": 0.9923
+ },
+ "threshold": 0.7,
+ "disagreements": [],
+ "pass": true
+}

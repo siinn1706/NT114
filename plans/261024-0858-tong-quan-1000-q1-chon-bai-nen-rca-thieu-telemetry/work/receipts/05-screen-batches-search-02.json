@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-screen-batches-search-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-screen-batches.py work/records/t0full2-t0.csv search",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-screen-batches-search-02.out",
+ "egress_trace_reference": "work/logs/05-screen-batches-search-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:35:41.631493+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847"
+ ],
+ "output_hashes": [
+  "9144f7da42446d7e910f4ee99f5900874210da121a3db2d8c19b4ce54edcb657"
+ ],
+ "checks": [
+  "screening batches for records new in full T0"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "3512387051924dd73def79746ec06bf62796b332ee4d3ed5f809f06581ed54b5",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-screen-batches.py work/records/t0full2-t0.csv search",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "6be6bf3a4b81710208eeef2ac2b98e59892bc9dfe39e67a918cd227af2831756",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0full2-t0.csv",
+   "sha256_before": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "sha256_after": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/input/search-manifest.json",
+   "sha256": "9144f7da42446d7e910f4ee99f5900874210da121a3db2d8c19b4ce54edcb657",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+openalex_id,field,value,reason
+W4410538768,F1,2,"cross-check delta 3: output ranks root-cause types per slow query with no component localization, rubric level 2 (r2 Abstract and 3.2-3.3)"
+W4410538768,F3_compute,3,"cross-check delta 3: BERT-base + QueryFormer + MLP are small open models within 12 GB, same convention as other small-model papers despite reported RTX 3090 (5.1 setup)"
+W4410538768,F3,8,"recomputed from sub-scores 2+1+3+2"

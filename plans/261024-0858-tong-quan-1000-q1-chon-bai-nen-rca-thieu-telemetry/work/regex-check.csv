@@ -1,0 +1,61 @@
+sample,doi,title,topic_ok
+positive,10.1145/3777375,Chaos Engineering: A Multi-Vocal Literature Review,1
+positive,10.1145/3392149,Fast Dimensional Analysis for Root Cause Investigation in a Large-Scale Service Environment,1
+positive,10.1145/3715005,Failure Diagnosis in Microservice Systems: A Comprehensive Survey and Analysis,1
+positive,10.1109/tsc.2026.3676262,LLM-Enhanced Failure Localization in Microservices: Integrating Multi-Modal Data and Expert Interpretation,1
+positive,10.1016/j.future.2025.108185,EXASAGE: The first data center operational data analysis assistant,0
+positive,10.1145/3701740,Trustworthy AI-based Performance Diagnosis Systems for Cloud Applications: A Review,1
+positive,10.1016/j.cosrev.2026.101075,"Large language models for agentic NetOps and AIOps: Architectures, evaluation, and safety",1
+positive,10.1007/s10994-026-07121-y,Disentangling Faithfulness Hallucinations in Retrieval-Augmented Generation: A Systematic Benchmark and Analysis,0
+positive,10.37965/jdmd.2026.1505,A Fault Diagnosis-Oriented Data-Driven Embedding Fine-Tuning and Domain-Aware Hybrid Retrieval Method for Intelligent Op,0
+positive,10.1145/3702978,Identifying Performance Issues in Cloud Service Systems Based on Relational-Temporal Features,1
+positive,10.1145/3736755,Intelligent Root Cause Localization in MicroService Systems: A Survey and New Perspectives,1
+positive,10.1186/s13677-025-00766-5,Memory-augment graph transformer based unsupervised detection model for identifying performance anomalies in highly-dyna,1
+positive,,ARCHITECTURAL TRADE-OFFS BETWEEN STATELESS AND STATEFUL MICROSERVICES IN LARGE-SCALE CLOUD SYSTEMS,1
+positive,10.1109/access.2026.3688834,LogRAIL: A Retrieval-Augmented LLM Reverification Layer for Log Anomaly Detection,0
+positive,10.1145/3501297,Anomaly Detection and Failure Root Cause Analysis in (Micro) Service-Based Cloud Applications: A Survey,1
+positive,10.1109/tnsm.2024.3387552,MicroNet: Operation Aware Root Cause Identification of Microservice System Anomalies,1
+positive,10.1109/access.2026.3658655,LLM-Augmented Knowledge Base Construction for Root Cause Analysis,0
+positive,10.1007/s40747-024-01659-x,Towards accurate anomaly detection for cloud system via graph-enhanced contrastive learning,1
+positive,10.1145/3749840,AdaptiveLog: An Adaptive Log Analysis Framework with the Collaboration of Large and Small Language Model,0
+positive,10.1016/j.rineng.2026.113136,When RAG hurts: Retrieval-augmented generation degrades performance in metallurgical root cause analysis,0
+positive,,ARCHITECTURAL TRADE-OFFS BETWEEN STATELESS AND STATEFUL MICROSERVICES IN LARGE-SCALE CLOUD SYSTEMS,1
+positive,10.1007/s40747-025-02096-0,Leveraging multi-agent framework for root cause analysis,1
+positive,10.1186/s13677-024-00666-0,MTG_CD: Multi-scale learnable transformation graph for fault classification and diagnosis in microservices,1
+positive,10.1109/mwc.2026.3734923,Large Language Models (LLMs) for Telecom Root Cause Analysis (RCA): A Structured Reasoning Framework for Evidence-Ground,0
+positive,10.1145/3771283,LLM Meets ML: Data-efficient Anomaly Detection on Unstable Logs,0
+positive,10.1109/tdsc.2024.3363902,MicroFI: Non-Intrusive and Prioritized Request-Level Fault Injection for Microservice Applications,1
+positive,10.1109/tsc.2024.3411481,UAC-AD: Unsupervised Adversarial Contrastive Learning for Anomaly Detection on Multi-Modal Data in Microservice Systems,1
+positive,10.1016/j.rineng.2026.110491,Trustworthy root cause analysis for distributed systems via neurosymbolic fusion,1
+positive,10.1109/tsc.2026.3672587,Uncertainty-Aware Multimodal Anomaly Detection for Microservice Systems With Active Learning,1
+positive,10.1109/tcc.2024.3358823,Root Cause Analysis for Cloud-Native Applications,1
+negative,10.1055/a-1157-9708,Die roboterassistierte minimalinvasive D2-Lymphadenektomie,0
+negative,10.3389/fpubh.2026.1836281,The role of digital pharmaceutical governance in alleviating health inequality: a case study of the “Sanya Model” for ce,0
+negative,10.1016/j.patcog.2025.111845,MGRAG: MultiModal grid-aware retrieval augmentation generation framework for power grid work tickets,0
+negative,10.1016/j.ijrobp.2026.06.249,Augmenting Patient Safety Surveillance in Radiation Oncology with Large Language Model-Based Root Cause Analysis,0
+negative,10.21917/ijdsml.2026.0198,AASMA: AN ADAPTIVE AGENT-BASED SMART MULTIMODAL ASSISTANT FOR PROACTIVE HEALTHCARE,1
+negative,,"Securing AI/ML Operations in Multi-Cloud Environments: Best Practices for Data Privacy, Model Integrity, and Regulatory ",1
+negative,10.30574/ijsra.2025.15.2.1459,Harnessing Artificial Intelligence to enhance the mobile insurance claims management process,1
+negative,,Hybrid Transformer–Graph Neural Network Framework with Reinforcement Learning for Explainable Multi-Agent Decision Makin,0
+negative,10.1016/j.arthro.2024.12.010,"Large Language Models Applied to Health Care Tasks May Improve Clinical Efficiency, Value of Care Rendered, Research, an",0
+negative,10.3389/fdgth.2026.1840650,An agentic AI- and n8n automation-powered maternal care framework with predictive pregnancy monitoring and continuous le,0
+negative,10.2196/95782,"Artificial Intelligence–Mediated Discharge Document for Accessible Health Care (AIM-HEALTH): Protocol for a Prospective,",0
+negative,10.1097/j.pain.0000000000003389,AI and the ethics of techno-solutionism in pain management,0
+negative,10.30574/wjaets.2025.15.2.0670,AI agents in healthcare: Improving patient support while ensuring privacy,0
+negative,10.1371/journal.pdig.0001740,Augmenting patient safety surveillance in radiation oncology with large language model-based root cause analysis: A proo,0
+negative,10.1097/acm.0000000000005609,Foreword: The Next Era of Assessment and Precision Education,0
+negative,10.1109/tbme.2025.3642706,Keeping Medical AI Healthy and Trustworthy: A Review of Detection and Correction Methods for System Degradation,0
+negative,10.1016/j.egyai.2026.100828,An open-weight Large Language Model agent for condition monitoring and predictive maintenance in wind energy systems,1
+negative,10.32628/cseit25112396,Agentic Workflows in Healthcare: Advancing Clinical Efficiency through AI Integration,0
+negative,10.63544/jbii.v5i5.188,Self-Evolving Autonomous Software Architectures Using Large-Scale Graph Neural Networks and Real-Time Big Data Feedback ,1
+negative,10.17148/ijarcce.2025.14834,A Microservices-Oriented Architecture for Hybrid Renewable Energy Management and Smart Grid Resilience,1
+negative,10.1093/jamia/ocae103,Evaluating the accuracy of a state-of-the-art large language model for prediction of admissions from the emergency room,0
+negative,10.1111/ocr.70172,Patient Harm From Orthodontic Care (Part II): Incident Analysis of Contributory Factors and Perceived Avoidability of Ha,0
+negative,10.1109/ojcoms.2025.3569291,A Holistic Review of Fuzzing for Vulnerability Assessment in Industrial Network Protocols,0
+negative,10.37965/jdmd.2026.1505,A Fault Diagnosis-Oriented Data-Driven Embedding Fine-Tuning and Domain-Aware Hybrid Retrieval Method for Intelligent Op,0
+negative,10.7753/ijcatr1308.1020,Predictive Maintenance of Healthcare Cloud Infrastructure Using Time-Series DevOps Telemetry,1
+negative,10.47001/irjiet/2026.105080,MedSec: Secure Health Data Exchange,1
+negative,10.1016/j.egyai.2026.100688,Power system operational reliability evaluation with retrieval-augmented generation enhanced large language model,0
+negative,10.1016/j.metrad.2026.100244,Applications of Large Language Models in Radiation Oncology: From Workflow Automation to Clinical Intelligence,0
+negative,10.54660/.ijmrge.2024.5.6.2014-2026,Sentiment Analysis and Natural Language Processing for Consumer Insight: A Cross-Industry Framework for Retail Decision ,0
+negative,10.54254/2755-2721/2025.29149,Optimization Prediction of RAG Retrieval Performance Based on Transformer-BiGRU Regression Algorithm,0

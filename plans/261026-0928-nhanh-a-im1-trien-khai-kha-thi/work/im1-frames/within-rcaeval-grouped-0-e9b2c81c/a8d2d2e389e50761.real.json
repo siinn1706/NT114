@@ -1,0 +1,72 @@
+{
+ "edges": [
+  [
+   "checkout",
+   "currency",
+   15
+  ],
+  [
+   "checkout",
+   "email",
+   15
+  ],
+  [
+   "checkout",
+   "payment",
+   15
+  ],
+  [
+   "checkout",
+   "productcatalog",
+   15
+  ],
+  [
+   "frontend",
+   "checkout",
+   15
+  ],
+  [
+   "frontend",
+   "currency",
+   15
+  ],
+  [
+   "frontend",
+   "productcatalog",
+   15
+  ],
+  [
+   "frontend",
+   "recommendation",
+   15
+  ],
+  [
+   "recommendation",
+   "productcatalog",
+   15
+  ]
+ ],
+ "frame_version": "1",
+ "key": [
+  "rcaeval",
+  "RE3",
+  "online-boutique",
+  "within-rcaeval-grouped-0-e9b2c81c"
+ ],
+ "kind": "real",
+ "min_contributing": 3,
+ "n_contributing": 15,
+ "n_train_incidents": 15,
+ "nodes": [
+  "checkout",
+  "currency",
+  "email",
+  "frontend",
+  "payment",
+  "productcatalog",
+  "recommendation"
+ ],
+ "sha256": "c323b3d01a9a7cb9a018570bad0c69e09ed56a3e56a93a8a4751c2ce8aef9c27",
+ "valid": true,
+ "window_s": 600
+}

@@ -1,0 +1,417 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "ClotCatcher: a novel natural language model to accurately adjudicate venous thromboembolism from radiology reports",
+   "identifiers": {
+    "openalex": "W4388730844",
+    "doi": "10.1186/s12911-023-02369-z"
+   },
+   "abstract": "INTRODUCTION: Accurate identification of venous thromboembolism (VTE) is critical to develop replicable epidemiological studies and rigorous predictions models. Traditionally, VTE studies have relied on international classification of diseases (ICD) codes which are inaccurate - leading to misclassification bias. Here, we developed ClotCatcher, a novel deep learning model that uses natural language processing to detect VTE from radiology reports. METHODS: Radiology reports to detect VTE were obtained from patients admitted to Emory University Hospital (EUH) and Grady Memorial Hospital (GMH). Data augmentation was performed using the Google PEGASUS paraphraser. This data was then used to fine-tune ClotCatcher, a novel deep learning model. ClotCatcher was validated on both the EUH dataset alone and GMH dataset alone. RESULTS: The dataset contained 1358 studies from EUH and 915 studies from GMH (n = 2273). The dataset contained 1506 ultrasound studies with 528 (35.1%) studies positive for VTE, and 767 CT studies with 91 (11.9%) positive for VTE. When validated on the EUH dataset, ClotCatcher performed best (AUC = 0.980) when trained on both EUH and GMH dataset without paraphrasing. When validated on the GMH dataset, ClotCatcher performed best (AUC = 0.995) when trained on both EUH and GMH dataset with paraphrasing. CONCLUSION: ClotCatcher, a novel deep learning model with data augmentation rapidly and accurately adjudicated the presence of VTE from radiology reports. Applying ClotCatcher to large databases would allow for rapid and accurate adjudication of incident VTE. This would reduce misclassification bias and form the foundation for future studies to estimate individual risk for patient to develop incident VTE.",
+   "status": "current"
+  },
+  {
+   "title": "Research on the Impact of Indoor Control Quality Monitoring Based on Internet of Things",
+   "identifiers": {
+    "openalex": "W4388983816",
+    "doi": "10.1109/access.2023.3336706"
+   },
+   "abstract": "In recent years, indoor air quality monitoring has been a major concern worldwide due to its significant impacts on human health as people typically spend approximately 90% of their time in indoor environments. Many studies are increasingly focusing efforts on the design of real-time indoor air quality monitoring systems using wireless sensor networks. This paper presents a real-time cost-effective indoor air quality monitoring system (IAQMS) based on LoRa and the Internet of Things (IoT), which can measure CO2, PM2.5, PM10, TVOC, HCHO, ambient temperature, and relative humidity. The hardware architecture and software design of the indoor air quality detector (IAQD) are described in detail. Based on the OneNET platform, the proposed IAQMS enables remote monitoring and storage of data in the cloud platform for future analysis. The measurement consistency and stability of the IAQD proposed in this study are verified through the experimental measurement methods in five different working conditions. Meantime, the effect of adding a shell on the measurement of the sensor is comparatively analyzed. The presented IAQMS can be flexibly deployed in complex indoor environments for real-time monitoring and alerting.",
+   "status": "current"
+  },
+  {
+   "title": "MicroCM: A cloud monitoring architecture for microservice invocation",
+   "identifiers": {
+    "openalex": "W4389117757",
+    "doi": "10.1016/j.comnet.2023.110121"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Graph neural network based robust anomaly detection at service level in SDN driven microservice system",
+   "identifiers": {
+    "openalex": "W4389365326",
+    "doi": "10.1016/j.comnet.2023.110135"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Feature causality",
+   "identifiers": {
+    "openalex": "W4389454481",
+    "doi": "10.1016/j.jss.2023.111915"
+   },
+   "abstract": "The detection and understanding of reasons for defects and inadvertent behavior in software is challenging due to its ever increasing complexity. One major aspect contributing to this complexity is the multitude of features a user might select from in configurable systems. In this article, we tackle this challenge by introducing the notion of feature causality that identifies features and their interactions which are the reasons for a system showing certain functional and non-functional properties seen as effects. Feature causality operates at the level of system configurations and is based on counterfactual reasoning, inspired by the seminal definition of actual causality by Halpern and Pearl. Towards turning feature causality into meaningful explanations for the reasons why an effect emerges, we present various explication methods, e.g., by cause–effect covers, quantifications of causal impacts based on notions like responsibility and blame, causal reasoning with uncertainty, and feature interactions. Through a close connection of feature causality to prime implicants, we derive algorithms to effectively compute feature causes and causal explications. By means of an evaluation on a wide range of configurable software systems, including community benchmarks and real-world systems, we demonstrate the feasibility of our approach: We illustrate how our notion of causality facilitates to identify root causes, estimate the impact of features on effect properties, and detect feature interactions.",
+   "status": "current"
+  },
+  {
+   "title": "BCE-FL: A Secure and Privacy-Preserving Federated Learning System for Device Fault Diagnosis Under Non-IID Condition in IIoT",
+   "identifiers": {
+    "openalex": "W4389474177",
+    "doi": "10.1109/jiot.2023.3340745"
+   },
+   "abstract": "Traditional device fault diagnostic methods in Industrial Internet of Things (IIoT) require nodes to upload local data to the cloud, which, however, may lead to privacy leakage issues. Although Federated learning (FL) methods can protect the privacy of data, many challenges still need to be addressed. For example, the nonindependently and identically distributed (non-IID) issue in FL prevents the convergence of global model. Moreover, FL lacks detection mechanism to resist poisoning attacks from malicious nodes, and it requires incentive mechanism to encourage nodes to share their resources. To address these challenges, this article proposes a secure and privacy-preserving FL system that leverages blockchain and edge computing technology. Specifically, a feature-contrastive loss function is constructed to train an unbiased global model under the non-IID condition. Additionally, a Byzantine-tolerance scoring mechanism is designed to resist poisoning attacks, and a reputation-based incentive algorithm is developed to estimate the rewards or penalties owed to nodes. The proposed method is applied to two case studies: 1) chiller fault diagnosis for heating, ventilation and air conditioning systems and 2) gearbox fault diagnosis for wind turbines in IIoT. Experimental results show the superior performance of the proposed method.",
+   "status": "current"
+  },
+  {
+   "title": "Autonomous selection of the fault classification models for diagnosing microservice applications",
+   "identifiers": {
+    "openalex": "W4389617273",
+    "doi": "10.1016/j.future.2023.12.005"
+   },
+   "abstract": "Microservices architecture is a new approach for deploying applications and services in the cloud, gaining popularity for constructing large-scale systems that are highly resilient, robust, and adaptable to dynamic customer needs. Given that the number of services in a microservice application can be in the hundreds or thousands, the complex dependencies between them can cause faults to propagate and affect multiple services, ultimately leading to degraded system performance. To run microservices reliably and with high uptime, it is essential to quickly troubleshoot when a fault occurs. Simultaneously, there is a need for unsupervised fault diagnosis methods, as existing supervised methods are usually time and labor-intensive. As a solution to these challenges, this paper proposes the Autonomous Selection of Fault Classification models (ASFC) for Diagnosing Microservice Applications. The method can automatically select optimal models from candidate unsupervised detection models for different faults and cascade them to perform fault diagnosis. Meanwhile, our method can determine the root cause of the fault by conducting a root cause localization of faulty services. Experiments on two widely used benchmark microservices demonstrate that ASFC outperforms the baseline methods. As shown in the experimental results, our method achieves an average macro-F1 of 82.9% and 88.6% on two benchmark microservices, respectively, with an average improvement of 34.4% and 24.7% over baseline methods. Furthermore, the method achieves high accuracy in the localization of the root causes, with an average 𝐴𝑣𝑔 @5 of 0.857 and 0.525 on two benchmark microservices.",
+   "status": "current"
+  },
+  {
+   "title": "Analysis of Log Files to Enable Smart-Troubleshooting in Industry 4.0: A Systematic Mapping Study",
+   "identifiers": {
+    "openalex": "W4389665063",
+    "doi": "10.1109/access.2023.3342365"
+   },
+   "abstract": "A crucial element of Industry 4.0, is the utilization of smart devices that generate log files. Log files are key components containing data on system operations, faults (unexpected glitches or malfunctions), errors (mistakes or incorrect actions), and failures (complete breakdowns or non-functionality). This paper presents a systematic mapping study analyzing research conducted on log files for smart-troubleshooting in Industry 4.0. To the best of our knowledge, this is the study that aims to identify research trends, log file attributes, techniques, and challenges involved in log file analysis for smart-troubleshooting. From an initial set of 941 potentially relevant peer-reviewed publications, 74 primary studies were selected and analyzed using a meticulous data extraction, analysis, and synthesis process. The results of the study demonstrate that the majority of research has focused on developing algorithms for log analysis, with machine learning being the most commonly used approach. The smart-troubleshooting encompasses a range of activities and tools that are essential for collecting failure data generated by diverse interconnected devices, conducting analyses, and aligning them with troubleshooting instructions and software remedies. Moreover, the study identifies the need for further research in the areas of real-time log analysis, anomaly detection, and the integration of log analysis with other Industry 4.0 technologies. In conclusion, our study provides insights into the current state of research in log analysis for smart-troubleshooting in Industry 4.0 and identifies areas for future research. The use of smart devices generating log files in Industry 4.0 highlights the importance of log file analysis for troubleshooting purposes. Further research is needed to address the challenges and opportunities in this field to integrate log analysis with other Industry 4.0 technologies for performing more efficient and effective troubleshooting.",
+   "status": "current"
+  },
+  {
+   "title": "ServiceAnomaly: An anomaly detection approach in microservices using distributed traces and profiling metrics",
+   "identifiers": {
+    "openalex": "W4389752973",
+    "doi": "10.1016/j.jss.2023.111917"
+   },
+   "abstract": "— Anomaly detection is an essential activity for identifying abnormal behaviours in microservice-based systems. A common approach is to model the system behavior during normal operation using either distributed traces or profiling metrics. The model is then used to detect anomalies during system operation. In this paper, we present a new anomaly detection approach, called ServiceAnomaly, for anomaly detection in microservice systems that combines distributed traces and six profiling metrics to build an annotated directed acyclic graph that characterizes the normal behaviour of the system. Unlike existing techniques, our approach captures the context propagation provided by distributed traces as a graph that is annotated with functions characterizing both linear and non-linear relationships between profiling metrics. The final annotated graph is used to detect abnormal executions during system operation. The results of applying our approach to two open-source benchmarks show that our approach detects anomalies with an F1-score up to 86%. We also show how developers can use the annotated graph to reason about the causes of anomalies.",
+   "status": "current"
+  },
+  {
+   "title": "Cloud ensemble learning for fault diagnosis of rolling bearings with stochastic configuration networks",
+   "identifiers": {
+    "openalex": "W4389795886",
+    "doi": "10.1016/j.ins.2023.119991"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "A cloud model-based interval-valued evidence fusion method and its application in fault diagnosis",
+   "identifiers": {
+    "openalex": "W4389903433",
+    "doi": "10.1016/j.ins.2023.119995"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Secure Medical Data Against Unauthorized Access Using Decoy Technology in Distributed Edge Computing Networks",
+   "identifiers": {
+    "openalex": "W4389924061",
+    "doi": "10.1109/access.2023.3344168"
+   },
+   "abstract": "The recent advancements in cyber technology have facilitated the global electronic sharing of healthcare data among various healthcare professionals, including clinicians, researchers, business administrators, and others. Fog computing is gaining popularity as a means of disseminating information across industries, especially in medicine and healthcare, due to its capability to manage vast amounts of information and data. The evolution of fog computing now allows it to be adaptable to various budget constraints within healthcare organizations, thanks to technological progress. This adaptation includes features like real-time data breach alerts and automated surveillance. As new communication and computing models emerge, fresh security and privacy concerns arise within medical and health-related data. Existing data privacy and security protocols have proven inadequate in preventing data leaks and theft attacks, especially those orchestrated by malicious parties. While medical data is stored in the cloud, legitimate entities’ authorized access to medical documents remains a significant concern. Therefore, this article designs an authentication and authorization scheme that safeguards the privacy of users’ medical information documents. In response to this challenge, we propose an innovative approach that leverages Decoy information technology and User Behavior profiling. This methodology aims to enhance the security of authorized data access within the Fog environment, ensuring the confidentiality of medical data. The results show that the proposed protocol is more secure against unauthorized access and security attacks and more computationally efficient than its counterparts.",
+   "status": "current"
+  },
+  {
+   "title": "Blockchain-Based Logging to Defeat Malicious Insiders: The Case of Remote Health Monitoring Systems",
+   "identifiers": {
+    "openalex": "W4390204278",
+    "doi": "10.1109/access.2023.3346432"
+   },
+   "abstract": "IoT-based remote health monitoring is a promising technology to support patients who are unable to travel to medical facilities. Due to the sensitivity of health data, it is important to secure it against all possible threats. While a great deal of work has been done to secure IoT device-cloud communication and health records on the cloud, insider attacks remain a significant challenge. Malicious insiders may tamper, steal or change patients’ health data, which results in a loss of patient trust in these systems. Audit logs in the cloud, which may point to illegal data access, may also be erased or forged by malicious insiders as they tend to have technical knowledge and privileged access to the system. Thus, in this work, we propose a Cloud Access Security Broker (CASB) model that (a) logs every action performed on user data and (b) secures those logs by placing them in a private blockchain that is viewable by the data owners (i.e., patients). Patients can query the blockchain, track their data’s movement, and be alerted if their data has been accessed by an administrator or moved outside the cloud storage. In this work, we practically implement a web application that receives health data from patients, a CASB that securely stores the records in the cloud, and integrate a private blockchain that immediately logs all actions happening in the backend of the web application and CASB. We evaluate the system’s security and performance under varying numbers of patients and actions.",
+   "status": "current"
+  },
+  {
+   "title": "SpikeLog: Log-Based Anomaly Detection via Potential-Assisted Spiking Neuron Network",
+   "identifiers": {
+    "openalex": "W4390357645",
+    "doi": "10.1109/tkde.2023.3347695"
+   },
+   "abstract": "The increasing volume and complexity of log data generated by modern systems have made it challenging to analyze and extract useful insights manually. To address this problem, many machine learning methods have been proposed for log-based anomaly detection. However, most of these methods lack interpretability, and their underlying premises do not always reflect real scenarios. In this paper, we consider a more reasonable premise scenario where a large number of logs are unlabeled, while only a small number of anomalous logs are labeled. Moreover, a small proportion of anomaly contamination may be present. To handle this practical scenario, we propose a novel hybrid potential-assisted framework (SpikeLog) using the membrane potential of spiking neurons. SpikeLog adopts a weakly supervised approach to train an anomaly score model, which effectively utilizes a limited number of labeled anomalies alongside abundant unlabeled logs while ensuring computational efficiency without compromising accuracy. Extensive experiments have demonstrated that SpikeLog outperforms baseline methods in terms of performance, robustness, interpretability, and energy consumption.",
+   "status": "current"
+  },
+  {
+   "title": "IoT–Edge–Cloud-Assisted Intelligent Framework for Controlling Dengue",
+   "identifiers": {
+    "openalex": "W4390422194",
+    "doi": "10.1109/jiot.2023.3348101"
+   },
+   "abstract": "Over the last decade, Dengue infection has expanded more rapidly than any other viral illness. The current research investigates the vast potential of the Internet of Things (IoT), and Edge–cloud computing in reproving dengue virus (DGN) infection-related technological healthcare solutions. Specifically, a hierarchical healthcare framework is proposed for preventing the spread of DGN using Edge–cloud-assisted IoT technology. The presented system can monitor and forecast an individual’s susceptibility to DGN infection in a ubiquitous manner. Using K-means clustering, the presented system determines an individual’s DGN infection status and generates alert signals in real-time. In addition, the proposed technique employs cloud computing to monitor people healthcare impacted by DGN. Moreover, it ensures probabilistic predictions about susceptibility to the DGN virus using Bayesian belief networks and artificial neural networks. The proposed system can assess health vulnerability, thereby reducing the probability of health loss. The suggested system’s validity and applicability are confirmed by experimental evaluation. The simulation results of the proposed system confirm its optimal performance in terms of temporal delay (14.15 s), classification efficacy [accuracy (91.66%), sensitivity (92.34%), specificity (90.25%), and F-measure (91.12%)], prediction effectiveness [error (0.23), and pearson coefficient (85%)], and stability (72%).",
+   "status": "current"
+  },
+  {
+   "title": "Probabilistic Temporal Fusion Transformers for Large-Scale KPI Anomaly Detection",
+   "identifiers": {
+    "openalex": "W4390822192",
+    "doi": "10.1109/access.2024.3353201"
+   },
+   "abstract": "This paper introduces a new generic and scalable framework for large-scale time series prediction and unsupervised anomaly detection. The most common approach of state-of-the-art time series anomaly detection techniques, which are mostly based on neural networks, is to train a network per time series. However, a typical modern microservice system consists of hundreds of active nodes/instances. To monitor the performance of such a system, we often need to keep track of thousands of time series describing different aspects of the system, including CPU usage, call latency, and workloads. We introduce a new methodology for grouping metrics that share the same type, predicting hundreds of metrics concurrently with a single neural network model with shared parameters. The model also integrates the probabilistic representations and Temporal Fusion Transformers for better performance. In a real-world dataset, our proposed model achieved up to 50% improvement in terms of MSE.",
+   "status": "current"
+  },
+  {
+   "title": "Framework of Cloud Computing Resource Scheduling for Vehicle Fault Diagnosis",
+   "identifiers": {
+    "openalex": "W4390872111",
+    "doi": "10.1109/access.2024.3354272"
+   },
+   "abstract": "Internet of Vehicles (IoVs) provides communication and computing resources, which makes the on-board diagnosis of vehicle faults possible. However, those resources need to be expanded to support the accurate analysis of the on-board diagnosis. Vehicular Cloud Computing (VCC) can solve the pressure of local vehicle processing but will cause an unavoidable delay. Thus, the accuracy and timeliness of on-board diagnosis cannot be guaranteed. To address the issue, we propose a Mobile Edge Caching based Resource Scheduling (MECRS) mechanism for the on-board diagnosis of vehicle faults. According to the urgency of vehicle fault diagnosis, we first design a cloud scheduling algorithm to meet the computation requirements of both the essential business of IoVs and the fault diagnosis. Subsequently, the priority allocation strategy is made for all four types of requests. Then, the urgent requests can be processed timely. Specifically, a multi-objective optimization method is proposed to allocate communication and computing resources for the above requests. In addition, we present a mobile edge caching algorithm in which the large-scale file with high popularity is offloaded to alleviate the pressure of the cloud. Finally, we carry out comprehensive simulations. The results reveal that the developed mechanism provides a high service rate for on-board diagnosis with limited network resources, while the performances of the other three essential services are not compromised.",
+   "status": "current"
+  },
+  {
+   "title": "Detecting Cloud Anomaly via Broad Network-Based Contrastive Autoencoder",
+   "identifiers": {
+    "openalex": "W4390873111",
+    "doi": "10.1109/tnsm.2024.3353772"
+   },
+   "abstract": "Anomaly detection is indispensable for achieving higher availability and reliability in the cloud computing. The traditional autoencoder-based method only models the historical normal samples and then identifies the current online anomaly samples by the fixed threshold of anomaly score. Although more advances have been made in recent years, two main challenges remain: (i) ignoring the historical anomaly samples, (ii) poor self-adaptive ability for online detection. To address the above challenges, we propose a unified detector, namely BroadCAE, which integrates autoencoder with contrastive learning and broad network. Specifically, the reconstruction loss is first replaced by contrastive loss, which equally formulates both normal and anomaly samples. These samples belonging to the same class become closer in a lower-dimensional space. Conversely, different classes of samples are far away from each other. Next, we apply the anomaly-score-based pseudo thresholds to train the dynamic threshold selection, which generates the threshold according to the coming sample. The broad network in dynamic threshold selection takes the place of the deep network, which overcomes catastrophic forgetting and adapts to new online samples. Finally, validation experiments are conducted on four benchmark datasets. Our BroadCAE outperforms the comparative baseline methods by averaging over 4% of the f1-score.",
+   "status": "current"
+  },
+  {
+   "title": "EffCause: Discover Dynamic Causal Relationships Efficiently from Time-Series",
+   "identifiers": {
+    "openalex": "W4390912481",
+    "doi": "10.1145/3640818"
+   },
+   "abstract": "Since the proposal of Granger causality, many researchers have followed the idea and developed extensions to the original algorithm. The classic Granger causality test aims to detect the existence of the static causal relationship. Notably, a fundamental assumption underlying most previous studies is the stationarity of causality, which requires the causality between variables to keep stable. However, this study argues that it is easy to break in real-world scenarios. Fortunately, our paper presents an essential observation: if we consider a sufficiently short window when discovering the rapidly changing causalities, they will keep approximately static and thus can be detected using the static way correctly. In light of this, we develop EffCause, bringing dynamics into classic Granger causality. Specifically, to efficiently examine the causalities on different sliding window lengths, we design two optimization schemes in EffCause and demonstrate the advantage of EffCause through extensive experiments on both simulated and real-world datasets. The results validate that EffCause achieves state-of-the-art accuracy in continuous causal discovery tasks while achieving faster computation. Case studies from cloud system failure analysis and traffic flow monitoring show that EffCause effectively helps us understand real-world time-series data and solve practical problems.",
+   "status": "current"
+  },
+  {
+   "title": "LogFiT: Log Anomaly Detection Using Fine-Tuned Language Models",
+   "identifiers": {
+    "openalex": "W4391235307",
+    "doi": "10.1109/tnsm.2024.3358730"
+   },
+   "abstract": "System logs are a valuable source of information for monitoring and maintaining the security and stability of computer systems. Techniques based on Deep Learning and Natural Language Processing have demonstrated effectiveness in detecting abnormal behavior from these system logs. However existing approaches are inflexible and impractical: techniques that rely on log templates are unable to handle variability in log content, while classification-based approaches require labeled data for supervised training. In this paper, a novel log anomaly detection model named LogFiT is proposed. The LogFiT model is robust to changes in log content and only requires self-supervised training. The LogFiT model uses a pretrained BERT-based language model fine-tuned to recognise the linguistic patterns of the normal log data. The LogFiT model is trained using masked token prediction on the normal log data only. Consequently when presented with the new log data, the model's top-k token prediction accuracy is used as threshold for determining whether the new log data has deviated from the normal log data. Experimental results show that LogFiT's F1 score exceeds that of baselines on the HDFS, BGL and Thunderbird datasets. Critically, when variability in the log data is introduced during evaluation, LogFiT's effectiveness surpasses that of the baseline models.",
+   "status": "current"
+  },
+  {
+   "title": "Root Cause Analysis for Cloud-Native Applications",
+   "identifiers": {
+    "openalex": "W4391305513",
+    "doi": "10.1109/tcc.2024.3358823"
+   },
+   "abstract": "Root cause analysis (RCA) is a critical component in maintaining the reliability and performance of modern cloud applications. However, due to the inherent complexity of cloud environments, traditional RCA techniques become insufficient in supporting system administrators in daily incident response routines. This paper presents an RCA solution specifically designed for cloud applications, capable of pinpointing failure root causes and recreating complete fault trajectories from the root cause to the effect. The novelty of our approach lies in approximating causal symptom dependencies by synergizing several symptom correlation methods that assess symptoms in terms of structural, semantic, and temporal aspects. The solution integrates statistical methods with system structure and behavior mining, offering a more comprehensive analysis than existing techniques. Based on these concepts, in this work, we provide definitions and construction algorithms for RCA model structures used in the inference, propose a symptom correlation framework encompassing essential elements of symptom data analysis, and provide a detailed description of the elaborated root cause identification process. Functional evaluation on a live microservice-based system demonstrates the effectiveness of our approach in identifying root causes of complex failures across multiple cloud layers.",
+   "status": "current"
+  },
+  {
+   "title": "A robust Wide & Deep learning framework for log-based anomaly detection",
+   "identifiers": {
+    "openalex": "W4391344246",
+    "doi": "10.1016/j.asoc.2024.111314"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Indicator Fault Detection Method Based on Periodic Self Discovery and Historical Anomaly Filtering",
+   "identifiers": {
+    "openalex": "W4391468252",
+    "doi": "10.1109/access.2024.3361672"
+   },
+   "abstract": "Data centers’ information systems typically encompass a variety of operational objects including applications, systems, networks, and devices, which generate a large volume of indicator data during operation. The traditional threshold-based indicator fault detection method has struggled to adapt to the massive and heterogeneous nature of distributed architectures, resulting in numerous false positives and negatives. Existing research has limitations in terms of the accuracy of fitting indicator operating characteristics, as well as performance. To address the problem of fault detection for indicator data, this article proposes a method based on periodic self-discovery and historical anomaly filtering. It achieves periodic self-discovery based on Fourier transformation, significantly reducing the training cost such as model parameter tuning. Additionally, it introduces a quadratic fuzzy filter based on periodicity to effectively solve possible local misclassification issues while generating a baseband that is more suitable for indicator operating characteristics, improving detection accuracy. Through experimental validation, the fault detection method proposed in this article significantly improves the accuracy of indicator for operational objects. Compared to directly using ARIMA and SARIMA models, this method has improved the MSE by up to 44% and 36%, respectively. This method has also been practically applied in multiple scenarios in a bank’s production environment, increasing alert accuracy by 20% and achieving a ratio of 10:1 for alert convergence. Compared to traditional methods, it significantly enhances the ability of fault detection for indicators.",
+   "status": "current"
+  },
+  {
+   "title": "Fault Diagnosis in the Network Function Virtualization: A Survey, Taxonomy, and Future Directions",
+   "identifiers": {
+    "openalex": "W4391582642",
+    "doi": "10.1109/jiot.2024.3362991"
+   },
+   "abstract": "The widespread application of ultra-dense and multivariate Internet of Things (IoT) benefits from Network Function Virtualization (NFV) that provides flexible frameworks and effective management. NFV leverages the virtualization technologies to integrate the existing network functions of devices into standard servers, storages, and switches. Then, the network functions are achieved in software form to displace the private, dedicated and closed network devices. However, NFV also brings instability and challenges to the network management where the network dynamics, lack of visibility, and high frequency and abundant types of faults will increase the difficulty. Therefore, diagnosing the faults embedded in the generic NFV framework is crucial for the effective adoption of NFV to the IoT environment and thus ensuring the user services. This paper summarizes the differences and connections of fault diagnosis between the NFV framework and traditional networks, and introduces the challenges faced by NFV. Moreover, we provide a comprehensive survey of the state-of-the-art fault detection methods for the NFV framework. After an in-depth discussion of the fault propagation characteristics, we further present a detailed taxonomy of the fault localization approaches. Finally, we highlight the future research directions to provide ample space for improvement in applying NFV to the IoT environment.",
+   "status": "current"
+  },
+  {
+   "title": "Predictive Queue-Based Rate Control for Low Latency in Lossless Data Center Networks",
+   "identifiers": {
+    "openalex": "W4391594068",
+    "doi": "10.1109/tnsm.2024.3363463"
+   },
+   "abstract": "In lossless data center networks (DCN), many existing congestion control schemes are used to address the impact caused by priority-based flow control (PFC), such as congestion spreading, and victim flow problems. However, in some special cases, this problem is not solved. Through observation, we examine the interaction between flow control and congestion control, and realize that the mismatch between hop-by-hop flow control and end-to-end congestion feedback, as well as inaccurate rate regulation, are the root causes of frequent PFC triggering. Therefore, we propose Egress Queue Congestion Information Notification (EQCIN). EQCIN implements threshold-based flow identification to avoid packet buildup due to congestion spreading being considered as the root cause of congestion, while using direct feedback from the congestion side to reduce unnecessary link loss. For different flow identifiers, EQCIN adopts different algorithms to achieve targeted rate control. Experimental results show that EQCIN can reduce the number of PFC PAUSEs tends to zero, compared to TIMELY, DCQCN, DCQCN+TCD and improve the link utilization by 7%-77%, respectively.",
+   "status": "current"
+  },
+  {
+   "title": "MicroFI: Non-Intrusive and Prioritized Request-Level Fault Injection for Microservice Applications",
+   "identifiers": {
+    "openalex": "W4391661647",
+    "doi": "10.1109/tdsc.2024.3363902"
+   },
+   "abstract": "Microservice is a widely-adopted architecture for constructing cloud-native applications. To test application resiliency, chaos engineering is widely used to inject faults proactively in applications. However, the searching space formed by possible injection locations is huge due to the scale and complexity of the application. Although some methods are proposed to effectively explore injection space, they cannot prioritize high-impact injection solutions. Additionally, the blast radius of faults injected by existing methods is typically full of uncertainty, causing faults of multiple application functions. Although some tools are designed to conduct request-level injection, they require instrumentation on application code. To tackle these problems, this paper presents MicroFI, a non-intrusive fault injection framework, aiming to efficiently test different application functions with request-level injection. Request-level injection limits the blast radius to specified requests without any source code modification. Additionally, MicroFI leverages historical injection results and parallel technique to accelerate the searching. Moreover, An enhanced PageRank is used to measure the impact of faults and prioritize high-impact faults that fail more functions. Evaluations on three microservice applications show that MicroFI precisely injects faults and reduces up to 91% redundant faults on average. Additionally, by employing prioritization, MicroFI reduces an average of 47.3% injection budgets to cover all high-impact faults.",
+   "status": "current"
+  },
+  {
+   "title": "Fusing consensus knowledge: A federated learning method for fault diagnosis via privacy-preserving reference under domain shift",
+   "identifiers": {
+    "openalex": "W4391723792",
+    "doi": "10.1016/j.inffus.2024.102290"
+   },
+   "abstract": "Recently, federated fault diagnosis has garnered growing attention due to its promising capabilities in information fusion with privacy preservation . However, most of the existing approaches are based on the assumptions of no domain shift between multiple factories and no unseen domains for online applications. In actual industry, these assumptions are generally unsatisfied due to prominent environmental noises, mechanical wear , and changes in working conditions. Federated models that ignore domain shifts would face the negative aggregation problem and are not robust to unseen domains. To solve the domain shift problem, a federated domain generalization method is proposed for privacy-preserving fault diagnosis in this article. The key idea is to construct a sharable reference domain in cloud, which can convert the privacy-risky centralized alignment problem into a privacy-preserving pairwise alignment problem. Based on the recognition that any fault category in a discriminative feature space can be characterized by a particular position and volatility, we design a shareable domain generator to provide a reference for pairwise alignment. Then, the non-deterministic sampling and non-parametric alignment criterion are introduced to realize local domain alignment, which facilitates the domain-invariant feature extraction. Finally, by the alternation of local domain alignment and global reference synchronization , the alignment of multi-source domains is achieved implicitly. We give convergence guarantees for the proposed method and derive the generalization error bound of federated DG, which illustrates the positive effect of the proposed method on improving generalization. Experiments on two cases demonstrate the consistent superior generalization performance of our method without the risk of data leakage.",
+   "status": "current"
+  },
+  {
+   "title": "A survey on intelligent management of alerts and incidents in IT services",
+   "identifiers": {
+    "openalex": "W4391951374",
+    "doi": "10.1016/j.jnca.2024.103842"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "IntiVisor: A Visual Analytics System for Interaction Log Analysis",
+   "identifiers": {
+    "openalex": "W4392251666",
+    "doi": "10.1109/tvcg.2024.3370637"
+   },
+   "abstract": "Application developers frequently augment their code to produce event logs of specific operations performed by their users. Subsequent analysis of these event logs can help provide insight about the users' behavior relative to its intended use. The analysis process typically includes both event organization and pattern discovery activities. However, most existing visual analytics systems for interaction log analysis excel at supporting pattern discovery and overlook the importance of flexible event organization. This omission limits the practical application of these systems. Therefore, we developed a novel visual analytics system called IntiVisor that implements the entire end-to-end interaction analysis approach. An evaluation of the system with interaction data from four visualization applications showed the value and importance of supporting event organization in interaction log analysis.",
+   "status": "current"
+  },
+  {
+   "title": "MetricSifter: Feature Reduction of Multivariate Time Series Data for Efficient Fault Localization in Cloud Applications",
+   "identifiers": {
+    "openalex": "W4392567294",
+    "doi": "10.1109/access.2024.3374334"
+   },
+   "abstract": "Automated fault localization in large-scale cloud-based applications is challenging because it involves mining multivariate time series data from large volumes of operational monitoring metrics. To improve localization accuracy, automated fault localization methods incorporate feature reduction to reduce the number of monitoring metrics unrelated to a failure. However, these methods have problems with inaccuracy, either from removing too many failure-related metrics or from retaining too few failure-unrelated metrics. In this paper, we present MetricSifter, a feature reduction framework designed to accurately identify anomalous metrics caused by faults. Our framework locates a failure time window with the highest density of fault-induced change point times across monitoring metrics with a focus on their temporal proximity. Experimental results indicate that MetricSifter achieves an accuracy of 0.981, which is significantly better than the selected baseline methods. Furthermore, experiments combining various reduction methods with various localization methods demonstrate that MetricSifter improves the recall and time efficiency over the baseline methods.",
+   "status": "current"
+  },
+  {
+   "title": "Joint Knowledge Graph and Large Language Model for Fault Diagnosis and Its Application in Aviation Assembly",
+   "identifiers": {
+    "openalex": "W4392607872",
+    "doi": "10.1109/tii.2024.3366977"
+   },
+   "abstract": "In complex assembly industry settings, fault localization involves rapidly and accurately identifying the source of a fault and obtaining a troubleshooting solution based on fault symptoms. This study proposes a knowledge-enhanced joint model that incorporates aviation assembly knowledge graph (KG) embedding into large language models (LLMs). This model utilizes graph-structured Big Data within KGs to conduct prefix-tuning of the LLMs. The KGs for prefix-tuning enable an online reconfiguration of the LLMs, which avoids a massive computational load. Through the subgraph embedding learning process, the specialized knowledge of the joint model within the aviation assembly domain, especially in fault localization, is strengthened. In the context of aviation assembly functional testing, the joint model can generate knowledge subgraphs, fuse knowledge through retrieval augmentation, and ultimately provide knowledge-based reasoning responses. In practical industrial scenario experiments, the joint enhancement model demonstrates an accuracy of 98.5% for fault diagnosis and troubleshooting schemes.",
+   "status": "current"
+  },
+  {
+   "title": "Semi-supervised log anomaly detection based on bidirectional temporal convolution network",
+   "identifiers": {
+    "openalex": "W4392768618",
+    "doi": "10.1016/j.cose.2024.103808"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Novel cloud-AIoT fault diagnosis for industrial diesel generators based hybrid deep learning CNN-BGRU algorithm",
+   "identifiers": {
+    "openalex": "W4392882950",
+    "doi": "10.1016/j.iot.2024.101164"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "LogETA: Time-aware cross-system log-based anomaly detection with inter-class boundary optimization",
+   "identifiers": {
+    "openalex": "W4392931074",
+    "doi": "10.1016/j.future.2024.03.028"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "A Research Testbed for Intelligent and Cooperative Driving in Mixed Traffic",
+   "identifiers": {
+    "openalex": "W4393105416",
+    "doi": "10.1109/tits.2024.3375297"
+   },
+   "abstract": "Autonomous vehicles are gradually entering the transportation system. The traffic will become more heterogeneous since both autonomous and human-driven vehicles will share the roads. Cooperative driving, by promoting synchronized actions and shared situational awareness among vehicles, can significantly enhance driving safety. On the other hand, understanding human drivers is a pivotal step for cooperative driving in such mixed traffic environments, which facilitates effective interaction between human drivers and their vehicles. This paper presents a testbed that can be used to conduct research in intelligent and cooperative driving. The testbed consists of driving simulators, custom-designed copilots with an Artificial Intelligence engine, an optimization server, and a cloud database. The copilot is capable of sensing and understanding the human driver, the vehicle and the traffic. It can assist the driver by providing timely alerts on potential risks. Most importantly, it can communicate with other nearby vehicles for cooperative driving. Two case studies are presented to validate and evaluate the testbed. The first case study demonstrates the performance of the copilot in human distraction detection and driving assistance. The second case study focuses on cooperative driving between one human-driven vehicle and two connected autonomous vehicles in a lane-changing scenario. We expect this research testbed to be used in various research projects that involve human-driven vehicles and connected autonomous vehicles.",
+   "status": "current"
+  },
+  {
+   "title": "Hilogx: noise-aware log-based anomaly detection with human feedback",
+   "identifiers": {
+    "openalex": "W4393272496",
+    "doi": "10.1007/s00778-024-00843-2"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Big GCVAE: decision-making with adaptive transformer model for failure root cause analysis in semiconductor industry",
+   "identifiers": {
+    "openalex": "W4393409167",
+    "doi": "10.1007/s10845-024-02346-x"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Cloud-edge collaborative transfer fault diagnosis of rotating machinery via federated fine-tuning and target self-adaptation",
+   "identifiers": {
+    "openalex": "W4393488462",
+    "doi": "10.1016/j.eswa.2024.123859"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Cloud-Edge Test-Time Adaptation for Cross-Domain Online Machinery Fault Diagnosis via Customized Contrastive Learning",
+   "identifiers": {
+    "openalex": "W4393965267",
+    "doi": "10.1016/j.aei.2024.102514"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "SaRLog: Semantic-Aware Robust Log Anomaly Detection via BERT-Augmented Contrastive Learning",
+   "identifiers": {
+    "openalex": "W4394564317",
+    "doi": "10.1109/jiot.2024.3386183"
+   },
+   "abstract": "Numerous deep learning-based methods have been developed to address the intricacies of anomaly detection tasks within system logs, presenting two significant challenges. First, balancing model complexity with the capacity to generate semantically meaningful representations for the downstream detection model, is a delicate task. Second, these methods generally depend on extensive labeled data for effective training. Despite efforts to address these challenges separately, a comprehensive solution that efficiently tackles both issues simultaneously are lacking. In response, we introduce SaRLog, a comprehensive solution designed to overcome the limitations of existing methods by leveraging the contextual semantic information extraction capability of bidirectional encoder representations from transformers (BERT) and the few-shot learning capability of the Siamese network. The Siamese network, featured with contractive loss, is implemented on top of a custom domain-specific fine-tuned BERT. Our comparative analysis validates SaRLog’s effectiveness against established baseline methods, demonstrating F1 score improvement of up to 31.2% and 46.7% on BGL and Thunderbird datasets respectively. Moreover, additional experimental analysis aimed at evaluating the few-shot learning capability highlights the robustness and generalization efficiency of SaRLog. Thus, by overcoming dataset variability and improving model generalization, SaRLog advances log anomaly detection, thereby effectively handling complex log data challenges.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0full2-06"
+}

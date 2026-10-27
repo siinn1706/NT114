@@ -1,0 +1,78 @@
+{
+ "schema_version": 2,
+ "id": "01-freeze-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/freeze-protocol.py",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/01-freeze-01.out",
+ "egress_trace_reference": "work/logs/01-freeze-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:34:10.103286+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d"
+ ],
+ "output_hashes": [
+  "69ab2c555aab95ef6340c4662a99cc688b58cc970d0cee4080796bc23b2d0d15",
+  "c158d4bdce0d31e0e1068e9b0c43e997da293e42cb64bf57b156db1c00fb8f86"
+ ],
+ "checks": [
+  "protocol hash recorded; no screening files exist"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "0add67cc8fe5a2f51d06866b88318b7d409f57b712a175cc358a2094343ec384",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/freeze-protocol.py",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "c3299e5cb08ca5370bb2d8a27877df775f61c6e0ff0c61699db8db352830c4fb",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "protocol.md",
+   "sha256_before": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "sha256_after": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/protocol-freeze.json",
+   "sha256": "c158d4bdce0d31e0e1068e9b0c43e997da293e42cb64bf57b156db1c00fb8f86",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/state.json",
+   "sha256": "69ab2c555aab95ef6340c4662a99cc688b58cc970d0cee4080796bc23b2d0d15",
+   "created_this_attempt": true
+  }
+ ]
+}

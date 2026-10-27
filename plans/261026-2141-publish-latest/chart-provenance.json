@@ -1,0 +1,49 @@
+{
+  "matplotlib": "3.10.9",
+  "source_sha256": {
+    "nt114-rca/nt114-rca/releases/nt114-data-v1.json": "f9b7c552aee2d7381c70bfbada9ce4a106ce0a05fe4f56aba9ba812f28641b6b",
+    "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-native-summary.json": "ac16b0a41f2e8670c32c828c41a00e988ef6fbf3041f2e0a5609a8d60d7e5037",
+    "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-repair-v4-summary.json": "7fc085a8eb188ba1cb4affba7f76f06f2477f9deea2ee6736e3bfbcbd9d60bf4",
+    "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-repair-v5-summary.json": "4d986618bc4b92a18757d2586c6b8679b0a330a51b46495116fe122ed0ffcd30"
+  },
+  "canonical_counts": {
+    "RCAEval": {
+      "ACCEPT": 703,
+      "ACCEPT_WITH_WARNINGS": 32,
+      "REJECT": 1
+    },
+    "AIOps2025": {
+      "ACCEPT": 381,
+      "ACCEPT_WITH_WARNINGS": 19,
+      "REJECT": 0
+    },
+    "RCA100": {
+      "ACCEPT": 9,
+      "ACCEPT_WITH_WARNINGS": 94,
+      "REJECT": 0
+    },
+    "Nezha": {
+      "ACCEPT": 0,
+      "ACCEPT_WITH_WARNINGS": 101,
+      "REJECT": 0
+    }
+  },
+  "native_request_counts": [
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      3,
+      2
+    ]
+  ],
+  "charts": {
+    "canonical-data-quality.png": "24c253c5488ddb42847909ba7932d092cb2d3dcf4cb25d3714351d22690ca963",
+    "kaggle-smoke-requests.png": "ddd7c342f0e25dc4453a6a66e3574300493c673796c1ab77a89730749aab5d60"
+  }
+}

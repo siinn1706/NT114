@@ -1,0 +1,108 @@
+{
+ "schema_version": 2,
+ "id": "02-h1-membership-03",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/h1-membership-recheck.py ../../nt114-rca/nt114-rca/data within-rcaeval-grouped-0-e9b2c81c work/h1-membership-recheck.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-h1-membership-03.out",
+ "egress_trace_reference": "work/logs/02-h1-membership-03.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T02:53:59.700582+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "6de68f81584bb085a1b1f6d54f886558817d0bf05f9158873529a4ba145433a0",
+  "e9b2c81c96cee6064bf2ca43c20d37d3a9890944cae26695458192b8e0eb5902",
+  "4f71e0a6655c3bbfd22163daf9bf0895d23d603d1ed7ef7714f803be5e7333ee",
+  "89996556b554adda09125138facdae82c63c44f9431f9b3f93d8648fbc415015",
+  "97883d392edc3656808526de921b0d5f7ecd450466a0b92f4b8ca01e8b810258"
+ ],
+ "output_hashes": [
+  "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1"
+ ],
+ "checks": [
+  "pool single_modality recount vs 108/285 test, 78/210 val, 69 traced, 39 RE2-SS; train-role traced incidents per subset x system for the IM1 frame key"
+ ],
+ "limitations": [
+  "label-free inputs only; eval_only/labels and split.json strata not opened; RCAEval grouped split only; supersedes 02-h1-membership-02 (same pool counts, train counts split by subset); a02 output kept as work/h1-membership-recheck-a02.csv"
+ ],
+ "closure_hash": "e236597f4d335da62c483584250435903aea4bc3c75f8522894b36c22bf35c7f",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/h1-membership-recheck.py ../../nt114-rca/nt114-rca/data within-rcaeval-grouped-0-e9b2c81c work/h1-membership-recheck.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "2a747e5db34ffda3b9c5997f2ca5f5bdde9c7dfb5cfe08ce81017dbd2beb7d01",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/h1-membership-recheck.py",
+   "sha256_before": "6de68f81584bb085a1b1f6d54f886558817d0bf05f9158873529a4ba145433a0",
+   "sha256_after": "6de68f81584bb085a1b1f6d54f886558817d0bf05f9158873529a4ba145433a0",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "../../nt114-rca/nt114-rca/data/splits/within-rcaeval-grouped-0-e9b2c81c/assignments.jsonl",
+   "sha256_before": "e9b2c81c96cee6064bf2ca43c20d37d3a9890944cae26695458192b8e0eb5902",
+   "sha256_after": "e9b2c81c96cee6064bf2ca43c20d37d3a9890944cae26695458192b8e0eb5902",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "../../nt114-rca/nt114-rca/data/canonical/v1/rcaeval/visible/incidents.jsonl",
+   "sha256_before": "4f71e0a6655c3bbfd22163daf9bf0895d23d603d1ed7ef7714f803be5e7333ee",
+   "sha256_after": "4f71e0a6655c3bbfd22163daf9bf0895d23d603d1ed7ef7714f803be5e7333ee",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "../../nt114-rca/nt114-rca/data/reports/condition-matrix-rcaeval.json",
+   "sha256_before": "89996556b554adda09125138facdae82c63c44f9431f9b3f93d8648fbc415015",
+   "sha256_after": "89996556b554adda09125138facdae82c63c44f9431f9b3f93d8648fbc415015",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "../../nt114-rca/nt114-rca/data/reports/eval-units-rcaeval.json",
+   "sha256_before": "97883d392edc3656808526de921b0d5f7ecd450466a0b92f4b8ca01e8b810258",
+   "sha256_after": "97883d392edc3656808526de921b0d5f7ecd450466a0b92f4b8ca01e8b810258",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/h1-membership-recheck.csv",
+   "sha256": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1",
+   "created_this_attempt": true
+  }
+ ]
+}

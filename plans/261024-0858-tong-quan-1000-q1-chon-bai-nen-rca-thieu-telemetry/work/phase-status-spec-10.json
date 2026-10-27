@@ -1,0 +1,11 @@
+{
+ "01": {"status": "committed", "receipt": "work/receipts/01-freeze-01.json", "reason": "protocol frozen 2026-10-24T02:34:10Z; receipt only superseded by later state.json checkpoints (work/receipt-verify-10-a02.csv)"},
+ "02": {"status": "committed", "receipt": "work/receipts/02-reuse-seed-01.json", "reason": "reuse inventory and seed committed; receipt VERIFIED"},
+ "03": {"status": "committed", "receipt": "work/receipts/03-synonym-search-01.json", "reason": "24 search batches committed incl. synonym S1-S7; T0 1085 reached after protocol section 10; old OpenAlex 401/429 block no longer blocking"},
+ "04": {"status": "committed", "receipt": "work/receipts/04-t0-review-r2-01.json", "reason": "final T0 = 1085 (t0r2b); receipt VERIFIED; old seed-only note superseded"},
+ "05": {"status": "committed", "receipt": "work/receipts/05-rank-final-01.json", "reason": "T1 = 100 final; kappa pass; 152 needs-review lack abstracts (E6) waiting-human"},
+ "06": {"status": "committed", "receipt": "work/receipts/06-access-publisher-01.json", "reason": "access labels for 100 T1; 34 full text; 17 top-30 PDFs waiting-human"},
+ "07": {"status": "committed", "receipt": "work/receipts/07-rank-t2-01.json", "reason": "T2 top-10 committed; rerun deterministic (10-rerun-t2-01)"},
+ "08": {"status": "waiting-human", "receipt": "work/receipts/08-merge-t3-03.json", "reason": "decision-a02 committed: RCLAgent single-eligible, pending-personal-review; rank 1 by F unstable"},
+ "09": {"status": "committed-conditional", "receipt": "work/receipts/09-design-check-04.json", "reason": "4 design docs committed; conditional on owner accepting the base paper; D1-D13 open"}
+}

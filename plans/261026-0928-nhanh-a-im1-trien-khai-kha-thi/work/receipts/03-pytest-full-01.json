@@ -1,0 +1,53 @@
+{
+ "schema_version": 2,
+ "id": "03-pytest-full-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -m pytest -p no:cacheprovider -q -rfE",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/03-pytest-full-01.out",
+ "egress_trace_reference": "work/logs/03-pytest-full-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:30:07.628720+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [],
+ "checks": [
+  "full pytest after phase 03 modules and tests (rcl_path, rcl_trace_graph, rcl_tools; MODEL_FACING scan extended)"
+ ],
+ "limitations": [
+  "same scratchpad CPU venv as 03-pytest-baseline-02; mock and synthetic data only"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -m pytest -p no:cacheprovider -q -rfE",
+   "shell": "none (subprocess argv)",
+   "cwd": "../../nt114-rca/nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "2b1c3cba49e34b7edb1559b5fa3c23aca1ebb850ca10a71e398bd39e3c4727d4",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": []
+}

@@ -1,0 +1,421 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Mapping the Landscape of Generative AI in Network Monitoring and Management",
+   "identifiers": {
+    "openalex": "W4407639385",
+    "doi": "10.1109/tnsm.2025.3543022",
+    "arxiv": "2502.08576"
+   },
+   "abstract": "Generative Artificial Intelligence (GenAI) models such as LLMs, GPTs, and Diffusion Models have recently gained widespread attention from both the research and the industrial communities. This survey explores their application in network monitoring and management, focusing on prominent use cases, as well as challenges and opportunities. We discuss how network traffic generation and classification, network intrusion detection, networked system log analysis, and network digital assistance can benefit from the use of GenAI models. Additionally, we provide an overview of the available GenAI models, datasets for large-scale training phases, and platforms for the development of such models. Finally, we discuss research directions that potentially mitigate the roadblocks to the adoption of GenAI for network monitoring and management. Our investigation aims to map the current landscape and pave the way for future research in leveraging GenAI for network monitoring and management.",
+   "status": "current"
+  },
+  {
+   "title": "Generative AI for Intelligent Manufacturing Virtual Assistants in the Semiconductor Industry",
+   "identifiers": {
+    "openalex": "W4407782147",
+    "doi": "10.1109/lra.2025.3544506"
+   },
+   "abstract": "As semiconductor manufacturing complexity escalates, the intricacy of corresponding manufacturing systems intensifies. These extensive systems necessitate diverse engineering expertise for effective operation and analysis. For instance, yield engineers analyze yield systems, process engineers interpret FDC parameters, and equipment engineers monitor device equipment health. Traditional manufacturing systems, reliant on manual data analysis and fixed algorithms, suffer from slow decision-making and limited adaptability. They are susceptible to human error, reactive maintenance, and restricted user interaction confined to technical interfaces and business hours. Additionally, scalability and integration pose significant challenges, inflating operational costs and hampering resource efficiency. This letter introduces an Intelligent Manufacturing Virtual Assistant (IMVA) specifically designed for the semiconductor industry. By harnessing the power of Large Language Models (LLMs) and AI Agents, IMVA enhances yield analysis and seamlessly integrates with existing systems and tools. It exhibits high accuracy in defect detection through advanced data analysis and report generation. Furthermore, IMVA facilitates natural language interaction, rendering it user-friendly and accessible to non-technical personnel. Consequently, IMVA markedly improve operational efficiency and cost-effectiveness compared to traditional manufacturing systems. The efficacy of IMVA is demonstrated through the Wide-bandgap (WBG) process, showcasing its capability to simplify root cause analysis and provide comprehensive yield reports.",
+   "status": "current"
+  },
+  {
+   "title": "An extensible lightweight framework for distributed telemetry of microservices",
+   "identifiers": {
+    "openalex": "W4407956132",
+    "doi": "10.1016/j.suscom.2025.101100"
+   },
+   "abstract": "Microservice architectures have become the standard for developing scalable distributed systems that offer significant benefits in managing the integration and evolution of complex applications. However, they face challenges in effectively diagnosing and resolving performance and reliability issues. Traditional centralized telemetry models and cloud-based monitoring platforms often require complex or costly configurations and are not optimized for RESTful microservices. In fact, although the OpenAPI Specification (OAS) has become a key standard for describing microservice APIs, existing telemetry tools do not leverage this information to enhance service analysis and diagnostics. This paper introduces a lightweight and distributed approach to telemetry that uses OAS-based API information, offering an automated, configuration-free system that enables developers and operations teams to perform root cause analysis more efficiently. Moreover, we propose a plugin system to incorporate intelligent behavior into the telemetry system, such as an adaptive proactive alert mechanism when response-time anomalies are detected. By incorporating this extensibility mechanism, the framework paves the way to address issues such as energy consumption and performance, allowing the system to dynamically adjust its monitoring activities to optimize resource usage and minimize the carbon footprint of microservice deployment and execution. This adaptability reduces operational overhead and supports sustainable computing practices. To validate our approach, we present a proof-of-concept in the form of a ready-to-use package for the NodeJS ecosystem, demonstrating that this distributed telemetry model can operate with minimal impact on system performance and resource usage, proving its effectiveness to support more robust and sustainable IT systems. • Decentralized Telemetry : Lightweight, distributed system for microservices using OAS. • Efficient Overhead : Cuts resource use vs. centralized models, with minimal impact. • OAS-Based Monitoring : Automates monitoring with context-aware insights without setup. • Plugin Extensibility : Supports plugins to attach intelligence (e.g. spot anomalies).",
+   "status": "current"
+  },
+  {
+   "title": "Using large language models for template detection from security event logs",
+   "identifiers": {
+    "openalex": "W4408987002",
+    "doi": "10.1007/s10207-025-01018-y"
+   },
+   "abstract": "In modern IT systems and computer networks, real-time and offline event log analysis is a crucial part of cyber security monitoring. In particular, event log analysis techniques are essential for the timely detection of cyber attacks and for assisting security experts with the analysis of past security incidents. The detection of line patterns or templates from unstructured textual event logs has been identified as an important task of event log analysis since detected templates represent event types in the event log and prepare the logs for downstream online or offline security monitoring tasks. During the last 2 decades, a number of template mining algorithms have been proposed. However, many proposed algorithms rely on traditional data mining techniques, and the usage of Large Language Models (LLMs) has received less attention so far. Also, most approaches that harness LLMs are supervised, and unsupervised LLM-based template mining remains an understudied area. The current paper addresses this research gap and investigates the application of LLMs for unsupervised detection of templates from unstructured security event logs.",
+   "status": "current"
+  },
+  {
+   "title": "Enhancing Predictive Maintenance in Mining Mobile Machinery Through a Hierarchical Inference Network",
+   "identifiers": {
+    "openalex": "W4409129668",
+    "doi": "10.1109/access.2025.3557405"
+   },
+   "abstract": "Mining mobile machinery in non-stationary operations faces high levels of wear and unpredictable stress, posing significant challenges for predictive maintenance (PdM). This paper introduces a hierarchical inference network for PdM consisting on edge sensor devices, gateways, and cloud services for real-time condition monitoring. The system dynamically can adjusts inference locations – on-device, on-gateway, or on-cloud – based on trade-offs between real-time demands and conditions such as accuracy, latency, and battery range. The edge-based architecture enables rapid decision-making directly on-sensor or on-gateway, achieving classification accuracies above 90% while reducing latency up to 30% and power consumption on sensor nodes by approximately 45% regarding the cloud inference mode. This is critical to ensure machinery uptime in remote, rugged environments. The use of Tiny-Machine-Learning (TinyML) optimization approaches allow optimal accuracy and model compression for efficient deployment of deep learning models on IoT edge devices with limited hardware resources. The ESN-PdM hierarchical framework offers a scalable and adaptive solution for reliable condition monitoring and anomaly detection, contributing to advancing technology in PdM frameworks for real-world industrial applications.",
+   "status": "current"
+  },
+  {
+   "title": "Experimental demonstration of local AI-Agents for lifecycle management and control automation of optical networks",
+   "identifiers": {
+    "openalex": "W4409134325",
+    "doi": "10.1364/jocn.550286"
+   },
+   "abstract": "This paper presents an innovative approach to automating the full lifecycle management of optical networks using locally fine-tuned large language models (LLMs) and digital twin technologies. We experimentally demonstrate the integration of generative AI and digital twins to create powerful AI-Agents capable of handling the design, deployment, maintenance, and upgrade phases in the lifecycle of optical networks. By deploying and fine-tuning LLMs locally, our framework eliminates the need for public cloud services, thereby ensuring data privacy and security. The experimental setup includes a commercial-product-based testbed with eight optical multiplex sections in the C-band, showcasing the effectiveness of the AI-Agents in various automation tasks, such as API-calling for service establishment and periodic power equalization, as well as log analysis for troubleshooting. The results highlight significant improvements in operational accuracy and efficiency, underscoring the feasibility of this approach in real-world scenarios. This work represents a significant advancement toward intent-based networking, showcasing the transformative potential of AI in automating and optimizing optical network operations.",
+   "status": "current"
+  },
+  {
+   "title": "End-to-end anomaly detection of service function chain through multi-source data in cloud-native systems",
+   "identifiers": {
+    "openalex": "W4409188356",
+    "doi": "10.1016/j.cose.2025.104461"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "SemiRALD: A semi-supervised hybrid language model for robust Anomalous Log Detection",
+   "identifiers": {
+    "openalex": "W4409357852",
+    "doi": "10.1016/j.infsof.2025.107743"
+   },
+   "abstract": "Deep learning-based Anomalous Log Detection (DALD) tools play a crucial role in software development/maintenance and contribute greatly to instant system failure identification and resolution. Existing studies still face several main problems: Current log parsers are mainly developed based on pre-defined rules for the follow-up automated analysis in DALD tools. This leads to their restricted generality and loss of information integrity to certain log formats, further affecting the DALD performance. Besides, most DALD tools rely heavily on massive supervised training examples, which are usually scarce in practice. However, their performance is fragile in low-resource scenarios, causing their unavailability in deployment. To overcome the above limitations, we propose SemiRALD, a semi-supervised learning-based robust ALD approach. In detail, SemiRALD utilizes ChatGPT and in-context learning for automated log parsing, thereby improving the log integrity during log parsing. Subsequently, it harnesses a semi-supervised learning framework and our proposed hybrid language model to remedy the performance degeneration caused by low-resource restriction in practice. Semi-supervised learning requires only a small amount of labeled data throughout the entire process, while the hybrid language model is built on the architecture of RoBERTa and an attention-based BiLSTM.Experiments on two popular datasets demonstrate that SemiRALD outperforms seven benchmark models, with an average improvement of 7.3% and 8.2% in F1-score, respectively. Particularly on small-scale datasets, which are only 0.1% of the original size, SemiRALD achieves improvements of 31.4% and 46.0% in terms of F1-score on average compared to the remaining benchmark models. Besides, its consistent and superior performance across the three low-resource scenario datasets also highlights its generalizability. Our experiments validate the rationale behind SemiRLAD's design and underscore its potential for enhancing software reliability.SemiRALD is capable of handling anomaly detection tasks in both large-scale and low-resource datasets, delivering significant advancements in anomaly log detection.",
+   "status": "current"
+  },
+  {
+   "title": "Observability in Microservices: An In-Depth Exploration of Frameworks, Challenges, and Deployment Paradigms",
+   "identifiers": {
+    "openalex": "W4409560458",
+    "doi": "10.1109/access.2025.3562125"
+   },
+   "abstract": "The widespread adoption of microservices-based architectures in native cloud systems has amplified the need for robust observability strategies to ensure system reliability and performance. Microservices, while enabling scalability and flexibility, introduce complexities such as distributed failure points, performance bottlenecks, and resource mismanagement. This paper provides a comprehensive review of state-of-the-art observability frameworks and tools designed for microservices architecture. It focuses on key aspects of observability at the system, service, and network levels, utilizing logs, traces, and metrics as core data sources. A thematic taxonomy is proposed, classifying the diverse approaches to monitoring microservices based on implementation paradigms, deployment platforms, and architecture patterns. The study compares existing solutions in terms of their capabilities, limitations, and effectiveness in addressing observability challenges in cloud, edge, and fog environments. Furthermore, open research issues are identified, and practical recommendations are provided to optimize observability in complex, distributed microservices ecosystems. This work aims to serve as a valuable resource for system architects, DevOps engineers, and researchers striving to enhance the reliability and performance of modern cloud-native systems.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly Detection and Root Cause Analysis in Cloud-Native Environments Using Large Language Models and Bayesian Networks",
+   "identifiers": {
+    "openalex": "W4409916700",
+    "doi": "10.1109/access.2025.3565220"
+   },
+   "abstract": "Cloud computing technologies offer significant advantages in scalability and performance, enabling rapid deployment of applications. The adoption of microservices-oriented architectures has introduced an ecosystem characterized by an increased number of applications, frameworks, abstraction layers, orchestrators, and hypervisors, all operating within distributed systems. This complexity results in the generation of vast quantities of logs from diverse sources, making the analysis of these events an inherently challenging task, particularly in the absence of automation. To address this issue, Machine Learning techniques leveraging Large Language Models (LLMs) offer a promising approach for dynamically identifying patterns within these events. In this study, we propose a novel anomaly detection framework utilizing a microservices architecture deployed on Kubernetes and Istio, enhanced by an LLM model. The model was trained on various error scenarios, with Chaos Mesh employed as an error injection tool to simulate faults of different natures, and Locust used as a load generator to create workload stress conditions. After an anomaly is detected by the LLM model, we employ a dynamic Bayesian network to provide probabilistic inferences about the incident, proving the relationships between components and assessing the degree of impact among them. Additionally, a ChatBot powered by the same LLM model allows users to interact with the AI, ask questions about the detected incident, and gain deeper insights. The experimental results demonstrated the model's effectiveness, reliably identifying all error events across various test scenarios. While it successfully avoided missing any anomalies, it did produce some false positives, which remain within acceptable limits.",
+   "status": "current"
+  },
+  {
+   "title": "Insights into KPI-based performance anomaly detection in database systems: A comprehensive study",
+   "identifiers": {
+    "openalex": "W4409920234",
+    "doi": "10.1016/j.eswa.2025.127959"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "TVDiag: A Task-oriented and View-invariant Failure Diagnosis Framework for Microservice-based Systems with Multimodal Data",
+   "identifiers": {
+    "openalex": "W4410192168",
+    "doi": "10.1145/3734868"
+   },
+   "abstract": "Microservice-based systems often suffer from reliability issues due to their intricate interactions and expanding scale. With the rapid growth of observability techniques, various methods have been proposed to achieve failure diagnosis, including root cause localization and failure type identification, by leveraging diverse monitoring data such as logs, metrics, or traces. However, traditional failure diagnosis methods that use single-modal data can hardly cover all failure scenarios due to the restricted information. Several failure diagnosis methods have been recently proposed to integrate multimodal data based on deep learning. These methods, however, tend to combine modalities indiscriminately and treat them equally in failure diagnosis, ignoring the relationship between specific modalities and different diagnostic tasks. This oversight hinders the effective utilization of the unique advantages offered by each modality. To address the limitation, we propose TVDiag , a multimodal failure diagnosis framework for locating culprit microservice instances and identifying their failure types (e.g., Net-packets Corruption) in microservice-based systems. TVDiag employs task-oriented learning to enhance the potential advantages of each modality and establishes cross-modal associations based on contrastive learning to extract view-invariant failure information. Furthermore, we develop a graph-level data augmentation strategy that randomly inactivates the observability of some normal microservice instances to mitigate the shortage of training data. Experimental results on four datasets show that TVDiag outperforms the state-of-the-art methods in multimodal failure diagnosis by at least 20.16% and 3.08% in terms of \\(HR@1\\) and F1-score, respectively.",
+   "status": "current"
+  },
+  {
+   "title": "TARGET: Traffic Rule-Based Test Generation for Autonomous Driving via Validated LLM-Guided Knowledge Extraction",
+   "identifiers": {
+    "openalex": "W4410226837",
+    "doi": "10.1109/tse.2025.3569086"
+   },
+   "abstract": "Recent incidents with autonomous vehicles highlight the need for rigorous testing to ensure safety and robustness. Constructing test scenarios for autonomous driving systems (ADSs), however, is labor-intensive. We propose TARGET, an end-to-end framework that automatically generates test scenarios from traffic rules. To address complexity, we leverage a Large Language Model (LLM) to extract knowledge from traffic rules. To mitigate hallucinations caused by large context during input processing, we introduce a domain-specific language (DSL) designed to be syntactically simple and compositional. This design allows the LLM to learn and generate test scenarios in a modular manner while enabling syntactic and semantic validation for each component. Based on these validated representations, TARGET synthesizes executable scripts to render scenarios in simulation. Evaluated seven ADSs with 284 scenarios derived from 54 traffic rules, TARGET uncovered 610 rule violations, collisions, and other issues. For each violation, TARGET generates scenario recordings and detailed logs, aiding root cause analysis. Two identified issues were confirmed by ADS developers: one linked to an existing bug report and the other to limited ADS functionality.",
+   "status": "current"
+  },
+  {
+   "title": "A Holistic Review of Fuzzing for Vulnerability Assessment in Industrial Network Protocols",
+   "identifiers": {
+    "openalex": "W4410294789",
+    "doi": "10.1109/ojcoms.2025.3569291"
+   },
+   "abstract": "Industrial control systems (ICSs) are considered the backbone of the industry field due to their essential role in supervising and handling crucial manufacturing operations in critical infrastructures such as power grids, water supply systems, and manufacturing processes. ICS systems were not initially designed with robust security measures, making them vulnerable to potential attacks. Accordingly, these attacks can lead to severe consequences, including disrupting services, causing economic damage, and compromising public safety. Notably, the security of Industrial Control Systems depends on the robustness of Industrial Network Protocols (INPs). Therefore, exposing and addressing their vulnerabilities is essential to strengthening these critical infrastructures and proactively mitigating cyber threats. Fuzzing has emerged as a powerful technique for uncovering security flaws in network protocols by systematically generating malformed inputs to trigger unexpected behavior. In this paper, we address a critical area in industrial cybersecurity by examining recent advancements in fuzzing methods for industrial network protocols. Our work provides a comprehensive overview of the fuzzing process, identifies key vulnerabilities in INPs, especially within the widely used Modbus protocol, and highlights the need for more advanced fuzzing strategies. Thus, we present a systematic machine learning-based fuzzing framework tailored to the unique characteristics of industrial protocols, leveraging proven methodologies from existing literature. By evaluating the strengths and limitations of state-of-the-art approaches, we offer valuable insights into the key challenges associated with applying fuzzing to discover vulnerabilities in industrial protocols, such as maintaining message integrity, implementing intelligent log analysis, and addressing the lack of explainability in fuzzing outcomes. Crucially, we also explore how the capabilities of large language models (LLMs), including their comprehensive knowledge bases, contextual understanding, and knowledge consolidation, can be harnessed to overcome these challenges and enhance the effectiveness of fuzzing in industrial environments, which we demonstrate through a mini case study. Lastly, this paper provides actionable guidance for future research and development in securing industrial network protocols.",
+   "status": "current"
+  },
+  {
+   "title": "Dynamic QoS-Driven Framework for Co-Scheduling of Distributed Long-Running Applications on Shared Clusters",
+   "identifiers": {
+    "openalex": "W4410427676",
+    "doi": "10.1109/tcc.2025.3571098"
+   },
+   "abstract": "Cloud service providers typically co-locate various workloads within the same production cluster to improve resource utilization and reduce operational costs. These workloads primarily consist of batch analysis jobs composed of multiple parallel short-running tasks and long-running applications (LRAs) that continuously reside in the system. The adoption of microservice architecture has led to the emergence of distributed long-running applications (DLRAs), which enhance deployment flexibility but pose challenges in detecting and investigating QoS violations due to workload variability and performance propagation across microservices. State-of-the-art resource managers are only responsible for resource allocation among applications/jobs and do not prioritize runtime QoS aspects, such as applicationlevel latency. To address this, we introduce Prank, a QoSdriven resource management framework for co-located workloads. Prank incorporates a non-intrusive performance anomaly detection mechanism for DLRAs and proposes a root cause localization algorithm based on PageRank-weighted analysis of performance anomalies. Moreover, it dynamically balances resource allocation between DLRAs and co-located batch jobs on nodes hosting critical microservices, optimizing for both DLRA performance and overall cluster efficiency. Experimental results demonstrate that Prank outperforms state-of-the-art baselines, reducing DLRA tail latency by over 38% while increasing batch job completion time by no more than 21% on average",
+   "status": "current"
+  },
+  {
+   "title": "A Survey on Failure Analysis and Fault Injection in AI Systems",
+   "identifiers": {
+    "openalex": "W4410431126",
+    "doi": "10.1145/3732777"
+   },
+   "abstract": "The rapid advancement of AI has led to its integration into various areas, especially with Large Language Models (LLMs) significantly enhancing capabilities in Artificial Intelligence Generated Content (AIGC). However, the complexity of AI systems has also exposed their vulnerabilities, necessitating robust methods for Failure Analysis (FA) and Fault Injection (FI) to ensure resilience and reliability. Despite the importance of these techniques, there lacks a comprehensive review of FA and FI methodologies in AI systems. This study fills this gap by presenting a detailed survey of existing FA and FI approaches across six layers of AI systems. We systematically analyze 142 studies to answer three research questions including (1) what are the prevalent failures in AI systems, (2) what types of faults can current FI tools simulate, (3) what gaps exist between the simulated faults and real-world failures. Our findings reveal a taxonomy of AI system failures, assess the capabilities of existing FI tools, and highlight discrepancies between real-world and simulated failures. Moreover, this survey contributes to the field by providing a framework for fault diagnosis, evaluating the state-of-the-art in FI, and identifying areas for improvement in FI techniques to enhance the resilience of AI systems.",
+   "status": "current"
+  },
+  {
+   "title": "Intelligent Root Cause Localization in MicroService Systems: A Survey and New Perspectives",
+   "identifiers": {
+    "openalex": "W4410600797",
+    "doi": "10.1145/3736755"
+   },
+   "abstract": "Root cause localization is the process of monitoring system behavior and analyzing fault patterns from behavioral data. It is applicable in software development, network operations, and cloud computing. However, with the advent of microservice architectures and cloud-native technologies, root cause localization becomes an arduous task. Frequent updates in systems result in large-scale data and complex dependencies. Traditional analysis methods relying on manual experience and predefined rules have limited data processing and cannot learn new fault patterns from historical knowledge. Artificial Intelligence techniques have emerged as powerful tools to leverage historical knowledge and are now widely used in root cause localization. In this article, we provide a structured overview and a qualitative analysis of root cause localization in microservice systems. To begin with, we review the literature in this area and abstract a workflow of root cause localization, including multimodal data collection, intelligent root cause analysis, and performance evaluation. In particular, we highlight the role played by Artificial Intelligence techniques. Finally, we discuss some open challenges and research directions and propose an end-to-end framework from a new perspective, providing insights for future works.",
+   "status": "current"
+  },
+  {
+   "title": "Graph Structure-Enhanced Large Language Model for Optical Network Fault Diagnosis: An Explainable Alarm Root Cause Localization Approach",
+   "identifiers": {
+    "openalex": "W4410660796",
+    "doi": "10.1109/jiot.2025.3573056"
+   },
+   "abstract": "In modern optical networks, alarm analysis plays a pivotal role in detecting fault and guiding operators towards timely interventions. Timely and accurate root cause localization can effectively reduce downtime, prevent cascading failures, and enhance overall system performance. However, the increasing scale and complexity of networks have posed challenges to Root Cause Localization (RCL) due to the huge volume of alarms generated during fault occurrences. The development of automatic RCL methods helps reduce the time costs and human errors associated with manual analysis. Most existing RCL methods face challenges such as poor explainability, low adaptability to network changes, high learning costs and lack of interactivity, reducing their credibility and usability in production environments. This paper introduces a graph structure-enhanced large language model (LLM) for optical network fault detection, capable of performing explainable alarm RCL with improved adaptability and interactivity. Graph structures provide an intuitive means of expressing the relationships between topology and alarms, clearly visualizing alarm propagation paths, which aids in explainable RCL; LLM exhibits profound capabilities in semantic comprehension and language generation, which improves both explainability and interactivity. When integrated with algorithms, they hold promise for reducing operators learning costs, adding interactivity, and introducing new possibilities for the visualization and efficiency of complex tasks. We conducted evaluations and validations across multiple metrics using real alarm data collected from optical transport network (OTN). The results show that the proposed algorithm achieves an accuracy of over 86.8% across various complex scenarios; compared to the base model, the fine-tuned model exhibits an accuracy improvement of over 87%. Other results indicate that the proposed method enhances the explainability, adaptability and interactivity of fault detection in optical network, showcasing significant potential for automated and intelligent network operations.",
+   "status": "current"
+  },
+  {
+   "title": "Hybrid TrafficAI: A Generative AI Framework for Real-Time Traffic Simulation and Adaptive Behavior Modeling",
+   "identifiers": {
+    "openalex": "W4410949641",
+    "doi": "10.1109/tits.2025.3571041"
+   },
+   "abstract": "Traffic congestion, accidents, and unpredictable driver behaviour remain significant challenges in urban transportation systems. Traditional traffic simulation models often fail to adapt to dynamic environments and lack accuracy handling edge-case scenarios. To address these limitations, hybrid TrafficAI, an innovative Generative AI-based framework that integrates advanced modules for traffic simulation, behaviour modelling and anomaly detection. The framework incorporates several key components. First, an Adaptive Multi-Modal Fusion Engine (AMFE) seamlessly integrates video, LiDAR, and textual data. This is achieved through dynamic feature alignment layers and context-aware gating mechanisms. Second, an Edge-Case Generative Module (ECGM) augments synthetic edge-case scenarios. Third, a Temporal-Spatial Attention Network (TSAN) captures short-term and long-term traffic dependencies. Finally, large language model-driven semantic reasoning modules extract contextual insights from unstructured textual data, such as traffic reports and incident logs. The framework employs a hybrid dual-stage optimization process, combining unsupervised generative pre-training with fine-tuned supervised calibration to ensure efficient convergence and reduced latency. By fusing multi-modal data, enhancing anomaly robustness with synthetic edge-case scenarios, and interpreting contextual semantics with LLM, hybrid TrafficAI achieves precise anomaly detection, trajectory prediction and adaptive decision-making. Experimental evaluations demonstrate significant performance improvements, including 91.45% accuracy, 93.45% mean Average Precision (mAP) for vehicle detection and a 0.910 Normalized Risk Score (NRS) for anomaly detection, consistently outperforming state-of-the-art benchmarks across latency, precision, recall and stability metrics. This framework sets a new benchmark for intelligent transportation systems (ITS) and real-time traffic management.",
+   "status": "current"
+  },
+  {
+   "title": "NetEventCause: Event-Driven Root Cause Analysis for Large Network System Without Topology",
+   "identifiers": {
+    "openalex": "W4411055472",
+    "doi": "10.1109/tnnls.2025.3574316"
+   },
+   "abstract": "Root cause analysis (RCA) is a crucial technique in network systems for uncovering the abnormal nodes that lead to the network alarm flood. Within private cloud network systems, the calling chains and topologies among entities, such as hosts, routes, and services, are always incomplete due to nonstandardized management. Existing topology-free RCA techniques, which rely on the casual discovery, are inapplicable when the scale of the network system is extremely large or the number of triggered alarms is sparse. This article proposes NetEventCause (NEC), an event-driven, unsupervised, and nonintrusive RCA algorithm for large network systems, where the network topology is unknown. NEC learns from historical alarm events to model the occurrences of various alarm types using a multivariate neural temporal point process (TPP). Based on the conditional intensity predicted by the learned TPP, NEC can identify the root alarms from a cascade of alarm events and locate the causal alarms of derivative alarms using the attribution method. The experimental section evaluates the NEC using both a synthetic event dataset and a large real-world dataset. The real-world dataset is exported from the Huawei Shennong Intelligent Maintenance and Operation Center (IMOC), a platform deployed at one of China's largest airports and manages over 200000 entities. Results obtained from the two datasets demonstrate that NEC outperforms most state of the art (SOTA) TPP models in modeling alarm events and surpasses general RCA methods in terms of identifying root alarms and recovering transmission chains of anomalies.",
+   "status": "current"
+  },
+  {
+   "title": "A failure analysis framework to provide pure anomalous data using multi-source data of fault-sensitive microservices",
+   "identifiers": {
+    "openalex": "W4411114343",
+    "doi": "10.1016/j.jss.2025.112513"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "A Root Cause Analysis Framework for IoT Based on Dynamic Causal Graphs Assisted by LLMs",
+   "identifiers": {
+    "openalex": "W4411171699",
+    "doi": "10.1109/jiot.2025.3578512"
+   },
+   "abstract": "The identification of the root causes of failures in complex Internet of Things (IoT) systems has always presented a significant challenge. Despite the extensive range of algorithms and technologies already available for Root Cause Analysis (RCA) in various fields, there remains a lack of RCA methods specifically designed for IoT systems. The present paper proposes an IoT system root cause analysis framework based on dynamic causal graphs, assisted by Large Language Models (LLMs), called LLMs-DCGRCA. Firstly, in response to the issues with traditional causal hypothesis methods, which rely on human experience and suffer from key variable omission and incorrect causal direction assumptions, this paper proposes a method for generating causal hypotheses for IoT systems by using knowledge graphs to enhance the performance of LLMs. Secondly, in response to the challenge that traditional causal learning methods in IoT scenarios struggle to capture causal relationships across the temporal dimension, this paper proposes a dynamic causal graph learning method that incorporates causal constraints. Finally, in response to the limitations of traditional root cause analysis methods in IoT scenarios in accurately capturing the dynamic characteristics of anomaly propagation, this paper proposes a cumulative root cause localization method based on dynamic causal graphs. The evaluation of LLMs-DCGRCA is conducted using IoT trace data collected from simulation environments and GAIA, a widely-used public dataset in the field of intelligent operations and maintenance. The evaluation results demonstrate that LLMs-DCGRCA achieves average HR@7 improvements of 14.04% and 9.35% compared to baseline methods on the two datasets, respectively.",
+   "status": "current"
+  },
+  {
+   "title": "Unsupervised Multi-Target Cross-Service Log Anomaly Detection",
+   "identifiers": {
+    "openalex": "W4411171958",
+    "doi": "10.1109/tsusc.2025.3578517"
+   },
+   "abstract": "Log analysis, especially log anomaly detection, can help debug systems and analyze root causes to provide reliable services. Deep learning is a promising technology for log anomaly detection. However, deep learning methods need a large amount of training data, which is hard for a newly deployed system to collect sufficient logs. Transfer learning becomes a possible method to solve the problem that can apply the knowledge from a long-term deployed system (source) to a newly deployed system (target). Existing transfer learning methods focus on transferring the knowledge from a source system to a single target system within the same service, in which the source and the target belong to the same service (e.g. operating system, supercomputer, or distributed system). They achieve low performance when applied to multiple target and different services systems because of the obvious differences in log format, syntax, semantics, and component call between different services and the individual training of multiple models for each target system. To tackle the problems, we propose an unsupervised multi-target cross-service log anomaly detection method based on transfer learning and contrastive learning (LogMTC). LogMTC exploits contrastive learning to learn a single model on combined data from the source and multiple target systems, which can fit multiple target systems simultaneously and improve efficiency. LogMTC exploits a hypersphere loss and two contrastive losses to minimize the feature differences crossing different services. Our experiments on two services (supercomputer and distributed system) and three log datasets show that our method is superior to the existing transfer learning methods in the same service, cross-service, and multi-target log anomaly detection. Compared with the best peer accurate transfer learning algorithm LogTAD, LogMTC improves 1.14%-8.28$\\%$F1 score in multi-target transfer and is 1.12-1.22 times faster.",
+   "status": "current"
+  },
+  {
+   "title": "Malo in the Code Jungle: Explainable Fault Localization for Decentralized Applications",
+   "identifiers": {
+    "openalex": "W4411270272",
+    "doi": "10.1109/tse.2025.3578816"
+   },
+   "abstract": "Decentralized applications (DApps) have long been sitting ducks for hackers due to their valuable cryptocurrency assets, exposing them to various security risks. When a DApp is attacked, promptly identifying faults is crucial to minimizing financial losses and ensuring effective fault repair. However, existing fault localization methods, which mostly rely on code coverage, often fall short for DApps, particularly when dealing with only one fault case. Furthermore, according to a prior survey, most developers expect fault localization tools to provide reasonable explanations.In this paper, we present Malo, a method for DApp-specific explainable fault localization. It identifies fault functions throughsuspicious token transfer-guided analysis, and then employs Large Language Models (LLMs) to generate explanations for these identified fault functions. Specifically, Malo examines function call traces and source codes of fault cases to acquireinternal knowledge, and also retrieves relevant project documents from the Web to obtainexternal knowledge. By integrating internal and external knowledge, Malo generates reasonable explanations for faults in DApps. Our evaluation on a dataset of 68 real-world DApp faults demonstrates that Malo can locate 62% of faults within the Top-5, 9% higher than the state-of-the-art method. The experiment results also demonstrate a remarkable alignment accuracy of 71% between the explanations generated by Malo and the ground truth. In addition, we conduct a user study, which confirms that explanations generated by Malo can aid developers in comprehending the root cause of faults. Our code and dataset are available online: https://github.com/SodalimeZero/Malo_Code.git.",
+   "status": "current"
+  },
+  {
+   "title": "ForenSiX: Automated Network Forensics and Diagnostics for Beyond-5G and 6G Networks Using Large Language Models",
+   "identifiers": {
+    "openalex": "W4411336825",
+    "doi": "10.1109/mnet.2025.3579925"
+   },
+   "abstract": "Network forensics and diagnostics play a critical role in enabling operators to locate the root causes of attacks or service disruptions by analyzing logs and evidence of various devices. For example, when a subscriber reports a “disconnection” error, the network operator must investigate the subscriber’s service functionality and determine the underlying cause. However, these tasks are becoming more difficult in the future beyond-5G (B5G) and 6G environments. The expanding number of network functions, services, interfaces, and contexts results in more complex data flows and longer network management chains, making traditional manual diagnosis infeasible to trace and locate root causes from large-scale semantic network logs. To address these challenges, we propose ForenSiX, an automated framework designed for B5G and 6G networks. ForenSiX utilizes static analysis of relevant standards, module source code, and config files to construct a comprehensive data-dependency graph, enabling causal relationship analysis across multiple network functions. Next, it integrates a dynamic log-tracking subsystem that harnesses both regular expressions and commercial off-the-shelf large language models (LLMs). A multithreaded component further enhances processing efficiency, and a fault-tolerance unit ensures accuracy and robustness. We evaluate ForenSiX in Open5GS and UERANSIM, demonstrating its effectiveness, reliability, and adaptability in realistic scenarios.",
+   "status": "current"
+  },
+  {
+   "title": "Monitoring Data for Anomaly Detection in Cloud-Based Systems: A Systematic Mapping Study",
+   "identifiers": {
+    "openalex": "W4411374065",
+    "doi": "10.1145/3744556"
+   },
+   "abstract": "Context : Anomaly detection is crucial for maintaining cloud-based software systems, as it enables early identification and resolution of unexpected failures. Given rapid and significant advances in the anomaly detection domain and the complexity of its industrial implementation, an overview of techniques that utilize real-world operational data is needed. Aim : This study aims to complement existing research with an extensive catalog of the techniques and monitoring data used for detecting anomalies affecting the performance or reliability of cloud-based software systems that have been developed and/or evaluated in a real-world context. Method : We perform a systematic mapping study to examine the literature on anomaly detection in cloud-based systems, particularly focusing on the usage of real-world monitoring data, with the aim of identifying key data categories, tools, data preprocessing, and anomaly detection techniques. Results : Based on a review of 104 papers, we categorize monitoring data by structure, types, and origins and the tools used for data collection and processing. We offer a comprehensive overview of data preprocessing and anomaly detection techniques mapped to different data categories. Our findings highlight practical challenges and considerations in applying these techniques in real-world cloud environments. Conclusion : The findings help practitioners and researchers identify relevant data categories and select appropriate data preprocessing and anomaly detection techniques for their specific operational environments, which is important for improving the reliability and performance of cloud-based systems.",
+   "status": "current"
+  },
+  {
+   "title": "Overcoming the research-practice gap: Root cause analysis and topics of practical relevance in software architecture and distributed systems",
+   "identifiers": {
+    "openalex": "W4411404153",
+    "doi": "10.1016/j.jss.2025.112539"
+   },
+   "abstract": "This instalment of “Dear Researchers” first shares my thoughts regarding reasons for the research-practice gap. It then identifies practically relevant research problems in software architecture, the architectures of distributed systems in particular, requiring enterprise application integration, remote Application Programming Interfaces (APIs) and cloud-native application design.",
+   "status": "current"
+  },
+  {
+   "title": "TraceDAE: Trace-Based Anomaly Detection in Microservice Systems via Dual Autoencoder",
+   "identifiers": {
+    "openalex": "W4411688220",
+    "doi": "10.1109/tnsm.2025.3583213"
+   },
+   "abstract": "Micro-service systems have become a popular architecture for modern web applications owing to their scalability, modularity, and maintainability. However, with the increasing complexity and size of these systems, anomaly detection emerges as a critical task. In this paper, we introduce TraceDAE, a trace-based anomaly detection approach in micro-service systems. The approach initially constructs a Service Trace Graph (STG) to depict service invocation relationships and performance metrics, subsequently introducing a dual autoencoder framework. In this framework, the structure autoencoder employs Graph Attention Networks (GAT) to analyze the structure, while the attribute autoencoder leverages the Long Short-Term Memory Network (LSTM) for processing time series data. This approach is capable of effectively identifying Service Response Abnormal and Service Invocation Abnormal. Moreover, the final experimental results on datasets show that TraceDAE is an efficient anomaly detection approach which outperforms the SOTA trace-based anomaly detection methods with f1-scores of 0.970 and 0.925, respectively.",
+   "status": "current"
+  },
+  {
+   "title": "A Survey of AIOps in the Era of Large Language Models",
+   "identifiers": {
+    "openalex": "W4411735779",
+    "doi": "10.1145/3746635"
+   },
+   "abstract": "As large language models (LLMs) grow increasingly sophisticated and pervasive, their application to various Artificial Intelligence for IT Operations (AIOps) tasks has garnered significant attention. However, a comprehensive understanding of the impact, potential, and limitations of LLMs in AIOps remains in its infancy. To address this gap, we conducted a detailed survey of LLM4AIOps, focusing on how LLMs can optimize processes and improve outcomes in this domain. We analyzed 183 research articles published between January 2020 and December 2024 to answer four key research questions (RQs). In RQ1, we examine the diverse failure data sources utilized, including advanced LLM-based processing techniques for legacy data and the incorporation of new data sources enabled by LLMs. RQ2 explores the evolution of AIOps tasks, highlighting the emergence of novel tasks and the publication trends across these tasks. RQ3 investigates the various LLM-based methods applied to address AIOps challenges. Finally, RQ4 reviews evaluation methodologies tailored to assess LLM-integrated AIOps approaches. Based on our findings, we discuss the state-of-the-art advancements and trends, identify gaps in existing research, and propose promising directions for future exploration.",
+   "status": "current"
+  },
+  {
+   "title": "LLM-LADE: Large language model-based log anomaly detection with explanation",
+   "identifiers": {
+    "openalex": "W4412086250",
+    "doi": "10.1016/j.knosys.2025.114064"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Leveraging Deep Learning for Fault Detection and Localization in Distributed Systems",
+   "identifiers": {
+    "openalex": "W4412375007",
+    "doi": "10.1109/access.2025.3587529"
+   },
+   "abstract": "The dynamic and complex nature of distributed systems makes fault localization extremely difficult, frequently leading to extended outages and higher operating expenses. A deep learning-based fault localization framework that combines Long Short-Term Memory (LSTM), Gated Recurrent Unit (GRU), Convolutional Neural Network (CNN), LSTM+CNN, and Autoencoder+LSTM models is proposed in this study. These models undergo extensive preprocessing, including log parsing, feature extraction using TF-IDF and Word2Vec, and min-max normalisation, before being trained and assessed on five benchmark datasets: HDFS, OpenStack, Spark, Hadoop, and BGL. To ensure robustness, the methodology incorporates a 5-fold cross-validation strategy, model-specific architecture tuning, and 1-D sequence modelling. According to experimental results, CNN performs best overall on the HDFS dataset, with an Mean Squared Error (MSE) of 0.00002 and an Coefficient of Determination (R2 Score) Score of 0.996. CNN continuously beats other models in accuracy and performance across all datasets. The key contributions of this study are: 1) a thorough fault localization framework built with deep learning for distributed systems; 2) a comparison of five cutting-edge architectures on five real-world datasets; and 3) statistically validated performance benchmarks backed by Wilcoxon signed-rank tests and t-tests. These contributions provide useful information for implementing accurate and scalable fault localization in distributed computing environments found in the real world.",
+   "status": "current"
+  },
+  {
+   "title": "Memory-augment graph transformer based unsupervised detection model for identifying performance anomalies in highly-dynamic cloud environments",
+   "identifiers": {
+    "openalex": "W4412553123",
+    "doi": "10.1186/s13677-025-00766-5"
+   },
+   "abstract": "Cloud computing systems provide highly available and scalable computing, storage, and network resources to meet various service demands. Anomaly detection based on monitoring metrics plays a crucial role in identifying system defects and abnormal behaviors, ensuring the reliability and stability of cloud services. However, as the complexity of data increases and concurrent noise impacts cloud environments, server failures and abnormal events rise, making anomaly detection more challenging. To address these issues, we propose MemGT, an unsupervised multivariate time series anomaly detection method that offers high accuracy, good robustness, and noise resistance for various data patterns in complex cloud environments. Our approach utilizes a Transformer encoder and dynamic graph structure learning to extract spatio-temporal features of monitoring metrics in cloud computing systems in parallel. Additionally, we introduce a novel dynamic gated memory module to guide the Transformer encoder in extracting hidden features, thereby enhancing the model’s robustness to varying data patterns in dynamic cloud environments. To accurately distinguish between concurrent noise and real anomalies, we utilize a window-wise graph learning method, further improving the model’s noise resistance. We compared the detection performance of MemGT with 15 baseline methods across 8 public datasets. The experimental results demonstrate that our method achieves an average F1 score of 95.04%, surpassing state-of-the-art baseline methods by 24.80%.",
+   "status": "current"
+  },
+  {
+   "title": "AdaptiveLog: An Adaptive Log Analysis Framework with the Collaboration of Large and Small Language Model",
+   "identifiers": {
+    "openalex": "W4412565290",
+    "doi": "10.1145/3749840",
+    "arxiv": "2501.11031"
+   },
+   "abstract": "Automated log analysis is crucial to ensure the high availability and reliability of complex systems. The advent of Large Language Models (LLMs) in Natural Language Processing (NLP) has ushered in a new era of language model-driven automated log analysis, garnering significant interest. Within this field, two primary paradigms based on language models for log analysis have become prominent. Small Language Models (SLMs) (such as BERT) follow the pre-train and fine-tune paradigm, focusing on the specific log analysis task through fine-tuning on supervised datasets. On the other hand, LLMs (such as ChatGPT) following the in-context learning paradigm, analyze logs by providing a few examples in prompt contexts without updating parameters. Despite their respective strengths, both models exhibit inherent limitations. By comparing SLMs and LLMs, we notice that SLMs are more cost-effective but less powerful, whereas LLMs with large parameters are highly powerful but expensive and inefficient. To tradeoff between the performance and inference costs of both models in automated log analysis, this article introduces an adaptive log analysis framework known as AdaptiveLog, which effectively reduces the costs associated with LLM while ensuring superior results. This framework collaborates an LLM and an SLM, strategically allocating the LLM to tackle complex logs while delegating simpler logs to the SLM. Specifically, to efficiently query the LLM, we propose an adaptive selection strategy based on the uncertainty estimation of the SLM, where the LLM is invoked only when the SLM is uncertain. In addition, to enhance the reasoning ability of the LLM in log analysis tasks, we propose a novel prompt strategy by retrieving similar error-prone cases as the reference, enabling the model to leverage past error experiences and learn solutions from these cases. We evaluate AdaptiveLog on different log analysis tasks, Extensive experiments demonstrate that AdaptiveLog achieves state-of-the-art results across different tasks, elevating the overall accuracy of log analysis while maintaining cost efficiency. Our source code and detailed experimental data are available at https://github.com/LeaperOvO/AdaptiveLog-review .",
+   "status": "current"
+  },
+  {
+   "title": "A Survey of Text-to-SQL in the Era of LLMs: Where Are We, and Where Are We Going?",
+   "identifiers": {
+    "openalex": "W4412623423",
+    "doi": "10.1109/tkde.2025.3592032",
+    "arxiv": "2408.05109"
+   },
+   "abstract": "Translating users' natural language queries (NL) into SQL queries (i.e., Text-to-SQL, a.k.a. NL2SQL) can significantly reduce barriers to accessing relational databases and support various commercial applications. The performance of Text-to-SQL has been greatly enhanced with the emergence of Large Language Models (LLMs). In this survey, we provide a comprehensive review of Text-to-SQL techniques powered by LLMs, covering its entire lifecycle from the following four aspects: (1)Model:Text-to-SQL translation techniques that tackle not only NL ambiguity and under-specification, but also properly map NL with database schema and instances; (2)Data:From the collection of training data, data synthesis due to training data scarcity, to Text-to-SQL benchmarks; (3)Evaluation:Evaluating Text-to-SQL methods from multiple angles using different metrics and granularities; and (4)Error Analysis:analyzing Text-to-SQL errors to find the root cause and guiding Text-to-SQL models to evolve. Moreover, we offer a rule of thumb for developing Text-to-SQL solutions. Finally, we discuss the research challenges and open problems of Text-to-SQL in the LLMs era.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly detection in distributed systems based on Spatio-Temporal Causal Inference",
+   "identifiers": {
+    "openalex": "W4412781401",
+    "doi": "10.1016/j.engappai.2025.111857"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly Detection Algorithms for Real-Time Log Data Analysis at Scale",
+   "identifiers": {
+    "openalex": "W4412795576",
+    "doi": "10.1109/access.2025.3594469"
+   },
+   "abstract": "In recent years, Artificial Intelligence for IT Operations (AIOps) has gained popularity as a solution to various challenges in IT operations, particularly in anomaly detection. Although numerous studies have focused on anomaly detection, they often overlook cloud-based systems and the vast amount of data they generate. Moreover, the practical application of these results and managing multiple IT systems within diverse computing environments present notable challenges. In this paper, we explore anomaly detection in real-world environments, including legacy systems and cloud platforms, by evaluating existing methods and explicitly introducing four novel anomaly detection algorithms: Llama Model-based Log Anomaly Detection (LMLAD), Log Clustering with Cosine Similarity for Log Anomaly Detection (LCCLAD), Convolutional Auto-Encoder based Log Anomaly Detection (CAELAD), and Statistical Clustering for Log Anomaly Detection (SCLAD). These algorithms vary in complexity and accuracy, and offer tunable performance based on the specific requirements of the environment. In experiments on four log datasets (two private and two public), our best models improved F1-scores by 6–10% over state-of-the-art baselines, demonstrating the efficacy of our approach. Through empirical analysis, we demonstrate that while advanced techniques such as CAELAD often deliver high accuracy, simpler methods such as SCLAD can be equally effective in practical settings, depending on the complexity of the problem. Our results underscore the importance of selecting the right balance between sophistication and simplicity, challenging the assumption that the most sophisticated methods are necessary for effective anomaly detection in real-world log data.",
+   "status": "current"
+  },
+  {
+   "title": "LUK: Empowering Log Understanding With Expert Knowledge From Large Language Models",
+   "identifiers": {
+    "openalex": "W4412795723",
+    "doi": "10.1109/tse.2025.3594046",
+    "arxiv": "2409.01909"
+   },
+   "abstract": "Logs play a critical role in providing essential information for system monitoring and troubleshooting. Recently, with the success of pre-trained language models (PLMs) and large language models (LLMs) in natural language processing (NLP), smaller PLMs (such as BERT) and LLMs (like GPT-4) have become the current mainstream approaches for log analysis. Despite the remarkable capabilities of LLMs, their higher cost and inefficient inference present significant challenges in leveraging the full potential of LLMs to analyze logs. In contrast, smaller PLMs can be fine-tuned for specific tasks even with limited computational resources, making them more practical. However, these smaller PLMs face challenges in understanding logs comprehensively due to their limited expert knowledge. To address the lack of expert knowledge and enhance log understanding for smaller PLMs, this paper introduces a novel and practical knowledge enhancement framework, called LUK, which acquires expert knowledge from LLMs automatically and then enhances the smaller PLM for log analysis with the expert knowledge. LUK can take full advantage of both types of models. Specifically, we design a multi-expert collaboration framework based on LLMs with different roles to acquire expert knowledge. In addition, we propose two novel pre-training tasks to enhance the log pre-training with expert knowledge. LUK achieves state-of-the-art results on different log analysis tasks, and extensive experiments demonstrate that expert knowledge from LLMs can be utilized more effectively to understand logs. Our source code and detailed experimental data are available athttps://github.com/LeaperOvO/LUK.",
+   "status": "current"
+  },
+  {
+   "title": "E-Log: Fine-Grained Elastic Log-Based Anomaly Detection and Diagnosis for Databases",
+   "identifiers": {
+    "openalex": "W4412837182",
+    "doi": "10.1109/tsc.2025.3594870"
+   },
+   "abstract": "Database Management Systems (DBMS) form the backbone of modern large-scale software systems, where reliable anomaly detection and diagnosis are essential for ensuring system availability. However, existing log-based methods often impose significant performance overhead by collecting large volumes of logs, which is impractical for DBMS requiring high read/write throughput. This paper addresses a critical yet underexplored challenge: how to balance logging granularity with runtime efficiency for effective anomaly management in databases. We presentE-Log, a novel fine-grained elastic log-based framework for anomaly detection and diagnosis. E-Log intelligently adjusts the amount and detail of logging based on system state—maintaining lightweight logging during normal operation for efficient anomaly detection, and triggering rich, informative logging only upon anomaly suspicion for accurate diagnosis. This adaptive strategy significantly reduces runtime overhead while preserving diagnostic precision. We implement E-Log on Apache IoTDB and evaluate it using benchmarks including TSBS, TPCx-IoT, and IoT-Bench. Experimental results show that E-Log improves anomaly detection accuracy by 3.15% and diagnosis performance by 9.32% compared to state-of-the-art methods. Moreover, it reduces log storage size by 43.53% and increases average write throughput by 26.22%. These results highlight E-Log's potential to enable efficient, accurate, and scalable anomaly management in high-performance database systems.",
+   "status": "current"
+  },
+  {
+   "title": "SemiSMAC: A semi-supervised framework for log anomaly detection with automated hyperparameter tuning",
+   "identifiers": {
+    "openalex": "W4413294151",
+    "doi": "10.1016/j.infsof.2025.107869"
+   },
+   "abstract": "Context: Logs generated during software operations are critical for system reliability and anomaly detection. However, their diversity, the scarcity of labeled data, and hyperparameter tuning challenges hinder traditional detection methods. Objective: This paper presents SemiSMAC, a novel semi-supervised framework that leverages the Large Language Model for log parsing and grouping, combined with Sequential Model-based Algorithm Configuration (SMAC) for hyperparameter optimization to enhance anomaly detection. Method: In this work, we leverage ChatGPT for log parsing and introduce a novel log grouping approach. This grouping process requires only a small number of labeled samples, which ChatGPT uses to generate pseudo-labels for the remaining data, thereby expanding the training set. Furthermore, SemiSMAC utilizes a Sequential Model-based Algorithm Configuration (SMAC) to automatically optimize the hyperparameters of the embedded models. This integration leads to consistent performance improvements, particularly in resource-constrained environments. Results: SemiSMAC-LSTM, which uses LSTM as the backbone of the SemiSMAC framework, demonstrates superior performance in experiments on four widely used datasets. It outperforms six benchmark models, including three supervised learning models. In low-resource scenarios, SemiSMAC-LSTM exhibits exceptional robustness, showcasing its effectiveness in handling challenging detection tasks. Conclusion: SemiSMAC demonstrates its potential to revolutionize anomaly detection in both large-scale and low-resource datasets. Its ability to deliver outstanding performance makes it a valuable tool for scalable and automated anomaly detection in real-world applications, paving the way for more reliable and scalable software engineering practices",
+   "status": "current"
+  },
+  {
+   "title": "Manod: A multi-modal anomaly detection framework for distributed system",
+   "identifiers": {
+    "openalex": "W4413294554",
+    "doi": "10.1016/j.neunet.2025.107999"
+   },
+   "abstract": "Distributed infrastructure has been widely deployed in large-scale software systems in recent years to meet the growing demand for applications, due to its scalability and resource-sharing characteristics. Accurately predicting and identifying anomalies is critical to ensure the stable and reliable running of complex distributed systems. System abnormalities can often be reflected through key performance indicators and logs. Metrics provide quantitative measures of system performance and operational status, while logs record various events that occur in the system. Current approaches typically rely on a single data source to detect anomalies, which may lead to false positives and limit the accuracy of failure detection. A combination of these two data modalities can provide a comprehensive view of the system behavior. In this work, we propose a semi-supervised fault detection method, Manod, to monitor the health state of the system based on multimodal data. To obtain the discriminative representations, it employs a graph-based hierarchical encoding approach and leverages pre-trained language models for modeling metrics and logs, respectively. Then, it adopts a novel gated attention fusion method to integrate heterogeneous information. Extensive experiments on two datasets validate the effectiveness of our proposed Manod. It achieves F1-scores of 0.870 and 0.934 on one simulation dataset (D1) and one real-world dataset (D2), respectively, and significantly outperforms all baseline models. This demonstrates its capacity in mitigating both false positives and false negatives.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0seed4-03"
+}

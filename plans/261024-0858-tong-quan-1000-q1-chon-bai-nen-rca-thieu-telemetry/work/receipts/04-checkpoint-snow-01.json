@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-checkpoint-snow-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-snow 04-t0-review-snow-01 --in work/records/snowball-r1.csv --in work/records/t0snow2-needs-review-t0.csv --out work/records/t0snow2-t0.csv --out work/records/t0snow2-t0-review-decisions.csv --note T0 967 after snowball r1 and title-only review",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-checkpoint-snow-01.out",
+ "egress_trace_reference": "work/logs/04-checkpoint-snow-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:14:11.072000+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9"
+ ],
+ "output_hashes": [
+  "743b587c725c95448d3d79530ec3e64268d0b14b305703e0beb58e61d50b6e85"
+ ],
+ "checks": [
+  "phase 04 T0 after snowball r1 committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "191951574841801d207e71f39234aca50a0132ed704e6c3e4bdbb04a72adc78f",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 04 t0-snow 04-t0-review-snow-01 --in work/records/snowball-r1.csv --in work/records/t0snow2-needs-review-t0.csv --out work/records/t0snow2-t0.csv --out work/records/t0snow2-t0-review-decisions.csv --note T0 967 after snowball r1 and title-only review",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "c1857de2f58e859dc72ecbabd22408a46f17f527a5a43f87bf8970c3722d8107",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "743b587c725c95448d3d79530ec3e64268d0b14b305703e0beb58e61d50b6e85",
+   "created_this_attempt": true
+  }
+ ]
+}

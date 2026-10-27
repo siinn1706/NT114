@@ -1,0 +1,78 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-judge-full-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0full2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-judge-full-01.out",
+ "egress_trace_reference": "work/logs/04-fn-judge-full-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:34:05.433516+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "b6110fa4353af8aba44393623ef5aa09e68fa1b72f5be6c0c80e40ca495829eb"
+ ],
+ "output_hashes": [
+  "9c87cde7686b3a65dad56e626c1d9f14c59896b66c2c3265ee619a1dff9e28d0",
+  "c2d5d5d8459e4b6d19d30d3ed6164b9d3aa27cb0bc2f7e53ff4a142067f70ca3"
+ ],
+ "checks": [
+  "FN check on full T0"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "27cbd17fff1c6c114c268c34fca8a15be86aa956a8bbea3bee64faea25afabe1",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0full2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "9eef1427f3d1c8be0d305a7512e3a964016d8eec5faa54c68ca11c5b0521c1e9",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0full2-fn-sample.csv",
+   "sha256_before": "b6110fa4353af8aba44393623ef5aa09e68fa1b72f5be6c0c80e40ca495829eb",
+   "sha256_after": "b6110fa4353af8aba44393623ef5aa09e68fa1b72f5be6c0c80e40ca495829eb",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0full2-fn-judged.csv",
+   "sha256": "c2d5d5d8459e4b6d19d30d3ed6164b9d3aa27cb0bc2f7e53ff4a142067f70ca3",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/t0full2-fn-check.json",
+   "sha256": "9c87cde7686b3a65dad56e626c1d9f14c59896b66c2c3265ee619a1dff9e28d0",
+   "created_this_attempt": true
+  }
+ ]
+}

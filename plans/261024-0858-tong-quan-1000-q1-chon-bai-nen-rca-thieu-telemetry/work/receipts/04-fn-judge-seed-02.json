@@ -1,0 +1,78 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-judge-seed-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0seed2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-judge-seed-02.out",
+ "egress_trace_reference": "work/logs/04-fn-judge-seed-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:48:29.272451+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "d4407271bbf74e0cd835021c2cf04ba97030d7de9076d273f030f28a9e58e1b1"
+ ],
+ "output_hashes": [
+  "1d37be60d24359cf2911fcf678445892fa23e338b1115815bc2b7293db863cf3",
+  "8813443788ae070784eba2b6118471fec9d9c874db2f7ba45ab4f42607fcc248"
+ ],
+ "checks": [
+  "FN judgement recorded with Clopper-Pearson upper bounds"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "3657feafb0783db55e06f630a272f7310a182d47782ecf321f2220ebf7fc2791",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0seed2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "31bf117e083532a2dee0c43c021c77c23fb0bd8211072f21d636ae24c39098aa",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0seed2-fn-sample.csv",
+   "sha256_before": "d4407271bbf74e0cd835021c2cf04ba97030d7de9076d273f030f28a9e58e1b1",
+   "sha256_after": "d4407271bbf74e0cd835021c2cf04ba97030d7de9076d273f030f28a9e58e1b1",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0seed2-fn-judged.csv",
+   "sha256": "8813443788ae070784eba2b6118471fec9d9c874db2f7ba45ab4f42607fcc248",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/t0seed2-fn-check.json",
+   "sha256": "1d37be60d24359cf2911fcf678445892fa23e338b1115815bc2b7293db863cf3",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+openalex_id,decision,codes,R1,R2,R3,R4,R5,R6,R_total,read_level,evidence,batch
+W4312677948,exclude,I3,0,0,0,0,0,0,0,abstract,"""Exploiting Semi-Tensor Product Compressed Sensing and Hybrid Cloud for Secure Medical Image Transmission""",snow-000
+W4292826169,exclude,I1|I3,1,0,0,0,0,0,1,abstract,"""crucial to diagnose and resolve performance issues""",snow-000
+W7128509090,exclude,I2|I3|E1,0,0,0,0,1,0,1,abstract,"""root cause identification in high-dimensional Industrial Internet of Things (IIoT) multivariate time series""",snow-000
+W3129318029,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,"""In distributed complex systems, condition monitoring and fault diagnosis have received considerable attention""",snow-000
+W4400525851,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""Monitoring and anomaly detection of key performance indicators (KPIs) are crucial for large Internet companies""",snow-000
+W3045082608,exclude,I3,0,0,0,0,0,0,0,abstract,"""Video-assisted smart health monitoring for affliction determination based on fog analytics""",snow-000
+W4327718158,needs-review,I1|E6,1,0,0,0,0,0,1,title-only,"""Identifying performance anomalies in fluctuating cloud environments: A robust correlative-GNN-based explainable approach""",snow-000
+W4392909546,include,I1|I2|I3,3,0,0,0,0,0,3,abstract,"""it difficult to identify the root performance bottlenecks (PBs)""; ""The key insight of PBScaler is to locate the PBs.""",snow-000
+W3165886653,exclude,I3|E2,0,0,0,0,0,0,0,abstract,"""we present a simple scheme to authenticate local log files based on a forward integrity model""",snow-000
+W4394847077,exclude,I1|I3|E7,1,0,1,0,0,0,2,abstract,"""sampling only the anomalous or interesting traces that occur rarely at runtime""",snow-000
+W4382119059,exclude,I2|I3|E2,0,0,0,0,0,0,0,abstract,"""root cause analysis system called score-variational autoencoder (VAE), designed to complement existing IoT anomaly detection systems""",snow-000
+W4405801566,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,"""Knowledge-data driven sampling diagnosis algorithm for lithium batteries on electric vehicles""",snow-000
+W3083685379,exclude,I1|I3,0,0,0,0,0,0,0,abstract,"""Fairness-Efficiency Scheduling for Cloud Computing With Soft Fairness Guarantees""",snow-000
+W4319594316,exclude,I3|E1,0,0,0,0,0,0,0,abstract,"""Fault diagnosis is the key concern in the operation and maintenance of industrial assets.""",snow-000
+W3036049022,exclude,E4,0,0,0,0,0,0,0,abstract,"""An IoT-enabled intelligent automobile system for smart cities""",snow-000
+W4408280934,exclude,I3,0,0,0,0,0,0,0,abstract,"""Anomaly detection of sensor data is crucial to ensure the stability and effectiveness of Internet of Things (IoT) system.""",snow-000
+W4402083250,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""we propose a log anomaly detection model called DualAttlog""",snow-000
+W3196591078,exclude,I3,0,0,0,0,0,0,0,abstract,"""A fog assisted intelligent framework based on cyber physical system for safe evacuation in panic situations""",snow-000
+W3082803092,needs-review,I1|E6,1,0,0,0,0,0,1,title-only,"""Using black-box performance models to detect performance regressions under varying workloads: an empirical study""",snow-000
+W4389158911,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""which key performance indicators (KPIs) are anomalies (the KPI level anomaly)""",snow-000
+W3150838151,exclude,I3,0,0,0,0,0,0,0,abstract,"""information retrieval-based bug localization (IRBL) approaches""",snow-000
+W3091899017,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,"""detect anomalies and identify the possible variables that caused these anomalies on historical assembly data""",snow-000
+W3006574862,exclude,I3,0,0,0,0,0,0,0,abstract,"""HealthAid: Extracting domain targeted high precision procedural knowledge from on-line communities""",snow-000
+W7128785966,exclude,I1|I3|E7,1,0,0,0,1,0,2,abstract,"""alongside the HDFS log dataset""",snow-000
+W4312357089,exclude,I1|I3,0,0,0,0,1,0,1,abstract,"""successfully passed the TPC-C benchmark test""",snow-000
+W3094146027,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,"""evaluated on a predictive maintenance case for trains""",snow-000
+W7213553669,needs-review,I1|E6,1,0,0,0,0,0,1,title-only,"""Closed-loop anomaly-aware migration scheduling for gray failure mitigation in cloud clusters""",snow-000
+W3161148246,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""We propose an approach that can predict performance anomalies in software systems and raise anomaly warnings in advance.""",snow-000
+W4399469388,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""for efficiently detect system anomalies in cloud infrastructures""",snow-000
+W4313650003,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""we propose an approach to run-time failure detection tailored for monitoring multi-tenant and concurrent cloud computing systems""",snow-000
+W3088795029,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""applies unsupervised machine learning on execution traces of the injected system, to ease the discovery and interpretation of failure modes""",snow-000
+W4206324092,context-survey,I1|E5,1,0,0,0,0,0,1,abstract,"""This survey provides scrutiny of network services anomalies that may occur in the NFV environments.""",snow-000
+W4226483168,context-survey,I1|E5,0,0,0,0,0,0,0,abstract,"""We carried out a systematic mapping study on logging practices with 56 primary studies.""",snow-000
+W3003378062,exclude,I1|I3,0,0,0,0,0,0,0,abstract,"""explore the deployment problem of microserivce-based applications in the MEC environment""",snow-000
+W4383749444,exclude,I1|I3,0,0,0,0,0,0,0,abstract,"""LEON: A New Framework for ML-Aided Query Optimization""",snow-000
+W4404247226,needs-review,I1|E5|E6,2,0,0,0,0,0,2,title-only,"""Performance issue monitoring, identification and diagnosis of SaaS software: a survey""",snow-000
+W7160382611,needs-review,E6,1,0,0,0,0,0,1,title-only,"""SDRCA: A software defect root cause analysis framework based on causal reasoning""",snow-000
+W4382469257,needs-review,E1|E6,0,0,0,0,0,0,0,title-only,"""Root cause analysis for process industry using causal knowledge map under large group environment""",snow-000
+W4316116055,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""Effectively detecting run-time performance anomalies is crucial for clouds to identify abnormal performance behavior""",snow-000
+W4391054939,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""Anomaly detection in multivariate time series data is of paramount importance for large-scale systems.""",snow-000
+W4395003589,context-survey,E5,0,0,0,0,0,0,0,abstract,"""Hybrid intelligence failure analysis for industry 4.0: a literature review and future prospective""",snow-000
+W4377079695,exclude,I2|I3|E1,0,0,0,0,1,0,1,abstract,"""proposes a root cause identification (RCI) method for industrial alarm floods""; ""vinyl acetate monomer public model""",snow-000
+W4292265180,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""able to detect the inter-VM interference in scenarios with multiple co-located latency-critical VMs""",snow-000
+W4407869912,needs-review,I2|E6,1,0,0,0,0,0,1,title-only,"""Effectively detecting and diagnosing distributed multivariate time series anomalies via Unsupervised Federated Hypernetwork""",snow-000
+W3204608165,exclude,I3,0,0,0,0,0,0,0,abstract,"""Real-time epileptic seizure recognition using Bayesian genetic whale optimizer and adaptive machine learning""",snow-000
+W4404181272,context-survey,I1|E5,1,1,0,0,0,0,2,abstract,"""real-world data management scenarios that can be well optimized by LLMs, including query rewrite, database diagnosis and data analytics""",snow-000
+W3087196177,context-survey,E2|E5,0,0,0,0,0,0,0,abstract,"""this paper aims to present a comprehensive survey of intrusion detection systems that use computational intelligence (CI) methods""",snow-000
+W3146715381,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,"""Online diagnosis for sucker rod pumping well has great significances for rapidly grasping operations of the oil well.""",snow-000
+W4404127725,context-survey,E1|E5,0,0,0,0,0,0,0,abstract,"""This paper concludes by discussing limitations in the existing literature and possible future research directions""",snow-000
+W3011339785,exclude,I1|I3,1,0,0,0,0,0,1,abstract,"""we propose Hawkeye, a general adaptive speculative execution system which identifies stragglers by reinforcement are learning""",snow-000
+W3190028216,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,"""design a big data-driven root cause analysis system utilizing Machine Learning techniques""; ""any manufacturing process""",snow-001
+W4409882847,exclude,I3|E2,0,0,0,0,1,0,1,abstract,"""AI-driven cyber incident response system specifically designed for cloud platforms""; ""tested it using three prominent datasets: NSLKDD, UNSW-NB15, and CIC-IDS-2017""",snow-001
+W3114871180,exclude,I3,0,0,0,0,0,0,0,abstract,"""system for monitoring, assessment and control of Dengue Fever has been proposed""",snow-001
+W4213351796,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""If the performance of VMs degrades, we need to find out the root causes accurately, i.e., locate the exact faulty components""",snow-001
+W4396594894,exclude,I1|I3|E7,1,1,0,0,0,0,2,abstract,"""prior failure detection in large-scale systems using language models""; ""log data from real industry-based HPC systems""",snow-001
+W7129099227,exclude,I1|I3,1,0,0,1,0,0,2,abstract,"""alarm prediction framework based on propagation dependency and reinforcement learning for cloud services""",snow-001
+W4226128060,exclude,I1|I3|E2|E7,1,0,0,0,0,0,1,abstract,"""irregular traffic detection for RPCs""; ""raw RPC logs sampled from a large Kubernetes system""",snow-001
+W4411358813,exclude,I3,0,1,0,0,0,0,1,abstract,"""detecting anomalies and the severity levels on drone flight logs, using a multitask learning approach""",snow-001
+W3093205319,exclude,I3,0,0,0,0,0,0,0,abstract,"""Identification of Crashing Fault Residence (ICFR) of newly-submitted crashes""",snow-001
+W3131645226,exclude,I1|I3,0,0,0,0,1,0,1,abstract,"""evaluated by executing experiments on three real world workload datasets namely, Google Cluster dataset, Planet Lab, and Bitbrains VM traces""",snow-001
+W4414266961,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""effectively localize compound anomalies""; ""comprehensive root cause analysis pipeline""; ""distributed database environments""",snow-001
+W4403601582,needs-review,I1|E6,1,0,0,0,0,0,1,title-only,"""resource allocation bottleneck analysis in cloud ecosystems"" (empty abstract; title only)",snow-001
+W4386737151,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""rapid detection and localization of failures in DCNs""; ""algorithm to construct probing matrices""",snow-001
+W4402569568,exclude,I1|I3,1,0,0,0,0,0,1,abstract,"""predict application performance degradation in edge clouds and propose a framework for adapting to the feature drifts""",snow-001
+W3094379557,exclude,I3|E1,0,0,0,0,0,0,0,abstract,"""classify individual eNodeBs into different states based on multiple performance metrics""",snow-001
+W4409652919,needs-review,I2|E1|E6,0,0,0,0,0,0,0,title-only,"""root cause analysis method for production anomalies in manufacturing workshops"" (empty abstract; title only)",snow-001
+W4404788040,exclude,E4,0,0,0,0,0,0,0,abstract,"""This paper presents REASON""; ""the identified requirements for future networks""",snow-001
+W7155101892,exclude,I1|I3,1,0,0,0,1,0,2,abstract,"""comprehensive tolerance analysis framework of MS named the MSTAF""; ""performed an analysis on the TrainTicket (TT)""",snow-001
+W3111479335,exclude,I3|E3,0,0,0,0,0,0,0,abstract,"""intelligent fault diagnostics on new hard disks""",snow-001
+W7124829809,exclude,I1|I3,1,0,0,0,1,0,2,abstract,"""off-the-shelf benchmarks (i.e., Loghub-2k and Loghub-large)""; ""system monitoring, failure debugging, and anomaly detection purposes""",snow-001
+W4352977754,exclude,I3,0,0,0,0,0,0,0,abstract,"""fault-tolerant mechanism is integrated into resolving task execution exceptions quickly""",snow-001
+W3039055291,exclude,I3,0,0,0,0,0,0,0,abstract,"""Smart Home-based healthcare monitoring framework for domesticated animals in real-time""",snow-001
+W7160253330,exclude,I3|E1,0,1,0,0,0,0,1,abstract,"""provides clear gains for causal root cause analysis over correlation and topology based baselines""",snow-001
+W4213436206,exclude,I3,0,0,0,0,0,0,0,abstract,"""predictive method using the cloud with IoT-based database is proposed for forecasting the diseases""",snow-001
+W4309773415,needs-review,I2|E6,2,0,0,0,0,0,2,title-only,"""fault detection and alarm root cause analysis"" (empty abstract; title only; application domain not stated)",snow-001
+W4312958720,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""concept drift-based approach to detect edge services' runtime reliability anomalies""",snow-001
+W3216303224,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""approach that automatically locates the root causes of performance regressions""; ""software systems are deployed and running in the eld""",snow-001
+W4213108923,exclude,I1|I3,0,0,0,0,0,0,0,abstract,"""compare the performance and scalability of monolithic and microservice architectures on a reference web application""",snow-001
+W4400678979,exclude,I1|I3|E7,1,1,0,0,0,0,2,abstract,"""We use Bidirectional Encoder Representation from Transformers (BERT) to output anomaly detection results directly""",snow-001
+W4389628352,include,I1|I2|I3,2,0,2,0,0,0,4,abstract,"""dynamic causality in sparse heterogeneous host metrics""; ""produce accurate results given undesirable inputs""",snow-001
+W4378469629,exclude,I3,0,0,0,0,0,0,0,abstract,"""framework for early detection, prevention, and control of the COVID-19 outbreak""",snow-001
+W4388161896,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""uses internal execution traces to reveal failures""; ""mine anomalies in the execution trace""",snow-001
+W7168143404,exclude,I1|I3|E2,1,0,0,0,0,0,1,abstract,"""constraint-aware honeypoint orchestration framework for cloud-native anomaly response""",snow-001
+W3128928262,exclude,I1|I3|E7,1,0,0,0,0,0,1,abstract,"""automatically and robustly identify and classify anomalous logs for network and service""",snow-001
+W4409326450,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""diagnosis framework that attributes database performance anomalies to query operators""; ""accurately localize anomalous queries and operators""",snow-001
+W4321483888,exclude,I1|I3,1,0,0,0,0,0,1,abstract,"""collects the health statistics of edge devices and predicts the potential failures""",snow-001
+W4312221983,exclude,I3,0,0,0,0,0,0,0,abstract,"""real time health monitoring system for COVID19 patients based on edge computing and fuzzy logic""",snow-001
+W4402945849,exclude,I2|I3|E1,0,0,0,0,0,0,0,abstract,"""edge-based fault diagnosis""; ""fault diagnosis of industrial robots""",snow-001
+W4391897269,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""real-time, fine-grained root cause localization component to locate dependent resource metrics of performance anomalies""",snow-001
+W7119466769,context-survey,E5,0,1,0,0,0,0,1,abstract,"""This tutorial provides a comprehensive overview of the evolution toward autonomous optical networks (AONs)""",snow-001
+W4392382189,needs-review,I2|E6,2,0,0,0,0,0,2,title-only,"""Data-driven root cause analysis via causal discovery using time-to-event data"" (empty abstract; title only; domain not stated)",snow-001
+W4311011822,context-survey,I1|E5,1,0,0,0,0,0,1,abstract,"""comprehensive investigation into the causes of VM interference and provide an in-depth review of existing research""",snow-001
+W3086099593,include,I1|I2|I3,2,0,0,0,0,0,2,abstract,"""constructing fine-grained models of system behaviour and comparing these models to pinpoint differences in system behaviour""",snow-001
+W4398201223,exclude,I3,0,0,0,0,0,0,0,abstract,"""identify microservice API evolution strategies and challenges in practice""",snow-001
+W7140079062,exclude,I3|E1,0,2,0,0,0,0,2,abstract,"""In alarm localization, ReFT achieves accuracy improvements""",snow-001
+W3046552428,exclude,I3,0,0,0,0,0,0,0,abstract,"""real-time, secure, and energy-efficient platform which provides a solution for reducing computation load on the cloud""",snow-001
+W4393260934,exclude,I3,0,0,0,0,0,0,0,abstract,"""algorithm for CAM and DENM dissemination that ensures timely alerts for sudden vehicle blockage emergencies""",snow-001
+W3143573050,exclude,I1|I3,0,0,0,0,0,0,0,abstract,"""preprocess small log blocks before compressing them""",snow-001
+W3007926183,exclude,I3,0,0,0,0,0,0,0,abstract,"""integrated fog and cloud computing framework is introduced""",snow-001
+W4404513220,needs-review,I2|E1|E6,0,0,0,0,0,0,0,title-only,"""Fine-grained root cause localization for B5G/6G network slicing"" (empty abstract; title only)",snow-001
+W4285176337,exclude,I1|I3|E7,1,0,1,0,0,0,2,abstract,"""unsupervised KPI anomaly detection approach""; ""they require a long period of KPI data for model training, which is not easy to guarantee with frequent service changes""",snow-002
+W3083130672,exclude,I3|E2,0,0,0,0,0,0,0,abstract,"""Blockchained-Federated Learning based cloud intrusion detection scheme""",snow-002
+W4413967134,exclude,I3|E2|E7,1,1,0,0,1,0,3,abstract,"""Log anomaly detection is a critical first line of defense""; ""HDFS and BGL datasets""; ""LLM-based log template analysis module""",snow-002
+W3130822964,exclude,I3|E2,0,0,0,0,0,0,0,abstract,"""privacy-preserving in smart contracts using blockchain and artificial intelligence (PPSC-BCAI) framework""",snow-002
+W4401446880,exclude,I2|I3|E1,0,0,0,0,1,0,1,abstract,"""Federated fault diagnosis has attracted increasing attention in industrial cloud-edge collaboration scenarios""; ""two prevalent industry datasets (TE and CWRU)""",snow-002

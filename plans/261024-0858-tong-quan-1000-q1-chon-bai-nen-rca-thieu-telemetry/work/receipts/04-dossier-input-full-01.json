@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-dossier-input-full-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-dossier.py work/records/t0full2-t0.csv t0full2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-dossier-input-full-01.out",
+ "egress_trace_reference": "work/logs/04-dossier-input-full-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:34:40.277643+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847"
+ ],
+ "output_hashes": [
+  "4db61ef72a078b0520adf9de0a452defd0f631ad4bf263ae703b0ef18f3b1fa0"
+ ],
+ "checks": [
+  "full T0 exported as offline-import inputs"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "9a01783c38a5562cfc99bcf538b17d94d395ef2bb62f99ab8ba0ed1301aa16c7",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-dossier.py work/records/t0full2-t0.csv t0full2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "2fa5b6511d1040ebbddf576c61f931298424f0950581b6a9490af4fd93734589",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0full2-t0.csv",
+   "sha256_before": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "sha256_after": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/dossier/input/t0full2-manifest.json",
+   "sha256": "4db61ef72a078b0520adf9de0a452defd0f631ad4bf263ae703b0ef18f3b1fa0",
+   "created_this_attempt": true
+  }
+ ]
+}

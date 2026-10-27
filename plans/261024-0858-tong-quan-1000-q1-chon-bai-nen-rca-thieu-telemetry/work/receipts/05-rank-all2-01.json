@@ -1,0 +1,96 @@
+{
+ "schema_version": 2,
+ "id": "05-rank-all2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/rank-t1.py work/records/t0snow2-t0.csv work/screen/all2-s1-merged.csv work/screen/all2-resolution-a02.csv all2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-rank-all2-01.out",
+ "egress_trace_reference": "work/logs/05-rank-all2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:03:31.913916+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+  "491fc234ff97908468b004bd9cee54d76a7f1acf83ceabe9b9dad9554494ee34",
+  "fc99197d6b90618c264e369a3bc8813d06415ffbff41eab274df1a688b0355c2"
+ ],
+ "output_hashes": [
+  "56fe6667ebc7833517298961b85b8cf4e6e9353992d496cd147a6cb3a38ad0fd",
+  "f16bf755a553da795a32068765580f31a5e9e53000e9326279c5bade1f78b6cb"
+ ],
+ "checks": [
+  "T1 after snowball r1 and double screening"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "6d672791d35b6936de62704e6a03f3dcb04c9dce8dce657e2bdc3fab05bf6d4d",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/rank-t1.py work/records/t0snow2-t0.csv work/screen/all2-s1-merged.csv work/screen/all2-resolution-a02.csv all2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "c22c4de816247a1eeae0f12130296e84bc363e5bc069f595a05a18f4072c6a9e",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/all2-s1-merged.csv",
+   "sha256_before": "491fc234ff97908468b004bd9cee54d76a7f1acf83ceabe9b9dad9554494ee34",
+   "sha256_after": "491fc234ff97908468b004bd9cee54d76a7f1acf83ceabe9b9dad9554494ee34",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/all2-resolution-a02.csv",
+   "sha256_before": "fc99197d6b90618c264e369a3bc8813d06415ffbff41eab274df1a688b0355c2",
+   "sha256_after": "fc99197d6b90618c264e369a3bc8813d06415ffbff41eab274df1a688b0355c2",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/all2-t1-ranked.csv",
+   "sha256": "56fe6667ebc7833517298961b85b8cf4e6e9353992d496cd147a6cb3a38ad0fd",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/all2-t1.json",
+   "sha256": "f16bf755a553da795a32068765580f31a5e9e53000e9326279c5bade1f78b6cb",
+   "created_this_attempt": true
+  }
+ ]
+}

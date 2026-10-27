@@ -1,0 +1,420 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Industrial log analysis revisited: A task-oriented evaluation of parsing and anomaly detection under real-world constraints",
+   "identifiers": {
+    "openalex": "W7162870970",
+    "doi": "10.1016/j.infsof.2026.108205"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Intention-behavior consistency-based automated failure attribution for LLM-driven multi-agent systems",
+   "identifiers": {
+    "openalex": "W7163007909",
+    "doi": "10.1016/j.eswa.2026.133044"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Learning general-purpose and robust representations of microservice system states from multi-modal data",
+   "identifiers": {
+    "openalex": "W7163046909",
+    "doi": "10.1016/j.ipm.2026.104937"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Agent System Operations: Categorization, Challenges, and Future Directions",
+   "identifiers": {
+    "openalex": "W7163180538",
+    "doi": "10.1109/tse.2026.3732207",
+    "arxiv": "2606.01581"
+   },
+   "abstract": "As the reasoning capabilities of Large Language Models (LLMs) continue to advance, LLM-based agent systems offer advantages in flexibility and interpretability over traditional systems, garnering increasing attention. However, despite the widespread research interest and industrial application of agent systems, these systems, like their traditional counterparts, frequently encounter anomalies. These anomalies lead to instability and insecurity, hindering their further development. Therefore, a comprehensive and systematic approach to the operation and maintenance of agent systems is urgently needed. Unfortunately, current research on the operations of agent systems is sparse. To address this gap, we have undertaken a survey on agent system operations with the aim of establishing a clear framework for the field, defining the challenges, and facilitating further development. Specifically, this paper begins by systematically defining anomalies within agent systems, categorizing them into intra-agent anomalies and inter-agent anomalies. Next, we introduce a novel and comprehensive operational framework for agent systems, dubbed Agent System Operations (AgentOps). We provide detailed definitions and explanations of its four key stages: monitoring, anomaly detection, root cause localization, and resolution.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly detection and root-cause identification in microservices: a survey",
+   "identifiers": {
+    "openalex": "W7163357751",
+    "doi": "10.1007/s10586-026-06095-9"
+   },
+   "abstract": "Abstract Microservices Architecture (MSA) has emerged as a dominant paradigm for building scalable and flexible distributed systems. By decomposing applications into loosely coupled services, MSA improves modularity and deployment agility, but also introduces significant challenges for system monitoring, anomaly detection, and root-cause identification. These challenges stem from the high degree of dynamic behaviour, service heterogeneity, and inter-service dependencies. This survey provides a comprehensive and systematic review of state-of-the-art approaches for anomaly detection and root-cause analysis in microservice-based systems, covering the period from 2012 to 2025. It examines 117 selected studies, categorized according to data collection methods, detection algorithms, diagnostic models, and evaluation metrics. Emphasis is placed on the role of machine learning, statistical inference, and trace-based methods in detecting and localizing faults. Furthermore, the survey highlights the limitations of existing techniques in terms of scalability, explainability, and real-time applicability. By consolidating scattered research into a unified analytical framework, this work contributes a detailed taxonomy of methods and a critical discussion of their effectiveness in container-based virtualized environments. The survey provides a representative and timely overview of the field, helping to map current progress and highlight remaining gaps. Finally, it outlines promising directions such as hybrid detection architectures, automated trace reasoning, and context-aware root-cause localization, offering guidance for researchers and practitioners seeking to enhance reliability, observability, and operational resilience in microservice systems.",
+   "status": "current"
+  },
+  {
+   "title": "From Digital Twins to Autonomous Local Agents: Rethinking AI for Smart Water Networks",
+   "identifiers": {
+    "openalex": "W7163587222",
+    "doi": "10.1109/jiot.2026.3700039"
+   },
+   "abstract": "Internet of Things (IoT) enabled Water Distribution Networks (WDNs) increasingly rely on Digital Twins (DTs) to support monitoring and decision-making, yet most DTs remain passive dashboards. Deploying Artificial Intelligence (AI) within these critical infrastructures requires efficient, autonomous solutions at the edge, where operational constraints and data sovereignty concerns limit the suitability of proprietary cloud-based services that expose sensitive telemetry beyond internal boundaries. At the same time, Large Language Models (LLMs) impose significant computational and energy demands, making lightweight and locally executable agentic pipelines essential for practical deployment under edge constraints. This work introduces a modular multi-agent framework that provides an on-demand DT service capable of executing complex “what-if” hydraulic analyses directly at the network edge. The system employs an autonomous agentic Retrieval-Augmented Generation (RAG) pipeline that enables locally deployed LLMs to interpret user intents, retrieve domain-specific context, generate simulation workflows, and self-correct execution errors without human intervention. This multi-agent design yields robust and trustworthy behavior even under strict resource constraints. Beyond introducing the framework, this work systematically assesses its trustworthiness and feasibility for edge deployment by benchmarking task reliability, hardware requirements, and energy efficiency. Evaluation across a representative benchmark of WDNs shows that the proposed agentic approach improves full-task success rates by up to 30-40% over zero-shot prompting and reduces execution failures by more than 50%. Moreover, 4-bit quantized local models deliver performance competitive with proprietary cloud solutions while lowering peak VRAM usage and energy consumption by over 60%. These results demonstrate the viability of effective, efficient, and trustworthy AI agents operating entirely on edge hardware to securely and autonomously enable advanced IoT infrastructure services.",
+   "status": "current"
+  },
+  {
+   "title": "A Learning Framework for Smart Contract Vulnerability and Root Cause Detection",
+   "identifiers": {
+    "openalex": "W7163716645",
+    "doi": "10.1016/j.bcra.2026.100502"
+   },
+   "abstract": "Smart contracts enable decentralized applications across domains such as finance, logistics, and healthcare, but their immutable nature and complex execution logic make them highly susceptible to vulnerabilities, including reentrancy, integer overflows, and access control flaws. These weaknesses can lead to severe financial and operational losses. Traditional static or rule-based detection tools lack scalability and adaptability, while existing deep learning models often struggle with limited data, poor generalization, and the absence of actionable mitigation guidance. This paper proposes a hybrid multi-task learning framework that integrates Convolutional Neural Networks (CNNs) and Long Short-Term Memory (LSTM) networks for smart contract vulnerability detection, coupled with a transformer-based Large Language Model (LLM) for root cause analysis and dynamic mitigation generation. The framework extracts spatial opcode features using CNNs and captures temporal execution patterns via LSTMs, supported by preprocessing steps that include opcode extraction, positional encoding, static and dynamic analysis features, and data augmentation. A feature fusion module consolidates spatial and temporal information, while SHAP and LIME provide interpretability by identifying features driving model predictions. The mitigation layer employs an encoder–decoder transformer to map detected vulnerabilities to their underlying causes and generate context-aware remediation strategies. Experimental results show strong performance, achieving 93% accuracy, 90% precision, and an AUC-ROC of up to 90% across multiple vulnerability categories. Beyond accurate detection, the framework delivers explainable root cause insights and tailored mitigations, offering a scalable and adaptive solution for enhancing smart contract security in modern blockchain ecosystems.",
+   "status": "current"
+  },
+  {
+   "title": "Microservices Anomaly Detection Based on Adaptive Wavelet Convolutional Networks and Transformer",
+   "identifiers": {
+    "openalex": "W7164156992",
+    "doi": "10.1109/tsc.2026.3701934"
+   },
+   "abstract": "Microservice architecture, characterized by loose coupling, elastic scalability, and independent deployment, has become the de facto standard for cloud-native services. However, in production systems, the complex interaction topologies among microservices can easily trigger cascading failures, which severely compromise system reliability and operational stability. This paper proposes an anomaly detection method for microser vices that integrates adaptive wavelet convolutional networks and Transformer architecture. Specifically, the proposed method leverages a wavelet convolutional network to preprocess time series data, while a weighted inverse transformer combined with a frequency-band attention mechanism is utilized to capture multi scale time–frequency features of different microservices. Moreover, a dual-branch GRU-Transformer structure is then used to model both long- and short-term dependencies as well as cross metric correlations among services. Therefore, anomaly scores can be derived through the joint optimization of prediction and reconstruction models. To overcome the challenge of threshold determination, this paper also proposes a two-stage gradient based optimization algorithm that adaptively converges the threshold range using finite differential methods. Experimental results show that the proposed method is effective on datasets such as SMD (Server Machine Dataset), ASD (Application Server Dataset) and the NASA Anomaly Detection Dataset SMAP, where its average F1 score on SMD exceeds that of existing approaches by 11.0%, while on the SMAP dataset, an accuracy of 96.40% is achieved. These results confirm that the proposed approach can effectively detect anomalies in industrial level microservices, thereby enhancing the stability and reliability of industrial service systems.",
+   "status": "current"
+  },
+  {
+   "title": "Eco-FinOps: a causal-agentic framework for energy-efficient and explainable cloud cost optimization",
+   "identifiers": {
+    "openalex": "W7165163761",
+    "doi": "10.3389/frai.2026.1861514"
+   },
+   "abstract": "Two converging crises-uncontrolled operational expenditure and significant environmental hazards-have been aggravated by the exponential scaling of cloud infrastructure. This has led to a greater focus on the efficiency of Financial Operations (FinOps). Current monitoring methods exhibit a major flaw: passive dashboards require constant human monitoring and lead to alert fatigue, whereas deep learning models require substantial Graphics Processing Unit (GPU) resources and operate as opaque \"black boxes.\" This lack of interpretability contradicts the sustainability goals these tools promise to support. This study proposes Eco-FinOps, a causal-agentic framework that autonomously and energy-efficiently optimizes cloud costs, designed strictly for commodity Central Processing Unit (CPU) environments without discrete GPU requirements. The system uses Polars-based telemetry ingestion, the Peter-Clark (Algorithm) (PC) algorithm for causal graph construction, and DoWhy for effect estimation to mathematically distinguish genuine workload fluctuations from inefficient resource usage. This study targets the \"zombie\" resource pattern-provisioned instances that utilize only 0.2%-5% CPU while maintaining 60%-90% memory consumption. Furthermore, a LangGraph-coordinated Retrieval-Augmented Generation (RAG) pipeline enables Small Language Models to generate auditable, human-verifiable remediation scripts. Evaluated on five fault-injection scenarios from the Alibaba Cluster Trace dataset, the framework achieves a Precision of 0.89, a recall of 0.86, and an F1-score of 0.87. Causal verification successfully eliminates 39% of false positive anomalies, raising Precision by 38 points over static threshold rules and outperforming neural autoencoder baselines by 15 F1 points.",
+   "status": "current"
+  },
+  {
+   "title": "Evaluating ML-Based Anomaly Detection on Unified OpenTelemetry Telemetry: An Empirical Study Across Traces, Metrics, and Logs",
+   "identifiers": {
+    "openalex": "W7165386870",
+    "doi": "10.1109/access.2026.3705430"
+   },
+   "abstract": "To our knowledge, no empirical study has evaluated machine learning anomaly detection across all three OpenTelemetry (OTel) signal types together. We benchmark eight semi-supervised models on 51 GB of OTel telemetry from two microservice testbeds (400 fault-injection runs, 2,550 Optuna trials, five-fold cross-validation with cooldown exclusion), and diagnose why models succeed or fail rather than only ranking them. On engineered tabular features, detection splits by scoring mechanism, not by signal type: the four reconstruction-based deep autoencoders (LSTM, Transformer, 1D-CNN, LSTM-VAE) collapse to a predict-all-anomaly output on metrics and most signals, while the two density-based deep models (DAGMM, Deep SVDD) discriminate anomalies on every signal. The collapse is a score-distribution inversion: reconstruction models assign lower anomaly scores to anomalous than to normal windows, which density-based scoring (DAGMM’s GMM energy, Deep SVDD’s hypersphere distance) avoids. Because the inversion yields high F1 at near-random AUC-ROC, F1 alone is unsafe for acceptance, and we use AUC-ROC as the metric of record. On this testbed, DAGMM is the strongest semi-supervised model on every signal and, under a matched condition, equals or exceeds a supervised Random Forest’s F1 without anomaly labels (the supervised model keeps an AUC-ROC edge on metrics and logs). This ranking is representation-dependent: a richer Drain/TF-IDF/PCA log representation lifts the Transformer Autoencoder above DAGMM on logs. Late fusion, computed for the original six models, helps only when per-signal scores are already discriminative (it improves Isolation Forest) and cannot rescue degenerate ones. At a production-realistic 5% prevalence the models separate sharply and DAGMM on metrics retains the strongest detection. On two independently collected datasets and a real production trace, the reconstruction-failure mode and the AUC-over-F1 guidance replicate, while the best single model is dataset-dependent. Practitioners should prefer density-based scoring over reconstruction-based deep AEs on OTel-tabular features, verify AUC-ROC above 0.5 before trusting F1, and consult the prevalence-sensitivity ranking for deployment.",
+   "status": "current"
+  },
+  {
+   "title": "Research on wind turbine fault root cause localization method integrating large language models and causal hypergraphs",
+   "identifiers": {
+    "openalex": "W7165395178",
+    "doi": "10.1016/j.compeleceng.2026.111335"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Toward In-Depth Root Cause Localization for Microservices With Multi-Agent Recursion-of-Thought",
+   "identifiers": {
+    "openalex": "W7165616276",
+    "doi": "10.1109/tdsc.2026.3706572"
+   },
+   "abstract": "As modern microservice systems grow increasingly complex due to dynamic interactions and evolving runtime environments, they experience failures with rising frequency. Ensuring system reliability therefore critically depends on accurate root cause localization (RCL). Existing non-LLM approaches include both interpretable graph/statistical methods and learning-based methods. However, the former often rely on specific structural or telemetry assumptions, while the latter may suffer from limited interpretability and weak cross-environment robustness. More recently, large language model (LLM)-based methods have been proposed to address these issues. However, existing LLM-based approaches still face two fundamental limitations: context explosion, which dilutes critical evidence and degrades localization accuracy, and serial reasoning structures, which hinder deep causal exploration and impair inference efficiency. In this article, we conduct a comprehensive study of both how human SREs perform root cause localization in practice and why existing RCA methods fall short in RCL. Motivated by these findings, we introduce RCLAgent, an in-depth root cause localization framework for microservice systems that realizes multi-agent recursion-of-thought with parallel reasoning. RCLAgent decomposes the diagnostic process along the trace graph by assigning each span to a Dedicated Agent and organizing agents recursively and in parallel according to the graph topology, with the final diagnosis obtained by synthesizing the Root-Level Diagnosis Report and the Global Evidence Graph. Extensive experiments on multiple public benchmarks demonstrate that RCLAgent can achieve strong localization accuracy across heterogeneous datasets when equipped with capable LLM backbones, while improving inference efficiency over existing LLM-based RCA methods.",
+   "status": "current"
+  },
+  {
+   "title": "Interpretable root-cause analysis of construction defects via knowledge-enhanced causal reasoning with large language models",
+   "identifiers": {
+    "openalex": "W7166441737",
+    "doi": "10.1007/s44163-026-01640-2"
+   },
+   "abstract": "Accurate root-cause identification of construction defects is a core challenge in ensuring engineering quality and structural safety; however, existing methods are fundamentally limited by insufficient domain knowledge, weak causal reasoning, and lack of interpretability in their analytical outputs. This paper proposes the knowledge-enhanced causal reasoning large language model framework (KE-CausalLLM), which deeply integrates a structured engineering knowledge graph, a counterfactual inference mechanism driven by a structural causal model, and a retrieval-augmented generation (RAG) large language model (LLM) to achieve interpretable root-cause analysis of construction defects. The framework comprises three core modules: a domain-specific engineering knowledge graph construction module that incorporates engineering standards, historical cases, and expert knowledge, containing 3867 entity nodes and 9214 relational edges; a counterfactual inference-based causal reasoning module that automatically identifies the minimal sufficient root-cause set via the do-operator; and a knowledge graph-augmented LLM reasoning engine that generates structured analytical reports-including root-cause identification, causal chain evidence, standard clause references, and remediation recommendations-through RAG-based dynamic subgraph retrieval and chain-of-thought prompting. The experimental dataset was independently collected by our research team over 18 months, spanning four provinces and 12 active construction projects, comprising 4152 annotated samples covering six defect categories: cracks, leakage, hollowing, rebar corrosion, settlement, and honeycombing. Experimental results demonstrate that KE-CausalLLM significantly outperforms seven baseline methods in accuracy (91.8%), F1 score (90.9%), and AUC (0.957). Ablation studies validate the independent contribution of each module; cross-project-type generalization experiments confirm the framework’s robustness across diverse engineering scenarios; and human evaluation of interpretability yields a weighted composite score of 4.29 out of 5. This study provides a new technical paradigm and theoretical foundation for intelligent quality management in construction engineering.",
+   "status": "current"
+  },
+  {
+   "title": "ORACL : Optimized Reasoning for Autoscaling via Chain of Thought With LLMs for Microservices",
+   "identifiers": {
+    "openalex": "W7166559410",
+    "doi": "10.1109/tsc.2026.3707982",
+    "arxiv": "2602.05292"
+   },
+   "abstract": "Applications are moving away from monolithic designs to microservice and serverless architectures, where fleets of lightweight and independently deployable components run on public clouds. Autoscaling serves as the primary control mechanism for balancing resource utilization and quality of service, yet existing policies are either opaque learned models that require substantial per-deployment training or brittle hand-tuned rules that fail to generalize. We investigate whether large language models can act as universal few-shot resource allocators that adapt across rapidly evolving microservice deployments. We propose ORACL, Optimized Reasoning for Autoscaling via Chain of Thought with LLMs for Microservices, a framework that leverages prior knowledge and chain-of-thought reasoning to diagnose performance regressions and recommend resource allocations. ORACL transforms runtime telemetry, including pods, replicas, CPU and memory usage, latency, service-level objectives, and fault signals, into semantic natural-language state descriptions and invokes an LLM to produce an interpretable intermediate reasoning trace. This reasoning identifies likely root causes, prunes the action space, and issues safe allocation decisions under policy constraints. Experiments on representative open-source microservice workloads show that ORACL improves root-cause identification accuracy by 15 percent, accelerates training by up to 24x, and improves quality of service by 6 percent in short-term scenarios, without deployment-specific retraining.",
+   "status": "current"
+  },
+  {
+   "title": "A lightweight machine learning method for real-time log anomaly detection",
+   "identifiers": {
+    "openalex": "W7166834199",
+    "doi": "10.1016/j.engappai.2026.115577"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "A Green Hybrid Transformer-based System Log Anomaly Detection Framework for System Security",
+   "identifiers": {
+    "openalex": "W7167340539",
+    "doi": "10.1016/j.future.2026.108695"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "CausalOpsBench: A Reproducible Interventional-Replay Benchmark for Topology-Aware Operational Incident Response",
+   "identifiers": {
+    "openalex": "W7167605064",
+    "doi": "10.1109/access.2026.3710824"
+   },
+   "abstract": "Artificial intelligence agents for operational incident response must detect faults in heterogeneous telemetry, localize root causes, present evidence, and select safe interventions. The missing evaluation contract is matched replay: the same incident should expose no-op, submitted-policy, and oracle outcomes while scoring evidence, action safety, and hidden-seed robustness together. CausalOpsBench is built to expose whether reproducible native replay performance transfers to external diagnostic traces: high native replay scores do not imply external diagnostic transfer or field-ready autonomy. This paper introduces CausalOpsBench, a deterministic synthetic benchmark across microservice, smart-building heating, ventilation, and air-conditioning, water-grid, manufacturing, and bioprocess domains. Each episode exposes time-stamped sensor streams, logs, operator notes, manuals, topology, constrained actions, and contrasts of no-op, policy, and oracle replays. CausalOpsBench scores timely detection, topology-aware root-cause localization, evidence matching, replay intervention value, confidence anchoring, efficiency, and safety-cap compliance. On 2,500 native episodes, classical baselines establish a no-op-to-oracle sanity range, and seven Ollama-backed local open-weight agents test the public evidence-action interface. The strongest local model, gemma4:26b, achieves a 0.939 native replay composite score, but removing evidence drops it to 0.493. A 2,800-prediction hidden-seed audit keeps gemma4:26b at 0.941 on both topology variants. On 780 public RCAEval RE2 and Lawrence Berkeley National Laboratory fault-detection episodes, threshold and topology heuristics achieve an External Portability Score of 0.789, whereas gemma4:26b and gemma4:e4b score 0.364 and 0.240. Throughout, “causal” denotes the controlled-interventional-replay setting—comparing submitted, no-op, and oracle action sets under the same seeded incident—rather than structural-causal-model identification.",
+   "status": "current"
+  },
+  {
+   "title": "An open-weight Large Language Model agent for condition monitoring and predictive maintenance in wind energy systems",
+   "identifiers": {
+    "openalex": "W7167850020",
+    "doi": "10.1016/j.egyai.2026.100828"
+   },
+   "abstract": "Condition monitoring and predictive maintenance of large wind farms require fusing heterogeneous information from SCADA measurements, maintenance logs, manufacturer manuals, weather forecasts, and historical fault records into rapid, safety-critical dispatch decisions. Cloud-hosted commercial Large Language Models (LLMs) are increasingly capable at this kind of cross-source synthesis, but they are unsuitable for regulated energy operators that cannot route turbine telemetry to third-party APIs. This paper proposes an open-weight LLM agent framework that bridges condition monitoring and predictive maintenance, running entirely within the operator’s security perimeter on commodity hardware. The LLM acts as a reasoning and orchestration layer, calling a curated library of five domain tools (SCADA query, anomaly detector, thermal/physics check, retrieval-augmented generation, maintenance scheduler) to produce grounded, traceable, and actionable recommendations. We formalise the task as a two-stage information-fusion problem and prove that the tool-grounded decomposition guarantees grounding (every numerical token traceable to a deterministic procedure) and consistency (numerical content invariant under repeated calls). These guarantees hold for any open-weight LLM with native function-calling support, making the framework model-agnostic. The reference implementation uses the Qwen3 family via Ollama. On a 30-day SCADA record from a 2 MW Siemens turbine with a documented gearbox-bearing failure, pre-fault signatures (a + 9.9 ° C rise in the 72-hour rolling mean of generator-temperature 1 above its normal-operation baseline, and a 0.19 drop in the gearbox–generator temperature correlation) become detectable in the SCADA stream up to 72 h ahead of failure. On 24 held-out operator queries, the agent achieves 91.7% accuracy on health-checks and 83.3% on predictive alerts, outperforming a fixed-threshold baseline, an isolation-forest detector, and a zero-shot tool-less LLM.",
+   "status": "current"
+  },
+  {
+   "title": "TraceDiff: Anomaly Detection on Microservice Traces Through Frequency-Aware Conditional Diffusion Model",
+   "identifiers": {
+    "openalex": "W7168139741",
+    "doi": "10.1109/tdsc.2026.3712748"
+   },
+   "abstract": "Distributed traces are vital for fine-grained fault diagnosis in microservice systems. However, accurately capturing temporal dependencies and inter-span correlations remains challenging due to the dynamic patterns and temporal sparsity inherent in trace latencies. To address the challenge, we propose TraceDiff, a frequency-aware conditional diffusion model that integrates temporal and frequency features for anomaly detection. Specifically, TraceDiff first constructs a Trajectory Feature Matrix (TFM) to systematically fuse fine-grained structural and latency features. It then employs a dual-encoder mechanism that combines Global and Local Frequency Encoders alongside an attention mechanism to extract multi-scale frequency features, robustly capturing dynamic patterns. Finally, a conditional denoising diffusion model performs multi-step autoregressive forecasting, effectively mitigating trace sparsity and modeling complex span dependencies. Evaluated on two public datasets and a real-world production system, TraceDiff significantly outperforms state-of-the-art anomaly detectors. Compared to the best-performing baselines, it consistently improves F1-scores by 3.22% to 3.42% for component-level and 0.52% to 4.12% for trace-level anomalies, while notably boosting Top-1 root cause identification accuracy by 10.84% to 16.00%.",
+   "status": "current"
+  },
+  {
+   "title": "MicroInspect: A Progressive Framework for Metric-Level Root Cause Localization in Microservices",
+   "identifiers": {
+    "openalex": "W7168376871",
+    "doi": "10.1109/tsc.2026.3713967"
+   },
+   "abstract": "The inherent complexity of microservices makes them prone to cascading failures, yet locating the precise root cause remains a critical challenge. Existing multimodal methods often fuse logs, metrics, and traces through coarse feature concatenation, which can introduce semantic interference. Moreover, although some recent studies have advanced from service-level localization to metric-level localization, they usually rely on static correlation or causal models and thus struggle to capture dynamic fault propagation. We present MicroInspect, a progressive framework for metric-level root cause localization in microservices. MicroInspect first disentangles multimodal features to reduce semantic interference and dynamically fuses them with a Mixture-of-Experts gate adapted to fault propagation stages, supporting accurate anomaly detection and service-level localization. It then employs a Dynamic Neural Granger Causality Network (DNGCN), guided by anomaly detection signals, to infer time-varying metric dependencies and progressively refine root causes from faulty services to metric-level causes. Evaluation on four public benchmarks (TrainTicket, SocialNetwork, FAMOS-Mall, and GAIA) shows that MicroInspect achieves the best overall performance across anomaly detection, service-level localization, and metric-level root cause localization, with statistically significant improvements in F1-score and HR@1 under paired <inline-formula><tex-math notation=\"LaTeX\">$t$</tex-math><alternatives><mml:math><mml:mi>t</mml:mi></mml:math><inline-graphic xlink:href=\"zhu-ieq1-3713967.gif\"/></alternatives></inline-formula>-tests (<inline-formula><tex-math notation=\"LaTeX\">$p< 0.05$</tex-math><alternatives><mml:math><mml:mrow><mml:mi>p</mml:mi><mml:mo><</mml:mo><mml:mn>0</mml:mn><mml:mo>.</mml:mo><mml:mn>05</mml:mn></mml:mrow></mml:math><inline-graphic xlink:href=\"zhu-ieq2-3713967.gif\"/></alternatives></inline-formula>).",
+   "status": "current"
+  },
+  {
+   "title": "BLAgent : Agentic RAG for File-Level Bug Localization",
+   "identifiers": {
+    "openalex": "W7168417769",
+    "doi": "10.1145/3830238"
+   },
+   "abstract": "Bug localization remains a key bottleneck for large language model (LLM)-based software maintenance, where accurately identifying faulty code is essential for debugging, root cause analysis, triage, and automated program repair (APR). File-level bug localization is especially critical in hierarchical localization and repair pipelines, where incorrect file selection can propagate to downstream stages such as function-level localization and patch generation. While Retrieval-Augmented Generation (RAG) offers a promising way to ground LLMs in repository context, existing RAG pipelines often rely on static retrieval and lack the reasoning needed to accurately identify faulty code. In this work, we present BLAgent, a novel agentic RAG framework for file-level bug localization that integrates three key ideas: (i) code structure-aware repository encoding with path-augmented AST-based chunking, (ii) dual-perspective query transformation that captures both structural and behavioral signals from bug reports, and (iii) two-phase agentic reranking that combines symbolic inspection with evidence-grounded reasoning. Unlike prior graph-based or multi-hop agentic approaches, BLAgent adopts a bounded reasoning strategy that limits LLM-based inspection and reranking to a compact, retrieval-filtered set of candidate files, avoiding open-ended repository traversal. This design balances localization accuracy with computational cost. On SWE-bench-Lite, BLAgent attains over 78% Top-1 accuracy with open-source models and over 86% with a closed-source model, while being over 18 \\(\\times\\) cheaper than the strongest baseline using the same model. When integrated into an APR framework, BLAgent improves end-to-end repair success by up to 25%.",
+   "status": "current"
+  },
+  {
+   "title": "DAIMS: a distributed multi-agent framework for explainable anomaly detection in web services using machine learning and semantic reasoning",
+   "identifiers": {
+    "openalex": "W7169723918",
+    "doi": "10.1007/s11280-026-01425-8"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "TCRCA: Topology-Guided Causal Inference for Root Cause Analysis in Microservices",
+   "identifiers": {
+    "openalex": "W7169865453",
+    "doi": "10.1109/tse.2026.3715410"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Hyperbolic Spatio-Temporal Graph Learning With Agent Reasoning for Root Cause Localization in Cloud-Edge Microservices",
+   "identifiers": {
+    "openalex": "W7170083585",
+    "doi": "10.1109/tccn.2026.3715900"
+   },
+   "abstract": "Root cause localization is critical for ensuring service reliability in cloud-edge collaborative microservice systems. In practical scenarios, multiple microservice systems are often hybrid-deployed on shared infrastructure, which poses three challenges for existing methods. First, concurrent systems generate substantial metric noise that interferes with anomaly detection. Second, the hierarchical dependencies spanning cloud, edge, and terminal layers cannot be accurately represented in Euclidean space. Third, gateway services that aggregate traffic from multiple systems exhibit amplified anomaly signals, leading to systematic false alarms. To address these issues, we propose confidence gated agent root cause localization (CGARCL), a framework that integrates hyperbolic geometry with confidence gated agent reasoning. CGARCL consists of three components. The direction constrained budgeted anomaly detection method incorporates baseline robust scoring and temporal continuity constraints to extract high-quality candidate anomalous nodes from noisy metrics. The hyperbolic constrained spatio-temporal graph attention network employs Poincar’e ball mapping and center-based topology aggregation to accurately encode hierarchical service dependencies and generate initial root cause rankings. The confidence gated reranking agent is activated when the score gap between the top two candidates is small or the top-ranked node matches a victim-prone pattern. It then performs structured prompt reasoning to suppress false alarms and produce a refined ranking. Experiments on three cloud-edge collaborative microservices datasets demonstrate that CGARCL achieves ACC@1 of 62.1%, 70.6%, and 73.4%, outperforming the second best approach by 19.1%, 11.4%, and 9.8%.",
+   "status": "current"
+  },
+  {
+   "title": "AutoScope: Code Knowledge Enhanced Span-level Sampling for Distributed Tracing",
+   "identifiers": {
+    "openalex": "W7170295182",
+    "doi": "10.1145/3830907"
+   },
+   "abstract": "Distributed tracing is essential for observing microservices but incurs prohibitive storage costs. Existing solutions primarily rely on trace-level sampling, which indiscriminately discards entire traces based on probability or tail latency. This coarse-grained approach often loses critical off-the-path anomalies and fails to retain normal baselines required for comparative diagnosis. To address these limitations, we introduce the concept of span-level sampling, a fine-grained paradigm that retains only essential spans rather than full traces. However, we identify a critical challenge in this new approach where naive span retention leads to structural ambiguity, as the removal of intermediate spans disrupts the graph topology and renders the remaining data useless for analysis. To resolve this, we propose AutoScope , a novel framework that leverages static code knowledge to enable structurally safe span-level sampling. AutoScope constructs a Bridged Call Site Control Flow Graph (CSCFG) to map runtime spans to static execution logic. By identifying Dominant Span Sets (DSS), it exploits the “Sample One, Infer All” property to enable aggressive compression while preserving the structural skeleton of every request. Extensive evaluations on two benchmark microservice systems demonstrate that AutoScope achieves an 80.2% storage reduction while maintaining a state-of-the-art faulty span coverage of 98.1%. Furthermore, the reconstructed traces enhance downstream Root Cause Analysis (RCA) tasks, improving the Mean Reciprocal Rank (MRR) by an average of 8.3%.",
+   "status": "current"
+  },
+  {
+   "title": "AI-based secure event-driven serverless architecture for scalable digital civic participation platform",
+   "identifiers": {
+    "openalex": "W7170602785",
+    "doi": "10.3389/frai.2026.1826465"
+   },
+   "abstract": "Introduction: With the growing digitalization of urban governance and the increasing demand for transparency, sustainability and secure decision-making, the need for scalable and intelligent digital civic platforms has been raised. However, current e-participation systems are often plagued by challenges related to scalability, regulatory compliance, digital sovereignty and secure citizen authentication. The challenges are tackled in this paper by proposing an AI-enabled serverless architecture for next generation digital civic engagement. Methods: This study proposes an AI-based Secure Event-driven Serverless Participation Architecture (SESPA) for digital e-participation services based on the Citizen Participation Event Model (CPEM), where each citizen interaction is treated as an event within a continuous decision-making process. Architecture employs an event-driven serverless computing paradigm integrated with artificial intelligence modules for biometric citizen verification and anomaly detection. To satisfy the digital sovereignty requirements of the Republic of Kazakhstan, a hybrid data localization model is introduced that separates personally identifiable information from anonymized analytical events. The proposed dual-loop architecture stores sensitive citizen data within national infrastructure while enabling cloud-based processing of anonymized event streams for scalable analytics without violating regulatory requirements. Results: An experimental prototype was evaluated under workloads of up to 10,000 concurrent users. The results demonstrated stable latency across p50, p75, p95, and p99 percentile metrics, efficient scalability through provisioned concurrency, and reduced total cost of ownership compared with an equivalent Kubernetes-based deployment. Moreover, the addition of AI modules to the event-processing pipeline added little latency overhead and allowed for precise detection of anomalous and suspicious participation behavior in controlled experimental workloads. Discussion and conclusion: The proposed SESPA architecture effectively combines event-driven serverless computing, AI-assisted security mechanisms and hybrid data localization to provide a secure, scalable and regulation-compliant digital participation platform. The results demonstrate that the proposed framework offers a good technology foundation for next generation smart city applications by supporting high citizen engagement, regulatory compliance, digital sovereignty and intelligent decision-making, while maintaining high system performance and cost efficiency.",
+   "status": "current"
+  },
+  {
+   "title": "Dynamic knowledge graph enhanced large language model with cascade relation extraction optimized for aviation equipment fault diagnosis",
+   "identifiers": {
+    "openalex": "W7171218791",
+    "doi": "10.1016/j.engappai.2026.115762"
+   },
+   "abstract": "This paper develops a dynamic Knowledge Graph (KG)-augmented Large Language Model (LLM) framework integrated with a Bidirectional Encoder Representations from Transformers-Cascade Relation Extraction (BERT-CasRel) architecture to address key challenges in aviation equipment fault diagnosis, including unstructured maintenance text processing, ambiguous domain semantics, static knowledge constraints, and limited explainable reasoning capabilities. The study first constructs a domain-specific aviation ontology and adopts a context-enhanced BERT-CasRel model to extract high-quality entity–relation triples from maintenance logs and technical documentation. These structured triples populate a dynamic aviation fault KG that supports hierarchical causal inference, subgraph refinement, and in-context learning for adaptive knowledge updating. Structured domain prompting enables bidirectional interaction between LLMs and the KG, facilitating traceable fault chain analysis and accurate root-cause diagnosis. Evaluated on CFM56-5 aero-engine turbine blade fault cases, the BERT-CasRel model achieves a triple extraction F1-score of 0.968, while the integrated LLM–KG framework attains fault diagnosis accuracy exceeding 95%. Benchmarking against conventional and state-of-the-art methods confirms the framework's superiority in extraction accuracy, diagnostic precision, interpretability, and scalability. It delivers strong cross-domain generalization and computational efficiency, mitigates LLM hallucinations, complies with aviation regulations, and provides an interpretable, scalable diagnostic solution while acknowledging limitations in large-scale knowledge iteration and full industrial deployment.",
+   "status": "current"
+  },
+  {
+   "title": "ANVIL-FL: Runtime-Aware Fault Localization for Code Generation and Debugging",
+   "identifiers": {
+    "openalex": "W7171528925",
+    "doi": "10.1109/access.2026.3717846"
+   },
+   "abstract": "Fault localization (FL) is a dominant debugging cost, yet most recent LLM-based FL systems rely on static or coverage-only signals. We introduce ANVIL-FL (Anchored Near-failure Value-Informed Localization), a two-turn, tool-free framework that combines LLM reasoning with failure-anchored runtime telemetry. A lightweight tracer runs the test session and stops at the first failure, recording project-scoped function calls/returns and exceptions. ANVIL-FL first narrows candidates by proximity to the failure chain, then ranks methods using value-informed I/O snapshots (arguments/returns) and executed code snippets, generating a Top- $k$ list with rationales and confidence. On BugsInPy, ANVIL-FL achieves Top-1/3/5 accuracies of 57.6/68.6/70.3% on the SBFL-available subset ( $N=424$ ) and 57.0/67.6/69.4% on our full in-scope set ( $N=454$ ). Against the strongest SBFL baseline on the overlapping set, ANVIL-FL improves Top-1/3/5 by + 38.7/+ 39.1/+ 32.8 percentage points (pp). On an overlapping test set ( $N=452$ ), ANVIL-FL approaches AutoFL’s accuracy (Top-1/3/5: 57.1/67.7/69.5% vs. 59.3/71.9/73.0%), while using about $3\\times $ fewer input and $4.8\\times $ fewer output tokens per bug. Tracing overhead is modest (median 9,394 events, 4.30 MB, 11.74 s), and the full pipeline localizes each bug end-to-end in a median of 44 s at roughly ${\\$}0.008$ per bug. Ablations show that failure-chain anchoring dominates (removal: approx. −40.8 pp at Top-5), with runtime I/O and executed code providing smaller but notable gains. By combining dynamic runtime signals with structured LLM prompting, our framework demonstrates that failure-proximal runtime context can yield accurate, explainable, and cost-effective method-level fault localization within the BugsInPy setting.",
+   "status": "current"
+  },
+  {
+   "title": "LLM-Driven Security and Resilience in 6G Mission-Critical Communication Networks",
+   "identifiers": {
+    "openalex": "W7171532121",
+    "doi": "10.1109/ojcoms.2026.3717648"
+   },
+   "abstract": "The large language models (LLMs) are beginning to provide tangible changes to the practice of network security: better threat detection; tighter enforcement of policy; and faster incident response. This survey provides a practitioner’s perspective on the use of LLMs in each of the key areas of network security, with a focus on 6G-enabled mission-critical communication systems, including public safety networks, emergency response coordination, and resilient infrastructure supporting URLLC, non-terrestrial networks (NTN), and edge deployments; these include traffic analysis, anomaly detection, threat intelligence, intrusion detection, vulnerability management, access control, compliance auditing, and security training. The survey documents specific improvements provided by LLMs with respect to context-aware classification, parsing of logs at a fine level of granularity, translating high-level policies to executable rules, and scripting of realistic threat scenarios to test against. We show how the combination of prompt engineering, multimodal embeddings, federated learning, and retrieval-augmented generation (RAG) can be used to expand the capabilities of the Security Operations Center (SOC), and automated defense. We also identify some of the risks associated with the use of LLMs, which include hallucination in output, leakage of sensitive information, and creation of new attack vectors through integration with the model; we also note some of the safeguards that have begun to emerge. We further analyze concrete public safety and emergency response scenarios - including LLM-assisted disaster-zone threat detection and emergency communication prioritization under adversarial overload - examining the specific vulnerabilities introduced by NTN-enabled 6G architectures and the stringent latency requirements of URLLC deployments. In conclusion, we provide working baseline levels of capability with respect to current LLM-based solutions in 6G mission-critical and public safety contexts, and map out specific research directions to advance LLM-driven cybersecurity toward robust, adaptable, explainable, and life-safety-aware solutions.",
+   "status": "current"
+  },
+  {
+   "title": "CARAF: Root Cause Analysis Through Granger Causal Graphs With Ambiguous Residual Factors in Microservice Systems",
+   "identifiers": {
+    "openalex": "W7171925589",
+    "doi": "10.1109/tetc.2026.3713344"
+   },
+   "abstract": "Root Cause Analysis (RCA) is critical for fault diagnosis in microservice systems, where timely identification of failure origins is essential for maintaining system reliability. Existing RCA methods primarily rely on constructing causal graphs based on explicit periodicity and trend in time series data. However, in this paper, we reveal that ambiguous residual features—components remaining after subtracting periodicity and trend—are crucial for constructing accurate causal graphs. We propose a novel residual compensation network that exploits these ambiguous residual features to construct Granger causal graphs and improve root cause tracing accuracy. Additionally, we propose a trace-constrained formulation with a dynamic directed edge scoring function to effectively mitigate the influence of confounding factors in Granger causal graphs, ensuring reliable fault tracing in dynamic and complex fault propagation scenarios. Our approach was evaluated on three publicly available online service system datasets, namely Sock Shop, Online Boutique, and Train Ticket, and achieved state-of-the-art (SOTA) performance in root cause tracing.",
+   "status": "current"
+  },
+  {
+   "title": "Telemetry Degradation and Sequential Stability in LLM-Integrated IoT Decision Systems",
+   "identifiers": {
+    "openalex": "W7171972025",
+    "doi": "10.1109/jiot.2026.3718410"
+   },
+   "abstract": "AI systems for human performance/interface must transform raw IoT telemetry into consistent actionable output. Large language models (LLMs) function as such interpreters. However behavioral stability through real-world data degradation remains unexplored; applications demanding consistent output (e.g. medicine, athletics) remain unrealized. We introduce a framework to evaluate behavioral stability of LLM decision systems transforming IoT telemetry to semantic output. The framework is validated in a case study of AI-tennis coaching using stroke-level IoT smartwatch streams. Local perturbations are mapped to global output through graded dropout, resolution downsampling and reliability signaling. We establish baseline temporal stability under idealized conditions, then quantify impact of increasing degradation severity on sequential decision behavior. Temporal volatility (FlipRate), directional escalation and cumulative safety outcomes are assessed. We show telemetry degradation significantly increases decision instability in already unstable systems. In a balanced regime, FlipRate rises from 0.144 under clean conditions to 0.207 under downsampling (+44%), while in a serve-dominant regime it reaches 0.300. Regimes characterized by strong feature dominance exhibit amplified sensitivity to information loss. A workload accumulation model shows observed volatility constitutes a structural pathway to safety-bound violations. Reliability signaling alone produces smaller effects than structural information loss, indicating informational cues cannot compensate for lost telemetry. Structured prompting partially mitigates instability but does not eliminate degradation-induced effects. We argue behavioral stability in LLM-integrated IoT systems must be evaluated jointly with sensing reliability and regime structure. Our robustness analysis provides a basis for LLM-telemetry interpretation, opening new AI-implementation avenues in human performance and digital health.",
+   "status": "current"
+  },
+  {
+   "title": "SLOPE: Fine-Grained Log Parser Combining Syntax with LLM-Distilled Semantic",
+   "identifiers": {
+    "openalex": "W7201873201",
+    "doi": "10.1145/3838599"
+   },
+   "abstract": "Log parsing, which transforms unstructured log messages into structured formats, is a critical step in automated log analysis and directly impacts the effectiveness of downstream tasks. However, existing log parsers struggle to balance effectiveness with efficiency and show limited capability in handling log inconsistency, a common phenomenon in real-world systems where log messages follow different templates but contain semantically equivalent parameters. To address these challenges, we propose SLOPE, a fine-grained log parser combining syntax with semantics. Unlike coarse-grained template-level parsing and caching, SLOPE distills parameter-level semantics into reusable rules. Specifically, it first utilizes Large Language Models (LLMs) to extract parameters and their semantic and syntactic features from sampled logs, and stores these features in a Finite State Machine (FSM). During online parsing, SLOPE reuses these semantic-syntax rules for efficient and fine-grained parsing without relying on LLMs. We conduct comprehensive evaluations on 14 public datasets and a large-scale industrial dataset from Huawei's real-world business services on HarmonyOS. Results demonstrate that SLOPE achieves an average parsing accuracy improvement of 61.2% and 5.9 times higher throughput over all baselines. Furthermore, SLOPE maintains a high parsing accuracy with an average drop of only 1.4% under diverse log inconsistencies, exhibiting state-of-the-art robustness.",
+   "status": "current"
+  },
+  {
+   "title": "CausalDX: Diagnosing Long-Tail and Cascading Cloud Incidents With LLM-Guided Causal Reasoning",
+   "identifiers": {
+    "openalex": "W7202139270",
+    "doi": "10.1109/tkde.2026.3722256"
+   },
+   "abstract": "Modern cloud platforms face escalating diagnostic challenges due to scale-driven emergent behaviors and intricate system interdependencies. However, contemporary diagnostic systems can only handle well-understood failure patterns, leaving two critical blind spots that impede system reliability: (1) <italic>Long-tail diagnostic paralysis</italic>, where rare anomalies evade pattern-based detection, consuming over 60% of diagnostic time despite their small proportion, and (2) <italic>Cascading Anomaly Overload</italic>, where exponentially large anomaly combinations induce spurious correlations, making it challenging to distinguish between surface-level symptoms and root causes. To bridge these gaps, we introduce <sc>CausalDX</sc>, a novel diagnostic framework that leverages LLMs as causal inference engines to extend the generalization capabilities of diagnostic systems. Our framework consists of three key components: (1) an anomaly-granular causal graph representation that structures incident diagnosis as a systematic graph traversal process, enabling clear and explainable reasoning; (2) the Adaptive Graph-based Root Cause Search (AGRCS) algorithm that combines expert rules with LLM agents to decompose complex root-cause analysis into manageable steps; and (3) an observation-based self-verification mechanism that uses variational inference to validate root-cause confidence against actual system observations. Extensive evaluation on real-world cloud incidents shows that <sc>CausalDX</sc> achieves significant improvements: a 73.2% automated diagnostic success rate, with 35.2% recall for long-tail anomalies (up to 3× over LLM-based SOTA) and 68.4% precision in cascading scenarios (<inline-formula><tex-math notation=\"LaTeX\">$3.2\\times$</tex-math><alternatives><mml:math><mml:mrow><mml:mn>3</mml:mn><mml:mo>.</mml:mo><mml:mn>2</mml:mn><mml:mo>×</mml:mo></mml:mrow></mml:math><inline-graphic xlink:href=\"cui-ieq1-3722256.gif\"/></alternatives></inline-formula> over current systems). The verification mechanism reduces hallucination-induced false positives by 17.9%. These results show that our design effectively harnesses LLMs for adaptive, explainable, and reliable cloud incident management.",
+   "status": "current"
+  },
+  {
+   "title": "QROOT: Quantum-Assisted Root Cause Analysis for Enhanced Observability in Microservice Architectures",
+   "identifiers": {
+    "openalex": "W7202368991",
+    "doi": "10.1109/access.2026.3723579"
+   },
+   "abstract": "Modern microservice architectures are valued for their modular design and scalability. However, detecting and diagnosing anomalies, particularly in complex API response patterns, remains a significant challenge. Effective root cause analysis (RCA) is essential for maintaining system reliability, optimizing performance, and ensuring long-term operational stability. In this paper, we present QROOT, a quantum-assisted RCA framework for microservice architectures. By leveraging quantum superposition and interference, QROOT encodes aggregated service response times into the amplitudes of qubit states and applies Grover’s amplitude amplification to isolate faulty services, enabling zero-shot diagnosis without any pre-training phase. We validated QROOT on both local simulators and real IBM quantum processors—mapping up to 133 microservices to the physical qubits of an IBM Heron processor—and evaluated it on the OpenTelemetry Astronomy Shop demo as well as the HipsterShop and TrainTicket benchmarks. Experimental results show that QROOT improves detection accuracy by up to 44% compared with state-of-the-art classical RCA methods, while a conventional GPU-based deep-learning approach requires 37.7% more end-to-end diagnosis time than QROOT (equivalently, a 27.4% time reduction), primarily because QROOT eliminates the training phase required by learning-based approaches.",
+   "status": "current"
+  },
+  {
+   "title": "RunbookFX: Type- and Effect-Safe LLM Synthesis for Executable Incident Diagnosis and Mitigation",
+   "identifiers": {
+    "openalex": "W7203626983",
+    "doi": "10.1145/3828675"
+   },
+   "abstract": "Large language models are increasingly deployed as autonomous agents for cloud incident response, yet their direct use admits hallucinated diagnoses, unauthorized actions, irreversible changes, and unauditable decision trails. We present RunbookFX , a typed functional domain-specific language that elevates incident response from natural-language suggestions to executable programs whose safety is established statically. The key insight is that incident-response safety decomposes into three interacting dimensions: risk severity, exercised capabilities, and rollback resource availability. RunbookFX formalizes this decomposition as a product effect algebra Risk × 𝒦 × ℕ whose four cross-component interaction axioms yield domain-specific safety theorems unexpressible in flat effect frameworks; a strong handler parametricity result then transfers these guarantees from a replay handler to any bisimilar live handler, bridging offline verification and production deployment. An LLM proposes candidate programs that a CEGIS-style verifier filters by static type checking and dynamic contract replay. A ∼2,200-line Coq development discharges the product effect algebra, its composition-preservation property, and four core safety theorems: Effect WF Preservation, Progress, single-step No Unauthorized Action, and Rollback Linearity. Of the 27 supporting obligations in the substitution and multi-step layers, 18 now close with Qed —including all Canonical Forms, all effect-operation Inversion lemmas, Value Typing, de Bruijn weakening, and the typing-respecting reduction cases for observe, act, rollback , and the affirmative guard; the remaining nine trace back to the de Bruijn substitution lemma, whose proof skeleton follows Pierce et al. [ 2019 ]. Evaluated on RCAEval for root cause analysis and ITBench for end-to-end mitigation, RunbookFX achieves 64% Top-1 RCA accuracy against 53% for the best LLM baseline and 38% mitigation success at 3.3× the official ITBench agent, with zero safety violations and 100% rollback coverage by construction.",
+   "status": "current"
+  },
+  {
+   "title": "CHASE: A Causal Hypergraph based Framework for Root Cause Analysis in Multimodal Microservice Systems",
+   "identifiers": {
+    "openalex": "W7203837764",
+    "doi": "10.1109/tbdata.2026.3725931",
+    "arxiv": "2406.19711"
+   },
+   "abstract": "In recent years, the widespread adoption of distributed microservice architectures within the industry has significantly increased the demand for enhanced system availability and robustness. Due to the complex service invocation paths and dependencies in enterprise-level microservice systems, it is challenging to locate the anomalies promptly during service invocations, thus causing intractable issues for normal system operations and maintenance. In this paper, we propose a Causal Heterogeneous grAph baSed framEwork for root cause analysis, namely CHASE, for microservice systems with multimodal data, including traces, logs, and system monitoring metrics. Specifically, related information is encoded into representative embeddings and further modeled by a multimodal invocation graph. Following that, anomaly detection is performed on each instance node with attentive heterogeneous message passing from its adjacent metric and log nodes. Finally, CHASE learns from the constructed hypergraph with hyperedges representing the flow of causality and performs root cause localization. We evaluate the proposed framework on two public microservice datasets with distinct attributes and compare with the state-of-the-art methods. The results show that CHASE achieves the average performance gain up to 36.2%(A@1) and 29.4%(Percentage@1), respectively to its best counterpart.",
+   "status": "current"
+  },
+  {
+   "title": "GenPdM: A Predictive-to-Decision Framework Integrating LSTM-Based Time-to-Next-Incident Forecasting and Retrieval-Augmented Generation for IT Service Operations",
+   "identifiers": {
+    "openalex": "W7204083315",
+    "doi": "10.1109/access.2026.3726289"
+   },
+   "abstract": "Modern IT service operations require predictive maintenance (PdM) mechanisms that not only generate early warnings but also support preventive decision-making. Existing approaches often stop at forecasting incident risk, leaving operators to interpret predictive outputs and formulate mitigation actions manually. This study proposes Generative Predictive Maintenance (GenPdM), a unified predictive-to-decision framework that transforms Time-to-Next-Incident (TTNI) predictions into evidence-supported operational guidance through a retrieval-grounded decision layer. GenPdM integrates a Long Short-Term Memory (LSTM)-based TTNI predictive backbone with Retrieval-Augmented Generation (RAG) and is evaluated using more than 1.66 million real-world IT Operation Center ticket records collected over ten months. Structured temporal attributes are converted into slot-based sequences for TTNI forecasting, while textual and diagnostic records are indexed as a retrieval knowledge base. A controlled 60-case Stage-3 evaluation subset is constructed across three operational risk buckets: high-pressure, lagging-critical, and safe-high-error cases. The final outputs are resolved into 18 CRITICAL, 22 HIGH, and 20 MEDIUM decisions, suggesting bucket-aware prioritization rather than a single generic escalation pattern. The Stage-3 pipeline achieves full response, parsing, and priority-resolution success, with an average latency of 5.8337 s per case. Retrieval stability is indicated by a Top-1 coefficient of variation (CV) of 0.0404 and a derived Vector Distance Robustness (VDR) score of 0.9596, while explicit grounding accuracy remains moderate under top-3 retrieval evaluation.",
+   "status": "current"
+  },
+  {
+   "title": "Topo-MFP: Topology-aware multimodal propagation learning for fault detection and root cause localization in microservice systems",
+   "identifiers": {
+    "openalex": "W7204187534",
+    "doi": "10.1007/s44443-026-01193-5"
+   },
+   "abstract": "Fault detection and root cause localization in microservice systems are challenging because runtime failures may propagate across dependent services and appear heterogeneously in metrics, logs, and traces. Existing approaches often rely on single-modality observations, local anomaly scores, or static service topology, which may be insufficient to distinguish root-cause services from downstream affected services. To address this problem, this paper proposes Topo-MFP, a topology-aware multimodal propagation learning framework for service-level fault detection and root cause localization. Topo-MFP integrates heterogeneous observability data with service dependency information in two stages. For fault detection, it constructs a semantic-transition log template graph by combining log template semantics with transition statistics, and learns topology-aware service representations from dynamic service dependency graphs through spatio-temporal graph attention. For root cause localization, it learns diagnosis-oriented multimodal propagation graphs from metrics, logs, and traces. The modality-specific propagation graphs are fused using cross-modal consistency and a topology-aware soft sparsity prior, where different penalties are assigned to topology-adjacent and topology-distant service pairs. Root-cause candidates are then ranked by symptom-to-source reverse random walk with restart over the learned propagation graph. Experiments are conducted on AIOps2022 and a TrainTicket-based TT dataset. Over five random seeds, Topo-MFP achieves mean F1-scores of 0.949 and 0.951 for fault detection, and mean Hit@1 scores of 0.872 and 0.901 for root cause localization on AIOps2022 and TT, respectively. Comparisons with Random, Local-Score, and Topology-RWR baselines show that the learned multimodal propagation graph provides diagnostic information beyond random ranking, local anomaly scores, and raw invocation topology. Ablation and sensitivity analyses further indicate the contributions of semantic log modeling, cross-modal consistency, and topology-aware regularization. The learned propagation graph is used as a diagnosis-oriented ranking representation rather than as a verified causal graph.",
+   "status": "current"
+  },
+  {
+   "title": "Farming of Things",
+   "identifiers": {
+    "openalex": "W7204233245",
+    "doi": "10.1016/j.atech.2026.102515"
+   },
+   "abstract": "Although smart agriculture is rapidly evolving toward data-driven cyber-physical ecosystems, existing Internet of Things (IoT) frameworks remain heavily dependent on centralized cloud computing. This dependency introduces communication bottlenecks, execution latency, and security vulnerabilities, limiting real-time responsiveness in resource-constrained rural environments. To address these challenges, this paper proposes Farming of Things (FoT), a five-layer cyber-physical architecture comprising Perception, Transmission, Ingestion, Cognition, and Execution layers that integrates IoT, edge computing, and cloud intelligence. The framework dynamically distributes computational workloads across mobile, edge, and cloud tiers using a Block Coordinate Descent (BCD)-based task-offloading algorithm to jointly optimize end-to-end latency and energy consumption. To protect sensitive agricultural telemetry, a Lightweight Secure Data Transmission (LSDT) protocol is introduced using AES-128 encryption and HMAC-SHA256 authentication. The proposed architecture is evaluated through a physical testbed and large-scale discrete-event simulations. Experimental results show that LSDT achieves secure transmission with only 1.5% communication overhead and a cryptographic delay of 0.94 ms. The distributed multi-model AI stack demonstrates strong inference performance, with on-device TinyML achieving 99.32% accuracy, Convolutional Neural Networks (EfficientNet-B4) achieving 97.13% accuracy, and a Large Language Model (Qwen 2.5-3B) supporting global agronomic decision synthesis. Scalability experiments show that static Mobile-Only, Edge-Only, and Cloud-Only strategies experience queue exhaustion at task arrival rates of λ = 10 , λ = 20 , and λ = 40 , respectively, whereas dynamic FoT orchestration maintains sub-0.2-second latency up to λ = 30 and remains scalable up to λ = 60 . Despite these improvements in real-time automation, performance remains constrained by the battery capacity of localized edge nodes and wide-area network propagation delays under maximum-load cloud offloading.",
+   "status": "current"
+  },
+  {
+   "title": "Transfer learning for IT operations: A comparison of statistical and neural time-series models for CPU utilization forecasting",
+   "identifiers": {
+    "openalex": "W7204438348",
+    "doi": "10.1016/j.teler.2026.100361"
+   },
+   "abstract": "AI-driven IT operations (AIOps) require forecasting models that combine predictive accuracy with low computational overhead across heterogeneous cloud infrastructures. However, existing studies rarely compare statistical, recurrent, and Transformer-based forecasting models under transfer learning (TL) and deployment-oriented constraints. This paper presents a comparative evaluation of statistical and neural time-series forecasting models for CPU utilization prediction in virtual machine and containerized environments. We analyze ARIMA, RNN, LSTM, Bidirectional LSTM, Informer, Temporal Fusion Transformer (TFT), and a VM-Temporal Transformer using TL between the Microsoft Azure Trace and Alibaba Cloud Trace datasets. Models are pre-trained on Azure virtual machine workloads and fine-tuned on Alibaba container traces to assess portability across heterogeneous infrastructures. Results show that attention-based architectures achieve competitive forecasting accuracy, with Informer reaching a minimum MAE of 0.0267. However, these gains require higher inference latency and larger memory footprints. Conversely, LSTM-based architectures offer the best trade-off between accuracy, inference speed, and storage efficiency, achieving sub-millisecond inference latency (0.2361 ms) and a compact 201 KB model size while maintaining robust performance across multiple forecasting horizons. The study demonstrates that TL enables effective knowledge transfer between VM and container-based environments, improving the portability of workload forecasting models for cloud and edge infrastructures. Beyond accuracy, the paper provides a deployment-oriented analysis of latency, storage footprint, and adaptability, offering practical guidelines for selecting forecasting architectures in resource-constrained AIOps scenarios supporting resilient and sustainable digital infrastructures.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0seed4-07"
+}

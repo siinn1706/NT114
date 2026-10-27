@@ -1,0 +1,195 @@
+{
+ "schema_version": 2,
+ "id": "05-merge-seed-s1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/merge-screen.py seed s1",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-merge-seed-s1-01.out",
+ "egress_trace_reference": "work/logs/05-merge-seed-s1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:58:26.879352+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "2b74f6d268ac8c3af1b928bcfcb0840022e953c77515184657f82dbfdc3b2e43",
+  "6fb17d8c676cb35ce01be77cb11a3e426e88206c7a6833454abe35cda200e700",
+  "a3a6bf00ad25a2167ab3c05e8256ec0a55abdb143e2dcdfaf1186771c67dddab",
+  "7e0fb0eaae22a3aaa862d73ca819b5d85a3a165e4d0be772458a03f299683d27",
+  "df09fe090b02351732046a9a74e21d028bcb54236b48662f3d4e52243537f8cd",
+  "d0e03009a07d7bc2812ff4db70e938709f625f1aa6cca50ea56627d0de43a95e",
+  "d62357d45585a6ebf387cd95521ed20eca7664bcc6892c04887ab936717cb82f",
+  "c8d11f9b952b9da451735c4ee19b0f6a22998bdcc803c37b3d0c091f71d5642f",
+  "146af501dafef9a446edf04df28c5d5f53fa2029123964754ab3c5d41325f2f1",
+  "e4739f49b60beb7b9c433d61fcb6fa90e76122caf27be2c8a6303de455082e48",
+  "a72403d734fe1f0dada4c31491902e572e14602e8f52a22deaad5028fbb11960",
+  "bca59bd6d26db4c11a40474fc3bf3b80d8742fbdbe3242cedfef38e11036780d",
+  "a19fb1edeea7d66ad9b92519ead491f4e82e944c62af75b62c4458bd7348bfd9",
+  "44ca49bc5ccc664b83d8d0c4383ef3b73ef3ca4b858d6bcd666f89d775909f73"
+ ],
+ "output_hashes": [
+  "c549dd0f672085279f92e99b68bc8f9c478364fc8fca3adef101b1b446dc2eef",
+  "c65a8f737377a18f3ff4255172e8175fce51b1871b9adfd92bd73245a2039c44"
+ ],
+ "checks": [
+  "s1 screening validated, anchor drift checked"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "ab9843a603c5c54c8a646f5a85b3e08df0ceb76b409e67fc4d3315f99846d02c",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/merge-screen.py seed s1",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "9321c4b124c5b2abe07eda5095fda47b29caa85951615abcc2f4555f23cd59b0",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/seed-000-s1.csv",
+   "sha256_before": "2b74f6d268ac8c3af1b928bcfcb0840022e953c77515184657f82dbfdc3b2e43",
+   "sha256_after": "2b74f6d268ac8c3af1b928bcfcb0840022e953c77515184657f82dbfdc3b2e43",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-000-s1.csv",
+   "sha256_before": "6fb17d8c676cb35ce01be77cb11a3e426e88206c7a6833454abe35cda200e700",
+   "sha256_after": "6fb17d8c676cb35ce01be77cb11a3e426e88206c7a6833454abe35cda200e700",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/seed-001-s1.csv",
+   "sha256_before": "a3a6bf00ad25a2167ab3c05e8256ec0a55abdb143e2dcdfaf1186771c67dddab",
+   "sha256_after": "a3a6bf00ad25a2167ab3c05e8256ec0a55abdb143e2dcdfaf1186771c67dddab",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-001-s1.csv",
+   "sha256_before": "7e0fb0eaae22a3aaa862d73ca819b5d85a3a165e4d0be772458a03f299683d27",
+   "sha256_after": "7e0fb0eaae22a3aaa862d73ca819b5d85a3a165e4d0be772458a03f299683d27",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/seed-002-s1.csv",
+   "sha256_before": "df09fe090b02351732046a9a74e21d028bcb54236b48662f3d4e52243537f8cd",
+   "sha256_after": "df09fe090b02351732046a9a74e21d028bcb54236b48662f3d4e52243537f8cd",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-002-s1.csv",
+   "sha256_before": "d0e03009a07d7bc2812ff4db70e938709f625f1aa6cca50ea56627d0de43a95e",
+   "sha256_after": "d0e03009a07d7bc2812ff4db70e938709f625f1aa6cca50ea56627d0de43a95e",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/seed-003-s1.csv",
+   "sha256_before": "d62357d45585a6ebf387cd95521ed20eca7664bcc6892c04887ab936717cb82f",
+   "sha256_after": "d62357d45585a6ebf387cd95521ed20eca7664bcc6892c04887ab936717cb82f",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-003-s1.csv",
+   "sha256_before": "c8d11f9b952b9da451735c4ee19b0f6a22998bdcc803c37b3d0c091f71d5642f",
+   "sha256_after": "c8d11f9b952b9da451735c4ee19b0f6a22998bdcc803c37b3d0c091f71d5642f",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/seed-004-s1.csv",
+   "sha256_before": "146af501dafef9a446edf04df28c5d5f53fa2029123964754ab3c5d41325f2f1",
+   "sha256_after": "146af501dafef9a446edf04df28c5d5f53fa2029123964754ab3c5d41325f2f1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-004-s1.csv",
+   "sha256_before": "e4739f49b60beb7b9c433d61fcb6fa90e76122caf27be2c8a6303de455082e48",
+   "sha256_after": "e4739f49b60beb7b9c433d61fcb6fa90e76122caf27be2c8a6303de455082e48",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/seed-005-s1.csv",
+   "sha256_before": "a72403d734fe1f0dada4c31491902e572e14602e8f52a22deaad5028fbb11960",
+   "sha256_after": "a72403d734fe1f0dada4c31491902e572e14602e8f52a22deaad5028fbb11960",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-005-s1.csv",
+   "sha256_before": "bca59bd6d26db4c11a40474fc3bf3b80d8742fbdbe3242cedfef38e11036780d",
+   "sha256_after": "bca59bd6d26db4c11a40474fc3bf3b80d8742fbdbe3242cedfef38e11036780d",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/seed-006-s1.csv",
+   "sha256_before": "a19fb1edeea7d66ad9b92519ead491f4e82e944c62af75b62c4458bd7348bfd9",
+   "sha256_after": "a19fb1edeea7d66ad9b92519ead491f4e82e944c62af75b62c4458bd7348bfd9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/screen/anchors-seed-006-s1.csv",
+   "sha256_before": "44ca49bc5ccc664b83d8d0c4383ef3b73ef3ca4b858d6bcd666f89d775909f73",
+   "sha256_after": "44ca49bc5ccc664b83d8d0c4383ef3b73ef3ca4b858d6bcd666f89d775909f73",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/seed-s1-merged.csv",
+   "sha256": "c549dd0f672085279f92e99b68bc8f9c478364fc8fca3adef101b1b446dc2eef",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/screen/seed-s1-check.json",
+   "sha256": "c65a8f737377a18f3ff4255172e8175fce51b1871b9adfd92bd73245a2039c44",
+   "created_this_attempt": true
+  }
+ ]
+}

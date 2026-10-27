@@ -1,0 +1,419 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Heterogeneous data-driven resolution generation for software systems via large language models",
+   "identifiers": {
+    "openalex": "W4414171345",
+    "doi": "10.1016/j.ipm.2025.104376"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "GR-Fall: A Fall Detection System with Gait Recognition for Indoor Environments Using SISO mmWave Radar",
+   "identifiers": {
+    "openalex": "W4414173893",
+    "doi": "10.1145/3749471"
+   },
+   "abstract": "Fall detection is essential for safeguarding the health of elderly persons, enabling timely alerts to family members or the community. Millimeter-wave (mmWave) radar offers an effective solution, as it is privacy-preserving, non-invasive, and highly sensitive to motion. However, most existing approaches rely on multi-input, multi-output mmWave radar to generate 4D point clouds or range-angle heatmaps, significantly raising device costs. In this paper, we propose GR-Fall, a fall detection system with integrated gait recognition designed for indoor environments using single-input, single-output mmWave radar. To achieve high performance in various environments, we develop a data augmentation algorithm for target heatmaps and a cross-attention-based heatmap fusion framework for efficient fall detection. Furthermore, we introduce an innovative fall alarm mechanism based on joint fall-gait detection. This mechanism activates alerts when a person is detected having difficulty moving after a fall, thus minimizing unnecessary alarms and reducing strain on community resources. To evaluate GR-Fall, we recruit 33 volunteers and collect 5,799 instances across four different environments. Experimental results show that GR-Fall achieves 98.1% precision and 98.7% recall in new environments and with new participants, outperforming other state-of-the-art heatmap-based methods.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly detection in offshore open radio access network using long short-term memory models on a novel artificial intelligence-driven cloud-native data platform",
+   "identifiers": {
+    "openalex": "W4414230380",
+    "doi": "10.1016/j.engappai.2025.112274"
+   },
+   "abstract": "The Radio Access Network (RAN) is a critical component of modern telecommunications infrastructure, currently evolving towards disaggregated and open architectures. These advancements are pivotal for integrating intelligent, data-driven applications aimed at enhancing network reliability and operational autonomy through the introduction of cognitive capabilities, as exemplified by the emerging Open Radio Access Network (O-RAN) standards. Despite its potential, the nascent nature of O-RAN technology presents challenges, primarily due to the absence of mature operational standards. This complicates the management of data and intelligent applications, particularly when integrating with traditional network management and operational support systems. Divergent vendor-specific design approaches further hinder migration and limit solution reusability. These challenges are compounded by a skills gap in telecommunications business-oriented engineering, which remains a key barrier to effective O-RAN deployment and intelligent application development. To address these challenges, Boldyn Networks developed a novel cloud-native data analytics platform, specifically designed to support scalable Artificial Intelligence (AI) integration within O-RAN deployments. This platform underwent rigorous testing in real-world scenarios, and applied advanced AI techniques to improve operational efficiency and customer experience. Implementation involved adopting Development Operations (DevOps) practices, leveraging data lakehouse architectures tailored for AI applications, and employing sophisticated data engineering strategies. The platform successfully addresses connectivity challenges inherent in real-world offshore wind farm deployments using Long Short-Term Memory (LSTM) models for anomaly detection in network connectivity. After integrating the LSTM models into the network control, more than 90 percent of connectivity issues were reduced in runtime. This marks a step toward autonomous, self-organizing, and self-healing networks.",
+   "status": "current"
+  },
+  {
+   "title": "DBPecker: A Graph-Based Compound Anomaly Diagnosis System for Distributed RDBMSs",
+   "identifiers": {
+    "openalex": "W4414266961",
+    "doi": "10.14778/3750601.3750677"
+   },
+   "abstract": "This demonstration introduces DBPecker, an integrated diagnostic platform tailored for distributed relational database systems. DBPecker leverages a graph-based anomaly modeling approach to capture inter-node dependencies and effectively localize compound anomalies, while a causality-aware metric prioritization module automatically isolates critical performance indicators. By unifying anomaly detection with a comprehensive root cause analysis pipeline, the system facilitates rapid and precise diagnosis in distributed database environments. Evaluated on a multi-node OceanBase cluster, DBPecker not only accelerates the identification of underlying anomalies but also substantially improves operational reliability, offering practical insights and actionable recommendations for real-world distributed database management.",
+   "status": "current"
+  },
+  {
+   "title": "Enhancing anomaly detection in cloud computing through metaheuristics feature selection with ensemble learning approach",
+   "identifiers": {
+    "openalex": "W4414270571",
+    "doi": "10.23919/jcc.ja.2023-0683"
+   },
+   "abstract": "Cloud computing (CC) provides infrastructure, storage services, and applications to the users that should be secured by some procedures or policies. Security in the cloud environment becomes essential to safeguard infrastructure and user information from unauthorized access by implementing timely intrusion detection systems (IDS). Ensemble learning harnesses the collective power of multiple machine learning (ML) methods with feature selection (FS) process aids to progress the sturdiness and overall precision of intrusion detection. Therefore, this article presents a meta-heuristic feature selection by ensemble learning-based anomaly detection (MFS-ELAD) algorithm for the CC platforms. To realize this objective, the proposed approach utilizes a min-max standardization technique. Then, higher dimensionality features are decreased by Prairie Dogs Optimizer (PDO) algorithm. For the recognition procedure, the MFS-ELAD method emulates a group of 3 DL techniques such as sparse auto-encoder (SAE), stacked long short-term memory (SLSTM), and Elman neural network (ENN) algorithms. Eventually, the parameter fine-tuning of the DL algorithms occurs utilizing the sand cat swarm optimizer (SCSO) approach that helps in improving the recognition outcomes. The simulation examination of MFS-ELAD system on the CSE-CIC-IDS2018 dataset exhibits its promising performance across another method using a maximal precision of 99.71%.",
+   "status": "current"
+  },
+  {
+   "title": "Multivariate anomaly detection and root cause analysis of energy issues in microservice-based systems",
+   "identifiers": {
+    "openalex": "W4414399681",
+    "doi": "10.1016/j.jss.2025.112626"
+   },
+   "abstract": "Context: Microservice-based systems have become the architecture style of choice for modern applications, offering scalability, flexibility, and resilience. However, their distributed nature leads to increased resource consumption and energy inefficiencies, posing challenges for maintaining sustainable operations. Accurate anomaly detection (AD) and root cause analysis (RCA) tools are critical for diagnosing energy consumption issues in these systems, yet existing solutions often lack focus on energy metrics. Goal: This study aims to evaluate the effectiveness of AD and RCA algorithms in identifying and diagnosing performance-related energy consumption anomalies in microservice-based systems. Method: Two representative systems, Sock Shop and Train Ticket, are deployed under controlled environments. Then, anomalies are deliberately introduced by stressing at the same time CPU, memory, and disk resources. The data collection is conducted using Prometheus for performance metrics and Scaphandre for energy metrics. Once normal and anomalous datasets are constructed for each system, the study evaluates five AD algorithms (Birch, iForest, KNN, LOF, and SVM) and four RCA algorithms (MicroRCA, CausalRCA, CIRCA, and RCD) based on their precision, recall, and scalability across varied scenarios and workloads. Results: The experiment reveals that overall, iForest is the most effective AD algorithms in detecting energy anomalies (0.59 F-Score in Sock Shop and 0.634 F-Score in Train Ticket). In particular, iForest performs better in precision when the user load is high (1000 concurrent users). For RCA, CIRCA performs well in identifying root causes in smaller systems, while RCD is more scalable for larger and more complex systems. Conclusions: The findings of this study provide insights for both researchers and practitioners. In the context of our experiment, AD algorithms tend to perform relatively well, whereas RCA algorithms tend to be imprecise in localizing energy issues.",
+   "status": "current"
+  },
+  {
+   "title": "A review of major ICT failures and recovery strategies: Strengthening digital resilience",
+   "identifiers": {
+    "openalex": "W4414399837",
+    "doi": "10.1016/j.cose.2025.104678"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Cyclic Diagnosability and Fault Diagnosis Algorithm of Data Center Network DCell",
+   "identifiers": {
+    "openalex": "W4414432708",
+    "doi": "10.1109/ton.2025.3610896"
+   },
+   "abstract": "Data center DCell networks are particularly well-suited for large, reliability-critical data centers due to their scalability, fault tolerance, and efficient bandwidth utilization. The reliability and diagnosis of DCell networks are of paramount importance in ensuring smooth operation and continuous availability of data center services. Traditional fault diagnosis models, which focus on global fault detection, are more suited to simpler networks. In contrast, complex DCell networks require fault diagnosis under specific conditions to accommodate dynamic changes and constraints. This paper studies the cyclic diagnosability of DCell networks under different system-level diagnostic models, which is a novel fault diagnosis strategy. Cyclic diagnosability, denoted as$ct_{c}(G)$, represents the maximum size of a set of fault vertices$D$in a network$G$, so that the self-diagnosis system can identify all vertices in$D$under the condition that at least two connected components of$G-D$contain a cycle. We show that for$k$-dimensional DCell with$n$-port switches$DCell_{k,n}$, when$k \\geq 2$,$3 \\leq n \\leq 5$, or$k \\geq \\frac {n}{2} + 1$,$n \\geq 6$, the cyclic diagnosability is$4k+2n-5$under the PMC and MM* models based on the indistinguishability of the constructed set and the linear multiple fault analysis technology. Additionally, we propose two practical cyclic fault diagnosis algorithms with low time complexity: PMC-Based Cyclic Fault Diagnosis (PMCCFD) and MM*-Based Cyclic Fault Diagnosis (MMCFD) for the PMC and MM* models to improve fault detection and recovery in large-scale DCell networks. We also implement the PMCCFD and MMCFD algorithms on both synthetic and real data. Furthermore, we verify the availability/efficiency of algorithms PMCCFD and MMCFD in terms of accuracy rate, recall, false negative rate, negative predictive value, and F1Score.",
+   "status": "current"
+  },
+  {
+   "title": "IoT-enabled fog computing framework: heat stroke risk analysis",
+   "identifiers": {
+    "openalex": "W4414663037",
+    "doi": "10.1186/s13677-025-00776-3"
+   },
+   "abstract": "This study introduces a fog-based framework designed to address the rising incidence of heatstroke through efficient, real-time healthcare solutions. By leveraging fog computing(FC), cloud computing (CC), and Internet of Things (IoT) sensors, the framework aims to overcome the limitations of traditional cloud computing in handling real-time IoT data, which often leads to latency and spatial awareness issues. The framework integrates three layers: the IoT sensor layer collects health and other parameters related of heat stroke risk, the fog layer processes this data locally for immediate decision-making and alerts regarding potential level of heatstroke, severe cases, and the cloud layer handles long-term data storage and conducts spatial network analysis (SNA) to identify hot-spots. This setup improves location awareness and service quality, essential for quickly diagnosing and managing heatstroke cases. It provides key benefits like decreased latency and enhanced service quality, crucial for real-time healthcare applications. This fog-based approach aims to streamline heatstroke management, leading to better patient outcomes and reduced strain on healthcare systems. The public health sector can use this framework for early detection and handling the heat stroke related health issue, thereby improving response times and reducing the impact of heatwaves on vulnerable populations.",
+   "status": "current"
+  },
+  {
+   "title": "An Integrated UTM Solution for Modern Cybersecurity: Combining Deep Inspection, ML, and Policy Automation",
+   "identifiers": {
+    "openalex": "W4414871429",
+    "doi": "10.1109/access.2025.3618281"
+   },
+   "abstract": "The escalating frequency and sophistication of cyber threats necessitate a holistic and integrated approach to network security. This research proposes a comprehensive Unified Threat Management (UTM) system that consolidates key security functionalities—firewalling, intrusion detection and prevention, antimalware protection, phishing detection, policy enforcement, and log analysis into a centralized, intelligent platform. By leveraging advanced technologies such as machine learning, deep packet inspection, and natural language processing (NLP), the proposed UTM system enhances real-time threat detection, reduces administrative complexity, and improves scalability for diverse network environments. A modular architecture facilitates adaptive protection, while cloud-based management enables dynamic policy updates and centralized monitoring. The system’s effectiveness is demonstrated through the design and implementation of core modules, including an adaptive firewall, phishing detection engine using ensemble learning, and an NLP-powered security policy manager. Experimental evaluations validate the system’s high detection accuracy and low false positive rates, showcasing its potential as a scalable and proactive defence mechanism against modern cyber threats. This study contributes a practical, intelligent UTM framework tailored for modern organizations seeking robust and simplified security infrastructure.",
+   "status": "current"
+  },
+  {
+   "title": "Light-Based IoT-Enabled Battery-Free Active Product Monitoring for Sustainable Smart Packaging Applications",
+   "identifiers": {
+    "openalex": "W4414871463",
+    "doi": "10.1109/access.2025.3618384"
+   },
+   "abstract": "Conventional active product monitoring systems typically rely on battery and Radio Frequency (RF) communication designs, which pose challenges to sustainability and scalability, limiting their effectiveness. To overcome these limitations, this work presents a sustainable smart packaging system based on Light-based Internet of Things (LIoT) architecture, termed LIoT-based Active Smart Packaging (LIoT-ASP). The proposed solution integrates Photovoltaic Energy Harvesting (PV-EH) and OpticalWireless Communication (OWC) to enable battery-free, energy-autonomous operation for product condition monitoring in retail and logistics environments. A prototype system was developed using commercially available components, incorporating both visible light downlink and Infrared (IR) uplink channels based on consumer device IR protocol-inspired OWC, adapted for low-power operation. The bidirectional OWC supports a data rate of 1.1 kbps, sufficient for periodic sensing and display updates in low-throughput smart packaging applications. The system employs energy-aware control mechanisms and intermittent operation strategies to manage sensing and data communication under variable indoor illumination. Performance of the LIoT-ASP concept was assessed through the developed proof-of-concept prototype system, followed by experimental validation in a real-world scenario involving temperature-sensitive dairy products. The system successfully detected and reported threshold violations via cloud-connected mobile alerts, demonstrating reliable end-to-end functionality. These findings validate the practical feasibility of deploying LIoT-ASP systems as a sustainable and scalable solution for smart packaging applications.",
+   "status": "current"
+  },
+  {
+   "title": "LLM Meets ML: Data-efficient Anomaly Detection on Unstable Logs",
+   "identifiers": {
+    "openalex": "W4414993542",
+    "doi": "10.1145/3771283"
+   },
+   "abstract": "Most log-based anomaly detectors assume that logs are stable, although in reality they are often unstable due to software or environmental changes. Anomaly Detection on Unstable Logs (ULAD) is therefore a more realistic, yet under-investigated challenge. Current approaches predominantly employ Machine Learning (ML) models, which often require extensive labeled data for training. To mitigate data insufficiency, we propose FlexLog , a novel hybrid approach for ULAD that combines ML models—decision tree, k-nearest neighbors, and a feedforward neural network—with a Large Language Model (Mistral) through ensemble learning. FlexLog also incorporates a cache and Retrieval-Augmented Generation (RAG) to further enhance efficiency and effectiveness. To evaluate FlexLog , we configured four datasets for ULAD, namely ADFA-U, LOGEVOL-U, SynHDFS-U, and SYNEVOL-U. FlexLog outperforms all baselines by at least 1.2 percentage points (pp) in F1 score while using much less labeled data (62.87 pp reduction). When trained on the same amount of data as the baselines, FlexLog achieves up to a 13 pp increase in F1 score on ADFA-U across varying training dataset sizes. Additionally, FlexLog maintains inference time under one second per log sequence, making it suitable for most applications, except latency-sensitive systems. Further analysis reveals the positive impact of FlexLog ’s key components: cache, RAG, and ensemble learning.",
+   "status": "current"
+  },
+  {
+   "title": "LogEval: A comprehensive benchmark suite for LLMs in log analysis",
+   "identifiers": {
+    "openalex": "W4415030062",
+    "doi": "10.1007/s10664-025-10701-6"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Generative AI Powered Shadow-Resilient Real-Time Pothole Detection in Autonomous Vehicles",
+   "identifiers": {
+    "openalex": "W4415048237",
+    "doi": "10.1109/tits.2025.3617520"
+   },
+   "abstract": "With the rise of Industry 4.0, the integration of Artificial Intelligence (AI) into autonomous systems is transforming modern transportation, prioritizing safety, efficiency, and real-time decision-making. Autonomous Vehicles (AVs) heavily rely on sensor data and AI-driven perception systems to navigate roads, detect hazards, and make split-second trajectory adjustments. However, pothole detection in shadowed environments remains a critical challenge, as traditional models often misclassify road defects due to varying illumination conditions. To address this, we propose a pothole detection framework powered by Generative AI (GAI) that is shadow-resilient and enhances AV perception in complex lighting scenarios. Our approach utilizes Cycle-Consistent Generative Adversarial Network (CycleGAN)-based shadow synthesis to generate realistic training data and lightweight You Only Look Once (YOLO) variants to achieve high-precision real-time detection. Furthermore, cooperative perception through Vehicle-to-Vehicle (V2V) and Vehicle-to-Infrastructure (V2I) communication ensures timely alerts and cloud-based updates, enabling AVs to dynamically adjust their navigation. Experimental results show that our model achieves a mean Average Precision (mAP) of 0.883 while maintaining an inference speed of 2.3 ms per frame using YOLOv11n, with strong generalization in real-world conditions, achieving 0.864 mAP under diverse on-road environments, including shadowed potholes and varying illumination. By integrating AI perception, cooperative intelligence, and cloud-based adaptability, our framework establishes a new benchmark for robust AV navigation in the era of Industry 4.0.",
+   "status": "current"
+  },
+  {
+   "title": "Deep Evaluation and Design Guidance on Data Transmission Protocols From On-Board Vehicles to Cloud Platforms",
+   "identifiers": {
+    "openalex": "W4415048880",
+    "doi": "10.1109/tvt.2025.3620221"
+   },
+   "abstract": "Premeditating the operational cloud-database, improved transmission standards contribute to the precision and accuracy of intelligent management of electric vehicles, while a balance between storage and performance is of critical significance for real-time controlling. This article develops a particle swarm optimization-simulated annealing method for parameter identification, a 5th-order spherical simplex-redial Kalman filter for state of charge estimation, and an inconsistency risk calculation algorithm for fault diagnosis, respectively. As a case study, we explore additional parameters of transmission message fields, and take LiNixCoyMn2O2and LiFePO4battery data at various intervals and granularity as the input of proposed algorithms in the broad of stable, dynamic, and real-vehicle conditions. Furthermore, we use the average deviation to discuss the desecrated database content and adopt an information entropy theory to evaluate its amount of information. Taking into account the goal of building an excellent communication protocol, a comprehensive evaluation analysis is established by combining algorithm accuracy, execution cost and facility conditions, and it is recommended that the interval should be between 5-10s and the granularity is within 1mV/mA to meet requirements of the battery management system. This work emphasizes the power of vehicle-to-cloud transmission technology in parameterization, state estimation, and failure prognostics experiments, and highlights the promise of exploiting a newgeneration processing framework based on cloud-controlling towards specific intentions.",
+   "status": "current"
+  },
+  {
+   "title": "Task-Driven Device Fingerprinting for Quantum Cloud Platforms via Modeling QNN Outcomes Under Noise",
+   "identifiers": {
+    "openalex": "W4415159194",
+    "doi": "10.1109/tifs.2025.3620985"
+   },
+   "abstract": "Quantum Computing (QC) has recently achieved significant technological progress, attracting growing interest from both academia and industry. As most users currently access QC resources through cloud platforms, concerns around the security and accountability of quantum services have become increasingly prominent. In particular, quantum noise, typically considered a source of error, can also reveal device-specific signatures that enable Quantum Device Fingerprinting (QDF). While QDF has legitimate applications such as anomaly detection and device accountability, it also carries dual-use risks, including potential misuse for unauthorized device tracking or targeted attacks. In this paper, we propose a novel Task-Driven Quantum Device Fingerprinting (TD-QDF) identification method based on quantum task outputs; we extract the fingerprint features of quantum devices from noisy quantum computing results. Unlike previous research, our method does not require any additional information (e.g., hardware details or noise information), thereby enhancing its practical applicability and accessibility. We conducted large-scale experiments using six QNN circuits on 10 IBM quantum computers, extended four classical quantum algorithms to validate generality, and demonstrated scalability on three 127-qubit processors. Specifically, the highest accuracy can reach up to 94.32% in the 3-classification device fingerprint recognition task and up to 82.4% and 61.6% in the 7-classification and 10-classification tasks, respectively. This research contributes to advancing quantum fingerprinting technologies and holds promising implications for enhancing the security and accountability of quantum computing systems and quantum cloud services.",
+   "status": "current"
+  },
+  {
+   "title": "A Systematic Literature Review on Fault Injection Testing of Microservice Systems",
+   "identifiers": {
+    "openalex": "W4415179332",
+    "doi": "10.1109/tsc.2025.3621564"
+   },
+   "abstract": "This paper presents the first comprehensive review of techniques that pertain to Fault Injection Testing (FIT) of Microservice systems. FIT is a popular resilience engineering technique for examining the correctness and robustness of fault-tolerance mechanisms in software systems. Despite its wide adoption in building Microservice systems of high reliability, the techniques and tools that underpin effective fault injection have not yet been systematically reviewed. To this end, a general FIT framework that consists of five key components is first summarized, with each component indicating a key design decision that should be carefully determined. Then, a systematic literature review (SLR) is performed to investigate the current practices that address the challenges associated with each of these components. Finally, the potential limitations and future research directions of FIT for Microservice systems are discussed.",
+   "status": "current"
+  },
+  {
+   "title": "A Comprehensive Benchmark and Empirical Study of Trace Anomaly Detection",
+   "identifiers": {
+    "openalex": "W4415256963",
+    "doi": "10.1109/tsc.2025.3622122"
+   },
+   "abstract": "The growing complexity of modern Internet applications and the widespread use of microservice architectures have amplified the need for efficient trace anomaly detection to maintain system stability. Despite the fact that many trace anomaly detection algorithms have been proposed to identify abnormal behaviors, a comprehensive evaluation of these methods is lacking, which makes it difficult for developers to choose the most suitable algorithm for real-world applications. To address this gap, we presentTADBench, a comprehensive and extensible benchmark for trace anomaly detection.TADBenchconsolidates diverse publicly available trace datasets and algorithms into a unified repository, standardizes data formats, and incorporates manual anomaly labels. To ensure reproducibility and fair comparisons, we propose a modular evaluation framework supporting end-to-end model assessment. Additionally, we provide practical guidance for algorithm selection based on specific data attributes by evaluating their performance across datasets with different characteristics, thereby effectively bridging the gap between academic research and industrial deployment. To the best of our knowledge, this is the first comprehensive empirical study of trace anomaly detection algorithms. Our findings aim to facilitate the adoption of these methods in production environments, offering actionable insights for developers and researchers.",
+   "status": "current"
+  },
+  {
+   "title": "SDLog: A Deep Learning Framework for Detecting Sensitive Information in Software Logs",
+   "identifiers": {
+    "openalex": "W4415327325",
+    "doi": "10.1145/3833386",
+    "arxiv": "2505.14976"
+   },
+   "abstract": "Software logs are messages recorded during the execution of a software system that provide crucial run-time information about events and activities. Although software logs have a critical role in software maintenance and operation tasks, publicly accessible log datasets remain limited, hindering advances in log analysis research and practices. The presence of sensitive information, particularly Personally Identifiable Information (PII) and quasi-identifiers , introduces serious privacy and re-identification risks, discouraging the publishing and sharing of real-world logs. In practice, log anonymization techniques primarily rely on regular expression patterns, which involve manually crafting rules to identify and replace sensitive information. However, these regex-based approaches suffer from significant limitations, such as extensive manual efforts and poor generalizability across diverse log formats and datasets. To mitigate these limitations, we introduce SDLog, a deep learning-based framework designed to identify sensitive information in software logs. Our results show that SDLog overcomes regex limitations and outperforms the best-performing regex patterns in identifying sensitive information. With only 100 fine-tuning samples from the target dataset, SDLog can correctly identify 99.5% of sensitive attributes and achieves an F1-score of 98.4%. To the best of our knowledge, this is the first deep learning alternative to regex-based methods in identifying sensitive information in software logs.",
+   "status": "current"
+  },
+  {
+   "title": "Multi-Modal Autonomous Drone System for Real-Time Highway Incident Detection and Analysis",
+   "identifiers": {
+    "openalex": "W4415366442",
+    "doi": "10.1109/access.2025.3623653"
+   },
+   "abstract": "Highway accidents remain a critical public safety challenge, where delayed response times intensify injury severity and fatalities. Traditional systems relying on manual reporting suffer from inefficiencies and critical delays during emergencies. This paper presents an autonomous drone based highway incident management system that integrates advanced aerial technology with Vision-Language Models (VLMs) and Large Language Models (LLMs) to enable rapid detection, analysis, and response. The framework employs a DJI Matrice 30T drone equipped with a dock station for autonomous deployment for incident analysis by yielding incident coordinates provided by authorities. Upon arrival, real-time video is analyzed using an optimized fine-tuned YOLOv12n model selected after rigorous comparison of nine YOLO variants to detect incidents such as collisions and fires with high precision. To generate actionable intelligence, high-confidence video frames are processed using a hybrid vision-language pipeline comprising of LLaVA-OneVision-Qwen2 and GPT-4o API. This combination yields detailed natural language descriptions and structured summaries of incident scenes, offering enhanced contextual awareness of the incident site. By combining autonomous drone navigation, real-time object detection, VLM-based scene interpretation, and LLM-driven summarization, this end-to-end solution enhances situational awareness and decision-making for emergency responders. These results demonstrate the practical value of integrating multi-modal AI with UAVs in critical safety domains, laying the groundwork for scalable, intelligent transportation infrastructure and next-generation emergency response systems.",
+   "status": "current"
+  },
+  {
+   "title": "Advanced AI-Driven Automation for Smarter Networks: The Modern Observability Advantage",
+   "identifiers": {
+    "openalex": "W4415367022",
+    "doi": "10.1109/mcom.001.2500256"
+   },
+   "abstract": "Modern heterogeneous networks and distributed applications deployed across the computing continuum pose significant monitoring and management challenges due to their complexity and dynamic nature. Cloud-native observability has emerged as a powerful paradigm to overcome these challenges, enabling the extraction of knowledge and operational insights by combining information from metrics, logs, and traces. At the same time, advanced Artificial Intelligence (AI) techniques drive network automation toward Zero-Touch Network and Service Management (ZSM). In this work, we present FUSION, an integrated observability and analytics framework that unifies heterogeneous telemetry data and leverages AI-powered intelligence to extract knowledge, identify behavioral patterns, and increase automation. A conceptual architecture is detailed, standardizing heterogeneous data collection and fusion in a unified observability layer, while supporting the integration of advanced AI-based analytics pipelines. A prototype implementation demonstrates the use of representative AI-based methods for anomaly detection, root cause analysis, and intelligent orchestration.",
+   "status": "current"
+  },
+  {
+   "title": "Zync: A microservice platform for IoT device management and complex event monitoring",
+   "identifiers": {
+    "openalex": "W4415373829",
+    "doi": "10.1016/j.compeleceng.2025.110752"
+   },
+   "abstract": "The Internet of Things (IoT) has triggered a paradigm shift in how digital systems interact with the physical world, enabling real-time data acquisition, monitoring, and control. However, the exponential growth of heterogeneous IoT devices introduces critical challenges in data interoperability, scalability, and real-time event processing. This paper presents Zync, a modular and extensible software platform designed to manage IoT ecosystems and support Complex Event Processing (CEP) in real time. Zync integrates modern development stacks such as Next.js, Supabase, and Esper CEP, offering an end-to-end solution from data ingestion and storage to anomaly detection and alert notification. The platform supports the definition of custom event patterns and thresholds through an intuitive web interface, allowing both technical and semi-technical users to interact with and supervise the system. Architecturally, Zync leverages microservices and RESTful APIs to ensure interoperability and scalability. Experimental validation includes integration testing, performance benchmarking, and stress simulations with concurrent sensor data. Results demonstrate Zync’s ability to detect and notify critical events with low latency, even under high loads. This work positions Zync as a promising approach toward scalable IoT device management and complex event monitoring.",
+   "status": "current"
+  },
+  {
+   "title": "Cloud-Based Fault Diagnosis of Lithium-Ion Battery Packs by Identifying SOC Abnormal Fluctuations Under Real-World Conditions",
+   "identifiers": {
+    "openalex": "W4415481131",
+    "doi": "10.1109/tie.2025.3603067"
+   },
+   "abstract": "As electric vehicles advance, the safety of lithium-ion batteries has emerged as a pivotal concern. Battery safety faults are typically accompanied by abnormal discharge. Addressing this, we design an integrated monitoring algorithm for abnormal fluctuations in battery pack state of charge (SOC), enabling fault diagnosis. This approach integrates neural networks (NNs), primary–secondary filters, data integration, and fuzzy correction to ensure both precision and robustness under real-world operating conditions. The algorithm enables real-time SOC estimation and prediction, while also identifying abnormal discharge through monitoring of unpredictable residuals. The efficacy of our methodology in SOC estimation and prediction is validated under dynamic stress test (DST) conditions and is further corroborated by data collected from 500 vehicles. The results indicate that the maximum residual fluctuation in abnormal samples exceeds that of normal samples by over fourfold. The impact of different alarm thresholds on the true positive rate, false positive rate, and early warning lead time is also discussed. Our method achieves prewarning for certain abnormal samples more than 12 h before fault triggers, offering substantial benefits for safety and economic viability.",
+   "status": "current"
+  },
+  {
+   "title": "X-HEART: eXplainable heterogeneous log anomaly detection using robust transformers",
+   "identifiers": {
+    "openalex": "W4415500225",
+    "doi": "10.1007/s10115-025-02604-1"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "MHP-RCA: Multivariate Hawkes Process-based Root Cause Analysis in microservice systems",
+   "identifiers": {
+    "openalex": "W4415504557",
+    "doi": "10.1016/j.infsof.2025.107938"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Data centers in the age of AI: A tutorial survey on infrastructure, sustainability, and emerging challenges",
+   "identifiers": {
+    "openalex": "W4415592397",
+    "doi": "10.1016/j.jnca.2026.104525"
+   },
+   "abstract": "Data centers have become the backbone of the digital economy, supporting cloud services, digital platforms, and the growing demands of artificial intelligence (AI). The emergence of large language models (LLMs) has amplified their energy use, cooling intensity, and environmental impact, raising urgent concerns around sustainability, grid stability, and operational efficiency. This tutorial surveys the evolution of modern data centers, beginning with their classification and architectures, and examining key dimensions of power consumption, cooling technologies, and water utilization. It underscores how performance indicators such as Power Usage Effectiveness (PUE) and Water Usage Effectiveness (WUE), and carbon-aware operations are shaping sustainable practices. Particular emphasis is placed on AI workloads, where training consumes gigawatt-hours of energy and inference, scaled across billions of queries, drives long-term infrastructure demand despite uncertain profitability models. The survey also explores latency-critical operations, edge deployments, and the transformation of optical networking and fabrics to support AI-driven bandwidth and efficiency requirements. Emerging paradigms including digital twins, AIOps-driven orchestration, and hybrid optical/electrical fabrics are identified as enablers of more resilient and adaptive infrastructures. Looking ahead, the integration of advanced cooling, renewable alignment, demand-responsive scheduling, and net-zero commitments will be pivotal in reconciling scalability with sustainability. By consolidating insights from research and practice, this work provides both a foundational overview and a forward-looking roadmap for designing AI-ready data centers that balance performance, resilience, and environmental responsibility at the core of the digital economy.",
+   "status": "current"
+  },
+  {
+   "title": "SemanticLog: Towards Effective and Efficient Large-Scale Semantic Log Parsing",
+   "identifiers": {
+    "openalex": "W4415594438",
+    "doi": "10.1109/tse.2025.3625121"
+   },
+   "abstract": "Logs of large-scale cloud systems record diverse system events, ranging from routine statuses to critical errors. As the fundamental step of automated log analysis, log parsing is to transform unstructured logs into structured data for easier management and analysis. However, existing syntax-based and deep learning-based parsers struggle with complex real-world logs. Recent parsers based on large language models (LLMs) achieve higher accuracy, but they typically rely on online APIs (e.g., ChatGPT), raising privacy concerns and suffering from network latency. Moreover, with the rise of artificial intelligence for IT operations (AIOps), traditional parsers that focus on syntax-level templates fail to capture the semantics of dynamic log parameters, limiting their usefulness for downstream tasks. These challenges highlight the need for semantic log parsing that goes beyond template extraction to understand parameter semantics.This paper presents SemanticLog, an effective and efficient semantic log parser powered by open-source LLMs. SemanticLog adapts the structure of LLMs to the log parsing task, leveraging their rich knowledge while safeguarding log data privacy. It first extracts informative feature representations from log data, then refines them through fine-grained semantic perception to enable accurate template and parameter extraction together with semantic category prediction. To boost scalability, SemanticLog introduces the EffiParsing tree for faster inference on large-scale logs. Extensive experiments on the LogHub-2.0 dataset show that SemanticLog significantly outperforms the state-of-the-art log parsers in terms of accuracy. Moreover, it also surpasses existing LLM-based parsers in efficiency while showcasing advanced semantic parsing capability. Notably, SemanticLog employs much smaller open-source LLMs compared to existing LLM-based parsers (mainly based on ChatGPT), while maintaining better capability of log data privacy protection.",
+   "status": "current"
+  },
+  {
+   "title": "A Multi-Attribute Adaptive Fault Diagnosis Framework for Star Networks",
+   "identifiers": {
+    "openalex": "W4415594498",
+    "doi": "10.1109/tc.2025.3624839"
+   },
+   "abstract": "With the proliferation of interconnection networks in mission-critical systems ranging from cloud computing infrastructures to large-scale data centers, the escalating structural complexity has intensified network vulnerability to malicious attacks and cyber warfare incidents. This article establishes a theoretical framework for evaluating network self-diagnostic capability through a novelh-extrar-component diagnosability metric, denoted as$\\widehat{ec}_{r}^{h}(G)$, which quantifies a network’s resilience under compound fault patterns. The proposed metric requires that after removing specific nodes, the remaining subgraph is required to preserve at leastrconnected components where every component maintains a node count exceedingh. Through rigorous combinatorial analysis, we derive closed-form expressions for star networks$S_{n}$,$\\widehat{ec}_{2}^{1}(S_{n}) = 4n - 9$and$\\widehat{ec}_{3}^{1}(S_{n}) = 6n - 15$when$n \\ge 6$, establishing the tight diagnosability bounds for this fundamental network topology. To enable practical implementation, we design a Trial System-based Fault Diagnosis Algorithm (TSFD) that features adaptive syndrome verification and parallel fault localization mechanisms. Extensive simulations demonstrate the accuracy of 98.99% fault detection with linear-time complexity$O(Nd)$inn-dimensional star networks. This work advances network reliability theory by introducing a multi-feature diagnosability measure for system-level diagnosis and developing an efficient diagnosis algorithm validated through large-scale network emulation.",
+   "status": "current"
+  },
+  {
+   "title": "Fraud Detection at the Identity Level Using Integrated Adaptive-ONMF to Find Single and Group Anomaly",
+   "identifiers": {
+    "openalex": "W4415624423",
+    "doi": "10.1109/tcss.2025.3617785"
+   },
+   "abstract": "Online services face increasing threats from various anomalous activities. Although regulatory organizations have identified multiple red-flag behaviors, many existing detection methods focus primarily on groups of related accounts. However, these methods are not able to distinguish whether an account that does not relate to others is anomalous or not, because an individual account shows no clustering characteristics on the graph. We name this kind of the lack of detecting vision as “single anomaly problem”. To address this issue, we propose ASIAN—a unified anomaly detection framework. First, drawing from regulatory reports, we define an account or a group sharing an unusually high number of identifiers as abnormal. Unlike traditional approaches that rely on account-to-account relationships, our framework models the connections between accounts and their associated identifiers, formulating an objective function for our nonnegative matrix factorization (NMF)-based method. This low-rank approximation technique filters out low-significance data during loss minimization, enabling the extraction of high-volume patterns of identifier usage that indicate abnormal behavior. Finally, we define the involved identifiers as anomalous identifiers and trace back the accounts associated with them, whether they belong to individuals or groups, marking these accounts as anomalous. Experimental results show that ASIAN can indeed detect individual and group anomalies, while achieving a higher F1-score than alternative methods. This design not only improves the accuracy of the detection, but also clearly interprets how each component contributes to overall performance, thereby providing valuable insights into online service anomaly detection.",
+   "status": "current"
+  },
+  {
+   "title": "Federated Retrieval-Augmented Generation-Based LLM for Enhanced Cyber Threat Detection in the Internet-of-Energy",
+   "identifiers": {
+    "openalex": "W4415624473",
+    "doi": "10.1109/mnet.2025.3619162"
+   },
+   "abstract": "The Internet-of-Energy (IoE) represents a transformative integration of digital technologies and AI-driven analytics with energy infrastructure, creating an intelligent ecosystem that optimizes energy generation, distribution, and consumption across interconnected grids, renewable resources, and smart consumer devices. While enabling unprecedented efficiency, this interconnectivity introduces significant cybersecurity vulnerabilities, as each component presents a potential entry point for adversaries seeking to disrupt critical operations. Large language models (LLMs) have shown immense promise in addressing cybersecurity issues with their powerful natural language understanding, semantic reasoning, and robust knowledge representation capabilities. However, LLMs encounter significant limitations in processing sensitive, distributed data and executing real-time threat detection in IoE environments. In this paper, we propose FeRAG, a Federated Retrieval-Augmented Generation-based LLM system for autonomous log analysis, designed to enhance cyber threat detection performance while significantly increasing detection efficiency and mitigating privacy risks. We evaluate our method using both GPT-3.5-turbo and GPT-4o as LLM models, and our experimental results demonstrate remarkable improvements of FeRAG over other LLM-driven log analysis methods in the precision of cybersecurity threat detection. Our research also explores promising opportunities for expanding LLMs’ cybersecurity capabilities through integration with diverse multi-modal data sources, enabling more comprehensive threat detection across the evolving IoE landscape.",
+   "status": "current"
+  },
+  {
+   "title": "KANAD: Topologically Adaptive Graph Feature Learning for Multimodal Anomaly Detection in Microservice Systems",
+   "identifiers": {
+    "openalex": "W4415680663",
+    "doi": "10.1007/s10922-025-09995-0"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Analysing the role of LLMs in cybersecurity incident management",
+   "identifiers": {
+    "openalex": "W4415688741",
+    "doi": "10.1007/s10207-025-01144-7"
+   },
+   "abstract": "Abstract Cybersecurity and artificial intelligence (AI) increasingly intersect as organizations grapple with sophisticated cyber threats and expanding digital landscapes. Incident response teams traditionally rely on structured procedures to identify, manage, and mitigate cyber incidents. Our work explores the effectiveness of generative AI, specifically Large Language Models (LLMs), within cybersecurity, focusing primarily on incident response processes. Experimental evaluations demonstrate that specific LLMs exhibit distinct strengths suitable for different stages of incident management. GPT-4o and GPT-3.5 show high clarity, consistency and coherence, making them appropriate for real-time containment, isolation, eradication and recovery tasks. Conversely, models such as GPT-o1 and GPT-4 offer superior reasoning capabilities and conciseness, better supporting incident preparation, post-incident analysis, vulnerability assessment and training development. Key limitations pertaining to current LLM implementations are identified, particularly token context constraints in addition to a discussion about ethical considerations regarding reliance on AI responses, including potential impacts on workforce skills and organizational security posture.",
+   "status": "current"
+  },
+  {
+   "title": "LLM-Driven Adaptive Security for the Internet of Energy (IoE)",
+   "identifiers": {
+    "openalex": "W4415707188",
+    "doi": "10.1109/mnet.2025.3620562"
+   },
+   "abstract": "The Internet of Energy (IoE) integrates renewable energy generators, smart-grid controllers, and extensive sensor networks, creating a highly dynamic attack surface that traditional signature-based intrusion detection systems (IDSs) often fail to secure. We propose a synergistic, two-tier Large Language Model (LLM)-driven adaptive security architecture: a 22-million-parameter MiniLM deployed at the edge converts enriched flow telemetry into physics-aware “sentences” for context-sensitive alerting, while a cloud-based GPT-4 assistant performs forensic analysis, automatically generates Snort rules, and sends reinforcement signals back to the edge. This cooperative edge-cloud orchestration, evaluated on the UNSW-NB15 dataset (82,000 flows), improves theF1score to 0.889, reduces false positives from 68% to 26%, and, in human-in-the-loop exercises, enables GPT-4 explanations to reduce mean time-to-contain by 41%, all within a 0.20-second latency budget. Ablation studies demonstrate that role-aware encoding yields marginal but beneficial improvements to performance. Our study demonstrates that edge-deployed LLMs can outperform traditional monitoring methods without exceeding operational constraints; that hybrid edge–cloud systems deliver actionable intelligence from IoE network telemetry; and that adaptive, explainable generative AI defenses significantly enhance IoE cybersecurity resilience. Future research directions include adversarially robust prompting, federated fine-tuning, and formal safety assurance for critical infrastructure defense.",
+   "status": "current"
+  },
+  {
+   "title": "HiFINS: A Hierarchical Federated Learning-Based Interactive System for Smart Home Security",
+   "identifiers": {
+    "openalex": "W4415821101",
+    "doi": "10.1109/access.2025.3628281"
+   },
+   "abstract": "As smart home environments grow increasingly populated with heterogeneous and resource-constrained IoT devices, ensuring secure and adaptive network protection has become a critical challenge. Traditional intrusion detection solutions, i.e., centralized, rule-based, or cloud-dependent, struggle to scale or provide user-friendly insights for non-technical residents. To address these limitations, we proposeHiFINS, aHierarchicalFederatedLearning-basedInteractiveNetworkSecurity system that integrates hierarchical federated learning (HiF) for real-time, privacy-aware threat detection and a human-centered interface (INS) for intuitive security management. HiFINS distributes model training across home routers, local servers, and edge/cloud infrastructure, enhancing detection performance while minimizing data exposure. Simultaneously, the interactive application enables users to configure routers, view alerts, and respond to threats without needing technical expertise. The system is implemented and validated within a reproducible, container-based test environment that emulates realistic smart home conditions and facilitates transparent benchmarking. Experimental results show that HiFINS outperforms both centralized and existing hierarchical federated approaches in terms of detection accuracy, inference throughput, and precision, while maintaining competitive training efficiency. These gains demonstrate HiFINS’s practical viability for securing home networks in real time. Although the hierarchical design introduces coordination overhead, the tradeoff enables more resilient and scalable deployment across diverse environments. The system’s modular and reproducible structure supports future adaptation and integration into broader smart home security efforts.",
+   "status": "current"
+  },
+  {
+   "title": "Aligning DevOps and Microservice Architecture: Empirical Mapping, Taxonomy, and RAG-Based Decision Support",
+   "identifiers": {
+    "openalex": "W4415883371",
+    "doi": "10.1109/access.2025.3628665"
+   },
+   "abstract": "DevOps and microservice architecture (MSA) are central to modern software delivery, yet their conceptual alignment remains fragmented across the literature. This study empirically analyzes how DevOps practices correspond to MSA principles and how these relationships inform architectural and operational decisions. From 84 peer-reviewed sources (2016–2025), we extract and normalize over 200 DevOps–MSA concept pairs and organize them into a five-category taxonomy: deployment automation and orchestration, observability and runtime diagnostics, scalability and modularity, security and governance, and configuration and environment management. To operationalize these mappings, we develop a retrieval-augmented generation (RAG) framework that combines sentence-transformer embeddings with GPT-based reasoning to generate bidirectional concept recommendations. Quantitative evaluation shows that RAG outperforms lexical and embedding-only baselines by roughly 20 % in precision and ranking, while qualitative assessment confirms semantic accuracy and contextual relevance. Deployment automation and observability emerge as the most empirically supported categories, whereas governance-related links remain largely conceptual. Industrial case studies in software, banking, and insurance sectors demonstrate measurable improvements in release speed and developer satisfaction when the framework supports transformation planning. The complete dataset and open-source RAG prototype are released to facilitate replication and extension. Overall, the findings indicate that empirically grounded RAG enhances traceability and evidence-based decision-making between architecture and operations in complex software systems.",
+   "status": "current"
+  },
+  {
+   "title": "HydrocamCollect: A robust data acquisition and cloud data transfer workflow for camera-based hydrological monitoring",
+   "identifiers": {
+    "openalex": "W4415894401",
+    "doi": "10.1016/j.envsoft.2025.106770"
+   },
+   "abstract": "Reliable, high-resolution streamflow data are essential for hydrologic research, flood forecasting, and water management. Camera-based monitoring provides a promising non-contact alternative to traditional sensors. However, deployment challenges exist in remote environments, including intermittent connectivity, limited storage, and the need for manual oversight. This paper presents a robust, cloud-integrated data acquisition workflow enabling autonomous operation of camera-based hydrologic stations. Built with low-cost Raspberry Pi computers and IP cameras, the system automates image capture, verifies file integrity during cloud upload, stores metadata locally, and deletes confirmed files to conserve storage. A serverless cloud monitoring component checks for expected uploads and triggers alerts on failure. The system includes failsafe mechanisms like scheduled reattempts, data integrity safeguards, and environment-variable-based configuration for flexibility. Deployed at two sites in Utah, it operated continuously for more than four months. This work offers a fault-tolerant, scalable solution for reliable imagery collection and transfer in large-scale environmental sensing networks. • A robust workflow was developed for remote camera-based streamflow monitoring. • The system automates image capture, cloud upload, and file integrity verification. • Local storage is efficiently managed using metadata tracking and retention policies. • Alerts are triggered via cloud services when data is missing, or errors occur. • The workflow supports unattended operation using Raspberry Pi and IP cameras.",
+   "status": "current"
+  },
+  {
+   "title": "TAMO:Fine-Grained Root Cause Analysis via Tool-Assisted LLM Agent With Multi-Modality Observation Data in Cloud-Native Systems",
+   "identifiers": {
+    "openalex": "W4415933773",
+    "doi": "10.1109/tsc.2025.3629066",
+    "arxiv": "2504.20462"
+   },
+   "abstract": "Implementing large language models (LLMs)-driven root cause analysis (RCA) in cloud-native systems has become a key topic of modern software operations and maintenance. However, existing LLM-based approaches face three key challenges: multi-modality input constraint, context window limitation, and dynamic dependence graph. To address these issues, we propose a tool-assisted LLM agent with multi-modality observation data for fine-grained RCA, namely TAMO, including multi-modality alignment tool, root cause localization tool, and fault types classification tool. In detail, TAMO unifies multi-modal observation data into time-aligned representations for cross-modal feature consistency. Based on the unified representations, TAMO then invokes its specialized root cause localization tool and fault types classification tool for further identifying root cause and fault type underlying system context. This approach overcomes the limitations of LLMs in processing real-time raw observational data and dynamic service dependencies, guiding the model to generate repair strategies that align with system context through structured prompt design. Experiments on two benchmark datasets demonstrate that TAMO outperforms state-of-the-art (SOTA) approaches with comparable performance.",
+   "status": "current"
+  },
+  {
+   "title": "Leveraging multi-agent framework for root cause analysis",
+   "identifiers": {
+    "openalex": "W4415944773",
+    "doi": "10.1007/s40747-025-02096-0"
+   },
+   "abstract": "RCA is critical for operational stability in complex integrated systems, such as cloud-native platforms and distributed power metering infrastructures. However, achieving automated RCA faces three fundamental challenges: (1) the complex mapping between anomalies and runtime data, (2) the semantic gap between unstructured logs and structured metrics, and (3) combinatorial explosion of causal relationships for inferring the root causes. While LLMs offer potential for automated RCA due to their superior reasoning and knowledge-linking capabilities, their susceptibility to hallucinations constrains practical deployment. Specifically, prevailing single-agent architectures exacerbate error propagation and context-switching failures during multi-step RCA reasoning, leading to incorrect root cause identification. To address these limitations, we propose MA-RCA (multi-agent root cause analysis), a collaborative framework deploying specialized agents for distinct subtasks. Each agent operates within a dedicated domain to minimize context-switching failures. Crucially, to counteract hallucinations and error propagation, MA-RCA introduces two agents: a Retrieval Agent that grounds hypotheses in external domain knowledge (e.g., historical documentation) using retrieval-augmented generation, and a Validation Agent that verifies hypotheses by executing dynamic tests against runtime data. Experimental evaluations on cloud-native platforms (Nezha, 95.2% F1) and distributed power metering infrastructures (82.8% F1) demonstrate the effectiveness of MA-RCA in automating multi-domain RCA, bridging intelligent computing with complex system resilience through agent collaboration.",
+   "status": "current"
+  },
+  {
+   "title": "TransitTalk: Large language model-based digital assistants for enhancing transit customer experience and staff performance",
+   "identifiers": {
+    "openalex": "W4415947234",
+    "doi": "10.1080/15472450.2025.2576883"
+   },
+   "abstract": "Large-language models (LLMs) have transformed natural-language understanding, generation, and reasoning, yet their potential within public-transit operations remains largely untapped. This study introduces TransitTalk, a retrieval-augmented framework that positions an LLM as an intelligent intermediary between natural-language requests and the heterogeneous databases that underpin modern transit networks. The framework first interprets rider or staff intent, then issues structured queries to relevant data sources, and finally produces context-aware conversational responses. Chain-of-thought prompting and vector-database retrieval enable the LLM to operate simultaneously as a dialogue agent, domain expert, and bespoke formatter, thereby bridging the gap between technical data schemas and user-friendly information delivery. The paper demonstrates the practicality of the framework through three fully implemented prototypes. Tweet Writer automatically drafts clear, multi-platform service-alert messages; Trip Advisor generates personalized, constraint-aware itineraries; and Policy Navigator delivers concise explanations of fares, accessibility provisions, and service regulations. Collectively, these applications illustrate how an LLM layer can streamline communications, reduce staff workload, and enhance the passenger information experience without disrupting existing data pipelines. All source code are openly available.",
+   "status": "current"
+  },
+  {
+   "title": "CIRCA: A Framework for Collaborative Identification of Root Cause Analysis in IoT Microservices",
+   "identifiers": {
+    "openalex": "W4416114028",
+    "doi": "10.1109/tsc.2025.3631804"
+   },
+   "abstract": "With continuous growth of IoT applications, service failures are quite inevitable. Due to the complexity and dynamics of IoT services, the root cause analysis (RCA) following an alert can assist in quickly resolving the possible faults. However, the time scales of metrics (e.g., CPU utilization, memory usage) generated by microservices and the dynamic topologies generated by calls between the Application Program Interfaces (APIs) are different. Moreover, the status of devices is an important aspect of RCA in IoT. All these make it extremely challenging to learn failure features of microservice metrics and API calls. Therefore, we propose a novel framework for collaborative identification of root cause analysis (CIRCA) to identify the most potential root cause path with the highest fault scores (weights). In detail, we use both microservice-level and API-level root cause identification (RCI) models to obtain the node fault score in the path. Since we prove the root cause path inference problem is an NP-hard problem, and we then propose a topology-based weighted variable neighborhood search (TWVNS) algorithm and infer the optimal root cause path from two-level scores and call topologies. Our experiments demonstrate CIRCA achieves satisfactory results of RCI and path inference on four public datasets.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0snow2-15"
+}

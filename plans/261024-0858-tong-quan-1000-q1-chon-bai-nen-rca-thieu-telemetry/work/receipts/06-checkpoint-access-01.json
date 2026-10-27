@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "06-checkpoint-access-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 06 access-final 06-access-publisher-01 --in work/records/t1-top100.csv --out work/access-ledger-final.csv --out work/manual-download-request.md --note 34 of 100 full text, 17 top-30 records waiting-human",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/06-checkpoint-access-01.out",
+ "egress_trace_reference": "work/logs/06-checkpoint-access-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:43:06.028358+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "4eae6b6ba70ffb13ba3aca468e5d6d9ce34fda05f882c55a5f636c0d03b28841"
+ ],
+ "output_hashes": [
+  "149057bb020329af2dacf2549cb3e03c6d65c3fba1ee05df3fd33dae74975dec"
+ ],
+ "checks": [
+  "phase 06 access ledger committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "54e517e664fba5ad8d3ac6be067f52bc7f1a5eb7d7dfb29e02beecb9bec64c41",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 06 access-final 06-access-publisher-01 --in work/records/t1-top100.csv --out work/access-ledger-final.csv --out work/manual-download-request.md --note 34 of 100 full text, 17 top-30 records waiting-human",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "dadc01269bb0c8bf29ef8cc8a73bf60997b4caf352ff1695b898e93ba02520c0",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/access-ledger-final.csv",
+   "sha256_before": "4eae6b6ba70ffb13ba3aca468e5d6d9ce34fda05f882c55a5f636c0d03b28841",
+   "sha256_after": "4eae6b6ba70ffb13ba3aca468e5d6d9ce34fda05f882c55a5f636c0d03b28841",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "149057bb020329af2dacf2549cb3e03c6d65c3fba1ee05df3fd33dae74975dec",
+   "created_this_attempt": true
+  }
+ ]
+}

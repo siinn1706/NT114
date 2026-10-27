@@ -1,0 +1,7 @@
+openalex_id,gate,result,evidence,locator,note
+W4372338130,G1,pass,"Repo 200, Apache-2.0, README with pip install and train_*.py / test_*_per.sh commands","https://github.com/AXinx/CausalRCA_code HEAD 4d4c58b, 2026-10-25",License file only added on 2026-10-15.
+W4372338130,G2,pass,Sock Shop Prometheus data are in the repo (22 pkl files); tree page HTTP 200,"data_collected/ API 200 and tree page 200, 2026-10-25",Data are small (7 services x 3 faults); not in the NT114 bundle.
+W4372338130,G3,pass,"static-estimate: 2-layer MLP DAG-GNN on a few dozen to ~100 metric nodes, tens of seconds per case, torch 1.10 runs on CPU; no LLM","Sec.IV-A.4, Sec.V; repo requirements.txt, train_latency.py (cuda optional)",Not run.
+W4372338130,G4,pass,"Non-LLM core (DAG-GNN structure learning + PageRank) composes with one LLM as an evidence ranking; contribution is the per-incident causal graph ranking, not a prompt","Sec.III-B, III-C",Metrics-only ranking; marginal at AC@1 0.20-0.25.
+W4372338130,G5,fail,Single modality: Prometheus metrics (latency + resource); no traces or logs,"Sec.IV-A.3, Table II, Sec.V",Input-scope variation (latency vs resource vs all metrics) is not a modality drop.
+W4372338130,h1-compat,yes,PageRank-ranked services (7) or metrics with scores; AC@k reported,"Sec.III-C, Eq.8-9, Table III-IV","Scores are PageRank mass, uncalibrated."

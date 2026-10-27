@@ -1,0 +1,149 @@
+{
+  "repo": "siinn1706/nt114-rca-data",
+  "repo_type": "dataset",
+  "visibility": "private",
+  "canonical_release_unchanged": "nt114-data-v1-20261014-6fdd9835",
+  "scope": "Explicit new documentation, manifest-derived charts, one-trace input/results and scholarly metadata archive",
+  "files": {
+    "README.md": {
+      "bytes": 5628,
+      "sha256": "fd0f659c5b2f0a16e098ed03b537d6dea06abc2ebc4b31f507b8dd5cdce53c1f",
+      "source": "docs/hugging-face-data-card.md"
+    },
+    "figures/canonical-data-quality.png": {
+      "bytes": 91012,
+      "sha256": "24c253c5488ddb42847909ba7932d092cb2d3dcf4cb25d3714351d22690ca963",
+      "source": "docs/figures/canonical-data-quality.png"
+    },
+    "figures/canonical-data-quality.svg": {
+      "bytes": 82144,
+      "sha256": "abfaeec9338fb7c24bae308039f9ad6e41e9d1cdb87899ae1c9e5ae467d7647f",
+      "source": "docs/figures/canonical-data-quality.svg"
+    },
+    "figures/kaggle-smoke-requests.png": {
+      "bytes": 87191,
+      "sha256": "ddd7c342f0e25dc4453a6a66e3574300493c673796c1ab77a89730749aab5d60",
+      "source": "docs/figures/kaggle-smoke-requests.png"
+    },
+    "figures/kaggle-smoke-requests.svg": {
+      "bytes": 81196,
+      "sha256": "10fd83be937ebec0617afa16d727ca822eca07325ba28a837f97214d84b11511",
+      "source": "docs/figures/kaggle-smoke-requests.svg"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-smoke.ipynb": {
+      "bytes": 43504,
+      "sha256": "86311b54e8121cb672e1887bb16f960dd3da4871b87829f80fb97768ce031193",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-smoke.ipynb"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-bundle.zip": {
+      "bytes": 221399,
+      "sha256": "d26df6d13743f23e8b481aa09dea8920329b790effd2493f84fd62168a717f21",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-bundle.zip"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-bundle.zip.sha256": {
+      "bytes": 94,
+      "sha256": "83aedd39fa39de2555a605123723f748c1cd76e64b5257fba8896c04fe354ce6",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-bundle.zip.sha256"
+    },
+    "reproductions/rclagent-smoke-261026/manifest.json": {
+      "bytes": 5087,
+      "sha256": "1612c9da4aedc762842e516c1ccc277c1d027b568a3dcb6cacd12904359668f2",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/manifest.json"
+    },
+    "reproductions/rclagent-smoke-261026/cpu-equivalence.json": {
+      "bytes": 26071,
+      "sha256": "8cbf976ab9f2a377cb6f9aa8de03baa2b8eee9beea478c9e7a2ba4bcb418fdd4",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/cpu-equivalence.json"
+    },
+    "reproductions/rclagent-smoke-261026/package-validation.json": {
+      "bytes": 662,
+      "sha256": "87df903ea3169059e622b2bac5f0a6ec58d7a2e4e6eb44eaf40464d857b6829c",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/package-validation.json"
+    },
+    "reproductions/rclagent-smoke-261026/README.md": {
+      "bytes": 9351,
+      "sha256": "68231b309edc9b80271c928f6279503a0665d0b8a94e3bda002de395d28ee3bf",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/README.md"
+    },
+    "reproductions/rclagent-smoke-261026/preparation-report.md": {
+      "bytes": 10926,
+      "sha256": "59a8c528126273ba5b8a913a183119c91b2f0e56b6f5af9093a717ae2bf7a862",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/preparation-report.md"
+    },
+    "reproductions/rclagent-smoke-261026/kaggle-run-report.md": {
+      "bytes": 8231,
+      "sha256": "b4b9325a50ac5f1ff541e2a8ca7a01b17a0691265f5f404d6079d55511f5acab",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-run-report.md"
+    },
+    "reproductions/rclagent-smoke-261026/repair-report.md": {
+      "bytes": 9744,
+      "sha256": "a71453d0c975cbc475b9543d5b22d00778d6ee651539a7d60263fdd5215c1c5a",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/repair-report.md"
+    },
+    "reproductions/rclagent-smoke-261026/kaggle-native-summary.json": {
+      "bytes": 1906,
+      "sha256": "ac16b0a41f2e8670c32c828c41a00e988ef6fbf3041f2e0a5609a8d60d7e5037",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-native-summary.json"
+    },
+    "reproductions/rclagent-smoke-261026/kaggle-repair-v4-summary.json": {
+      "bytes": 7974,
+      "sha256": "7fc085a8eb188ba1cb4affba7f76f06f2477f9deea2ee6736e3bfbcbd9d60bf4",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-repair-v4-summary.json"
+    },
+    "reproductions/rclagent-smoke-261026/kaggle-repair-v5-summary.json": {
+      "bytes": 14429,
+      "sha256": "4d986618bc4b92a18757d2586c6b8679b0a330a51b46495116fe122ed0ffcd30",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-repair-v5-summary.json"
+    },
+    "reproductions/rclagent-smoke-261026/kaggle-setup-v1-error-results.zip": {
+      "bytes": 2494,
+      "sha256": "7a25a8da97f12128c29da66cd32015458b23095bcf8863b6e479388d281ed9c8",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-setup-v1-error-results.zip"
+    },
+    "reproductions/rclagent-smoke-261026/kaggle-setup-v2-error-results.zip": {
+      "bytes": 16903,
+      "sha256": "c4cb461fed62ed70e29334865ba49cdfa740185531804520c03e4e71744d5323",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-setup-v2-error-results.zip"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-gpu-results.zip": {
+      "bytes": 24323,
+      "sha256": "fb220dc733203da6acf564bc6b3198ffae9b48e85f4091d5c52dfe479cf84e9b",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-gpu-results.zip"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-gpu-results.zip.sha256": {
+      "bytes": 99,
+      "sha256": "b11d174bd8fcf10121853eff000ac563c59c91e95a7e093ec3923cde8310a037",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-gpu-results.zip.sha256"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-repair-v4-results.zip": {
+      "bytes": 21005,
+      "sha256": "4e1ab9d7462013640f000768ca4efb1261c19253c8102204575327c0a7873066",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-repair-v4-results.zip"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-repair-v4-results.zip.sha256": {
+      "bytes": 105,
+      "sha256": "1acd083cab06b8ddcd2a70d046dba586bec1deb6c9333c21efd32599d2a28088",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-repair-v4-results.zip.sha256"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-repair-v5-results.zip": {
+      "bytes": 40185,
+      "sha256": "212b8fb3058db7d11e1de1fabae0e80b93c4c1ffa06e6b69be0fe8b7e0f82141",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-repair-v5-results.zip"
+    },
+    "reproductions/rclagent-smoke-261026/rclagent-kaggle-repair-v5-results.zip.sha256": {
+      "bytes": 105,
+      "sha256": "f3b47a672cba1e7d8b84cc95822088a7cfeb92874da59c5f3762ec471ba343c0",
+      "source": "plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-repair-v5-results.zip.sha256"
+    },
+    "research/literature-261024-records.zip": {
+      "bytes": 109127705,
+      "sha256": "0f53c5831837a6db0204f576e3fe91ad1955129a490a42c7508938f923e7338a",
+      "source": "generated from plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry/work/records"
+    },
+    "research/literature-261024-records-manifest.json": {
+      "bytes": 20057,
+      "sha256": "0caf3be73acc53a1700e81cd3965ff25c9e047c1b5c4fb83de599c0833294e19",
+      "source": "generated from plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry/work/records"
+    }
+  }
+}

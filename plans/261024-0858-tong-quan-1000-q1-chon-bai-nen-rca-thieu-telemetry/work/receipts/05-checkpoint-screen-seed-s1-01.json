@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-screen-seed-s1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 screen-seed-s1 05-merge-seed-s1-01 --in work/screen/input/seed-manifest.json --in work/screen/input/anchors.jsonl --out work/screen/seed-000-s1.csv --out work/screen/anchors-seed-000-s1.csv --out work/screen/seed-001-s1.csv --out work/screen/anchors-seed-001-s1.csv --out work/screen/seed-002-s1.csv --out work/screen/anchors-seed-002-s1.csv --out work/screen/seed-003-s1.csv --out work/screen/anchors-seed-003-s1.csv --out work/screen/seed-004-s1.csv --out work/screen/anchors-seed-004-s1.csv --out work/screen/seed-005-s1.csv --out work/screen/anchors-seed-005-s1.csv --out work/screen/seed-006-s1.csv --out work/screen/anchors-seed-006-s1.csv --out work/screen/seed-s1-merged.csv --out work/screen/seed-s1-check.json --out work/screen/seed-s1-drift-review.md --note 7 nckh-maker sessions; 1 anchor R1 drift reviewed (no systematic drift); 58 needs-review all E6 (Elsevier CAPTCHA, Springer auth redirect)",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-screen-seed-s1-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-screen-seed-s1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:00:51.664066+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "c65a8f737377a18f3ff4255172e8175fce51b1871b9adfd92bd73245a2039c44"
+ ],
+ "output_hashes": [
+  "3f600fd638f6e3d9a25a0be419ea11d0f6b93cf3b6f1ec73ae35982a6fc63f3c"
+ ],
+ "checks": [
+  "s1 screening batches committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "a406d78e1335817fd05f184cafa57661a5b520a1d7ee6f85315317da15d48f30",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 screen-seed-s1 05-merge-seed-s1-01 --in work/screen/input/seed-manifest.json --in work/screen/input/anchors.jsonl --out work/screen/seed-000-s1.csv --out work/screen/anchors-seed-000-s1.csv --out work/screen/seed-001-s1.csv --out work/screen/anchors-seed-001-s1.csv --out work/screen/seed-002-s1.csv --out work/screen/anchors-seed-002-s1.csv --out work/screen/seed-003-s1.csv --out work/screen/anchors-seed-003-s1.csv --out work/screen/seed-004-s1.csv --out work/screen/anchors-seed-004-s1.csv --out work/screen/seed-005-s1.csv --out work/screen/anchors-seed-005-s1.csv --out work/screen/seed-006-s1.csv --out work/screen/anchors-seed-006-s1.csv --out work/screen/seed-s1-merged.csv --out work/screen/seed-s1-check.json --out work/screen/seed-s1-drift-review.md --note 7 nckh-maker sessions; 1 anchor R1 drift reviewed (no systematic drift); 58 needs-review all E6 (Elsevier CAPTCHA, Springer auth redirect)",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "1c18068748e335cb075fd44f43c5d93a4ef00a36b5c6be93cf693fa6e823d1df",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/seed-s1-check.json",
+   "sha256_before": "c65a8f737377a18f3ff4255172e8175fce51b1871b9adfd92bd73245a2039c44",
+   "sha256_after": "c65a8f737377a18f3ff4255172e8175fce51b1871b9adfd92bd73245a2039c44",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "3f600fd638f6e3d9a25a0be419ea11d0f6b93cf3b6f1ec73ae35982a6fc63f3c",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+phase,batches,committed,outputs_intact,receipt,receipt_exists,status,updated
+01,0,0,0,work/receipts/01-freeze-01.json,True,committed,True
+02,83,83,83,work/receipts/02-reuse-seed-01.json,True,committed,True
+03,24,24,24,work/receipts/03-synonym-search-01.json,True,committed,True
+04,56,56,56,work/receipts/04-t0-review-r2-01.json,True,committed,True
+05,18,18,18,work/receipts/05-rank-final-01.json,True,committed,True
+06,11,11,11,work/receipts/06-access-publisher-01.json,True,committed,True
+07,1,1,1,work/receipts/07-rank-t2-01.json,True,committed,True
+08,11,11,3,work/receipts/08-merge-t3-03.json,True,waiting-human,True
+09,1,1,1,work/receipts/09-design-check-04.json,True,committed-conditional,True

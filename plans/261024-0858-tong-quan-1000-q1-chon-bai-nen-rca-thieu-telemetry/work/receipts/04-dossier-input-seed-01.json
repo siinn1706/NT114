@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-dossier-input-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-dossier.py work/records/t0seed4-t0.csv t0seed4",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-dossier-input-seed-01.out",
+ "egress_trace_reference": "work/logs/04-dossier-input-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:51:46.711647+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d"
+ ],
+ "output_hashes": [
+  "5d69e8b8b8e074243ffe3ae30660c354af4a3ebf621134d68743daf113e81469"
+ ],
+ "checks": [
+  "T0 seed exported as offline-import inputs"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "1ace779215f716405a7e97d05c00f7b983c2f891a2b5437420d323ad31b3d9d3",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-dossier.py work/records/t0seed4-t0.csv t0seed4",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "c156329e391d2b51086696aa01f066ebdc0e25e60bab3099f0e649de456a2abf",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0seed4-t0.csv",
+   "sha256_before": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "sha256_after": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/dossier/input/t0seed4-manifest.json",
+   "sha256": "5d69e8b8b8e074243ffe3ae30660c354af4a3ebf621134d68743daf113e81469",
+   "created_this_attempt": true
+  }
+ ]
+}

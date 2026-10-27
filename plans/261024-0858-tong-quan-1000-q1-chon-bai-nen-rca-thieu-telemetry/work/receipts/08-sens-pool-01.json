@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "08-sens-pool-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/sensitivity.py work/appraisal/f-scores.csv 10 work/sensitivity-t2-pool.csv --xcheck work/appraisal/xcheck-r2.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/08-sens-pool-01.out",
+ "egress_trace_reference": "work/logs/08-sens-pool-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T20:44:15.423388+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "65f969876e37864f1299b0cab4b4d30681d3d747778499baf1ea9c305ecc8c39",
+  "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321"
+ ],
+ "output_hashes": [
+  "9d05e95322f0d0594e69fca24ae941312e10f66a4a35885887ecf6b5e00c7084"
+ ],
+ "checks": [
+  "18 weight scenarios plus xcheck cell scenarios over all gated T2 rows"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "6f95cd65ef22143f4b3978065a1547f1bd4dfa477235105d793e5a7d7056df3c",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/sensitivity.py work/appraisal/f-scores.csv 10 work/sensitivity-t2-pool.csv --xcheck work/appraisal/xcheck-r2.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "19631e0a91c5845b63f0031c56588688de58b665ea577070ebdfedfc2c3c7df4",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/appraisal/f-scores.csv",
+   "sha256_before": "65f969876e37864f1299b0cab4b4d30681d3d747778499baf1ea9c305ecc8c39",
+   "sha256_after": "65f969876e37864f1299b0cab4b4d30681d3d747778499baf1ea9c305ecc8c39",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/appraisal/xcheck-r2.csv",
+   "sha256_before": "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321",
+   "sha256_after": "17c60f273868a238176aadd30893497cd89102997391e3b78ea3c9d49543f321",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/sensitivity-t2-pool.csv",
+   "sha256": "9d05e95322f0d0594e69fca24ae941312e10f66a4a35885887ecf6b5e00c7084",
+   "created_this_attempt": true
+  }
+ ]
+}

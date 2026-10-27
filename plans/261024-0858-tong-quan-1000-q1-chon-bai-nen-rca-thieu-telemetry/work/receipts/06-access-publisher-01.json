@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "06-access-publisher-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fulltext-publisher-oa.py work/access-ledger.csv work/access-ledger-a02.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/06-access-publisher-01.out",
+ "egress_trace_reference": "work/logs/06-access-publisher-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:38:32.248478+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "bb61d06ee1b173886973c6d3f670880a85ea74e231265e97fcf61ef5d3b0f90c",
+  "270d15478c6e590d419003b9107e7aee5d55534a7cc8f8c10a8daaa785d0405f"
+ ],
+ "output_hashes": [
+  "4eae6b6ba70ffb13ba3aca468e5d6d9ce34fda05f882c55a5f636c0d03b28841"
+ ],
+ "checks": [
+  "publisher OA endpoints for OA-flagged no-access records"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "ab3f9b77fc3da3e455698983da88b8cd0b16d5b86ef4a3cd35bbb8fbd6fa8c5d",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fulltext-publisher-oa.py work/access-ledger.csv work/access-ledger-a02.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "148d397e82f26f65517285171921d0b6d968c0d53cd38b5552dadb587e8c0d61",
+   "stderr_sha256": "974d425bddf42a5a120f37dcace169d3783a6779157314bb7f63ecf03cb73199",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/access-ledger.csv",
+   "sha256_before": "bb61d06ee1b173886973c6d3f670880a85ea74e231265e97fcf61ef5d3b0f90c",
+   "sha256_after": "bb61d06ee1b173886973c6d3f670880a85ea74e231265e97fcf61ef5d3b0f90c",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/fulltext-publisher-oa.py",
+   "sha256_before": "270d15478c6e590d419003b9107e7aee5d55534a7cc8f8c10a8daaa785d0405f",
+   "sha256_after": "270d15478c6e590d419003b9107e7aee5d55534a7cc8f8c10a8daaa785d0405f",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/access-ledger-a02.csv",
+   "sha256": "4eae6b6ba70ffb13ba3aca468e5d6d9ce34fda05f882c55a5f636c0d03b28841",
+   "created_this_attempt": true
+  }
+ ]
+}

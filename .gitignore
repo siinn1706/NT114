@@ -4,4 +4,29 @@ private/
 plans/*/work/raw/
 __pycache__/
 *.pyc
+# Local runtimes, downloaded copyrighted papers, and diagnostic crash dumps.
+plans/*/kaggle/runtime/
+nt114-decomprca/paper/
+*.stackdump
+# Benchmark inputs, inference archives and native telemetry logs use private artifact storage.
+plans/*/kaggle/*.zip
+plans/*/kaggle/*.zip.sha256
+# Regenerable test runs from historical reviews; review prose and scripts remain tracked.
+plans/review-runtime-*/analysis-fixture/
+plans/review-runtime-*/probe/
+plans/review-runtime-*/pytest*/
+plans/review-runtime-*/resume-probe/
+plans/review-runtime-*/serve-env-probe/
+plans/review-runtime-*/*.sqlite
+plans/review-runtime-*/*.log
+# Literature response tables are preserved as one private artifact, not repeated CSVs in Git.
+plans/*/work/records/
+plans/*/work/logs/
+plans/*/work/dossier/search/
+plans/*/work/*.sqlite
+# Publication staging, remote file cache and metadata-only local inventories.
+plans/*/publish-stage/
+plans/*/download-cache/
+plans/*/untracked-inventory.json
+plans/*/hf-readme-before.txt
 ~$*

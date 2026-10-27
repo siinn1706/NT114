@@ -1,0 +1,115 @@
+{
+ "checks": [
+  {
+   "check": "arm ids are exactly l0, ra, ra_im1, ra_im1_shuf",
+   "ok": true,
+   "detail": [
+    "l0",
+    "ra",
+    "ra_im1",
+    "ra_im1_shuf"
+   ]
+  },
+  {
+   "check": "every arm makes one call per answer",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "retrieval is none for every arm",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "train_structure: l0 and ra none; ra_im1 im1_frame; ra_im1_shuf im1_frame_shuffled",
+   "ok": true,
+   "detail": {
+    "l0": "none",
+    "ra": "none",
+    "ra_im1": "im1_frame",
+    "ra_im1_shuf": "im1_frame_shuffled"
+   }
+  },
+  {
+   "check": "l0 is the existing unchanged arm with evidence.py v3 and prompt v1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "decision map covers D2 D3 D6 D7 D8 D10 D11 D12 D13",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "check ids unique",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "every row names a phase and an artifact",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "addendum section B maps D11 conditions 1-7",
+   "ok": true,
+   "detail": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ]
+  },
+  {
+   "check": "addendum keeps retrieval = none meaning",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "addendum marked not approved",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "no approval claim in addendum or spec",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "arm ids named in addendum and spec exist",
+   "ok": true,
+   "detail": [
+    "ra",
+    "ra_im1",
+    "ra_im1_shuf"
+   ]
+  },
+  {
+   "check": "spec path counts sum to the recounted pool records (test 285, val 210)",
+   "ok": true,
+   "detail": {
+    "rows": 5,
+    "totals": {
+     "test": 285,
+     "val": 210
+    }
+   }
+  },
+  {
+   "check": "membership recount has no design mismatch",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "sha256": {
+  "data-contract-addendum-im1-draft.md": "438f8b17401a045ac20e88311c43cb07f366acb4ba34724783787c4c2c136709",
+  "arm-ids.csv": "3be44111f8e2ab141c5d43d6fb2f34b7c3e66aa0737311eaa0e1d3d3ec5f35d6",
+  "decision-check-map.csv": "24a6ad58147750cbad68b0dbea1fe5144979dab7d47994789ba3235f0e41ff83",
+  "path-selection-spec.md": "90623a22e8af8048d69cf00e14b363270149f474f0e2b4244a89fd4f805da913",
+  "h1-membership-recheck.csv": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1"
+ },
+ "failed": 0
+}

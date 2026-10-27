@@ -1,0 +1,131 @@
+{
+ "checks": [
+  {
+   "check": "arm ids are exactly l0, ra, ra_im1, ra_im1_shuf",
+   "ok": true,
+   "detail": [
+    "l0",
+    "ra",
+    "ra_im1",
+    "ra_im1_shuf"
+   ]
+  },
+  {
+   "check": "every arm makes one call per answer",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "retrieval is none for every arm",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "train_structure: l0 and ra none; ra_im1 im1_frame; ra_im1_shuf im1_frame_shuffled",
+   "ok": true,
+   "detail": {
+    "l0": "none",
+    "ra": "none",
+    "ra_im1": "im1_frame",
+    "ra_im1_shuf": "im1_frame_shuffled"
+   }
+  },
+  {
+   "check": "l0 is the existing unchanged arm with evidence.py v3 and prompt v1",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "decision map covers D2 D3 D6 D7 D8 D10 D11 D12 D13",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "check ids unique",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "every row names a phase and an artifact",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "addendum section B maps D11 conditions 1-7",
+   "ok": true,
+   "detail": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ]
+  },
+  {
+   "check": "addendum keeps retrieval = none meaning",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "rule text keys frames by (dataset, dataset_subset, system, split) only",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "rule text fixes validity at 3 and one shuffle seed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "rule text has the reporting clause",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "D10-a no longer requires the group CI to be at least as wide",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "no approval claim in addendum or spec",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "arm ids named in addendum and spec exist",
+   "ok": true,
+   "detail": [
+    "l0",
+    "ra",
+    "ra_im1",
+    "ra_im1_shuf"
+   ]
+  },
+  {
+   "check": "spec path counts sum to the recounted pool records (test 285, val 210)",
+   "ok": true,
+   "detail": {
+    "rows": 4,
+    "totals": {
+     "test": 285,
+     "val": 210
+    }
+   }
+  },
+  {
+   "check": "membership recount has no design mismatch",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "sha256": {
+  "data-contract-addendum-im1-a02.md": "fad92fee609ed4abc4a190ccfb8f93e69ef704a3c9313abadec5ec75f98c51a5",
+  "arm-ids-a02.csv": "4b3ec83fb6abc9c9b5c4e75a92cc9de1b801c38adf93ba23c81c2f9e01b8ceea",
+  "decision-check-map-a02.csv": "990cfc98f96f1a48cc2a1e408b2741b58137280f02b5f7a61b131f451b3353cc",
+  "path-selection-spec-a02.md": "8c79e7df1c92d39f5ce960822eb811f837fb789aaec88273c08dc7f361eb86ea",
+  "h1-membership-recheck.csv": "2a02d52d87039b52017a8a275b2aa0cc32593b86276d803392916458b39897e1"
+ },
+ "failed": 0
+}

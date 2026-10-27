@@ -1,0 +1,109 @@
+{
+ "schema_version": 2,
+ "id": "03-check-plan-a02-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 C:/Users/Siinn/.claude/skills/nckh-plan/references/_shared/scripts/check-plan.py .",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/03-check-plan-a02-01.out",
+ "egress_trace_reference": "work/logs/03-check-plan-a02-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:25:23.585424+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "66a4dfe25e67690c33dc1a55ba41bdce546b201a1e83368aff986933956307b3",
+  "e906803e2f227db7cfc17a02e960bc09cfc180bd1ef5ed46710b20bd24c7d248",
+  "c60de8aa655f8a6e75e2628e6c0cafb0cf04c60c971de4c0c4fe830182d1a66f",
+  "ceda663281599c430996a53ef46d48bda996e5b26499477b6fa57dda5e4d5a86",
+  "04e326c5ab032f23c59654a732873f9ec9934f7cc1779e43c79c010db455b9f2",
+  "cb0b183273ee12e630e19faaf3394954dc1bf90a343cbf09a31893d247899926"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "check-plan after a02, S1, D10-a and scope 03-08 updates"
+ ],
+ "limitations": [
+  "structural check only"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 C:/Users/Siinn/.claude/skills/nckh-plan/references/_shared/scripts/check-plan.py .",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "cf5edfddd53aa3385f66398dd734c8417878d0d68bfe2786828a2dc86fae0aac",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "plan.md",
+   "sha256_before": "66a4dfe25e67690c33dc1a55ba41bdce546b201a1e83368aff986933956307b3",
+   "sha256_after": "66a4dfe25e67690c33dc1a55ba41bdce546b201a1e83368aff986933956307b3",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-01-phu-luc-data-contract-va-ma-arm.md",
+   "sha256_before": "e906803e2f227db7cfc17a02e960bc09cfc180bd1ef5ed46710b20bd24c7d248",
+   "sha256_after": "e906803e2f227db7cfc17a02e960bc09cfc180bd1ef5ed46710b20bd24c7d248",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-02-kiem-truoc-trien-khai.md",
+   "sha256_before": "c60de8aa655f8a6e75e2628e6c0cafb0cf04c60c971de4c0c4fe830182d1a66f",
+   "sha256_after": "c60de8aa655f8a6e75e2628e6c0cafb0cf04c60c971de4c0c4fe830182d1a66f",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-03-thanh-phan-chung-va-tool-tat-dinh.md",
+   "sha256_before": "ceda663281599c430996a53ef46d48bda996e5b26499477b6fa57dda5e4d5a86",
+   "sha256_after": "ceda663281599c430996a53ef46d48bda996e5b26499477b6fa57dda5e4d5a86",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-05-khung-im1-va-kiem-ro-ri.md",
+   "sha256_before": "04e326c5ab032f23c59654a732873f9ec9934f7cc1779e43c79c010db455b9f2",
+   "sha256_after": "04e326c5ab032f23c59654a732873f9ec9934f7cc1779e43c79c010db455b9f2",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "phase-06-confidence-thong-ke-va-power.md",
+   "sha256_before": "cb0b183273ee12e630e19faaf3394954dc1bf90a343cbf09a31893d247899926",
+   "sha256_after": "cb0b183273ee12e630e19faaf3394954dc1bf90a343cbf09a31893d247899926",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

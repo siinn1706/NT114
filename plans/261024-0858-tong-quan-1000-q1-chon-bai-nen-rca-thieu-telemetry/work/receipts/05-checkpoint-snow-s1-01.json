@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-snow-s1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 screen-snow-s1 05-merge-snow-s1-01 --in work/screen/input/snow-manifest.json --out work/screen/snow-s1-merged.csv --out work/screen/all2-s1-merged.csv --note 105 snowball r1 records screened, no anchor drift",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-snow-s1-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-snow-s1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:03:47.930526+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43"
+ ],
+ "output_hashes": [
+  "83d15aa098af35e0308cafb0e11ea546729286a9985436be5550cf31ffcc556a"
+ ],
+ "checks": [
+  "phase 05 snow screening committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "e6f78386bb69da0c8bdf34f4cdde0950bd5eb7c2d0692a4f695f5960a73a18d7",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 screen-snow-s1 05-merge-snow-s1-01 --in work/screen/input/snow-manifest.json --out work/screen/snow-s1-merged.csv --out work/screen/all2-s1-merged.csv --note 105 snowball r1 records screened, no anchor drift",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "b0215e287c86bce523f81d5bc776d345c95d3fedb97783ca4cc55d1db65a5fea",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/snow-s1-merged.csv",
+   "sha256_before": "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43",
+   "sha256_after": "3bc201e9916faff092f6f310ff9e082a6f10bd35fece8af43cd340af42d36d43",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "83d15aa098af35e0308cafb0e11ea546729286a9985436be5550cf31ffcc556a",
+   "created_this_attempt": true
+  }
+ ]
+}

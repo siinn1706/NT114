@@ -1,0 +1,40 @@
+{
+  "fixture": "synthetic",
+  "rows": 18,
+  "first_run_top_k": 3,
+  "second_run_top_k": 1,
+  "grid_byte_identical": true,
+  "actual_hit_counts": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+  ],
+  "recorded_config_top_k": 1,
+  "requested_conditions": [
+    "full"
+  ],
+  "observed_conditions": [
+    "blind_nonroot",
+    "blind_root",
+    "full",
+    "metrics_only",
+    "no_log",
+    "no_metric",
+    "no_trace"
+  ]
+}

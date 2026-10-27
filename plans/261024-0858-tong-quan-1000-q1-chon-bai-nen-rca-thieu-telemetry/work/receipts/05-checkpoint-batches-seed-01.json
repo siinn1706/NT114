@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-batches-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 batches-seed 05-screen-batches-seed-01 --in work/records/t0seed4-t0.csv --out work/screen/input/seed-manifest.json --out work/screen/input/seed-000.jsonl --out work/screen/input/seed-001.jsonl --out work/screen/input/seed-002.jsonl --out work/screen/input/seed-003.jsonl --out work/screen/input/seed-004.jsonl --out work/screen/input/seed-005.jsonl --out work/screen/input/seed-006.jsonl",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-batches-seed-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-batches-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:53:01.648613+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "b7f8ac793e49fe1f123ff25a5009345d7c683c1c30e8f888e2deeeb88a0f239a"
+ ],
+ "output_hashes": [
+  "53c8ba9a7f2e92051724ad7d1f66adf44bfa00ae8fecac757e1319fe41d2444b"
+ ],
+ "checks": [
+  "screening batches committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "da81a9e0bd917b95a7a89be7b03df5f4c7c9403d9ec2cb888262d0861ac06ed9",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 batches-seed 05-screen-batches-seed-01 --in work/records/t0seed4-t0.csv --out work/screen/input/seed-manifest.json --out work/screen/input/seed-000.jsonl --out work/screen/input/seed-001.jsonl --out work/screen/input/seed-002.jsonl --out work/screen/input/seed-003.jsonl --out work/screen/input/seed-004.jsonl --out work/screen/input/seed-005.jsonl --out work/screen/input/seed-006.jsonl",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "e7785afe3b6f65acb86f02d341d70cd5d9bd3b8af200054e97528a73df4ea3a8",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/input/seed-manifest.json",
+   "sha256_before": "b7f8ac793e49fe1f123ff25a5009345d7c683c1c30e8f888e2deeeb88a0f239a",
+   "sha256_after": "b7f8ac793e49fe1f123ff25a5009345d7c683c1c30e8f888e2deeeb88a0f239a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "53c8ba9a7f2e92051724ad7d1f66adf44bfa00ae8fecac757e1319fe41d2444b",
+   "created_this_attempt": true
+  }
+ ]
+}

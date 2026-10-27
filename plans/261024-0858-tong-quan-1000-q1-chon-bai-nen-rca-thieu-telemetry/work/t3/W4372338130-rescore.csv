@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W4372338130,F1,5,5,Sec.IV-A.5,unchanged
+W4372338130,F2,1,1,"Sec.IV-B.1-3, Table II",unchanged (metrics only; input-scope variation counted as in T2)
+W4372338130,F3_code,2,3,GitHub API repos/AXinx/CausalRCA_code 2026-10-25; README.md,Public repo with Apache-2.0 LICENSE and README run commands verified (T2 could not check licence or run guide).
+W4372338130,F3_data,2,2,data_collected/ listing 2026-10-25,unchanged
+W4372338130,F3_compute,3,3,Sec.V; repo requirements.txt,unchanged
+W4372338130,F3_desc,1,1,Sec.IV-A.4; repo config.py,unchanged (epochs 1000 in paper vs 500 in config; hidden size absent)
+W4372338130,F4,2,2,Sec.IV-A.4-6,unchanged
+W4372338130,F5,3,3,Sec.V,unchanged
+W4372338130,F6,3,3,"Sec.IV-A.1, IV-A.5",unchanged

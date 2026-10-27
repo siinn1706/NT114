@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-sample-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0seed2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-sample-seed-01.out",
+ "egress_trace_reference": "work/logs/04-fn-sample-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:46:09.661516+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "ffac32636b8900803044682d89f8d4d3765218c457c2a63cd4761adce57a18ab"
+ ],
+ "output_hashes": [
+  "d4407271bbf74e0cd835021c2cf04ba97030d7de9076d273f030f28a9e58e1b1"
+ ],
+ "checks": [
+  "stratified FN sample drawn with seed 20261024"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "9707b671ab3a4d4baddcb4a1530508f5f9c51426bb4b56432c2646fa6284d82c",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0seed2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "269356fd86aa49212ba439cc5d0fc634d729c326f883f892f68422614e95d539",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0seed2-excluded.csv",
+   "sha256_before": "ffac32636b8900803044682d89f8d4d3765218c457c2a63cd4761adce57a18ab",
+   "sha256_after": "ffac32636b8900803044682d89f8d4d3765218c457c2a63cd4761adce57a18ab",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0seed2-fn-sample.csv",
+   "sha256": "d4407271bbf74e0cd835021c2cf04ba97030d7de9076d273f030f28a9e58e1b1",
+   "created_this_attempt": true
+  }
+ ]
+}

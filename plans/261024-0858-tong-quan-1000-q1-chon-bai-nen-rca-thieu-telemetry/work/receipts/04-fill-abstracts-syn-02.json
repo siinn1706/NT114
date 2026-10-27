@@ -1,0 +1,78 @@
+{
+ "schema_version": 2,
+ "id": "04-fill-abstracts-syn-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts.py t0syn1 --title-only",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fill-abstracts-syn-02.out",
+ "egress_trace_reference": "work/logs/04-fill-abstracts-syn-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T15:55:40.918603+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "a89998e6314e2d44e216df7680919eca79f671adc8408cc6d9c3810b92610c1c"
+ ],
+ "output_hashes": [
+  "077e55585a119b3795af78757f68e9be4a4975340e1a83a4da766d2b28c230fb",
+  "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1"
+ ],
+ "checks": [
+  "Crossref abstract lane, synonym title-only"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "23d6da5e73005152e438f5fa9f9dee76f4925940d792aaefa927a3394a1aad49",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/fill-abstracts.py t0syn1 --title-only",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "4f9d2e260d02ac360837abae428332d7a72e6e8987983c5f4f33c6241d8a9aff",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0syn1-needs-review-t0.csv",
+   "sha256_before": "a89998e6314e2d44e216df7680919eca79f671adc8408cc6d9c3810b92610c1c",
+   "sha256_after": "a89998e6314e2d44e216df7680919eca79f671adc8408cc6d9c3810b92610c1c",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/abstract-fill-t0syn1-tonly.csv",
+   "sha256": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/abstract-fill-log-t0syn1-tonly.csv",
+   "sha256": "077e55585a119b3795af78757f68e9be4a4975340e1a83a4da766d2b28c230fb",
+   "created_this_attempt": true
+  }
+ ]
+}

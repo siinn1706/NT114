@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-double-sample-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-double-sample.py seed s1 W7214070872,W7166559410",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-double-sample-seed-01.out",
+ "egress_trace_reference": "work/logs/05-double-sample-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T03:00:12.560893+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "c549dd0f672085279f92e99b68bc8f9c478364fc8fca3adef101b1b446dc2eef"
+ ],
+ "output_hashes": [
+  "a20b75be5f173b74172c05a0dd4c13b2b2b9e1059d216e3991096a0deaef2d32"
+ ],
+ "checks": [
+  "blind double-screening sample"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "423b44bdd89d722f4b82b6284c3b19feeb4f156694b75ec8997cf45b30c8c60b",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/make-double-sample.py seed s1 W7214070872,W7166559410",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "d137d7762e750f1506ca0ae39ed7734482f7fc036429c557fe23bb43b46b3bbc",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/seed-s1-merged.csv",
+   "sha256_before": "c549dd0f672085279f92e99b68bc8f9c478364fc8fca3adef101b1b446dc2eef",
+   "sha256_after": "c549dd0f672085279f92e99b68bc8f9c478364fc8fca3adef101b1b446dc2eef",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/screen/input/dbl-seed-manifest.json",
+   "sha256": "a20b75be5f173b74172c05a0dd4c13b2b2b9e1059d216e3991096a0deaef2d32",
+   "created_this_attempt": true
+  }
+ ]
+}

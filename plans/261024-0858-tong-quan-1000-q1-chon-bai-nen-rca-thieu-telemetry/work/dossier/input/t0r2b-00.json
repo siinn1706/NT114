@@ -1,0 +1,419 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Fast Dimensional Analysis for Root Cause Investigation in a Large-Scale Service Environment",
+   "identifiers": {
+    "openalex": "W2987006149",
+    "doi": "10.1145/3392149",
+    "arxiv": "1911.01225"
+   },
+   "abstract": "Root cause analysis in a large-scale production environment is challenging due to the complexity of the services running across global data centers. Due to the distributed nature of a large-scale system, the various hardware, software, and tooling logs are often maintained separately, making it difficult to review the logs jointly for understanding production issues. Another challenge in reviewing the logs for identifying issues is the scale - there could easily be millions of entities, each described by hundreds of features. In this paper we present a fast dimensional analysis framework that automates the root cause analysis on structured logs with improved scalability. We first explore item-sets, i.e. combinations of feature values, that could identify groups of samples with sufficient support for the target failures using the Apriori algorithm and a subsequent improvement, FP-Growth. These algorithms were designed for frequent item-set mining and association rule learning over transactional databases. After applying them on structured logs, we select the item-sets that are most unique to the target failures based on lift. We propose pre-processing steps with the use of a large-scale real-time database and post-processing techniques and parallelism to further speed up the analysis and improve interpretability, and demonstrate that such optimization is necessary for handling large-scale production datasets. We have successfully rolled out this approach for root cause investigation purposes within Facebook's infrastructure. We also present the setup and results from multiple production use cases in this paper.",
+   "status": "current"
+  },
+  {
+   "title": "An Intelligent Anomaly Detection Scheme for Micro-Services Architectures With Temporal and Spatial Data Analysis",
+   "identifiers": {
+    "openalex": "W2998908795",
+    "doi": "10.1109/tccn.2020.2966615"
+   },
+   "abstract": "Service-oriented 5G mobile systems are commonly believed to reshape the landscape of the Internet with ubiquitous services and infrastructures. The micro-services architecture has attracted significant interests from both academia and industry, offering the capabilities of agile development and scale capacity. The emerging mobile edge computing is able to firmly maintain efficient resource utility of 5G systems, which can be empowered by micro-services. However, such capabilities impose significant challenges on micro-services system management. Although substantial data are produced for system maintenance, the interleaved temporal-spatial information has not been fully exploited. Additionally, the flooding data impose heavy pressures on automatic analysis tools. Automated digestion of data is in an urgent need for system maintenance. In this paper, we propose a new learning-based anomaly detection framework for service-provision systems with micro-services architectures using service execution logs (temporally) and query traces (spatially). It includes two major parts: logging and tracing representation, and two-stage identification via a sequential model and temporal-spatial analysis. The experimental results show that the temporal-spatial features can accurately capture the nature of operational data. The proposed framework performs well on anomaly detection, and helps gain in-depth insights of large-scale systems.",
+   "status": "current"
+  },
+  {
+   "title": "Cloud reliability and efficiency improvement via failure risk based proactive actions",
+   "identifiers": {
+    "openalex": "W3001891115",
+    "doi": "10.1016/j.jss.2020.110524"
+   },
+   "abstract": "Abstract Due to the huge magnitude and complexity of cloud computing systems (CCS), failures are inevitable, which lead to reliability and efficiency losses. Failure mitigation, fault tolerance, and recovery actions can be performed to improve CCS reliability and efficiency. Using data collected during CCS operation, failure prediction and risk identification techniques could anticipate such failure occurrences. In this paper, we develop a framework to combine risk identification with follow-up proactive actions for CCS reliability and efficiency improvement. We start by analyzing cloud failures and the related operational data. Then a tree based predictive model is trained to diagnose high risk cloud tasks. By proactively terminating these high risk tasks, both the number of CCS failures and the resource consumption could be significantly reduced. The impact of these proactive actions can be simulated to quantify the improvement to both system reliability and efficiency. The new approach has been applied on the Google cluster dataset, covering approximately 400GB of operational data over 29 consecutive days, to demonstrate its viability and effectiveness.",
+   "status": "current"
+  },
+  {
+   "title": "Towards Intelligent Retail: Automated on-Shelf Availability Estimation Using a Depth Camera",
+   "identifiers": {
+    "openalex": "W3001972873",
+    "doi": "10.1109/access.2020.2968175"
+   },
+   "abstract": "Efficient management of on-shelf availability and inventory is a key issue to achieve customer satisfaction and reduce the risk of profit loss for both retailers and manufacturers. Conventional store audits based on physical inspection of shelves are labor-intensive and do not provide reliable assessment. This paper describes a novel framework for automated shelf monitoring, using a consumer-grade depth sensor. The aim is to develop a low-cost embedded system for early detection of out-of-stock situations with particular regard to perishable goods stored in countertop shelves, refrigerated counters, baskets or crates. The proposed solution exploits 3D point cloud reconstruction and modelling techniques, including surface fitting and occupancy grids, to estimate product availability, based on the comparison between a reference model of the shelf and its current status. No a priori knowledge about the product type is required, while the shelf reference model is automatically learnt based on an initial training stage. The output of the system can be used to generate alerts for store managers, as well as to continuously update product availability estimates for automated stock ordering and replenishment and for e-commerce apps. Experimental tests performed in a real retail environment show that the proposed system is able to estimate the on-shelf availability percentage of different fresh products with a maximum average discrepancy with respect to the actual one of about 5.0%.",
+   "status": "current"
+  },
+  {
+   "title": "System log clustering approaches for cyber security applications: A survey",
+   "identifiers": {
+    "openalex": "W3003372411",
+    "doi": "10.1016/j.cose.2020.101739"
+   },
+   "abstract": "Log files give insight into the state of a computer system and enable the detection of anomalous events relevant to cyber security. However, automatically analyzing log data is difficult since it contains massive amounts of unstructured and diverse messages collected from heterogeneous sources. Therefore, several approaches that condense or summarize log data by means of clustering techniques have been proposed. Picking the right approach for a particular application domain is, however, non-trivial, since algorithms are designed towards specific objectives and requirements. This paper therefore surveys existing approaches. It thereby groups approaches by their clustering techniques, reviews their applicability and limitations, discusses trends and identifies gaps. The survey reveals that approaches usually pursue one or more of four major objectives: overview and filtering, parsing and signature extraction, static outlier detection, and sequences and dynamic anomaly detection. Finally, this paper also outlines a concept and tool that support the selection of appropriate approaches based on user-defined requirements.",
+   "status": "current"
+  },
+  {
+   "title": "Optimal Application Deployment in Resource Constrained Distributed Edges",
+   "identifiers": {
+    "openalex": "W3003378062",
+    "doi": "10.1109/tmc.2020.2970698"
+   },
+   "abstract": "The dramatically increasing of mobile applications make it convenient for users to complete complex tasks on their mobile devices. However, the latency brought by unstable wireless networks and the computation failures caused by constrained resources limit the development of mobile computing. A popular approach to solve this problem is to establish a mobile service provisioning system based on a mobile edge computing (MEC) paradigm. In the MEC paradigm, plenty of machines are placed at the edge of the network so that the performance of applications can be optimized by using the involved microservice instances deployed on them. In this paper, we explore the deployment problem of microserivce-based applications in the MEC environment and propose an approach to help to optimize the cost of application deployment with the constraints of resources and the requirement of performance. We conduct a series of experiments to evaluate the performance of our approach. The result shows that our approach can improve the average response time of mobile services.",
+   "status": "current"
+  },
+  {
+   "title": "HIDROID: Prototyping a Behavioral Host-Based Intrusion Detection and Prevention System for Android",
+   "identifiers": {
+    "openalex": "W3004174466",
+    "doi": "10.1109/access.2020.2969626"
+   },
+   "abstract": "Previous research efforts on developing an Intrusion Detection and Prevention Systems (IDPS) for Android mobile devices rely mostly on centralized data collection and processing on a cloud server. However, this trend is characterized by two major limitations. First, it requires a continuous connection between monitored devices and the server, which might be infeasible, due to mobile network's outage or partial coverage. Second, it increases the risk of sensitive information leakage and the violation of user's privacy. To help alleviate these problems, in this paper, we develop a novel Host-based IDPS for Android (HIDROID), which runs completely on a mobile device, with a minimal computation burden. It collects data in run-time, by periodically sampling features reflecting the utilization of scarce resources on a mobile device (e.g. CPU, memory, battery, bandwidth, etc.). The detection engine exploits statistical and machine learning algorithms to build a data-driven model for the benign behavior. Any observation failing to match this model triggers an alert, and the preventive agent takes proper countermeasure(s) to minimize the risk. HIDROID requires no malicious data for training or tuning, which makes it handy for day-to-day usage. Experimental test results, on a real-life device, show that HIDROID is well able to learn and discriminate normal from malicious behavior, with very promising accuracy of up to 0.9, while maintaining false positive rate by 0.03.",
+   "status": "current"
+  },
+  {
+   "title": "Efficient and Robust Syslog Parsing for Network Devices in Datacenter Networks",
+   "identifiers": {
+    "openalex": "W3006369183",
+    "doi": "10.1109/access.2020.2972691"
+   },
+   "abstract": "Syslog parsing is of vital importance for the detection, diagnosis and prediction of network device failures in a datacenter. A common approach to syslog parsing is to extract templates from historical syslogs, after which syslogs are matched to these templates. To address the problems in the existing syslog parsing techniques, we propose a novel framework, Craftsman, which identifies frequent combinations of (syslog) words and then applies them as templates. Craftsman empirically extracts templates accurately, is extremely efficient in template matching, and naturally supports incremental learning. To compare the performance of Craftsman and three other template learning techniques designed for network devices, we experiment them on two-years' worth of syslogs collected from network devices deployed across 10+ datacenters of a tier-one service provider. The experiments demonstrate that Craftsman achieves a close-to-one accuracy (as measured by rand index), and improves the computational efficiency by 6.88 to 10.25 times in template matching, and by 730 to 6847 times in syslog parsing. It also improves the accuracy (as measured by F1 measure) of failure prediction by 13.07% to 188%. In addition, we demonstrate Craftsman's superior generality by comparing it with three widely-applied log parsing methods over five large log datasets collected from servers, distributed systems and applications.",
+   "status": "current"
+  },
+  {
+   "title": "HealthAid: Extracting domain targeted high precision procedural knowledge from on-line communities",
+   "identifiers": {
+    "openalex": "W3006574862",
+    "doi": "10.1016/j.ipm.2020.102299"
+   },
+   "abstract": "Abstract Recent advances in semantic web have shown how entity related searches have benefited from entity-based knowledge graphs. However, much of the commonsense knowledge about the real world is in the form of procedures or sequences of actions. Also, search log analysis shows that ‘how-to queries’ make up a significant amount of users’ queries. Unfortunately, these kinds of knowledge are missing from most knowledge graphs and commonsense knowledge bases in use. To empower semantic search, and other intelligent applications, computers need a much broader understanding of the world properties of everyday objects, human activities, and more. Luckily, such knowledge is abundantly available on-line and can be accessed from how-to communities. One domain of interest by on-line communities is the health domain, whereby users usually seek home remedies to common health-related issues. An example of such queries might be ‘how to stop nausea using acupressure’ or ‘how to aid digestion naturally’. To answer such questions, we need systems that understand natural language and knowledge bases with task frames of solutions in a holistic approach, including the tools required, the agents involved, and the temporal order of the actions. Our goal is to construct a machine-readable domain targeted high precision procedural knowledge base containing task frames. We developed a pipeline of methods leveraging open information extraction tool to extract procedural knowledge by tapping into on-line communities. Also, we devised a mechanism to canonicalize the task frames into clusters based on the similarity of the problems they intend to solve. The resulting know-how knowledge base, HealthAidKB, consists of more than 71 K task frames which are structured hierarchically and categorically; and can be used in many applications such as semantic search, digital personal assistants, human-computer dialog and computer vision. A comprehensive evaluation of our knowledge base shows high accuracy.",
+   "status": "current"
+  },
+  {
+   "title": "Pivot tracing",
+   "identifiers": {
+    "openalex": "W3007282366",
+    "doi": "10.1145/3378933"
+   },
+   "abstract": "Monitoring and troubleshooting distributed systems are notoriously difficult; potential problems are complex, varied, and unpredictable. The monitoring and diagnosis tools commonly used today---logs, counters, and metrics---have two important limitations: what gets recorded is defined a priori, and the information is recorded in a component- or machine-centric way, making it extremely hard to correlate events that cross these boundaries. This paper presents Pivot Tracing, a monitoring framework for distributed systems that addresses both limitations by combining dynamic instrumentation with a novel relational operator: the happened-before join. Pivot Tracing gives users, at runtime, the ability to define arbitrary metrics at one point of the system, while being able to select, filter, and group by events meaningful at other parts of the system, even when crossing component or machine boundaries. Pivot Tracing does not correlate cross-component events using expensive global aggregations, nor does it perform offline analysis. Instead, Pivot Tracing directly correlates events as they happen by piggybacking metadata alongside requests as they execute. This gives Pivot Tracing low runtime overhead---less than 1% for many cross-component monitoring queries.",
+   "status": "current"
+  },
+  {
+   "title": "Visualizing Potential Transportation Demand From ETC Log Analysis Using ELK Stack",
+   "identifiers": {
+    "openalex": "W3007774824",
+    "doi": "10.1109/jiot.2020.2974671"
+   },
+   "abstract": "Traffic conditions are among the issues most concerned with the general public, and the freeway is a large-scale Internet-of-Things application. In addition to obtaining real-time road usage information, analysis of local road usage habits is crucial in evaluations of government policy implementation. Using road usage data provided by the electronic toll collection (ETC) system, we investigated the data on road usage history on the freeways. The ELK stack was employed to construct a platform for visualizing real-time road usage information and history in this article; the platform is named the local transportation knowledge (LTK) platform. By analyzing more than 500 million pieces of data, the LTK platform proposed in this article efficiently visualized road usage data and facilitated the acquirement of local road usage knowledge. We verified that residents of other counties and cities commuted to Taichung each day. We also discovered that a considerable number of Taichung city residents were employed in Hsinchu Science Park and commuted between the two places. The LTK platform can present real-time freeway traffic conditions, facilitate in-depth analysis of local road usage data, and provide data to verify the relevant information.",
+   "status": "current"
+  },
+  {
+   "title": "Internet of things-based fog and cloud computing technology for smart traffic monitoring",
+   "identifiers": {
+    "openalex": "W3007926183",
+    "doi": "10.1016/j.iot.2020.100175"
+   },
+   "abstract": "Abstract Internet of Things (IoT) is changing the world by connecting billions of physical and virtual objects with distinctive identities to the Internet. This fusion results in generating huge volumes of data that might not be manageable using today's storage and data analytics technologies. Although cloud computing offers services to tackle this issue at infrastructural level, its efficiency for time sensitive applications (e.g. oil, gas, and traffic monitoring) is still questionable. Arguably, transferring massive amount of data to the cloud for storage and processing may lead to cloud overloading and saturation of network bandwidth. In this study, an integrated fog and cloud computing framework is introduced to overcome the limitations of real-time analytics, latency and network congestion of basic cloud services for traffic monitoring. The proposed approach is implemented to prototype a smart traffic monitoring system (STMS). The proposed monitoring system is designed for congestion monitoring and traffic light management. It can also be tuned to detect traffic incidents that requires immediate assistance during congestion. In this framework, a tiny computer-on-module serves as a fog node to collect real-time data from geographically distributed sensors and to transfer it to the cloud for storage and processing. The results show the efficiency of the fog network in improving the performance of the cloud platform in terms of reducing the response time and increasing the bandwidth. Furthermore, the proposed integrated fog and cloud framework is interfaced with Tweeter to send alerts about traffic congestion to be subscribed users in the form of Tweet messages .",
+   "status": "current"
+  },
+  {
+   "title": "An Investigation of Negative DC Partial Discharge Decomposition of SF6 Under Different Metal Materials",
+   "identifiers": {
+    "openalex": "W3008257715",
+    "doi": "10.1109/access.2020.2974536"
+   },
+   "abstract": "For determine the influence of metal materials on the negative DC partial discharge (PD) decomposition of SF6and put forward for the method of SF6DC gas insulated equipment condition monitoring and fault diagnosis based on decomposed component analysis, this study investigates the decomposition characteristics of SF6under three common metal materials (Al, 304 stainless steel, and Cu) in gas insulated equipment by using SO2, SOF2, and SO2F2as characteristic component gases under negative DC PD. Results show that the types of metal materials have substantial effects on the negative DC PD decomposition characteristics of SF6. The simulation results based on the first principles confirm the phenomena observed in the experiment: the amounts and generation rates of SOF2were the most abundant, followed by SO2F2and SO2. The calculation based on free electron cloud and finite depth particle in a box model shows that the electron current density of field emission has the relationship with metal work function γ and electrical field E: j(0, E) ≈ (BE2/γ) exp(-Dγ3/2/E), where B and D is constants. The electron current density by field emission is inversely proportional to the work function of metal with constant electric field. The metal material with smaller work function means the greater electron current density, further promoting the decomposition of SF6to generate more characteristic component gases. The results can well explain the phenomena observed in the experiment, that is, the decomposition of SF6is the most serious under Al electrode with lowest work function, followed by 304 stainless steel, and Cu.",
+   "status": "current"
+  },
+  {
+   "title": "Scalability Assessment of Microservice Architecture Deployment Configurations: A Domain-based Approach Leveraging Operational Profiles and Load Tests",
+   "identifiers": {
+    "openalex": "W3008333712",
+    "doi": "10.1016/j.jss.2020.110564"
+   },
+   "abstract": "Microservices have emerged as an architectural style for developing distributed applications. Assessing the performance of architecture deployment configurations — e.g., with respect to deployment alternatives — is challenging and must be aligned with the system usage in the production environment. In this paper, we introduce an approach for using operational profiles to generate load tests to automatically assess scalability pass/fail criteria of microservice configuration alternatives. The approach provides a Domain-based metric for each alternative that can, for instance, be applied to make informed decisions about the selection of alternatives and to conduct production monitoring regarding performance-related system properties, e.g., anomaly detection. We have evaluated our approach using extensive experiments in a large bare metal host environment and a virtualized environment. First, the data presented in this paper supports the need to carefully evaluate the impact of increasing the level of computing resources on performance. Specifically, for the experiments presented in this paper, we observed that the evaluated Domain-based metric is a non-increasing function of the number of CPU resources for one of the environments under study. In a subsequent series of experiments, we investigate the application of the approach to assess the impact of security attacks on the performance of architecture deployment configurations.",
+   "status": "current"
+  },
+  {
+   "title": "A Framework of Virtual War Room and Matrix Sketch-Based Streaming Anomaly Detection for Microservice Systems",
+   "identifiers": {
+    "openalex": "W3009134255",
+    "doi": "10.1109/access.2020.2977464"
+   },
+   "abstract": "Recently, microservice has been a popular architecture to construct cloud-native systems. This novel architecture brings agility and accelerates the software development process significantly. However, it is not easy to manage and operate microservice systems due to their scale and complexity. Many approaches are proposed to automatically operate microservice systems such as anomaly detection. Nevertheless, those methods cannot be sufficiently validated and compared due to a lack of real microservice systems, which leads to the slow process of intelligent operation. These challenges inspire us to build a system named “VWR”, a framework of Virtual War Room for operating microservice applications which allows users to simulate their microservice architectures with low overhead and inject multiple types of faults into the microservice system with chaos engineering. VWR can mimic user requests and record the end-to-end tracing data (i.e., service call chains) for each request in a way consistent with OpenTracing. With easily designed tests and the produced streaming tracing data, the users can validate the performance of their intelligent operation algorithms and improve the algorithms as needed. Besides, based on the streaming tracing data generated by VWR, we introduce a novel unsupervised anomaly detection algorithm based on Matrix Sketch and set it as a default intelligent operation algorithm in VWR. This algorithm can detect anomalies by analyzing high-dimensional performance data collected from a microservice system in a streaming manner. The experimental result in VWR shows that the matrix sketch based method can precisely detect anomalies in microservice systems and outperform some widely used anomaly detection methods such as isolation forest in some scenario. We believe more approaches on the intelligent operation of microservice systems can be constructed based on VWR.",
+   "status": "current"
+  },
+  {
+   "title": "PredictDeep: Security Analytics as a Service for Anomaly Detection and Prediction",
+   "identifiers": {
+    "openalex": "W3009354171",
+    "doi": "10.1109/access.2020.2977325"
+   },
+   "abstract": "As businesses embrace digitization, the Internet of Everything (IoE) begins to take shape and the Cloud continues to empower new innovations for big data -at the heart, Cloud analytic applications gain increasing momentum. Such applications have remarkable benefits for big data processing, making it easy, fast, scalable, and cost-effective; albeit, they pose many security risks. Security breaches causing anomalous activities due to malicious, vulnerable, or misconfigured analytic applications are considered the top security risks to big “sensitive” data. The risk is further expanded from the coupling of data analytics with the Cloud. Towards maintaining secure and trustworthy applications, effective anomaly detection and prediction become crucial tasks to be offered by Cloud providers. This paper presents, PredictDeep, a novel security analytics framework for anomaly detection and prediction. The proposed framework leverages log data collected from monitoring systems with graph analytics and deep learning techniques to add intelligence for detecting and predicting known and unknown patterns of security anomalies. It represents the collected data and transforms them into a graph model. The graph model captures the analytical activities as well as their interrelation. In this sense, such a model provides informed insight of the monitored application, understanding its behavior, and revealing anomalous patterns. Different from existing traditional rule-based machine learning and statistics-based approaches, our solution takes the benefits of incorporating not only available node attributes but also graph structure and context information to extract rich features that boost the anomaly classification and prediction. We leverage graph embeddings to represent the nodes and relationships in the graph model as feature vectors to learn and predict anomalies in an inductive way utilizing recent advanced deep graph neural network techniques. This design augments our solution with robustness and computational efficiency. Extensive experiments are conducted over an open-source Hadoop log dataset. The evaluation results demonstrate that PredictDeep is a viable solution and very effective.",
+   "status": "current"
+  },
+  {
+   "title": "Hawkeye: Adaptive Straggler Identification on Heterogeneous Spark Cluster With Reinforcement Learning",
+   "identifiers": {
+    "openalex": "W3011339785",
+    "doi": "10.1109/access.2020.2982320"
+   },
+   "abstract": "It is a common sense that people harbors the belief that stragglers exert huge influence upon the performance conducted by the analysis systems of big data for the reason of poor performance made by some computing nodes, data skew and so on. Accordingly, stragglers have been billed as an indispensable bottleneck in Map-Reduce framework processing. However, existing studies on stragglers identification are targeting coarse-grained detection, schedule level optimization and off-line log based cause analysis. Accuracy identifying the stragglers in time for each job, however, is an extremely tough because (1) Auite a number of root causes for stragglers in data analytics frameworks;(2) The number of key parameters affecting stragglers identification; and (3) The different clusters configurations, and their impact on the stragglers detection, vary among different job types and sizes. Either existing solutions adopt a “tweak-and-pray” manual tuning approach, which is complex, time-consuming and error-prone, or only most of them fix theirs eyes upon coarse-grained straggler detection. In this paper, we systematically conduct the exploration on the fundamental problem of automatic, adaptive straggler identification on big data analytics platform. Under the inspiration of the recent triumphs over implementing Reinforcement Learning (RL) techniques for solving complex online optimal problems, we conducted investigation that Reinforcement learning are reasonably employed to adaptively opt the optimal parameters to identify stragglers free of the intervention of human beings. Specifically, we propose Hawkeye, a general adaptive speculative execution system which identifies stragglers by reinforcement are learning to launch speculative tasks on heterogeneous cluster at runtime. In accordance with the experimental conclusions, Hawkeye manages to cut down the job completion time over the distinct type applications. An instance is that it reveals as many as nearly 37% decrease average job completion time based on an improvement of 23% on the preciseness of the present resolutions to the heterogeneous cluster.",
+   "status": "current"
+  },
+  {
+   "title": "An ensemble-based approach to the security-oriented classification of low-level log traces",
+   "identifiers": {
+    "openalex": "W3013618497",
+    "doi": "10.1016/j.eswa.2020.113386"
+   },
+   "abstract": "Abstract Traditionally, Expert Systems have found a natural application in the behavioral analysis of processes. In fact, they have proved effective in the tasks of interpreting the data collected during the process executions and of analyzing these data with the aim of diagnosing/detecting anomalies. In this context, we focus on log data generated by executions of business processes, and consider the issue of detecting “insecure” process instances, involving some kind of security breach (e.g. attacks, frauds). We propose a hybrid framework for accomplishing a security-oriented classification of activity-unawaretraces, i.e., traces consisting of “low-level” events with no explicit reference to the “high-level” activities the analysts are typically familiar with. The framework integrates two classification approaches traditionally used as alternative ways to decide on the “secureness” of process traces: (i) a model-driven approach, using knowledge of behavioral models expressed at the abstraction level of the activities, and (ii) an example driven approach, exploiting the availability of event sequences labeled by experts as symptomatic of “secure” or “insecure” behavior. The core of our solution is a meta-classifier combining (i) and (ii) thanks to a probabilistic Montecarlo mechanism that allows the traces to be simultaneously viewed as sequences of low-level events and of high-level activities. The framework has been empirically proved effective in jointly exploiting the two aforementioned forms of knowledge/expertise, typically coming from different experts, and in acting as a sort of “super-expert” classification tool. Its accuracy and efficiency make it a solid basis for implementing a novel kind of expert system for the security-oriented monitoring/analysis of business processes.",
+   "status": "current"
+  },
+  {
+   "title": "PHYAlert: identity spoofing attack detection and prevention for a wireless edge network",
+   "identifiers": {
+    "openalex": "W3013867504",
+    "doi": "10.1186/s13677-020-0154-7"
+   },
+   "abstract": "Abstract Delivering service intelligence to billions of connected devices is the next step in edge computing. Wi-Fi, as the de facto standard for high-throughput wireless connectivity, is highly vulnerable to packet-injection-based identity spoofing attacks (PI-ISAs). An attacker can spoof as the legitimate edge coordinator and perform denial of service (DoS) or even man-in-the-middle (MITM) attacks with merely a laptop. Such vulnerability leads to serious systematic risks, especially for the core edge/cloud backbone network.In this paper, we propose PHYAlert, an identity spoofing attack alert system designed to protect a Wi-Fi-based edge network. PHYAlert profiles the wireless link with the rich dimensional Wi-Fi PHY layer information and enables real-time authentication for Wi-Fi frames. We prototype PHYAlert with commercial off-the-shelf (COTS) devices and perform extensive experiments in different scenarios. The experiments verify the feasibility of spoofing detection based on PHY layer information and show that PHYAlert can achieve an 8x improvement in the false positive rate over the conventional signal-strength-based solution.",
+   "status": "current"
+  },
+  {
+   "title": "Security requirements identification and prioritization for smart toys",
+   "identifiers": {
+    "openalex": "W3013954076",
+    "doi": "10.1016/j.elerap.2020.100972"
+   },
+   "abstract": "A smart toy is a traditional toy (e.g., car, doll and stuffed pet) that can use sensors and cloud-based services to leverage data collection to learn user's preferences and provide them with more personalized experiences. The high connectivity and the \"intelligent\" nature of smart toys are indeed appealing for children. Nevertheless, connected devices are easy targets of hacking and personal data exchanged with cloud services raises many security concerns, especially when the main target audience are vulnerable users, i.e., children. Many security breaches have been found in bestseller smart toys, and several security incidents have been reported. Many organizations (e.g., FBI, Consumers International and Mozilla) have raised alerts to parents pointing to the risks associated with such products. Many studies have been published trying to solve or mitigate security problems in smart toys, but they usually focus on specific aspects of the toy architecture and usage. In this paper, we show how we used the Microsoft SDL method to identify a comprehensive list of security issues based on specific regulations (e.g., COPPA, PIPPEDA, GDPR), threats based on surface attack analysis, and security requirements that address security issues and threats. We also present a method we adopt to prioritize the security requirements based on risk assessment, the AHP method and generic scenarios. Although the security requirements we identify and prioritize may not be sufficient to all cases, they are comprehensive enough to cover most scenarios. Furthermore, the rationale we provide of how to use the SDL process to identify and prioritize security requirements may be useful to tailor the requirements and the priority list to specific contexts.",
+   "status": "current"
+  },
+  {
+   "title": "Minority Disk Failure Prediction Based on Transfer Learning in Large Data Centers of Heterogeneous Disk Systems",
+   "identifiers": {
+    "openalex": "W3016129047",
+    "doi": "10.1109/tpds.2020.2985346"
+   },
+   "abstract": "The storage system in large scale data centers is typically built upon thousands or even millions of disks, where disk failures constantly happen. A disk failure could lead to serious data loss and thus system unavailability or even catastrophic consequences if the lost data cannot be recovered. While replication and erasure coding techniques have been widely deployed to guarantee storage availability and reliability, disk failure prediction is gaining popularity as it has the potential to prevent disk failures from occurring in the first place. Recent trends have turned toward applying machine learning approaches based on disk SMART attributes for disk failure predictions. However, traditional machine learning (ML) approaches require a large set of training data in order to deliver good predictive performance. In large-scale storage systems, new disks enter gradually to augment the storage capacity or to replace failed disks, leading storage systems to consist of small amounts of new disks from different vendors and/or different models from the same vendor as time goes on. We refer to this relatively small amount of disks as minority disks. Due to the lack of sufficient training data, traditional ML approaches fail to deliver satisfactory predictive performance in evolving storage systems which consist of heterogeneous minority disks. To address this challenge and improve the predictive performance for minority disks in large data centers, we propose a minority disk failure prediction model named TLDFP based on a transfer learning approach. Our evaluation results in two realistic datasets have demonstrated that TLDFP can deliver much more precise results and lower additional maintenance cost, compared to four popular prediction models based on traditional ML algorithms and two state-of-the-art transfer learning methods.",
+   "status": "current"
+  },
+  {
+   "title": "Confidence guided anomaly detection model for anti-concept drift in dynamic logs",
+   "identifiers": {
+    "openalex": "W3016874949",
+    "doi": "10.1016/j.jnca.2020.102659"
+   },
+   "abstract": "Abstract Log data records system state and runtime behaviors, and is usually used to diagnose system failures and detect anomalies. However, the accuracy of log-based anomaly detection algorithms will reduce dramatically in dynamic logs since the system more complex than ever before, a phenomenon known as concept drift. In this paper, we design a confidence-guide anomaly detection model that combines multiple algorithms, called Multi-CAD. We first propose a statistical value p_value to measure the non-conformity between logs and establish a link in the new log and previous logs, and can also choose multiple suitable algorithms as the non-conformity measure to calculate scores for combined detection instead of to make a decision. And then, we design a confidence-guided parameter adjustment method to anti-concept drift in dynamic logs and update the score set with the corresponding label from a trusted result that contains a label, non-conformity score, and confidence by a feedback mechanism as the previous experience for the following-up detection. Finally, we demonstrate that Multi-CAD will make a balance performance in precision rate, recall rate, and F_measure, and detect actual anomalies on multiple datasets. An extensive set of experiment results highlight that Multi-CAD will increase almost 20% on average in recall rate and F_measure compared with four typical algorithms on the HDFS benchmark dataset, where it achieves 98.2% in precision rate, 95.2% in recall rate, and 96.7% in F_measure.",
+   "status": "current"
+  },
+  {
+   "title": "A Time Convolutional Network Based Outlier Detection for Multidimensional Time Series in Cyber-Physical-Social Systems",
+   "identifiers": {
+    "openalex": "W3020543937",
+    "doi": "10.1109/access.2020.2988797"
+   },
+   "abstract": "With the development of the Cyber-Physical-Social Systems(CPSS), a large number of multidimensional time series have been generated in today's world, such as: sensor data for industrial equipment operation, vehicle driving data, and cloud server operation and maintenance data and so on. The key task of Cloud-Fog-Edge Computing in managing these systems is how to detect anomalous data in a specific time series to facilitate operator action to solve potential system problems. So multidimensional time series outlier detection become an important direction of CPSS data mining and Cloud-Fog-Edge Computing research, and it has a wide range of applications in industry, finance, medicine and other fields. This paper proposes a framework called Multidimensional time series Outlier detection based on a Time Convolutional Network AutoEncoder (MOTCN-AE), which can detect outliers in time series data, such as identifying equipment failures, dangerous driving behaviors of cars, etc. Specifically, this paper first uses a feature extraction method to transform the original time series into a feature-rich time series. Second, the proposed TCN-AE is used to reconstruct the feature-rich time series data, and the reconstruction error is used to calculate outlier scores. Finally, the MOTCN-AE framework is validated by multiple time series datasets to demonstrate its effectiveness in detecting time series outliers.",
+   "status": "current"
+  },
+  {
+   "title": "A transaction log analysis of EBSCO Discovery Service using Google Analytics: the methodology",
+   "identifiers": {
+    "openalex": "W3020982579",
+    "doi": "10.1108/lht-09-2019-0199"
+   },
+   "abstract": "Purpose The article presents a methodology that can be used to analyze data from the transaction log of EBSCO Discovery Service searches recorded in Google Analytics. It explains the steps to follow for exporting the data, analyzing the data, and recreating searches. The article provides suggestions to improve the quality of research on the topic. It also includes advice to vendors on improving the quality of transaction log software. Design/methodology/approach Case study Findings Although Google Analytics can be used to study transaction logs accurately, vendors still need to improve the functionality so librarians can gain the most benefit from it. Research limitations/implications The research is applicable to the usage of Google Analytics with EBSCO Discovery Service. Practical implications The steps presented in the article can be followed as a step-by-step guide to repeating the study at other institutions. Social implications The methodology in this article can be used to assess how library instruction can be improved. Originality/value This article provides a detailed description of a transaction log analysis process that other articles have not previously described. This includes a description of a methodology for accurately calculating statistics from Google Analytics data and provides steps for recreating accurate searches from data recorded in Google Analytics.",
+   "status": "current"
+  },
+  {
+   "title": "Federated Learning: Challenges, Methods, and Future Directions",
+   "identifiers": {
+    "openalex": "W3021654819",
+    "doi": "10.1109/msp.2020.2975749",
+    "arxiv": "1908.07873"
+   },
+   "abstract": "Federated learning involves training statistical models over remote devices or siloed data centers, such as mobile phones or hospitals, while keeping data localized. Training in heterogeneous and potentially massive networks introduces novel challenges that require a fundamental departure from standard approaches for large-scale machine learning, distributed optimization, and privacy-preserving data analysis. In this article, we discuss the unique characteristics and challenges of federated learning, provide a broad overview of current approaches, and outline several directions of future work that are relevant to a wide range of research communities.",
+   "status": "current"
+  },
+  {
+   "title": "Self-Adaptive Root Cause Diagnosis for Large-Scale Microservice Architecture",
+   "identifiers": {
+    "openalex": "W3022004659",
+    "doi": "10.1109/tsc.2020.2993251"
+   },
+   "abstract": "The emergence of microservice architecture in Cloud systems poses a new challenges for the reliability operation and maintenance. Due to numerous services and diverse types of metrics, it is time-consuming and challenging to identify the root cause of anomaly in large-scale microservice architecture. To solve this issue, this article presents a multi-metric and self-adaptive root cause diagnosis framework, named MS-Rank. MS-Rank decomposes the task into four phases: impact graph construction, random walk diagnosis, result precision evaluation, metrics weight update. Initially, we introduce the concept of implicit metrics and propose a composite impact graph construction algorithm, using multiple types of metrics to discover causal relationships between services. Afterwards, we propose a diagnostic algorithm in which forward, selfward and backward transitions are designed to heuristically identify the root cause services. In addition, we establish a self-adaptive mechanism to update the confidence of different metrics dynamically according to their diagnostic precision. Lastly, we develop a prototype system and integrate MS-Rank into real production system - IBM Cloud. Experimental results show that MS-Rank has a high diagnostic precision and its performance outperforms several selected benchmarks. Through multiple rounds of diagnosis, MS-Rank can optimize itself effectively. MS-Rank can be rapidly deployed in various microservice-based systems and applications, requiring no predefined knowledge. MS-Rank also allows us to introduce expert experiences into its framework to improve the diagnostic efficiency and precision.",
+   "status": "current"
+  },
+  {
+   "title": "Requirements of Health Data Management Systems for Biomedical Care and Research: Scoping Review",
+   "identifiers": {
+    "openalex": "W3023080778",
+    "doi": "10.2196/17508"
+   },
+   "abstract": "BACKGROUND: Over the last century, disruptive incidents in the fields of clinical and biomedical research have yielded a tremendous change in health data management systems. This is due to a number of breakthroughs in the medical field and the need for big data analytics and the Internet of Things (IoT) to be incorporated in a real-time smart health information management system. In addition, the requirements of patient care have evolved over time, allowing for more accurate prognoses and diagnoses. In this paper, we discuss the temporal evolution of health data management systems and capture the requirements that led to the development of a given system over a certain period of time. Consequently, we provide insights into those systems and give suggestions and research directions on how they can be improved for a better health care system. OBJECTIVE: This study aimed to show that there is a need for a secure and efficient health data management system that will allow physicians and patients to update decentralized medical records and to analyze the medical data for supporting more precise diagnoses, prognoses, and public insights. Limitations of existing health data management systems were analyzed. METHODS: To study the evolution and requirements of health data management systems over the years, a search was conducted to obtain research articles and information on medical lawsuits, health regulations, and acts. These materials were obtained from the Institute of Electrical and Electronics Engineers, the Association for Computing Machinery, Elsevier, MEDLINE, PubMed, Scopus, and Web of Science databases. RESULTS: Health data management systems have undergone a disruptive transformation over the years from paper to computer, web, cloud, IoT, big data analytics, and finally to blockchain. The requirements of a health data management system revealed from the evolving definitions of medical records and their management are (1) medical record data, (2) real-time data access, (3) patient participation, (4) data sharing, (5) data security, (6) patient identity privacy, and (7) public insights. This paper reviewed health data management systems based on these 7 requirements across studies conducted over the years. To our knowledge, this is the first analysis of the temporal evolution of health data management systems giving insights into the system requirements for better health care. CONCLUSIONS: There is a need for a comprehensive real-time health data management system that allows physicians, patients, and external users to input their medical and lifestyle data into the system. The incorporation of big data analytics will aid in better prognosis or diagnosis of the diseases and the prediction of diseases. The prediction results will help in the development of an effective prevention plan.",
+   "status": "current"
+  },
+  {
+   "title": "Task Failure Prediction in Cloud Data Centers Using Deep Learning",
+   "identifiers": {
+    "openalex": "W3025035827",
+    "doi": "10.1109/tsc.2020.2993728"
+   },
+   "abstract": "A large-scale cloud data center needs to provide high service reliability and availability with low failure occurrence probability. However, current large-scale cloud data centers still face high failure rates due to many reasons such as hardware and software failures, which often result in task and job failures. Such failures can severely reduce the reliability of cloud services and also occupy huge amount of resources to recover the service from failures. Therefore, it is important to predict task or job failures before occurrence with high accuracy to avoid unexpected wastage. Many machine learning and deep learning based methods have been proposed for the task or job failure prediction by analyzing past system message logs and identifying the relationship between the data and the failures. In order to further improve the failure prediction accuracy of the previous machine learning and deep learning based methods, in this article, we propose a failure prediction algorithm based on multi-layer Bidirectional Long Short Term Memory (Bi-LSTM) to identify task and job failures in the cloud. The goal of Bi-LSTM failure prediction algorithm is to predict whether the tasks and jobs are failed or completed. The trace-driven experiments show that our algorithm outperforms other state-of-art prediction methods with 93 percent accuracy and 87 percent for task failure and job failures respectively.",
+   "status": "current"
+  },
+  {
+   "title": "Optimization of Edge-PLC-Based Fault Diagnosis With Random Forest in Industrial Internet of Things",
+   "identifiers": {
+    "openalex": "W3025588465",
+    "doi": "10.1109/jiot.2020.2994200"
+   },
+   "abstract": "Facing globalized competition, there have been increasing requirements for safety and efficiency in smart factories, where the industrial Internet of Things can enable the monitoring of equipment's status and the detecting of faults before they go critical. Regarding cloud computing, data-driven methods running at clouds are adopted to train the model with a large amount of raw data at the beginning, then end machines upload their real-time readings to the cloud center for processing. However, this incurs considerable computational costs and may sometimes bear a severe delay. In this article, we consider a hierarchical structure where edge-PLCs are employed to gather sensed data locally and reduce communication costs. Since a single fault may be related to multiple influencing features, we want to first minimize the number of features that need to determine a fault, then try to find out the minimal set of edge-PLCs which can cover all key features so as to save the deployment cost. We propose a random-forest-based method to handle the features selection problem, and then the selection of edge-PLCs by solving the set coverage problem. Through the simulation on real data trace, we compare our method with other artificial-intelligence-based methods, such as the logistics regression model and its extensions. The results prove the efficiency and performance of the proposed method, which reaches or even exceeds the accuracy of methods using the full set of data.",
+   "status": "current"
+  },
+  {
+   "title": "An integrated machine learning model for aircraft components rare failure prognostics with log-based dataset",
+   "identifiers": {
+    "openalex": "W3025899564",
+    "doi": "10.1016/j.isatra.2020.05.001"
+   },
+   "abstract": "Predictive maintenance is increasingly advancing into the aerospace industry, and it comes with diverse prognostic health management solutions. This type of maintenance can unlock several benefits for aerospace organizations. Such as preventing unexpected equipment downtime and improving service quality. In developing data-driven predictive modelling, one of the challenges that cause model performance degradation is the data-imbalanced distribution. The extreme data imbalanced problem arises when the distribution of the classes present in the datasets is not uniform. Such that the total number of instances in a class far outnumber those of the other classes. Extremely skew data distribution can lead to irregular patterns and trends, which affects the learning of temporal features. This paper proposes a hybrid machine learning approach that blends natural language processing techniques and ensemble learning for predicting extremely rare aircraft component failure. The proposed approach is tested using a real aircraft central maintenance system log-based dataset. The dataset is characterized by extremely rare occurrences of known unscheduled component replacements. The results suggest that the proposed approach outperformed the existing imbalanced and ensemble learning methods in terms of precision, recall, and f1-score. The proposed approach is approximately 10% better than the synthetic minority oversampling technique. It was also found that by searching for patterns in the minority class exclusively, the class imbalance problem could be overcome. Hence, the model classification performance is improved.",
+   "status": "current"
+  },
+  {
+   "title": "Fault localization by analyzing failure propagation with samples in cloud computing environment",
+   "identifiers": {
+    "openalex": "W3032135827",
+    "doi": "10.1186/s13677-020-00164-z"
+   },
+   "abstract": "Abstract With the development of information technology such as cloud computing, IoT, etc, software becomes the infrastructure. On the one hand, it is critical to ensure the reliability of software, on the other, sample code can be mined from open source software to provide reference for automatic debugging. Most of existing automated debugging researches are based on the assumption that defect programs are nearly correct, therefore they can successfully pass some test cases and fail to execute others. However, this assumption sometimes does not hold. In view of the fact that a programs may fail for all the given test cases in the test suite, but there are a large number of examples available for reference, a sample based fault localization method is studied. A fault localization method by analyzing the context of failure propagation is proposed, which locates suspicious statements by identifying the execution status and structural semantics differences between the defective program and sample program. Through the interactive analysis of value sequences and structure semantics, the influence of code variations and failure propagation is reduced. The experimental results have shown that the method can effectively locate suspicious statements and provide assistance for defect repair when there are enough sample programs.",
+   "status": "current"
+  },
+  {
+   "title": "Artificial intelligence driven wireless network remote monitoring based on Diffie–Hellman parameter method",
+   "identifiers": {
+    "openalex": "W3032378900",
+    "doi": "10.1016/j.comcom.2020.05.047"
+   },
+   "abstract": "Abstract Remote monitoring of wireless networks based on artificial intelligence can build sensitive anomaly recognition mechanisms, automated event analysis engines and accurate global operation and maintenance capabilities for wireless network defense. Firstly, a simple camera is used to realize real-time acquisition and wireless transmission of video signals based on software-based MPEG-4 compression coding method. The self-developed ActiveX control with video decoding function is embedded in the webpage to realize real-time dynamic display of video information in the computer browser of the monitoring terminal. Secondly, in order to realize the intelligent control of wireless network, the research based on the reverse motion degree posture planning is carried out. The DH parameter method is used to establish the linkage coordinate system of wireless network remote monitoring, and the kinematics formula is derived. The geometric analysis method is used to calculate the motion trajectory of remote monitoring, accurately locate the various angles of remote monitoring and obtain the best motion path. Based on the Pm angle control method of fuzzy neural network, the RBF neural network, fuzzy control the combination of control and Pm control, using the self-learning ability of the neural network and the fuzzy reasoning is ability of fuzzy control. The end effector was adjusted to the target position. Finally, the established mathematical model was simulated by MATLAB, and the characteristics of wireless network remote monitoring were verified.",
+   "status": "current"
+  },
+  {
+   "title": "Lightweight Broadcast Authentication Protocol for Edge-Based Applications",
+   "identifiers": {
+    "openalex": "W3034976616",
+    "doi": "10.1109/jiot.2020.3002221"
+   },
+   "abstract": "In this article, we propose a lightweight authentication protocol that provides forward secrecy for edge-based applications. Motivated by the general consensus that centralized authentication solutions are not suitable for an expanding Internet of Things (IoT), our edge-based authentication reduces latency for critical applications, lowers cloud dependency, and employs cryptographic primitives, which are efficiently implemented on resource-constrained low-end devices. Moreover, the edge entity broadcast messages using session keys that are derived securely from a hash function. The protocol utilizes hash chains and authenticated encryption which makes it resilient to quantum attacks. Moreover, entities are not required to hold a permanent master key, and all session keys are derived securely from a hash function. As a use case, we present a smart emergency system where an edge application broadcasts alert messages for individual responder groups when specific events occur. We formally define and prove the main security properties of our protocol, and compare it to other lightweight protocols in terms of security and performance. The computational complexity of our protocol comprises of three decryption operations, two HMAC, and five hash computations. The required storage for each node is 96 B and the communication overhead is only 56 B per session.",
+   "status": "current"
+  },
+  {
+   "title": "An IoT-enabled intelligent automobile system for smart cities",
+   "identifiers": {
+    "openalex": "W3036049022",
+    "doi": "10.1016/j.iot.2020.100213"
+   },
+   "abstract": "Abstract In our world of advancing technologies, automobiles are one industry where we can see improved ergonomics and feature progressions. Artificial Intelligence (AI) integrated with Internet of Things (IoT) is the future of most of the cutting-edge applications developed for automobile industry to enhance performance and safety. The objective of this research is to develop a new feature that can enhance the existing technology present in automobiles at low-cost. We had previously developed a technology known as Smart Accident Precognition System (SAPS) which reduces the rate of accidents in automobile and also enhance the safety of the passengers. Current research advances this technique by integrating Google Assistant with the SAPS. The proposed system integrates several embedded devices in the automobiles that monitor various aspects such as speed, distance, safety measures like seatbelt, door locks, airbags, handbrakes etc. The real-time data is stored in the cloud and the vehicle can adapt to various situations from the previous data collected. Also, with the Google Assistant user can lock and unlock, start and stop, alert and do various automated tasks such as low fuel remainder, insurance remainders etc. The proposed IoT enabled real-time vehicle system can detect accidents and adapt to change according to various conditions. Further, with RFID keyless entry authentication the vehicle is secure than ever before. This proposed system is much efficient to the existing systems and will have a great positive impact in the automobile industry and society.",
+   "status": "current"
+  },
+  {
+   "title": "LogGAN: a Log-level Generative Adversarial Network for Anomaly Detection using Permutation Event Modeling",
+   "identifiers": {
+    "openalex": "W3036573764",
+    "doi": "10.1007/s10796-020-10026-3"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Automatic Database Troubleshooting of Azure SQL Databases",
+   "identifiers": {
+    "openalex": "W3038457469",
+    "doi": "10.1109/tcc.2020.3007016"
+   },
+   "abstract": "Exponentially growing number of workloads has been transferred from on-premises to the cloud environment during last decade. It incurs a constantly increasing load on the monitoring and troubleshooting capabilities of the platforms that host those applications nowadays. Data mining techniques and use of telemetry data have recently become an unavoidable means for tracking the behavior of cloud services. The research effort elaborated in this paper is focused on exploiting real-world data to build an automatic database troubleshooting system that exploits the combination of the more comprehensive statistical data science models and an expert system to perform the root cause analysis. An extensive evaluation study was conducted during the eight-month period with a plethora of Azure SQL production workloads for a varying number of databases. The obtained results confirmed the viability and cost-effectiveness of such an approach at the scale of the cloud.",
+   "status": "current"
+  },
+  {
+   "title": "Fog-inspired smart home environment for domestic animal healthcare",
+   "identifiers": {
+    "openalex": "W3039055291",
+    "doi": "10.1016/j.comcom.2020.07.004"
+   },
+   "abstract": "Abstract Domestic veterinary care is contemplated as one of the significant domains of the healthcare industry. Conspicuously, this research presents a Smart Home-based healthcare monitoring framework for domesticated animals in real-time. The research work employs the Internet of Things (IoT)-based data acquisition in the ambient environment of the home. Acquired IoT-data is pre-processed for feature extraction over the Fog-Cloud computing platform. Moreover, a temporal data granule is formulated using the Temporal Data mining technique, which is used to quantify healthcare vulnerability in terms of Scale of Health Adversity (SoHA) and Temporal Adversity Estimate (TAE). Based on this, a Multi-scaled Long Short Term Memory (M-LSTM) based vulnerability prediction is performed for preventive veterinary healthcare services. Moreover, a fog-assisted real-time alert generation module is presented in the proposed framework to notify the concerned veterinary doctor in the case of a medical emergency. To validate the proposed framework, the experimental simulations are performed over challenging dataset comprising of nearly 34,120 instances. Results show that the presented framework is able to register enhanced performance in comparison to several state-of-the-art decision-making techniques in terms of Temporal Effectiveness, Classification Efficiency, Prediction Efficacy, and System Stability.",
+   "status": "current"
+  },
+  {
+   "title": "Parallel Machine Learning Algorithm Using Fine-Grained-Mode Spark on a Mesos Big Data Cloud Computing Software Framework for Mobile Robotic Intelligent Fault Recognition",
+   "identifiers": {
+    "openalex": "W3039057778",
+    "doi": "10.1109/access.2020.3007499"
+   },
+   "abstract": "An accurate and efficient intelligent fault diagnosis of mobile robotic roller bearings can significantly enhance the reliability and safety of mechanical systems. To improve the efficiency of intelligent fault classification of mobile robotic roller bearings, this paper proposes a parallel machine learning algorithm using fine-grained-mode Spark on a Mesos big data cloud computing software framework. Through the segmentation of datasets and the support of a parallel framework, the parallel processing technology Spark is combined with a support vector machine (SVM), and a parallel single-SVM algorithm is realized using Scala language. In this approach, empirical mode decomposition (EMD) is applied to extract the energy of the acceleration vibration signal in different frequency bands as features. The parallel EMD-SVM approach is applied to detect faults in mobile robotic roller bearings from fault vibration signals. The experimental results show that it can accurately and effectively identify the faults, and it outperforms existing methods based on parallel deep belief network (DBN) and parallel radial basis function neural network under different training set sizes. Fault classification tests are conducted on outer-race and inner-race faults: in both cases, the proposed parallel EMD-SVM outperforms the serial EMD-SVM in terms of the classification accuracy and classification time under different test sizes. For a small number of nodes, the processing time of the proposed Spark model is less than that of Hadoop but close to that of Storm. For 17 slave nodes, the average precision, average recall, and average F1 score of Spark on Mesos in the fine-grained mode reach 97.3, 97.8, and 97.9%, respectively. The parallel EMD-SVM algorithm in the big data Spark cloud computing framework can improve the accuracy of intelligent fault classification, albeit by a small margin, with higher processing speed and learning convergence rate.",
+   "status": "current"
+  },
+  {
+   "title": "An Efficient IoT-Based Patient Monitoring and Heart Disease Prediction System Using Deep Learning Modified Neural Network",
+   "identifiers": {
+    "openalex": "W3040351441",
+    "doi": "10.1109/access.2020.3007561"
+   },
+   "abstract": "The leading causes of death worldwide are chronic illnesses suchlike diabetes, Heart Disease (HD), cancer as well as chronic respiratory malady. It is remarkably intricate to diagnose HD with disparate symptoms or features. With the augmentation in popularity of smart wearable gadgets, a chance to render an Internet of Things (IoT) solution has turned out to be more. Unfortunately, the survival rates are low for the people suffering from sudden heart attacks. Consequently, a patient monitoring scheme intended for heart patients utilizing IoT centered Deep Learning Modified Neural Network (DLMNN) is proposed to assist in the HD diagnosis, and medication is given accordingly. This proposed technique is executed via `3' steps: I) Authentication, ii) Encryption, and iii) Classification. First, by utilizing the substitution cipher (SC) together with the SHA-512, the heart patient of the specific hospital is authenticated. Subsequently, the wearable IoT sensor device, which is fixed to the patient's body, concurrently transmits the sensor data to the cloud. This sensor data is encrypted and securely transmitted to the cloud utilizing the PDH-AES technique. After that, the encrypted data is finally decrypted, and by employing the DLMNN classifier, the classification is done. The classified outcomes comprise `2'types of data: i) normal and ii) abnormal. It denotes the patient's heart condition and if the outcome is abnormal, an alert text is passed to the physician for treating the patient. The investigational outcomes are estimated and the DLMNN for HD diagnosis shows improvement as compared to existing algorithms. Additionally, the proposed PDH-AES used in support of secure data transmission results in the highest level of security i.e. 95.87%, and it is achieved in the lowest time for encryption along with decryption when weighted against the existent AES.",
+   "status": "current"
+  },
+  {
+   "title": "Predicting Node Failures in an Ultra-Large-Scale Cloud Computing Platform",
+   "identifiers": {
+    "openalex": "W3040857534",
+    "doi": "10.1145/3385187"
+   },
+   "abstract": "Many software services today are hosted on cloud computing platforms, such as Amazon EC2, due to many benefits like reduced operational costs. However, node failures in these platforms can impact the availability of their hosted services and potentially lead to large financial losses. Predicting node failures before they actually occur is crucial, as it enables DevOps engineers to minimize their impact by performing preventative actions. However, such predictions are hard due to many challenges like the enormous size of the monitoring data and the complexity of the failure symptoms. AIOps ( A rtificial I ntelligence for IT Op eration s ), a recently introduced approach in DevOps, leverages data analytics and machine learning to improve the quality of computing platforms in a cost-effective manner. However, the successful adoption of such AIOps solutions requires much more than a top-performing machine learning model. Instead, AIOps solutions must be trustable, interpretable, maintainable, scalable, and evaluated in context. To cope with these challenges, in this article we report our process of building an AIOps solution for predicting node failures for an ultra-large-scale cloud computing platform at Alibaba. We expect our experiences to be of value to researchers and practitioners, who are interested in building and maintaining AIOps solutions for large-scale cloud computing platforms.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0r2b-00"
+}

@@ -1,0 +1,154 @@
+{
+ "schema_version": 2,
+ "id": "10-report-stats-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/report-stats.py work/report-stats-10.json",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-report-stats-01.out",
+ "egress_trace_reference": "work/logs/10-report-stats-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T02:01:55.554044+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+  "c158d4bdce0d31e0e1068e9b0c43e997da293e42cb64bf57b156db1c00fb8f86",
+  "a6806416726c3da09afe2d649403f7ef522984a22bf03d39e25ceda035675973",
+  "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+  "b561e1c0a0c0cde56ba7c90020a898fdab6a7bead7fb3c2afbb3eb32e6ed2f2a",
+  "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+  "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+  "52fbfc32b539233771ee49193742e686cd7a9e726b6e18519e7c3fad19b2a091",
+  "184af013b89948b872a13f4de415abc87894c7c8bd86b9b39f6ea5db4a4f3dda"
+ ],
+ "output_hashes": [
+  "3e9ba2b2b19fdf934a5583d526669c8e9255c0b6fe2b3a39d8c007d983e7a5fe"
+ ],
+ "checks": [
+  "exit 0 only if protocol.md sha256 equals work/protocol-freeze.json protocol_sha256",
+  "Wilson 95% interval for T0 precision per protocol section 4"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "8750efa6dee038c7d457db22a1efe68b90b03f9f3bf524b02a2c07c2fb429e4b",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/report-stats.py work/report-stats-10.json",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "5578a521abd2ebce8957d257ae31a8a886eff3c603c8ac54507dd5700ad3899c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "protocol.md",
+   "sha256_before": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "sha256_after": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/protocol-freeze.json",
+   "sha256_before": "c158d4bdce0d31e0e1068e9b0c43e997da293e42cb64bf57b156db1c00fb8f86",
+   "sha256_after": "c158d4bdce0d31e0e1068e9b0c43e997da293e42cb64bf57b156db1c00fb8f86",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/final-t1.json",
+   "sha256_before": "a6806416726c3da09afe2d649403f7ef522984a22bf03d39e25ceda035675973",
+   "sha256_after": "a6806416726c3da09afe2d649403f7ef522984a22bf03d39e25ceda035675973",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0r2b-t0.csv",
+   "sha256_before": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "sha256_after": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0r2b-summary.json",
+   "sha256_before": "b561e1c0a0c0cde56ba7c90020a898fdab6a7bead7fb3c2afbb3eb32e6ed2f2a",
+   "sha256_after": "b561e1c0a0c0cde56ba7c90020a898fdab6a7bead7fb3c2afbb3eb32e6ed2f2a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0seed4-t0.csv",
+   "sha256_before": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "sha256_after": "baf6e60d7064fe59ce27f69dea32cdde4640ea66e1b28edfbc5e66f27217906d",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0full2-t0.csv",
+   "sha256_before": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "sha256_after": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/q1-pubyear-check.csv",
+   "sha256_before": "52fbfc32b539233771ee49193742e686cd7a9e726b6e18519e7c3fad19b2a091",
+   "sha256_after": "52fbfc32b539233771ee49193742e686cd7a9e726b6e18519e7c3fad19b2a091",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/report-stats.py",
+   "sha256_before": "184af013b89948b872a13f4de415abc87894c7c8bd86b9b39f6ea5db4a4f3dda",
+   "sha256_after": "184af013b89948b872a13f4de415abc87894c7c8bd86b9b39f6ea5db4a4f3dda",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/report-stats-10.json",
+   "sha256": "3e9ba2b2b19fdf934a5583d526669c8e9255c0b6fe2b3a39d8c007d983e7a5fe",
+   "created_this_attempt": true
+  }
+ ]
+}

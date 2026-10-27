@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W7131638922,F1,5,5,SIV-B Table III,unchanged; microservice ranking with Acc@k and MRR
+W7131638922,F2,1,1,SII-C; SIV-A,"unchanged; metrics main, traces needed for topology; no missing-telemetry experiment"
+W7131638922,F3_code,0,0,footnote 1 SIV-A; GitHub search 2026-10-25,unchanged; no code for this method
+W7131638922,F3_data,2,2,SIV-A; Dropbox 200,unchanged; MicroCERCL public
+W7131638922,F3_compute,3,3,SIV-A,unchanged; CPU algorithms
+W7131638922,F3_desc,1,1,SIV-A,"unchanged; TPE-tuned tau, alpha, eps values missing"
+W7131638922,F4,1,1,SIV-B Tables II-IV,"unchanged; one dataset, one re-run baseline, defined metrics, no repeats"
+W7131638922,F5,2,2,SV; SIV-C Table IV,unchanged; concrete limitation (bidirectional inter-cluster communication) hard to measure on NT114
+W7131638922,F6,3,3,SIV-A; SIV-B,"unchanged; SockShop/Hipster systems, Acc@k/MRR, stored data"

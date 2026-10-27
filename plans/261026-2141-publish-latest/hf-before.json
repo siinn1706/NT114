@@ -1,0 +1,28 @@
+{
+  "account": "siinn1706",
+  "repo": "siinn1706/nt114-rca-data",
+  "private": true,
+  "revision": "c5c4a6dc455cac5d0545b98d8d40266b2bbdaa05",
+  "file_count": 3267,
+  "top_level": [
+    ".gitattributes",
+    "README.md",
+    "nt114-data-v1-20261014-6fdd9835"
+  ],
+  "huggingface_hub": "1.33.0",
+  "create_commit_parameters": [
+    "repo_id",
+    "operations",
+    "commit_message",
+    "commit_description",
+    "token",
+    "repo_type",
+    "revision",
+    "create_pr",
+    "num_threads",
+    "parent_commit",
+    "run_as_future",
+    "_hot_reload"
+  ],
+  "credential_role": null
+}

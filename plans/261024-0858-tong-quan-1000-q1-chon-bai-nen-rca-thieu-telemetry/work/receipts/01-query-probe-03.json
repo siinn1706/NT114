@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "01-query-probe-03",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/queries.py probe query-probe-03.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/01-query-probe-03.out",
+ "egress_trace_reference": "work/logs/01-query-probe-03.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:31:36.878082+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "9720a557a4623fd1ef287666ade8af23d5ba8bcf64f996cf0d19af492cd5cf55",
+  "7426e2e1d187ee4863155ea49e729ddf6cd099561d1c5c1b7dddc37c1e8d1dc3"
+ ],
+ "output_hashes": [
+  "d2becc1324e1c5fced5eea27fa8610e04e2ce803c1a5711ac2a1665a8a0b2686"
+ ],
+ "checks": [
+  "probe r2 queries; AND-clause coverage on page 1 >= 0.8"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "21c3e0dfda323e02c9b6d04c4aeecf926ab27662959c260e1b928dcf0b64d7ff",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/queries.py probe query-probe-03.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "e3bb934dac95c2540b3b8987c19c753513bf440849c180f771572f14f9107646",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "protocol.md",
+   "sha256_before": "9720a557a4623fd1ef287666ade8af23d5ba8bcf64f996cf0d19af492cd5cf55",
+   "sha256_after": "9720a557a4623fd1ef287666ade8af23d5ba8bcf64f996cf0d19af492cd5cf55",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/queries.py",
+   "sha256_before": "7426e2e1d187ee4863155ea49e729ddf6cd099561d1c5c1b7dddc37c1e8d1dc3",
+   "sha256_after": "7426e2e1d187ee4863155ea49e729ddf6cd099561d1c5c1b7dddc37c1e8d1dc3",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/query-probe-03.csv",
+   "sha256": "d2becc1324e1c5fced5eea27fa8610e04e2ce803c1a5711ac2a1665a8a0b2686",
+   "created_this_attempt": true
+  }
+ ]
+}

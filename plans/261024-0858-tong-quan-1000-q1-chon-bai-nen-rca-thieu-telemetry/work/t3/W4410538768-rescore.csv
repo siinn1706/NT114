@@ -1,0 +1,10 @@
+openalex_id,criterion,old,new,locator,reason
+W4410538768,F1,2,2,Sec 3.3; Sec 4.3.4,"unchanged; cause types per slow query, no component localization (adjudicated override)"
+W4410538768,F2,5,5,"Sec 5.1.2; Tables 3-5, 9","unchanged; training-time single-modality removal reported per condition fits the 5 level, but there is no inference-time drop, leave-one-out or noise"
+W4410538768,F3_code,2,2,GitHub API 2026-10-25; README,"unchanged; repo and run commands, no license"
+W4410538768,F3_data,1,1,Sec 5.1.1; README,"unchanged; TPC data public, Hologres proprietary"
+W4410538768,F3_compute,3,3,Sec 5.1.4; Table 7,"unchanged; adjudicated override; small open models, VRAM unmeasured"
+W4410538768,F3_desc,2,2,Sec 5.1.4; Fig 3; Algorithm 1,unchanged; hyperparameters and prompt given; the LLM query-selection step is vague but not scored down
+W4410538768,F4,3,3,Sec 5.1.2-5.1.3; Tables 3-6,"unchanged; baselines, 5 datasets, defined ratios; no repeats or CI"
+W4410538768,F5,1,1,Sec 6,unchanged; generic future work only
+W4410538768,F6,2,2,Sec 5.1.3; Sec 4.2,unchanged; no NT114 dataset; metrics partly transferable; stored data

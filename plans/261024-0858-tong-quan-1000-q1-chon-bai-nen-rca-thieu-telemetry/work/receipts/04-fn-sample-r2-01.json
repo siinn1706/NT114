@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-sample-r2-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0r2b",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-sample-r2-01.out",
+ "egress_trace_reference": "work/logs/04-fn-sample-r2-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:16:10.904102+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "05019c34b71c2837fdd027e14ef2c0bb33ddddff78cf5c2762ef2c88e542d16f",
+  "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec"
+ ],
+ "output_hashes": [
+  "648089fe3805f53ed35be4ad0695abbfcaf810fd945589677836854476939227"
+ ],
+ "checks": [
+  "stratified FN sample"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "4d518325effe6a28d8c6dc0795a9546b935dbf6fe008511687252053d4c0ffdc",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0r2b",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "0b08c61cb291be9c0cfc15bd018cdaca830547a2427a4b836b02abe515c75ca7",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0r2b-excluded.csv",
+   "sha256_before": "05019c34b71c2837fdd027e14ef2c0bb33ddddff78cf5c2762ef2c88e542d16f",
+   "sha256_after": "05019c34b71c2837fdd027e14ef2c0bb33ddddff78cf5c2762ef2c88e542d16f",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/common.py",
+   "sha256_before": "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec",
+   "sha256_after": "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0r2b-fn-sample.csv",
+   "sha256": "648089fe3805f53ed35be4ad0695abbfcaf810fd945589677836854476939227",
+   "created_this_attempt": true
+  }
+ ]
+}

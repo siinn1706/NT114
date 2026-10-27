@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-judge-snow-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0snow2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-judge-snow-01.out",
+ "egress_trace_reference": "work/logs/04-fn-judge-snow-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:12:43.571844+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "83c6aede0bb55c65b7bb6d257889e69fb43a925e206e27ca6cd28905b14edc16"
+ ],
+ "output_hashes": [
+  "d98eeb1d0832fc2180488410c37116581a59aea999774c2939a73a2c6e2c3083"
+ ],
+ "checks": [
+  "FN thresholds"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "3d14fd35ee375832acce886175d26733cfd7c77109277aa3bea075d0e96989b7",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/judge-fn-sample.py t0snow2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "af4e6deb6a4a1fced62ea5fa855efbfdc158c216f3f7f6658482ef4a8a409b94",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-fn-sample.csv",
+   "sha256_before": "83c6aede0bb55c65b7bb6d257889e69fb43a925e206e27ca6cd28905b14edc16",
+   "sha256_after": "83c6aede0bb55c65b7bb6d257889e69fb43a925e206e27ca6cd28905b14edc16",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/t0snow2-fn-check.json",
+   "sha256": "d98eeb1d0832fc2180488410c37116581a59aea999774c2939a73a2c6e2c3083",
+   "created_this_attempt": true
+  }
+ ]
+}

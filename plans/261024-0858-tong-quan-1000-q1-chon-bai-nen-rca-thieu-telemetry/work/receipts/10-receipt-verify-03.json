@@ -1,0 +1,61 @@
+{
+ "schema_version": 2,
+ "id": "10-receipt-verify-03",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10-a03.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/10-receipt-verify-03.out",
+ "egress_trace_reference": "work/logs/10-receipt-verify-03.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T02:06:17.278061+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [
+  "89da1fc9a6a3eddd796238c1ee15b3dbae1509ba5135a4b8afcd33be3d0fe3a3"
+ ],
+ "checks": [
+  "re-verify all receipts after phase 10 checkpoint"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "4a717ee7f610d1c5b743f1107662170a5630ef497f18b3a599129d3c4fc76c1a",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/verify-receipts.py C:/Users/Siinn/.claude/skills/nckh-review/references/_shared/scripts/check-receipt.py work/receipt-verify-10-a03.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "1ddbf67e6f8bdea8d6416a071563c6681153153dfb941203fd6e816afe1adf45",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": [
+  {
+   "path": "work/receipt-verify-10-a03.csv",
+   "sha256": "89da1fc9a6a3eddd796238c1ee15b3dbae1509ba5135a4b8afcd33be3d0fe3a3",
+   "created_this_attempt": true
+  }
+ ]
+}

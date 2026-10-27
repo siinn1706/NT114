@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-dossier-input-snow-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-dossier.py work/records/t0snow2-t0.csv t0snow2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-dossier-input-snow-01.out",
+ "egress_trace_reference": "work/logs/04-dossier-input-snow-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:13:36.366285+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9"
+ ],
+ "output_hashes": [
+  "8e948d15ef9859d47a5ec51d4750673ce77d90e9d2513d8849526930b7463385"
+ ],
+ "checks": [
+  "dossier export"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "dee38efda0bfcf81d01868f0816052aec11fe343ca427c5cc897b0ee9bba7310",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-dossier.py work/records/t0snow2-t0.csv t0snow2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "855b9b5fc20bbdf66202d3051a5dc5615bdec1720db8064a44498b9d26b95daf",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/dossier/input/t0snow2-manifest.json",
+   "sha256": "8e948d15ef9859d47a5ec51d4750673ce77d90e9d2513d8849526930b7463385",
+   "created_this_attempt": true
+  }
+ ]
+}

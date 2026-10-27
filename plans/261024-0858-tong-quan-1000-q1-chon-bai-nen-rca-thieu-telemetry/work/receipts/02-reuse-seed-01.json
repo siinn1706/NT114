@@ -1,0 +1,90 @@
+{
+ "schema_version": 2,
+ "id": "02-reuse-seed-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/reuse-seed.py",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-reuse-seed-01.out",
+ "egress_trace_reference": "work/logs/02-reuse-seed-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:34:26.890611+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d"
+ ],
+ "output_hashes": [
+  "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+  "5cf567b465c7d62159def5a70cd2a6ad088d846ae9fa9c6a242099972272f093",
+  "aee03676d6909a65669f02a03e307d67497912c69781ea63db740ce2c0a54781",
+  "e672f7910eb0ab67197008645924e26f51d5c8672da1b3f697d47b7bf792e4f4"
+ ],
+ "checks": [
+  "every old-corpus key looked up; not-found listed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "7ed24414b22334cf27dded5d10592eec077db6bc0e4fa572dc17a6a8c42e230e",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/reuse-seed.py",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "7777529508182455389c98f885b5cbcade52b68fb9af074f0e0a829d2452d3c8",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "protocol.md",
+   "sha256_before": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "sha256_after": "ca65919f18ecc443548b2fea38c9b57a4e08ab1fbeeb86859a42243c0f36005d",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/reuse-inventory.csv",
+   "sha256": "aee03676d6909a65669f02a03e307d67497912c69781ea63db740ce2c0a54781",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/seed-reused.csv",
+   "sha256": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/reuse-not-found.csv",
+   "sha256": "e672f7910eb0ab67197008645924e26f51d5c8672da1b3f697d47b7bf792e4f4",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/reuse-keys.csv",
+   "sha256": "5cf567b465c7d62159def5a70cd2a6ad088d846ae9fa9c6a242099972272f093",
+   "created_this_attempt": true
+  }
+ ]
+}

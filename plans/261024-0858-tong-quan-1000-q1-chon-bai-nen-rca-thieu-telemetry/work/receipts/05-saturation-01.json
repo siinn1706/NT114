@@ -1,0 +1,90 @@
+{
+ "schema_version": 2,
+ "id": "05-saturation-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/saturation.py work/saturation-curve.json work/records/t0seed4-t0.csv:seed work/records/t0full2-t0.csv:search work/records/t0snow2-t0.csv:snowball-r1 work/records/t0r2b-t0.csv:snowball-r2+synonyms -- base=work/records/search-A1-a03.csv,work/records/search-A2-a01.csv,work/records/search-A3-a01.csv,work/records/search-A4-a01.csv,work/records/search-B1-a01.csv,work/records/search-B2-a01.csv,work/records/search-C1-a01.csv,work/records/search-C2-a01.csv,work/records/search-C3-a01.csv,work/records/search-D1-a01.csv,work/records/search-D2-a01.csv,work/records/search-D3-a01.csv,work/records/search-D4-a01.csv,work/records/search-D5-a01.csv,work/records/search-D6-a01.csv,work/records/search-D7-a01.csv,work/records/search-D8-a01.csv snowball-r1=work/records/snowball-r1.csv snowball-r2=work/records/snowball-r2.csv synonyms=work/records/search-S1-a01.csv,work/records/search-S2-a01.csv,work/records/search-S3-a01.csv,work/records/search-S4-a01.csv,work/records/search-S5-a01.csv,work/records/search-S6-a01.csv,work/records/search-S7-a01.csv seed=work/records/seed-reused.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-saturation-01.out",
+ "egress_trace_reference": "work/logs/05-saturation-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:15:57.670604+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+  "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+  "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b"
+ ],
+ "output_hashes": [
+  "afbd3a53c1e1f88a560358abb02ddf0ac4665c67a7029d039c2bb61d44a7bb3f"
+ ],
+ "checks": [
+  "§10 saturation curve"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "090e4f6ff3e04a891461b39871b7f8bc367645fa625640aa965160aceb9b36b6",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/saturation.py work/saturation-curve.json work/records/t0seed4-t0.csv:seed work/records/t0full2-t0.csv:search work/records/t0snow2-t0.csv:snowball-r1 work/records/t0r2b-t0.csv:snowball-r2+synonyms -- base=work/records/search-A1-a03.csv,work/records/search-A2-a01.csv,work/records/search-A3-a01.csv,work/records/search-A4-a01.csv,work/records/search-B1-a01.csv,work/records/search-B2-a01.csv,work/records/search-C1-a01.csv,work/records/search-C2-a01.csv,work/records/search-C3-a01.csv,work/records/search-D1-a01.csv,work/records/search-D2-a01.csv,work/records/search-D3-a01.csv,work/records/search-D4-a01.csv,work/records/search-D5-a01.csv,work/records/search-D6-a01.csv,work/records/search-D7-a01.csv,work/records/search-D8-a01.csv snowball-r1=work/records/snowball-r1.csv snowball-r2=work/records/snowball-r2.csv synonyms=work/records/search-S1-a01.csv,work/records/search-S2-a01.csv,work/records/search-S3-a01.csv,work/records/search-S4-a01.csv,work/records/search-S5-a01.csv,work/records/search-S6-a01.csv,work/records/search-S7-a01.csv seed=work/records/seed-reused.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "82c3f5aeb03b014be308ce551900e2ac108fb890ac76e1cd8b398b031b276037",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0full2-t0.csv",
+   "sha256_before": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "sha256_after": "0bfa3e497d75bb2523b2b9398e86b610c9a4a2b532b1b35a53adb8f828a23847",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0snow2-t0.csv",
+   "sha256_before": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "sha256_after": "3952620b230ac5c414dac74c51162caf30c20220058987f97c893f7ed4ac8eb9",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/t0r2b-t0.csv",
+   "sha256_before": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "sha256_after": "29ba99aeebcad061482c3f626b2f785f0b1ff23faa712f52dff38ed2325c143b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/saturation-curve.json",
+   "sha256": "afbd3a53c1e1f88a560358abb02ddf0ac4665c67a7029d039c2bb61d44a7bb3f",
+   "created_this_attempt": true
+  }
+ ]
+}

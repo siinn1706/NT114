@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-regex-calibration-04",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/calibrate-regex.py regex-calibration-04.json",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-regex-calibration-04.out",
+ "egress_trace_reference": "work/logs/04-regex-calibration-04.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:49:46.639125+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "794a1d9faf3ec50f8ee0b53c0f8cf1d46a043eb473a654e854fd1a94bf9acc7a"
+ ],
+ "output_hashes": [
+  "6136c650dbe84fc46531a214be703578f2309e7146b56f9aa049e9b31ecd13fc"
+ ],
+ "checks": [
+  "amended SYSTEM_RE keeps R3/R2 recall"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "428955274eddd987db00b0db27700582774eee9b5a64762442758ac38b3c731d",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/calibrate-regex.py regex-calibration-04.json",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "43799355797ee1f74ca3756db17dfdc461bdd6766ecccc716cc2748d79cb675c",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/common.py",
+   "sha256_before": "794a1d9faf3ec50f8ee0b53c0f8cf1d46a043eb473a654e854fd1a94bf9acc7a",
+   "sha256_after": "794a1d9faf3ec50f8ee0b53c0f8cf1d46a043eb473a654e854fd1a94bf9acc7a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/regex-calibration-04.json",
+   "sha256": "6136c650dbe84fc46531a214be703578f2309e7146b56f9aa049e9b31ecd13fc",
+   "created_this_attempt": true
+  }
+ ]
+}

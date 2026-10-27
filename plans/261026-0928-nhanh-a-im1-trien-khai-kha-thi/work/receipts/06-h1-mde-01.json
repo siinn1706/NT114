@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "06-h1-mde-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -X utf8 work/scripts/h1-mde-recheck.py work/h1-mde-simulation.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/06-h1-mde-01.out",
+ "egress_trace_reference": "work/logs/06-h1-mde-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:50:38.321727+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "8ae418a3427932fdf56e8db43f1b511425630a3d42533f5c1b332128fdb8727e"
+ ],
+ "output_hashes": [
+  "3218dccde4718867f3dfa3a80df1577e2af559e75e0c710b1577168c34d62804"
+ ],
+ "checks": [
+  "simulated MDE of gain_exact@0.7 vs C2 on 108 injections / 285 records with the analysis estimator; group_id clustering as sensitivity"
+ ],
+ "limitations": [
+  "simulation under placeholder assumptions (base error, within-injection correlation k=4, score model); no model output or data read; 300 replications x 1000 bootstrap draws"
+ ],
+ "closure_hash": "30155e9282e4db6843cde2928232aefb3a8e44e0b17fbc9759838f2c64a8434d",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -X utf8 work/scripts/h1-mde-recheck.py work/h1-mde-simulation.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "757f551415037c2466b631610ef43e0b2e61805e6584a5261606dabbe454329a",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/h1-mde-recheck.py",
+   "sha256_before": "8ae418a3427932fdf56e8db43f1b511425630a3d42533f5c1b332128fdb8727e",
+   "sha256_after": "8ae418a3427932fdf56e8db43f1b511425630a3d42533f5c1b332128fdb8727e",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/h1-mde-simulation.csv",
+   "sha256": "3218dccde4718867f3dfa3a80df1577e2af559e75e0c710b1577168c34d62804",
+   "created_this_attempt": true
+  }
+ ]
+}

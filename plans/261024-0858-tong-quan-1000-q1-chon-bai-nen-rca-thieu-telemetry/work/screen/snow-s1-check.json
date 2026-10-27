@@ -1,0 +1,30 @@
+{
+ "prefix": "snow",
+ "screener": "s1",
+ "batches": {
+  "snow-000": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "snow-001": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "snow-002": {
+   "n": 5,
+   "errors": [],
+   "anchor_drift": []
+  }
+ },
+ "anchor_drift": [],
+ "n": 105,
+ "decisions": {
+  "context-survey": 8,
+  "exclude": 74,
+  "include": 11,
+  "needs-review": 12
+ },
+ "valid": true
+}

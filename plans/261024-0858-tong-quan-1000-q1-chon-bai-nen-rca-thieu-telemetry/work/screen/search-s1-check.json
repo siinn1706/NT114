@@ -1,0 +1,95 @@
+{
+ "prefix": "search",
+ "screener": "s1",
+ "batches": {
+  "search-000": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "search-001": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-002": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": []
+  },
+  "search-003": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-004": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-005": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-006": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-007": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-008": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-009": {
+   "n": 50,
+   "errors": [],
+   "anchor_drift": [
+    "W4391951374"
+   ]
+  },
+  "search-010": {
+   "n": 25,
+   "errors": [],
+   "anchor_drift": []
+  }
+ },
+ "anchor_drift": [
+  "search-001:W4391951374:('needs-review', '1')->('context-survey', '1')",
+  "search-003:W4391951374:('needs-review', '1')->('context-survey', '1')",
+  "search-004:W4391951374:('needs-review', '1')->('context-survey', '1')",
+  "search-005:W4391951374:('needs-review', '1')->('context-survey', '1')",
+  "search-006:W4391951374:('needs-review', '1')->('context-survey', '1')",
+  "search-007:W4391951374:('needs-review', '1')->('context-survey', '1')",
+  "search-008:W4391951374:('needs-review', '1')->('context-survey', '1')",
+  "search-009:W4391951374:('needs-review', '1')->('context-survey', '1')"
+ ],
+ "n": 525,
+ "decisions": {
+  "context-survey": 25,
+  "exclude": 413,
+  "include": 18,
+  "needs-review": 69
+ },
+ "valid": true
+}

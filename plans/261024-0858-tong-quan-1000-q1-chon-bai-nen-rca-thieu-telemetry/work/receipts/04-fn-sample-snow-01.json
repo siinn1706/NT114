@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "04-fn-sample-snow-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0snow2",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-fn-sample-snow-01.out",
+ "egress_trace_reference": "work/logs/04-fn-sample-snow-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T06:12:23.253538+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "c1ad272c5417e19214b2e47a859bcdc87b04e698e79c264dcbec95372bb11c87",
+  "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec"
+ ],
+ "output_hashes": [
+  "83c6aede0bb55c65b7bb6d257889e69fb43a925e206e27ca6cd28905b14edc16"
+ ],
+ "checks": [
+  "stratified FN sample"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "90df7724649fd937af35fdc9b2c3b8bf468732cdc0acc8a9e7aada367839c1c2",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/sample-fn-check.py t0snow2",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "8f460b33cdb8d18ac92f776097f5918c7458fc926d9d00ddd4e076e655789ce3",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/t0snow2-excluded.csv",
+   "sha256_before": "c1ad272c5417e19214b2e47a859bcdc87b04e698e79c264dcbec95372bb11c87",
+   "sha256_after": "c1ad272c5417e19214b2e47a859bcdc87b04e698e79c264dcbec95372bb11c87",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/common.py",
+   "sha256_before": "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec",
+   "sha256_after": "cd8eaa3615a5a8c4a0801b38ab7fa902ca741a2d059ec969db81009830474eec",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0snow2-fn-sample.csv",
+   "sha256": "83c6aede0bb55c65b7bb6d257889e69fb43a925e206e27ca6cd28905b14edc16",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,558 @@
+{
+ "schema_version": 2,
+ "id": "08-merge-t3-02",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "python -X utf8 -I work/scripts/merge-t3.py",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/08-merge-t3-02.out",
+ "egress_trace_reference": "work/logs/08-merge-t3-02.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T21:05:31.361533+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "7f7b5a47838f10048864b7ecca412655e66b8fac1ccf8a2a6901d1c979800152",
+  "7a68a0f4a0056a1df55dd38166522d9071de3da1aa43768bbe32fd3bb5226195",
+  "f6962702845e7d5039902fe43a221d0c4b66fceafa687d6ce35375decad5f134",
+  "abfc4ce9d58807f14e7afb15d6a6d77c79be4a838983c57b0b69d66ae64e5155",
+  "6094d350fb7746b796e9f6ddc05de4f3445a553a22fac2b546fae533cc04dcb1",
+  "fbb3a6059ae84572d0553f2b2a61dbcff6beec25cc81cc6f5995c5e529bbff5e",
+  "53ec085e9c4b265191c9ad9af3855aaac75d153d13472f00b20e1217e81b9023",
+  "697577c6a03576e48cba470dc6227ce5a0817c1ea79af57dfc46ba666de1c071",
+  "46a96d1135c2f2640da78b0778ac24bcef6b3ed3f5ccd4c857643febc98e3bee",
+  "aab9af4b7ef9cfd5bf63662ed47c06d7ffe650f42a1040d685131679cd4423e5",
+  "8be6f81c4710fa41196d8be03defffdfc11cceb9833fedee26a50cc6cf95f5be",
+  "6a4469a71b1952bd63c2492dbf5b472a6247532a712131a7093d342265f728b1",
+  "3997a925f424054025c2b7fc0549a22f0879071b16f90b9b98d84c0cd95a163b",
+  "016587a74adda1333f081d0175af2cdc5596109962c6836cad561c55e7ac5c4a",
+  "0429f3d603254213e0acd492575cf619096a24b8f5152858ef9f160bb3443ae8",
+  "d47cb8f32cec2abeb14aa6bb9c87f52a5b34244c9b2ae75d670df5fc0e9e044b",
+  "1a42b38b27e012600e68abe5368a5bcb9112c9153f4a19c8c0d5fdb76c9aee6c",
+  "86ccdf4a7ef5dba9089eb536fd6b6990236348e10f70fd75adee71400ac33fc6",
+  "93f45acb3615336be119beb99404af997ec8362a584aaa3f1a8f838cde432f82",
+  "e347374661255821112e79222b4282d88f811618535ca65c86848dc82339b5cb",
+  "7b13a2ec4aa173c4778bd16ba254ea05f4a5c7625fcee56166bc6539a219c557",
+  "441303c86d34ea026c80be859f79d4a342cccc010c57e70f933e44d7f437bde1",
+  "06afb873a98c8824c4473a2eeecd4c817ea4a8703df88946efc5c89c72aded5b",
+  "6606063f233fbafbc3f3f5807ed6893fe139da71d32f0e98051a4a79d176ed25",
+  "f0cbd5bc2a381f60d116d77e956adc6525b670953e2400ce6c905df2b489c20f",
+  "30ecca370f473e0ee650e8ad52644f4d7a5d29c61655a0710d7b134b3d95b4a1",
+  "4f20326f57c4409ec2ec194a6393b7001f93d03c2d8251967f0248eb4a76b953",
+  "2f9d2ca38e68d3e66f3ec741ec010b97b16a82766282efa4fedab7ee8c600dc4",
+  "c0aec56b1145a93c26fb4e283e886debd17c8b87f615019eac03cdfdd15d23a7",
+  "dd903483dca6dbfdab9db6b9be10fde995f56a69e241015132cccc3ece885e5b",
+  "dbf82417da21d32d7cdd254dcefeef111850c329b31d61776d8fa9ec12a21358",
+  "178a618fb80d59b3c53456acb0bf2ef89cb2ae8b7e8a397bbf574540c679cefe",
+  "dd365fc98dd7a4d59b3c2de1bd6bd0485970ba5f4111fa047a1e2ec89f646ef5",
+  "15101da0987a410ad4696e240d028e72cf3fa9f8dbbeabc505ae34f3cc1e1d4a",
+  "f6e3b458ffc00693cafea94c984993ffc0505d5bebf6907b89844e031178564b",
+  "cf4c1a7e0cc866db8fa8fd19093977051be9f823d6908d022245a95e92788031",
+  "4b801ada56d575750f0d6727f9968d2cd0593fd96a61d100f8111f4a7a88a519",
+  "34bb8f98d776cdb092c003413ab888d1868011260cf640f51bba332ef3a3e1ad",
+  "cdaaa18e24e703c22dbf0b1d181568afaa6e640f77e0070a04c572b657b65187",
+  "f7ed690288f5ef59917d19aeec8f05b5bdf18f505876f34118d444390a838877",
+  "a68213203992dbb8a9b22b067b9978de8a0e66b6c121910261650333ad4305f1",
+  "c0f2675dacff31d93ab8577c5f0d9579641f8964045597c8b9f58f3555ba3a07",
+  "0a0add3c38c4db0357b81652ac50b6dab703ae4fcb222141bb82492326757f02",
+  "215b50a9a69abf96ea3a7e00865ec7ea4e3a406fae016edc856072e340ee93c8",
+  "a44db10c6e170d3563eefd2735180295ff843e5290595ecdc503a0f73c450719",
+  "353a551688c644db257eca93e51e38cf41c939abd6f48773fc8fde23803a7e2c",
+  "fa145903639327302f155a41d095828dae772045272e164cab994f4f39276f4f",
+  "403c9b717ed87ea7c73e5a97e2272e5c37f76ab88154b7e6474b97302f57cd8d",
+  "d8869a8e68a23cbe068108193c1ac5072db72e516803be4b4bc8afe49c8c7bda",
+  "776d0405bcc6d55ee49e2ecfbaaf6c93b34280c4a3d7b4a0b10fd1a2c7794b8b",
+  "f8c8a2d319ca82cc56b699948b966f7bdfdde63d39015615a41b8b2bc44d70eb"
+ ],
+ "output_hashes": [
+  "0f838b5953474f79fa7b3fbeb6b5c33df7922f2dd580527ba1a1b632cc7ba00d",
+  "1c6a143be3ef15a8bec63c66efe200efa3b4d1bb1744a1ed62e2c86f23ed8b4b",
+  "20c19cfc3696b1310612eb77d9c8ab46ab7d3916b9327d853048810a984bb191",
+  "9dc37032a6309d3990e991156d528dcae1fb141781f5b8996bc22e2c55d5cca3",
+  "aef508acef4c7c5ebe4a3f15dd69c82f56cf7364bf9314166150ac0bcdd843ed",
+  "bcfc278f73bb1c41c0452660ef1ff7a99d06efadd0a728066e4e5055fa95d44e",
+  "c68561f0b8040fdc19461fda1af9950abbb2a26e6ac847dcadc4c0af39e5171b"
+ ],
+ "checks": [
+  "merge 10 T3 records with review gate corrections"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "3c8242851d59ff586781309d6975a8c503dd0a798aa3f85dbc08ff59ff4e29e9",
+ "command_results": [
+  {
+   "command": "python -X utf8 -I work/scripts/merge-t3.py",
+   "shell": "none (subprocess argv)",
+   "cwd": ".",
+   "exit_status": 0,
+   "stdout_sha256": "679709afff3332998885d22e0c4768e46af3d550d5bc2a42aa4f6676889b2ee9",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/t3/W4372338130-artifact.csv",
+   "sha256_before": "7f7b5a47838f10048864b7ecca412655e66b8fac1ccf8a2a6901d1c979800152",
+   "sha256_after": "7f7b5a47838f10048864b7ecca412655e66b8fac1ccf8a2a6901d1c979800152",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4372338130-evidence.csv",
+   "sha256_before": "7a68a0f4a0056a1df55dd38166522d9071de3da1aa43768bbe32fd3bb5226195",
+   "sha256_after": "7a68a0f4a0056a1df55dd38166522d9071de3da1aa43768bbe32fd3bb5226195",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4372338130-gates.csv",
+   "sha256_before": "f6962702845e7d5039902fe43a221d0c4b66fceafa687d6ce35375decad5f134",
+   "sha256_after": "f6962702845e7d5039902fe43a221d0c4b66fceafa687d6ce35375decad5f134",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4372338130-prior.csv",
+   "sha256_before": "abfc4ce9d58807f14e7afb15d6a6d77c79be4a838983c57b0b69d66ae64e5155",
+   "sha256_after": "abfc4ce9d58807f14e7afb15d6a6d77c79be4a838983c57b0b69d66ae64e5155",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4372338130-rescore.csv",
+   "sha256_before": "6094d350fb7746b796e9f6ddc05de4f3445a553a22fac2b546fae533cc04dcb1",
+   "sha256_after": "6094d350fb7746b796e9f6ddc05de4f3445a553a22fac2b546fae533cc04dcb1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4382203537-artifact.csv",
+   "sha256_before": "fbb3a6059ae84572d0553f2b2a61dbcff6beec25cc81cc6f5995c5e529bbff5e",
+   "sha256_after": "fbb3a6059ae84572d0553f2b2a61dbcff6beec25cc81cc6f5995c5e529bbff5e",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4382203537-evidence.csv",
+   "sha256_before": "53ec085e9c4b265191c9ad9af3855aaac75d153d13472f00b20e1217e81b9023",
+   "sha256_after": "53ec085e9c4b265191c9ad9af3855aaac75d153d13472f00b20e1217e81b9023",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4382203537-gates.csv",
+   "sha256_before": "697577c6a03576e48cba470dc6227ce5a0817c1ea79af57dfc46ba666de1c071",
+   "sha256_after": "697577c6a03576e48cba470dc6227ce5a0817c1ea79af57dfc46ba666de1c071",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4382203537-prior.csv",
+   "sha256_before": "46a96d1135c2f2640da78b0778ac24bcef6b3ed3f5ccd4c857643febc98e3bee",
+   "sha256_after": "46a96d1135c2f2640da78b0778ac24bcef6b3ed3f5ccd4c857643febc98e3bee",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4382203537-rescore.csv",
+   "sha256_before": "aab9af4b7ef9cfd5bf63662ed47c06d7ffe650f42a1040d685131679cd4423e5",
+   "sha256_after": "aab9af4b7ef9cfd5bf63662ed47c06d7ffe650f42a1040d685131679cd4423e5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4410538768-artifact.csv",
+   "sha256_before": "8be6f81c4710fa41196d8be03defffdfc11cceb9833fedee26a50cc6cf95f5be",
+   "sha256_after": "8be6f81c4710fa41196d8be03defffdfc11cceb9833fedee26a50cc6cf95f5be",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4410538768-evidence.csv",
+   "sha256_before": "6a4469a71b1952bd63c2492dbf5b472a6247532a712131a7093d342265f728b1",
+   "sha256_after": "6a4469a71b1952bd63c2492dbf5b472a6247532a712131a7093d342265f728b1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4410538768-gates.csv",
+   "sha256_before": "3997a925f424054025c2b7fc0549a22f0879071b16f90b9b98d84c0cd95a163b",
+   "sha256_after": "3997a925f424054025c2b7fc0549a22f0879071b16f90b9b98d84c0cd95a163b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4410538768-prior.csv",
+   "sha256_before": "016587a74adda1333f081d0175af2cdc5596109962c6836cad561c55e7ac5c4a",
+   "sha256_after": "016587a74adda1333f081d0175af2cdc5596109962c6836cad561c55e7ac5c4a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4410538768-rescore.csv",
+   "sha256_before": "0429f3d603254213e0acd492575cf619096a24b8f5152858ef9f160bb3443ae8",
+   "sha256_after": "0429f3d603254213e0acd492575cf619096a24b8f5152858ef9f160bb3443ae8",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4415933773-artifact.csv",
+   "sha256_before": "d47cb8f32cec2abeb14aa6bb9c87f52a5b34244c9b2ae75d670df5fc0e9e044b",
+   "sha256_after": "d47cb8f32cec2abeb14aa6bb9c87f52a5b34244c9b2ae75d670df5fc0e9e044b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4415933773-evidence.csv",
+   "sha256_before": "1a42b38b27e012600e68abe5368a5bcb9112c9153f4a19c8c0d5fdb76c9aee6c",
+   "sha256_after": "1a42b38b27e012600e68abe5368a5bcb9112c9153f4a19c8c0d5fdb76c9aee6c",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4415933773-gates.csv",
+   "sha256_before": "86ccdf4a7ef5dba9089eb536fd6b6990236348e10f70fd75adee71400ac33fc6",
+   "sha256_after": "86ccdf4a7ef5dba9089eb536fd6b6990236348e10f70fd75adee71400ac33fc6",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4415933773-prior.csv",
+   "sha256_before": "93f45acb3615336be119beb99404af997ec8362a584aaa3f1a8f838cde432f82",
+   "sha256_after": "93f45acb3615336be119beb99404af997ec8362a584aaa3f1a8f838cde432f82",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4415933773-rescore.csv",
+   "sha256_before": "e347374661255821112e79222b4282d88f811618535ca65c86848dc82339b5cb",
+   "sha256_after": "e347374661255821112e79222b4282d88f811618535ca65c86848dc82339b5cb",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4416888443-artifact.csv",
+   "sha256_before": "7b13a2ec4aa173c4778bd16ba254ea05f4a5c7625fcee56166bc6539a219c557",
+   "sha256_after": "7b13a2ec4aa173c4778bd16ba254ea05f4a5c7625fcee56166bc6539a219c557",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4416888443-evidence.csv",
+   "sha256_before": "441303c86d34ea026c80be859f79d4a342cccc010c57e70f933e44d7f437bde1",
+   "sha256_after": "441303c86d34ea026c80be859f79d4a342cccc010c57e70f933e44d7f437bde1",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4416888443-gates.csv",
+   "sha256_before": "06afb873a98c8824c4473a2eeecd4c817ea4a8703df88946efc5c89c72aded5b",
+   "sha256_after": "06afb873a98c8824c4473a2eeecd4c817ea4a8703df88946efc5c89c72aded5b",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4416888443-prior.csv",
+   "sha256_before": "6606063f233fbafbc3f3f5807ed6893fe139da71d32f0e98051a4a79d176ed25",
+   "sha256_after": "6606063f233fbafbc3f3f5807ed6893fe139da71d32f0e98051a4a79d176ed25",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4416888443-rescore.csv",
+   "sha256_before": "f0cbd5bc2a381f60d116d77e956adc6525b670953e2400ce6c905df2b489c20f",
+   "sha256_after": "f0cbd5bc2a381f60d116d77e956adc6525b670953e2400ce6c905df2b489c20f",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4417508611-artifact.csv",
+   "sha256_before": "30ecca370f473e0ee650e8ad52644f4d7a5d29c61655a0710d7b134b3d95b4a1",
+   "sha256_after": "30ecca370f473e0ee650e8ad52644f4d7a5d29c61655a0710d7b134b3d95b4a1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4417508611-evidence.csv",
+   "sha256_before": "4f20326f57c4409ec2ec194a6393b7001f93d03c2d8251967f0248eb4a76b953",
+   "sha256_after": "4f20326f57c4409ec2ec194a6393b7001f93d03c2d8251967f0248eb4a76b953",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4417508611-gates.csv",
+   "sha256_before": "2f9d2ca38e68d3e66f3ec741ec010b97b16a82766282efa4fedab7ee8c600dc4",
+   "sha256_after": "2f9d2ca38e68d3e66f3ec741ec010b97b16a82766282efa4fedab7ee8c600dc4",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4417508611-prior.csv",
+   "sha256_before": "c0aec56b1145a93c26fb4e283e886debd17c8b87f615019eac03cdfdd15d23a7",
+   "sha256_after": "c0aec56b1145a93c26fb4e283e886debd17c8b87f615019eac03cdfdd15d23a7",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W4417508611-rescore.csv",
+   "sha256_before": "dd903483dca6dbfdab9db6b9be10fde995f56a69e241015132cccc3ece885e5b",
+   "sha256_after": "dd903483dca6dbfdab9db6b9be10fde995f56a69e241015132cccc3ece885e5b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7131638922-artifact.csv",
+   "sha256_before": "dbf82417da21d32d7cdd254dcefeef111850c329b31d61776d8fa9ec12a21358",
+   "sha256_after": "dbf82417da21d32d7cdd254dcefeef111850c329b31d61776d8fa9ec12a21358",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7131638922-evidence.csv",
+   "sha256_before": "178a618fb80d59b3c53456acb0bf2ef89cb2ae8b7e8a397bbf574540c679cefe",
+   "sha256_after": "178a618fb80d59b3c53456acb0bf2ef89cb2ae8b7e8a397bbf574540c679cefe",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7131638922-gates.csv",
+   "sha256_before": "dd365fc98dd7a4d59b3c2de1bd6bd0485970ba5f4111fa047a1e2ec89f646ef5",
+   "sha256_after": "dd365fc98dd7a4d59b3c2de1bd6bd0485970ba5f4111fa047a1e2ec89f646ef5",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7131638922-prior.csv",
+   "sha256_before": "15101da0987a410ad4696e240d028e72cf3fa9f8dbbeabc505ae34f3cc1e1d4a",
+   "sha256_after": "15101da0987a410ad4696e240d028e72cf3fa9f8dbbeabc505ae34f3cc1e1d4a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7131638922-rescore.csv",
+   "sha256_before": "f6e3b458ffc00693cafea94c984993ffc0505d5bebf6907b89844e031178564b",
+   "sha256_after": "f6e3b458ffc00693cafea94c984993ffc0505d5bebf6907b89844e031178564b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7165616276-artifact.csv",
+   "sha256_before": "cf4c1a7e0cc866db8fa8fd19093977051be9f823d6908d022245a95e92788031",
+   "sha256_after": "cf4c1a7e0cc866db8fa8fd19093977051be9f823d6908d022245a95e92788031",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7165616276-evidence.csv",
+   "sha256_before": "4b801ada56d575750f0d6727f9968d2cd0593fd96a61d100f8111f4a7a88a519",
+   "sha256_after": "4b801ada56d575750f0d6727f9968d2cd0593fd96a61d100f8111f4a7a88a519",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7165616276-gates.csv",
+   "sha256_before": "34bb8f98d776cdb092c003413ab888d1868011260cf640f51bba332ef3a3e1ad",
+   "sha256_after": "34bb8f98d776cdb092c003413ab888d1868011260cf640f51bba332ef3a3e1ad",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7165616276-prior.csv",
+   "sha256_before": "cdaaa18e24e703c22dbf0b1d181568afaa6e640f77e0070a04c572b657b65187",
+   "sha256_after": "cdaaa18e24e703c22dbf0b1d181568afaa6e640f77e0070a04c572b657b65187",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7165616276-rescore.csv",
+   "sha256_before": "f7ed690288f5ef59917d19aeec8f05b5bdf18f505876f34118d444390a838877",
+   "sha256_after": "f7ed690288f5ef59917d19aeec8f05b5bdf18f505876f34118d444390a838877",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7203837764-artifact.csv",
+   "sha256_before": "a68213203992dbb8a9b22b067b9978de8a0e66b6c121910261650333ad4305f1",
+   "sha256_after": "a68213203992dbb8a9b22b067b9978de8a0e66b6c121910261650333ad4305f1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7203837764-evidence.csv",
+   "sha256_before": "c0f2675dacff31d93ab8577c5f0d9579641f8964045597c8b9f58f3555ba3a07",
+   "sha256_after": "c0f2675dacff31d93ab8577c5f0d9579641f8964045597c8b9f58f3555ba3a07",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7203837764-gates.csv",
+   "sha256_before": "0a0add3c38c4db0357b81652ac50b6dab703ae4fcb222141bb82492326757f02",
+   "sha256_after": "0a0add3c38c4db0357b81652ac50b6dab703ae4fcb222141bb82492326757f02",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7203837764-prior.csv",
+   "sha256_before": "215b50a9a69abf96ea3a7e00865ec7ea4e3a406fae016edc856072e340ee93c8",
+   "sha256_after": "215b50a9a69abf96ea3a7e00865ec7ea4e3a406fae016edc856072e340ee93c8",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7203837764-rescore.csv",
+   "sha256_before": "a44db10c6e170d3563eefd2735180295ff843e5290595ecdc503a0f73c450719",
+   "sha256_after": "a44db10c6e170d3563eefd2735180295ff843e5290595ecdc503a0f73c450719",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7204187534-artifact.csv",
+   "sha256_before": "353a551688c644db257eca93e51e38cf41c939abd6f48773fc8fde23803a7e2c",
+   "sha256_after": "353a551688c644db257eca93e51e38cf41c939abd6f48773fc8fde23803a7e2c",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7204187534-evidence.csv",
+   "sha256_before": "fa145903639327302f155a41d095828dae772045272e164cab994f4f39276f4f",
+   "sha256_after": "fa145903639327302f155a41d095828dae772045272e164cab994f4f39276f4f",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7204187534-gates.csv",
+   "sha256_before": "403c9b717ed87ea7c73e5a97e2272e5c37f76ab88154b7e6474b97302f57cd8d",
+   "sha256_after": "403c9b717ed87ea7c73e5a97e2272e5c37f76ab88154b7e6474b97302f57cd8d",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7204187534-prior.csv",
+   "sha256_before": "d8869a8e68a23cbe068108193c1ac5072db72e516803be4b4bc8afe49c8c7bda",
+   "sha256_after": "d8869a8e68a23cbe068108193c1ac5072db72e516803be4b4bc8afe49c8c7bda",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3/W7204187534-rescore.csv",
+   "sha256_before": "776d0405bcc6d55ee49e2ecfbaaf6c93b34280c4a3d7b4a0b10fd1a2c7794b8b",
+   "sha256_after": "776d0405bcc6d55ee49e2ecfbaaf6c93b34280c4a3d7b4a0b10fd1a2c7794b8b",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/t3-gate-corrections-a01.csv",
+   "sha256_before": "f8c8a2d319ca82cc56b699948b966f7bdfdde63d39015615a41b8b2bc44d70eb",
+   "sha256_after": "f8c8a2d319ca82cc56b699948b966f7bdfdde63d39015615a41b8b2bc44d70eb",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/decision-matrix.csv",
+   "sha256": "20c19cfc3696b1310612eb77d9c8ab46ab7d3916b9327d853048810a984bb191",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/f-rescore.csv",
+   "sha256": "c68561f0b8040fdc19461fda1af9950abbb2a26e6ac847dcadc4c0af39e5171b",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/f-rescore-log.csv",
+   "sha256": "1c6a143be3ef15a8bec63c66efe200efa3b4d1bb1744a1ed62e2c86f23ed8b4b",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/g-gates.csv",
+   "sha256": "bcfc278f73bb1c41c0452660ef1ff7a99d06efadd0a728066e4e5055fa95d44e",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/artifact-audit.csv",
+   "sha256": "0f838b5953474f79fa7b3fbeb6b5c33df7922f2dd580527ba1a1b632cc7ba00d",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/evidence-ledger.csv",
+   "sha256": "aef508acef4c7c5ebe4a3f15dd69c82f56cf7364bf9314166150ac0bcdd843ed",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/prior-work-t3.csv",
+   "sha256": "9dc37032a6309d3990e991156d528dcae1fb141781f5b8996bc22e2c55d5cca3",
+   "created_this_attempt": true
+  }
+ ]
+}

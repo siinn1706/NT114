@@ -1,0 +1,111 @@
+{
+ "schema_version": 2,
+ "id": "04-build-t0-seed-04",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0seed4 work/records/seed-reused.csv work/records/abstract-fill-t0seed.csv work/records/abstract-fill-s2-t0seed.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-build-t0-seed-04.out",
+ "egress_trace_reference": "work/logs/04-build-t0-seed-04.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-24T02:49:47.078693+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+  "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+  "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+  "794a1d9faf3ec50f8ee0b53c0f8cf1d46a043eb473a654e854fd1a94bf9acc7a"
+ ],
+ "output_hashes": [
+  "36c2fcff38011e21e00b02068eac887c114dda0b5180665e8e1903c05f3aa4d9",
+  "447adfa2cc3894f99bf1bf607f61826c24608b1e7f9af9eb27017ea3bd7c520e",
+  "bf4b4638c5fb9ccbec4762b36fe746c56e9ec0e3580990d699b5735da5f2ad22"
+ ],
+ "checks": [
+  "T0 seed rebuilt under amended topic gate"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "885e030bffc6289913cc5e3d008ecafc47d18546b3a41e7d3bcf5504b9047aea",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/build-t0.py t0seed4 work/records/seed-reused.csv work/records/abstract-fill-t0seed.csv work/records/abstract-fill-s2-t0seed.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "9088c98e8817dc3a5e3074541ece96d70afe9686a2c45424132ca38d5322fad7",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/records/seed-reused.csv",
+   "sha256_before": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "sha256_after": "2a93ea8403375d350b9704541e9db765c0a1723776894f372eb47373c6f3d6ac",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/abstract-fill-t0seed.csv",
+   "sha256_before": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "sha256_after": "cafb30d5bc05b868b350dcd318ce23a1722388eaaadfa7648d61ebb0159b7bc1",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/records/abstract-fill-s2-t0seed.csv",
+   "sha256_before": "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+   "sha256_after": "c876a226de7813f212cc2a25bebcf88ff605321cd965fe43ba3b4440780b1f68",
+   "eol_before": "mixed",
+   "eol_after": "mixed",
+   "mutation": "none"
+  },
+  {
+   "path": "work/scripts/common.py",
+   "sha256_before": "794a1d9faf3ec50f8ee0b53c0f8cf1d46a043eb473a654e854fd1a94bf9acc7a",
+   "sha256_after": "794a1d9faf3ec50f8ee0b53c0f8cf1d46a043eb473a654e854fd1a94bf9acc7a",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/records/t0seed4-candidates.csv",
+   "sha256": "bf4b4638c5fb9ccbec4762b36fe746c56e9ec0e3580990d699b5735da5f2ad22",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0seed4-excluded.csv",
+   "sha256": "36c2fcff38011e21e00b02068eac887c114dda0b5180665e8e1903c05f3aa4d9",
+   "created_this_attempt": true
+  },
+  {
+   "path": "work/records/t0seed4-needs-review-t0.csv",
+   "sha256": "447adfa2cc3894f99bf1bf607f61826c24608b1e7f9af9eb27017ea3bd7c520e",
+   "created_this_attempt": true
+  }
+ ]
+}

@@ -1,0 +1,420 @@
+{
+ "protocol": {
+  "revision": "frozen-261024",
+  "question": "Which Q1 journal paper since 2020 is the best base to reproduce, study and improve for the MVP 'microservice RCA with a single LLM under missing telemetry'?",
+  "mode": "scoping",
+  "queries": [
+   "\"root cause\" AND (microservice OR microservices OR \"cloud-native\" OR \"cloud native\")",
+   "\"root cause analysis\" AND (cloud OR \"distributed system\" OR \"online service\" OR AIOps OR microservice)",
+   "(\"fault localization\" OR \"failure localization\" OR \"fault diagnosis\" OR \"failure diagnosis\") AND (microservice OR cloud OR \"distributed system\")",
+   "incident AND (\"root cause\" OR diagnosis OR triage) AND (cloud OR \"online service\" OR microservice)",
+   "(\"language model\" OR LLM OR LLMs OR GPT OR ChatGPT OR \"foundation model\") AND (\"root cause\" OR incident OR AIOps OR \"fault diagnosis\")",
+   "(\"retrieval-augmented\" OR RAG OR agent OR agentic) AND (\"root cause\" OR incident OR \"fault diagnosis\") AND (cloud OR microservice OR software)",
+   "(\"missing modality\" OR \"missing data\" OR \"missing metrics\" OR \"missing logs\" OR \"missing traces\" OR \"incomplete\" OR \"partial observability\" OR \"limited observability\" OR \"unobservable\" OR \"trace sampling\" OR \"partial telemetry\" OR \"sparse\" OR \"noisy\") AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\") AND (microservice OR cloud OR \"distributed system\" OR \"online service\")",
+   "(multimodal OR \"multi-modal\" OR \"multi-source\") AND (metric OR log OR trace) AND (\"root cause\" OR \"fault diagnosis\" OR \"anomaly detection\")",
+   "(observability OR telemetry OR \"distributed tracing\") AND (microservice OR \"cloud-native\") AND (diagnosis OR \"root cause\" OR anomaly)",
+   "\"AIOps\"",
+   "(\"log anomaly detection\" OR \"log-based anomaly detection\" OR \"log analysis\") AND (system OR software OR cloud)",
+   "\"anomaly detection\" AND (microservice OR \"cloud-native\" OR \"online service\" OR \"cloud service\")",
+   "(\"causal discovery\" OR \"causal inference\" OR \"causal graph\") AND (\"root cause\" OR fault OR failure) AND (service OR system)",
+   "trace AND (anomaly OR diagnosis OR \"root cause\") AND microservice",
+   "(confidence OR uncertainty OR calibration OR abstention OR \"selective prediction\") AND (\"root cause\" OR incident OR \"fault diagnosis\" OR AIOps) AND (cloud OR microservice OR software OR \"online service\")",
+   "(\"failure prediction\" OR \"incident prediction\" OR \"alert\") AND (cloud OR \"online service\" OR \"data center\")",
+   "(\"fault diagnosis\" OR \"root cause\") AND (\"data center network\" OR \"cloud network\" OR \"software-defined network\")"
+  ],
+  "sources": [
+   "OpenAlex",
+   "reused corpus 11/10 (seed)",
+   "Crossref abstract fill",
+   "Semantic Scholar abstract fill"
+  ],
+  "as_of": "2026-10-24",
+  "inclusion": [
+   "I1 software-system operation",
+   "I2 RCA/fault localization/incident diagnosis",
+   "I3 method or empirical study with evaluation"
+  ],
+  "exclusion": [
+   "E1 RCA outside software",
+   "E2 security only",
+   "E3 hardware only",
+   "E4 no empirical evaluation",
+   "E5 survey -> context-survey",
+   "E6 no abstract",
+   "E7 detection only"
+  ],
+  "scope": {
+   "population": "operated software systems (microservice, cloud-native, online services, distributed systems)",
+   "concept": "failure diagnosis (RCA, fault localization, incident diagnosis), LLM and missing telemetry preferred",
+   "context": "studies with empirical evaluation"
+  },
+  "screening_policy": "protocol.md section 6, frozen sha256 in work/protocol-freeze.json"
+ },
+ "candidates": [
+  {
+   "title": "Resilient microservices: an investigation into Istio effectiveness in Kubernetes",
+   "identifiers": {
+    "openalex": "W4416118167",
+    "doi": "10.1007/s10586-025-05750-x"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Surveying Root Cause Analysis Techniques: A Comprehensive Review of Aspects for Multi-Service Applications",
+   "identifiers": {
+    "openalex": "W4416178230",
+    "doi": "10.1109/tsc.2025.3631913"
+   },
+   "abstract": "As the landscape of industry and commerce continues to evolve, it presents increasing challenges for traditional operation and maintenance of services. These challenges arise from the need to adapt to dynamic market conditions, integrate complex systems and technologies, ensure uninterrupted service delivery, manage large volumes of data, and meet ever-growing customer expectations. Identifying the root cause of a failure is a crucial aspect of day-to-day operation and maintenance. With an accurate and prompt diagnosis, it becomes possible to take timely action and address the underlying issue at its core. Research on root cause analysis has been active in recent years, as it is recognized as a potential solution for effectively managing complex system states. This survey delves into the current state of research on root cause analysis, investigates recent research trends, and presents the commonly available public datasets. We organize studies along two orthogonal axes—application scenarios (cloud services, microservices, industrial systems) and input-data types (logs, traces, metrics, reports)—and synthesize algorithmic families, hybrid/LLM approaches, evaluation metrics, datasets, and tooling. To our knowledge, this is the first survey to classify RCA methods by both scenario and input-data perspectives while providing a consolidated inventory of datasets and tools, offering a roadmap for researchers",
+   "status": "current"
+  },
+  {
+   "title": "Multi-Layer Self-Assessment with Filtering for 3D Object Detection in Autonomous Vehicles",
+   "identifiers": {
+    "openalex": "W4416205459",
+    "doi": "10.1145/3776551"
+   },
+   "abstract": "Reliable detection of road users is critical to the safety of automated driving systems. While object detectors based on deep neural networks are widely used for this purpose, they remain susceptible to errors that could compromise safety. A promising strategy to mitigate these risks involves run-time perception monitoring mechanisms, commonly referred to in the literature as self-assessment or introspection. Current research in this area predominantly addresses anomaly detection, or monitoring camera-based 2D object detection, with insufficient focus on in-distribution errors and 3D object detection. Additionally, existing 2D studies often monitor activation patterns from the final layers of the network backbone, overlooking earlier activations that preserve higher spatial resolution. Yet, high-resolution early-layer activations can be valuable for detecting errors with sparse 3D point clouds. We also argue that not all objects in a scene should equally influence frame-level error detection, a factor often neglected in current methods. To address these gaps, we propose a novel self-assessment mechanism for 3D object detection that leverages activation patterns from multiple network layers. This mechanism employs spatial filtering to focus the model within an area of interest in the close vicinity of the ego vehicle. Additionally, it utilises an object filtering mechanism, which specifically targets the missed objects by excluding the points in those already detected. We evaluate our method using widely recognised object detectors and public datasets. Additionally, we demonstrate its robustness under domain shifts with real-world LiDAR data collected on motorways in diverse weather conditions. Results show the proposed mechanism provides 6% AUROC improvement over last-layer activation methods with spatial filtering on the NuScenes dataset. It also demonstrates a superior ability to transfer knowledge under domain shifts. Code is available at https://github.com/yatbazhakan/multi-layer-introspection .",
+   "status": "current"
+  },
+  {
+   "title": "Chaos Engineering: A Multi-Vocal Literature Review",
+   "identifiers": {
+    "openalex": "W4416249130",
+    "doi": "10.1145/3777375"
+   },
+   "abstract": "Organizations, particularly medium and large enterprises, typically rely heavily on complex, distributed systems to deliver critical services and products. However, the growing complexity of these systems poses challenges in ensuring service availability, performance, and reliability. Traditional resilience testing methods often fail to capture the intricate interactions and failure modes of modern systems. Chaos Engineering addresses these challenges by proactively testing how systems in production behave under turbulent conditions, allowing developers to uncover and resolve potential issues before they escalate into outages. Though chaos engineering has received growing attention from researchers and practitioners alike, we observed a lack of reviews that synthesize insights from both academic and grey literature. Hence, we conducted a Multivocal Literature Review (MLR) on chaos engineering to address this research gap by systematically analyzing 96 academic and grey literature sources published between January 2016 and April 2024. We first used the chosen sources to derive a unified definition of chaos engineering and to identify key functionalities, components, and adoption drivers. We also developed a taxonomy for chaos engineering platforms, capturing dimensions such as execution environments, automation modes, automation strategies, and deployment types. This taxonomy was then used to compare the relevant chaos engineering tools. The taxonomy enables organizations to align tool selection with their system and infrastructure architectures (e.g., microservices, Kubernetes, or serverless platforms) and resilience objectives, while providing researchers with a consolidated foundation for benchmarking tools and for future work such as mining open-source repositories and extending chaos engineering to AI-enabled systems. Finally, we analyzed the current state of chaos engineering research and identified several open research issues.",
+   "status": "current"
+  },
+  {
+   "title": "Explainable Graph Ensemble Learning for Multivariate Time Series Anomaly Detection in Cloud Microservice Architectures",
+   "identifiers": {
+    "openalex": "W4416366558",
+    "doi": "10.1109/tcc.2025.3634737"
+   },
+   "abstract": "The increasing adoption of cloud microservice architectures demands robust multivariate time series anomaly detection algorithms to ensure a reliable computing infrastructure. Although countless of these algorithms are readily available in the literature, significant concerns remain about their interpretability, particularly in cases where it is required to consider both the temporal and topological aspects of the explanation. Our proposed framework leverages attention-based spatial-temporal graph convolutional networks and ensemble learning to capture complex spatial-temporal dependencies across time series. Our approach achieves an averaged event-wise F1 score of 0.94 on two proprietary datasets. After the detection phase, an analysis of the network attention weights, at carefully selected layers, provides useful explanations of the anomalous events to cloud operators.",
+   "status": "current"
+  },
+  {
+   "title": "LogHGAD: A hypergraph-based log anomaly detection method for AIoT systems",
+   "identifiers": {
+    "openalex": "W4416400420",
+    "doi": "10.1016/j.sysarc.2025.103630"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Reinforced temporal graph neural networks for class-imbalanced log anomaly detection",
+   "identifiers": {
+    "openalex": "W4416421846",
+    "doi": "10.1016/j.eswa.2025.130438"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "AIOps for log anomaly detection in the era of LLMs: A systematic literature review",
+   "identifiers": {
+    "openalex": "W4416426157",
+    "doi": "10.1016/j.iswa.2025.200608"
+   },
+   "abstract": "Modern IT systems generate large volumes of log data that challenge timely and effective anomaly detection. Traditional methods often require intensive feature engineering and struggle to adapt to dynamic operational environments. This Systematic Literature Review (SLR) analyzes how Artificial Intelligence for IT Operations (AIOps) benefits from advanced language models, emphasizing Large Language Models (LLMs) for more effective log anomaly detection. By comparing state-of-art frameworks with LLM-driven methods, this study reveals that prompt engineering – the practice of designing and refining inputs to AI models to produce accurate and useful outputs – and Retrieval Augmented Generation (RAG) boost accuracy and interpretability without extensive fine-tuning. Experimental findings demonstrate that LLM-based approaches significantly outperform traditional methods across evaluation metrics that include F1-score, precision, and recall. Furthermore, the integration of LLMs with RAG techniques has shown a strong adaptability to changing environments. The applicability of these methods also extends to the military industry. Consequently, the development of specialized LLM systems with RAG tailored for the military industry represents a promising research direction to improve operational effectiveness and responsiveness of defense systems. • We review LLM-based techniques for anomaly detection in AIOps systems. • We explores RAG to enhance LLMs’ task-specific reasoning in IT operations. • We identify key research gaps in AI-powered log anomaly detection. • We propose a framework for LLM and RAG use in IT system diagnostics.",
+   "status": "current"
+  },
+  {
+   "title": "GraMuS: Boosting statement-level fault localization via graph representation and multimodal information",
+   "identifiers": {
+    "openalex": "W4416442221",
+    "doi": "10.1016/j.jss.2025.112700"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "An IoT-Driven hybrid AI model for health monitoring of cows",
+   "identifiers": {
+    "openalex": "W4416501099",
+    "doi": "10.1007/s44163-025-00610-4"
+   },
+   "abstract": "Livestock diseases continue to pose significant challenges for smallholder dairy farmers, particularly in regions with limited access to veterinary services and real-time health monitoring infrastructure. To address this, the present study proposes a cost-effective IoT-enabled framework for early disease detection in dairy cattle, targeting smallholder farmers in resource-limited regions. A custom smart collar was developed to monitor body temperature, pulse rate, and activity levels in 150 cows across seven districts of Punjab. To analyse the collected data, a novel hybrid model, SM-GBoost-LSTM, was implemented, combining Gradient Boosting (GBoost) for structured features, Long Short-Term Memory (LSTM) networks for temporal patterns, and SMOTE for handling class imbalance. The model achieved high performance, attaining 93.56% accuracy, 91.42% precision, 77.77% recall, and 84.02% F1-score. The system also integrates real-time cloud analytics and a bilingual mobile application (English/Punjabi) to deliver timely health alerts. Overall, the proposed framework provides a scalable, field-validated, and affordable AI-driven solution for improving livestock healthcare in smallholder dairy farming. Proposes a cost-effective IoT-enabled smart collar design for continuous monitoring of key physiological parameters in dairy cattle. Introduces SM-BoostLSTM, a hybrid model integrating SMOTE (for class imbalance), Gradient Boosting (for structured feature learning), and LSTM (for temporal pattern recognition) in livestock health data. Demonstrates the efficacy of the framework through field-validated analysis and a bilingual (English–Punjabi) mobile app envisioned for delivering timely health alerts to farmers.",
+   "status": "current"
+  },
+  {
+   "title": "Adaptively diagnosing system faults in microservice architecture: An autonomous predictive model construction framework",
+   "identifiers": {
+    "openalex": "W4416530258",
+    "doi": "10.1016/j.future.2025.108256"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "LogCALM: a log-based causal discovery and semantic modeling approach for network fault diagnosis",
+   "identifiers": {
+    "openalex": "W4416543256",
+    "doi": "10.1016/j.eswa.2025.130553"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "MADGuard: A High-Performance Microservice Anomaly Detection System With Multidimensional Data Fusion and Temporal Causal Analysis",
+   "identifiers": {
+    "openalex": "W4416582939",
+    "doi": "10.1109/tnsm.2025.3634590"
+   },
+   "abstract": "With the widespread adoption of microservice architectures, the security threats they face have become increasingly sophisticated. Existing anomaly detection methods based on system calls exhibit significant limitations in three key aspects: multidimensional data fusion, temporal causality modeling, and forensic analysis of anomalies. This paper proposes MADGuard, a provenance graph-based anomaly detection system for microservices. MADGuard addresses these challenges through three key innovations: (1) It constructs a native provenance graph by integrating multisource services and multidimensional data, employing feature hashing and positional encoding for efficient graph representation; (2) The system introduces a Temporal Graph Network (TGN) model combined with edge reconstruction error and Inverse Document Frequency (IDF) weighting, achieving a 15. 07% improvement in the F1 score compared to existing methods; (3) For the first time in microservice security, an integrated forensic analysis module is implemented, allowing rapid anomaly path reconstruction through aggregated anomaly subgraphs. Comprehensive evaluations on typical microservice benchmarks (TeaStore, RobotShop, SockShop) demonstrate MADGuard’s superior performance: 94.08% detection accuracy, significantly outperforming state-of-the-art approaches while maintaining practical operational efficiency.",
+   "status": "current"
+  },
+  {
+   "title": "Intelligent Faulted Span Localization for Overhead Power Distribution Networks by Non-Contact Magnetic Sensing",
+   "identifiers": {
+    "openalex": "W4416582979",
+    "doi": "10.1109/tsg.2025.3636168"
+   },
+   "abstract": "Power distribution network is a critical link of Power grid throughout the world, where overhead power lines transport electricity from substation to the consumers end. Short circuit faults are common and contribute to more than 50% for the total faults in distribution lines, mainly due to insulation failures, vegetation growth, birding and line intrusion. Such non-clearing faults require manual faulted span retrieval which results in longer outage times and enormous human effort. This work presents and demonstrate a complete system level approach to automates manual fault localization by non-contact magnetic sensing, its processing and rapid reporting of faulted span length. This results in reduced outage time for customers, less man hours of patrolling, and improved safety of line personnel. To test and validate, this article further designs a novel Remote Terminal Unit (RTU) to track weak magnetic signatures radiated from overhead lines in a non-contact arrangement to detect and identify distribution line status. The state from deployed RTUs is further transmitted to cloud-based algorithm to identify faulted span length. The RTU is developed to cater for real world modalities such as ease of installation at a distance from live conductors, and ability to withstand geomagnetic, ferromagnetic as well as intrinsic sensor noise. The presented system is implementable to radial as well as meshed based modern power systems with an inbuilt mechanism to prevent false alarm in events of back feeding and inrush current. High voltage lab and extensive on-field testing verifies the overall system efficacy to successfully localize the faulted span length.",
+   "status": "current"
+  },
+  {
+   "title": "Using an LLM-Powered Framework for Automatic Risk Identification and Mitigation from Past Claims and Supplemental Agreements",
+   "identifiers": {
+    "openalex": "W4416610936",
+    "doi": "10.1061/jccee5.cpeng-6754"
+   },
+   "abstract": "Examining historical claims and supplemental agreements (CSAs) can provide critical insights into the underlying factors driving project claims and change orders, thereby strengthening an organization’s overall risk management practices. However, thoroughly understanding these CSA descriptions and developing coherent risk taxonomies is both complex and time-consuming. Moreover, current methods for identifying appropriate mitigation strategies remain slow and inefficient. To address these challenges, this study presents a language model-powered framework, named Change to Mitigate (change2mitigate or C2M), that automates both the classification of risk categories and the generation of tailored mitigation strategies for historical CSAs. Specifically, bidirectional encoder representations from transformers (BERT)opic modeling is employed to cluster CSAs into major risk topics based on semantic content, after which a large language model (LLM) refines and enhances the representation of these risk categories. For mitigation, a multimodal retrieval-augmented generation (RAG)-enabled risk mitigation AI agent (RMAIA) leverages various transportation risk management databases, encompassing textual and visual resources such as best practices (BPs) and lessons learned (LL), to retrieve and synthesize effective response strategies. North Carolina State Department of Transportation bridge replacement projects are employed as pilot cases to test and validate the proposed framework. Our findings revealed that the top root causes for claims are utility relocation delays, closeout conference issues, and plan errors, whereas supplemental agreements (SAs) predominantly resulted from plan/design/method challenges, pavement issues, and underground utility complications. Validation results showed that the RMAIA can deliver timely multimodal mitigation solutions. Other transportation agencies can readily adapt this research to enhance their current risk management practices.",
+   "status": "current"
+  },
+  {
+   "title": "Precision Concentration Estimation of Five Gases by Multiple IoT Gas Sensors and a New Hybrid MLP–LSTM Model",
+   "identifiers": {
+    "openalex": "W4416649836",
+    "doi": "10.1109/jiot.2025.3636605"
+   },
+   "abstract": "Outdoor air monitoring on possible air pollution is always one of the important tasks in managing our living environment. A module of five gas sensors and a new learning model is developed by this study to provide precision, real-time multiple gas concentrations in public spaces. The module suits well an internet of things (IoT) node of smart gas-sensing that integrates a custom-designed sensor array, driving circuits, and wireless transmission via Bluetooth/Wi-Fi. The sensed gas data are uploaded to a cloud platform for remote storage and then retrieved by an edge device for on-site processing. A cascaded Multi-Layer Perceptron (MLP) and Long Short-Term Memory (LSTM) model, deployed at edge using TensorFlow Lite for Microcontrollers, compensates successfully for sensor cross-sensitivity, temperature-humidity variations, and other environmental interferences, leading to precise multi-to-multi gas concentration estimation. This edge AI deployment reduces cloud computation load and makes possible an inference in resource-constrained environments. Experimental validation demonstrates that the proposed MLP–LSTM approach achieves accuracies with mean absolute errors within 113 ppb, 0.108 ppm, 0.110 ppm, 0.124 ppm and 0.13 ppb for NOₓ, H₂S, TVOC, CO and SO₂, respectively, superior to those by traditional analysis methods. The system architecture also shows great capability for future integration into IoT applications and an alert system for environmental air monitoring.",
+   "status": "current"
+  },
+  {
+   "title": "Collective intelligence-based service migration enabling zoom-in functionality within industry 5.0",
+   "identifiers": {
+    "openalex": "W4416701810",
+    "doi": "10.1016/j.iot.2025.101830"
+   },
+   "abstract": "• Collective Intelligence with AI orchestration enhances Kubernetes for Industry 5.0 • Zoom-In functionality enables dynamic ML upgrades with human-in-the-loop input • LLM-powered intent translation drives context-aware, explainable decisions in IIoT • Proactive service migration reduces downtime via hot/cold state management • Validated in real-world use case, balancing compute efficiency with operational needs The rapid evolution of Industry 5.0 emphasizes the integration of human expertise with machine intelligence to create resilient, adaptive, and human-centric industrial systems. This paper introduces a novel Collective Intelligence (CI)-based service migration framework designed for Industry 5.0 environments, enabling dynamic orchestration of stateful services across heterogeneous edge-to-cloud infrastructures. At its core, the framework leverages Kubernetes (K8s) enhanced with AI-driven decision-making and human-in-the-loop collaboration to address the limitations of traditional orchestration in industrial settings. A key innovation of this work is the Zoom-In functionality, which empowers human operators to escalate anomaly detection and analysis by deploying advanced machine learning models on demand, seamlessly migrating services to resource-rich nodes when deeper investigation is warranted. The proposed framework integrates Large Language Models (LLMs) to translate operator intent into actionable policies, ensuring context-aware and explainable decision-making. Experimental validation in real industrial scenarios demonstrates high anomaly detection accuracy (F1-scores up to 1.0), reliable operator intent translation (over 70% correct JSON generations with lightweight LLMs), and efficient multi-criteria scheduling with millisecond-level decision times. Moreover, the proposed migration mechanism reduces downtime by more than 50% compared to vanilla Kubernetes, ensuring service continuity in mission-critical tasks. This work advances the vision of collaborative intelligence in IoT systems, bridging the gap between human judgment and automated orchestration for Industry 5.0 applications.",
+   "status": "current"
+  },
+  {
+   "title": "FLUXLog: A Federated Mixture-of-Experts Framework for Unified Log Anomaly Detection",
+   "identifiers": {
+    "openalex": "W4416798129",
+    "doi": "10.1109/tpds.2025.3638693"
+   },
+   "abstract": "Traditional log anomaly detection systems are centralized, which poses the risk of privacy leakage during data transmission. Previous research mainly focuses on single-domain logs, requiring domain-specific models and retraining, which limits flexibility and scalability. In this paper, we propose a unified federated cross-domain log anomaly detection approach, FLUXLog, which is based on MoE (Mixture of Experts) to handle heterogeneous log data. Based on our insights, we establish a two phase training process: pre-training the gating network to assign expert weights based on data distribution, followed by expert driven top-down feature fusion. The following training of the gating network is based on fine-tuning the adapters, providing the necessary flexibility for the model to adapt across domains while maintaining expert specialization. This training paradigm enables a Hybrid Specialization Strategy, fostering both domain-specific expertise and cross-domain generalization. The Cross Gated Experts Module (CGEM) then fuses expert weights and dual channel outputs. Experiments on public datasets demonstrate that our model outperforms baseline models in handling unified cross-domain log data.",
+   "status": "current"
+  },
+  {
+   "title": "ThinkFL: Self-Refining Failure Localization for Microservice Systems via Reinforcement Fine-Tuning",
+   "identifiers": {
+    "openalex": "W4416888443",
+    "doi": "10.1145/3789262"
+   },
+   "abstract": "As modern microservice systems grow increasingly popular and complex—often consisting of hundreds or even thousands of interdependent components—they are becoming more susceptible to frequent and subtle failures. Ensuring system reliability therefore hinges on accurate and efficient failure localization. Traditional failure localization approaches based on small models lack the flexibility to adapt to diverse failure scenarios, while recent LLM-based methods suffer from two major limitations: they often rely on rigid invocation workflows that constrain the model’s ability to dynamically explore effective localization paths, and they require resource-intensive inference, making them cost-prohibitive for real-world deployment. To address these challenges, we explore the use of reinforcement fine-tuning to equip lightweight LLMs with reasoning and self-refinement capabilities, significantly improving the cost-effectiveness and adaptability of LLM-based failure localization. We begin with an empirical study to identify three key capabilities essential for accurate localization. Building on these insights, we propose a progressive multi-stage GRPO fine-tuning framework, which integrates a multi-factor failure localization grader and a recursion-of-thought actor module. The resulting model, ThinkFL , not only outperforms existing state-of-the-art LLMs and baseline methods in localization accuracy but also reduces end-to-end localization latency from minutes to seconds, demonstrating strong potential for real-world applications.",
+   "status": "current"
+  },
+  {
+   "title": "Cloud Database Forensics in Practice: Structural Challenges and Investigative Lessons From Azure SQL Database",
+   "identifiers": {
+    "openalex": "W4416925989",
+    "doi": "10.1109/access.2025.3639429"
+   },
+   "abstract": "Cloud database forensics faces fundamental structural challenges that differ from traditional on-premises environments. This study experimentally investigates how three representative recovery techniques—transaction log analysis, data page inspection, and buffer pool analysis—operate under the structural constraints of Azure SQL Database. A controlled deletion scenario was designed in which specific records were removed from a sample table, and the recovery feasibility of each technique was examined using native Structured Query Language (SQL) diagnostic commands. Rather than simply reapplying existing recovery methods, this study demonstrates their structural non-applicability within the Platform as a Service (PaaS)-based cloud environment, thereby establishing empirical evidence of an unexplored forensic limitation. The results show that transaction log analysis remains partially accessible but ephemeral, while page- and memory-based recovery approaches are structurally restricted by the PaaS architecture, making complete reconstruction infeasible. These findings demonstrate that conventional recovery procedures cannot be directly replicated in cloud databases, highlighting the need for new forensic readiness strategies and institutional cooperation between investigators and cloud service providers. The study provides practical evidence of structural non-applicability in cloud forensic procedures and offers policy-level implications for trustworthy digital investigations in cloud environments.",
+   "status": "current"
+  },
+  {
+   "title": "Attacks and Detections in Recommender Systems: A Comprehensive Analysis for Models, Progresses, and Trends",
+   "identifiers": {
+    "openalex": "W4416926032",
+    "doi": "10.1109/tkde.2025.3639434"
+   },
+   "abstract": "Recommender systems (RSs), as crucial components of online services, can help users efficiently obtain information they may like. In reality, RSs face long-term threats. Attackers manipulate recommendation results by injecting malicious data in order to obtain benefits. At present, research on the security of RSs lacks a comprehensive understanding of attack capabilities. Moreover, existing defense strategies have not yet been systematically associated with attack characteristics. More importantly, existing defense methods rarely focus on real unlabeled data in practical application scenarios for anomaly detection and forensics. Therefore, this survey systematically analyzes the security of RSs and provides new insights. Specifically, we first categorize attack models from an attack perspective into: attack strategies based on targets, attack strategies against security and privacy, attack strategies based on prior knowledge, and attack strategies against other RSs. From a perspective of defense, existing detection models, second, can be divided into: behavioral representation based on statistics, detection based on hidden features, detection against privacy attacks, anomaly discovery based on association mining, and abnormality forensics for real-world data. Finally, we propose several potential research directions aimed at providing guidance for the security research of RSs. Additionally, to facilitate experimental reproducibility and comparative research, this survey also provides a repository of resources for attacks and defenses (https://github.com/xiaofengbbb/RS-Papers).",
+   "status": "current"
+  },
+  {
+   "title": "LogPDGMoE: Log anomaly detection method based on MoE with parallel dual-noise gating network",
+   "identifiers": {
+    "openalex": "W4416977039",
+    "doi": "10.1016/j.ins.2026.123498"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "KPIRoot+: An efficient integrated framework for anomaly detection and root cause analysis in large-scale cloud systems",
+   "identifiers": {
+    "openalex": "W4417024536",
+    "doi": "10.1007/s10664-025-10769-0",
+    "arxiv": "2506.04569"
+   },
+   "abstract": "To ensure the reliability of cloud systems, their runtime status reflecting the service quality is periodically monitored with monitoring metrics, i.e., KPIs (key performance indicators). When performance issues happen, root cause localization pinpoints the specific KPIs that are responsible for the degradation of overall service quality, facilitating prompt problem diagnosis and resolution. To this end, existing methods generally locate root-cause KPIs by identifying the KPIs that exhibit a similar anomalous trend to the overall service performance. While straightforward, solely relying on the similarity calculation may be ineffective when dealing with cloud systems with complicated interdependent services. Recent deep learning-based methods offer improved performance by modeling these intricate dependencies. However, their high computational demand often hinders their ability to meet the efficiency requirements of industrial applications. Furthermore, their lack of interpretability further restricts their practicality. To overcome these limitations, an effective and efficient root cause localization method, KPIRoot, is proposed. It integrates both advantages of similarity analysis and causality analysis, where similarity measures the trend alignment of KPI and causality measures the sequential order of variation of KPI. Furthermore, it leverages symbolic aggregate approximation to produce a more compact representation for each KPI, enhancing the overall analysis efficiency of the approach. However, during the deployment of KPIRoot in cloud systems of a large-scale cloud system vendor, Cloud \\documentclass[12pt]{minimal} \\usepackage{amsmath} \\usepackage{wasysym} \\usepackage{amsfonts} \\usepackage{amssymb} \\usepackage{amsbsy} \\usepackage{mathrsfs} \\usepackage{upgreek} \\setlength{\\oddsidemargin}{-69pt} \\begin{document}$$\\mathcal {H}$$\\end{document}. We identified two additional drawbacks of KPIRoot: 1. The threshold-based anomaly detection method is insufficient for capturing all types of performance anomalies; 2. The SAX representation cannot capture intricate variation trends, which causes suboptimal root cause localization results. We propose KPIRoot+ to address the above drawbacks. The experimental results show that KPIRoot+ outperforms eight state-of-the-art baselines by 2.9%\\documentclass[12pt]{minimal} \\usepackage{amsmath} \\usepackage{wasysym} \\usepackage{amsfonts} \\usepackage{amssymb} \\usepackage{amsbsy} \\usepackage{mathrsfs} \\usepackage{upgreek} \\setlength{\\oddsidemargin}{-69pt} \\begin{document}$$\\sim$$\\end{document}35.7%, while time cost is reduced by 34.7%. Moreover, we share our experience of deploying KPIRoot in the production environment of a large-scale cloud provider Cloud \\documentclass[12pt]{minimal} \\usepackage{amsmath} \\usepackage{wasysym} \\usepackage{amsfonts} \\usepackage{amssymb} \\usepackage{amsbsy} \\usepackage{mathrsfs} \\usepackage{upgreek} \\setlength{\\oddsidemargin}{-69pt} \\begin{document}$$\\mathcal {H}$$\\end{document}.",
+   "status": "current"
+  },
+  {
+   "title": "An explainable hybrid deep learning-enabled intelligent fault detection and diagnosis approach for automotive software systems validation",
+   "identifiers": {
+    "openalex": "W4417093383",
+    "doi": "10.1016/j.knosys.2025.114922"
+   },
+   "abstract": "Advancements in data-driven machine learning have emerged as a pivotal element in supporting automotive software systems (ASSs) engineering across various levels of the V-development process. During system verification and validation, the integration of an intelligent fault detection and diagnosis (FDD) model with test recordings analysis process serves as a powerful tool for efficiency, ensuring functional safety. However, the lack of interpretability of the black-box FDD models developed not only hinders understanding of the cause underlying the prediction but also prevents the model from being adapted based on the prediction result. This, in turn, increases the computational cost required for developing a complex FDD model and limits confidence in real-time safety-critical applications. To address this challenge, a novel explainable method for fault detection, identification, and localization is proposed in this article with the aim of providing a clear understanding of the logic behind the prediction outcome. To this end, a hybrid 1dCNN-GRU-based intelligent model was developed to analyze the recordings from the real-time validation process of ASSs. The employment of explainable AI techniques, i.e., IGs, DeepLIFT, Gradient SHAP, and DeepLIFT SHAP, was instrumental in enabling model adaptation and facilitating the root cause analysis (RCA). The proposed approach is applied to the real-time dataset collected during a virtual test drive performed by the user on hardware-in-the-loop (HIL) system. A thorough evaluation of the model’s performance revealed its superiority in diagnosing the fault type and location compared to state-of-the-art models. By integrating XAI techniques, the proposed approach offers a high-performance, low-computational-cost DL model with improved interpretability, which not only supports safety engineers but also contributes to the optimisation of the real-time validation process of ASSs.",
+   "status": "current"
+  },
+  {
+   "title": "DBAIOps: A Reasoning LLM-Enhanced Database Operation and Maintenance System using Knowledge Graphs",
+   "identifiers": {
+    "openalex": "W4417098497",
+    "doi": "10.14778/3797919.3797937",
+    "arxiv": "2508.01136"
+   },
+   "abstract": "The operation and maintenance (O&M) of database systems is critical to ensuring system availability and performance, typically requiring expert experience (e.g., identifying metric-to-anomaly relations) for effective diagnosis and recovery. However, existing automatic database O&M methods, including commercial products, cannot effectively utilize expert experience. On the one hand, rule-based methods only support basic O&M tasks (e.g., metric-based anomaly detection), which are mostly numerical equations and cannot effectively incorporate literal O&M experience (e.g., troubleshooting guidance in manuals). On the other hand, LLM-based methods, which retrieve fragmented information (e.g., standard documents + RAG), often generate inaccurate or generic results. To address these limitations, we present DBAIOps, a novel hybrid database O&M system that combines reasoning LLMs with knowledge graphs to achieve DBA-style diagnosis. First, DBAIOps introduces a heterogeneous graph model for representing the diagnosis experience, and proposes a semi-automatic graph construction algorithm to build that graph from thousands of documents. Second, DBAIOps develops a collection of (800+) reusable anomaly models that identify both directly alerted metrics and implicitly correlated experience and metrics. Third, for any given anomaly, DBAIOps employs an automatic graph exploration mechanism that explores the relevant paths over the graph and dynamically explores potential gaps (missing paths) without human intervention. Based on the explored diagnosis paths, DBAIOps leverages reasoning LLM (e.g., DeepSeek-R1) that inputs the relevant pathways, identifies root causes, and generates clear diagnosis reports for both DBAs and common users. Our evaluation over four mainstream database systems (Oracle, MySQL, PostgreSQL, and DM8) demonstrates that DBAIOps outperforms state-of-the-art baselines, 34.85% and 47.22% higher in root cause and human evaluation accuracy, respectively. DBAIOps supports 25 database systems and has been deployed in 20 real-world scenarios, covering domains like finance, energy, and healthcare ( https://www.dbaiops.com ).",
+   "status": "current"
+  },
+  {
+   "title": "Automated tomato leaf disease detection and alert system using Internet of Things and TinyML",
+   "identifiers": {
+    "openalex": "W4417156187",
+    "doi": "10.1007/s43926-025-00257-8"
+   },
+   "abstract": "Early and accurate identification of foliar diseases is critical for sustaining tomato crop yields. The conventional diagnosis methods are labour-intensive and slow. This paper presents a fully embedded TinyML IoT pipeline that performs real time tomato leaf disease detection directly on a microcontroller class device and reports results to a remote Internet of Things (IoT) server for continuous agricultural field monitoring. A lightweight, convolutional neural network was trained on the PlantVillage dataset to classify five tomato leaf diseases. The model occupies 1.1 MB RAM with an average inference time of 500 ms on the test set, with < 15 ms per image inference on the microcontroller, enabling deployment on the ESP32S3 microcontroller operating at 240 MHz. Detected class labels and confidence scores are streamed via Message Queuing Telemetry Transport (MQTT) over Wi Fi to a cloud IoT server, where time-stamped diagnoses are logged for agronomic analytics and threshold-based alerting. The model achieved an accuracy of 94.6% and a macro F1-score of 0.94 across five tomato leaf diseases. Inference time on the ESP32-S3 microcontroller was 500 ms, with total memory usage of 1.1 MB. A seven-day field deployment verified over 95% data integrity and timely disease alerts via MQTT. The TinyML model demonstrates parity with heavier edge GPU baselines while consuming < 140 mW during inference. The proposed architecture offers a scalable, low-cost solution for precision agriculture. The proposed system enables farmers to receive instantaneous disease insights and enact timely interventions without relying on cloud-based computation.",
+   "status": "current"
+  },
+  {
+   "title": "Weir: Scalable RDMA With Delay-Based RNIC Cache Control Software Middleware for Data Center Networks",
+   "identifiers": {
+    "openalex": "W4417201861",
+    "doi": "10.1109/ton.2025.3635230"
+   },
+   "abstract": "Remote Direct Memory Access (RDMA) is widely used in distributed services in Data Center Networks (DCNs) due to its high performance. As DCNs expand in scale, RDMA faces scalability issues. The reason is that the high concurrency Queue Pairs (QPs) lead to cache misses on RDMA Network Interface Card (RNIC) and frequent evictions, and the behaviour of fetching the cache via PCIe leads to performance degradation of RDMA. In this paper, we model the behaviour of Work Queue Element (WQE) on RNIC as a producer-consumer model and investigate that the root cause of WQE cache misses is the mismatch between the production rate of the CPU and the consumption rate of the RNIC. We design Weir from the perspective of WQE cache control to avoid cache misses and improve throughput under high concurrent QPs. Weir determines the cache occupancy on the RNIC by monitoring the number of active QPs and the increase/decrease in the life cycle of WQEs, and calculates the production rate and pacing by credit. The implementation of Weir exhibits minimal CPU overhead. Evaluation results show that Weir can maintain 97Gbps throughput without degradation even with up to 16K concurrent QPs, and effectively reduces various observable cache misses by$5\\times $to$10\\times $compared to commercial RNICs. Additionally, experiments show that Weir has better connection scalability than XRC and DCT.",
+   "status": "current"
+  },
+  {
+   "title": "Viper: Priority-Based High-Visibility Per-Flow Packet Sampling for SDNs",
+   "identifiers": {
+    "openalex": "W4417201889",
+    "doi": "10.1109/tc.2025.3642321"
+   },
+   "abstract": "Packet sampling is crucial for managing datacenter networks, serving fault diagnosis, traffic measurement, and intrusion detection functions. However, traditional sampling techniques, such as those based on sketches or ports, either lack packet–level granularity or provide insufficient visibility, leading to functional performance degradation. Recent research has employed the software-defined networking (SDN) model to enable flow-based packet sampling. However, these approaches often introduce substantial control and computation overhead, limiting their scalability. This paper presents Viper, a novel priority-based, high-visibility per-flow packet sampling mechanism tailored to address these challenges. Specifically, Viper leverages existing priority-based traffic scheduling mechanisms to prioritize shorter flows over longer ones. Then, a logical centralized controller orchestrates sampling policies for packets of different priorities. In-depth analysis indicates that the orchestration performed by the controller significantly impacts Viper’s performance. Consequently, we model this process as a nonlinear optimization problem, seeking to maximize the utility of sampling. Then, we propose an online primal–dual interior–point algorithm to address this optimization problem and prove the algorithm’s convergence, optimality, and efficiency. Experimental results show that Viper increases visibility by 3.83% to 8.3%, with negligible control overhead and a substantial reduction in sampling load by at least 20.51%.",
+   "status": "current"
+  },
+  {
+   "title": "PV-MLLM: A Generalized Intelligent Framework for Zero-Shot Photovoltaic Fault Diagnosis",
+   "identifiers": {
+    "openalex": "W4417251769",
+    "doi": "10.1109/tii.2025.3637313"
+   },
+   "abstract": "Existing zero-shot fault diagnosis methods are typically system-specific and numerically sensitive, which lack adaptive deployment capabilities across heterogeneous photovoltaic (PV) system scales and topologies. Multimodal large language models (MLLMs) emerge as a powerful solution in cross-system generalization, but their adoption in PV fault diagnosis has been limited by the lack of PV knowledge integration and challenges in processing diverse operating conditions. To bridge this gap, an MLLMs-empowered framework for zero-shot PV fault diagnosis is proposed for the first time, which jointly integrates data-driven and knowledge-driven schemes. First, a chain-of-thought-based data augmentation pipeline is constructed to achieve data-knowledge alignment and interpretable results. Second, a two-stage adaptation strategy is specifically designed for PV data to overcome system scales, diverse topologies, and numerical differences. It consists of a Kolmogorov–Arnold networks-based condition adaptive layer embedded in vision transformer and a low-rank adaptation-based PV domain fine-tuning. Third, we design a microservices-based architecture for PV-MLLM deployment that enables flexible component decoupling and adaptive inference, significantly reducing hardware requirements and resource consumption. The proposed method achieves 99.66% and 97.25% diagnostic accuracy on simulated and real-world datasets.",
+   "status": "current"
+  },
+  {
+   "title": "Autonomous cyber-physical security middleware for IoT: anomaly detection and adaptive response in hybrid environments",
+   "identifiers": {
+    "openalex": "W4417416607",
+    "doi": "10.3389/frai.2025.1675132"
+   },
+   "abstract": "The rapid adoption of Internet of Things (IoT) devices in cyber-physical systems introduces significant security challenges, particularly in distributed and heterogeneous environments where operational resilience and real-time threat response are critical. Previous efforts have explored lightweight encryption and modular authentication. Still, few solutions provide a unified framework that integrates real-time anomaly detection, automated mitigation, and performance evaluation under hybrid experimental conditions. This work presents an autonomous multi-layered security architecture for IoT networks, implemented through microservices-based middleware with native support for detection and adaptive response mechanisms. The architecture integrates lightweight anomaly inference models, based on entropy metrics and anomaly scores, with a rule-based engine that executes dynamic containment actions such as node isolation, channel reconfiguration, and key rotation. The system runs on edge hardware (Raspberry Pi, sensors, actuators) and is validated in a hybrid testbed with NS-3 simulations. Experimental results show an F1-Score of 0.931 in physical deployments and 0.912 in simulated scenarios, with anomaly detection latencies below 130 ms and containment actions triggered within 300 ms. Under high-load conditions, CPU usage remains under 60 % and memory consumption below 300 MB. Compared to representative middleware platforms such as BlendSM-DDM and Claimsware, the proposed system uniquely integrates detection, response, and auditability, achieving high scalability and resilience for IoT deployments in real-world hybrid environments.",
+   "status": "current"
+  },
+  {
+   "title": "CARE: Context Aware Root Cause Identification Using Distributed Traces and Profiling Metrics",
+   "identifiers": {
+    "openalex": "W4417439110",
+    "doi": "10.1109/tse.2025.3645143"
+   },
+   "abstract": "Root cause localization in microservices is challenging due to intricate service dependencies and the high volume and heterogeneity of collected monitoring data, which add complexity to the analysis. Conventional methods often overlook nuanced propagation patterns and contextual interactions among services, and they are limited in leveraging multi-source observability data for comprehensive root cause identification. This study introduces CARE, a context-aware, spectrum-analysis-based approach that integrates multi-source observability data and employs network analysis to prioritize the contextual significance of components in propagating anomalies across individual services, service communities, and requests. CARE’s weighted spectrum analysis leverages these prioritized contexts to pinpoint underlying performance issues. Evaluations on 224 cases from the TrainTicket benchmark and a real-world Internet service provider’s production system demonstrate CARE’s substantial accuracy gains, with top-1 accuracy of 72%-89% and top-5 accuracy of 84%-99% for single root causes, outperforming baselines by 8%-41%. CARE also shows significant improvements in dual root cause identification, exceeding baseline performance by 18%-37%, all while maintaining efficient resource usage, establishing CARE as a robust and resource-effective solution for root cause localization in complex microservice environments.",
+   "status": "current"
+  },
+  {
+   "title": "Intermittent Fault Diagnosis of Data Center Network CSDC Under Probabilistic Fault Model",
+   "identifiers": {
+    "openalex": "W4417471622",
+    "doi": "10.1109/ton.2025.3646058"
+   },
+   "abstract": "As the core infrastructures in the information systems, the data center networks carry a large number of tasks of data processing and storage. In a data center network, intermittent faults are often difficult to be found and dealt with in time because of their hiddenness and uncertainty. Once these faults accumulate to a certain extent, they can cause serious network outages and even lead to the collapse of the entire data center. In order to discover and resolve these potential problems in a timely manner, it is crucial to apply intermittent fault diagnosis, thus ensures the continuous and stable operation of the data center. In this paper, we propose the intermittent fault diagnosabilitytPMCI(Cn) for ann-dimensional data center network CSDC under the Preparata/Metze/Chien model (PMC model) by establishing the fault tolerance of the network. Additionally, under the PMC model, we propose a probabilistic multiple intermittent fault diagnosis algorithm (PMIFDPMC) with time complexityO(nN) by preferentially generating weighted multiple test networks (GWMTN) whereNis the scale of CSDC. Moreover, we apply the algorithm PMIFDPMC to a 7-dimensional CSDC and a real-world dataset of the Internet of Things. Across different scenarios of intermittent fault nodes, we calculate the Accuracy, Recall, FNR, G-mean, and F1-score using various testing iterations. The experimental results demonstrate that, as the number of testing iterations of algorithm PMIFDPMC increases, the quantity of intermittent fault nodes that are correctly diagnosed also increases. This highlights the favorable performance and effectiveness of algorithm PMIFDPMC on the real-world dataset of the Internet of Things.",
+   "status": "current"
+  },
+  {
+   "title": "UDA-RCL: Unsupervised Domain Adaptation for Microservice Root Cause Localization Utilizing Multimodal Data",
+   "identifiers": {
+    "openalex": "W4417508611",
+    "doi": "10.1109/tsc.2025.3646329"
+   },
+   "abstract": "Root cause Localization methods play a crucial role in ensuring the stability of large-scale microservice systems. However, existing methods either rely on unsupervised approaches with limited localization accuracy or on supervised learning that requires large volumes of historical anomaly data. Such data is often unavailable in newly deployed systems. To address this limitation, we attempt to use the labeled data from mature systems to help new systems build root cause localization models. Specifically, we propose UDA-RCL, an unsupervised domain adaptation root cause localization method using multimodal data (log, metric and trace data). UDA-RCL first incorporates an aggregation based event extraction module to standardize the format of multimodal data from different systems. Then, it utilizes a multimodal event encoder and multimodal domain adversarial adaptation module to narrow the feature distribution gap between different systems. Furthermore, taking into account the situation of sparse anomaly samples, existing methods' classifiers are either hard to transfer to other systems or struggle to capture the process of anomaly propagation, we propose a PageRank classifier module. This module employs a neural network embedded with anomaly propagation rules to output the final root cause ranking results, alleviating the issue of sparse anomaly samples. Extensive experiments have proven that our method achieves the best results in both supervised and transfer learning scenarios.",
+   "status": "current"
+  },
+  {
+   "title": "MobiKanViT: Feature-Enhanced Lightweight CNN in Mobile Edge Computing for Real-Time Bearing Fault Diagnosis",
+   "identifiers": {
+    "openalex": "W7105613547",
+    "doi": "10.1109/jiot.2025.3632414"
+   },
+   "abstract": "As an important part of mechanical equipment, rolling bearing holds significant importance in the normal operation of machinery. However, the parameter and computation of fault diagnosis approaches based on deep learning technique are huge, and most methods are diagnosed in the cloud, which can lead to time delays and non-real-time. To overcome these issues, in edge computing scenarios, a real-time bearing fault diagnosis network MobiKanViT is proposed in this paper. The network is a lightweight and low-latency vision fault diagnosis network with enhanced discriminative feature learning capability. The Efficient Multi-scale Attention (EMA) module is introduced to enhance the ability of feature recognition. The ordinary convolution module is substituted with the Kolmogorov-Arnold Networks (KAN) convolution module to solve the problem of large parameter and computation. The MobiKanViT is compressed and quantized with depth parameter γ to make the model more lightweight and easy to be deployed on edge devices. Verification experiments were conducted on two sets of experimental equipment, and three mobile phones were selected as mobile edge computing platforms. The experimental results show that a depth parameter of γ = 0.5 and INT8 quantization yield the most effective results for MobiKanViT. When juxtaposed with current large model techniques, the suggested approach decreases memory consumption by an average of 94.6%, while simultaneously boosting inference speed by about 15.87 times. In comparison to existing lightweight models, this new method also improves diagnostic accuracy by an average of 2.6%.",
+   "status": "current"
+  },
+  {
+   "title": "Retriever: A Distributed Intrusion Detection System for NOS-Enabled Networks",
+   "identifiers": {
+    "openalex": "W7106329280",
+    "doi": "10.1109/tdsc.2025.3635127"
+   },
+   "abstract": "Network Operating Systems (NOS) are being widely deployed on edge devices by cloud service providers to perform fast configurations and offer high availability for new network protocols. However, NOS-enabled networks open the door to intruders that can stealthily corrupt less-guarded programmable switches to launch attacks on the entire network. Traditional centralized intrusion detection systems may neglect anomalous events on NOS-equipped switches and fail to detect such attacks. In this paper, we make the first attempt towards intrusion detection for NOS-enabled networks by designingRetriever.Retrieverfeatures a lightweight local anomaly detection module on programmable switches and a central anomaly assessment module on the central server. The local anomaly detection module selectively traces both system and network events on switches, based on which a provenance graph of events is established. Upcoming events unmatched by the provenance graph are aggregated to construct a suspicious subgraph to report to the central server. The central anomaly assessment module extracts semantic representations from reported suspicious subgraphs and computes their anomaly scores. Large-scale experiments show thatRetrievercan achieve high intrusion detection accuracy (nearly 100%) with low overheads.",
+   "status": "current"
+  },
+  {
+   "title": "Anomaly detection for blockchain nodes based on eBPF and fine-tuning large language model",
+   "identifiers": {
+    "openalex": "W7114766074",
+    "doi": "10.1016/j.jisa.2025.104329"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Chaos experiments in microservice architectures: A systematic literature review",
+   "identifiers": {
+    "openalex": "W7115597831",
+    "doi": "10.1016/j.csi.2025.104116"
+   },
+   "abstract": "",
+   "status": "current"
+  },
+  {
+   "title": "Causal Digital Twins for cyber–physical security in water systems: A framework for robust anomaly detection",
+   "identifiers": {
+    "openalex": "W7115950852",
+    "doi": "10.1016/j.mlwa.2025.100824"
+   },
+   "abstract": "Industrial Control Systems (ICS) in water distribution and treatment face cyber–physical attacks exploiting network and physical vulnerabilities. Current water system anomaly detection methods rely on correlations, yielding high false alarms and poor root cause analysis. We propose a Causal Digital Twin (CDT) framework for water infrastructures, combining causal inference with digital twin modeling. CDT supports association for pattern detection, intervention for system response, and counterfactual analysis for water attack prevention. Evaluated on water-related datasets SWaT, WADI, and HAI, CDT shows high compliance with physical constraints (90.8% for SWaT, 87.4%–90.8% across datasets) and structural Hamming distance 0.133 ± 0.02. F1-scores are 0 . 944 ± 0 . 014 (SWaT), 0 . 902 ± 0 . 021 (WADI), 0 . 923 ± 0 . 018 (HAI, p < 0 . 0024 ). Multi-scale temporal detection strategies ( τ ∈ { 5 , 10 , 20 } ) enable 91.7% detection of stealthy attacks through cumulative causal discrepancy analysis. CDT reduces false positives by 48% compared to state-of-the-art methods (70% vs. statistical baselines), achieves 78.4% root cause accuracy, and enables counterfactual defenses reducing attack success by up to 89.1%. Real-time performance at 3.2 ms latency ensures safe and interpretable operation for medium-scale water systems. • CDT links causal reasoning with digital twins for ICS behavior analysis • Scores 0.944 on SWaT, 0.902 on WADI, 0.923 on HAI with 48% fewer false alerts • Learns causal relations with 90.8% physical consistency, 78.4% Top-1 accuracy • Counterfactual analysis guides defenses, cutting attack success by 58.3% to 89.1% • Real-time feasible at 3.2ms latency; transfer keeps F1 between 0.847 and 0.889",
+   "status": "current"
+  },
+  {
+   "title": "A Bi-Objective Policy for Resilient and Sustainable SFC Management in Telco-Cloud Environments",
+   "identifiers": {
+    "openalex": "W7116757021",
+    "doi": "10.1109/access.2025.3646975"
+   },
+   "abstract": "Achieving high availability in Service Function Chains (SFCs) typically requires deploying redundant Virtual Network Function (VNF) instances. However, this redundancy increases resource usage and energy consumption, raising the carbon footprint of the service. Reducing redundancy lowers the energy consumption but impacts the service availability during failures, creating a critical trade-off between service availability and sustainability. To address this, a novel bi-objective policy is introduced that leverages a Tradeoff Aware Embedding (TAE) algorithm using greedy approach for resource provisioning, and a PSO-based Redundancy Optimizer (PRO) that dynamically adjusts VNF redundancy to meet service availability requirements without increasing the carbon footprint. To further enhance the fault tolerance, the policy integrates a Gradient-Boosting (GB) enabled failure prediction and remediation mechanism called Redundancy with Checkpointing (RPC), enabling proactive failure detection and rapid recovery. Simulation results using real-world failure traces demonstrated that the proposed policy with RPC achieved up to 99.987% availability while reducing the carbon footprint of the service by over 87% and service failures by more than 98% compared to the worst-case without redundancy and checkpointing mechanisms.",
+   "status": "current"
+  },
+  {
+   "title": "Hot Fixing Software: A Comprehensive Review of Terminology, Techniques, and Applications",
+   "identifiers": {
+    "openalex": "W7117010068",
+    "doi": "10.1145/3786330",
+    "arxiv": "2401.09275"
+   },
+   "abstract": "A hot fix is an unplanned improvement to a specific time-critical issue deployed to a software system in production. While hot fixing is an essential and common activity in software maintenance, it has never been surveyed as a research activity. Thus, such a review is long overdue. In this paper, we conduct a comprehensive literature review of work on hot fixing. We highlight the fields where this topic has been addressed, inconsistencies we identified in the terminology, gaps in the literature, and directions for future work. Our search concluded with 140 articles on the topic between the years 1986 and 2024. The articles found encompass many different research areas such as log analysis, runtime patching (also known as hot patching), and automated repair, as well as various application domains such as security, mobile, and video games. We find that many directions can take hot fix research forward such as unifying existing terminology, establishing a benchmark set of hot fixes, researching costs and frequency of hot fixes, and researching the possibility of end-to-end automation of detection, mitigation, and deployment. We discuss these avenues in detail to inspire the community to systematize hot fixing as a software engineering activity.",
+   "status": "current"
+  }
+ ],
+ "task_id": "261024-literature-1000-q1",
+ "attempt_id": "t0snow2-16"
+}

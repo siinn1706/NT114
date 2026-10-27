@@ -1,0 +1,48 @@
+{
+  "sampling_launch_path": {
+    "runbook_creates": "results_dev_pilot/server/qwen35-4b.args",
+    "sampling_requires": "results_dev_sampling/server/qwen35-4b.args",
+    "observed": "launch arguments file WindowsPath('F:/Nam/UIT/NT114 - NCKH/plans/review-runtime-261019-2254/results_dev_sampling/server/qwen35-4b.args') not found (written by scripts/serve_model.sh)",
+    "network_calls": 0
+  },
+  "incompatible_dev_source": {
+    "headline": true,
+    "target_backend": "vllm",
+    "dev_backend": "mock",
+    "different_revision_server_and_signature": true,
+    "dev_fit_rows": 2,
+    "source_accepted": true,
+    "fixture": "synthetic"
+  },
+  "baseline_dev_pooling": {
+    "headline": true,
+    "test_ac1": 0.0,
+    "dev_ac1": 1.0,
+    "published_ac1": [
+      0.5,
+      0.5
+    ],
+    "has_split_role": false,
+    "fixture": "synthetic"
+  },
+  "threshold_nan_draw_accounting": {
+    "threshold_output": {
+      "coverage": 0.5,
+      "coverage_lo": 0.0,
+      "coverage_hi": 1.0,
+      "risk": 0.0,
+      "risk_lo": 0.0,
+      "risk_hi": 0.0
+    },
+    "l1_output": {
+      "policy": "L1 self-abstain",
+      "coverage": 0.5,
+      "risk": 0.0,
+      "coverage_lo": 0.0,
+      "coverage_hi": 1.0,
+      "risk_lo": 0.0,
+      "risk_hi": 0.0
+    },
+    "expected_undefined_draw_probability": 0.25
+  }
+}

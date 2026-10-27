@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "05-checkpoint-r2-s1-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 screen-r2-s1 05-merge-r2-s1-01 --in work/screen/input/r2-manifest.json --out work/screen/r2-s1-merged.csv --out work/screen/all3-s1-merged.csv --note 118 section-10 records screened, one anchor R1 drift on a title-only survey",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-checkpoint-r2-s1-01.out",
+ "egress_trace_reference": "work/logs/05-checkpoint-r2-s1-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-25T16:27:38.299476+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "1663dfd228f63026bab0af54f14c7e60453fd1902fcdd4ddf3aabdf5e9dd9c32"
+ ],
+ "output_hashes": [
+  "008bf79988f97a776a9499811dcd20a99424bc4de5c8458a67892c5d27dbfbf5"
+ ],
+ "checks": [
+  "phase 05 r2 screening committed"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "86128dfd2c66007c92bd8e96be916a2491c4f6b1a212a64f9053c2df63b73181",
+ "command_results": [
+  {
+   "command": "C:\\Users\\Siinn\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -X utf8 -I work/scripts/checkpoint.py 05 screen-r2-s1 05-merge-r2-s1-01 --in work/screen/input/r2-manifest.json --out work/screen/r2-s1-merged.csv --out work/screen/all3-s1-merged.csv --note 118 section-10 records screened, one anchor R1 drift on a title-only survey",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry",
+   "exit_status": 0,
+   "stdout_sha256": "617d8c18f581403d75ff6fc07f7181b9845d6e401007facd2bc737fc40eb2c74",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/screen/r2-s1-merged.csv",
+   "sha256_before": "1663dfd228f63026bab0af54f14c7e60453fd1902fcdd4ddf3aabdf5e9dd9c32",
+   "sha256_after": "1663dfd228f63026bab0af54f14c7e60453fd1902fcdd4ddf3aabdf5e9dd9c32",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/state.json",
+   "sha256": "008bf79988f97a776a9499811dcd20a99424bc4de5c8458a67892c5d27dbfbf5",
+   "created_this_attempt": true
+  }
+ ]
+}

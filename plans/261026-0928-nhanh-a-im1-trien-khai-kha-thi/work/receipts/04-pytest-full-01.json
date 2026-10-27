@@ -1,0 +1,53 @@
+{
+ "schema_version": 2,
+ "id": "04-pytest-full-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -m pytest -p no:cacheprovider -q -rfE",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-pytest-full-01.out",
+ "egress_trace_reference": "work/logs/04-pytest-full-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T03:39:28.929664+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [],
+ "output_hashes": [],
+ "checks": [
+  "full pytest after phase 04: rcl_evidence, run_grid arms, llm cache scope, score.outcome, arm-aware selective/cost/analyze; S3 one call per answer in tests/test_ra_pipeline.py"
+ ],
+ "limitations": [
+  "scratchpad CPU venv; mock LLM and synthetic data only; no model result"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Temp/claude/F--Nam-UIT-NT114---NCKH/bba26fa1-becf-454d-ae28-afac9c1138f4/scratchpad/nt114-cpu-env/Scripts/python.exe -m pytest -p no:cacheprovider -q -rfE",
+   "shell": "none (subprocess argv)",
+   "cwd": "../../nt114-rca/nt114-rca",
+   "exit_status": 0,
+   "stdout_sha256": "f81db6dcbd5092ec7b65268ae46ad6eb4cd10d60d1b939339823ffcc694d7188",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [],
+ "output_files": []
+}
