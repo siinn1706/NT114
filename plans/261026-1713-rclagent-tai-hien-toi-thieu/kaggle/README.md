@@ -14,7 +14,7 @@ Phạm vi: kiểm khả năng chạy RCLAgent với một backbone thay thế, g
 - Pilot: 5 trace train, mỗi ca một trace, chọn theo phân vị số span (trừ trace smoke). Quy tắc chọn ghi trong manifest.
 - Chạy: mỗi trace có tool server, trần 160 requests và 30 phút riêng. Trace dừng (guard, deadline, lỗi HTTP) được ghi `failed` kèm lý do trong `run/progress.json`, rồi lượt sang trace kế tiếp. Model server chết thì cả lượt dừng; các trace còn lại chờ. Chạy lại cell C–F, hoặc gắn ZIP kết quả cũ làm input, sẽ chạy tiếp các trace chưa xong của **cùng** bundle; trace đã xong không chạy lại.
 - Chấm: scorer tác giả chạy riêng cho từng trace đã qua, trong `run/scoring/<trace_id>/`. `summarize-repair-run.py` đọc cả lượt một trace lẫn lượt theo lô.
-- Ước lượng từ version 8 (40 giây/span): pilot 130 span cần khoảng 90 phút cho E. Trace 45 span ước khoảng 1.820 giây, sát hoặc vượt deadline 30 phút; nếu vượt, nó được ghi `failed`, không nới trần.
+- Ước lượng từ version 8 (40 giây/span) tính với chunked prefill: pilot 130 span cần khoảng 90 phút cho E. Version 10 đo được trace 45 span hết deadline 30 phút ở request tổng hợp cuối. Từ version 11 server không chunked prefill, nên ước lượng này phải đo lại. Trace vượt deadline được ghi `failed`, không nới trần.
 
 ## File dùng trên Kaggle
 
@@ -42,7 +42,7 @@ Notebook tạo `run-once.json` trước C. Không xóa marker để chạy lại
 
 - Upstream: [LLM4AIOps/RCLAgent-V2](https://github.com/LLM4AIOps/RCLAgent-V2), commit `3052e7a6a9598d984ba1482f3dc41123c8823a99`. Các file đóng gói lấy trực tiếp từ Git object, giữ LICENSE MIT. Không có patch source upstream.
 - Model: [Qwen/Qwen3-4B-Instruct-2507](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507), revision `cdbee75f17c01a7cc42f958dc650907174af0554`. Đây là bản Instruct non-thinking của tài khoản Qwen chính thức, không phải tên tag Ollama suy đoán.
-- Server: vLLM `0.10.2`, engine V0, FP16, parser Hermes chính thức, localhost `127.0.0.1:8000`, một GPU, `max_num_seqs=1`. Bật chunked prefill với khối tối đa 2.048 token, không cắt ngữ cảnh; context giữ nguyên 16.384/32.768 theo VRAM. [Tài liệu tool calling v0.10.2](https://docs.vllm.ai/en/v0.10.2/features/tool_calling.html).
+- Server: vLLM `0.10.2`, engine V0, FP16, parser Hermes chính thức, localhost `127.0.0.1:8000`, một GPU, `max_num_seqs=1`. Từ version 11, không bật chunked prefill: `max_num_batched_tokens` bằng context, nên mỗi prompt được prefill trong một bước, không cắt ngữ cảnh; context giữ nguyên 16.384/32.768 theo VRAM. Đến version 10, server prefill theo khối 2.048 token; trên T4, prompt 8.446 token cần khoảng 232 giây so với 9,4 giây khi không chunked ([báo cáo đo](../../reports/bench-261027-2232-t4-prefill-chunked-vs-unchunked.md)). [Tài liệu tool calling v0.10.2](https://docs.vllm.ai/en/v0.10.2/features/tool_calling.html).
 - Tương thích T4: chỉ đổi `BLOCK_M` của non-ALiBi prefix prefill trong vLLM thành 64 trên Turing; kiến trúc khác giữ 128. Ghim hash source wheel, giữ source gốc và diff trong `compatibility/` của ZIP kết quả. Cell B bắt buộc qua kiểm kernel GPU tổng hợp; source RCLAgent bất biến. Chặn bytecode cache để package giữ nguyên allowlist.
 - Context: 16.384 token nếu VRAM thiết bị <22.000 MiB, 32.768 nếu ≥22.000 MiB. Output tối đa 512 token cho self-state/consolidation và 1.024 cho synthesizer. Input cộng phần output dự phòng vượt context sẽ dừng; không cắt ngữ cảnh.
 - Sampling cố định: temperature 0,7; top_p 0,8; top_k 20; min_p 0; seed 20261026. Không hứa tái lập bit-for-bit giữa GPU/runtime.

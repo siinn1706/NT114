@@ -1,0 +1,1139 @@
+{
+  "notebook_version": 9,
+  "status": {
+    "status": "passed",
+    "stage": "F",
+    "started": 1793098998.6828666,
+    "score": "author scorer per passed trace; descriptive pilot result, not an accuracy estimate",
+    "resumed_from_attached_results": false,
+    "finished": 1793103516.4106858,
+    "elapsed_seconds": 4517.72781920433,
+    "traces": {
+      "failed": 2,
+      "passed": 3
+    },
+    "observed_requests": {
+      "protocol": 3,
+      "traces/1e527c6a967e105118fdc1acdf739e02": 69,
+      "traces/2095688a1eb7e72f9efbd9fad2b36a50": 109,
+      "traces/3753f2a8b337506fffccb4eb515f7530": 17,
+      "traces/c603394090ba1fe134efa14ef4851a65": 74,
+      "traces/f6526e739db68628e96673f25da39305": 105
+    }
+  },
+  "compatibility": {
+    "before": {
+      "mode": "before",
+      "gpu": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "head_size": 128,
+      "query_heads": 32,
+      "kv_heads": 8,
+      "dtype": "float16",
+      "cases": [],
+      "status": "expected-shared-memory-failure",
+      "error": "OutOfResources(98304, 65536, 'shared memory')",
+      "peak_cuda_allocated_bytes": 3368960,
+      "peak_cuda_reserved_bytes": 23068672
+    },
+    "after": {
+      "mode": "after",
+      "gpu": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "head_size": 128,
+      "query_heads": 32,
+      "kv_heads": 8,
+      "dtype": "float16",
+      "cases": [
+        {
+          "query_length": 1,
+          "cached_context": 0,
+          "max_absolute_error": 0.0,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 1,
+          "cached_context": 17,
+          "max_absolute_error": 5.911290645599365e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 63,
+          "cached_context": 0,
+          "max_absolute_error": 0.00017777085304260254,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 63,
+          "cached_context": 17,
+          "max_absolute_error": 7.396936416625977e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 64,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016936659812927246,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 64,
+          "cached_context": 17,
+          "max_absolute_error": 7.359683513641357e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 65,
+          "cached_context": 0,
+          "max_absolute_error": 0.0002117753028869629,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 65,
+          "cached_context": 17,
+          "max_absolute_error": 7.934868335723877e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 127,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016191601753234863,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 127,
+          "cached_context": 17,
+          "max_absolute_error": 7.449090480804443e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 128,
+          "cached_context": 0,
+          "max_absolute_error": 0.0002480149269104004,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 128,
+          "cached_context": 17,
+          "max_absolute_error": 6.119906902313232e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 129,
+          "cached_context": 0,
+          "max_absolute_error": 0.00016516447067260742,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 129,
+          "cached_context": 17,
+          "max_absolute_error": 6.80387020111084e-05,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        },
+        {
+          "query_length": 2048,
+          "cached_context": 2048,
+          "max_absolute_error": 8.07829201221466e-06,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "all_rows_finite": true
+        }
+      ],
+      "status": "passed",
+      "peak_cuda_allocated_bytes": 415894016,
+      "peak_cuda_reserved_bytes": 478150656
+    },
+    "patch": {
+      "vllm": "0.10.2",
+      "source": "/tmp/rclagent-smoke/env/lib/python3.13/site-packages/vllm/attention/ops/prefix_prefill.py",
+      "before_sha256": "8055f9dc80be1727ac9255ac8a2e565ef08e3572325e0b69e170b2249b4b789a",
+      "after_sha256": "89e27bc3caedba18ac8bed4913b4f56d4c2a5c5414486650ae8c8c477aef03a0",
+      "official_wheel_sha256": "e0cba6110483d9bf25c4402d8655cf78d366dd13e4155210980cc3480ed98b7b",
+      "reason": "SM75 non-ALiBi prefix kernel requests 98304 bytes shared memory with BLOCK_M=128; T4 limit is 65536. Use 64 query rows per tile on Turing only. Grid already uses ceil(query_length/BLOCK_M); no tokens or attention terms removed.",
+      "changes": {
+        "Turing_BLOCK_M": 64,
+        "other_architectures_BLOCK_M": 128
+      },
+      "unchanged": [
+        "BLOCK_N=64",
+        "num_stages=1",
+        "kernel math",
+        "RCLAgent source/prompt/tools",
+        "context and request limits"
+      ]
+    },
+    "status": {
+      "status": "passed",
+      "original_reproduced_or_supported": true,
+      "patched_dense_reference_cases": 15,
+      "model_requests": 0
+    }
+  },
+  "settings": {
+    "gpu": {
+      "index": 0,
+      "name": "Tesla T4",
+      "uuid": "GPU-6cea437f-5de3-d447-0819-336c487a27fc",
+      "total_mib": 15360.0,
+      "free_mib": 14912.0,
+      "driver": "580.178.04",
+      "compute_capability": 7.5
+    },
+    "context": 16384,
+    "dtype": "half",
+    "tensor_parallel_size": 1,
+    "max_num_seqs": 1,
+    "vllm_engine": "V0",
+    "enable_chunked_prefill": true,
+    "max_num_batched_tokens": 2048,
+    "max_output_tokens": {
+      "self_state": 512,
+      "consolidate": 512,
+      "synthesizer": 1024
+    },
+    "max_model_requests_including_retry": 160,
+    "rcl_deadline_seconds": 1800,
+    "max_tool_rounds_per_span": 4,
+    "client_retry_attempts": 3,
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "vllm": "0.10.2",
+    "sampling": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "seed": 20261026
+    },
+    "context_overflow": "fatal, never truncate",
+    "concurrency": 1
+  },
+  "phases": {
+    "protocol": {
+      "worker": {
+        "status": "passed",
+        "phase": "protocol",
+        "model_requests_including_retries": 3,
+        "token_usage": {
+          "prompt_tokens": 858,
+          "completion_tokens": 140,
+          "responses_with_usage": 3
+        },
+        "error": null,
+        "fatal": null
+      },
+      "request_count": 3,
+      "response_http_statuses": [
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 1,
+        "fatal": 0,
+        "worker_error": 0
+      },
+      "last_error_events": [],
+      "tool_result_budget": {
+        "search_logs_results": 1,
+        "condensed": 0,
+        "spans_with_condensed_result": 0,
+        "condensed_detail": []
+      }
+    },
+    "traces/2095688a1eb7e72f9efbd9fad2b36a50": {
+      "worker": {
+        "status": "failed",
+        "phase": "trace",
+        "model_requests_including_retries": 109,
+        "token_usage": {
+          "prompt_tokens": 107294,
+          "completion_tokens": 10806,
+          "responses_with_usage": 109
+        },
+        "error": "HarnessStop('Invalid agent JSON output: Missing local_root_cause')",
+        "fatal": "Invalid agent JSON output: Missing local_root_cause"
+      },
+      "request_count": 109,
+      "response_http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 0,
+        "fatal": 1,
+        "worker_error": 1
+      },
+      "last_error_events": [
+        {
+          "time": 1793100284.5205507,
+          "kind": "fatal",
+          "reason": "Invalid agent JSON output: Missing local_root_cause"
+        },
+        {
+          "time": 1793100284.5250967,
+          "kind": "worker_error",
+          "error": "HarnessStop('Invalid agent JSON output: Missing local_root_cause')",
+          "traceback": "Traceback (most recent call last):\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 331, in wrapped\n    raise ValueError('Missing local_root_cause')\nValueError: Missing local_root_cause\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 414, in main\n    result = coordinator.inspect_trace(graph, max_parallel=1)\n  File \"/kaggle/working/rclagent-smoke/package/upstream/coordinator.py\", line 461, in inspect_trace\n    consolidation_results[id(agent)] = f.result()\n                                       ~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 453, in result\n    return self.__get_result()\n           ~~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 402, in __get_result\n    raise self._exception\n  File \"/usr/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 333, in wrapped\n    guard.stop('Invalid agent JSON output: ' + str(exc))\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 128, in stop\n    raise HarnessStop(self.fatal)\nHarnessStop: Invalid agent JSON output: Missing local_root_cause\n"
+        }
+      ],
+      "tool_result_budget": {
+        "search_logs_results": 50,
+        "condensed": 1,
+        "spans_with_condensed_result": 1,
+        "condensed_detail": [
+          {
+            "span_id": "c278e012cf3a54e6",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705517087576"
+            },
+            "original_bytes": 221028,
+            "original_tokens": 98255,
+            "condensed_tokens": 450,
+            "notice": "[harness tool-result budget 2048 tokens: 1201 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          }
+        ]
+      }
+    },
+    "traces/3753f2a8b337506fffccb4eb515f7530": {
+      "worker": {
+        "status": "passed",
+        "phase": "trace",
+        "model_requests_including_retries": 17,
+        "token_usage": {
+          "prompt_tokens": 19219,
+          "completion_tokens": 1700,
+          "responses_with_usage": 17
+        },
+        "error": null,
+        "fatal": null
+      },
+      "request_count": 17,
+      "response_http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 0,
+        "fatal": 0,
+        "worker_error": 0
+      },
+      "last_error_events": [],
+      "tool_result_budget": {
+        "search_logs_results": 8,
+        "condensed": 2,
+        "spans_with_condensed_result": 2,
+        "condensed_detail": [
+          {
+            "span_id": "4328c108fb9d3425",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705542979521"
+            },
+            "original_bytes": 286256,
+            "original_tokens": 126617,
+            "condensed_tokens": 445,
+            "notice": "[harness tool-result budget 2048 tokens: 1546 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          },
+          {
+            "span_id": "6eac797edf74d389",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705542979524"
+            },
+            "original_bytes": 286256,
+            "original_tokens": 126617,
+            "condensed_tokens": 445,
+            "notice": "[harness tool-result budget 2048 tokens: 1546 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          }
+        ]
+      }
+    },
+    "traces/c603394090ba1fe134efa14ef4851a65": {
+      "worker": {
+        "status": "passed",
+        "phase": "trace",
+        "model_requests_including_retries": 74,
+        "token_usage": {
+          "prompt_tokens": 75757,
+          "completion_tokens": 7865,
+          "responses_with_usage": 74
+        },
+        "error": null,
+        "fatal": null
+      },
+      "request_count": 74,
+      "response_http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 0,
+        "fatal": 0,
+        "worker_error": 0
+      },
+      "last_error_events": [],
+      "tool_result_budget": {
+        "search_logs_results": 27,
+        "condensed": 2,
+        "spans_with_condensed_result": 2,
+        "condensed_detail": [
+          {
+            "span_id": "de3127263ebd2dc1",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705728604107"
+            },
+            "original_bytes": 280917,
+            "original_tokens": 128530,
+            "condensed_tokens": 447,
+            "notice": "[harness tool-result budget 2048 tokens: 1603 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          },
+          {
+            "span_id": "fcfe31e9544df21b",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705728604179"
+            },
+            "original_bytes": 280917,
+            "original_tokens": 128530,
+            "condensed_tokens": 447,
+            "notice": "[harness tool-result budget 2048 tokens: 1603 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          }
+        ]
+      }
+    },
+    "traces/1e527c6a967e105118fdc1acdf739e02": {
+      "worker": {
+        "status": "failed",
+        "phase": "trace",
+        "model_requests_including_retries": 69,
+        "token_usage": {
+          "prompt_tokens": 67797,
+          "completion_tokens": 7501,
+          "responses_with_usage": 69
+        },
+        "error": "HarnessStop('Invalid agent JSON output: Missing local_root_cause')",
+        "fatal": "Invalid agent JSON output: Missing local_root_cause"
+      },
+      "request_count": 69,
+      "response_http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 0,
+        "fatal": 1,
+        "worker_error": 1
+      },
+      "last_error_events": [
+        {
+          "time": 1793102209.0346787,
+          "kind": "fatal",
+          "reason": "Invalid agent JSON output: Missing local_root_cause"
+        },
+        {
+          "time": 1793102209.0371635,
+          "kind": "worker_error",
+          "error": "HarnessStop('Invalid agent JSON output: Missing local_root_cause')",
+          "traceback": "Traceback (most recent call last):\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 331, in wrapped\n    raise ValueError('Missing local_root_cause')\nValueError: Missing local_root_cause\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 414, in main\n    result = coordinator.inspect_trace(graph, max_parallel=1)\n  File \"/kaggle/working/rclagent-smoke/package/upstream/coordinator.py\", line 461, in inspect_trace\n    consolidation_results[id(agent)] = f.result()\n                                       ~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 453, in result\n    return self.__get_result()\n           ~~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.13/concurrent/futures/_base.py\", line 402, in __get_result\n    raise self._exception\n  File \"/usr/lib/python3.13/concurrent/futures/thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 333, in wrapped\n    guard.stop('Invalid agent JSON output: ' + str(exc))\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/kaggle/working/rclagent-smoke/package/smoke-worker.py\", line 128, in stop\n    raise HarnessStop(self.fatal)\nHarnessStop: Invalid agent JSON output: Missing local_root_cause\n"
+        }
+      ],
+      "tool_result_budget": {
+        "search_logs_results": 30,
+        "condensed": 2,
+        "spans_with_condensed_result": 2,
+        "condensed_detail": [
+          {
+            "span_id": "5cdccea8e71e8d04",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705690314687"
+            },
+            "original_bytes": 242912,
+            "original_tokens": 114830,
+            "condensed_tokens": 451,
+            "notice": "[harness tool-result budget 2048 tokens: 1379 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          },
+          {
+            "span_id": "914e95bd69410302",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705690315295"
+            },
+            "original_bytes": 242130,
+            "original_tokens": 114485,
+            "condensed_tokens": 450,
+            "notice": "[harness tool-result budget 2048 tokens: 1374 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          }
+        ]
+      }
+    },
+    "traces/f6526e739db68628e96673f25da39305": {
+      "worker": {
+        "status": "passed",
+        "phase": "trace",
+        "model_requests_including_retries": 105,
+        "token_usage": {
+          "prompt_tokens": 107004,
+          "completion_tokens": 11032,
+          "responses_with_usage": 105
+        },
+        "error": null,
+        "fatal": null
+      },
+      "request_count": 105,
+      "response_http_statuses": [
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "events": {
+        "protocol_pass": 0,
+        "fatal": 0,
+        "worker_error": 0
+      },
+      "last_error_events": [],
+      "tool_result_budget": {
+        "search_logs_results": 37,
+        "condensed": 2,
+        "spans_with_condensed_result": 2,
+        "condensed_detail": [
+          {
+            "span_id": "fe2e769d4e899c55",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705357820497"
+            },
+            "original_bytes": 167376,
+            "original_tokens": 75374,
+            "condensed_tokens": 452,
+            "notice": "[harness tool-result budget 2048 tokens: 923 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          },
+          {
+            "span_id": "e64472ec6c014b5c",
+            "params": {
+              "service_name": "cartservice",
+              "timestamp": "1705357820579"
+            },
+            "original_bytes": 167376,
+            "original_tokens": 75374,
+            "condensed_tokens": 452,
+            "notice": "[harness tool-result budget 2048 tokens: 923 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]"
+          }
+        ]
+      }
+    }
+  },
+  "artifact": "rclagent-kaggle-repair-v9-results.zip",
+  "artifact_bytes": 368350,
+  "artifact_sha256": "760891088595fffc32543fc70cb74b59c430db29cfdecfe2b6ca6a7a2b96d3fb",
+  "progress": {
+    "bundle_sha256": "bf069dbadc46c94bac4f3039f391abfc56e09de535752ffe32aaf488280d3110",
+    "traces": {
+      "2095688a1eb7e72f9efbd9fad2b36a50": {
+        "case": "productcatalogservice_delay_3",
+        "attempts": [
+          {
+            "started": 1793099107.9084592,
+            "outcome": "failed",
+            "finished": 1793100285.2328258
+          }
+        ],
+        "status": "failed",
+        "reason": "RuntimeError('trace failed: Invalid agent JSON output: Missing local_root_cause')"
+      },
+      "3753f2a8b337506fffccb4eb515f7530": {
+        "case": "recommendationservice_socket_3",
+        "attempts": [
+          {
+            "started": 1793100285.233034,
+            "outcome": "passed",
+            "finished": 1793100504.7427378
+          }
+        ],
+        "status": "passed"
+      },
+      "c603394090ba1fe134efa14ef4851a65": {
+        "case": "emailservice_socket_2",
+        "attempts": [
+          {
+            "started": 1793100504.7432473,
+            "outcome": "passed",
+            "finished": 1793101413.3260098
+          }
+        ],
+        "status": "passed"
+      },
+      "1e527c6a967e105118fdc1acdf739e02": {
+        "case": "currencyservice_mem_3",
+        "attempts": [
+          {
+            "started": 1793101413.3265605,
+            "outcome": "failed",
+            "finished": 1793102209.6839972
+          }
+        ],
+        "status": "failed",
+        "reason": "RuntimeError('trace failed: Invalid agent JSON output: Missing local_root_cause')"
+      },
+      "f6526e739db68628e96673f25da39305": {
+        "case": "productcatalogservice_mem_1",
+        "attempts": [
+          {
+            "started": 1793102209.6842272,
+            "outcome": "passed",
+            "finished": 1793103511.8367903
+          }
+        ],
+        "status": "passed"
+      }
+    }
+  },
+  "processes": [
+    {
+      "name": "vllm",
+      "exit": 0
+    },
+    {
+      "name": "tools-synthetic",
+      "exit": -15
+    },
+    {
+      "name": "worker-protocol",
+      "exit": 0
+    },
+    {
+      "name": "tools-2095688a1eb7e72f9efbd9fad2b36a50",
+      "exit": -15
+    },
+    {
+      "name": "worker-2095688a1eb7e72f9efbd9fad2b36a50",
+      "exit": 1
+    },
+    {
+      "name": "tools-3753f2a8b337506fffccb4eb515f7530",
+      "exit": -15
+    },
+    {
+      "name": "worker-3753f2a8b337506fffccb4eb515f7530",
+      "exit": 0
+    },
+    {
+      "name": "tools-c603394090ba1fe134efa14ef4851a65",
+      "exit": -15
+    },
+    {
+      "name": "worker-c603394090ba1fe134efa14ef4851a65",
+      "exit": 0
+    },
+    {
+      "name": "tools-1e527c6a967e105118fdc1acdf739e02",
+      "exit": -15
+    },
+    {
+      "name": "worker-1e527c6a967e105118fdc1acdf739e02",
+      "exit": 1
+    },
+    {
+      "name": "tools-f6526e739db68628e96673f25da39305",
+      "exit": -15
+    },
+    {
+      "name": "worker-f6526e739db68628e96673f25da39305",
+      "exit": 0
+    }
+  ],
+  "resource_peaks": {
+    "by_phase": {
+      "setup": {
+        "sampled_peak_owned_rss_bytes": 7793242112,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-6cea437f-5de3-d447-0819-336c487a27fc": 12674.0
+        },
+        "samples": 91
+      },
+      "protocol": {
+        "sampled_peak_owned_rss_bytes": 9050738688,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-6cea437f-5de3-d447-0819-336c487a27fc": 13122.0
+        },
+        "samples": 14
+      },
+      "trace": {
+        "sampled_peak_owned_rss_bytes": 9226313728,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-6cea437f-5de3-d447-0819-336c487a27fc": 13494.0
+        },
+        "samples": 4244
+      },
+      "scoring": {
+        "sampled_peak_owned_rss_bytes": 8126435328,
+        "sampled_peak_owned_gpu_mib": {
+          "GPU-6cea437f-5de3-d447-0819-336c487a27fc": 13494.0
+        },
+        "samples": 4
+      }
+    },
+    "method": "Owned process-tree RSS and nvidia-smi compute-app memory, sampled every ~1s. Device peaks remain separate; RSS may double-count shared pages. Missing GPU metrics are unknown, not zero. Brief allocation peaks between samples can be missed."
+  },
+  "input_verification": {
+    "source": "/kaggle/input/datasets/siinn1706/rclagent-one-trace-smoke-261026",
+    "container": "expanded Kaggle dataset",
+    "manifest_sha256": "a3ad4beef83db729f5d188adaca9d310e0209ff2fd6b9b8b6743faadd04845bd",
+    "all_member_hashes_verified": true,
+    "original_bundle_sha256": "bf069dbadc46c94bac4f3039f391abfc56e09de535752ffe32aaf488280d3110",
+    "container_zip_hash_checked": false
+  },
+  "results": {
+    "2095688a1eb7e72f9efbd9fad2b36a50": null,
+    "3753f2a8b337506fffccb4eb515f7530": {
+      "root_causes": [
+        "productcatalogservice-0",
+        "cartservice-1",
+        "paymentservice-2",
+        "shippingservice-0",
+        "emailservice-1",
+        "recommendationservice-0",
+        "currencyservice-0",
+        "redis-1",
+        "checkoutservice-2",
+        "frontendservice-0"
+      ]
+    },
+    "c603394090ba1fe134efa14ef4851a65": {
+      "root_causes": [
+        "productcatalogservice",
+        "currencyservice",
+        "cartservice",
+        "recommendationservice",
+        "adservice",
+        "paymentservice",
+        "shippingservice",
+        "emailservice",
+        "frontendservice",
+        "redis"
+      ]
+    },
+    "1e527c6a967e105118fdc1acdf739e02": null,
+    "f6526e739db68628e96673f25da39305": {
+      "root_causes": [
+        "frontendservice",
+        "cartservice",
+        "productcatalogservice",
+        "currencyservice",
+        "shippingservice",
+        "paymentservice",
+        "recommendationservice",
+        "emailservice",
+        "redis",
+        "adservice"
+      ]
+    }
+  },
+  "author_score_text": {
+    "3753f2a8b337506fffccb4eb515f7530": "Error in sitecustomize; set PYTHONVERBOSE for traceback:\nModuleNotFoundError: No module named 'wrapt'\n\nResults  (1 faults evaluated out of 1 groundtruth, 1 traces, data_root=/kaggle/working/rclagent-smoke/run/scoring/3753f2a8b337506fffccb4eb515f7530)\n  R@1  : 0.0000  (0/1)\n  R@3  : 0.0000  (0/1)\n  R@5  : 0.0000  (0/1)\n  R@10 : 1.0000  (1/1)\n  MRR  : 0.1667\n",
+    "c603394090ba1fe134efa14ef4851a65": "Error in sitecustomize; set PYTHONVERBOSE for traceback:\nModuleNotFoundError: No module named 'wrapt'\n\nResults  (1 faults evaluated out of 1 groundtruth, 1 traces, data_root=/kaggle/working/rclagent-smoke/run/scoring/c603394090ba1fe134efa14ef4851a65)\n  R@1  : 0.0000  (0/1)\n  R@3  : 0.0000  (0/1)\n  R@5  : 0.0000  (0/1)\n  R@10 : 1.0000  (1/1)\n  MRR  : 0.1250\n",
+    "f6526e739db68628e96673f25da39305": "Error in sitecustomize; set PYTHONVERBOSE for traceback:\nModuleNotFoundError: No module named 'wrapt'\n\nResults  (1 faults evaluated out of 1 groundtruth, 1 traces, data_root=/kaggle/working/rclagent-smoke/run/scoring/f6526e739db68628e96673f25da39305)\n  R@1  : 0.0000  (0/1)\n  R@3  : 1.0000  (1/1)\n  R@5  : 1.0000  (1/1)\n  R@10 : 1.0000  (1/1)\n  MRR  : 0.3333\n"
+  },
+  "scoring_ran": true,
+  "code_matches_downloaded_native_source": true,
+  "private_notebook_metadata_verified": true
+}
