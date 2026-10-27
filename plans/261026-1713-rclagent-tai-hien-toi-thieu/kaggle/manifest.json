@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "upstream_commit": "3052e7a6a9598d984ba1482f3dc41123c8823a99",
+  "upstream_url": "https://github.com/LLM4AIOps/RCLAgent-V2",
+  "benchmark_url": "https://zenodo.org/records/14590730",
+  "benchmark_file": "RE2-OB.zip",
+  "benchmark_zip_sha256": "0605a36cdcad8a6ae0107f2357c9c91ecee2c4ab5d72579bffea0372d9747513",
+  "case": "checkoutservice_cpu_2",
+  "partition": "train",
+  "selection_rule": "Previously selected longest author-chosen trace of the first unambiguous train case in author processing order; original error_traces data row 442.",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "raw_case_file_hashes": {
+    "traces.csv": "f9500387b6ff0a11018633d521b448ebcf7c68ca632660bbfebb78bdcec18b42",
+    "simple_metrics.csv": "9e33f6bddfa5c1956cbb8723aed96297d7417e1421280801775d8dd8f052463d",
+    "logs.csv": "ad145789c46b22ef004673ca6315a65631f183ad9d2760090393c676ff0d6921",
+    "inject_time.txt": "e235854dec09d738024021b17feff34c647f3610d3e669e08f027bbb9b7bd3df"
+  },
+  "full_preprocessed_hashes": {
+    "trace\\all\\trace_jaeger-span.csv": "078a222fae514b98dc35028abaa188cafb13925495039ebd68211fd189ca87f4",
+    "metric\\all\\metrics.csv": "1200300e388c53155c6514dd8e2af925823b351d9157e2046a0a2d6d344807cc",
+    "log\\all\\logs.csv": "dbf02f0e1630167708a8ca30c1c370575bebbdc77340be4bc3a9bac78c31a3e7"
+  },
+  "metrics_source": "simple_metrics.csv, the upstream preprocessing default; all matched KPIs retained.",
+  "data_policy": "Only selected case. Labels in scoring/; never forwarded to model. Private Kaggle use only.",
+  "upstream_patch": null,
+  "files": {
+    "cpu-equivalence.json": {
+      "sha256": "8cbf976ab9f2a377cb6f9aa8de03baa2b8eee9beea478c9e7a2ba4bcb418fdd4",
+      "bytes": 26071
+    },
+    "input/error_traces.txt": {
+      "sha256": "76bd0b27d96a0039b0c722695f467753c4d0be05eed48baa6f084d394084d82f",
+      "bytes": 297
+    },
+    "input/log/all/logs.csv": {
+      "sha256": "c1f11fed33620c1054cfc71483730bb586c727a81842b0fc977453029c539ad1",
+      "bytes": 41
+    },
+    "input/metric/all/metrics.csv": {
+      "sha256": "7a8ffd4ee48d356497dde4ce67214edb6639a43702d14e4a8b9af5a7ac3bae65",
+      "bytes": 1888695
+    },
+    "input/metric/node_service_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "input/metric/service_node_map.pkl": {
+      "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
+      "bytes": 5
+    },
+    "input/trace/all/trace_jaeger-span.csv": {
+      "sha256": "68cdd4721c848f022691bc541aeda10fe4360ff2a6240aba14df432d8e8c8241",
+      "bytes": 5143
+    },
+    "kaggle-runtime.py": {
+      "sha256": "b148ce54ec05f8d642b6a5e2f71b8aaea4240fee101361c63ccc53707ebf705a",
+      "bytes": 28244
+    },
+    "scoring/groundtruth.csv": {
+      "sha256": "80e8b86cc47a0c0cdde38bab64bce845d951f22a02946393f151b0a379f837c3",
+      "bytes": 78
+    },
+    "selection.json": {
+      "sha256": "284eef10a393053eb6587d65b568c558512317c22859a473b86f64f5b60bac61",
+      "bytes": 1055
+    },
+    "smoke-worker.py": {
+      "sha256": "4622394f83fcf74f2d3b1d072c75062b58cda9d7f982fa6d2ebaa1fd958d76d7",
+      "bytes": 17335
+    },
+    "upstream/config.py": {
+      "sha256": "970171f965af253e6575e2dba2529abb9394b6d84fad31eb2565a211bc387c52",
+      "bytes": 5008
+    },
+    "upstream/coordinator.py": {
+      "sha256": "4bae341a51e2f5117fa1f71277e81d0005675b94449599f7471074d8b0a954fb",
+      "bytes": 25523
+    },
+    "upstream/evaluate.py": {
+      "sha256": "540f652c4166f77f67c57e0c2610f9a1f538da1f7cf4a0102e669ea25ceda4ef",
+      "bytes": 7768
+    },
+    "upstream/LICENSE": {
+      "sha256": "8a9577accbe30f20ace46367bf1d5922937042302cfe60256fe37d842417b5af",
+      "bytes": 1073
+    },
+    "upstream/llm.py": {
+      "sha256": "37620854b84758b338fd8a3f658a315babbf95491b67307d19cf43c85cdd1ca4",
+      "bytes": 7242
+    },
+    "upstream/preprocess/preprocess_re2ob.py": {
+      "sha256": "d92d007f4fa0cef278f802ee11ec890b82365e1d62014d52d50ce681fcd3741d",
+      "bytes": 13010
+    },
+    "upstream/README.md": {
+      "sha256": "da5f605461316d985b8022bff4aa9a6391be609e450578b1b62f674181c19572",
+      "bytes": 13774
+    },
+    "upstream/requirements.txt": {
+      "sha256": "503d7ede49f70fbc5cc7f0931f866359fa2feb4662c2e9536ffe82388a165e2f",
+      "bytes": 260
+    },
+    "upstream/tool_server.py": {
+      "sha256": "cb43070af052b5a136577b4695922f6b9237c33e72831fd1e3408d826198ccbe",
+      "bytes": 8857
+    },
+    "upstream/tools_gpt.py": {
+      "sha256": "d5e77e31feec737e202a39c1a08464392bffcf310c0286f92eac4cc7fdfeead5",
+      "bytes": 2880
+    },
+    "vllm-t4-compat.py": {
+      "sha256": "4fc7748277a9b643c3af47bc8d8e6a8b570605582dcd52acc9a47c6bcccfe6a9",
+      "bytes": 2375
+    },
+    "verify-t4-prefix-kernel.py": {
+      "sha256": "b5c480177735cdca4e9a97c2ff8a2898e4bee3c23773b979af367c6349ca7e50",
+      "bytes": 6988
+    }
+  }
+}

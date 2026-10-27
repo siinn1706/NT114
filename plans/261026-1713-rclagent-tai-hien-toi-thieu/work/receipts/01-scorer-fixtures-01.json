@@ -1,0 +1,64 @@
+{
+ "schema_version": 2,
+ "id": "01-scorer-fixtures-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 F:/Nam/UIT/NT114 - NCKH/plans/261026-1713-rclagent-tai-hien-toi-thieu/work/scripts/scorer-fixtures.py F:/Nam/UIT/nt114-paper-artifacts/W7165616276/code F:/Nam/UIT/nt114-paper-artifacts/W7165616276/scorer-check",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/01-scorer-fixtures-01.out",
+ "egress_trace_reference": "work/logs/01-scorer-fixtures-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T10:16:32.573447+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "51fc85e386da3e2d29353fdc7e6f14d09db728cae9e13c73e9f1436d971ced04"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "copy author sample_data and build a synthetic best-of/denominator fixture outside the clone"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 F:/Nam/UIT/NT114 - NCKH/plans/261026-1713-rclagent-tai-hien-toi-thieu/work/scripts/scorer-fixtures.py F:/Nam/UIT/nt114-paper-artifacts/W7165616276/code F:/Nam/UIT/nt114-paper-artifacts/W7165616276/scorer-check",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/nt114-paper-artifacts/W7165616276",
+   "exit_status": 0,
+   "stdout_sha256": "53c1747843d83a421937727a4b45de2d918b09d6f1feb05d56dd82cb29303110",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/scorer-fixtures.py",
+   "sha256_before": "51fc85e386da3e2d29353fdc7e6f14d09db728cae9e13c73e9f1436d971ced04",
+   "sha256_after": "51fc85e386da3e2d29353fdc7e6f14d09db728cae9e13c73e9f1436d971ced04",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

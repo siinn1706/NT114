@@ -1,0 +1,64 @@
+{
+ "schema_version": 2,
+ "id": "02-extract-re2ob-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 F:/Nam/UIT/NT114 - NCKH/plans/261026-1713-rclagent-tai-hien-toi-thieu/work/scripts/extract-re2ob.py F:/Nam/UIT/NT114 - NCKH/nt114-rca/nt114-rca/data/raw/rcaeval-zenodo/zenodo-14590730/RE2-OB.zip 0605a36cdcad8a6ae0107f2357c9c91ecee2c4ab5d72579bffea0372d9747513 F:/Nam/UIT/nt114-paper-artifacts/W7165616276/data/raw",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/02-extract-re2ob-01.out",
+ "egress_trace_reference": "work/logs/02-extract-re2ob-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T10:17:23.960891+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "960ec4d575123d1d5a988d937b6aad032f239003d3197c11514c88d823c5a963"
+ ],
+ "output_hashes": [],
+ "checks": [
+  "RE2-OB.zip sha256 equals NT114 manifest; extract to a separate dir; raw zip only read"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 F:/Nam/UIT/NT114 - NCKH/plans/261026-1713-rclagent-tai-hien-toi-thieu/work/scripts/extract-re2ob.py F:/Nam/UIT/NT114 - NCKH/nt114-rca/nt114-rca/data/raw/rcaeval-zenodo/zenodo-14590730/RE2-OB.zip 0605a36cdcad8a6ae0107f2357c9c91ecee2c4ab5d72579bffea0372d9747513 F:/Nam/UIT/nt114-paper-artifacts/W7165616276/data/raw",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/nt114-paper-artifacts/W7165616276",
+   "exit_status": 0,
+   "stdout_sha256": "cca3d462d6a4162c2804a8f9f01ea886e4ab59fad08ccf5998813e7ca8bf515a",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/extract-re2ob.py",
+   "sha256_before": "960ec4d575123d1d5a988d937b6aad032f239003d3197c11514c88d823c5a963",
+   "sha256_after": "960ec4d575123d1d5a988d937b6aad032f239003d3197c11514c88d823c5a963",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": []
+}

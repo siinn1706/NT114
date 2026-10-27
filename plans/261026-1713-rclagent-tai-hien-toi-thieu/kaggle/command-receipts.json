@@ -1,0 +1,303 @@
+{
+  "completed_observations_rehashed": 40,
+  "all_completed_consistent": true,
+  "attempts": [
+    {
+      "attempt": "bundle-equivalence-01",
+      "verification_exit": 1,
+      "verdict": "CONSISTENT",
+      "command_status": "fail",
+      "command_exit": 1
+    },
+    {
+      "attempt": "bundle-equivalence-02",
+      "verification_exit": 1,
+      "verdict": "CONSISTENT",
+      "command_status": "fail",
+      "command_exit": 1
+    },
+    {
+      "attempt": "bundle-equivalence-03",
+      "verification_exit": 1,
+      "verdict": "CONSISTENT",
+      "command_status": "fail",
+      "command_exit": 1
+    },
+    {
+      "attempt": "bundle-equivalence-04",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "cpu-env-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "cpu-pins-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "final-package-validation-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "harness-tests-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "harness-tests-02",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "harness-tests-03",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-dataset-create-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-dataset-version-02",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-dataset-version-03",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-dataset-version-04",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-gpu-run-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-live-log-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-live-log-04",
+      "verification_exit": 1,
+      "verdict": "CONSISTENT",
+      "command_status": "fail",
+      "command_exit": 1
+    },
+    {
+      "attempt": "kaggle-live-log-05",
+      "verification_exit": 1,
+      "verdict": "CONSISTENT",
+      "command_status": "fail",
+      "command_exit": 1
+    },
+    {
+      "attempt": "kaggle-setup-resume-02",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "kaggle-startup-resume-03",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "native-result-verification-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "notebook-annotate-native-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "notebook-build-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "notebook-build-02",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "notebook-build-03",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "notebook-build-04",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "package-refresh-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "package-refresh-02",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "package-refresh-03",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "package-validation-01",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "package-validation-02",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "package-validation-03",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "package-validation-04",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "repair-cache-dataset-v7",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "repair-dataset-v5",
+      "verification_exit": 1,
+      "verdict": "CONSISTENT",
+      "command_status": "fail",
+      "command_exit": 1
+    },
+    {
+      "attempt": "repair-dataset-v5-windows-path",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "repair-native-kernel-v4",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "repair-native-kernel-v5",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "repair-native-v4-live-logs",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    },
+    {
+      "attempt": "repair-native-v5-live-logs",
+      "verification_exit": 0,
+      "verdict": "CONSISTENT",
+      "command_status": "completed-unreviewed",
+      "command_exit": 0
+    }
+  ],
+  "incomplete_observations": [
+    {
+      "attempt": "kaggle-live-log-02",
+      "status": "timeout-unknown",
+      "command_exit": null,
+      "process_cleanup": "owned-process-group-closed",
+      "receipt_v2": null
+    },
+    {
+      "attempt": "kaggle-live-log-03",
+      "status": "timeout-unknown",
+      "command_exit": null,
+      "process_cleanup": "owned-process-group-closed",
+      "receipt_v2": null
+    }
+  ],
+  "limitation": "Raw-command/receipt consistency only; failed commands remain failed, native/scientific acceptance separate."
+}

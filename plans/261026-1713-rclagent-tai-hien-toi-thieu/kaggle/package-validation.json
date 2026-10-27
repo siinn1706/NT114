@@ -1,0 +1,16 @@
+{
+  "status": "pass",
+  "files_in_bundle": 24,
+  "trace_rows": 33,
+  "metric_rows": 38048,
+  "log_rows": 0,
+  "notebook_code_cells": 4,
+  "bundle_sha256": "d26df6d13743f23e8b481aa09dea8920329b790effd2493f84fd62168a717f21",
+  "bundle_bytes": 221399,
+  "notebook_sha256": "86311b54e8121cb672e1887bb16f960dd3da4871b87829f80fb97768ce031193",
+  "code_cells_identical_to_native_version_3": false,
+  "latest_downloaded_native_version": 5,
+  "code_cells_identical_to_latest_downloaded_native": true,
+  "cpu_endpoint_comparisons": 86,
+  "scope": "Static package and completed CPU checks only; actual GPU/server compatibility requires Kaggle execution."
+}

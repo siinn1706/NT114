@@ -1,0 +1,125 @@
+{
+ "load": {
+  "spans": 34461235,
+  "metric_rows": 9409001,
+  "log_rows_after_filter": 1757757,
+  "peak_gb": 0.0
+ },
+ "case_id": "checkoutservice_cpu_2",
+ "inject_ts": 1708475361,
+ "n_error_traces_of_case": 5,
+ "min_gap_between_case_injections_s": 1466,
+ "error_traces_total": 450,
+ "traces": [
+  {
+   "line": 442,
+   "timestamp_ms": 1708475368662,
+   "cmdb_id": "frontendservice",
+   "span_id": "6752e26884a7fee8",
+   "trace_id": "68791e1f360d910bd01428c3cd9748ef",
+   "duration": 416951,
+   "spans": 33,
+   "depth": 4,
+   "services": [
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "frontendservice",
+    "paymentservice",
+    "productcatalogservice",
+    "recommendationservice"
+   ],
+   "max_log_rows_one_call": 0,
+   "max_log_chars_one_call": 41,
+   "llm_calls_lower_bound": 67
+  },
+  {
+   "line": 445,
+   "timestamp_ms": 1708475394144,
+   "cmdb_id": "frontendservice",
+   "span_id": "75a2cb136fd9c048",
+   "trace_id": "d6c6ce80cf2b97dc6471ef1924d30237",
+   "duration": 387193,
+   "spans": 39,
+   "depth": 4,
+   "services": [
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "frontendservice",
+    "paymentservice",
+    "productcatalogservice",
+    "recommendationservice"
+   ],
+   "max_log_rows_one_call": 0,
+   "max_log_chars_one_call": 41,
+   "llm_calls_lower_bound": 79
+  },
+  {
+   "line": 441,
+   "timestamp_ms": 1708475368564,
+   "cmdb_id": "frontendservice",
+   "span_id": "f8c3fef28decea9a",
+   "trace_id": "89046194f3473fb1b0febd9081a70f3e",
+   "duration": 378801,
+   "spans": 33,
+   "depth": 4,
+   "services": [
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "frontendservice",
+    "paymentservice",
+    "productcatalogservice",
+    "recommendationservice"
+   ],
+   "max_log_rows_one_call": 0,
+   "max_log_chars_one_call": 41,
+   "llm_calls_lower_bound": 67
+  },
+  {
+   "line": 443,
+   "timestamp_ms": 1708475382366,
+   "cmdb_id": "frontendservice",
+   "span_id": "2d2a551ce31ebd70",
+   "trace_id": "72d5fb736b693f9ef7f727c881717946",
+   "duration": 366555,
+   "spans": 37,
+   "depth": 4,
+   "services": [
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "frontendservice",
+    "paymentservice",
+    "productcatalogservice",
+    "recommendationservice"
+   ],
+   "max_log_rows_one_call": 0,
+   "max_log_chars_one_call": 41,
+   "llm_calls_lower_bound": 75
+  },
+  {
+   "line": 444,
+   "timestamp_ms": 1708475388441,
+   "cmdb_id": "frontendservice",
+   "span_id": "6434a12dbb8b290e",
+   "trace_id": "a0b125ee66361831f2597c865d3fd6c9",
+   "duration": 332913,
+   "spans": 35,
+   "depth": 4,
+   "services": [
+    "checkoutservice",
+    "currencyservice",
+    "emailservice",
+    "frontendservice",
+    "paymentservice",
+    "productcatalogservice",
+    "recommendationservice"
+   ],
+   "max_log_rows_one_call": 0,
+   "max_log_chars_one_call": 41,
+   "llm_calls_lower_bound": 71
+  }
+ ]
+}

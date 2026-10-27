@@ -1,0 +1,81 @@
+{
+ "schema_version": 2,
+ "id": "05-trial-case-profile-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "F:/Nam/UIT/nt114-paper-artifacts/W7165616276/env/Scripts/python.exe -X utf8 work/scripts/trial-case-profile.py F:/Nam/UIT/nt114-paper-artifacts/W7165616276/data/re2ob work/re2ob-case-roles.csv checkoutservice_cpu_2 work/trial-case-profile.json",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/05-trial-case-profile-01.out",
+ "egress_trace_reference": "work/logs/05-trial-case-profile-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T10:24:37.932321+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "bbfbb69ff34d0697eb5ea2aadd16a4a6af2c21e6e9fbe8702545075e3a83d834",
+  "9e50642efab2e5e1f482a425a4ca760075eca9b8b10e17eb576c80a47990b804"
+ ],
+ "output_hashes": [
+  "c8ca2ad879b9b38591331197ff1b6096c6954dd1f5b1b299e4792923d6fc4bbc"
+ ],
+ "checks": [
+  "tool-server-like load memory and author error traces/span counts/log volume for the pre-chosen train case checkoutservice_cpu_2; groundtruth.csv not opened"
+ ],
+ "limitations": [
+  "peak working set of a pandas process, not of the Flask server itself; log volume per span uses the trace subset only"
+ ],
+ "closure_hash": "b560cfdeed1d0667e89aa156c9d147b7d8683a9b7da0ec6c95cd2f0ff0f33773",
+ "command_results": [
+  {
+   "command": "F:/Nam/UIT/nt114-paper-artifacts/W7165616276/env/Scripts/python.exe -X utf8 work/scripts/trial-case-profile.py F:/Nam/UIT/nt114-paper-artifacts/W7165616276/data/re2ob work/re2ob-case-roles.csv checkoutservice_cpu_2 work/trial-case-profile.json",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261026-1713-rclagent-tai-hien-toi-thieu",
+   "exit_status": 0,
+   "stdout_sha256": "fbb61b1e6227989a8b9b3ec4dc7587f55251f02c0c75bc0eda5bc185e2f03562",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/trial-case-profile.py",
+   "sha256_before": "bbfbb69ff34d0697eb5ea2aadd16a4a6af2c21e6e9fbe8702545075e3a83d834",
+   "sha256_after": "bbfbb69ff34d0697eb5ea2aadd16a4a6af2c21e6e9fbe8702545075e3a83d834",
+   "eol_before": "crlf",
+   "eol_after": "crlf",
+   "mutation": "none"
+  },
+  {
+   "path": "work/re2ob-case-roles.csv",
+   "sha256_before": "9e50642efab2e5e1f482a425a4ca760075eca9b8b10e17eb576c80a47990b804",
+   "sha256_after": "9e50642efab2e5e1f482a425a4ca760075eca9b8b10e17eb576c80a47990b804",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/trial-case-profile.json",
+   "sha256": "c8ca2ad879b9b38591331197ff1b6096c6954dd1f5b1b299e4792923d6fc4bbc",
+   "created_this_attempt": true
+  }
+ ]
+}

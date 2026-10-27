@@ -1,0 +1,30 @@
+{
+  "files": {
+    ".gitignore": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "429a7ff8e3befe5ac528bb832881840115d63940883b125526b582eedcdcb7a9",
+      "size": 22
+    },
+    "kaggle-runtime.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "d2ed10684a05c52445989eedee82dc2788c637282265c5c677a280f5b5518cfd",
+      "size": 23196
+    },
+    "prepare-bundle.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "b9fea406ca462250306419b71fa4762ebefa25a3909e50675061550c5416f025",
+      "size": 12567
+    },
+    "smoke-worker.py": {
+      "bom": "none",
+      "eol": "lf",
+      "sha256": "bfa6d503be94c22ca48ca7a5ac2df392173e9658f5f9f6af1404fa5722d84c97",
+      "size": 16580
+    }
+  },
+  "links": [],
+  "schema_version": 1
+}

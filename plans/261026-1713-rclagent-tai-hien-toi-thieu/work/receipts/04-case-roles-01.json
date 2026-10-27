@@ -1,0 +1,72 @@
+{
+ "schema_version": 2,
+ "id": "04-case-roles-01",
+ "evidence_class": "deterministic",
+ "host": "claude-code",
+ "surface": "cli",
+ "version": "unknown",
+ "logical_entrypoint": "nckh-cook",
+ "mode": "auto",
+ "actual_invocation": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/re2ob-case-roles.py F:/Nam/UIT/nt114-paper-artifacts/W7165616276/data/raw/RE2-OB F:/Nam/UIT/NT114 - NCKH/nt114-rca/nt114-rca/data/canonical/v1/rcaeval/visible/incidents.jsonl F:/Nam/UIT/NT114 - NCKH/nt114-rca/nt114-rca/data/splits/within-rcaeval-grouped-0-e9b2c81c/assignments.jsonl work/re2ob-case-roles.csv",
+ "requested_model": "unknown",
+ "resolved_model": "unknown",
+ "effective_model": "unknown",
+ "requested_effort": "unknown",
+ "resolved_effort": "unknown",
+ "effective_effort": "unknown",
+ "permission_mode": "auto",
+ "sandbox": "host-default",
+ "tool_trace_reference": "work/logs/04-case-roles-01.out",
+ "egress_trace_reference": "work/logs/04-case-roles-01.err",
+ "exit_status": "0",
+ "output_status": "present",
+ "cost_coverage": "unknown",
+ "cost": "unknown",
+ "as_of": "2026-10-26T10:21:07.243045+00:00",
+ "skill_ids": [
+  "nckh-cook"
+ ],
+ "agent_ids": [],
+ "plugin_ids": [],
+ "input_hashes": [
+  "6bf282e22faccbfe7140ff01af4f351cfce78d9e071c1d8f68b360bed96cbafd"
+ ],
+ "output_hashes": [
+  "9e50642efab2e5e1f482a425a4ca760075eca9b8b10e17eb576c80a47990b804"
+ ],
+ "checks": [
+  "join raw RE2-OB cases to NT114 split roles via injection time; visible metadata and roles only"
+ ],
+ "limitations": [
+  "none recorded"
+ ],
+ "closure_hash": "f36e72bcad71535d0657ff116f31a55ee6d2d9584f6cf4576635083ed87558c2",
+ "command_results": [
+  {
+   "command": "C:/Users/Siinn/AppData/Local/Programs/Python/Python312/python.exe -X utf8 work/scripts/re2ob-case-roles.py F:/Nam/UIT/nt114-paper-artifacts/W7165616276/data/raw/RE2-OB F:/Nam/UIT/NT114 - NCKH/nt114-rca/nt114-rca/data/canonical/v1/rcaeval/visible/incidents.jsonl F:/Nam/UIT/NT114 - NCKH/nt114-rca/nt114-rca/data/splits/within-rcaeval-grouped-0-e9b2c81c/assignments.jsonl work/re2ob-case-roles.csv",
+   "shell": "none (subprocess argv)",
+   "cwd": "F:/Nam/UIT/NT114 - NCKH/plans/261026-1713-rclagent-tai-hien-toi-thieu",
+   "exit_status": 0,
+   "stdout_sha256": "02df20e7c96aaf9ac521130eff6e7c0541926d0b9bc401a8ecb5d26e39208ad0",
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "expected_nonzero": false
+  }
+ ],
+ "input_files": [
+  {
+   "path": "work/scripts/re2ob-case-roles.py",
+   "sha256_before": "6bf282e22faccbfe7140ff01af4f351cfce78d9e071c1d8f68b360bed96cbafd",
+   "sha256_after": "6bf282e22faccbfe7140ff01af4f351cfce78d9e071c1d8f68b360bed96cbafd",
+   "eol_before": "lf",
+   "eol_after": "lf",
+   "mutation": "none"
+  }
+ ],
+ "output_files": [
+  {
+   "path": "work/re2ob-case-roles.csv",
+   "sha256": "9e50642efab2e5e1f482a425a4ca760075eca9b8b10e17eb576c80a47990b804",
+   "created_this_attempt": true
+  }
+ ]
+}

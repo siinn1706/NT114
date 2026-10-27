@@ -1,0 +1,132 @@
+{
+  "task": "Repair native T4 prefix-prefill shared-memory failure with ak-fix",
+  "authorization": "User 2026-10-26 20:30 asks analysis and ak-fix repair; existing one-model/one-trace/private/no-Windows-LLM/no-Git-push bounds retained",
+  "acceptance": [
+    "Prove failing kernel configuration",
+    "Minimal recorded compatibility repair",
+    "Fresh GPU reproduction and numerical kernel reference check",
+    "Synthetic structured tool gate before telemetry",
+    "One selected trace if gate passes; caps unchanged",
+    "Export result and cleanup"
+  ],
+  "non_goals": [
+    "Backbone switch",
+    "RCLAgent algorithm/prompt/tool changes",
+    "H1/IM1/R-a",
+    "Accuracy/Table I reproduction",
+    "Git commit/push"
+  ],
+  "phases": [
+    {
+      "name": "scout",
+      "status": "completed"
+    },
+    {
+      "name": "diagnose",
+      "status": "completed",
+      "depends_on": [
+        "scout"
+      ]
+    },
+    {
+      "name": "implement",
+      "status": "completed",
+      "depends_on": [
+        "diagnose"
+      ]
+    },
+    {
+      "name": "verify-prevent",
+      "status": "completed",
+      "depends_on": [
+        "implement"
+      ]
+    },
+    {
+      "name": "review",
+      "status": "completed",
+      "depends_on": [
+        "verify-prevent"
+      ]
+    },
+    {
+      "name": "finalize-journal",
+      "status": "completed",
+      "depends_on": [
+        "review"
+      ]
+    }
+  ],
+  "prior_native_failures": [
+    "version 1 ensurepip setup, 0 model requests",
+    "version 2 scheduler validation, 0 requests",
+    "version 3 prefix kernel shared memory at D, 1 synthetic request, 0 trace requests"
+  ],
+  "shared_memory_repair_attempts": [
+    {
+      "notebook_version": 4,
+      "native_status": {
+        "status": "failed",
+        "stage": "C",
+        "model_run": "not-started"
+      },
+      "summary": "kaggle-repair-v4-summary.json",
+      "artifact_sha256": "4e1ab9d7462013640f000768ca4efb1261c19253c8102204575327c0a7873066",
+      "kernel_status": "passed",
+      "requests": {
+        "protocol": 0,
+        "trace": 0
+      }
+    },
+    {
+      "notebook_version": 5,
+      "native_status": {
+        "status": "failed",
+        "stage": "E",
+        "started": 1793023389.7713597,
+        "score": "not-run",
+        "error": "RuntimeError('trace failed; stopping without a telemetry retry or model change')",
+        "finished": 1793023524.5931675,
+        "elapsed_seconds": 134.82180786132812,
+        "rcl_elapsed_seconds": 24.943221801999925,
+        "observed_requests": {
+          "protocol": 3,
+          "trace": 2
+        }
+      },
+      "summary": "kaggle-repair-v5-summary.json",
+      "artifact_sha256": "212b8fb3058db7d11e1de1fabae0e80b93c4c1ffa06e6b69be0fe8b7e0f82141",
+      "kernel_status": "passed",
+      "requests": {
+        "protocol": 3,
+        "trace": 2
+      }
+    }
+  ],
+  "max_failed_repairs_before_human_architecture_checkpoint": 3,
+  "diagnosis": {
+    "native_version": 3,
+    "stage": "D",
+    "requests": 1,
+    "trace_requests": 0,
+    "exception": "Triton shared memory required 98304 > T4 limit 65536",
+    "path": "XFORMERS -> PagedAttention.forward_prefix -> prefix_prefill._fwd_kernel",
+    "released_source_sha256": "8055f9dc80be1727ac9255ac8a2e565ef08e3572325e0b69e170b2249b4b789a",
+    "cause": "non-ALiBi launch hardcodes BLOCK_M=128 on SM75; num_stages already 1",
+    "repair": "Turing-only BLOCK_M=64; hash-bound original backup and unified patch; no RCLAgent changes",
+    "pending": null
+  },
+  "failed_native_repair_attempts": 2,
+  "outcome": {
+    "original_gpu_error": "resolved-and-native-verified",
+    "helper_cache_regression": "resolved-and-native-verified",
+    "protocol_D": "passed",
+    "smoke_E": "stopped-out-of-package-cartservice-query",
+    "full_trace_completed": false,
+    "scoring_ran": false,
+    "model_or_prompt_or_data_domain_changed_after_E_stop": false,
+    "review": "same-session ak-code-review; no independent reviewer",
+    "journal_cli_output": "{\n  \"schema_version\": 1,\n  \"kind\": \"journal.create\",\n  \"data\": {\n    \"Filename\": \"2026-10-26-rclagent-kaggle-t4-prefix-kernel-repair.md\",\n    \"Path\": \"F:\\\\Nam\\\\UIT\\\\NT114 - NCKH\\\\plans\\\\journals\\\\2026-10-26-rclagent-kaggle-t4-prefix-kernel-repair.md\",\n    \"Slug\": \"rclagent-kaggle-t4-prefix-kernel-repair\",\n    \"Date\": \"2026-10-26\"\n  }\n}",
+    "AgentWiki": "publish skipped"
+  }
+}

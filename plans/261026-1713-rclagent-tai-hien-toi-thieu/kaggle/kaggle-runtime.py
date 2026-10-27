@@ -1,0 +1,529 @@
+"""Kaggle bootstrap, localhost model lifecycle, one protocol gate and one trace.
+
+This file uses only the standard library until dependencies have been installed.
+"""
+import atexit
+import hashlib
+import importlib.util
+import json
+import os
+import platform
+import shutil
+import signal
+import socket
+import subprocess
+import sys
+import tempfile
+import threading
+import time
+import traceback
+import venv
+import zipfile
+from pathlib import Path
+
+MODEL = 'Qwen/Qwen3-4B-Instruct-2507'
+REVISION = 'cdbee75f17c01a7cc42f958dc650907174af0554'
+VLLM_VERSION = '0.10.2'
+COMMIT = '3052e7a6a9598d984ba1482f3dc41123c8823a99'
+PINS = ['vllm==0.10.2', 'pandas==2.2.3', 'numpy==2.2.6', 'flask==3.1.2',
+        'requests==2.32.5', 'tenacity==9.1.2', 'jsonschema==4.25.1', 'psutil==7.0.0',
+        'transformers==4.55.4', 'huggingface-hub==0.34.4']
+PINS += ['openai==1.101.0', 'fastapi==0.116.1', 'pydantic==2.11.7', 'tokenizers==0.21.4']
+ROOT = Path('/kaggle/working/rclagent-smoke')
+TEMP = Path('/tmp/rclagent-smoke')
+PYTHON = TEMP / 'env/bin/python'
+
+
+def digest(path):
+    h = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for chunk in iter(lambda: stream.read(4 << 20), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def dump(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+
+def kaggle_only():
+    if sys.platform != 'linux' or not Path('/kaggle/input').is_dir():
+        raise RuntimeError('GPU/model execution is permitted only inside Kaggle, never Windows')
+
+
+def environment():
+    kaggle_only()
+    ROOT.mkdir(parents=True, exist_ok=True)
+    result = {'python': sys.version, 'platform': platform.platform(),
+              'disk': {str(p): shutil.disk_usage(p)._asdict() for p in (Path('/tmp'), Path('/kaggle/working'))}}
+    with open('/proc/meminfo', encoding='utf-8') as f:
+        result['ram_kib'] = {line.split(':')[0]: int(line.split()[1]) for line in f if line.startswith(('MemTotal:', 'MemAvailable:'))}
+    query = subprocess.run(['nvidia-smi', '--query-gpu=index,name,uuid,memory.total,memory.free,driver_version,compute_cap',
+                            '--format=csv,noheader,nounits'], capture_output=True, text=True)
+    result['nvidia_smi_exit'] = query.returncode
+    result['gpus'] = []
+    for line in query.stdout.splitlines():
+        fields = [x.strip() for x in line.split(',')]
+        if len(fields) != 7:
+            continue
+        index, name, uuid, total, free, driver, capability = fields
+        result['gpus'].append({'index': int(index), 'name': name, 'uuid': uuid,
+                              'total_mib': float(total), 'free_mib': float(free),
+                              'driver': driver, 'compute_capability': float(capability)})
+    probe = subprocess.run([sys.executable, '-c', 'import json,torch; print(json.dumps({"torch":torch.__version__,"cuda":torch.version.cuda,"cuda_available":torch.cuda.is_available()}))'], capture_output=True, text=True)
+    result['base_torch_probe'] = {'exit': probe.returncode, 'stdout': probe.stdout, 'stderr': probe.stderr}
+    dump(ROOT / 'environment-before.json', result)
+    print(json.dumps(result, indent=2))
+    if query.returncode or not result['gpus']:
+        raise RuntimeError('No GPU allocated; enable a Kaggle GPU before continuing')
+    # One device only. No summed VRAM and no tensor parallelism across devices.
+    eligible = [g for g in result['gpus'] if g['compute_capability'] >= 7.5 and g['free_mib'] >= 13000]
+    if not eligible:
+        raise RuntimeError('This fixed vLLM/FP16 configuration needs one GPU with compute capability >=7.5 and >=13000 MiB free; unsupported allocation stops here')
+    if result['ram_kib']['MemAvailable'] < 10 * 1024**2:
+        raise RuntimeError('Less than 10 GiB host RAM available')
+    if shutil.disk_usage('/tmp').free < 22 * 1024**3:
+        raise RuntimeError('Less than 22 GiB temporary disk available for isolated dependencies and model')
+    chosen = eligible[0]
+    settings = {'gpu': chosen, 'context': 16384 if chosen['total_mib'] < 22000 else 32768,
+                'dtype': 'half', 'tensor_parallel_size': 1, 'max_num_seqs': 1,
+                'vllm_engine': 'V0',
+                'enable_chunked_prefill': True, 'max_num_batched_tokens': 2048,
+                'max_output_tokens': {'self_state': 512, 'consolidate': 512, 'synthesizer': 1024},
+                'max_model_requests_including_retry': 160, 'rcl_deadline_seconds': 1800,
+                'max_tool_rounds_per_span': 4, 'client_retry_attempts': 3,
+                'model': MODEL, 'model_revision': REVISION, 'vllm': VLLM_VERSION,
+                'sampling': {'temperature': 0.7, 'top_p': 0.8, 'top_k': 20, 'min_p': 0.0, 'seed': 20261026},
+                'context_overflow': 'fatal, never truncate', 'concurrency': 1}
+    dump(ROOT / 'settings.json', settings)
+    return settings
+
+
+def find_archive():
+    candidates = list(Path('/kaggle/input').rglob('rclagent-kaggle-bundle.zip'))
+    if len(candidates) == 1:
+        return candidates[0]
+    if candidates:
+        raise RuntimeError('Multiple bundle archives attached')
+    # Kaggle Dataset ingestion expands ZIPs. Bind the expanded content to the
+    # manifest digest embedded in the notebook, then verify every member.
+    manifests = [p for p in Path('/kaggle/input').rglob('manifest.json')
+                 if (p.parent / 'selection.json').is_file() and (p.parent / 'upstream/coordinator.py').is_file()]
+    if len(manifests) != 1:
+        raise RuntimeError(f'Attach exactly one private bundle dataset; found {len(manifests)} expanded packages')
+    return manifests[0].parent
+
+
+def unpack(archive, expected_sha256, expected_manifest_sha256):
+    archive = Path(archive)
+    if archive.is_file() and digest(archive) != expected_sha256:
+        raise RuntimeError('Bundle SHA256 mismatch')
+    package = ROOT / 'package'
+    if package.exists():
+        # Safe reuse for bootstrap; execution is separately protected by run-once.json.
+        manifest = json.loads((package / 'manifest.json').read_text())
+    else:
+        package.mkdir(parents=True)
+        if archive.is_dir():
+            if digest(archive / 'manifest.json') != expected_manifest_sha256:
+                raise RuntimeError('Expanded Kaggle manifest SHA256 mismatch')
+            manifest = json.loads((archive / 'manifest.json').read_text())
+            for relative in [*manifest['files'], 'manifest.json']:
+                destination = (package / relative).resolve()
+                if not destination.is_relative_to(package.resolve()):
+                    raise RuntimeError('Unsafe manifest path')
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(archive / relative, destination)
+        else:
+            with zipfile.ZipFile(archive) as zipped:
+                for entry in zipped.infolist():
+                    target = (package / entry.filename).resolve()
+                    if not target.is_relative_to(package.resolve()):
+                        raise RuntimeError('Unsafe zip path')
+                zipped.extractall(package)
+        manifest = json.loads((package / 'manifest.json').read_text())
+    if digest(package / 'manifest.json') != expected_manifest_sha256:
+        raise RuntimeError('Manifest SHA256 mismatch')
+    if manifest['upstream_commit'] != COMMIT or manifest['model_revision'] != REVISION:
+        raise RuntimeError('Code/model revision mismatch')
+    actual = {p.relative_to(package).as_posix() for p in package.rglob('*') if p.is_file()}
+    if actual != set(manifest['files']) | {'manifest.json'}:
+        raise RuntimeError('Unexpected or missing package members')
+    for relative, entry in manifest['files'].items():
+        if digest(package / relative) != entry['sha256']:
+            raise RuntimeError('Package member hash mismatch: ' + relative)
+    if manifest['files']['kaggle-runtime.py']['sha256'] != digest(__file__):
+        raise RuntimeError('Notebook runtime differs from hashed package runtime')
+    dump(ROOT / 'input-verification.json', {'source': str(archive),
+        'container': 'expanded Kaggle dataset' if archive.is_dir() else 'zip',
+        'manifest_sha256': expected_manifest_sha256, 'all_member_hashes_verified': True,
+        'original_bundle_sha256': expected_sha256,
+        'container_zip_hash_checked': archive.is_file()})
+    return package
+
+
+def clean_env():
+    env = os.environ.copy()
+    for key in list(env):
+        if key.startswith('LLM_') or key in ('HF_TOKEN', 'HUGGING_FACE_HUB_TOKEN', 'HUGGINGFACEHUB_API_TOKEN', 'VLLM_API_KEY',
+                                           'OPENAI_API_KEY', 'ANTHROPIC_API_KEY', 'DASHSCOPE_API_KEY'):
+            env.pop(key)
+    env.update(HF_HUB_DISABLE_IMPLICIT_TOKEN='1', HF_HUB_DISABLE_TELEMETRY='1',
+               HF_HOME=str(TEMP / 'huggingface'), PIP_DISABLE_PIP_VERSION_CHECK='1',
+               DO_NOT_TRACK='1', TOKENIZERS_PARALLELISM='false',
+               PYTHONDONTWRITEBYTECODE='1')
+    return env
+
+
+def install(expected_sha256, expected_manifest_sha256):
+    kaggle_only()
+    if not (ROOT / 'settings.json').exists():
+        raise RuntimeError('Run environment cell A first')
+    TEMP.mkdir(parents=True, exist_ok=True)
+    package = unpack(find_archive(), expected_sha256, expected_manifest_sha256)
+    if not PYTHON.exists():
+        # Kaggle's Debian Python may omit ensurepip. Create a bare venv, then
+        # use base pip's supported --python option to seed only that venv.
+        venv.EnvBuilder(with_pip=False).create(TEMP / 'env')
+    marker = TEMP / 'pins.json'
+    if marker.exists() and json.loads(marker.read_text()) != PINS:
+        raise RuntimeError('Existing isolated environment has different pins; stop without altering it')
+    if not marker.exists():
+        with (ROOT / 'install.log').open('w', encoding='utf-8') as log:
+            subprocess.run([sys.executable, '-m', 'pip', '--python', str(PYTHON),
+                            'install', '--index-url', 'https://pypi.org/simple',
+                            '--no-cache-dir', 'pip==25.2'], env=clean_env(),
+                           stdout=log, stderr=subprocess.STDOUT, check=True, timeout=180)
+            subprocess.run([str(PYTHON), '-m', 'pip', 'install', '--index-url', 'https://pypi.org/simple', '--no-cache-dir', *PINS],
+                           env=clean_env(), stdout=log, stderr=subprocess.STDOUT, check=True, timeout=1500)
+        dump(marker, PINS)
+    check = subprocess.run([str(PYTHON), '-m', 'pip', 'check'], capture_output=True, text=True, env=clean_env())
+    (ROOT / 'pip-check.txt').write_text(check.stdout + check.stderr, encoding='utf-8')
+    check.check_returncode()
+    freeze = subprocess.run([str(PYTHON), '-m', 'pip', 'freeze', '--all'], capture_output=True, text=True, check=True, env=clean_env())
+    (ROOT / 'pip-freeze.txt').write_text(freeze.stdout, encoding='utf-8')
+    probe = subprocess.run([str(PYTHON), '-c', 'import json,torch,transformers,vllm,pandas; print(json.dumps({"torch":torch.__version__,"cuda":torch.version.cuda,"vllm":vllm.__version__,"transformers":transformers.__version__,"pandas":pandas.__version__,"gpu_count":torch.cuda.device_count(),"cuda_available":torch.cuda.is_available()}))'],
+                           capture_output=True, text=True, env=clean_env(), check=True, timeout=180)
+    (ROOT / 'environment-isolated.json').write_text(probe.stdout, encoding='utf-8')
+    if not json.loads(probe.stdout)['cuda_available']:
+        raise RuntimeError('Isolated PyTorch cannot access CUDA; no model will be downloaded or run')
+    settings = json.loads((ROOT / 'settings.json').read_text())
+    kernel_env = clean_env()
+    kernel_env.update(CUDA_VISIBLE_DEVICES=str(settings['gpu']['index']), VLLM_USE_V1='0',
+                      VLLM_NO_USAGE_STATS='1', VLLM_DO_NOT_TRACK='1')
+    evidence = ROOT / 'compatibility'
+    checked = evidence / 'status.json'
+    if not checked.exists():
+        subprocess.run([str(PYTHON), str(package / 'verify-t4-prefix-kernel.py'),
+                        '--evidence', str(evidence)], env=kernel_env, check=True, timeout=600)
+    if json.loads(checked.read_text())['status'] != 'passed':
+        raise RuntimeError('GPU prefix compatibility verification failed')
+    print(probe.stdout)
+    print('Installed in /tmp; Kaggle base packages were not modified.')
+    return package
+
+
+def assert_free_port(port):
+    with socket.socket() as probe:
+        probe.bind(('127.0.0.1', port))
+
+
+class Processes:
+    def __init__(self, result):
+        self.result = result
+        self.children = []
+        self.files = []
+
+    def start(self, name, argv, env):
+        log = (self.result / (name + '.log')).open('wb')
+        self.files.append(log)
+        child = subprocess.Popen(argv, env=env, cwd=self.result,
+                                 stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+        self.children.append({'name': name, 'process': child, 'argv': argv})
+        self.record()
+        return child
+
+    def record(self):
+        dump(self.result / 'processes.json', [{'name': item['name'], 'pid': item['process'].pid,
+            'port': 8000 if item['name'] == 'vllm' else 5000 if item['name'].startswith('tools-') else None,
+            'cwd': str(self.result), 'argv': item['argv'], 'exit': item['process'].poll()} for item in self.children])
+
+    def stop(self, child):
+        # Only process groups created by start_new_session=True in this run.
+        try:
+            os.killpg(child.pid, signal.SIGTERM)
+        except ProcessLookupError:
+            pass
+        try:
+            child.wait(timeout=12)
+        except subprocess.TimeoutExpired:
+            pass
+        # The leader can exit before its descendants. Check the owned group too.
+        try:
+            os.killpg(child.pid, 0)
+        except ProcessLookupError:
+            pass
+        else:
+            os.killpg(child.pid, signal.SIGKILL)
+        try:
+            child.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            pass
+        self.record()
+
+    def cleanup(self):
+        for item in reversed(self.children):
+            self.stop(item['process'])
+        for handle in self.files:
+            handle.close()
+
+
+def wait_ready(child, path, timeout):
+    import urllib.request
+    end = time.monotonic() + timeout
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    while time.monotonic() < end:
+        if child.poll() is not None:
+            raise RuntimeError('Owned server exited before ready; inspect its log')
+        try:
+            with opener.open(path, timeout=2) as response:
+                if response.status == 200:
+                    return
+        except (OSError, ValueError):
+            time.sleep(1)
+    raise TimeoutError('Server startup timed out')
+
+
+class Resources:
+    def __init__(self, processes, result):
+        self.processes, self.result = processes, result
+        self.done = threading.Event()
+        self.phase = 'setup'
+        self.peaks = {}
+        self.thread = threading.Thread(target=self.sample, daemon=True)
+
+    def sample(self):
+        # This stdlib thread uses /proc, so no package changes to the notebook kernel.
+        while not self.done.is_set():
+            try:
+                self.sample_once()
+            except Exception as exc:
+                with (self.result / 'monitor-errors.log').open('a', encoding='utf-8') as f:
+                    f.write(repr(exc) + '\n')
+            self.done.wait(1)
+
+    def sample_once(self):
+        roots = {item['process'].pid for item in self.processes.children}
+        rows = {}
+        for procdir in Path('/proc').glob('[0-9]*'):
+            try:
+                stat = (procdir / 'stat').read_text()
+                tail = stat[stat.rfind(')')+2:].split()
+                rows[int(procdir.name)] = (int(tail[1]), int(tail[21]) * os.sysconf('SC_PAGE_SIZE'))
+            except (OSError, ValueError, IndexError):
+                continue
+        owned = set(roots)
+        for _ in range(20):
+            more = {pid for pid, (ppid, _) in rows.items() if ppid in owned}
+            if more <= owned:
+                break
+            owned |= more
+        ram = sum(rss for pid, (_, rss) in rows.items() if pid in owned)
+        gpu = {}
+        probe = subprocess.run(['nvidia-smi', '--query-compute-apps=pid,used_gpu_memory,gpu_uuid',
+                                '--format=csv,noheader,nounits'], capture_output=True, text=True, timeout=5)
+        if probe.returncode == 0:
+            for line in probe.stdout.splitlines():
+                parts = [x.strip() for x in line.split(',')]
+                if len(parts) == 3 and parts[0].isdigit() and int(parts[0]) in owned:
+                    try:
+                        gpu[parts[2]] = gpu.get(parts[2], 0) + float(parts[1])
+                    except ValueError:
+                        continue
+        peak = self.peaks.setdefault(self.phase, {'sampled_peak_owned_rss_bytes': 0, 'sampled_peak_owned_gpu_mib': {}, 'samples': 0})
+        peak['samples'] += 1
+        peak['sampled_peak_owned_rss_bytes'] = max(peak['sampled_peak_owned_rss_bytes'], ram)
+        for uuid, mib in gpu.items():
+            peak['sampled_peak_owned_gpu_mib'][uuid] = max(peak['sampled_peak_owned_gpu_mib'].get(uuid, 0), mib)
+        with (self.result / 'resources.jsonl').open('a', encoding='utf-8') as f:
+            f.write(json.dumps({'time': time.time(), 'phase': self.phase, 'owned_rss_bytes': ram,
+                                'owned_gpu_mib': gpu or None, 'gpu_probe_exit': probe.returncode}) + '\n')
+
+    def finish(self):
+        self.done.set()
+        self.thread.join(timeout=7)
+        dump(self.result / 'resource-peaks.json', {'by_phase': self.peaks,
+             'method': 'Owned process-tree RSS and nvidia-smi compute-app memory, sampled every ~1s. Device peaks remain separate; RSS may double-count shared pages. Missing GPU metrics are unknown, not zero. Brief allocation peaks between samples can be missed.'})
+
+
+def synthetic_data(path):
+    path.mkdir(parents=True, exist_ok=True)
+    for part in ('trace/all', 'metric/all', 'log/all'):
+        (path / part).mkdir(parents=True, exist_ok=True)
+    (path / 'trace/all/trace_jaeger-span.csv').write_text('timestamp,cmdb_id,span_id,trace_id,duration,type,status_code,operation_name,parent_span\n1700000000000,syntheticservice,synthetic-span,synthetic-trace,1,rpc,0,synthetic-operation,\n')
+    (path / 'metric/all/metrics.csv').write_text('timestamp,node_id,service_name,kpi_name,value\n1700000000,,syntheticservice,cpu,1.0\n')
+    (path / 'log/all/logs.csv').write_text('log_id,timestamp,cmdb_id,log_name,value\nsynthetic-log,1700000000,syntheticservice,synthetic,"severity: ERROR, message: SYNTHETIC_OK"\n')
+    for name in ('node_service_map.pkl', 'service_node_map.pkl'):
+        (path / 'metric' / name).write_bytes(b'\x80\x04}\x94.')
+
+
+def export_results(result):
+    archive = ROOT / 'rclagent-smoke-results.zip'
+    allowed_extra = ('environment-before.json', 'settings.json', 'environment-isolated.json',
+                     'pip-freeze.txt', 'pip-check.txt', 'install.log', 'input-verification.json')
+    with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipped:
+        for path in sorted(result.rglob('*')):
+            if path.is_file():
+                zipped.write(path, 'run/' + path.relative_to(result).as_posix())
+        for name in allowed_extra:
+            if (ROOT / name).exists():
+                zipped.write(ROOT / name, name)
+        for path in sorted((ROOT / 'compatibility').rglob('*')):
+            if path.is_file():
+                zipped.write(path, 'compatibility/' + path.relative_to(ROOT / 'compatibility').as_posix())
+    (ROOT / 'rclagent-smoke-results.zip.sha256').write_text(digest(archive) + '  ' + archive.name + '\n')
+    print('Results:', archive, 'SHA256:', digest(archive))
+    return archive
+
+
+def preparation_failure(stage):
+    """Make A/B/early-C errors downloadable even before a model process exists."""
+    output = ROOT / ('preparation-' + stage)
+    output.mkdir(parents=True, exist_ok=True)
+    (output / 'error.txt').write_text(traceback.format_exc(), encoding='utf-8')
+    dump(output / 'status.json', {'status': 'failed', 'stage': stage, 'model_run': 'not-started'})
+    return export_results(output)
+
+
+def run_once(expected_sha256, expected_manifest_sha256):
+    kaggle_only()
+    package = unpack(find_archive(), expected_sha256, expected_manifest_sha256)
+    settings = json.loads((ROOT / 'settings.json').read_text())
+    if json.loads((ROOT / 'compatibility/status.json').read_text())['status'] != 'passed':
+        raise RuntimeError('Run the synthetic GPU kernel compatibility check before starting the model')
+    marker = ROOT / 'run-once.json'
+    with marker.open('x', encoding='utf-8') as f:
+        json.dump({'started': time.time(), 'bundle_sha256': expected_sha256,
+                   'policy': 'One attempt only; rerunning after failure needs a new user decision.'}, f)
+    result = ROOT / 'run'
+    result.mkdir()
+    proc = Processes(result)
+    monitor = Resources(proc, result)
+    atexit.register(proc.cleanup)
+    status = {'status': 'failed', 'stage': 'C', 'started': time.time(), 'score': 'not-run'}
+    rcl_started = None
+    env = clean_env()
+    env.update(CUDA_VISIBLE_DEVICES=str(settings['gpu']['index']), LLM_MODEL=MODEL,
+               LLM_API_URL='http://127.0.0.1:8000/v1/chat/completions',
+               LLM_API_KEY='local-placeholder', MAX_AGENT_PARALLEL='1', DATASET_TYPE='re2ob',
+               TOOL_SERVER_HOST='127.0.0.1', TOOL_SERVER_PORT='5000', LLM_FORCE_STREAM='false',
+               VLLM_USE_V1='0', VLLM_NO_USAGE_STATS='1', VLLM_DO_NOT_TRACK='1')
+    monitor.thread.start()
+    try:
+        for port in (8000, 5000):
+            assert_free_port(port)  # Never kill another session or increment ports.
+        # Downloads weights/config only from the public, non-gated official repo.
+        download = 'from huggingface_hub import snapshot_download; print(snapshot_download(repo_id=' + repr(MODEL) + ',revision=' + repr(REVISION) + ',token=False))'
+        with (result / 'model-download.log').open('w', encoding='utf-8') as log:
+            subprocess.run([str(PYTHON), '-c', download], env=env, stdout=log,
+                           stderr=subprocess.STDOUT, check=True, timeout=1200)
+        snapshot = TEMP / 'huggingface/hub' / ('models--' + MODEL.replace('/', '--')) / 'snapshots' / REVISION
+        if not snapshot.is_dir():
+            raise RuntimeError('Pinned model snapshot not found')
+        dump(result / 'model-files.json', {p.name: {'bytes': p.stat().st_size, 'sha256': digest(p)} for p in snapshot.iterdir() if p.is_file()})
+        env.update(HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1')
+        server = proc.start('vllm', [str(PYTHON), '-m', 'vllm.entrypoints.openai.api_server',
+            '--model', str(snapshot), '--tokenizer', str(snapshot), '--served-model-name', MODEL,
+            '--revision', REVISION, '--tokenizer-revision', REVISION,
+            '--host', '127.0.0.1', '--port', '8000', '--dtype', 'half',
+            '--tensor-parallel-size', '1', '--max-num-seqs', '1',
+            '--max-model-len', str(settings['context']), '--gpu-memory-utilization', '0.85',
+            '--max-num-batched-tokens', '2048', '--enable-chunked-prefill', '--enforce-eager',
+            '--enable-auto-tool-choice', '--tool-call-parser', 'hermes',
+            '--generation-config', 'vllm', '--disable-log-requests'], env)
+        wait_ready(server, 'http://127.0.0.1:8000/health', 600)
+        print('C: pinned local model server ready; single GPU, FP16, context', settings['context'])
+        status['stage'] = 'D'
+        monitor.phase = 'protocol'
+        synth = TEMP / 'synthetic'
+        synthetic_data(synth)
+        def start_tools(name, data):
+            tool_env = dict(env, DATA_ROOT=str(data))
+            child = proc.start(name, [str(PYTHON), str(package / 'upstream/tool_server.py')], tool_env)
+            wait_ready(child, 'http://127.0.0.1:5000/search_span?span_id=probe', 90)
+            return child
+        tools = start_tools('tools-synthetic', synth)
+        def worker(phase, data, timeout):
+            out = result / phase
+            out.mkdir()
+            worker_env = dict(env, DATA_ROOT=str(data))
+            child = proc.start('worker-' + phase, [str(PYTHON), str(package / 'smoke-worker.py'), phase,
+                '--package', str(package), '--output', str(out), '--model-path', str(snapshot),
+                '--context', str(settings['context'])], worker_env)
+            try:
+                exit_code = child.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                proc.stop(child)
+                raise TimeoutError(phase + ' wall-clock limit reached; partial logs retained')
+            proc.record()
+            if exit_code:
+                raise RuntimeError(phase + ' failed; stopping without a telemetry retry or model change')
+            state = json.loads((out / 'worker-status.json').read_text())
+            if state['status'] != 'passed':
+                raise RuntimeError('Worker failed its stage gate')
+        worker('protocol', synth, 480)
+        proc.stop(tools)
+        print('D: synthetic structured tool calls, tool-role round trip, print_results and request field checks passed')
+        status['stage'] = 'E'
+        monitor.phase = 'trace'
+        started = time.monotonic()
+        rcl_started = started
+        tools = start_tools('tools-telemetry', package / 'input')
+        worker('trace', package / 'input', max(0.1, 1800-(time.monotonic()-started)))
+        status['rcl_elapsed_seconds'] = time.monotonic()-started
+        proc.stop(tools)
+        print('E: one preselected trace completed; no retries selected using its label')
+        status['stage'] = 'F'
+        monitor.phase = 'scoring'
+        # Stop model inference before opening any groundtruth file.
+        proc.stop(server)
+        scoring = result / 'scoring'
+        (scoring / 'result').mkdir(parents=True)
+        shutil.copyfile(package / 'scoring/groundtruth.csv', scoring / 'groundtruth.csv')
+        shutil.copyfile(package / 'input/error_traces.txt', scoring / 'error_traces.txt')
+        shutil.copyfile(result / 'trace/result.json', scoring / 'result/conversation_trace_1.txt')
+        with (scoring / 'author-score.txt').open('w', encoding='utf-8') as log:
+            subprocess.run([str(PYTHON), str(package / 'upstream/evaluate.py'), str(scoring), 'result'],
+                           env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=60)
+        status.update(status='passed', score='author scorer, one selected trace only; descriptive smoke result, not an accuracy estimate')
+    except BaseException as exc:
+        status['error'] = repr(exc)
+        (result / 'error.txt').write_text(traceback.format_exc(), encoding='utf-8')
+        print('STOP:', status['stage'], repr(exc))
+    finally:
+        try:
+            proc.cleanup()
+        finally:
+            monitor.finish()
+            status['finished'] = time.time()
+            status['elapsed_seconds'] = status['finished']-status['started']
+            if rcl_started is not None and 'rcl_elapsed_seconds' not in status:
+                status['rcl_elapsed_seconds'] = time.monotonic()-rcl_started
+            status['observed_requests'] = {}
+            for phase in ('protocol', 'trace'):
+                events = result / phase / 'events.jsonl'
+                count = 0
+                if events.exists():
+                    for line in events.read_text(encoding='utf-8').splitlines():
+                        try:
+                            count += json.loads(line).get('kind') == 'request'
+                        except json.JSONDecodeError:
+                            continue
+                status['observed_requests'][phase] = count
+            dump(result / 'status.json', status)
+            archive = export_results(result)
+            atexit.unregister(proc.cleanup)
+    if status['status'] != 'passed':
+        raise RuntimeError('Smoke test stopped; download partial results: ' + str(archive))
+    return archive

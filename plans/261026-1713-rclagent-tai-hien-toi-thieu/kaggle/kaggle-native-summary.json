@@ -1,0 +1,53 @@
+{
+  "native_status": "stopped-at-D",
+  "notebook_version": 3,
+  "dataset_version": 4,
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "used_gpu": {
+    "name": "Tesla T4",
+    "index": 0,
+    "total_mib": 15360.0
+  },
+  "context": 16384,
+  "model_requests_including_retries": {
+    "protocol": 1,
+    "trace": 0
+  },
+  "response_http_status": 500,
+  "token_usage": null,
+  "runtime_error": "triton.runtime.errors.OutOfResources: shared memory required 98304 bytes, hardware limit 65536 bytes",
+  "elapsed_C_to_cleanup_seconds": 157.09451150894165,
+  "model_request_elapsed_seconds": 52.089603961999956,
+  "sampled_peak_owned_rss_bytes": 10266951680,
+  "sampled_peak_owned_rss_gib": 9.562,
+  "sampled_peak_owned_gpu_mib": {
+    "GPU-936f6771-70e0-720c-7dcb-da470677fbd7": 12674.0
+  },
+  "sampled_peak_owned_gpu_gib": {
+    "GPU-936f6771-70e0-720c-7dcb-da470677fbd7": 12.377
+  },
+  "recorded_processes_stopped": [
+    {
+      "name": "vllm",
+      "exit": 0
+    },
+    {
+      "name": "tools-synthetic",
+      "exit": -15
+    },
+    {
+      "name": "worker-protocol",
+      "exit": 1
+    }
+  ],
+  "telemetry_tool_server_started": false,
+  "benchmark_trace_ran": false,
+  "scoring_ran": false,
+  "all_native_input_member_hashes_verified": true,
+  "artifact": "rclagent-kaggle-gpu-results.zip",
+  "artifact_sha256": "fb220dc733203da6acf564bc6b3198ffae9b48e85f4091d5c52dfe479cf84e9b",
+  "artifact_bytes": 24323,
+  "stop_policy": "Gate D failed; no inference rerun, backbone change, limit increase or textual tool parser added.",
+  "resource_measurement": "Owned process-tree RSS and nvidia-smi compute-app memory, sampled every ~1s. Device peaks remain separate; RSS may double-count shared pages. Missing GPU metrics are unknown, not zero. Brief allocation peaks between samples can be missed."
+}
