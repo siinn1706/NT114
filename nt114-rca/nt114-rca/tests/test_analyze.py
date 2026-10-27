@@ -59,6 +59,13 @@ def test_headline_guard_refuses(tmp_path, over, msg):
         analyze.run(_cfg(tmp_path, _grid(tmp_path, **over), preregistration_sha="0" * 64))
 
 
+def test_headline_guard_refuses_train_rows(tmp_path):
+    with pytest.raises(analyze.HeadlineGuardError, match="train"):
+        analyze.run(_cfg(tmp_path, _grid(tmp_path, roles=("train", "test")), preregistration_sha="0" * 64))
+    with pytest.raises(analyze.HeadlineGuardError, match="train"):
+        analyze.guard_headline(analyze.load(_grid(tmp_path, roles=("train",))))
+
+
 def test_headline_guard_refuses_mixed_revisions_and_evidence(tmp_path):
     g = analyze.load(_grid(tmp_path))
     g.loc[0, "model_revision"] = "r2"

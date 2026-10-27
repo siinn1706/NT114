@@ -279,8 +279,15 @@ def parse(text: str, candidates: list[str]) -> dict:
             d = json.loads(m.group(0)) if m else {}
         except Exception:
             d = {}
-    rank = [s for s in d.get("ranking", []) if s in candidates]
-    return {"ok": bool(rank), "ranking": rank, "confidence": float(d.get("confidence", 0)) / 100,
+    if not isinstance(d, dict):     # valid JSON of another shape is a parse failure too
+        d = {}
+    ranking = d.get("ranking")
+    # a service named twice keeps its first position only, so it never collects Borda points twice
+    rank = list(dict.fromkeys(s for s in ranking if isinstance(s, str) and s in candidates)) if isinstance(ranking, list) else []
+    # confidence outside the schema (a number in 0-100) makes the sample a parse failure, never an exception
+    c = d.get("confidence")
+    conf_ok = isinstance(c, (int, float)) and not isinstance(c, bool) and 0 <= c <= 100
+    return {"ok": bool(rank) and conf_ok, "ranking": rank, "confidence": float(c) / 100 if conf_ok else 0.0,
             "insufficient": bool(d.get("insufficient_evidence", False)), "next_check": d.get("next_check", ""),
             "reason": d.get("reason", "")}
 
@@ -292,7 +299,7 @@ def aggregate(samples: list[dict]) -> dict:
         return {"ranking": [], "conf_verbal": 0.0, "conf_consensus": 0.0, "abstain_vote": 1.0, "parse_rate": 0.0}
     borda = Counter()
     for s in good:
-        for i, svc in enumerate(s["ranking"]):
+        for i, svc in enumerate(dict.fromkeys(s["ranking"])):     # cached samples may predate deduplication
             borda[svc] += 5 - i
     ranking = [s for s, _ in borda.most_common()]
     top1 = Counter(s["ranking"][0] for s in good)

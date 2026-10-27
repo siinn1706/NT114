@@ -297,6 +297,10 @@ def build_dataset(dataset_id: str, cfg: dict, data_home: Path, limit: int | None
                   force: bool = False, adapter_cls=None, max_workers: int | None = None, log=print) -> dict:
     adapter_cls = adapter_cls or adapter_registry.get(dataset_id)
     P = paths(cfg, data_home)
+    built = P["canonical"] / dataset_id / "_build.json"
+    if (limit or only_uid) and built.is_file() and not read_json(built)["counts"].get("partial"):
+        # A partial build rewrites the dataset with a subset; it must not replace a full release.
+        raise RuntimeError(f"{built} is a full build: run a partial build (--limit/--uid) with a separate --data-home")
     ds_cfg = (cfg.get("datasets") or {}).get(dataset_id, {})
     ctx = BuildContext(data_home=data_home, raw_root=P["raw"], config=cfg, dataset_cfg=ds_cfg, work=P["work"])
     adapter = adapter_cls()

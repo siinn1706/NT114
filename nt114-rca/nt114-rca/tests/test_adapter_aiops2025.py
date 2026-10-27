@@ -163,3 +163,17 @@ def test_rebuild_is_noop_and_deterministic(aiops_home):
     before = h["store"].build(DS)["dataset_digest"]
     r = prep.build_dataset(DS, aiops_config(), h["dh"], max_workers=1, log=lambda *a: None)
     assert r["dataset_digest"] == before
+
+
+def test_a_day_archive_left_unextracted_stops_the_build(tmp_path):
+    """A day whose archive is in raw/ but has no extraction receipt would read as telemetry the dataset
+    never had; the build stops and names the day instead."""
+    dh = tmp_path / "dh"
+    raw = aiops_tree(dh)
+    (raw / "2025-06-08.tar.gz").write_bytes(b"archive stand-in")
+    half = dh / "work" / "extract" / "agenticopseval-test" / "AIOps2025" / "2025-06-07" / ".extract.json"
+    for missing in (["2025-06-08"], ["2025-06-07", "2025-06-08"]):
+        if len(missing) == 2:
+            half.unlink()             # a day extracted without its receipt is not complete either
+        with pytest.raises(RuntimeError, match="not extracted: " + ", ".join(missing)):
+            prep.build_dataset(DS, aiops_config(), dh, max_workers=1, log=lambda *a: None)

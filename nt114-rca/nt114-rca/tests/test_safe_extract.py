@@ -1,7 +1,9 @@
 """Archive extraction rejects unsafe members before writing anything, and resumes."""
 from __future__ import annotations
 
+import hashlib
 import io
+import json
 import tarfile
 import zipfile
 
@@ -91,3 +93,57 @@ def test_rerun_skips_verified_members_and_repairs_damaged(tmp_path):
     assert (out / "a.txt").stat().st_mtime_ns == m_a
     assert (out / "b.txt").read_bytes() == b"beta"
     assert r["members"]["b.txt"]["size"] == 4
+
+
+def test_receipt_records_archive_and_member_sha256(tmp_path):
+    arc = _tar(tmp_path / "ok.tar.gz", [("a.txt", b"alpha", "file")])
+    r = extract(arc, tmp_path / "out")
+    assert r["archive_sha256"] == hashlib.sha256(arc.read_bytes()).hexdigest()
+    assert r["members"]["a.txt"]["sha256"] == hashlib.sha256(b"alpha").hexdigest()
+
+
+def test_rerun_repairs_member_damaged_without_size_change(tmp_path):
+    arc = _tar(tmp_path / "ok.tar.gz", [("a.txt", b"alpha", "file")])
+    out = tmp_path / "out"
+    extract(arc, out)
+    (out / "a.txt").write_bytes(b"alphX")
+    extract(arc, out)
+    assert (out / "a.txt").read_bytes() == b"alpha"
+
+
+def test_receipt_without_sha_fields_is_not_trusted(tmp_path):
+    arc = _tar(tmp_path / "ok.tar.gz", [("a.txt", b"alpha", "file")])
+    out = tmp_path / "out"
+    extract(arc, out)
+    rp = out / ".extract.json"
+    old = json.loads(rp.read_text(encoding="utf-8"))
+    old.pop("archive_sha256", None)
+    old["members"] = {k: {"size": v["size"]} for k, v in old["members"].items()}
+    rp.write_text(json.dumps(old), encoding="utf-8")
+    (out / "a.txt").write_bytes(b"alphX")
+    r = extract(arc, out)
+    assert (out / "a.txt").read_bytes() == b"alpha" and r["archive_sha256"] and r["members"]["a.txt"]["sha256"]
+
+
+def test_receipt_of_another_archive_is_not_trusted(tmp_path):
+    out = tmp_path / "out"
+    extract(_tar(tmp_path / "v1.tar.gz", [("a.txt", b"alpha", "file")]), out)
+    r = extract(_tar(tmp_path / "v2.tar.gz", [("a.txt", b"omega", "file")]), out)
+    assert (out / "a.txt").read_bytes() == b"omega"
+    assert r["members"]["a.txt"]["sha256"] == hashlib.sha256(b"omega").hexdigest()
+
+
+@pytest.mark.parametrize("name", [".extract.json", "./.extract.json", ".EXTRACT.json"])
+def test_member_named_like_the_receipt_rejected(tmp_path, name):
+    arc = _tar(tmp_path / "bad.tar.gz", [("a.txt", b"ok", "file"), (name, b"{}", "file")])
+    with pytest.raises(UnsafeArchive, match="receipt"):
+        extract(arc, tmp_path / "out")
+
+
+def test_case_insensitive_name_collision_rejected(tmp_path):
+    arc = _tar(tmp_path / "bad.tar.gz", [("d/a.txt", b"one", "file"), ("D/A.txt", b"two", "file")])
+    with pytest.raises(UnsafeArchive, match="collision"):
+        extract(arc, tmp_path / "out")
+    arc = _zip(tmp_path / "bad.zip", [("d/a.txt", b"one"), ("d/A.TXT", b"two")])
+    with pytest.raises(UnsafeArchive, match="collision"):
+        extract(arc, tmp_path / "out2")

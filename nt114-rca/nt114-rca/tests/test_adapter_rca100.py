@@ -4,6 +4,7 @@ groups that are exported only in the case of one fault."""
 from __future__ import annotations
 
 import copy
+import json
 
 import pyarrow.compute as pc
 import pytest
@@ -158,3 +159,14 @@ def test_rebuild_is_noop_and_deterministic(rca_home):
     before = h["store"].build(DS)["dataset_digest"]
     r = prep.build_dataset(DS, rca100_config(), h["dh"], max_workers=1, log=lambda *a: None)
     assert r["dataset_digest"] == before
+
+
+def test_time_without_an_offset_is_refused_not_read_as_local_time(tmp_path):
+    """Every RCA100 time string carries +08:00; one without an offset would follow the machine's time
+    zone, so the incident fails instead of shifting by the runner's offset."""
+    cases = {**RCA100_CASES, "t004": (*RCA100_CASES["t004"][:3], "2026-04-25T19:30:30", 120)}
+    h = _build(tmp_path / "naive", cases)
+    assert h["receipt"]["exceptions"] == 1
+    assert "F023-nullPointerException.ddd" not in h["by_case"] and len(h["by_case"]) == 3
+    exc = (h["dh"] / "canonical/v1" / DS / "eval_only/exceptions.jsonl").read_text(encoding="utf-8")
+    assert len(exc.splitlines()) == 1 and "has no UTC offset" in exc

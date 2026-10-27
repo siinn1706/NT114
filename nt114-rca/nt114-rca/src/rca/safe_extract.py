@@ -1,10 +1,13 @@
 """Safe extraction of archives that cannot be streamed (tar.gz with random access needs).
 
 Each member is checked before anything is written: absolute paths, drive letters, `..`, links,
-devices, Windows-reserved names and characters, path length, member size and the cumulative
-decompression ratio. Members matching skip patterns (macOS AppleDouble, .DS_Store) are counted
+devices, Windows-reserved names and characters, path length, member size, the cumulative
+decompression ratio, the receipt's own name and names equal up to case (one would overwrite the
+other on NTFS). Members matching skip patterns (macOS AppleDouble, .DS_Store) are counted
 and skipped. Files are written to `<dest>.part` and moved into place; a receipt
-`.extract.json` records size and sha256 per member so a rerun skips verified members.
+`.extract.json` records the archive's sha256 and size and sha256 per member so a rerun skips
+members whose bytes still match. A receipt of other archive bytes, or one without the archive's
+sha256, vouches for nothing: every member is extracted again.
 """
 from __future__ import annotations
 
@@ -16,8 +19,10 @@ import tarfile
 import zipfile
 from pathlib import Path, PurePosixPath
 
-from .store import read_json, write_json_atomic
+from .store import read_json, sha256_file, write_json_atomic
 
+RECEIPT = ".extract.json"
+RECEIPT_NAMES = {RECEIPT, RECEIPT + ".part"}      # the receipt and its atomic-write temporary
 WIN_RESERVED = {"CON", "PRN", "AUX", "NUL", *(f"COM{i}" for i in range(1, 10)), *(f"LPT{i}" for i in range(1, 10))}
 WIN_BAD_CHARS = re.compile(r'[<>:"|?*\x00-\x1f]')
 MAX_PATH = 240
@@ -70,15 +75,26 @@ def extract(archive: Path, dest: Path, cfg: dict | None = None) -> dict:
     skip = cfg.get("skip_patterns", ["__MACOSX/*", "*/._*", "._*", "*.DS_Store"])
     dest = Path(dest)
     dest.mkdir(parents=True, exist_ok=True)
-    rpath = dest / ".extract.json"
-    receipt = read_json(rpath) if rpath.exists() else {"archive": archive.name, "members": {}, "skipped": []}
+    rpath = dest / RECEIPT
+    arc_sha = sha256_file(archive)
+    old = read_json(rpath) if rpath.exists() else None
+    receipt = (old if old and old.get("archive_sha256") == arc_sha
+               else {"archive": archive.name, "archive_sha256": arc_sha, "members": {}, "skipped": []})
+    receipt.pop("complete", None)
     compressed = archive.stat().st_size
     total = 0
     skipped: set[str] = set(receipt.get("skipped", []))
+    seen: dict[str, str] = {}                   # case-folded path -> member name
 
     def accept(name: str, size: int):
         nonlocal total
         p = check_name(name, dest)
+        key = p.as_posix().casefold()
+        if key in RECEIPT_NAMES:
+            raise UnsafeArchive(f"member would overwrite the extraction receipt: {name!r}")
+        if key in seen:
+            raise UnsafeArchive(f"name collision (case-insensitive): {name!r} and {seen[key]!r}")
+        seen[key] = name
         if size > max_member:
             raise UnsafeArchive(f"member too large ({size}): {name!r}")
         total += size
@@ -87,8 +103,9 @@ def extract(archive: Path, dest: Path, cfg: dict | None = None) -> dict:
         return p
 
     def done(rel: str, size: int) -> bool:
-        e = receipt["members"].get(rel)
-        return bool(e and e["size"] == size and (dest / rel).is_file() and (dest / rel).stat().st_size == size)
+        e, f = receipt["members"].get(rel), dest / rel
+        return bool(e and e["size"] == size and e.get("sha256") and f.is_file() and f.stat().st_size == size
+                    and sha256_file(f) == e["sha256"])
 
     if zipfile.is_zipfile(archive):
         with zipfile.ZipFile(archive) as z:
