@@ -21,25 +21,26 @@
     "metric\\all\\metrics.csv": "1200300e388c53155c6514dd8e2af925823b351d9157e2046a0a2d6d344807cc",
     "log\\all\\logs.csv": "dbf02f0e1630167708a8ca30c1c370575bebbdc77340be4bc3a9bac78c31a3e7"
   },
-  "metrics_source": "simple_metrics.csv, the upstream preprocessing default; all matched KPIs retained.",
+  "metrics_source": "simple_metrics.csv, the upstream preprocessing default; all KPIs of all services in the window retained.",
+  "tool_query_domain": "Any service_name; query second within the selected trace span seconds. Package holds every full-data metric row within 1200 s and every served log row within 60 s of that window; all belong to the selected case.",
   "data_policy": "Only selected case. Labels in scoring/; never forwarded to model. Private Kaggle use only.",
   "upstream_patch": null,
   "files": {
     "cpu-equivalence.json": {
-      "sha256": "8cbf976ab9f2a377cb6f9aa8de03baa2b8eee9beea478c9e7a2ba4bcb418fdd4",
-      "bytes": 26071
+      "sha256": "053c78258cb3a95767aa6341fc4a7c3f6c9c25a4daf7e6962ec5f32adfe73ce0",
+      "bytes": 268024
     },
     "input/error_traces.txt": {
       "sha256": "76bd0b27d96a0039b0c722695f467753c4d0be05eed48baa6f084d394084d82f",
       "bytes": 297
     },
     "input/log/all/logs.csv": {
-      "sha256": "c1f11fed33620c1054cfc71483730bb586c727a81842b0fc977453029c539ad1",
-      "bytes": 41
+      "sha256": "c4468cb40e0a5b025060de314a540b9f5ff4814440a6e453b63af38dddd890cb",
+      "bytes": 301004
     },
     "input/metric/all/metrics.csv": {
-      "sha256": "7a8ffd4ee48d356497dde4ce67214edb6639a43702d14e4a8b9af5a7ac3bae65",
-      "bytes": 1888695
+      "sha256": "a305bb7c0c8c3f583b644c93247f4dbdc10e245e995f3c307f125ec2f8b51270",
+      "bytes": 3166413
     },
     "input/metric/node_service_map.pkl": {
       "sha256": "926248e52d1fa532c317e37da24ed652ae64110f8219cb5e061668bd3091f048",
@@ -62,12 +63,12 @@
       "bytes": 78
     },
     "selection.json": {
-      "sha256": "284eef10a393053eb6587d65b568c558512317c22859a473b86f64f5b60bac61",
-      "bytes": 1055
+      "sha256": "ebd0677d8fd217cf345af92c616e91a12306c4bc1d425c3912cdf6a95bfa96a3",
+      "bytes": 553
     },
     "smoke-worker.py": {
-      "sha256": "4622394f83fcf74f2d3b1d072c75062b58cda9d7f982fa6d2ebaa1fd958d76d7",
-      "bytes": 17335
+      "sha256": "c6dff827c1871d114dab52283fdf33d85324c03029950121796c9f9c5e73de12",
+      "bytes": 21240
     },
     "upstream/config.py": {
       "sha256": "970171f965af253e6575e2dba2529abb9394b6d84fad31eb2565a211bc387c52",
@@ -109,13 +110,26 @@
       "sha256": "d5e77e31feec737e202a39c1a08464392bffcf310c0286f92eac4cc7fdfeead5",
       "bytes": 2880
     },
+    "verify-t4-prefix-kernel.py": {
+      "sha256": "b5c480177735cdca4e9a97c2ff8a2898e4bee3c23773b979af367c6349ca7e50",
+      "bytes": 6988
+    },
     "vllm-t4-compat.py": {
       "sha256": "4fc7748277a9b643c3af47bc8d8e6a8b570605582dcd52acc9a47c6bcccfe6a9",
       "bytes": 2375
     },
-    "verify-t4-prefix-kernel.py": {
-      "sha256": "b5c480177735cdca4e9a97c2ff8a2898e4bee3c23773b979af367c6349ca7e50",
-      "bytes": 6988
+    "tool-result-budget.py": {
+      "sha256": "331366d5b956748b2a61da17e8d88996d9271855bcf42baaf557bf24ca0833fa",
+      "bytes": 8820
     }
+  },
+  "tool_result_budget": {
+    "deviation_from_upstream": true,
+    "endpoint": "search_logs",
+    "budget_tokens": 2048,
+    "tokenizer": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+    "scheme": "ladder",
+    "module": "tool-result-budget.py",
+    "rule": "Results within the budget pass byte-for-byte. Larger results are merged by exact duplicates, then by masked message template, then truncated by severity priority, whichever first fits; a notice line tells the model. Applied by smoke-worker.py outside the unchanged upstream code."
   }
 }

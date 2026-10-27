@@ -1,0 +1,497 @@
+{
+  "traces": 450,
+  "cases": 90,
+  "context": 16384,
+  "output_reserve": 512,
+  "budgets": [
+    1024,
+    2048,
+    4096,
+    8192
+  ],
+  "schemes": [
+    "cap",
+    "template",
+    "ladder"
+  ],
+  "prior_scan_mismatch_traces": [],
+  "instructed_queries_changed": {
+    "cap@1024": 0,
+    "cap@2048": 0,
+    "cap@4096": 0,
+    "cap@8192": 0,
+    "template@1024": 0,
+    "template@2048": 0,
+    "template@4096": 0,
+    "template@8192": 0,
+    "ladder@1024": 0,
+    "ladder@2048": 0,
+    "ladder@4096": 0,
+    "ladder@8192": 0
+  },
+  "base0_max": 932,
+  "round_overhead_max": 103,
+  "metric_max_tokens": 10,
+  "own_max_tokens": 1714,
+  "changed_log_responses": 1560,
+  "csv_roundtrip_exact": {
+    "true": 1560
+  },
+  "by_budget": {
+    "cap@1024": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 2039,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 2039,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 450
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1560,
+      "forms": {
+        "cap_rows": 1560
+      },
+      "rows_original": 1210188,
+      "rows_covered": 24014,
+      "rows_verbatim": 279229,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 927,
+      "responses_dropping_error_rows": 5,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 1024
+    },
+    "cap@2048": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 3066,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 3063,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 450
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1560,
+      "forms": {
+        "cap_rows": 1560
+      },
+      "rows_original": 1210188,
+      "rows_covered": 50981,
+      "rows_verbatim": 436478,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 807,
+      "responses_dropping_error_rows": 5,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 2048
+    },
+    "cap@4096": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 5114,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 5115,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 445
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1542,
+      "forms": {
+        "cap_rows": 1542
+      },
+      "rows_original": 1209131,
+      "rows_covered": 103809,
+      "rows_verbatim": 702646,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 592,
+      "responses_dropping_error_rows": 4,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 4096
+    },
+    "cap@8192": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 9209,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 9211,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 114
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 915,
+      "forms": {
+        "cap_rows": 915
+      },
+      "rows_original": 1113259,
+      "rows_covered": 100639,
+      "rows_verbatim": 914378,
+      "error_rows_original": 1124,
+      "error_rows_dropped": 212,
+      "responses_dropping_error_rows": 4,
+      "error_values_original": 18,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 8192
+    },
+    "template@1024": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 1265,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 450
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1560,
+      "forms": {
+        "template_merge": 1560
+      },
+      "rows_original": 1210188,
+      "rows_covered": 1210188,
+      "rows_verbatim": 163933,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    },
+    "template@2048": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 1265,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 450
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1560,
+      "forms": {
+        "template_merge": 1560
+      },
+      "rows_original": 1210188,
+      "rows_covered": 1210188,
+      "rows_verbatim": 163933,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    },
+    "template@4096": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 5059,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 445
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1542,
+      "forms": {
+        "template_merge": 1542
+      },
+      "rows_original": 1209131,
+      "rows_covered": 1209131,
+      "rows_verbatim": 162876,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    },
+    "template@8192": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 9199,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 114
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 915,
+      "forms": {
+        "template_merge": 915
+      },
+      "rows_original": 1113259,
+      "rows_covered": 1113259,
+      "rows_verbatim": 67004,
+      "error_rows_original": 1124,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 18,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    },
+    "ladder@1024": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 1211,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 450
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1560,
+      "forms": {
+        "template_merge": 780,
+        "exact_merge": 780
+      },
+      "rows_original": 1210188,
+      "rows_covered": 1210188,
+      "rows_verbatim": 163933,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    },
+    "ladder@2048": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 1211,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 450
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1560,
+      "forms": {
+        "template_merge": 780,
+        "exact_merge": 780
+      },
+      "rows_original": 1210188,
+      "rows_covered": 1210188,
+      "rows_verbatim": 163933,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    },
+    "ladder@4096": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 5059,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 445
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 1542,
+      "forms": {
+        "template_merge": 780,
+        "exact_merge": 762
+      },
+      "rows_original": 1209131,
+      "rows_covered": 1209131,
+      "rows_verbatim": 162876,
+      "error_rows_original": 1231,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 22,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    },
+    "ladder@8192": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1035,
+        "cartservice": 1476,
+        "checkoutservice": 1666,
+        "currencyservice": 1035,
+        "emailservice": 1035,
+        "frontend": 9199,
+        "frontendservice": 1034,
+        "paymentservice": 1035,
+        "productcatalogservice": 1697,
+        "recommendationservice": 1185,
+        "redis": 1420,
+        "shippingservice": 1035
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 450,
+      "cases_with_changed_response": 90,
+      "traces_changed_by_service": {
+        "cartservice": 450,
+        "frontend": 114
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 915,
+      "forms": {
+        "template_merge": 780,
+        "exact_merge": 135
+      },
+      "rows_original": 1113259,
+      "rows_covered": 1113259,
+      "rows_verbatim": 67004,
+      "error_rows_original": 1124,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 18,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 461
+    }
+  },
+  "four_round_worst_case": {
+    "1024": 5992,
+    "2048": 10088,
+    "4096": 18280,
+    "8192": 34664
+  },
+  "elapsed_seconds": 2211.1
+}

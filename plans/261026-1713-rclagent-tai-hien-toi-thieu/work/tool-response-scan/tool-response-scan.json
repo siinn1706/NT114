@@ -1,0 +1,371 @@
+{
+  "traces": 450,
+  "cases": 90,
+  "output_reserve": 512,
+  "additivity_check": {
+    "samples": 200,
+    "max_abs_error_tokens": 0,
+    "errors": {
+      "0": 200
+    }
+  },
+  "request_budget": 160,
+  "by_role": {
+    "all": {
+      "traces": 450,
+      "cases": 90,
+      "traces_over_request_budget_min": {
+        "count": 0,
+        "of": 450
+      },
+      "spans": {
+        "min": 1,
+        "max": 45
+      },
+      "16384": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 450
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 450,
+          "of": 450
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 90
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 90
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 90,
+          "of": 90
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 90
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 90,
+          "of": 90
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 90
+        }
+      },
+      "32768": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 450
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 450,
+          "of": 450
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 90
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 90
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 90,
+          "of": 90
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 90
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 90,
+          "of": 90
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 90
+        }
+      }
+    },
+    "test": {
+      "traces": 105,
+      "cases": 21,
+      "traces_over_request_budget_min": {
+        "count": 0,
+        "of": 105
+      },
+      "spans": {
+        "min": 1,
+        "max": 43
+      },
+      "16384": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 105
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 105,
+          "of": 105
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 21
+        }
+      },
+      "32768": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 105
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 105,
+          "of": 105
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 21
+        }
+      }
+    },
+    "train": {
+      "traces": 240,
+      "cases": 48,
+      "traces_over_request_budget_min": {
+        "count": 0,
+        "of": 240
+      },
+      "spans": {
+        "min": 4,
+        "max": 45
+      },
+      "16384": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 240
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 240,
+          "of": 240
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 48
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 48
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 48,
+          "of": 48
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 48
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 48,
+          "of": 48
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 48
+        }
+      },
+      "32768": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 240
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 240,
+          "of": 240
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 48
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 48
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 48,
+          "of": 48
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 48
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 48,
+          "of": 48
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 48
+        }
+      }
+    },
+    "val": {
+      "traces": 105,
+      "cases": 21,
+      "traces_over_request_budget_min": {
+        "count": 0,
+        "of": 105
+      },
+      "spans": {
+        "min": 4,
+        "max": 43
+      },
+      "16384": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 105
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 105,
+          "of": 105
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 21
+        }
+      },
+      "32768": {
+        "traces_with_own_span_overflow": {
+          "count": 0,
+          "of": 105
+        },
+        "traces_with_possible_overflow_any_service": {
+          "count": 105,
+          "of": 105
+        },
+        "cases_all_traces_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_any_trace_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "cases_possible_overflow_all_traces": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_own_overflow": {
+          "count": 0,
+          "of": 21
+        },
+        "longest_trace_per_case_possible_overflow": {
+          "count": 21,
+          "of": 21
+        },
+        "longest_trace_per_case_clear_and_within_budget": {
+          "count": 0,
+          "of": 21
+        }
+      }
+    }
+  },
+  "own_overflow_services_16384": {},
+  "possible_overflow_services_16384": {
+    "cartservice": 450
+  },
+  "by_queried_service": {
+    "max_round1_tokens": {
+      "adservice": 1035,
+      "cartservice": 135618,
+      "checkoutservice": 1666,
+      "currencyservice": 1035,
+      "emailservice": 1035,
+      "frontend": 35982,
+      "frontendservice": 1034,
+      "paymentservice": 1035,
+      "productcatalogservice": 1697,
+      "recommendationservice": 1185,
+      "redis": 1420,
+      "shippingservice": 1035
+    },
+    "16384": {
+      "traces_where_query_overflows": {
+        "cartservice": 450,
+        "frontend": 5
+      },
+      "traces_overflow_excluding_cartservice": 5
+    },
+    "32768": {
+      "traces_where_query_overflows": {
+        "cartservice": 450,
+        "frontend": 5
+      },
+      "traces_overflow_excluding_cartservice": 5
+    }
+  },
+  "own_max_tokens_overall": 1714,
+  "elapsed_seconds": 1178.0
+}
