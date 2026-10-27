@@ -3,12 +3,12 @@
 Nghiên cứu chẩn đoán nguyên nhân gốc trong hệ thống microservices khi metric, log hoặc trace không đầy đủ. Hướng hiện tại là **kiểm khả năng chạy RCLAgent với một backbone open-weight, giữ cơ chế đệ quy**, trước khi thiết kế và đánh giá các thay đổi cho bài toán thiếu telemetry.
 
 > [!IMPORTANT]
-> **Trạng thái đã kiểm:** model chạy trên Kaggle T4, kiểm kernel và gate tool-calling đã đạt. Lượt một trace dừng ở bước E vì model yêu cầu dịch vụ ngoài phạm vi gói dữ liệu. **Chưa hoàn thành RCA đầu-cuối, chưa có accuracy hoặc kết quả tái hiện Table I.**
+> **Trạng thái đã kiểm:** trên Kaggle T4, lượt một trace train (version 8) chạy trọn A–F: 106 model requests trong 1.332,9 giây, có kết quả cuối và điểm chấm của scorer tác giả cho riêng trace đó. Đây là smoke một trace, **chưa phải accuracy hay kết quả tái hiện Table I**. Harness đã chạy được nhiều trace train theo lô; pilot 5 trace chưa chạy, chờ duyệt.
 
 | Bài nền | Dữ liệu phát hành | Lượt GPU hiện tại |
 |---|---|---|
 | RCLAgent, arXiv v1 | 1.340 bản ghi canonical, 4 nguồn | 1 ca train · 1 trace · 33 span |
-| Giữ recursion-of-thought | 1.339 ACCEPT / có cảnh báo; 1 REJECT | Gate D đạt · E dừng có log |
+| Giữ recursion-of-thought | 1.339 ACCEPT / có cảnh báo; 1 REJECT | A–F đạt · 106 requests |
 
 ## Bài báo nền và nguồn kế thừa
 
@@ -43,17 +43,17 @@ Bundle canonical có **3.263 file, 10.673.010.725 byte**. [Hugging Face dataset 
 
 ### Phạm vi thử RCLAgent trên Kaggle
 
-RCAEval gốc có 735 ca: RE1 = 375, RE2 = 270, RE3 = 90. Subset **RE2-OB có 90 ca**. Lượt thử này chỉ dùng:
+RCAEval gốc có 735 ca: RE1 = 375, RE2 = 270, RE3 = 90. Subset **RE2-OB có 90 ca**. Lượt version 8 chỉ dùng:
 
 | Thành phần | Phạm vi thực tế |
 |---|---|
 | Ca | `checkoutservice_cpu_2`, vai train |
 | Trace | `68791e1f360d910bd01428c3cd9748ef` |
 | Cấu trúc | 33 span, root `6752e26884a7fee8` |
-| Metric | 38.048 dòng, giữ đủ baseline/cửa sổ tool tác giả |
-| Log | 0 dòng sau đúng bộ lọc tác giả; không bổ sung tín hiệu |
+| Metric | 66.846 dòng: mọi cửa sổ endpoint tác giả quanh các giây model có thể hỏi |
+| Log | 1.747 dòng theo cùng cửa sổ; không bổ sung tín hiệu |
 | Nhãn | 1 dòng tách trong `scoring/`, chỉ dành cho chấm sau chạy |
-| Kiểm rút gọn | 86 phản hồi endpoint khớp byte giữa gói tối thiểu và dữ liệu đầy đủ |
+| Kiểm rút gọn | 822 phản hồi endpoint khớp byte giữa gói tối thiểu và dữ liệu đầy đủ |
 
 Nguồn máy đọc: [manifest](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/manifest.json), [CPU equivalence](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/cpu-equivalence.json). Không chọn riêng những metric có vẻ bất thường để rút dữ liệu.
 
@@ -76,30 +76,32 @@ flowchart TD
     D -->|Query ngoài domain hoặc lỗi vận hành| X[Dừng, xuất phần đã hoàn thành và dọn process]
 ```
 
-Flow trên mô tả đường thực thi được giữ trong harness. **Lượt native hiện dừng trong bước kiểm span đầu tiên**, chưa đi hết nhánh gộp đệ quy hoặc synthesizer. Các kiểm fixture về đệ quy không được coi là hoàn thành flow với model thật.
+Flow trên mô tả đường thực thi được giữ trong harness. Version 8 đi hết flow này với model thật trên một trace: kiểm span, gộp đệ quy, synthesizer, rồi scorer. Một trace không đủ để đánh giá độ chính xác.
 
 ## Kết quả chạy thực tế trên Kaggle
 
 **Backbone:** `Qwen/Qwen3-4B-Instruct-2507`, revision `cdbee75f17c01a7cc42f958dc650907174af0554`. **Serving:** vLLM 0.10.2 V0, FP16, Hermes tool parser, localhost; một T4, context 16.384, concurrency 1.
 
-| Giai đoạn của version 5 | Kết quả |
+| Giai đoạn của version 8 | Kết quả |
 |---|---|
-| A · Môi trường | Kaggle cấp T4 ×2, chỉ dùng GPU 0; không cộng VRAM |
-| B · Thư viện và kernel | Cài trong venv; bản gốc tái hiện lỗi shared memory, bản vá qua 15 kiểm GPU |
+| A · Môi trường | Kaggle cấp T4, chỉ dùng GPU 0; không cộng VRAM |
+| B · Thư viện và kernel | Cài trong venv; bản vá kernel attention qua các kiểm GPU |
 | C · Model server | Nạp đúng revision và ready trên localhost |
-| D · Tool-calling tổng hợp | **Đạt**, 3 requests HTTP 200, tool round trip và `print_results` hợp lệ |
-| E · Một trace benchmark | **Dừng**, 2 requests: model hỏi `cartservice` ngoài domain gói |
-| F · Export và cleanup | Đã lưu log/phần hoàn thành, dọn các process; scorer chưa chạy |
+| D · Tool-calling tổng hợp | **Đạt**, 3 requests |
+| E · Một trace benchmark | **Đạt**, 106 requests trong 1.332,9 giây; 38 kết quả `search_logs`, 1 kết quả được rút gọn theo ngân sách |
+| F · Export, scorer và cleanup | Có kết quả cuối, scorer tác giả đã chạy cho trace này, process đã dọn |
 
 ![Số request model của các phiên Kaggle](docs/figures/kaggle-smoke-requests.png)
 
-Lỗi kernel gốc cần 98.304 byte shared memory trên T4 giới hạn 65.536 byte. Patch chỉ đổi tile truy vấn 128 → 64 trên Turing, giữ source gốc, diff và hash; không đổi RCLAgent. Sai số tuyệt đối lớn nhất trong 15 kiểm attention là 0,000248. Sau đó model vượt gate D, nhưng ở E yêu cầu log/metric của `cartservice` khi đang kiểm root `frontendservice`; guard chặn trước khi thực thi query ngoài domain.
+Lỗi kernel gốc cần 98.304 byte shared memory trên T4 giới hạn 65.536 byte. Patch chỉ đổi tile truy vấn 128 → 64 trên Turing, giữ source gốc, diff và hash; không đổi RCLAgent. Sai số tuyệt đối lớn nhất trong 15 kiểm attention là 0,000248.
 
-Lượt E dùng 2 requests trong khoảng 24,94 giây; trần vẫn là **160 model requests gồm retry, 30 phút**, vòng tool/retry hữu hạn. Không cắt context, đổi model, mở rộng dữ liệu hoặc retry theo nhãn để tìm kết quả tốt hơn. Chi tiết nguồn lỗi và tài nguyên: [repair report](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/repair-report.md), [native summary](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-repair-v5-summary.json).
+Các lượt trước đều dừng ở E và được giữ trong báo cáo. Version 5 dừng vì guard domain cũ chặn `cartservice`. Version 6 dùng gói theo cửa sổ query nên query đó chạy được, nhưng phản hồi `search_logs` cần 126.088 token, vượt context. Version 7 thêm ngân sách 2.048 token cho `search_logs` (rút gọn có thông báo, không bỏ dòng nào) và chạy tới request 60, rồi dừng vì một timestamp nằm ngoài toàn bộ dữ liệu. Version 8 cho guard chấp nhận timestamp như vậy, vì tool tác giả trên dữ liệu đầy đủ cũng chỉ trả "No matching records found.".
+
+Trần vẫn là **160 model requests gồm retry, 30 phút** mỗi trace, vòng tool/retry hữu hạn. Không cắt context, đổi model, mở rộng dữ liệu hoặc retry theo nhãn để tìm kết quả tốt hơn. Chi tiết: [summary version 8](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/kaggle-repair-v8-summary.json), [thiết kế ngân sách](plans/reports/design-261027-1155-tool-result-budget.md), [repair report](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/repair-report.md).
 
 ## Chạy và đọc code ở đâu?
 
-- **Kaggle GPU:** [notebook](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-smoke.ipynb), [bundle ZIP private tại revision đã kiểm](https://huggingface.co/datasets/siinn1706/nt114-rca-data/resolve/2e7d80c144d5f28d13e8ed1888c7bc83b8c7fdc1/reproductions/rclagent-smoke-261026/rclagent-kaggle-bundle.zip) và [hướng dẫn](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/README.md). Notebook có ghi chú về lần dừng hiện tại.
+- **Kaggle GPU:** [notebook](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/rclagent-kaggle-smoke.ipynb), [bundle ZIP private tại revision đã kiểm](https://huggingface.co/datasets/siinn1706/nt114-rca-data/resolve/2e7d80c144d5f28d13e8ed1888c7bc83b8c7fdc1/reproductions/rclagent-smoke-261026/rclagent-kaggle-bundle.zip) và [hướng dẫn](plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle/README.md). Link ZIP trỏ tới bản phát hành trước version 6. Notebook trong repo là bản chạy theo lô cho pilot 5 trace train, chưa chạy.
 - **Pipeline NT114:** [hướng dẫn kỹ thuật](nt114-rca/nt114-rca/README.md), [source](nt114-rca/nt114-rca/src/rca), [tests](nt114-rca/nt114-rca/tests), [hợp đồng dữ liệu](nt114-rca/nt114-rca/docs/data_contract.md).
 - **Khảo cứu và quyết định:** [tổng quan bài nền](plans/261024-0858-tong-quan-1000-q1-chon-bai-nen-rca-thieu-telemetry/plan.md), [decision log](plans/261018-2300-single-llm-simplification-and-evaluation-hardening/decisions.md).
 - **R-a/IM1 đã viết nhưng tạm hoãn:** [điểm dừng thực tế](plans/261026-0928-nhanh-a-im1-trien-khai-kha-thi/work/stop-point.md). R-a là adaptation một lời gọi đã bỏ recursion-of-thought; không gọi là tái hiện đầy đủ. Chưa có kết quả model của các arm này.
@@ -107,6 +109,6 @@ Lượt E dùng 2 requests trong khoảng 24,94 giây; trần vẫn là **160 mo
 
 ## Giới hạn của bằng chứng hiện tại
 
-Chưa có accuracy, kết quả Table I, best-of-traces, confidence cuối cho H1 hoặc hiệu quả IM1. Một backbone thay thế hỏi tool ngoài domain không tự chứng minh phương pháp gốc kém. Các quyết định đóng băng/đánh giá, lịch sử tiếp xúc test và vai trò train/val/test được giữ trong giao thức; không diễn giải fixture, kế hoạch hay đầu ra mô phỏng thành kết quả nghiên cứu.
+Chưa có accuracy, kết quả Table I, best-of-traces, confidence cuối cho H1 hoặc hiệu quả IM1. Điểm chấm của version 8 chỉ thuộc một trace smoke. Ngân sách `search_logs` làm phản hồi của một số query lệch khỏi tác giả; mọi kết quả phải ghi rõ là adaptation (4B, context 16k, có ngân sách tool result). Các quyết định đóng băng/đánh giá, lịch sử tiếp xúc test và vai trò train/val/test được giữ trong giao thức; không diễn giải fixture, kế hoạch hay đầu ra mô phỏng thành kết quả nghiên cứu.
 
 Các biểu đồ được dựng từ manifest/summary bằng [script](plans/261026-2141-publish-latest/build-readme-charts.py); [provenance](plans/261026-2141-publish-latest/chart-provenance.json) ghi hash nguồn, số đếm và phiên bản thư viện. Chúng thể hiện dữ liệu và vận hành, không thể hiện độ chính xác.

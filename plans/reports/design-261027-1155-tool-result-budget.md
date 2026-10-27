@@ -59,7 +59,7 @@ Số đo trên 12.605 span: prompt self-state khi chưa có vòng tool tối đa
 | 4.096 | 20.328 | không |
 | 8.192 | 36.712 | không, chỉ bảo đảm khoảng 1 vòng |
 
-Chọn 2.048 vì đây là lũy thừa 2 lớn nhất vẫn bảo đảm đủ 4 vòng. Với phương án C, phản hồi đã rút gọn lớn nhất chỉ 461 token, nên B thực chất là ngưỡng: phản hồi nào vẫn được giữ nguyên byte. Giữa 1.024 và 2.048 không có phản hồi nào, nên hai mức đổi đúng cùng một tập phản hồi. Còn một rủi ro không chặn hết được: model gọi nhiều `search_logs` trong cùng một vòng. Ví dụ 2 lời gọi × 2.048 × 4 vòng vẫn có thể vượt context. Khi đó guard dừng như hiện nay, không cắt.
+Chọn 2.048 vì đây là lũy thừa 2 lớn nhất vẫn bảo đảm đủ 4 vòng. Với phương án C, phản hồi đã rút gọn lớn nhất chỉ 461 token, nên B thực chất là ngưỡng: phản hồi nào vẫn được giữ nguyên byte. Giữa 1.024 và 2.048 không có phản hồi nào, nên hai mức đổi đúng cùng một tập phản hồi. Rủi ro model gọi nhiều `search_logs` trong cùng một vòng (ví dụ 2 lời gọi × 2.048 × 4 vòng) đã được chặn từ bản batch: các `search_logs` trong cùng một phản hồi của model chia đều ngân sách, mỗi kết quả nhận ⌊2.048 / n⌋ token, nên tổng một vòng vẫn ≤ 2.048. Khi phản hồi chỉ có một `search_logs` (mọi lượt của version 7 và 8), ngân sách vẫn là 2.048 và kết quả không đổi byte nào. Kết quả `search_metrics` không thuộc ngân sách; trên RE2-OB chúng ≤ 10 token. Nếu context vẫn vượt, guard dừng như trước, không cắt.
 
 ## 5. Tác động đo trên CPU
 

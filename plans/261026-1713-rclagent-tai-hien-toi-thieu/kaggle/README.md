@@ -1,4 +1,4 @@
-# RCLAgent: smoke test một trace trên Kaggle GPU
+# RCLAgent: smoke test và chạy theo lô trên Kaggle GPU
 
 Phạm vi: kiểm khả năng chạy RCLAgent với một backbone thay thế, giữ suy luận theo span, gộp đệ quy và tổng hợp. Không đo độ chính xác phương pháp, không chạy cả 90 ca, không triển khai H1/IM1/R-a. Không chạy LLM trên Windows, không commit/push.
 
@@ -8,13 +8,21 @@ Phạm vi: kiểm khả năng chạy RCLAgent với một backbone thay thế, g
 
 **Version 6 (2026-10-27):** gói theo cửa sổ thời gian đã cho query `cartservice` chạy và trả đúng dữ liệu đầy đủ. E dừng sau 2 requests vì request thứ ba cần 126.088 token, vượt context 16.384; không cắt ngữ cảnh. Chưa có kết quả cuối hoặc chấm; process đã dọn. Xem `kaggle-repair-v6-summary.json`, `rclagent-kaggle-repair-v6-results.zip` và [report](../../reports/fix-261027-0929-rclagent-query-window-smoke.md). Version 5 dừng ở guard cặp service/giây cũ (`repair-report.md`, `kaggle-repair-v5-summary.json`). Các phiên thất bại trước vẫn được giữ.
 
+**Chạy nhiều trace train (chưa chạy GPU).** Gói nay có thể chứa nhiều trace, mỗi trace một thư mục con `traces/<trace_id>/` với dữ liệu riêng, `selection.json`, `cpu-equivalence.json` và nhãn chấm `scoring/groundtruth.csv`. Mỗi gói con được đối chiếu endpoint gốc với dữ liệu đầy đủ như version 6–8.
+
+- Dựng: `prepare-bundle.py NAME --pilot` (hoặc `prepare-bundle.py NAME TRACE_ID...`) ghi vào `runtime/package-NAME`, không đụng bản đang dùng. `refresh-package.py runtime/package-NAME` chép wrapper, ghi manifest và đưa gói đó thành `rclagent-kaggle-bundle.zip`, `manifest.json`; sau đó chạy `build-notebook.py` và `verify-package.py`.
+- Pilot: 5 trace train, mỗi ca một trace, chọn theo phân vị số span (trừ trace smoke). Quy tắc chọn ghi trong manifest.
+- Chạy: mỗi trace có tool server, trần 160 requests và 30 phút riêng. Trace dừng (guard, deadline, lỗi HTTP) được ghi `failed` kèm lý do trong `run/progress.json`, rồi lượt sang trace kế tiếp. Model server chết thì cả lượt dừng; các trace còn lại chờ. Chạy lại cell C–F, hoặc gắn ZIP kết quả cũ làm input, sẽ chạy tiếp các trace chưa xong của **cùng** bundle; trace đã xong không chạy lại.
+- Chấm: scorer tác giả chạy riêng cho từng trace đã qua, trong `run/scoring/<trace_id>/`. `summarize-repair-run.py` đọc cả lượt một trace lẫn lượt theo lô.
+- Ước lượng từ version 8 (40 giây/span): pilot 130 span cần khoảng 90 phút cho E. Trace 45 span ước khoảng 1.820 giây, sát hoặc vượt deadline 30 phút; nếu vượt, nó được ghi `failed`, không nới trần.
+
 ## File dùng trên Kaggle
 
 - `rclagent-kaggle-smoke.ipynb`: notebook chạy tuần tự.
 - `rclagent-kaggle-bundle.zip`: gói dữ liệu, code upstream bất biến và wrapper.
 - `rclagent-kaggle-bundle.zip.sha256`: hash đối chiếu. Notebook đã nhúng hash này.
 - `manifest.json`: nguồn, revision, danh sách tệp/hash/kích thước.
-- `cpu-equivalence.json`: đối chiếu các endpoint tool trên CPU với dữ liệu đầy đủ.
+- `cpu-equivalence.json`: đối chiếu các endpoint tool trên CPU với dữ liệu đầy đủ cho trace của version 8. Gói theo lô có một file như vậy cho mỗi trace, trong `traces/<trace_id>/`.
 - `package-validation.json`: kiểm cấu trúc, phạm vi dữ liệu và notebook.
 - `tool-result-budget-check.json`: kiểm CPU ngân sách `search_logs` trên gói và trên request đã làm version 6 dừng (`check-tool-result-budget.py`).
 
@@ -39,7 +47,7 @@ Notebook tạo `run-once.json` trước C. Không xóa marker để chạy lại
 - Context: 16.384 token nếu VRAM thiết bị <22.000 MiB, 32.768 nếu ≥22.000 MiB. Output tối đa 512 token cho self-state/consolidation và 1.024 cho synthesizer. Input cộng phần output dự phòng vượt context sẽ dừng; không cắt ngữ cảnh.
 - Sampling cố định: temperature 0,7; top_p 0,8; top_k 20; min_p 0; seed 20261026. Không hứa tái lập bit-for-bit giữa GPU/runtime.
 - D: tối đa 8 model requests trên dữ liệu tổng hợp, tối đa 8 phút. Kiểm client gốc nhận structured tool_calls, thực thi search_logs, trả role=tool và print_results ≥10 mục. Đầu vào `enable_thinking=False` được chuyển thành `chat_template_kwargs`; trường lạ bị chặn trước server. D thất bại thì không nạp telemetry benchmark vào tool server.
-- E: một trace, concurrency=1, tối đa 160 model requests tính cả retry, 30 phút từ lúc khởi động tool server telemetry. Client gốc có tối đa 3 attempt/lời gọi; wrapper giới hạn 4 vòng tool/span. Không tăng trần, đổi backbone hoặc chọn lại trace.
+- E: lần lượt từng trace của gói, concurrency=1, mỗi trace tối đa 160 model requests tính cả retry, 30 phút từ lúc khởi động tool server telemetry của trace đó. Client gốc có tối đa 3 attempt/lời gọi; wrapper giới hạn 4 vòng tool/span. Không tăng trần, đổi backbone hoặc chọn lại trace.
 
 ## Dữ liệu và kiểm đối chiếu
 
@@ -59,7 +67,7 @@ Version 5 dừng vì bản trước chỉ cho các cặp service/giây của spa
 
 Wrapper nằm ngoài upstream: chuyển trường request, đếm request/retry, kiểm context/schema, vô hiệu text fallback, chặn lỗi vận hành khỏi các `except Exception` tiếp tục chạy của tác giả, áp ngân sách kết quả `search_logs`, và ghi progress. Không thay system prompt, heuristic, schema tool, công thức metric/log hoặc thứ tự gộp đệ quy.
 
-**Ngân sách kết quả `search_logs` (sai lệch so với tác giả, từ version 7).** Dưới ràng buộc context 16.384 không cắt ngữ cảnh, mọi trace của 90 ca RE2-OB đều có query hợp lệ (`cartservice`) vượt context ngay vòng tool đầu. Theo quyết định của chủ dự án ngày 2026-10-27, `smoke-worker.py` áp [`tool-result-budget.py`](tool-result-budget.py) (phương án bậc thang) cho mọi kết quả `search_logs`. Kết quả ≤ 2.048 token, đếm bằng tokenizer đúng revision, được trả nguyên byte. Kết quả lớn hơn được rút gọn theo bước đầu tiên vừa ngân sách: gộp dòng trùng hệt, rồi gộp theo mẫu thông điệp, cuối cùng cắt theo ưu tiên severity, có dòng thông báo cho model. Bản gốc và bản model nhận đều ghi trong `events.jsonl` (`tool_result`, `tool_result_budget`). Metric không bị áp. Body không nhận dạng được hoặc không xếp vừa thì dừng. Thiết kế và số đo trên 450 trace: [report](../../reports/design-261027-1155-tool-result-budget.md). Kết quả của bản này không so trực tiếp với Table I.
+**Ngân sách kết quả `search_logs` (sai lệch so với tác giả, từ version 7).** Dưới ràng buộc context 16.384 không cắt ngữ cảnh, mọi trace của 90 ca RE2-OB đều có query hợp lệ (`cartservice`) vượt context ngay vòng tool đầu. Theo quyết định của chủ dự án ngày 2026-10-27, `smoke-worker.py` áp [`tool-result-budget.py`](tool-result-budget.py) (phương án bậc thang) cho mọi kết quả `search_logs`. Kết quả ≤ 2.048 token, đếm bằng tokenizer đúng revision, được trả nguyên byte. Khi một phản hồi của model gọi n lần `search_logs`, mỗi kết quả nhận ⌊2.048 / n⌋ token, nên tổng một vòng vẫn ≤ 2.048; với n = 1 (mọi lượt version 7 và 8) không có gì đổi. Kết quả lớn hơn được rút gọn theo bước đầu tiên vừa ngân sách: gộp dòng trùng hệt, rồi gộp theo mẫu thông điệp, cuối cùng cắt theo ưu tiên severity, có dòng thông báo cho model. Bản gốc và bản model nhận đều ghi trong `events.jsonl` (`tool_result`, `tool_result_budget`). Metric không bị áp. Body không nhận dạng được hoặc không xếp vừa thì dừng. Thiết kế và số đo trên 450 trace: [report](../../reports/design-261027-1155-tool-result-budget.md). Kết quả của bản này không so trực tiếp với Table I.
 
 `HarnessStop` kế thừa `BaseException` để lỗi vận hành dừng xuyên qua các khối catch-and-continue upstream. Worker theo dõi executor để hủy việc còn chờ khi dừng. Parent giữ PID/process group/port/cwd, chỉ dừng các process do chính lượt này khởi tạo; không chiếm cổng khác hoặc giết process người dùng.
 
