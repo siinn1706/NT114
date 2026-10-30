@@ -1,0 +1,73 @@
+====================================================================================================
+1e527c6a GT currencyservice mem | rank 1 | top3 ['currencyservice', 'cartservice', 'productcatalogservice']
+trace span services: {'frontendservice': 14, 'currencyservice': 10, 'productcatalogservice': 1} | GT in trace: True
+search_logs data rows per service: {'frontendservice': (2, 0), 'cartservice': (2, 1379), 'paymentservice': (2, 0), 'checkoutservice': (1, 0), 'currencyservice': (20, 0), 'productcatalogservice': (2, 0), 'adservice': (1, 0)} | truncated: [('cartservice', 242912), ('cartservice', 242130)]
+self-state (service, abnormal, errlog, metric) x n:
+    ('adservice', False, False, False) 1
+    ('cartservice', False, False, False) 1
+    ('currencyservice', False, False, False) 20
+    ('frontendservice', False, False, False) 1
+    ('productcatalogservice', False, False, False) 2
+last consolidate: {"span_id": "5cdccea8e71e8d04", "service_name": "frontendservice", "local_root_cause": "none", "has_error_logs": false, "reason": "No downstream child span contains error logs. All child spans report no error logs, no metric anomalies, and normal operation. High latency in the frontend span is likely due to downstream service delays, but without error logs or metric anomalies in any service, there is no evidence of a failure chain initiation. The absence of error logs in any service, including those downstream, means no local root cause can be identified. Therefore, the frontend service is not the root cause, and no service in the trace has been found to have error logs.", "confidence": 0.0}
+consolidations naming GT: 20 / 25
+final synthesis prompt tokens 5396
+final synthesis out: 
+====================================================================================================
+2095688a GT productcatalogservice delay | rank 4 | top3 ['checkoutservice', 'paymentservice', 'emailservice']
+trace span services: {'frontendservice': 9, 'checkoutservice': 16, 'productcatalogservice': 15, 'paymentservice': 1, 'emailservice': 1, 'recommendationservice': 2, 'currencyservice': 1} | GT in trace: True
+search_logs data rows per service: {'frontendservice': (2, 0), 'cartservice': (1, 1201), 'paymentservice': (3, 0), 'checkoutservice': (8, 0), 'recommendationservice': (3, 0), 'productcatalogservice': (29, 0), 'currencyservice': (2, 0), 'emailservice': (2, 0)} | truncated: [('cartservice', 221028)]
+self-state (service, abnormal, errlog, metric) x n:
+    ('checkoutservice', False, False, False) 6
+    ('checkoutservice', True, True, False) 1
+    ('currencyservice', False, False, False) 2
+    ('emailservice', True, False, False) 2
+    ('frontendservice', False, False, False) 1
+    ('paymentservice', True, False, False) 1
+    ('productcatalogservice', False, False, False) 29
+    ('recommendationservice', False, False, False) 3
+last consolidate: {"span_id": "c278e012cf3a54e6", "service_name": "frontendservice", "local_root_cause": "checkoutservice", "has_error_logs": false, "reason": "The downstream checkoutservice span has explicit error logs indicating a failure during order placement, which establishes it as the root cause. According to the critical reasoning rules, any service with error logs is prioritized over those with only latency or metric anomalies. No deeper service with error logs is reported, and the checkoutservice is the first service in the trace chain with confirmed error logs. Therefore, the root cause is localized to checkoutservice, even though it is downstream of frontendservice.", "confidence": 0.95}
+consolidations naming GT: 32 / 45
+final synthesis prompt tokens 8445
+final synthesis out: 
+====================================================================================================
+3753f2a8 GT recommendationservice socket | rank None | top3 ['productcatalogservice-0', 'cartservice-1', 'paymentservice-2']
+trace span services: {'frontendservice': 3, 'productcatalogservice': 1} | GT in trace: False
+search_logs data rows per service: {'frontendservice': (2, 0), 'cartservice': (2, 1546), 'paymentservice': (1, 0), 'checkoutservice': (1, 0), 'productcatalogservice': (2, 0)} | truncated: [('cartservice', 286256), ('cartservice', 286256)]
+self-state (service, abnormal, errlog, metric) x n:
+    ('cartservice', True, False, False) 1
+    ('frontendservice', False, False, False) 1
+    ('productcatalogservice', False, False, False) 2
+last consolidate: {"span_id": "4328c108fb9d3425", "service_name": "frontendservice", "local_root_cause": "none", "has_error_logs": false, "reason": "No downstream child span contains error logs. Both child spans (productcatalogservice and cartservice) report no error logs or metric anomalies. Although cartservice has high latency, it lacks error logs or evidence of failure. The absence of ERROR/EXCEPTION logs in any descendant indicates that the frontend service itself is not the root cause. The failure is likely downstream but not attributable to a specific service with logged errors. Therefore, no local root cause can be identified in this span.", "confidence": 0.0}
+consolidations naming GT: 0 / 4
+final synthesis prompt tokens 1590
+final synthesis out: 
+====================================================================================================
+c6033940 GT emailservice socket | rank None | top3 ['productcatalogservice', 'currencyservice', 'cartservice']
+trace span services: {'frontendservice': 12, 'productcatalogservice': 7, 'currencyservice': 2, 'recommendationservice': 2} | GT in trace: False
+search_logs data rows per service: {'frontendservice': (2, 0), 'cartservice': (2, 1603), 'paymentservice': (1, 0), 'checkoutservice': (1, 0), 'productcatalogservice': (13, 0), 'currencyservice': (4, 0), 'recommendationservice': (3, 0), 'adservice': (1, 0)} | truncated: [('cartservice', 280917), ('cartservice', 280917)]
+self-state (service, abnormal, errlog, metric) x n:
+    ('adservice', False, False, False) 1
+    ('cartservice', False, False, False) 1
+    ('currencyservice', False, False, False) 4
+    ('frontendservice', False, False, False) 1
+    ('productcatalogservice', False, False, False) 13
+    ('recommendationservice', False, False, False) 3
+last consolidate: {"span_id": "de3127263ebd2dc1", "service_name": "frontendservice", "local_root_cause": "none", "has_error_logs": false, "reason": "No downstream child span contains error logs. All child spans report no error logs, no metric anomalies, and normal operation. High latency in the frontend span is likely due to downstream service latencies but is not indicative of a root cause without error logs. Since no service in the trace chain has error logs or any evidence of failure, there is no identifiable root cause at any level. The failure is likely not originating in the frontend or its immediate dependencies.", "confidence": 0.0}
+consolidations naming GT: 0 / 23
+final synthesis prompt tokens 4648
+final synthesis out: 
+====================================================================================================
+f6526e73 GT productcatalogservice mem | rank 1 | top3 ['productcatalogservice', 'currencyservice', 'recommendationservice']
+trace span services: {'frontendservice': 17, 'currencyservice': 5, 'recommendationservice': 2, 'productcatalogservice': 9} | GT in trace: True
+search_logs data rows per service: {'frontendservice': (2, 0), 'cartservice': (2, 923), 'paymentservice': (1, 0), 'checkoutservice': (1, 0), 'currencyservice': (10, 0), 'recommendationservice': (3, 0), 'productcatalogservice': (17, 0), 'shippingservice': (1, 0)} | truncated: [('cartservice', 167376), ('cartservice', 167376)]
+self-state (service, abnormal, errlog, metric) x n:
+    ('cartservice', False, False, False) 1
+    ('currencyservice', False, False, False) 10
+    ('frontendservice', False, False, False) 1
+    ('productcatalogservice', False, False, False) 17
+    ('recommendationservice', False, False, False) 3
+    ('shippingservice', False, False, False) 1
+last consolidate: {"span_id": "fe2e769d4e899c55", "service_name": "frontendservice", "local_root_cause": "none", "has_error_logs": false, "reason": "All downstream child spans show no error logs, no metric anomalies, and normal operation. Despite some high latency observed in child spans, no service exhibits ERROR/EXCEPTION logs or any confirmed failure indicators. According to the critical reasoning rules, a root cause must have error logs to be identified. Since no downstream service has error logs, and all reports indicate normal operation, the frontendservice is not the root cause. The failure chain appears to be absent or non-existent in the trace data.", "confidence": 0.0}
+consolidations naming GT: 20 / 33
+final synthesis prompt tokens 6340
+final synthesis out: 

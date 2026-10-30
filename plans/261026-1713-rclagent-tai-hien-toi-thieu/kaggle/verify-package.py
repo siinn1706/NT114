@@ -2,6 +2,7 @@
 import ast
 import csv
 import hashlib
+import importlib.util
 import io
 import json
 import zipfile
@@ -63,6 +64,30 @@ def check_trace(read, names, entry):
             'log_rows': len(logs), 'cpu_endpoint_comparisons': parity['endpoint_comparisons'], 'query_window': window}
 
 
+def check_runs(manifest):
+    """Condition runs, when listed: each packaged trace under every condition and seed, the same seeds everywhere,
+    and the trace selection file the runs were derived from unchanged since."""
+    runs = manifest.get('runs')
+    if not runs:
+        return None
+    design = manifest['condition_design']
+    selection = HERE.parent / 'work/pilot-trace-analysis' / design['selection_file']
+    assert sha(selection.read_bytes()) == design['selection_sha256'], 'Trace selection changed after the runs were made'
+    traces = {e['trace_id']: e for e in manifest['traces']}
+    assert len({r['run_id'] for r in runs}) == len(runs)
+    cells = set()
+    for run in runs:
+        assert {k: run[k] for k in traces[run['trace_id']]} == traces[run['trace_id']], run['run_id']
+        assert {k: run[k] for k in ('metric', 'logs')} == design['conditions'][run['condition']], run['run_id']
+        assert run['seed'] in design['seeds'] and run['logs'] in ('author', 'absent')
+        assert run['metric'] in ('author', 'absent', 'repaired')
+        cells.add((run['trace_id'], run['condition'], run['seed']))
+    assert cells == {(t, c, s) for t in traces for c in design['conditions'] for s in design['seeds']}
+    assert 'metric-repair.py' in manifest['files']
+    return {'runs': len(runs), 'conditions': sorted(design['conditions']), 'seeds': design['seeds'],
+            'selection_sha256': design['selection_sha256']}
+
+
 def main():
     bundle = HERE / 'rclagent-kaggle-bundle.zip'
     notebook_path = HERE / 'rclagent-kaggle-smoke.ipynb'
@@ -79,9 +104,16 @@ def main():
                 ast.parse(data.decode('utf-8'), filename=name)
         for name in ('kaggle-runtime.py', 'smoke-worker.py', 'tool-result-budget.py', 'vllm-t4-compat.py', 'verify-t4-prefix-kernel.py'):
             assert zipped.read(name) == (HERE / name).read_bytes(), 'Stale packaged wrapper'
+        if 'metric-repair.py' in manifest['files']:
+            assert zipped.read('metric-repair.py') == (HERE / 'metric-repair.py').read_bytes(), 'Stale packaged wrapper'
         entries = manifest['traces']
         assert entries and len({e['trace_id'] for e in entries}) == len(entries)
         traces = [check_trace(zipped.read, zipped.namelist(), entry) for entry in entries]
+        runs = check_runs(manifest)
+        spec = importlib.util.spec_from_file_location('kaggle_runtime', HERE / 'kaggle-runtime.py')
+        runtime = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(runtime)
+        limits = runtime.harness_limits(manifest)  # Refuses unknown keys and non-positive values.
         # Every nested member belongs to upstream or to a checked trace directory.
         roots = ('upstream/',) + tuple(p for e in entries for p in (('input/', 'scoring/') if e['dir'] == '.' else (e['dir'] + '/',)))
         assert all('/' not in n or n.startswith(roots) for n in zipped.namelist())
@@ -104,7 +136,10 @@ def main():
                 and n.targets[0].id in ('EXPECTED_BUNDLE_SHA256', 'EXPECTED_MANIFEST_SHA256', 'RUNTIME_SOURCE')}
     assert assigned['EXPECTED_BUNDLE_SHA256'] == sha(bundle.read_bytes())
     assert assigned['EXPECTED_MANIFEST_SHA256'] == sha((HERE / 'manifest.json').read_bytes())
-    assert assigned['RUNTIME_SOURCE'] == (HERE / 'kaggle-runtime.py').read_text(encoding='utf-8')
+    assert assigned['RUNTIME_SOURCE'] == (HERE / 'kaggle-runtime.py').read_bytes().decode('utf-8')
+    # The check unpack() runs on Kaggle: the runtime the notebook writes must hash to the packaged one.
+    assert sha(assigned['RUNTIME_SOURCE'].encode()) == manifest['files']['kaggle-runtime.py']['sha256'], \
+        'Notebook runtime differs from hashed package runtime'
     def body(cell):
         return cell['source'] if isinstance(cell['source'], str) else ''.join(cell['source'])
     native_sources = list((HERE / 'runtime/kaggle-source-v3').glob('*.ipynb'))
@@ -125,7 +160,8 @@ def main():
         repair_code_match = [body(c) for c in repair_cells] == [body(c) for c in code_cells]
     for path in HERE.glob('*.py'):
         ast.parse(path.read_text(encoding='utf-8'), filename=str(path))
-    result = {'status': 'pass', 'files_in_bundle': len(expected), 'traces': traces,
+    result = {'status': 'pass', 'files_in_bundle': len(expected), 'traces': traces, 'condition_runs': runs,
+              'harness_limits': limits,
               'notebook_code_cells': len(code_cells),
               'bundle_sha256': sha(bundle.read_bytes()), 'bundle_bytes': bundle.stat().st_size,
               'notebook_sha256': sha(notebook_path.read_bytes()),

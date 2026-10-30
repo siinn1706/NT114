@@ -33,6 +33,11 @@ ROOT = Path('/kaggle/working/rclagent-smoke')
 INPUT = Path('/kaggle/input')
 TEMP = Path('/tmp/rclagent-smoke')
 PYTHON = TEMP / 'env/bin/python'
+# Per-run trace limits; a manifest's harness_limits overrides them for a sensitivity bundle.
+HARNESS_LIMITS = {'max_model_requests_including_retry': 160, 'rcl_deadline_seconds': 1800,
+                  'max_tool_rounds_per_span': 4}
+LIMIT_FLAGS = {'max_model_requests_including_retry': '--max-requests', 'rcl_deadline_seconds': '--deadline-seconds',
+               'max_tool_rounds_per_span': '--tool-rounds'}
 
 
 def digest(path):
@@ -95,8 +100,7 @@ def environment():
                 'vllm_engine': 'V0',
                 'enable_chunked_prefill': False, 'max_num_batched_tokens': context,
                 'max_output_tokens': {'self_state': 512, 'consolidate': 512, 'synthesizer': 1024},
-                'max_model_requests_including_retry': 160, 'rcl_deadline_seconds': 1800,
-                'max_tool_rounds_per_span': 4, 'client_retry_attempts': 3,
+                **HARNESS_LIMITS, 'client_retry_attempts': 3,
                 'model': MODEL, 'model_revision': REVISION, 'vllm': VLLM_VERSION,
                 'sampling': {'temperature': 0.7, 'top_p': 0.8, 'top_k': 20, 'min_p': 0.0, 'seed': 20261026},
                 'context_overflow': 'fatal, never truncate', 'concurrency': 1}
@@ -298,6 +302,52 @@ def wait_ready(child, path, timeout):
     raise TimeoutError('Server startup timed out')
 
 
+def assert_unserved(port):
+    # A connect probe, not a bind: the last server's connections may still sit in TIME_WAIT on this port, which
+    # blocks a plain bind on Linux although nothing answers there any more.
+    with socket.socket() as probe:
+        probe.settimeout(2)
+        if probe.connect_ex(('127.0.0.1', port)) == 0:
+            raise RuntimeError(f'Port {port} still held by another process; refusing to start a tool server')
+
+
+def start_tool_server(proc, name, argv, env, probe_url, timeout):
+    """Start a tool server on port 5000; one that never becomes ready is stopped before the error propagates."""
+    assert_unserved(5000)
+    child = proc.start(name, argv, env)
+    try:
+        wait_ready(child, probe_url, timeout)
+    except BaseException:
+        proc.stop(child)
+        raise
+    return child
+
+
+def score_runs(package, result, progress, python, env):
+    """Score each passed run with the author's evaluate.py on its own; return the run_ids whose scoring failed."""
+    shutil.rmtree(result / 'scoring', ignore_errors=True)
+    failed = []
+    for entry in run_entries(package):
+        if progress['traces'][entry['run_id']]['status'] != 'passed':
+            continue
+        trace_dir, scoring = package / entry['dir'], result / 'scoring' / entry['run_id']
+        exit_code, error = None, None
+        try:
+            (scoring / 'result').mkdir(parents=True)
+            shutil.copyfile(trace_dir / 'scoring/groundtruth.csv', scoring / 'groundtruth.csv')
+            shutil.copyfile(trace_dir / 'input/error_traces.txt', scoring / 'error_traces.txt')
+            shutil.copyfile(result / 'traces' / entry['run_id'] / 'result.json', scoring / 'result/conversation_trace_1.txt')
+            with (scoring / 'author-score.txt').open('w', encoding='utf-8') as log:
+                exit_code = subprocess.run([str(python), str(package / 'upstream/evaluate.py'), str(scoring), 'result'],
+                                           env=env, stdout=log, stderr=subprocess.STDOUT, timeout=60).returncode
+        except Exception as exc:
+            error = repr(exc)
+        dump(scoring / 'scorer-status.json', {'exit': exit_code, 'error': error})
+        if exit_code or error:
+            failed.append(entry['run_id'])
+    return failed
+
+
 class Resources:
     def __init__(self, processes, result):
         self.processes, self.result = processes, result
@@ -390,8 +440,35 @@ def export_results(result):
     return archive
 
 
-def trace_entries(package):
-    return json.loads((package / 'manifest.json').read_text())['traces']
+def run_entries(package):
+    """The manifest's runs (a trace under one seed and source condition), or one author-condition run per trace."""
+    manifest = json.loads((package / 'manifest.json').read_text())
+    return manifest.get('runs') or [dict(t, run_id=t['trace_id']) for t in manifest['traces']]
+
+
+def harness_limits(manifest):
+    """The bundle's trace limits: the defaults, overridden by known positive integers in harness_limits."""
+    given = manifest.get('harness_limits', {})
+    unknown = sorted(set(given) - set(HARNESS_LIMITS))
+    if unknown:
+        raise ValueError('Unknown harness limits: ' + ', '.join(unknown))
+    for key, value in given.items():
+        if type(value) is not int or value < 1:
+            raise ValueError(f'Harness limit {key} must be a positive integer, not {value!r}')
+    return dict(HARNESS_LIMITS, **given)
+
+
+def limit_options(limits):
+    return [part for key, flag in LIMIT_FLAGS.items() for part in (flag, str(limits[key]))]
+
+
+def worker_options(entry):
+    """Worker flags of one run; a run without them keeps the author's tools and the frozen seed."""
+    options = []
+    for flag in ('seed', 'logs', 'metric'):
+        if flag in entry:
+            options += ['--' + flag, str(entry[flag])]
+    return options
 
 
 def set_aside(path):
@@ -413,7 +490,10 @@ def load_progress(path, bundle_sha256):
 
 
 def run_traces(package, result, bundle_sha256, run_trace, model_alive):
-    """Run every packaged trace once, in package order, recording progress after each state change.
+    """Run every packaged run once, in package order, recording progress after each state change.
+
+    A run is a trace under one seed and source condition; progress, outputs and scores are keyed by its run_id
+    (the trace_id when the manifest lists no runs).
 
     A trace with a final status (passed or failed) is skipped when the batch is resumed; one cut off mid-run
     (still running) runs again, its partial output set aside. A failed trace is recorded with its reason and the
@@ -422,14 +502,14 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
     """
     path = result / 'progress.json'
     progress = load_progress(path, bundle_sha256)
-    for entry in trace_entries(package):
-        state = progress['traces'].setdefault(entry['trace_id'], {'case': entry['case'], 'attempts': []})
+    for entry in run_entries(package):
+        state = progress['traces'].setdefault(entry['run_id'], {'case': entry['case'], 'attempts': []})
         if state.get('status') in ('passed', 'failed'):
             continue
         if not model_alive():
             dump(path, progress)
             raise RuntimeError('Model server is not running; remaining traces stay pending for a resumed run')
-        out = result / 'traces' / entry['trace_id']
+        out = result / 'traces' / entry['run_id']
         if state.get('status') == 'running':
             state['attempts'][-1]['outcome'] = 'interrupted'
             set_aside(out)
@@ -437,7 +517,7 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
         state['attempts'].append({'started': time.time()})
         dump(path, progress)
         try:
-            run_trace(package / entry['dir'], out)
+            run_trace(package / entry['dir'], out, entry)
             state['status'] = 'passed'
         except Exception as exc:  # An interrupt (BaseException) leaves the trace running, so a resume reruns it.
             state.update(status='failed', reason=repr(exc))
@@ -492,6 +572,9 @@ def run_once(expected_sha256, expected_manifest_sha256):
     kaggle_only()
     package = unpack(find_archive(), expected_sha256, expected_manifest_sha256)
     settings = json.loads((ROOT / 'settings.json').read_text())
+    limits = harness_limits(json.loads((package / 'manifest.json').read_text()))
+    settings.update(limits)  # Record the limits this bundle's traces run under.
+    dump(ROOT / 'settings.json', settings)
     if json.loads((ROOT / 'compatibility/status.json').read_text())['status'] != 'passed':
         raise RuntimeError('Run the synthetic GPU kernel compatibility check before starting the model')
     marker = ROOT / 'run-once.json'
@@ -552,17 +635,16 @@ def run_once(expected_sha256, expected_manifest_sha256):
         synth = TEMP / 'synthetic'
         synthetic_data(synth)
         def start_tools(name, data):
-            tool_env = dict(env, DATA_ROOT=str(data))
-            child = proc.start(name, [str(PYTHON), str(package / 'upstream/tool_server.py')], tool_env)
-            wait_ready(child, 'http://127.0.0.1:5000/search_span?span_id=probe', 90)
-            return child
+            return start_tool_server(proc, name, [str(PYTHON), str(package / 'upstream/tool_server.py')],
+                                     dict(env, DATA_ROOT=str(data)), 'http://127.0.0.1:5000/search_span?span_id=probe', 90)
         tools = start_tools('tools-synthetic', synth)
-        def worker(phase, data, out, timeout, trace_dir=None):
+        def worker(phase, data, out, timeout, trace_dir=None, options=()):
             out.mkdir(parents=True)
             worker_env = dict(env, DATA_ROOT=str(data))
             child = proc.start('worker-' + out.name, [str(PYTHON), str(package / 'smoke-worker.py'), phase,
                 '--package', str(package), '--output', str(out), '--model-path', str(snapshot),
-                '--context', str(settings['context'])] + (['--trace-dir', str(trace_dir)] if trace_dir else []), worker_env)
+                '--context', str(settings['context'])] + (['--trace-dir', str(trace_dir)] if trace_dir else []) +
+                list(options), worker_env)
             try:
                 exit_code = child.wait(timeout=timeout)
             except subprocess.TimeoutExpired:
@@ -579,11 +661,13 @@ def run_once(expected_sha256, expected_manifest_sha256):
         print('D: synthetic structured tool calls, tool-role round trip, print_results and request field checks passed')
         status['stage'] = 'E'
         monitor.phase = 'trace'
-        def run_trace(trace_dir, out):
-            started = time.monotonic()  # Per-trace 30-minute deadline, tool server start included.
+        def run_trace(trace_dir, out, entry):
+            started = time.monotonic()  # Per-trace deadline, tool server start included.
             tools = start_tools('tools-' + out.name, trace_dir / 'input')
             try:
-                worker('trace', trace_dir / 'input', out, max(0.1, 1800-(time.monotonic()-started)), trace_dir)
+                worker('trace', trace_dir / 'input', out,
+                       max(0.1, limits['rcl_deadline_seconds']-(time.monotonic()-started)), trace_dir,
+                       worker_options(entry) + limit_options(limits))
             finally:
                 proc.stop(tools)
             print('E:', out.name, 'completed in', round(time.monotonic()-started), 's')
@@ -593,18 +677,9 @@ def run_once(expected_sha256, expected_manifest_sha256):
         monitor.phase = 'scoring'
         # Stop model inference before opening any groundtruth file.
         proc.stop(server)
-        shutil.rmtree(result / 'scoring', ignore_errors=True)
-        for entry in trace_entries(package):
-            if progress['traces'][entry['trace_id']]['status'] != 'passed':
-                continue
-            trace_dir, scoring = package / entry['dir'], result / 'scoring' / entry['trace_id']
-            (scoring / 'result').mkdir(parents=True)
-            shutil.copyfile(trace_dir / 'scoring/groundtruth.csv', scoring / 'groundtruth.csv')
-            shutil.copyfile(trace_dir / 'input/error_traces.txt', scoring / 'error_traces.txt')
-            shutil.copyfile(result / 'traces' / entry['trace_id'] / 'result.json', scoring / 'result/conversation_trace_1.txt')
-            with (scoring / 'author-score.txt').open('w', encoding='utf-8') as log:
-                subprocess.run([str(PYTHON), str(package / 'upstream/evaluate.py'), str(scoring), 'result'],
-                               env=env, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=60)
+        failed = score_runs(package, result, progress, PYTHON, env)
+        if failed:
+            raise RuntimeError('Author scorer failed for: ' + ', '.join(failed))
         status.update(status='passed', score='author scorer per passed trace; descriptive pilot result, not an accuracy estimate')
     except BaseException as exc:
         status['error'] = repr(exc)

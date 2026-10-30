@@ -1,5 +1,6 @@
 """Generate a self-contained Kaggle notebook bound to the actual bundle SHA256."""
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 
@@ -10,16 +11,38 @@ def main():
     archive = HERE / 'rclagent-kaggle-bundle.zip'
     bundle_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
     manifest_hash = hashlib.sha256((HERE / 'manifest.json').read_bytes()).hexdigest()
-    source = (HERE / 'kaggle-runtime.py').read_text(encoding='utf-8')
+    # Exact bytes, no newline translation: Kaggle checks this copy against the manifest hash of the packaged file.
+    source = (HERE / 'kaggle-runtime.py').read_bytes().decode('utf-8')
     runtime_hash = hashlib.sha256(source.encode()).hexdigest()
+    packaged_hash = json.loads((HERE / 'manifest.json').read_text())['files']['kaggle-runtime.py']['sha256']
+    if runtime_hash != packaged_hash:
+        raise SystemExit('kaggle-runtime.py differs from the packaged runtime in manifest.json; refresh the package first')
     cells = []
     def markdown(text):
         cells.append({'cell_type': 'markdown', 'metadata': {}, 'source': text.splitlines(keepends=True)})
     def code(text):
         cells.append({'cell_type': 'code', 'metadata': {}, 'execution_count': None,
                       'outputs': [], 'source': text.splitlines(keepends=True)})
-    traces = json.loads((HERE / 'manifest.json').read_text())['traces']
+    manifest = json.loads((HERE / 'manifest.json').read_text())
+    spec = importlib.util.spec_from_file_location('kaggle_runtime', HERE / 'kaggle-runtime.py')
+    runtime = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(runtime)
+    limits = runtime.harness_limits(manifest)
+    traces = manifest['traces']
     listed = '\n'.join(f"- `{t['trace_id']}` ({t['case']}, {t['span_count']} span)" for t in traces)
+    if manifest.get('runs'):
+        design = manifest['condition_design']
+        listed += (f"\n\nGói có {len(manifest['runs'])} lượt chạy: mỗi trace chạy một lần cho mỗi điều kiện "
+                   f"({', '.join(design['conditions'])}) và mỗi seed ({', '.join(map(str, design['seeds']))}). "
+                   'Mỗi lượt là một đơn vị chạy đúng một lần, khóa theo `run_id`.')
+    if limits != runtime.HARNESS_LIMITS:
+        listed += (f"\n\n**Cấu hình kiểm độ nhạy về trần:** {limits['max_tool_rounds_per_span']} vòng tool mỗi span, "
+                   f"{limits['max_model_requests_including_retry']} model request tính cả retry, deadline "
+                   f"{limits['rcl_deadline_seconds']} giây mỗi lượt (cấu hình chính: "
+                   f"{runtime.HARNESS_LIMITS['max_tool_rounds_per_span']}, "
+                   f"{runtime.HARNESS_LIMITS['max_model_requests_including_retry']}, "
+                   f"{runtime.HARNESS_LIMITS['rcl_deadline_seconds']}). Model, prompt, tool, sampling, context, "
+                   'output và retry giữ nguyên. Kết quả báo cáo tách khỏi cấu hình chính.')
     markdown('''# RCLAgent: ''' + (f'{len(traces)} trace train' if len(traces) > 1 else 'một trace') + ''' trên Kaggle GPU
 
 Notebook smoke test với backbone thay thế. Giữ nguyên code/prompt/tool tác giả tại
@@ -181,7 +204,7 @@ EXPECTED_MANIFEST_SHA256 = ''' + repr(manifest_hash) + '''
 RUNTIME_SOURCE = ''' + repr(source) + '''
 assert hashlib.sha256(RUNTIME_SOURCE.encode()).hexdigest() == ''' + repr(runtime_hash) + '''
 runtime_path = Path('/tmp/rclagent-kaggle-runtime.py')
-runtime_path.write_text(RUNTIME_SOURCE, encoding='utf-8')
+runtime_path.write_bytes(RUNTIME_SOURCE.encode())
 spec = importlib.util.spec_from_file_location('rclagent_kaggle_runtime', runtime_path)
 rcl = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rcl)
@@ -232,8 +255,8 @@ Chuyển enable_thinking sang chat_template_kwargs; chặn trường lạ. D th�
 không khởi động tool server trên dữ liệu benchmark; không có parser văn bản vá lỗi.
 
 **E:** lần lượt từng trace trong `manifest.json` của gói. Mỗi trace có tool server riêng
-trên dữ liệu của chính nó, trần 160 model requests **tính cả retry** và 30 phút riêng,
-concurrency=1, tối đa 4 vòng tool/span; retry client gốc tối đa 3 attempt.
+trên dữ liệu của chính nó, trần ''' + str(limits['max_model_requests_including_retry']) + ''' model requests **tính cả retry** và ''' + f"{limits['rcl_deadline_seconds'] / 60:g}" + ''' phút riêng,
+concurrency=1, tối đa ''' + str(limits['max_tool_rounds_per_span']) + ''' vòng tool/span; retry client gốc tối đa 3 attempt.
 Output tối đa 512 token cho self-state/consolidation, 1.024 cho synthesizer.
 Input+output vượt context, output bị cắt, OOM, sai schema hoặc không có kết quả hợp lệ
 đều dừng. Query tool cho mọi service được trả như dữ liệu đầy đủ; timestamp ngoài các giây

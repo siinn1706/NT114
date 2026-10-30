@@ -34,7 +34,8 @@ MODEL_REV = 'cdbee75f17c01a7cc42f958dc650907174af0554'
 UPSTREAM_FILES = ('config.py', 'llm.py', 'coordinator.py', 'tool_server.py',
                   'tools_gpt.py', 'evaluate.py', 'LICENSE', 'README.md',
                   'requirements.txt', 'preprocess/preprocess_re2ob.py')
-WRAPPERS = ('kaggle-runtime.py', 'smoke-worker.py', 'tool-result-budget.py', 'vllm-t4-compat.py', 'verify-t4-prefix-kernel.py')
+WRAPPERS = ('kaggle-runtime.py', 'smoke-worker.py', 'tool-result-budget.py', 'metric-repair.py', 'vllm-t4-compat.py',
+            'verify-t4-prefix-kernel.py')
 
 
 def upstream_known_services(code=CODE):

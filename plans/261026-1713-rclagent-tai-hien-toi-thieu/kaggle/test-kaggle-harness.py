@@ -1,5 +1,7 @@
 """CPU tests with deterministic HTTP fixtures. No model or weights are loaded."""
+import ast
 import csv
+import hashlib
 import importlib.util
 import json
 import os
@@ -37,6 +39,7 @@ class TokenizerFixture:
 class Handler(BaseHTTPRequestHandler):
     hits = []
     mode = 'valid'
+    malformed_left = 0
 
     def log_message(self, *args):
         pass
@@ -74,7 +77,15 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 text = {'fixture': True}
             message = {'role': 'assistant', 'content': json.dumps(text), 'tool_calls': []}
-        if type(self).mode == 'bad-schema':
+            if type(self).mode == 'tool-call':
+                message = {'role': 'assistant', 'content': '', 'tool_calls': [{'id': 'fixture-call', 'type': 'function',
+                    'function': {'name': 'search_logs', 'arguments': '{"service_name": "x", "timestamp": "1700000000"}'}}]}
+        if type(self).malformed_left:
+            # the shape of the seed-dependent failures: textual tool calls, one of them invalid JSON
+            type(self).malformed_left -= 1
+            message = {'role': 'assistant', 'tool_calls': [], 'content':
+                '<tool_call>\n{"name": "search_logs", "arguments", "service_name": "x", "timestamp": "1"}}\n</tool_call>'}
+        elif type(self).mode == 'bad-schema':
             message = {'content': '', 'tool_calls': [{'type': 'function', 'id': 'bad',
                 'function': {'name': 'print_results', 'arguments': '{"root_causes":["too-short"]}'}}]}
         reply = {'choices': [{'message': message, 'finish_reason': 'length' if type(self).mode == 'length' else 'tool_calls' if message.get('tool_calls') else 'stop'}],
@@ -100,7 +111,7 @@ class Checks(unittest.TestCase):
         cls.thread.join()
 
     def setUp(self):
-        Handler.hits, Handler.mode = [], 'valid'
+        Handler.hits, Handler.mode, Handler.malformed_left = [], 'valid', 0
         self.area = tempfile.TemporaryDirectory(dir=HERE / 'runtime')
         self.selection = {'query_window': {'start_second': 1700000000, 'end_second': 1700000001}}
         self.guard = worker.Guard(self.area.name, self.selection, TokenizerFixture(), 16384,
@@ -151,6 +162,47 @@ class Checks(unittest.TestCase):
         for text in ('Action: print_results\nAction Input: {}', '<tool_call>{}</tool_call>'):
             with self.assertRaises(ValueError):
                 worker.validate_calls({'content': text}, [print_result_function])
+
+    def events(self, kind):
+        lines = (Path(self.area.name) / 'events.jsonl').read_text(encoding='utf-8').splitlines()
+        return [e for e in map(json.loads, lines) if e['kind'] == kind]
+
+    def test_malformed_tool_calls_are_retried_with_derived_seeds(self):
+        Handler.malformed_left = 2
+        content, _ = self.chat([{'role': 'user', 'content': 'fixture'}], None)
+        self.assertEqual(json.loads(content), {'fixture': True})
+        seed = self.guard.seed
+        self.assertEqual([h['seed'] for h in Handler.hits],
+                         [seed, worker.retry_seed(seed, 1, 1), worker.retry_seed(seed, 1, 2)])
+        self.assertEqual(len(set(h['seed'] for h in Handler.hits)), 3)
+        self.assertEqual(self.guard.count, 3)
+        self.assertEqual([e['attempt'] for e in self.events('request')], [0, 1, 2])
+        self.assertEqual([e['retry_of'] for e in self.events('request')], [None, 1, 1])
+        self.assertEqual(len(self.events('malformed_tool_call_retry')), 2)
+        self.assertIsNone(self.guard.fatal)
+        # The next request starts again from the run seed.
+        self.chat([{'role': 'user', 'content': 'fixture'}], None)
+        self.assertEqual(Handler.hits[-1]['seed'], seed)
+
+    def test_malformed_tool_calls_stop_after_three_retries(self):
+        Handler.malformed_left = 10
+        with self.assertRaises(worker.HarnessStop):
+            self.chat([{'role': 'user', 'content': 'fixture'}], None)
+        self.assertEqual(len(Handler.hits), worker.MALFORMED_CALL_RETRIES + 1)
+        self.assertIn('Server failed to emit structured tool_calls', self.guard.fatal)
+
+    def test_malformed_tool_call_retries_count_against_the_request_budget(self):
+        self.guard.count = 158
+        Handler.malformed_left = 10
+        with self.assertRaises(worker.HarnessStop):
+            self.chat([{'role': 'user', 'content': 'fixture'}], None)
+        self.assertEqual(len(Handler.hits), 2)
+        self.assertEqual(self.guard.fatal, 'Model request budget exhausted (including retries)')
+
+    def test_retry_seeds_are_stable(self):
+        self.assertEqual(worker.retry_seed(20261027, 2, 1), worker.retry_seed(20261027, 2, 1))
+        self.assertNotEqual(worker.retry_seed(20261027, 2, 1), worker.retry_seed(20261027, 2, 2))
+        self.assertTrue(0 <= worker.retry_seed(20261028, 160, 3) < 2**31)
 
     def test_budget_counts_retry_attempts(self):
         Handler.mode = '503'
@@ -236,6 +288,28 @@ class Checks(unittest.TestCase):
         with self.assertRaises(worker.HarnessStop):
             self.chat([{'role': 'user', 'content': 'fixture'}], None)
         self.assertEqual(len(Handler.hits), 0)
+
+    def test_deadline_message_names_the_configured_length(self):
+        self.guard.deadline, self.guard.deadline_seconds = time.monotonic()-1, 2400
+        with self.assertRaises(worker.HarnessStop):
+            self.chat([{'role': 'user', 'content': 'fixture'}], None)
+        self.assertEqual(self.guard.fatal, '40-minute RCLAgent deadline exceeded')
+
+    def test_tool_round_cap_follows_the_guard_limit(self):
+        Handler.mode = 'tool-call'
+        tools = [{'type': 'function', 'function': {'name': 'search_logs', 'parameters': {'type': 'object'}}}]
+        done = [{'role': 'assistant', 'content': '', 'tool_calls': [{'id': str(i), 'type': 'function',
+                 'function': {'name': 'search_logs', 'arguments': '{}'}}]} for i in range(4)]
+        messages = [{'role': 'user', 'content': 'fixture'}] + done
+        with self.assertRaises(worker.HarnessStop):
+            self.chat(messages, tools)
+        self.assertEqual(self.guard.fatal, 'Per-span tool round budget exceeded (4); no further tool executed')
+        self.guard.fatal, self.guard.tool_rounds = None, 8
+        content, calls = self.chat(messages, tools)
+        self.assertEqual(len(calls), 1)
+        with self.assertRaises(worker.HarnessStop):
+            self.chat(messages + done, tools)
+        self.assertEqual(self.guard.fatal, 'Per-span tool round budget exceeded (8); no further tool executed')
 
     def test_query_window_allows_any_service(self):
         for service in ('synthetic', 'cartservice', 'another-service'):
@@ -357,6 +431,15 @@ class Checks(unittest.TestCase):
         finally:
             runtime.ROOT = previous
 
+    def test_notebook_runtime_matches_packaged_runtime(self):
+        """Cause: S1 v1 embedded newline-normalized source of a CRLF runtime, so unpack() refused it on Kaggle."""
+        notebook = json.loads((HERE / 'rclagent-kaggle-smoke.ipynb').read_text(encoding='utf-8'))
+        first = next(c for c in notebook['cells'] if c['cell_type'] == 'code')
+        source = next(ast.literal_eval(n.value) for n in ast.parse(''.join(first['source'])).body
+                      if isinstance(n, ast.Assign) and getattr(n.targets[0], 'id', None) == 'RUNTIME_SOURCE')
+        manifest = json.loads((HERE / 'manifest.json').read_text())
+        self.assertEqual(hashlib.sha256(source.encode()).hexdigest(), manifest['files']['kaggle-runtime.py']['sha256'])
+
     def test_known_services_follow_upstream_config(self):
         prepare = load('prepare_under_test', 'prepare-bundle.py')
         self.assertEqual(prepare.KNOWN_SERVICES, tuple(self.coordinator._KNOWN_SERVICES))
@@ -404,7 +487,7 @@ class BatchRuntime(unittest.TestCase):
     def tearDown(self):
         self.area.cleanup()
 
-    def run_trace(self, trace_dir, out):
+    def run_trace(self, trace_dir, out, entry):
         self.calls.append(trace_dir.name)
         out.mkdir(parents=True)
         if trace_dir.name in self.failing:
@@ -479,6 +562,27 @@ class BatchRuntime(unittest.TestCase):
             worker.graph_nodes(graph, {'span_count': 33})
 
 
+class HarnessLimits(unittest.TestCase):
+    def test_bundle_without_limits_keeps_the_round_two_defaults(self):
+        self.assertEqual(runtime.harness_limits({}), {'max_model_requests_including_retry': 160,
+                                                      'rcl_deadline_seconds': 1800, 'max_tool_rounds_per_span': 4})
+        self.assertEqual(runtime.limit_options(runtime.harness_limits({})),
+                         ['--max-requests', '160', '--deadline-seconds', '1800', '--tool-rounds', '4'])
+
+    def test_manifest_limits_override_and_reach_the_worker_flags(self):
+        limits = runtime.harness_limits({'harness_limits': {'max_model_requests_including_retry': 320,
+                                                            'rcl_deadline_seconds': 2400, 'max_tool_rounds_per_span': 8}})
+        options = runtime.limit_options(limits)
+        flags = dict(zip(options[::2], options[1::2]))
+        self.assertEqual(flags, {'--max-requests': '320', '--deadline-seconds': '2400', '--tool-rounds': '8'})
+
+    def test_unknown_or_non_positive_limits_are_refused(self):
+        for given in ({'max_rounds': 8}, {'max_tool_rounds_per_span': 0}, {'rcl_deadline_seconds': 2400.0},
+                      {'max_model_requests_including_retry': True}):
+            with self.subTest(given=given), self.assertRaises(ValueError):
+                runtime.harness_limits({'harness_limits': given})
+
+
 class PackageValidator(unittest.TestCase):
     """verify-package's per-trace check over the single-trace package, mounted as one of two batch traces."""
     ENTRY = {'trace_id': '68791e1f360d910bd01428c3cd9748ef', 'case': 'checkoutservice_cpu_2', 'span_count': 33}
@@ -510,6 +614,69 @@ class PackageValidator(unittest.TestCase):
             with self.assertRaises(AssertionError):
                 self.check(files, **entry)
         self.check(self.files, 'traces/a')  # The other trace stays valid.
+
+
+class ToolServerAndScoring(unittest.TestCase):
+    class Proc:
+        """Records start/stop; Processes.stop needs os.killpg, which Windows lacks."""
+        def __init__(self, child=None):
+            self.calls, self.child = [], child
+
+        def start(self, name, argv, env):
+            self.calls.append(('start', name))
+            return self.child
+
+        def stop(self, child):
+            self.calls.append(('stop', child))
+
+    class Child:
+        def poll(self):
+            return None
+
+    def test_server_that_never_becomes_ready_is_stopped(self):
+        import socket
+        with socket.socket() as closed:
+            closed.bind(('127.0.0.1', 0))
+            port = closed.getsockname()[1]
+        child = self.Child()
+        proc = self.Proc(child)
+        with self.assertRaises(TimeoutError):
+            runtime.start_tool_server(proc, 'tools-x', ['tool_server.py'], {}, f'http://127.0.0.1:{port}/probe', 1)
+        self.assertEqual(proc.calls, [('start', 'tools-x'), ('stop', child)])
+
+    def test_tool_server_is_refused_while_port_5000_is_served(self):
+        import socket
+        proc = self.Proc()
+        with socket.socket() as held:
+            held.bind(('127.0.0.1', 5000))
+            held.listen()
+            with self.assertRaisesRegex(RuntimeError, 'Port 5000 still held'):
+                runtime.start_tool_server(proc, 'tools-x', ['tool_server.py'], {}, 'http://127.0.0.1:5000/probe', 1)
+        self.assertEqual(proc.calls, [])
+
+    def test_one_failing_scorer_does_not_unscore_the_other_runs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            package, result = Path(tmp) / 'package', Path(tmp) / 'result'
+            runs = [{'run_id': rid, 'dir': 'traces/' + rid} for rid in ('t1--metric', 't2--bad', 't3--metric')]
+            (package / 'upstream').mkdir(parents=True)
+            (package / 'manifest.json').write_text(json.dumps({'runs': runs}))
+            (package / 'upstream/evaluate.py').write_text(
+                "import sys\nif 'bad' in sys.argv[1]:\n    sys.exit(1)\nprint('R@1 : 1.0\\nR@3 : 1.0\\nMRR : 1.0')\n")
+            for run in runs:
+                (package / run['dir'] / 'scoring').mkdir(parents=True)
+                (package / run['dir'] / 'input').mkdir()
+                (package / run['dir'] / 'scoring/groundtruth.csv').write_text('trace_id,root_cause\n')
+                (package / run['dir'] / 'input/error_traces.txt').write_text('t\n')
+                (result / 'traces' / run['run_id']).mkdir(parents=True)
+                (result / 'traces' / run['run_id'] / 'result.json').write_text('{"root_causes": []}')
+            progress = {'traces': {run['run_id']: {'status': 'passed'} for run in runs}}
+            failed = runtime.score_runs(package, result, progress, sys.executable, dict(os.environ))
+            self.assertEqual(failed, ['t2--bad'])
+            for rid in ('t1--metric', 't3--metric'):
+                self.assertIn('MRR : 1.0', (result / 'scoring' / rid / 'author-score.txt').read_text())
+                self.assertEqual(json.loads((result / 'scoring' / rid / 'scorer-status.json').read_text()),
+                                 {'exit': 0, 'error': None})
+            self.assertEqual(json.loads((result / 'scoring/t2--bad/scorer-status.json').read_text())['exit'], 1)
 
 
 if __name__ == '__main__':
