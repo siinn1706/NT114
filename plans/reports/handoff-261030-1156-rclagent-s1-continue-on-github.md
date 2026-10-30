@@ -25,7 +25,7 @@ Phần "Cập nhật 2026-10-30" trong [handoff S1](handoff-261029-1710-rclagent
 - `kaggle-output-*` (output tải từ Kaggle) và `analysis-*` (output analyzer).
 - Thư mục đẩy `kaggle-dataset-upload-*` và `kaggle-kernel-upload-*`.
 
-Ở cấp `kaggle/`, các file `manifest.json`, `rclagent-kaggle-smoke.ipynb` và `package-validation.json` là bản B-S1 v2 và có commit. Riêng `rclagent-kaggle-bundle.zip` không có trên GitHub. Cách dựng lại môi trường và dữ liệu RE2-OB nằm ở [handoff train split](handoff-261028-0630-rclagent-train-split-kaggle-batches.md), mục điều kiện ngoài repo, và ở [README CPU](../261026-1713-rclagent-tai-hien-toi-thieu/README.md).
+Ở cấp `kaggle/`, các file `manifest.json`, `rclagent-kaggle-smoke.ipynb` và `package-validation.json` là bản B-S1 v2 và có commit. `rclagent-kaggle-bundle.zip` ở cấp `kaggle/` thì không có trên GitHub, nhưng ZIP của cả A lẫn B đều có trong `kaggle/s1-v2/`. Cách dựng lại môi trường và dữ liệu RE2-OB nằm ở [handoff train split](handoff-261028-0630-rclagent-train-split-kaggle-batches.md), mục điều kiện ngoài repo, và ở [README CPU](../261026-1713-rclagent-tai-hien-toi-thieu/README.md).
 
 ## Việc tiếp theo
 
@@ -44,12 +44,26 @@ Chạy hai lệnh này từ thư mục `kaggle/`. Mỗi gói cần khoảng 7,5�
 
 **Cách 2: một tài khoản Kaggle khác.** Hai dataset `siinn1706/rclagent-missing-source-{a,b}-s1-261029` đang ở chế độ private.
 
-Cập nhật 2026-10-30 12:10: tài khoản `svuittri` đã được thêm làm collaborator, quyền READER, cho cả hai dataset. Metadata đọc lại từ Kaggle xác nhận hai dataset vẫn private. Với tài khoản này, đi theo hướng thứ nhất dưới đây: tạo hai thư mục đẩy, mỗi thư mục chứa notebook trong `kaggle/` cùng một `kernel-metadata.json`. Trong `kernel-metadata.json`:
-- `id` là `svuittri/rclagent-missing-source-{a,b}-s1-gpu-261030`;
-- `dataset_sources` giữ nguyên dạng `siinn1706/...`;
-- `is_private` là true, `enable_gpu` là true, `enable_internet` là true, `machine_shape` là `NvidiaTeslaT4`.
+Cập nhật 2026-10-30 12:10: tài khoản `svuittri` đã được thêm làm collaborator, quyền READER, cho cả hai dataset. Metadata đọc lại từ Kaggle xác nhận hai dataset vẫn private. Gói A và B đã có sẵn trên GitHub, trong [`kaggle/s1-v2/`](../261026-1713-rclagent-tai-hien-toi-thieu/kaggle/s1-v2/). Mỗi thư mục `a/` và `b/` có:
+- notebook;
+- `kernel-metadata.json` cho `svuittri`: kernel private, T4, có internet, gắn dataset của `siinn1706`;
+- bundle ZIP, `.sha256`, `manifest.json` và `package-validation.json` của bản v2.
 
-Lưu ý: notebook trong `kaggle/` là bản B-S1 v2. Notebook của A chỉ có ở `runtime/bundle-missing-source-a-s1-v2/` trên máy gốc, nên phải xin file đó hoặc dựng lại.
+File `.gitattributes` giữ nguyên từng byte của các file này khi clone. Các bước chạy:
+
+```bash
+kaggle config view   # username phải là svuittri
+cd plans/261026-1713-rclagent-tai-hien-toi-thieu/kaggle
+sha256sum s1-v2/a/rclagent-kaggle-bundle.zip   # phải là 024e877a…; với B là a076518f…
+kaggle kernels push -p s1-v2/a
+kaggle kernels push -p s1-v2/b   # nếu quota tuần còn đủ, xem dưới
+kaggle kernels status svuittri/rclagent-missing-source-a-s1-gpu-261030
+```
+
+Lưu ý khi chạy:
+- Không cần venv hay tokenizer để đẩy kernel. Mọi thứ khác đều chạy trên Kaggle.
+- Mỗi gói cần khoảng 7,5–8 giờ, nên cả hai gói gần hết quota 30 giờ của một tuần.
+- Không tự theo dõi suốt thời gian chạy. Khi xong thì làm tiếp bước 2.
 
 Chọn một trong hai hướng:
 - Chủ tài khoản thêm người chạy làm collaborator của hai dataset trên Kaggle. Sau đó chỉ cần đổi `id` trong `kernel-metadata.json` sang tên của tài khoản mới, còn `dataset_sources` giữ nguyên.
