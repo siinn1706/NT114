@@ -42,7 +42,16 @@ kaggle kernels push -p runtime/kaggle-kernel-upload-b-s1-v2
 
 Chạy hai lệnh này từ thư mục `kaggle/`. Mỗi gói cần khoảng 7,5–8 giờ T4, trường hợp xấu nhất khoảng 9,8 giờ. Hai gói cộng lại có thể vượt quota một tuần, nên có thể phải đẩy A và B vào hai tuần khác nhau.
 
-**Cách 2: một tài khoản Kaggle khác.** Hai dataset `siinn1706/rclagent-missing-source-{a,b}-s1-261029` đang ở chế độ private. Chọn một trong hai hướng:
+**Cách 2: một tài khoản Kaggle khác.** Hai dataset `siinn1706/rclagent-missing-source-{a,b}-s1-261029` đang ở chế độ private.
+
+Cập nhật 2026-10-30 12:10: tài khoản `svuittri` đã được thêm làm collaborator, quyền READER, cho cả hai dataset. Metadata đọc lại từ Kaggle xác nhận hai dataset vẫn private. Với tài khoản này, đi theo hướng thứ nhất dưới đây: tạo hai thư mục đẩy, mỗi thư mục chứa notebook trong `kaggle/` cùng một `kernel-metadata.json`. Trong `kernel-metadata.json`:
+- `id` là `svuittri/rclagent-missing-source-{a,b}-s1-gpu-261030`;
+- `dataset_sources` giữ nguyên dạng `siinn1706/...`;
+- `is_private` là true, `enable_gpu` là true, `enable_internet` là true, `machine_shape` là `NvidiaTeslaT4`.
+
+Lưu ý: notebook trong `kaggle/` là bản B-S1 v2. Notebook của A chỉ có ở `runtime/bundle-missing-source-a-s1-v2/` trên máy gốc, nên phải xin file đó hoặc dựng lại.
+
+Chọn một trong hai hướng:
 - Chủ tài khoản thêm người chạy làm collaborator của hai dataset trên Kaggle. Sau đó chỉ cần đổi `id` trong `kernel-metadata.json` sang tên của tài khoản mới, còn `dataset_sources` giữ nguyên.
 - Tạo dataset mới từ đúng file ZIP v2 bằng `kaggle datasets create`, giữ private. Sau đó sửa `id` trong `dataset-metadata.json`, và sửa `id` cùng `dataset_sources` trong `kernel-metadata.json`. Cách này cần ZIP của máy gốc, hoặc phải dựng lại gói (xem bước 4).
 
