@@ -11,8 +11,8 @@ Tài liệu này viết cho người tiếp quản, hoặc cho AI của người
 | Mã kiểm độ nhạy S1 (8 vòng tool mỗi span, 320 request, 2.400 s mỗi lượt) | Xong và đã test. Xem [handoff S1](handoff-261029-1710-rclagent-budget-sensitivity-s1.md) |
 | Chạy S1 v1 trên Kaggle | Hỏng ở ô B do lệch hash runtime (CRLF). Không chạy lượt nào |
 | Sửa lỗi CRLF và dựng gói S1 v2 | Xong. Dataset v2 đã lên Kaggle và đã kiểm trùng từng byte |
-| **Chạy S1 v2 trên Kaggle** | **Chưa chạy.** Tài khoản `siinn1706` hết quota GPU 30 giờ của tuần |
-| Phân tích S1 và báo cáo cạnh vòng 2 | Chưa làm, vì chưa có kết quả |
+| Chạy S1 v2 trên Kaggle | Xong ngày 2026-10-31, tài khoản `svuittri` chạy hai kernel `svuittri/rclagent-missing-source-{a,b}-s1-gpu-261030`. Output ở `runtime/kaggle-output-{a,b}-s1-v2/` |
+| Phân tích S1 và báo cáo cạnh vòng 2 | Xong. Xem [results S1 v2](results-261031-1715-rclagent-s1-v2-budget-sensitivity.md) và [plan 261031-1655](../261031-1655-rclagent-s1-v2-analysis-and-pr2/plan.md) |
 
 Phần "Cập nhật 2026-10-30" trong [handoff S1](handoff-261029-1710-rclagent-budget-sensitivity-s1.md) ghi chi tiết nguyên nhân lỗi v1, cách sửa, các hash của v2 và kết quả kiểm.
 

@@ -100,3 +100,7 @@ Kiểm tra:
 | Kernel | **chưa đẩy**, thư mục đẩy là `runtime/kaggle-kernel-upload-a-s1-v2/` | **chưa đẩy**, thư mục đẩy là `runtime/kaggle-kernel-upload-b-s1-v2/` |
 
 **Chặn:** `kaggle kernels push` trả về `Maximum weekly GPU quota of 30.00 hours reached`. Khi quota được làm mới, đẩy bằng lệnh `kaggle kernels push -p runtime/kaggle-kernel-upload-{a,b}-s1-v2`. Hai lượt chạy cần khoảng 15–20 giờ T4, nên có thể phải đẩy A và B vào hai tuần khác nhau. Sau khi đẩy, ghi lại trạng thái riêng tư như ở v1. Các tệp cấp `kaggle/` hiện là bản B-S1 v2.
+
+## Cập nhật 2026-10-31: S1 v2 đã chạy và phân tích
+
+Tài khoản `svuittri` đã chạy hai kernel S1 v2 trên dataset của `siinn1706`. Gói A pass 36/36 lượt. Gói B pass 34/36 lượt, và hai lượt lỗi là lỗi giao thức đã xảy ra y như vậy ở vòng 2. Cả 8 lượt từng chạm trần ở vòng 2 đều pass. Các lượt không chạm trần cho điểm giống vòng 2. Kết quả, kiểm điều kiện và giới hạn nằm ở [results S1 v2](results-261031-1715-rclagent-s1-v2-budget-sensitivity.md).
