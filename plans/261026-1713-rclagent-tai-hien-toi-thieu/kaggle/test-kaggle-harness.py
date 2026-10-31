@@ -672,6 +672,108 @@ class PackageValidator(unittest.TestCase):
         self.check(self.files, 'traces/a')  # The other trace stays valid.
 
 
+class ServerHealth(unittest.TestCase):
+    class Health(BaseHTTPRequestHandler):
+        replies = []  # one status, 'hang' or 'garbage' per probe; the last one repeats
+        probes, bodies = 0, []
+
+        def log_message(self, *args):
+            pass
+
+        def do_POST(self):
+            cls = type(self)
+            cls.bodies.append((self.path, json.loads(self.rfile.read(int(self.headers['Content-Length'])))))
+            reply = cls.replies[min(cls.probes, len(cls.replies) - 1)]
+            cls.probes += 1
+            if reply == 'hang':
+                time.sleep(1)
+                return
+            if reply == 'garbage':
+                self.wfile.write(b'HTTP/1.1 2\r\n\r\n')
+                return
+            self.send_response(reply)
+            self.end_headers()
+
+    class Child:
+        def __init__(self, polls=(None,)):
+            self.polls = list(polls)
+
+        def poll(self):
+            return self.polls.pop(0) if len(self.polls) > 1 else self.polls[0]
+
+    def setUp(self):
+        self.Health.replies, self.Health.probes, self.Health.bodies = [200], 0, []
+        self.server = ThreadingHTTPServer(('127.0.0.1', 0), self.Health)
+        threading.Thread(target=self.server.serve_forever, daemon=True).start()
+        self.addCleanup(self.server.server_close)
+        self.addCleanup(self.server.shutdown)
+        self.url = f'http://127.0.0.1:{self.server.server_address[1]}/v1/completions'
+
+    def healthy(self, child=None, attempts=3):
+        return runtime.server_healthy(child or self.Child(), self.url, 'model-x', attempts=attempts, timeout=0.2,
+                                      pause=0.05)
+
+    def test_answering_server_is_healthy_after_one_probe(self):
+        self.assertTrue(self.healthy())
+        self.assertEqual(self.Health.probes, 1)
+
+    def test_probe_asks_for_one_greedy_token(self):
+        self.healthy()
+        self.assertEqual(self.Health.bodies, [('/v1/completions', {'model': 'model-x', 'prompt': 'ping',
+                                                                   'max_tokens': 1, 'temperature': 0})])
+
+    def test_defaults_retry_three_times_with_a_pause(self):
+        import inspect
+        defaults = {k: v.default for k, v in inspect.signature(runtime.server_healthy).parameters.items()
+                    if v.default is not inspect.Parameter.empty}
+        self.assertEqual(defaults, {'attempts': 3, 'timeout': 60, 'pause': 10})
+        self.Health.replies = [500]
+        with mock.patch.object(runtime.time, 'sleep') as sleep:
+            self.assertFalse(runtime.server_healthy(self.Child(), self.url, 'model-x'))
+        self.assertEqual((self.Health.probes, [c.args for c in sleep.call_args_list]), (3, [(10,), (10,)]))
+
+    def test_garbled_reply_counts_as_a_failed_probe(self):
+        self.Health.replies = ['garbage']
+        self.assertFalse(self.healthy(attempts=2))
+        self.assertEqual(self.Health.probes, 2)
+
+    def test_exited_process_is_dead_without_a_probe(self):
+        self.assertFalse(self.healthy(self.Child([1])))
+        self.assertEqual(self.Health.probes, 0)
+
+    def test_failing_health_endpoint_is_dead_after_every_attempt(self):
+        self.Health.replies = [500]
+        self.assertFalse(self.healthy())
+        self.assertEqual(self.Health.probes, 3)
+
+    def test_hung_engine_behind_a_live_process_is_dead(self):
+        # A hung V0 engine still answers /health, but a completion never returns.
+        self.Health.replies = ['hang']
+        self.assertFalse(self.healthy(attempts=2))
+        self.assertEqual(self.Health.probes, 2)
+
+    def test_one_failed_probe_is_retried(self):
+        self.Health.replies = [503, 200]
+        self.assertTrue(self.healthy())
+        self.assertEqual(self.Health.probes, 2)
+
+    def test_server_that_exits_between_probes_is_dead(self):
+        # The race after a failed trace: the endpoint already refuses while the process is still exiting.
+        self.Health.replies = [503]
+        self.assertFalse(self.healthy(self.Child([None, 0])))
+        self.assertEqual(self.Health.probes, 1)
+
+    def test_nothing_listening_is_dead(self):
+        self.server.shutdown()
+        self.server.server_close()
+        self.assertFalse(self.healthy(attempts=2))
+
+    def test_batch_uses_the_health_probe(self):
+        source = (HERE / 'kaggle-runtime.py').read_text(encoding='utf-8')
+        self.assertIn("server_healthy(server, 'http://127.0.0.1:8000/v1/completions', MODEL)", source)
+        self.assertNotIn('server.poll() is None', source)
+
+
 class ToolServerAndScoring(unittest.TestCase):
     class Proc:
         """Records start/stop; Processes.stop needs os.killpg, which Windows lacks."""

@@ -304,6 +304,33 @@ def wait_ready(child, path, timeout):
     raise TimeoutError('Server startup timed out')
 
 
+def server_healthy(child, url, model, attempts=3, timeout=60, pause=10):
+    """True while the server process runs and generates one token within `timeout` seconds.
+
+    vLLM V0's /health only reports a dead engine: a hung engine still answers it but never finishes a request. So the
+    probe asks for one greedy token. Prefix caching is off (V0 default) and every run request carries its own seed,
+    so the probe changes nothing a later request sees. A failed probe is retried after `pause` seconds, so a server
+    still shutting down when a trace fails counts as dead.
+    """
+    import http.client
+    import urllib.request
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    body = json.dumps({'model': model, 'prompt': 'ping', 'max_tokens': 1, 'temperature': 0}).encode()
+    for attempt in range(attempts):
+        if child.poll() is not None:
+            return False
+        request = urllib.request.Request(url, data=body, headers={'Content-Type': 'application/json'})
+        try:
+            with opener.open(request, timeout=timeout) as response:
+                if response.status == 200:
+                    return True
+        except (OSError, ValueError, http.client.HTTPException):
+            pass
+        if attempt + 1 < attempts:
+            time.sleep(pause)
+    return False
+
+
 def assert_unserved(port):
     # A connect probe, not a bind: the last server's connections may still sit in TIME_WAIT on this port, which
     # blocks a plain bind on Linux although nothing answers there any more.
@@ -500,9 +527,10 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
     A trace with a final status (passed or failed) is skipped when the batch is resumed; one cut off mid-run
     (still running) runs again, its partial output set aside. A failed trace is recorded with its reason and the
     batch moves on, without retry or configuration change. A dead model server stops the batch with the
-    remaining traces pending; a trace that fails while the server process has died is left running, so a resume
-    reruns it instead of booking an infrastructure failure as the model's. A second server death in the same trace
-    books it failed, so a prompt that crashes the server cannot block the batch on every resume.
+    remaining traces pending; a trace that fails while the server is dead (its process gone or its health endpoint
+    silent) is left running, so a resume reruns it instead of booking an infrastructure failure as the model's. A
+    second server death in the same trace books it failed, so a prompt that crashes the server cannot block the batch
+    on every resume.
     """
     path = result / 'progress.json'
     progress = load_progress(path, bundle_sha256)
@@ -512,7 +540,8 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
             continue
         if not model_alive():
             dump(path, progress)
-            raise RuntimeError('Model server is not running; remaining traces stay pending for a resumed run')
+            raise RuntimeError('Model server is not running or not answering; remaining traces stay pending for a '
+                               'resumed run')
         out = result / 'traces' / entry['run_id']
         if state.get('status') == 'running':
             state['attempts'][-1]['outcome'] = 'interrupted'
@@ -528,7 +557,8 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
                 state['attempts'][-1].update(outcome='interrupted', server_died=True, reason=repr(exc),
                                              finished=time.time())
                 dump(path, progress)
-                raise RuntimeError('Model server died during a trace; it and the remaining traces run again on resume')
+                raise RuntimeError('Model server died or stopped answering during a trace; it and the remaining '
+                                   'traces run again on resume')
             state.update(status='failed', reason=repr(exc))
         state['attempts'][-1].update(outcome=state['status'], finished=time.time())
         dump(path, progress)
@@ -680,7 +710,8 @@ def run_once(expected_sha256, expected_manifest_sha256):
             finally:
                 proc.stop(tools)
             print('E:', out.name, 'completed in', round(time.monotonic()-started), 's')
-        progress = run_traces(package, result, expected_sha256, run_trace, lambda: server.poll() is None)
+        progress = run_traces(package, result, expected_sha256, run_trace,
+                              lambda: server_healthy(server, 'http://127.0.0.1:8000/v1/completions', MODEL))
         print('E: every packaged trace has a final status; failed traces are recorded, not retried')
         status['stage'] = 'F'
         monitor.phase = 'scoring'
