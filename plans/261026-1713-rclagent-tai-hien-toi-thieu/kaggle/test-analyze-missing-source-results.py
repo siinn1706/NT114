@@ -88,8 +88,9 @@ def write_session(root, runs, events=None, scores=None, states=None, status='pas
             rid = run['run_id']
             if rid not in progress:
                 continue
-            lines = [e if isinstance(e, str) else json.dumps(e) for e in events.get(rid, clean_events(run))]
-            zipped.writestr(f'run/traces/{rid}/events.jsonl', '\n'.join(lines) + '\n')
+            if events.get(rid, ()) is not None:  # None: the run wrote no events.jsonl
+                lines = [e if isinstance(e, str) else json.dumps(e) for e in events.get(rid, clean_events(run))]
+                zipped.writestr(f'run/traces/{rid}/events.jsonl', '\n'.join(lines) + '\n')
             zipped.writestr(f'run/traces/{rid}/result.json', json.dumps({'root_causes': ['checkoutservice']}))
             if progress[rid]['status'] == 'passed':
                 zipped.writestr(f'run/scoring/{rid}/author-score.txt', scores.get(rid, SCORE))
@@ -236,6 +237,41 @@ class Completeness(unittest.TestCase):
         self.assertTrue(summary['provisional'])
         self.assertEqual(summary['status']['pending'], 1)
         self.assertEqual([s['status'] for s in summary['sessions']], ['failed'])
+
+    def test_integrity_problem_makes_the_summary_provisional(self):
+        runs = matrix()
+        wrong = runs[0]
+        events = {wrong['run_id']: [request(1, wrong['seed'] + 1)]}
+        with tempfile.TemporaryDirectory() as tmp:
+            summary = analyze(Path(tmp) / 'analysis', *write_session(tmp, runs, events=events))
+        self.assertEqual([rid for rid, _ in summary['integrity_problems']], [wrong['run_id']])
+        self.assertTrue(summary['provisional'])
+
+    def test_failed_run_without_events_stays_final(self):
+        runs = matrix()
+        failed = runs[0]['run_id']
+        states = {failed: {'status': 'failed', 'reason': 'stopped before the first request', 'attempts': [{}]}}
+        with tempfile.TemporaryDirectory() as tmp:
+            summary = analyze(Path(tmp) / 'analysis', *write_session(tmp, runs, events={failed: None}, states=states))
+        self.assertEqual(summary['integrity_problems'], [[failed, 'no events']])
+        self.assertFalse(summary['provisional'])
+
+    def test_passed_run_without_events_is_provisional(self):
+        runs = matrix()
+        silent = runs[0]['run_id']
+        with tempfile.TemporaryDirectory() as tmp:
+            summary = analyze(Path(tmp) / 'analysis', *write_session(tmp, runs, events={silent: None}))
+        self.assertEqual(summary['unscored_passed'], [])
+        self.assertTrue(summary['provisional'])
+
+    def test_failed_run_with_an_integrity_problem_is_provisional(self):
+        runs = matrix()
+        wrong = runs[0]
+        states = {wrong['run_id']: {'status': 'failed', 'reason': 'synthetic stop', 'attempts': [{}]}}
+        events = {wrong['run_id']: [request(1, wrong['seed'] + 1)]}
+        with tempfile.TemporaryDirectory() as tmp:
+            summary = analyze(Path(tmp) / 'analysis', *write_session(tmp, runs, events=events, states=states))
+        self.assertTrue(summary['provisional'])
 
 
 if __name__ == '__main__':

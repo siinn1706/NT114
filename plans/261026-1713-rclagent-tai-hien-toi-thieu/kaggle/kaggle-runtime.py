@@ -179,7 +179,9 @@ def clean_env():
     env.update(HF_HUB_DISABLE_IMPLICIT_TOKEN='1', HF_HUB_DISABLE_TELEMETRY='1',
                HF_HOME=str(TEMP / 'huggingface'), PIP_DISABLE_PIP_VERSION_CHECK='1',
                DO_NOT_TRACK='1', TOKENIZERS_PARALLELISM='false',
-               PYTHONDONTWRITEBYTECODE='1')
+               PYTHONDONTWRITEBYTECODE='1',
+               # The author's code joins sets of service names into prompts; a fixed hash seed fixes their order.
+               PYTHONHASHSEED='0')
     return env
 
 
@@ -498,7 +500,9 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
     A trace with a final status (passed or failed) is skipped when the batch is resumed; one cut off mid-run
     (still running) runs again, its partial output set aside. A failed trace is recorded with its reason and the
     batch moves on, without retry or configuration change. A dead model server stops the batch with the
-    remaining traces pending.
+    remaining traces pending; a trace that fails while the server process has died is left running, so a resume
+    reruns it instead of booking an infrastructure failure as the model's. A second server death in the same trace
+    books it failed, so a prompt that crashes the server cannot block the batch on every resume.
     """
     path = result / 'progress.json'
     progress = load_progress(path, bundle_sha256)
@@ -520,6 +524,11 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
             run_trace(package / entry['dir'], out, entry)
             state['status'] = 'passed'
         except Exception as exc:  # An interrupt (BaseException) leaves the trace running, so a resume reruns it.
+            if not model_alive() and not any(a.get('server_died') for a in state['attempts'][:-1]):
+                state['attempts'][-1].update(outcome='interrupted', server_died=True, reason=repr(exc),
+                                             finished=time.time())
+                dump(path, progress)
+                raise RuntimeError('Model server died during a trace; it and the remaining traces run again on resume')
             state.update(status='failed', reason=repr(exc))
         state['attempts'][-1].update(outcome=state['status'], finished=time.time())
         dump(path, progress)

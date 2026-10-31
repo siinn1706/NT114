@@ -96,9 +96,11 @@ def validate_calls(message, tools, required=False):
             raise ValueError('Unknown function or non-string arguments')
         arguments = json.loads(function['arguments'])
         jsonschema.validate(arguments, names[function['name']])
-    # Explicitly reject leaked unparsed tool syntax instead of extracting it.
+    # Explicitly reject leaked unparsed tool syntax instead of extracting it. 'Action: ' is also ordinary prose, so,
+    # as in the author's client, it only counts at the start of a line and when tools were offered.
     text = message.get('content') or ''
-    if not calls and any(marker in text for marker in ('<tool_call>', 'Action:', '✿FUNCTION✿')):
+    action = bool(tools) and any(line.startswith('Action: ') for line in text.split('\n'))
+    if not calls and (action or any(marker in text for marker in ('<tool_call>', '✿FUNCTION✿'))):
         raise ValueError('Server failed to emit structured tool_calls')
     return calls
 

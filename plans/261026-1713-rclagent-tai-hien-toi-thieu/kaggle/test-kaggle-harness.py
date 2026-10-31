@@ -6,6 +6,7 @@ import importlib.util
 import json
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import threading
@@ -14,6 +15,7 @@ import unittest
 import zipfile
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from unittest import mock
 
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve().parent
@@ -162,6 +164,14 @@ class Checks(unittest.TestCase):
         for text in ('Action: print_results\nAction Input: {}', '<tool_call>{}</tool_call>'):
             with self.assertRaises(ValueError):
                 worker.validate_calls({'content': text}, [print_result_function])
+
+    def test_action_text_without_offered_tools_is_an_answer(self):
+        from tools_gpt import print_result_function
+        self.assertEqual(worker.validate_calls({'content': '{"reason": "Action: restart the pod"}'}, None), [])
+        self.assertEqual(worker.validate_calls({'content': 'Corrective Action: restart'}, [print_result_function]), [])
+        for text in ('<tool_call>{}</tool_call>', '✿FUNCTION✿: print_results'):
+            with self.assertRaises(ValueError):
+                worker.validate_calls({'content': text}, None)
 
     def events(self, kind):
         lines = (Path(self.area.name) / 'events.jsonl').read_text(encoding='utf-8').splitlines()
@@ -525,6 +535,52 @@ class BatchRuntime(unittest.TestCase):
             self.run_batch()
         self.assertEqual(self.calls, [])
         self.assertNotIn('status', json.loads((self.result / 'progress.json').read_text())['traces'].get('trace-a', {}))
+
+    def test_trace_cut_off_by_a_dying_model_server_runs_again_on_resume(self):
+        def dying(trace_dir, out, entry):
+            if trace_dir.name == 'trace-b':
+                self.alive = False
+            self.run_trace(trace_dir, out, entry)
+        self.failing = {'trace-b'}
+        with self.assertRaises(RuntimeError):
+            runtime.run_traces(self.package, self.result, 'bundle-1', dying, lambda: self.alive)
+        state = json.loads((self.result / 'progress.json').read_text())['traces']
+        self.assertEqual(state['trace-b']['status'], 'running')
+        attempt = state['trace-b']['attempts'][-1]
+        self.assertEqual((attempt['outcome'], attempt['server_died']), ('interrupted', True))
+        self.assertIn('synthetic HarnessStop', attempt['reason'])
+        self.assertIn('finished', attempt)
+        self.assertNotIn('trace-c', state)
+        self.calls, self.failing, self.alive = [], set(), True
+        progress = self.run_batch()
+        self.assertEqual(self.calls, ['trace-b', 'trace-c'])
+        self.assertEqual([a['outcome'] for a in progress['traces']['trace-b']['attempts']], ['interrupted', 'passed'])
+
+    def test_a_second_server_death_in_the_same_trace_is_final(self):
+        def dying(trace_dir, out, entry):
+            if trace_dir.name == 'trace-b':
+                self.alive = False
+            self.run_trace(trace_dir, out, entry)
+        self.failing = {'trace-b'}
+        for _ in range(2):
+            self.alive = True
+            with self.assertRaises(RuntimeError):
+                runtime.run_traces(self.package, self.result, 'bundle-1', dying, lambda: self.alive)
+        state = json.loads((self.result / 'progress.json').read_text())['traces']['trace-b']
+        self.assertEqual(state['status'], 'failed')
+        self.assertEqual([a['outcome'] for a in state['attempts']], ['interrupted', 'failed'])
+        self.alive, self.failing, self.calls = True, set(), []
+        self.run_batch()
+        self.assertEqual(self.calls, ['trace-c'])
+
+    def test_children_get_a_fixed_hash_seed(self):
+        with mock.patch.dict(os.environ, PYTHONHASHSEED='random'):
+            env = runtime.clean_env()
+        self.assertEqual(env['PYTHONHASHSEED'], '0')
+        names = "print(', '.join(set(['frontendservice', 'checkoutservice', 'cartservice', 'adservice', 'redis'])))"
+        orders = {subprocess.run([sys.executable, '-c', names], env=env, capture_output=True, text=True,
+                                 check=True).stdout for _ in range(5)}
+        self.assertEqual(len(orders), 1)
 
     def test_progress_of_another_bundle_is_refused(self):
         self.run_batch()

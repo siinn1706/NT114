@@ -11,7 +11,8 @@ order, the source recorded on every tool_result against the run's condition, the
 failed or unscored run counts 0) and whether the top-1 name carries a '-N' suffix. An unparseable events line is an
 integrity problem of that run. Then paired deltas (same case and seed) and the screening rule fixed before the
 runs; a comparison with a (case, seed) missing either condition is not evaluable. The summary is provisional while
-a session has not passed, a run is pending or running, or a passed run has no score.
+a session has not passed, a run is pending or running, a passed run has no score, or a run has an integrity problem
+(a failed run that stopped before writing events is not one).
 """
 import csv
 import hashlib
@@ -240,7 +241,8 @@ def main():
         raise SystemExit('Duplicate runs: ' + '; '.join(map(str, duplicates)))
     sessions = [session(pairs[i]) for i in range(0, len(pairs), 2)]
     unscored = [r['run_id'] for r in rows if r['status'] == 'passed' and not r['scored']]
-    provisional = (any(s['status'] != 'passed' for s in sessions) or bool(unscored)
+    doubtful = [r for r in rows if r['integrity'] != 'ok' and (r['integrity'], r['status']) != ('no events', 'failed')]
+    provisional = (any(s['status'] != 'passed' for s in sessions) or bool(unscored) or bool(doubtful)
                    or any(r['status'] in ('pending', 'running') for r in rows))
     out_dir.mkdir(parents=True, exist_ok=True)
     with (out_dir / 'runs.csv').open('w', newline='', encoding='utf-8') as handle:
@@ -261,7 +263,7 @@ def main():
         'unscored_passed': unscored,
         'provisional': provisional,
         'note': 'Descriptive; no statistical test. Failed or unscored runs count 0; unscored passed runs, pending '
-                'runs or an unfinished session make the summary provisional.',
+                'runs, integrity problems or an unfinished session make the summary provisional.',
     }
     (out_dir / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({k: summary[k] for k in ('runs', 'status', 'integrity_problems', 'suffixed_top1', 'by_condition',
