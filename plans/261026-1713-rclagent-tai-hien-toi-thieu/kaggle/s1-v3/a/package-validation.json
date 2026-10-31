@@ -1,0 +1,202 @@
+{
+  "status": "pass",
+  "files_in_bundle": 53,
+  "traces": [
+    {
+      "trace_id": "de6a503bf0003321a77f9ca923d0bd87",
+      "case": "checkoutservice_cpu_1",
+      "trace_rows": 25,
+      "metric_rows": 103748,
+      "log_rows": 1734,
+      "cpu_endpoint_comparisons": 677,
+      "query_window": {
+        "start_second": 1705354646,
+        "end_second": 1705354648,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705353446,
+          1705355848
+        ],
+        "log_rows_seconds": [
+          1705354586,
+          1705354708
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    },
+    {
+      "trace_id": "30e3c732adf9978eb0814d796e7194a5",
+      "case": "emailservice_delay_3",
+      "trace_rows": 23,
+      "metric_rows": 106630,
+      "log_rows": 1723,
+      "cpu_endpoint_comparisons": 578,
+      "query_window": {
+        "start_second": 1705738345,
+        "end_second": 1705738346,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705737145,
+          1705739546
+        ],
+        "log_rows_seconds": [
+          1705738285,
+          1705738406
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    },
+    {
+      "trace_id": "5f7a7727f3c44b318a0ff9676d2af7b9",
+      "case": "checkoutservice_mem_1",
+      "trace_rows": 39,
+      "metric_rows": 100868,
+      "log_rows": 1794,
+      "cpu_endpoint_comparisons": 895,
+      "query_window": {
+        "start_second": 1705462112,
+        "end_second": 1705462114,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705460912,
+          1705463314
+        ],
+        "log_rows_seconds": [
+          1705462052,
+          1705462174
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    },
+    {
+      "trace_id": "99f095aeb2571c7f2ee99885e8332c8a",
+      "case": "currencyservice_loss_3",
+      "trace_rows": 25,
+      "metric_rows": 107995,
+      "log_rows": 1122,
+      "cpu_endpoint_comparisons": 696,
+      "query_window": {
+        "start_second": 1705711452,
+        "end_second": 1705711461,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705710252,
+          1705712661
+        ],
+        "log_rows_seconds": [
+          1705711392,
+          1705711521
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        }
+      }
+    }
+  ],
+  "condition_runs": {
+    "runs": 36,
+    "conditions": [
+      "metric",
+      "metric_no_log",
+      "no_metric"
+    ],
+    "seeds": [
+      20261026,
+      20261027,
+      20261028
+    ],
+    "selection_sha256": "87b505ca56bcdaa0fc2e429a72afb29f1359afb10177ac3c515578e2008727c8"
+  },
+  "harness_limits": {
+    "max_model_requests_including_retry": 320,
+    "rcl_deadline_seconds": 2400,
+    "max_tool_rounds_per_span": 8
+  },
+  "notebook_code_cells": 4,
+  "bundle_sha256": "6496fe85eb3495cd48a4c0f38471edc60907daac4354bc2a149cee3e90e83074",
+  "bundle_bytes": 1952015,
+  "notebook_sha256": "a9e76113ebf426c5b362127631f5e941946941a2b0900c41c053992ce05440a7",
+  "code_cells_identical_to_native_version_3": false,
+  "latest_downloaded_native_version": 9,
+  "code_cells_identical_to_latest_downloaded_native": false,
+  "tool_result_budget": {
+    "deviation_from_upstream": true,
+    "endpoint": "search_logs",
+    "budget_tokens": 2048,
+    "tokenizer": "Qwen/Qwen3-4B-Instruct-2507@cdbee75f17c01a7cc42f958dc650907174af0554",
+    "scheme": "ladder",
+    "module": "tool-result-budget.py",
+    "share": "The search_logs calls of one model response share the budget equally: floor(2048 / n) tokens each. Metric results are not budgeted.",
+    "rule": "Results within their share pass byte-for-byte. Larger results are merged by exact duplicates, then by masked message template, then truncated by severity priority, whichever first fits; a notice line tells the model. Applied by smoke-worker.py outside the unchanged upstream code.",
+    "cpu_check": {
+      "services": [
+        "adservice",
+        "cartservice",
+        "checkoutservice",
+        "currencyservice",
+        "emailservice",
+        "frontend",
+        "frontendservice",
+        "paymentservice",
+        "productcatalogservice",
+        "recommendationservice",
+        "shippingservice",
+        "redis"
+      ],
+      "seconds": [
+        1708475368,
+        1708475369
+      ],
+      "queries": 48,
+      "unchanged": 40,
+      "condensed": 8,
+      "condensed_services": [
+        "cartservice",
+        "frontend"
+      ],
+      "max_condensed_tokens": 454,
+      "rows_omitted": 0
+    },
+    "version6_request3": {
+      "raw_prompt_tokens": 126088,
+      "budgeted_prompt_tokens": 1589,
+      "reserved_output": 512,
+      "context": 16384
+    }
+  },
+  "scope": "Static package and completed CPU checks only; actual GPU/server compatibility requires Kaggle execution."
+}

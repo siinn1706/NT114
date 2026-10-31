@@ -197,6 +197,7 @@ Lượt chỉ được chạy lại một lần. Nếu vLLM lại chết trong c
   - Notebook: `feef1462…6705`.
   - So với bundle S1 v2 B, chỉ `kaggle-runtime.py`, `smoke-worker.py` và `manifest.json` khác. Mọi file của tác giả trùng từng byte. `runs`, `condition_design` và `harness_limits` không đổi.
   - Gói này chưa được đẩy lên Kaggle.
+  - Cập nhật 2026-10-31 tối: em dựng lại B từ đúng stage này và dựng thêm A, lưu ở `kaggle/s1-v3/`. Manifest B vẫn là `0b43d32a…ed2b`, nhưng ZIP có hash mới (`149997c6…9cef`) vì ZIP ghi cả thời điểm sửa file. 53 thành viên trùng từng byte với bản trước. Cả A và B đã được đẩy lên Kaggle.
 - **Phép kiểm ngân sách.** `check-tool-result-budget.py` đã chạy lại với tokenizer `cdbee75f…`. Trong `tool-result-budget-check.json`, chỉ hash của worker đổi.
 - **Test.** Tám bộ test đều pass: 48, 11, 14, 4, 6, 20, 4 và 13 test.
 - **Review độc lập theo ba hướng.**
@@ -209,5 +210,4 @@ Lượt chỉ được chạy lại một lần. Nếu vLLM lại chết trong c
 ## Câu hỏi còn mở
 
 - Một vLLM treo mà tiến trình vẫn sống vẫn bị ghi failed. Có cần thêm health probe trước lần chạy GPU tới không?
-- Gói mới chưa chạy trên Kaggle. `PYTHONHASHSEED` chưa được kiểm trên T4 thật.
-- Gói mới chỉ dựng cho B. Lần chạy tới cần dựng gói A tương ứng từ stage A với cùng code.
+- Gói mới chưa chạy xong trên Kaggle. `PYTHONHASHSEED` chưa được kiểm trên T4 thật. Cập nhật 2026-10-31 tối: gói A và B (`kaggle/s1-v3/`) đã được đẩy lên Kaggle, xem handoff 261030-1156.
