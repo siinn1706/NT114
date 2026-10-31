@@ -1,0 +1,72 @@
+[
+ {
+  "span_id": "6652840113319c6c",
+  "service": "frontendservice",
+  "tokens": 1027,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "e47e6dc7aba78cf7",
+  "service": "frontendservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "19166eff5e70e87a",
+  "service": "frontendservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "9baad1de2795ce8b",
+  "service": "frontendservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "c336f83f71b7e750",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "703b116fa80bb956",
+  "service": "frontendservice",
+  "tokens": 1051,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "54794b06dc5ea4ce",
+  "service": "frontendservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "55cdaa08519b6028",
+  "service": "productcatalogservice",
+  "tokens": 1041,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "7dd649786f9c3ab9",
+  "service": "currencyservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "119b270294de4f40",
+  "service": "currencyservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ }
+]

@@ -1,0 +1,163 @@
+[
+ {
+  "span_id": "c3884385161b4070",
+  "service": "frontendservice",
+  "tokens": 1028,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "ef33a456e809ba12",
+  "service": "frontendservice",
+  "tokens": 1050,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "8f879a7371067c58",
+  "service": "frontendservice",
+  "tokens": 1051,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "d1390a12457e001b",
+  "service": "frontendservice",
+  "tokens": 1050,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "0ddbc18976514213",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "c73be7eb05f4c61f",
+  "service": "frontendservice",
+  "tokens": 1050,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "22e55a11dbebc95e",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "5902f726c2e83e3d",
+  "service": "frontendservice",
+  "tokens": 1050,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "c6b5675dc00ff719",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "80a2234d6c2e3fac",
+  "service": "frontendservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "94ab9888be33d68d",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "b4290c94045f9725",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "78e01a1a9b289d8e",
+  "service": "productcatalogservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "c675dacb02da2b99",
+  "service": "currencyservice",
+  "tokens": 1051,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "c464593e7f5bb314",
+  "service": "currencyservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "74ddcc42f47ced5b",
+  "service": "recommendationservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "2b2c2c9981c95a6d",
+  "service": "productcatalogservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "b05892b8eeb2b070",
+  "service": "productcatalogservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "5a4d2406a78d0386",
+  "service": "productcatalogservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "2822f62a7165370e",
+  "service": "productcatalogservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "3293ad59449b8807",
+  "service": "productcatalogservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "d9dfce273347d370",
+  "service": "recommendationservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "3c38d12211b136a3",
+  "service": "productcatalogservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ }
+]

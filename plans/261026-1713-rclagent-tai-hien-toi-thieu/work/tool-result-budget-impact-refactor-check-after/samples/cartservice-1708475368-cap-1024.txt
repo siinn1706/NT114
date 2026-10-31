@@ -1,0 +1,14 @@
+[harness tool-result budget 1024 tokens: truncated: 12 of 1557 rows shown, verbatim; omitted rows by severity: unknown=1545; priority: error/fatal/critical severity > warning > other rows whose text contains error/exception > rest; ties by distance to the queried second, then original order]
+log_id,timestamp,cmdb_id,log_name,value
+re2ob_checkoutservice_cpu_2_90931,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=05a4abad-56c5-4a4c-b126-e6aa0a6e15a7"
+re2ob_checkoutservice_cpu_2_90942,1708475368,cartservice,log_cartservice,"severity: unknown, message: Checking CartService Health"
+re2ob_checkoutservice_cpu_2_90943,1708475368,cartservice,log_cartservice,"severity: unknown, message: Checking CartService Health"
+re2ob_checkoutservice_cpu_2_90947,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=89dd24cc-a3f3-480f-b84e-f557bebd9170"
+re2ob_checkoutservice_cpu_2_90955,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=3d7592c5-20a7-4d1f-baba-841600e8b41d"
+re2ob_checkoutservice_cpu_2_90962,1708475368,cartservice,log_cartservice,"severity: unknown, message: AddItemAsync called with userId=3d7592c5-20a7-4d1f-baba-841600e8b41d, productId=2ZYFJ3GM2N, quantity=5"
+re2ob_checkoutservice_cpu_2_90969,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=3d7592c5-20a7-4d1f-baba-841600e8b41d"
+re2ob_checkoutservice_cpu_2_90972,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=90543b03-00e3-48a0-b626-7576fe43c36b"
+re2ob_checkoutservice_cpu_2_90986,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=0f0cb7d5-4c9f-484e-a008-d33a9aee1cd1"
+re2ob_checkoutservice_cpu_2_90992,1708475368,cartservice,log_cartservice,"severity: unknown, message: AddItemAsync called with userId=90543b03-00e3-48a0-b626-7576fe43c36b, productId=2ZYFJ3GM2N, quantity=5"
+re2ob_checkoutservice_cpu_2_91006,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=90543b03-00e3-48a0-b626-7576fe43c36b"
+re2ob_checkoutservice_cpu_2_91007,1708475368,cartservice,log_cartservice,"severity: unknown, message: GetCartAsync called with userId=7a3f6bce-001b-4925-ae00-aeb91fcffaf2"

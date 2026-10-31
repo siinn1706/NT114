@@ -1,0 +1,205 @@
+[
+ {
+  "span_id": "5a882a5f251a20c5",
+  "service": "frontendservice",
+  "tokens": 1027,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "ddde6349f847eaab",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "12ebc68d42a96359",
+  "service": "frontendservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "7331203672d5c774",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "9d721245f3bbdfca",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "e31d7f287f02ea6d",
+  "service": "frontendservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "d5265f05ac9f29ae",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "a88a2c795bb68ceb",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "2aadaf1c2735e90a",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "75391c8049918a2d",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "22f323ea28a1a34d",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "48611919e82f753e",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "1c71a88f01e7262e",
+  "service": "frontendservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "52bbbb01092b1253",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "bf642d21e5145829",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "90f7ff506c7c12ac",
+  "service": "currencyservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "3bb7c588f99b328d",
+  "service": "recommendationservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "d70a077eff5953de",
+  "service": "productcatalogservice",
+  "tokens": 1041,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "cf4ac2f9c3b9e661",
+  "service": "productcatalogservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "a05cbe1682f8f49a",
+  "service": "productcatalogservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "f450b77cf3a15821",
+  "service": "productcatalogservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "498f65f90d908287",
+  "service": "productcatalogservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "fa36b41d1e6c2e58",
+  "service": "currencyservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "e741ea82a1de6eca",
+  "service": "productcatalogservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "59e7ed79ec04591f",
+  "service": "currencyservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "36523b2d3aa12368",
+  "service": "productcatalogservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "114d945d9ef97710",
+  "service": "currencyservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "85c4a5d961a86ded",
+  "service": "recommendationservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "35d74267a56ec042",
+  "service": "productcatalogservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ }
+]

@@ -1,0 +1,233 @@
+[
+ {
+  "span_id": "eea34ea2374470e8",
+  "service": "frontendservice",
+  "tokens": 1027,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "361b5826a35fc9cc",
+  "service": "frontendservice",
+  "tokens": 1049,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "b34ff2fa12cef491",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "bcb7169876325788",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "f4fc325826d5c021",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "016a246222216af5",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "f3a3327b51eaf404",
+  "service": "frontendservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "f52aefe86b869a56",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "91ea5289f513ece5",
+  "service": "frontendservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "85509a0016b038f4",
+  "service": "checkoutservice",
+  "tokens": 1050,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "0c0f84b780926bd7",
+  "service": "recommendationservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "a872f648e350107b",
+  "service": "productcatalogservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "b4836389d2f5eb7e",
+  "service": "productcatalogservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "54d2dc95f1c637c6",
+  "service": "productcatalogservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "fc0d6029438f1c66",
+  "service": "productcatalogservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "61a2f0a5465100d2",
+  "service": "productcatalogservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "ed42239e3689e23a",
+  "service": "currencyservice",
+  "tokens": 1052,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "67cc5a76527ce918",
+  "service": "checkoutservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "b81fe3f0112dfdb6",
+  "service": "checkoutservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "4e2a7c40e568011b",
+  "service": "checkoutservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "bd5c20acaf9d6308",
+  "service": "checkoutservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "8b3f43a3ae82c30c",
+  "service": "checkoutservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "822a8dabceaf24c6",
+  "service": "checkoutservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "a3a977f4f1b66f2c",
+  "service": "checkoutservice",
+  "tokens": 1050,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "6567803e5b170f76",
+  "service": "checkoutservice",
+  "tokens": 1048,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "d35933181dfbb00e",
+  "service": "checkoutservice",
+  "tokens": 1047,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "27ed34a01fce234b",
+  "service": "recommendationservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "72d41e000e7568ab",
+  "service": "productcatalogservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "7f59bc18c6ba6ac3",
+  "service": "productcatalogservice",
+  "tokens": 1046,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "285d04a8092bde04",
+  "service": "productcatalogservice",
+  "tokens": 1045,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "1973f4ddb245227b",
+  "service": "paymentservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "fc21afb786d86211",
+  "service": "emailservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ },
+ {
+  "span_id": "c24d6afb08a312f9",
+  "service": "productcatalogservice",
+  "tokens": 1042,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ }
+]

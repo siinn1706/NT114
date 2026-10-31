@@ -23,7 +23,7 @@ goals and `preregistration_sha`. Tables:
 every input and table) let `python -m rca.reproduce <out dir>` regenerate and compare the tables.
 
 Without `preregistration_sha` every file is prefixed `exploratory_`. With it, the headline guard
-refuses mock rows, DEV rows, mixed prompt versions, mixed model revisions or server fingerprints
+refuses mock rows, DEV or train rows, mixed prompt versions, mixed model revisions or server fingerprints
 within a model, oracle-store rows and mixed evidence fingerprints of an incident, and unvalidated
 confidence scores go to a separate exploratory file. `excluded_from_primary` records are removed
 from every table and counted in `analysis_meta.json`.
@@ -60,7 +60,7 @@ def _mixed_within(grid: pd.DataFrame, col: str, by) -> list:
 
 
 def guard_headline(grid: pd.DataFrame) -> None:
-    """Headline tables never contain mock rows, DEV rows, mixed prompt versions, mixed model revisions or
+    """Headline tables never contain mock rows, DEV or train rows, mixed prompt versions, mixed model revisions or
     server fingerprints within one model, oracle-store rows or mixed evidence fingerprints of an incident."""
     problems = []
     if not len(grid):
@@ -69,6 +69,8 @@ def guard_headline(grid: pd.DataFrame) -> None:
         problems.append("mock LLM rows")
     if "split_role" in grid and (grid["split_role"] == "val").any():
         problems.append("DEV (split_role=val) rows")
+    if "split_role" in grid and (grid["split_role"] == "train").any():
+        problems.append("train (split_role=train) rows")
     if "prompt_version" in grid and grid["prompt_version"].nunique() > 1:
         problems.append(f"mixed prompt_version {sorted(grid['prompt_version'].unique())}")
     for col in ("model_revision", "server_fp", "exec_sig"):

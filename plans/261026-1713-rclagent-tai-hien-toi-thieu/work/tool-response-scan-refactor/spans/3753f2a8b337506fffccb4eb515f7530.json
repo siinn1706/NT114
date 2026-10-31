@@ -1,0 +1,30 @@
+[
+ {
+  "span_id": "4328c108fb9d3425",
+  "service": "frontendservice",
+  "tokens": 1023,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "73a1f77043da05b5",
+  "service": "frontendservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "6eac797edf74d389",
+  "service": "frontendservice",
+  "tokens": 1043,
+  "log_bytes": 40,
+  "metric_bytes": 41
+ },
+ {
+  "span_id": "5170e6e0d44f80e2",
+  "service": "productcatalogservice",
+  "tokens": 1044,
+  "log_bytes": 40,
+  "metric_bytes": 44
+ }
+]

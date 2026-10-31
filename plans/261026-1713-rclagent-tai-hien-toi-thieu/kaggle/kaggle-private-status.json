@@ -2,7 +2,7 @@
   "dataset": {
     "ref": "siinn1706/rclagent-one-trace-smoke-261026",
     "is_private": true,
-    "version": 7,
+    "version": 14,
     "bytes": 0
   },
   "native_notebooks": {
@@ -27,6 +27,66 @@
       ]
     },
     "kaggle-source-v5": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
+    },
+    "kaggle-source-v6": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
+    },
+    "kaggle-source-v7": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
+    },
+    "kaggle-source-v8": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
+    },
+    "kaggle-source-v9": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
+    },
+    "kaggle-source-v10": {
+      "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
+      "is_private": true,
+      "enable_gpu": true,
+      "enable_internet": true,
+      "machine_shape": "NvidiaTeslaT4",
+      "dataset_sources": [
+        "siinn1706/rclagent-one-trace-smoke-261026"
+      ]
+    },
+    "kaggle-source-v11": {
       "id": "siinn1706/rclagent-one-trace-gpu-smoke-261026",
       "is_private": true,
       "enable_gpu": true,

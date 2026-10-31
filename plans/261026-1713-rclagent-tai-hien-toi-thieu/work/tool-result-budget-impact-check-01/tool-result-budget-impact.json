@@ -1,0 +1,380 @@
+{
+  "traces": 2,
+  "cases": 2,
+  "context": 16384,
+  "output_reserve": 512,
+  "budgets": [
+    1024,
+    2048,
+    4096
+  ],
+  "schemes": [
+    "cap",
+    "template",
+    "ladder"
+  ],
+  "prior_scan_mismatch_traces": [],
+  "instructed_queries_changed": {
+    "cap@1024": 0,
+    "cap@2048": 0,
+    "cap@4096": 0,
+    "template@1024": 0,
+    "template@2048": 0,
+    "template@4096": 0,
+    "ladder@1024": 0,
+    "ladder@2048": 0,
+    "ladder@4096": 0
+  },
+  "base0_max": 927,
+  "round_overhead_max": 103,
+  "metric_max_tokens": 10,
+  "own_max_tokens": 1050,
+  "changed_log_responses": 8,
+  "csv_roundtrip_exact": {
+    "true": 8
+  },
+  "by_budget": {
+    "cap@1024": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 2020,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 2005,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "cap_rows": 8
+      },
+      "rows_original": 7308,
+      "rows_covered": 123,
+      "rows_verbatim": 2123,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 1008
+    },
+    "cap@2048": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 3053,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 3040,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "cap_rows": 8
+      },
+      "rows_original": 7308,
+      "rows_covered": 266,
+      "rows_verbatim": 2976,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 2041
+    },
+    "cap@4096": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 5108,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 5109,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "cap_rows": 8
+      },
+      "rows_original": 7308,
+      "rows_covered": 551,
+      "rows_verbatim": 4269,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 4096
+    },
+    "template@1024": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 1466,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 1259,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "template_merge": 8
+      },
+      "rows_original": 7308,
+      "rows_covered": 7308,
+      "rows_verbatim": 1956,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 454
+    },
+    "template@2048": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 1466,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 1259,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "template_merge": 8
+      },
+      "rows_original": 7308,
+      "rows_covered": 7308,
+      "rows_verbatim": 1956,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 454
+    },
+    "template@4096": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 1466,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 1259,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "template_merge": 8
+      },
+      "rows_original": 7308,
+      "rows_covered": 7308,
+      "rows_verbatim": 1956,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 454
+    },
+    "ladder@1024": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 1466,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 1205,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "template_merge": 4,
+        "exact_merge": 4
+      },
+      "rows_original": 7308,
+      "rows_covered": 7308,
+      "rows_verbatim": 1956,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 454
+    },
+    "ladder@2048": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 1466,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 1205,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "template_merge": 4,
+        "exact_merge": 4
+      },
+      "rows_original": 7308,
+      "rows_covered": 7308,
+      "rows_verbatim": 1956,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 454
+    },
+    "ladder@4096": {
+      "max_round1_tokens_by_service": {
+        "adservice": 1026,
+        "cartservice": 1466,
+        "checkoutservice": 1026,
+        "currencyservice": 1026,
+        "emailservice": 1026,
+        "frontend": 1205,
+        "frontendservice": 1025,
+        "paymentservice": 1026,
+        "productcatalogservice": 1026,
+        "recommendationservice": 1179,
+        "redis": 1409,
+        "shippingservice": 1026
+      },
+      "traces_over_context_any_service": 0,
+      "traces_with_changed_response": 2,
+      "cases_with_changed_response": 2,
+      "traces_changed_by_service": {
+        "cartservice": 2,
+        "frontend": 2
+      },
+      "traces_with_stop": 0,
+      "changed_responses": 8,
+      "forms": {
+        "template_merge": 4,
+        "exact_merge": 4
+      },
+      "rows_original": 7308,
+      "rows_covered": 7308,
+      "rows_verbatim": 1956,
+      "error_rows_original": 0,
+      "error_rows_dropped": 0,
+      "responses_dropping_error_rows": 0,
+      "error_values_original": 0,
+      "error_values_not_verbatim": 0,
+      "max_tokens_after": 454
+    }
+  },
+  "four_round_worst_case": {
+    "1024": 5987,
+    "2048": 10083,
+    "4096": 18275
+  },
+  "elapsed_seconds": 167.8
+}

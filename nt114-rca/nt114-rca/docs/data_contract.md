@@ -81,6 +81,13 @@ python -m rca.prep verify-bundle <bundle_dir> [--deep]
 Exit codes: 0 ok, 2 usage, 3 finished with items that need attention, 4 integrity failure,
 5 precondition missing.
 
+A partial `normalize` (`--limit N` or `--incident UID`) rewrites the dataset with that subset, so it
+refuses to run over a full build; run it with a separate `--data-home`. AIOps2025 day archives are
+read through `extract`: a `<day>.tar.gz` in `raw/` without a complete extraction receipt stops
+`normalize` instead of leaving that day's incidents `natural_absent`. RCA100 times must carry their
+UTC offset (every source string has `+08:00` or `+0800`); a time without one fails its incident
+rather than being read in the machine's time zone.
+
 `build_id` is a hash of the config hash, adapter version, schema version and input digests, so a
 rebuild with the same inputs gives the same id. A rebuild without `--force` skips every incident
 whose `.done` marker matches (input digest, config hash, adapter version). The config hash
@@ -213,6 +220,12 @@ record its independent statistical unit:
      refused. Prompt v1 names one service root per precedent, so train incidents labelled only by a
      root set or a node are excluded and counted by granularity. The manifest's `store` block records
      the split, the counts and a binding hash, which is part of every retrieval row's resume key.
+   - A run on the train role (`split_role: train`) searches the same train store; each query's own
+     incident and split group are excluded at search time. Train queries labelled only by a node (no
+     service to score) are left out and counted in the manifest's `excluded_queries`. Evidence files
+     of incidents outside the selected queries are ignored and counted.
+   - The split and every condition matrix must come from the current build (`dataset_digest`,
+     `build_id`); otherwise the run stops and names `verify-splits` or `conditions`.
 4. The masking operator takes a service name; only the condition driver passes the root or the
    control target. The masked service is logged in `ablation_log.jsonl` next to the results,
    never in the evidence directory.

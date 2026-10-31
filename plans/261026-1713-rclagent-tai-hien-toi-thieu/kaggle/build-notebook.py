@@ -1,5 +1,6 @@
 """Generate a self-contained Kaggle notebook bound to the actual bundle SHA256."""
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 
@@ -10,15 +11,39 @@ def main():
     archive = HERE / 'rclagent-kaggle-bundle.zip'
     bundle_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
     manifest_hash = hashlib.sha256((HERE / 'manifest.json').read_bytes()).hexdigest()
-    source = (HERE / 'kaggle-runtime.py').read_text(encoding='utf-8')
+    # Exact bytes, no newline translation: Kaggle checks this copy against the manifest hash of the packaged file.
+    source = (HERE / 'kaggle-runtime.py').read_bytes().decode('utf-8')
     runtime_hash = hashlib.sha256(source.encode()).hexdigest()
+    packaged_hash = json.loads((HERE / 'manifest.json').read_text())['files']['kaggle-runtime.py']['sha256']
+    if runtime_hash != packaged_hash:
+        raise SystemExit('kaggle-runtime.py differs from the packaged runtime in manifest.json; refresh the package first')
     cells = []
     def markdown(text):
         cells.append({'cell_type': 'markdown', 'metadata': {}, 'source': text.splitlines(keepends=True)})
     def code(text):
         cells.append({'cell_type': 'code', 'metadata': {}, 'execution_count': None,
                       'outputs': [], 'source': text.splitlines(keepends=True)})
-    markdown('''# RCLAgent: một trace trên Kaggle GPU
+    manifest = json.loads((HERE / 'manifest.json').read_text())
+    spec = importlib.util.spec_from_file_location('kaggle_runtime', HERE / 'kaggle-runtime.py')
+    runtime = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(runtime)
+    limits = runtime.harness_limits(manifest)
+    traces = manifest['traces']
+    listed = '\n'.join(f"- `{t['trace_id']}` ({t['case']}, {t['span_count']} span)" for t in traces)
+    if manifest.get('runs'):
+        design = manifest['condition_design']
+        listed += (f"\n\nGói có {len(manifest['runs'])} lượt chạy: mỗi trace chạy một lần cho mỗi điều kiện "
+                   f"({', '.join(design['conditions'])}) và mỗi seed ({', '.join(map(str, design['seeds']))}). "
+                   'Mỗi lượt là một đơn vị chạy đúng một lần, khóa theo `run_id`.')
+    if limits != runtime.HARNESS_LIMITS:
+        listed += (f"\n\n**Cấu hình kiểm độ nhạy về trần:** {limits['max_tool_rounds_per_span']} vòng tool mỗi span, "
+                   f"{limits['max_model_requests_including_retry']} model request tính cả retry, deadline "
+                   f"{limits['rcl_deadline_seconds']} giây mỗi lượt (cấu hình chính: "
+                   f"{runtime.HARNESS_LIMITS['max_tool_rounds_per_span']}, "
+                   f"{runtime.HARNESS_LIMITS['max_model_requests_including_retry']}, "
+                   f"{runtime.HARNESS_LIMITS['rcl_deadline_seconds']}). Model, prompt, tool, sampling, context, "
+                   'output và retry giữ nguyên. Kết quả báo cáo tách khỏi cấu hình chính.')
+    markdown('''# RCLAgent: ''' + (f'{len(traces)} trace train' if len(traces) > 1 else 'một trace') + ''' trên Kaggle GPU
 
 Notebook smoke test với backbone thay thế. Giữ nguyên code/prompt/tool tác giả tại
 `3052e7a6a9598d984ba1482f3dc41123c8823a99`; giữ suy luận theo span và gộp đệ quy.
@@ -29,8 +54,10 @@ Chưa tái hiện Table I, chưa đo độ chính xác, chưa chạy H1/IM1/R-a.
 Cấu hình cố định này hỗ trợ GPU compute capability ≥7.5, ít nhất 13.000 MiB VRAM trống
 trên **một** thiết bị; không hỗ trợ P100. Nếu được T4 ×2, chỉ dùng một T4.
 
-Chạy các cell từ trên xuống. Cell C–F chỉ chạy **một lần**; lỗi sẽ dừng và xuất log.
-Không tự xóa run-once.json để thử lại, đổi model hoặc tăng trần.
+Chạy các cell từ trên xuống. Cell C–F chạy mỗi trace **đúng một lần**; lỗi sẽ dừng và xuất log.
+Nếu phiên bị ngắt, chạy lại cell C–F, hoặc gắn ZIP kết quả cũ làm input của phiên mới,
+để chạy tiếp các trace còn lại. Trace đã xong, kể cả thất bại, không chạy lại.
+Không tự xóa run-once.json hay progress.json để thử lại, đổi model hoặc tăng trần.
 ''')
     native_path = HERE / 'kaggle-native-summary.json'
     if native_path.exists():
@@ -70,7 +97,104 @@ Server/process đã dọn; log và phần đã hoàn thành được giữ trong
 
 Đây là kết quả smoke bị dừng ở E, không phải pass end-to-end hoặc kết luận
 về accuracy/phương pháp gốc. Không mở rộng dữ liệu, sửa prompt/tool hay chạy lại
-để chọn đáp án. Code cell bên dưới khớp source version 5 đã chạy; chỉ thêm ghi chú.
+để chọn đáp án trong lượt đó.
+''')
+        markdown('''## Version 6: phạm vi query theo cửa sổ thời gian
+
+Chẩn đoán sau version 5: tool tác giả nhận mọi service_name/timestamp và phục vụ
+toàn bộ dữ liệu gộp; dữ liệu đầy đủ có log cartservice trong ±60 giây quanh root span.
+Query đó hợp lệ theo contract tác giả; gói cũ chỉ chứa các cặp service/giây của span
+nên guard chặt hơn tác giả. Bản này đóng gói mọi dòng metric trong ±1.200 giây và mọi
+dòng log trong ±60 giây quanh các giây của trace, mọi service, đều thuộc đúng ca này;
+phản hồi endpoint gốc khớp byte với dữ liệu đầy đủ (cpu-equivalence.json). Guard cho
+mọi service, chỉ chặn timestamp ngoài cửa sổ. Không đổi prompt, tool, model hoặc trần.
+
+Rủi ro đã biết trước khi chạy: kết quả log cartservice gốc khoảng 125 nghìn token.
+Nếu model gọi lại query này, request tiếp theo vượt context và lượt chạy dừng vì
+overflow, không cắt ngữ cảnh.
+''')
+    v6_path = HERE / 'kaggle-repair-v6-summary.json'
+    if v6_path.exists():
+        v6 = json.loads(v6_path.read_text())
+        assert v6['status']['status'] == 'failed' and v6['status']['stage'] == 'E'
+        markdown('''## Kết quả version 6
+
+D đạt. E dừng sau 2 model requests: model hỏi cartservice, tool trả đúng dữ liệu đầy đủ
+(272.734 byte), và request thứ ba cần 126.088 token, vượt context 16.384. Guard dừng
+trước khi gửi, không cắt ngữ cảnh. Chưa có kết quả cuối hoặc điểm chấm; process đã dọn.
+Quét CPU 450 error trace của 90 ca RE2-OB: mọi trace đều có query search_logs hợp lệ
+(cartservice) vượt context ngay vòng tool đầu.
+''')
+        markdown('''## Từ version 7: ngân sách kết quả search_logs (sai lệch so với tác giả)
+
+Theo quyết định của chủ dự án, wrapper ngoài upstream đặt ngân sách **2.048 token**
+(tokenizer Qwen đúng revision) cho mỗi kết quả `search_logs`, áp như nhau cho mọi ca.
+Kết quả trong ngân sách được trả **nguyên byte**. Kết quả lớn hơn được rút gọn theo bậc,
+chọn bước đầu tiên vừa ngân sách: gộp dòng trùng hệt (giữ số lần, giây đầu/cuối),
+rồi gộp theo mẫu thông điệp (che UUID và từ có chữ số thành `<*>`, giữ số lần và giá trị
+nguyên văn đầu tiên), cuối cùng mới cắt theo ưu tiên severity, có ghi rõ `truncated`.
+Model thấy một dòng thông báo `[harness tool-result budget ...]` ở đầu kết quả.
+Từ bản batch, các `search_logs` trong cùng một lượt trả lời của model chia đều ngân sách:
+mỗi kết quả nhận ⌊2.048 / n⌋ token. Khi lượt chỉ có một `search_logs` (mọi lượt của
+version 7 và 8), ngân sách vẫn là 2.048 và kết quả không đổi byte nào.
+Kết quả metric, prompt, model, sampling, context, output, retry, số vòng tool và các trần
+giữ nguyên; guard vẫn dừng khi vượt context, không cắt ngữ cảnh.
+
+Kiểm CPU trước khi chạy: query đúng chỉ dẫn của prompt không đổi byte nào trên 450 trace;
+không bỏ dòng log hay dòng ERROR nào; tái dựng request thứ ba của version 6 từ 126.088
+còn 1.589 token. Kết quả của notebook này là của bản thích nghi có ngân sách,
+không so trực tiếp với Table I.
+''')
+    v7_path = HERE / 'kaggle-repair-v7-summary.json'
+    if v7_path.exists():
+        v7 = json.loads(v7_path.read_text())
+        assert v7['status']['status'] == 'failed' and v7['status']['stage'] == 'E'
+        markdown('''## Kết quả version 7
+
+Ngân sách hoạt động: root span lại hỏi cartservice, phản hồi 124.953 token được gộp
+còn 454 token, không bỏ dòng nào. E chạy 60 requests HTTP 200 trong 620,7 giây,
+27/33 span qua self-state, prompt lớn nhất 1.719 token. Lượt chạy dừng ở request 60:
+model gọi search_fluctuating_metrics với timestamp `1808475368747` (sai một chữ số),
+guard chặn vì ngoài cửa sổ trace. Chưa có kết quả cuối hoặc điểm chấm; process đã dọn.
+''')
+        markdown('''## Từ version 8: timestamp ngoài toàn bộ dữ liệu
+
+Trên dữ liệu đầy đủ, tool tác giả trả rỗng cho query của version 7 vì mọi dòng metric/log
+nằm trong giây [1.705.339.822, 1.708.489.861]; gói cũng trả rỗng, nên guard version 7
+chặt hơn tác giả. Guard nay cho qua thêm query có cửa sổ endpoint (±1.200 giây metric,
+±60 giây log) nằm hoàn toàn ngoài khoảng dữ liệu đầy đủ, ghi trong `selection.json`.
+Mọi timestamp khác ngoài cửa sổ trace vẫn bị chặn. Không đổi prompt, tool, model,
+ngân sách hay các trần; cùng trace và cấu hình với version 7.
+''')
+    v8_path = HERE / 'kaggle-repair-v8-summary.json'
+    if v8_path.exists():
+        v8 = json.loads(v8_path.read_text())
+        assert v8['status']['status'] == 'passed' and v8['phases']['trace']['request_count'] == 106
+        markdown('''## Kết quả version 8
+
+Chạy trọn A–F trên một T4: 106 model requests trong 1.332,9 giây, 38 kết quả search_logs
+(1 kết quả được rút gọn), có kết quả cuối và điểm chấm của tác giả cho trace này.
+Đây là một trace smoke, không phải ước lượng độ chính xác.
+''')
+        markdown('''## Bản này: chạy nhiều trace train
+
+Gói chứa một thư mục con cho mỗi trace (`traces/<trace_id>/`): dữ liệu của riêng trace,
+`selection.json`, báo cáo tương đương CPU và nhãn chấm điểm. Mỗi gói con được đối chiếu
+endpoint gốc với dữ liệu đầy đủ như version 6–8. Các trace của lượt này:
+
+''' + listed + '''
+
+Thứ tự chạy theo gói; mỗi trace có tool server, trần và deadline riêng. Không đổi prompt,
+tool, model, sampling, context, output, retry, số vòng tool hay các trần.
+''')
+        markdown('''## Từ version 11: server không chunked prefill
+
+Đến version 10, server prefill theo khối 2.048 token. Trên T4, prompt tổng hợp 8.446 token
+của trace 45 span cần khoảng 232 giây, vượt timeout 180 giây của upstream. Từ version 11,
+server prefill cả prompt trong một bước (`--max-num-batched-tokens` bằng context, không
+`--enable-chunked-prefill`). Lượt đo riêng cho prompt đó còn 9,4 giây, và câu trả lời của
+5 prompt đo được giống hệt cấu hình cũ. Cell C dừng nếu log vLLM cho thấy chunked prefill
+vẫn bật. Đây là thay đổi cấu hình server, không đổi các thiết lập đóng băng.
 ''')
     code('''# Bootstrap chuẩn thư viện Python; chưa cài hay chạy model.
 import hashlib, importlib.util, json
@@ -80,7 +204,7 @@ EXPECTED_MANIFEST_SHA256 = ''' + repr(manifest_hash) + '''
 RUNTIME_SOURCE = ''' + repr(source) + '''
 assert hashlib.sha256(RUNTIME_SOURCE.encode()).hexdigest() == ''' + repr(runtime_hash) + '''
 runtime_path = Path('/tmp/rclagent-kaggle-runtime.py')
-runtime_path.write_text(RUNTIME_SOURCE, encoding='utf-8')
+runtime_path.write_bytes(RUNTIME_SOURCE.encode())
 spec = importlib.util.spec_from_file_location('rclagent_kaggle_runtime', runtime_path)
 rcl = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rcl)
@@ -117,7 +241,7 @@ except BaseException:
     rcl.preparation_failure('B')
     raise
 ''')
-    markdown('''## C–F. Server localhost → gate tổng hợp → một trace → xuất kết quả và dọn process
+    markdown('''## C–F. Server localhost → gate tổng hợp → từng trace → xuất kết quả và dọn process
 
 Các bước C–F nằm trong cùng một cell có `try/finally` để dọn process cả khi lỗi hoặc
 người dùng Interrupt. Không có server nào được giữ lại giữa các cell.
@@ -130,17 +254,22 @@ search_logs, trả kết quả bằng role=tool, gọi print_results theo schema
 Chuyển enable_thinking sang chat_template_kwargs; chặn trường lạ. D thất bại thì
 không khởi động tool server trên dữ liệu benchmark; không có parser văn bản vá lỗi.
 
-**E:** đúng trace `68791e1f360d910bd01428c3cd9748ef` / root `6752e26884a7fee8`,
-33 span. Trần 160 model requests **tính cả retry**, 30 phút từ lúc bắt đầu E,
-concurrency=1, tối đa 4 vòng tool/span; retry client gốc tối đa 3 attempt.
+**E:** lần lượt từng trace trong `manifest.json` của gói. Mỗi trace có tool server riêng
+trên dữ liệu của chính nó, trần ''' + str(limits['max_model_requests_including_retry']) + ''' model requests **tính cả retry** và ''' + f"{limits['rcl_deadline_seconds'] / 60:g}" + ''' phút riêng,
+concurrency=1, tối đa ''' + str(limits['max_tool_rounds_per_span']) + ''' vòng tool/span; retry client gốc tối đa 3 attempt.
 Output tối đa 512 token cho self-state/consolidation, 1.024 cho synthesizer.
 Input+output vượt context, output bị cắt, OOM, sai schema hoặc không có kết quả hợp lệ
-đều dừng. Query tool ngoài cặp service/time của trace cũng dừng vì gói không bao phủ.
+đều dừng. Query tool cho mọi service được trả như dữ liệu đầy đủ; timestamp ngoài các giây
+của trace dừng vì gói không bao phủ. Kết quả search_logs trên 2.048 token được rút gọn
+theo ngân sách ở trên; bản gốc và bản model nhận đều được ghi trong events.jsonl.
 Không cắt context, không tự tăng giới hạn, không chạy lại để chọn đáp án.
+Một trace dừng (guard, deadline, lỗi HTTP) được ghi `failed` kèm lý do trong
+`run/progress.json`, rồi lượt chuyển sang trace kế tiếp, không retry. Nếu model server
+chết thì cả lượt dừng; các trace còn lại giữ trạng thái chờ để chạy tiếp.
 
 **F:** lưu request/response, lỗi, số lời gọi, token khi server trả usage, thời gian,
 RAM/VRAM đỉnh lấy mẫu (~1 giây). Chỉ sau khi E kết thúc và đã tắt model server mới
-mở scoring/groundtruth.csv rồi chạy scorer tác giả. File ZIP được xuất cả khi thất bại.
+mở nhãn của từng trace đã qua rồi chạy scorer tác giả cho trace đó. File ZIP được xuất cả khi thất bại.
 SIGKILL/khởi động lại kernel không cho Python thực hiện finally; lỗi và Interrupt thông thường có cleanup.
 ''')
     code('''from IPython.display import display, FileLink
@@ -159,13 +288,14 @@ finally:
     markdown('''## Đọc kết quả
 
 Tải `/kaggle/working/rclagent-smoke/rclagent-smoke-results.zip` và file .sha256.
-Trong ZIP: `run/status.json`, `run/trace/worker-status.json`, `run/trace/events.jsonl`,
-`run/trace/result.json` (nếu có), `run/scoring/author-score.txt` (chỉ khi hoàn thành),
-resource-peaks.json, resources.jsonl và log server/process. Marker protocol_pass nằm
-trong `run/protocol/events.jsonl`. Thất bại luôn được giữ, không loại khỏi báo cáo.
+Trong ZIP: `run/status.json`, `run/progress.json` (trạng thái và lý do của từng trace),
+`run/traces/<trace_id>/worker-status.json`, `events.jsonl`, `result.json` (nếu có),
+`run/scoring/<trace_id>/author-score.txt` (chỉ trace đã qua), resource-peaks.json,
+resources.jsonl và log server/process. Marker protocol_pass nằm trong
+`run/protocol/events.jsonl`. Thất bại luôn được giữ, không loại khỏi báo cáo.
 
-Log tool có thể rỗng theo cách lọc upstream; không bổ sung tín hiệu. Một trace không
-dùng best-of-traces. Đầu ra cuối không cung cấp confidence cho H1. Kết quả đúng/sai
+Log tool có thể rỗng theo cách lọc upstream; không bổ sung tín hiệu. Mỗi trace được chấm
+riêng, không dùng best-of-traces. Đầu ra cuối không cung cấp confidence cho H1. Kết quả đúng/sai
 của backbone 4B này không tự chứng minh chất lượng phương pháp gốc.
 
 Chuẩn bị CPU đã đối chiếu tool với dữ liệu đầy đủ; xem cpu-equivalence.json trong

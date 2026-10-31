@@ -105,3 +105,22 @@ def test_cli_status_and_validate(tmp_path, capsys, monkeypatch):
     rep = read_json(dh / "reports/quality-rcaeval.json")
     assert rep["invariant_error_count"] == 0 and rep["states"]["REJECT"] == 1
     assert prep.main(["--data-home", str(tmp_path / "empty"), "validate", "--dataset", "rcaeval"]) == prep.EXIT_PRECONDITION
+
+
+def test_partial_normalize_never_replaces_a_full_build(tmp_path):
+    dh = tmp_path / "dh"
+    build_fixture_home(dh)
+    out1, build1 = _outputs(dh), (dh / DS / "_build.json").read_bytes()
+    uid = read_jsonl(dh / DS / "visible/incidents.jsonl")[0]["incident_uid"]
+    for kwargs in ({"limit": 2}, {"only_uid": uid}):
+        try:
+            prep.build_dataset("rcaeval", fixture_config(), dh, max_workers=1, log=lambda *a: None, **kwargs)
+        except RuntimeError as exc:
+            assert "separate --data-home" in str(exc)
+        else:
+            raise AssertionError(f"partial build {kwargs} replaced the full build")
+        assert _outputs(dh) == out1 and (dh / DS / "_build.json").read_bytes() == build1
+    fresh = tmp_path / "scratch"     # a data home without a full build still takes a partial one
+    shutil.copytree(dh / "raw", fresh / "raw")
+    r = prep.build_dataset("rcaeval", fixture_config(), fresh, max_workers=1, limit=2, log=lambda *a: None)
+    assert r["counts"]["partial"] and r["counts"]["records"] <= 2

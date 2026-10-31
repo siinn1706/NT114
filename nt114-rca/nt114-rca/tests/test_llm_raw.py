@@ -8,7 +8,7 @@ import pytest
 
 from conftest import canonical_run_cfg
 from rca import run_grid
-from rca.llm import LLM, Cache, build_messages, check_no_secrets, compact_logprobs, redact_url
+from rca.llm import LLM, Cache, aggregate, build_messages, check_no_secrets, compact_logprobs, parse, redact_url
 
 MSG = json.dumps({"reason": "slow db", "ranking": ["a", "b"], "confidence": 70, "insufficient_evidence": False,
                   "next_check": "logs"})
@@ -97,6 +97,35 @@ def test_sampled_token_logprob_kept_when_outside_top():
     lp = {"content": [{"token": "x", "logprob": -7.5, "bytes": [120],
                        "top_logprobs": [{"token": "a", "logprob": -0.1}, {"token": "b", "logprob": -2.3}]}]}
     assert compact_logprobs(lp) == [{"token": "x", "logprob": -7.5, "top": [["a", -0.1], ["b", -2.3]]}]
+
+
+def _answer(**over) -> str:
+    return json.dumps({"reason": "r", "ranking": ["a", "b"], "confidence": 70, "insufficient_evidence": False,
+                       "next_check": "logs", **over})
+
+
+def test_repeated_ranking_entries_count_once():
+    assert parse(_answer(ranking=["a", "a", "a"]), CANDS)["ranking"] == ["a"]
+    assert parse(_answer(ranking=["b", "a", "b", "c"]), CANDS)["ranking"] == ["b", "a", "c"]
+    # samples cached before parsing deduplicated still score each service once
+    s = [{"ok": True, "ranking": r, "confidence": 0.5, "insufficient": False, "next_check": ""}
+         for r in (["a", "a", "a"], ["b", "c"], ["b", "c"])]
+    assert aggregate(s)["ranking"] == ["b", "c", "a"]
+
+
+@pytest.mark.parametrize("conf", ["85%", [1], 150, -1, True, None])
+def test_malformed_confidence_is_a_parse_failure(conf):
+    s = parse(_answer(confidence=conf), CANDS)
+    assert not s["ok"] and s["confidence"] == 0.0
+    g = aggregate([s, parse(_answer(), CANDS)])
+    assert g["parse_rate"] == 0.5 and g["conf_verbal"] == pytest.approx(0.7)
+
+
+@pytest.mark.parametrize("text", ["[1, 2]", '"a"', "3", json.dumps({"ranking": "abc", "confidence": 50}),
+                                  json.dumps({"ranking": 7, "confidence": 50})])
+def test_answer_of_another_shape_is_a_parse_failure(text):
+    s = parse(text, CANDS)
+    assert not s["ok"] and s["ranking"] == []
 
 
 def test_mock_backend_records_raw(tmp_path):

@@ -1,0 +1,6 @@
+[harness tool-result budget 4096 tokens: 1557 rows merged into 4 message templates (variable parts (UUIDs and words containing digits) masked as <*>); count, first/last second, distinct values and the first verbatim value kept; log_id omitted; no row omitted]
+cmdb_id,log_name,severity,message_template,count,first_timestamp,last_timestamp,distinct_values,first_value
+cartservice,log_cartservice,unknown,GetCartAsync called with userId=<*>,1306,1708475308,1708475428,50,"severity: unknown, message: GetCartAsync called with userId=51123fda-5449-4917-827b-630daf8bf5b0"
+cartservice,log_cartservice,unknown,Checking CartService Health,26,1708475308,1708475428,1,"severity: unknown, message: Checking CartService Health"
+cartservice,log_cartservice,unknown,"AddItemAsync called with userId=<*>, productId=<*>, quantity=<*>",171,1708475308,1708475427,165,"severity: unknown, message: AddItemAsync called with userId=eac527e6-e35a-4389-930a-43841a939973, productId=0PUK6V6EV0, quantity=10"
+cartservice,log_cartservice,unknown,EmptyCartAsync called with userId=<*>,54,1708475313,1708475426,33,"severity: unknown, message: EmptyCartAsync called with userId=fb5e5ca1-3554-4702-b458-975395c05865"

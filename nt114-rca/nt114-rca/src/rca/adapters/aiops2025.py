@@ -129,11 +129,16 @@ class Aiops2025Adapter(Adapter):
         return ctx.work / "extract" / rel
 
     def _days(self, ctx) -> list[str]:
+        """Extracted days. A day archive without a complete extraction stops the build: its incidents would
+        otherwise read as telemetry the dataset never had."""
         ex = self._extract(ctx)
-        if not ex.is_dir():
-            return []
-        return sorted(p.name for p in ex.iterdir() if p.is_dir() and re.match(r"^\d{4}-\d{2}-\d{2}$", p.name)
-                      and (p / ".extract.json").is_file())
+        days = sorted(p.name for p in ex.iterdir() if p.is_dir() and re.match(r"^\d{4}-\d{2}-\d{2}$", p.name)
+                      and (p / ".extract.json").is_file()) if ex.is_dir() else []
+        archived = sorted(p.name[:-len(".tar.gz")] for p in self._raw(ctx).glob("*.tar.gz"))
+        missing = [d for d in archived if d not in days]
+        if missing:
+            raise RuntimeError(f"day archives not extracted: {', '.join(missing)}; run `rca.prep extract` first")
+        return days
 
     def _receipt(self, ctx, day: str) -> dict:
         if day not in self._receipts:

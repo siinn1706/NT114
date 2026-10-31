@@ -1,0 +1,98 @@
+[
+ {
+  "case": "checkoutservice_cpu_1",
+  "fault": "cpu",
+  "service": "checkoutservice",
+  "trace_id": "de6a503bf0003321a77f9ca923d0bd87",
+  "spans": 25,
+  "bucket": "short",
+  "est_s": 502,
+  "est_req": 81.3,
+  "gt_in_trace": false,
+  "heur_rank": null
+ },
+ {
+  "case": "emailservice_delay_3",
+  "fault": "delay",
+  "service": "emailservice",
+  "trace_id": "30e3c732adf9978eb0814d796e7194a5",
+  "spans": 23,
+  "bucket": "short",
+  "est_s": 463,
+  "est_req": 75.1,
+  "gt_in_trace": false,
+  "heur_rank": null
+ },
+ {
+  "case": "checkoutservice_mem_1",
+  "fault": "mem",
+  "service": "checkoutservice",
+  "trace_id": "5f7a7727f3c44b318a0ff9676d2af7b9",
+  "spans": 39,
+  "bucket": "long",
+  "est_s": 771,
+  "est_req": 124.9,
+  "gt_in_trace": true,
+  "heur_rank": 1
+ },
+ {
+  "case": "currencyservice_loss_3",
+  "fault": "loss",
+  "service": "currencyservice",
+  "trace_id": "99f095aeb2571c7f2ee99885e8332c8a",
+  "spans": 25,
+  "bucket": "short",
+  "est_s": 502,
+  "est_req": 81.3,
+  "gt_in_trace": true,
+  "heur_rank": 1
+ },
+ {
+  "case": "currencyservice_disk_3",
+  "fault": "disk",
+  "service": "currencyservice",
+  "trace_id": "ad1c27da086fee80da27cbdf90e7b6e8",
+  "spans": 25,
+  "bucket": "short",
+  "est_s": 502,
+  "est_req": 81.3,
+  "gt_in_trace": true,
+  "heur_rank": 1
+ },
+ {
+  "case": "recommendationservice_socket_1",
+  "fault": "socket",
+  "service": "recommendationservice",
+  "trace_id": "7bbfa6060d6e01eed1ac0ec2ceead992",
+  "spans": 23,
+  "bucket": "short",
+  "est_s": 463,
+  "est_req": 75.1,
+  "gt_in_trace": true,
+  "heur_rank": 3
+ },
+ {
+  "case": "recommendationservice_cpu_2",
+  "fault": "cpu",
+  "service": "recommendationservice",
+  "trace_id": "272a47c21e51eefb241d43403e3b2c26",
+  "spans": 25,
+  "bucket": "short",
+  "est_s": 502,
+  "est_req": 81.3,
+  "gt_in_trace": false,
+  "heur_rank": null
+ },
+ {
+  "case": "emailservice_delay_1",
+  "fault": "delay",
+  "service": "emailservice",
+  "trace_id": "29583dc604a5ce5fdd4daab6bf3144c4",
+  "spans": 31,
+  "bucket": "medium",
+  "est_s": 617,
+  "est_req": 100.0,
+  "gt_in_trace": true,
+  "heur_rank": 5
+ }
+]

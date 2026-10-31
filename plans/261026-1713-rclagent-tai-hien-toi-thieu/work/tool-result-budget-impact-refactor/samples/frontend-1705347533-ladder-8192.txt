@@ -1,0 +1,5 @@
+[harness tool-result budget 8192 tokens: 771 rows merged into 3 identical (cmdb_id, log_name, value) entries; count and first/last second kept; log_id omitted; no row omitted]
+cmdb_id,log_name,value,count,first_timestamp,last_timestamp
+frontend,log_frontend,"severity: unknown, message: env platform is either empty or invalid",128,1705347473,1705347593
+frontend,log_frontend,"severity: warning, message: failed to get product recommendations",642,1705347504,1705347592
+frontend,log_frontend,"severity: warning, message: failed to retrieve ads",1,1705347533,1705347533

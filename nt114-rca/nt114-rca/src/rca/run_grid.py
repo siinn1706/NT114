@@ -116,22 +116,33 @@ class Canon:
     def __init__(self, cfg):
         from .prep import load_config, resolve_data_home
         from .splits import load_condition_matrix
-        from .store import CanonicalStore, read_jsonl
+        from .store import CanonicalStore, read_json, read_jsonl
         self.cfg = cfg
         self.data_home = resolve_data_home(cfg.get("data_home"), load_config())
         self.prep_cfg = load_config()
         self.store = CanonicalStore(self.data_home)
         self.datasets = list(cfg.get("canonical_datasets", ["rcaeval"]))
-        self.matrix = {}
-        for ds in self.datasets:
-            self.matrix.update(load_condition_matrix(self.data_home, ds)["incidents"])
+        builds = {ds: self.store.build(ds) for ds in self.datasets}
         self.split_dir = self._split_dir(cfg.get("split"))
         self.roles, self.group = {}, {}
         if self.split_dir:
+            # A split made on another build assigns roles to incidents that may have changed or gone.
+            for b in read_json(self.split_dir / "split.json")["builds"]:
+                if b["dataset_id"] in builds and b["dataset_digest"] != builds[b["dataset_id"]]["dataset_digest"]:
+                    raise RuntimeError(f"split {self.split_dir.name} was made on another {b['dataset_id']} build: "
+                                       "run `verify-splits`, then make the split again")
             for a in read_jsonl(self.split_dir / "assignments.jsonl"):
                 self.roles[a["incident_uid"]] = a["split"]
                 self.group[a["incident_uid"]] = a["group_id_hash"]
+        self.matrix = {}
+        for ds in self.datasets:
+            m = load_condition_matrix(self.data_home, ds)
+            if (m["build_id"], m["dataset_digest"]) != (builds[ds]["build_id"], builds[ds]["dataset_digest"]):
+                raise RuntimeError(f"condition matrix of {ds} is from build {m['build_id']}, not the current "
+                                   f"{builds[ds]['build_id']}: run `conditions` again")
+            self.matrix.update(m["incidents"])
         self._labels = {}
+        self.excluded_queries = {}
 
     def _split_dir(self, name):
         if not name:
@@ -186,6 +197,14 @@ class Canon:
         incs = [i for i in incs if (not subsets or i.get("dataset_subset") in subsets)
                 and i["system"] in self.cfg.get("systems", [i["system"]])]
         lab = self.labels()
+        if "train" in self.split_roles():
+            # A train query labelled only by a node has no service to score; it is left out and counted.
+            scorable = [i for i in incs if score.truth_ids(self.truth(i["incident_uid"]))]
+            missing = len(incs) - len(scorable)
+            self.excluded_queries = {"no_service_label": missing} if missing else {}
+            if missing:
+                print(f"queries: {missing} train incidents without a service label left out")
+            incs = scorable
         incs = _sample(incs, lambda i: i["system"],
                        lambda i: (lab[i["incident_uid"]]["fault"]["type_raw"], i["incident_uid"]), self.cfg.get("limit_per_system"))
         return [(visible_case(i), i) for i in sorted(incs, key=lambda i: i["incident_uid"])]
@@ -420,15 +439,22 @@ def load_evidence(cfg) -> list[dict]:
     from .legacy_view import visible_case
     recs = []
     cn = Canon(cfg)
+    wanted = {vc.case_id for vc, _ in cn.selected()}
+    stray = 0
     for f in sorted(evidence_dir(cfg).glob("*.json")):
         with open(f, encoding="utf-8") as fh:
             r = json.load(fh)
+        if r.get("incident_uid") not in wanted:   # left by another split, role or limit
+            stray += 1
+            continue
         if r.get("schema") != EVIDENCE_SCHEMA:
             raise RuntimeError(f"{f}: evidence schema {r.get('schema')!r} is not {EVIDENCE_SCHEMA}; rerun `prepare`")
         _check_current(r, cn.evidence_fp(r["incident_uid"]), f)
         r["vc"] = visible_case(cn.store.incident(r["incident_uid"]))
         r["truth"] = cn.truth(r["incident_uid"])
         recs.append(r)
+    if stray:
+        print(f"evidence: {stray} files outside the selected incidents ignored")
     return recs
 
 
@@ -471,8 +497,10 @@ def _store_entries(cfg, cn: Canon) -> tuple[list[dict], dict]:
     queries = {vc.case_id for vc, _ in cn.selected()}
     sdir = evidence_dir(cfg) / "store"
     entries, excluded = [], {}
+    # Train queries search the train store itself; their own incident and group are excluded at search time.
+    train_queries = "train" in cn.split_roles()
     for u in eligible:
-        if cn.roles.get(u) != "train" or u in queries:
+        if cn.roles.get(u) != "train" or (u in queries and not train_queries):
             raise RuntimeError(f"store incident {u} is not a train-role incident outside the scored set")
         f = sdir / f"{u}.json"
         if not f.is_file():
@@ -569,7 +597,8 @@ def write_manifest(cfg, cn: Canon, server_fps: dict, started: float, executions:
         bundle["manifest_sha256"] = hashlib.sha256((root / "MANIFEST.sha256").read_bytes()).hexdigest()
     man = {"git_commit": _git("rev-parse", "HEAD"), "git_dirty": bool(_git("status", "--porcelain", "--", ".")),
            **bundle, "split_id": cn.split_id,
-           "split_roles": cn.split_roles(), "config_hash": cfg["_hash"],
+           "split_roles": cn.split_roles(), **({"excluded_queries": cn.excluded_queries} if cn.excluded_queries else {}),
+           "config_hash": cfg["_hash"],
            "models": [{"name": m["name"], "role": m.get("role", "primary"), "revision": m.get("revision"),
                        "quantization": m.get("quantization"), "backend": m.get("backend", "vllm"),
                        "presence_penalty": m.get("presence_penalty"),

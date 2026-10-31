@@ -66,6 +66,14 @@ METRIC_SET = {"apm.service.legacy": "default", "k8s.deployment": "default", "apm
               "apm.metric.thread": "default", "apm.metric.exception": "default", "apm.instance": "instance",
               "apm.operation": "operation", "k8s.pod": "pod", "k8s.node": "node", "k8s.namespace": "cluster",
               "k8s.cluster": "cluster"}
+def _aware(s: str) -> datetime:
+    """ISO time with its own offset; a naive string would be read in the machine's time zone."""
+    d = datetime.fromisoformat(s)
+    if d.tzinfo is None:
+        raise ValueError(f"time {s!r} has no UTC offset")
+    return d
+
+
 OTEL_ERROR = "2"      # OTel StatusCode: 0 unset, 1 ok, 2 error
 
 
@@ -208,7 +216,7 @@ class Rca100Adapter(Adapter):
             system=SYSTEM, dataset_subset="RCA100", lineage_group="L2",
             group_key=inc.hints.get("group_key"),
             label_artifacts=[{"kind": "rca100:answer_key", "ref": inc.refs["label"][0].member}],
-            truth_end_ns=int(datetime.fromisoformat(end).timestamp() * 1e9) if end else None)
+            truth_end_ns=int(_aware(end).timestamp() * 1e9) if end else None)
         return lab, findings
 
     # ------------------------------------------------------------ 3 identity
@@ -253,7 +261,7 @@ class Rca100Adapter(Adapter):
         findings = []
         trig = inc.hints["task"].get("alert_trigger_time")
         if trig:
-            d = int(datetime.fromisoformat(trig).timestamp()) - t
+            d = int(_aware(trig).timestamp()) - t
             if d:
                 findings.append(finding("ANCHOR_FIELD_DISAGREE", f"task alert_trigger_time - first OCCURRED alert = {d} s; alert used"))
         pre, post = inc.hints["pre_s"], inc.hints["post_s"]
