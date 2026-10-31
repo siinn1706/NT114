@@ -14,6 +14,7 @@ Tài liệu này viết cho người tiếp quản, hoặc cho AI của người
 | Chạy S1 v2 trên Kaggle | Xong ngày 2026-10-31, tài khoản `svuittri` chạy hai kernel `svuittri/rclagent-missing-source-{a,b}-s1-gpu-261030`. Output ở `runtime/kaggle-output-{a,b}-s1-v2/` |
 | Phân tích S1 và báo cáo cạnh vòng 2 | Xong. Xem [results S1 v2](results-261031-1715-rclagent-s1-v2-budget-sensitivity.md) và [plan 261031-1655](../261031-1655-rclagent-s1-v2-analysis-and-pr2/plan.md) |
 | Quyết Q1–Q9 và cố định thứ tự service trong prompt | Xong ngày 2026-10-31. Xem [quyết định 261031-1839](decision-261031-1839-rclagent-audit-q1-q9.md) |
+| Chạy S1 v3 (giới hạn S1, hash seed cố định, sửa Q8 và Q9) trên Kaggle | Đã đẩy tối 2026-10-31 bằng tài khoản `siinn1706`: kernel `siinn1706/rclagent-missing-source-{a,b}-s1-hashseed-gpu-261031`, dataset private `siinn1706/rclagent-missing-source-{a,b}-s1-hashseed-261031`. Gói ở `kaggle/s1-v3/`. Bundle A `6496fe85…3074`, B `149997c6…9cef`. Khi xong, tải output vào `runtime/kaggle-output-{a,b}-s1-v3/` |
 
 Phần "Cập nhật 2026-10-30" trong [handoff S1](handoff-261029-1710-rclagent-budget-sensitivity-s1.md) ghi chi tiết nguyên nhân lỗi v1, cách sửa, các hash của v2 và kết quả kiểm.
 
@@ -26,7 +27,7 @@ Phần "Cập nhật 2026-10-30" trong [handoff S1](handoff-261029-1710-rclagent
 - `kaggle-output-*` (output tải từ Kaggle) và `analysis-*` (output analyzer).
 - Thư mục đẩy `kaggle-dataset-upload-*` và `kaggle-kernel-upload-*`.
 
-Ở cấp `kaggle/`, các file `manifest.json`, `rclagent-kaggle-smoke.ipynb` và `package-validation.json` là gói B dựng lại ngày 2026-10-31 từ stage `runtime/package-missing-source-b-hashseed` (giới hạn S1, thêm hash seed cố định và sửa Q8, Q9; chưa chạy trên Kaggle) và có commit. Bản B-S1 v2 đã chạy nằm nguyên trong `kaggle/s1-v2/b/`. `rclagent-kaggle-bundle.zip` ở cấp `kaggle/` thì không có trên GitHub, nhưng ZIP của cả A lẫn B đều có trong `kaggle/s1-v2/`. Cách dựng lại môi trường và dữ liệu RE2-OB nằm ở [handoff train split](handoff-261028-0630-rclagent-train-split-kaggle-batches.md), mục điều kiện ngoài repo, và ở [README CPU](../261026-1713-rclagent-tai-hien-toi-thieu/README.md).
+Ở cấp `kaggle/`, các file `manifest.json`, `rclagent-kaggle-smoke.ipynb` và `package-validation.json` là gói B dựng lại ngày 2026-10-31 từ stage `runtime/package-missing-source-b-hashseed` (giới hạn S1, thêm hash seed cố định và sửa Q8, Q9) và có commit. Đây chính là gói S1 v3 B; bản sao đủ file của S1 v3 A và B nằm trong `kaggle/s1-v3/`. Bản B-S1 v2 đã chạy nằm nguyên trong `kaggle/s1-v2/b/`. `rclagent-kaggle-bundle.zip` ở cấp `kaggle/` thì không có trên GitHub, nhưng ZIP của cả A lẫn B đều có trong `kaggle/s1-v2/` và `kaggle/s1-v3/`. Cách dựng lại môi trường và dữ liệu RE2-OB nằm ở [handoff train split](handoff-261028-0630-rclagent-train-split-kaggle-batches.md), mục điều kiện ngoài repo, và ở [README CPU](../261026-1713-rclagent-tai-hien-toi-thieu/README.md).
 
 ## Việc tiếp theo
 
@@ -106,7 +107,7 @@ Nếu sửa `smoke-worker.py` hoặc `tool-result-budget.py`, phải chạy lạ
 
 ## Ràng buộc cần giữ
 
-- **File `.py` trong `kaggle/` phải dùng LF.** Repo đặt `core.autocrlf=true`, nên công cụ sửa file trên Windows có thể ghi lại CRLF. Nay `build-notebook.py` sẽ từ chối dựng, và `verify-package.py` cùng test `test_notebook_runtime_matches_packaged_runtime` sẽ báo lỗi nếu hash lệch. Nếu gặp lỗi đó, đưa file về LF rồi chạy lại `refresh-package.py`.
+- **File `.py` trong `kaggle/` phải dùng LF.** Repo đặt `core.autocrlf=true`, nên công cụ sửa file trên Windows, hay chính `git checkout`, có thể ghi lại CRLF. Từ 2026-10-31, `kaggle/.gitattributes` buộc mọi file `.py` ở đây dùng LF khi checkout. Lần checkout `main` trước khi có file này đã ghi CRLF cho 25 script, và nếu runtime lẫn manifest cùng CRLF thì `build-notebook.py` không phát hiện ra. Nay `build-notebook.py` sẽ từ chối dựng, và `verify-package.py` cùng test `test_notebook_runtime_matches_packaged_runtime` sẽ báo lỗi nếu hash lệch. Nếu gặp lỗi đó, đưa file về LF rồi chạy lại `refresh-package.py`.
 - Vượt context là lỗi dừng, không được cắt ngữ cảnh.
 - Không sửa kết quả cũ. Không ghi đè bundle, manifest hay log của các vòng trước. Output mới luôn ghi vào thư mục mới.
 - Không mở lại H1/IM1. Các câu Q1–Q9 trong [audit](audit-261029-1121-rclagent-missing-source-analyzer-harness.md) đã được quyết ngày 2026-10-31 theo ủy quyền của sếp, xem [quyết định 261031-1839](decision-261031-1839-rclagent-audit-q1-q9.md).
@@ -114,7 +115,7 @@ Nếu sửa `smoke-worker.py` hoặc `tool-result-budget.py`, phải chạy lạ
   ```bash
   for t in test-kaggle-harness test-missing-source-conditions test-tool-result-budget test-vllm-t4-compat test-prefill-bench test-analyze-missing-source-results test-analyze-completion-and-budget-stops; do runtime/harness-env/Scripts/python.exe -X utf8 $t.py; done
   ```
-  Kết quả mong đợi: 44, 14, 11, 4, 6, 16 và 4 test pass. `test-kaggle-harness`, `test-missing-source-conditions` và `test-vllm-t4-compat` đọc dữ liệu trong `runtime/`, nên trên bản clone mới sẽ lỗi nếu chưa dựng lại `runtime/`. Lỗi đó không có nghĩa là mã sai.
+  Kết quả mong đợi: 48, 14, 11, 4, 6, 20 và 4 test pass. `test-kaggle-harness`, `test-missing-source-conditions` và `test-vllm-t4-compat` đọc dữ liệu trong `runtime/`, nên trên bản clone mới sẽ lỗi nếu chưa dựng lại `runtime/`. Lỗi đó không có nghĩa là mã sai.
 
 ## Câu hỏi còn mở
 

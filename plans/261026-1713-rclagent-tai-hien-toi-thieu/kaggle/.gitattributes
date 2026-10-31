@@ -1,0 +1,2 @@
+# Packaged scripts are hashed byte for byte; core.autocrlf must never turn them into CRLF.
+*.py text eol=lf

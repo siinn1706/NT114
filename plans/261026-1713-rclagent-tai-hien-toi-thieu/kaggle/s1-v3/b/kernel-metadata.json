@@ -1,0 +1,15 @@
+{
+  "id": "siinn1706/rclagent-missing-source-b-s1-hashseed-gpu-261031",
+  "title": "RCLAgent Missing Source B S1 Hashseed GPU 261031",
+  "code_file": "rclagent-kaggle-smoke.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": ["siinn1706/rclagent-missing-source-b-s1-hashseed-261031"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
