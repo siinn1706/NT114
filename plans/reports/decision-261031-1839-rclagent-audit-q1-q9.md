@@ -209,5 +209,5 @@ Lượt chỉ được chạy lại một lần. Nếu vLLM lại chết trong c
 
 ## Câu hỏi còn mở
 
-- Một vLLM treo mà tiến trình vẫn sống vẫn bị ghi failed. Có cần thêm health probe trước lần chạy GPU tới không?
+- Một vLLM treo mà tiến trình vẫn sống vẫn bị ghi failed. Có cần thêm health probe trước lần chạy GPU tới không? Cập nhật 2026-10-31 tối: đã thêm probe, sinh 1 token và có timeout, cho các gói sau S1 v3. Probe cũng sửa race của phép kiểm ngay sau khi worker báo lỗi. Xem handoff 261030-1156, mục ràng buộc. S1 v3 đang chạy vẫn dùng phép kiểm cũ.
 - Gói mới chưa chạy xong trên Kaggle. `PYTHONHASHSEED` chưa được kiểm trên T4 thật. Cập nhật 2026-10-31 tối: gói A và B (`kaggle/s1-v3/`) đã được đẩy lên Kaggle, xem handoff 261030-1156.

@@ -105,17 +105,36 @@ Thứ tự lệnh, chạy trong `kaggle/` bằng Python của `runtime/harness-e
 
 Nếu sửa `smoke-worker.py` hoặc `tool-result-budget.py`, phải chạy lại `check-tool-result-budget.py TOKENIZER_DIR` trước `verify-package.py`.
 
+### 5. Khi S1 v3 xong
+
+1. Tải output của hai kernel `siinn1706/rclagent-missing-source-{a,b}-s1-hashseed-gpu-261031` vào `runtime/kaggle-output-{a,b}-s1-v3/`.
+2. Chạy phép kiểm thứ tự service, trong `kaggle/`. `PY313` phải là Python 3.13, cùng phiên bản minor với Kaggle (máy gốc có sẵn bản do `uv python install 3.13` cài, ở `%APPDATA%/uv/python/cpython-3.13.18-windows-x86_64-none/python.exe`):
+   ```bash
+   R=runtime; runtime/harness-env/Scripts/python.exe -X utf8 check-hash-seed-order.py $R/analysis-hash-seed-s1-v3 "$PY313" \
+     A $R/kaggle-output-a-s1-v3/rclagent-smoke/rclagent-smoke-results.zip s1-v3/a/manifest.json \
+       $R/kaggle-output-a-s1-v2/rclagent-smoke/rclagent-smoke-results.zip s1-v2/a/manifest.json \
+     B $R/kaggle-output-b-s1-v3/rclagent-smoke/rclagent-smoke-results.zip s1-v3/b/manifest.json \
+       $R/kaggle-output-b-s1-v2/rclagent-smoke/rclagent-smoke-results.zip s1-v2/b/manifest.json
+   ```
+   Lệnh thoát với mã 0 khi mọi prompt tổng hợp của S1 v3 có đúng thứ tự service mà seed 0 cho ra, và ít nhất một prompt trong đó có thứ tự phụ thuộc seed. Docstring của script giải thích các nhãn.
+3. Đọc `summary.json`:
+   - `same_order_different_output` phải rỗng. Nếu có cặp nào, thì cùng thứ tự service mà đầu ra vẫn khác, nghĩa là có nguyên nhân khác ngoài hash seed.
+   - Các cặp trong `unexplained` cần xem tay. Sửa Q8 có thể làm đổi hành vi ở lượt mà model viết `Action:` giữa câu.
+   - Lúc chạy thử với S1 v2 làm bên mới và vòng 2 làm bên cũ, script cho 50 cặp `identical`, 14 cặp `order_only` và 8 cặp `unexplained`; 8 cặp này chính là 8 lượt chạm trần ở vòng 2. Bên S1 v2 có 16 prompt khác thứ tự seed 0, như mong đợi khi seed còn ngẫu nhiên.
+4. Chạy analyzer cho S1 v3 như bước 3 ở trên, ghi vào thư mục `runtime/analysis-*-s1-v3` mới.
+
 ## Ràng buộc cần giữ
 
 - **File `.py` trong `kaggle/` phải dùng LF.** Repo đặt `core.autocrlf=true`, nên công cụ sửa file trên Windows, hay chính `git checkout`, có thể ghi lại CRLF. Từ 2026-10-31, `kaggle/.gitattributes` buộc mọi file `.py` ở đây dùng LF khi checkout. Lần checkout `main` trước khi có file này đã ghi CRLF cho 25 script, và nếu runtime lẫn manifest cùng CRLF thì `build-notebook.py` không phát hiện ra. Nay `build-notebook.py` sẽ từ chối dựng, và `verify-package.py` cùng test `test_notebook_runtime_matches_packaged_runtime` sẽ báo lỗi nếu hash lệch. Nếu gặp lỗi đó, đưa file về LF rồi chạy lại `refresh-package.py`.
 - Vượt context là lỗi dừng, không được cắt ngữ cảnh.
+- **Gói ở cấp `kaggle/` có probe sức khoẻ vLLM; S1 v3 thì chưa.** Sau mỗi lượt lỗi và trước mỗi lượt, `server_healthy` gửi một request sinh 1 token với `temperature=0`, rồi chờ tối đa 60 s. Nếu thử 3 lần, cách nhau 10 s, mà vẫn không được, server bị coi là đã chết, kể cả khi tiến trình còn sống nhưng engine treo. Khi đó batch dừng, và lượt vừa lỗi sẽ chạy lại khi resume. `/health` của vLLM V0 không phát hiện được engine treo, nên không dùng nó. Prefix caching đang tắt (`enable_prefix_caching=None` trong log), nên request probe không ảnh hưởng tới request sau.
 - Không sửa kết quả cũ. Không ghi đè bundle, manifest hay log của các vòng trước. Output mới luôn ghi vào thư mục mới.
 - Không mở lại H1/IM1. Các câu Q1–Q9 trong [audit](audit-261029-1121-rclagent-missing-source-analyzer-harness.md) đã được quyết ngày 2026-10-31 theo ủy quyền của sếp, xem [quyết định 261031-1839](decision-261031-1839-rclagent-audit-q1-q9.md).
 - Mọi test chỉ chạy CPU. Lệnh chạy toàn bộ test, trong `kaggle/`:
   ```bash
-  for t in test-kaggle-harness test-missing-source-conditions test-tool-result-budget test-vllm-t4-compat test-prefill-bench test-analyze-missing-source-results test-analyze-completion-and-budget-stops; do runtime/harness-env/Scripts/python.exe -X utf8 $t.py; done
+  for t in test-kaggle-harness test-missing-source-conditions test-tool-result-budget test-vllm-t4-compat test-prefill-bench test-analyze-missing-source-results test-analyze-completion-and-budget-stops test-compare-run-outputs test-check-hash-seed-order; do runtime/harness-env/Scripts/python.exe -X utf8 $t.py; done
   ```
-  Kết quả mong đợi: 48, 14, 11, 4, 6, 20 và 4 test pass. `test-kaggle-harness`, `test-missing-source-conditions` và `test-vllm-t4-compat` đọc dữ liệu trong `runtime/`, nên trên bản clone mới sẽ lỗi nếu chưa dựng lại `runtime/`. Lỗi đó không có nghĩa là mã sai.
+  Kết quả mong đợi: 59, 14, 11, 4, 6, 20, 4, 13 và 19 test pass. `test-check-hash-seed-order` mất vài phút, vì mỗi seed khởi động một tiến trình Python. `test-kaggle-harness`, `test-missing-source-conditions` và `test-vllm-t4-compat` đọc dữ liệu trong `runtime/`, nên trên bản clone mới sẽ lỗi nếu chưa dựng lại `runtime/`. Lỗi đó không có nghĩa là mã sai.
 
 ## Câu hỏi còn mở
 
