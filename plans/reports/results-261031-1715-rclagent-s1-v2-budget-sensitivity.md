@@ -191,8 +191,8 @@ Cả hai lượt giống nhau về lý do ở hai vòng và về số request. �
 
 ## Câu hỏi còn mở
 
-- **Có sửa tính không tất định về thứ tự service trong prompt tổng hợp cho các lần chạy sau không?** Hiện nó làm 20/64 cặp không chạm trần khác nhau ở request cuối, không đổi điểm, nhưng làm giảm khả năng kiểm tra "cùng đầu vào cho cùng đầu ra". Cách sửa nằm ở upstream hoặc ở lớp harness; chưa chọn. Việc này chỉ nên làm với lần chạy mới, không sửa kết quả cũ.
-- **Q1–Q9 của audit vẫn chờ chủ dự án.** Báo cáo này không trả lời câu nào; mục 5–7 chỉ bổ sung dữ kiện cho Q2 (công khai các case chịu ảnh hưởng bởi trần).
+- **Có sửa tính không tất định về thứ tự service trong prompt tổng hợp cho các lần chạy sau không?** Hiện nó làm 20/64 cặp không chạm trần khác nhau ở request cuối, không đổi điểm, nhưng làm giảm khả năng kiểm tra "cùng đầu vào cho cùng đầu ra". Cách sửa nằm ở upstream hoặc ở lớp harness; chưa chọn. Việc này chỉ nên làm với lần chạy mới, không sửa kết quả cũ. *Cập nhật 2026-10-31:* đã xác nhận nguyên nhân là `set(...)` ở `coordinator.py:483` và đã sửa ở lớp harness bằng `PYTHONHASHSEED=0`, xem [quyết định 261031-1839](decision-261031-1839-rclagent-audit-q1-q9.md).
+- **Q1–Q9 của audit vẫn chờ chủ dự án.** Báo cáo này không trả lời câu nào; mục 5–7 chỉ bổ sung dữ kiện cho Q2 (công khai các case chịu ảnh hưởng bởi trần). *Cập nhật 2026-10-31:* đã quyết theo ủy quyền của sếp, xem [quyết định 261031-1839](decision-261031-1839-rclagent-audit-q1-q9.md).
 - **Có merge [PR #2](https://github.com/siinn1706/NT114/pull/2) không?** Merge ngay sau khi commit báo cáo này, hay chờ quyết định Q1–Q9.
 - **Hai lượt B lỗi giao thức lặp lại ở cả hai vòng** (mục 7) có cần xử lý trong harness hay chấp nhận như hiện nay? Một lượt là tool call sai sau đủ lần hỏi lại, một lượt là agent không trả span id.
 - **Có chạy thêm gì để tách tác động của từng giới hạn không?** Hiện chỉ có kết quả đổi đồng thời ba giới hạn. Một lần chạy khác sẽ cần GPU và dựng gói mới.
