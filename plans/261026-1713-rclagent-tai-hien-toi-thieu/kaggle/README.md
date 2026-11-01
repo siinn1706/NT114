@@ -84,3 +84,17 @@ Một trace không dùng best-of-traces. Scorer một ca là kết quả mô t�
 ## Xác minh và kết quả thực tế
 
 Các kết quả CPU và bản đóng gói được ghi trong `cpu-equivalence.json`, `package-validation.json` và `preparation-report.md`. Kiểm bằng fixture tổng hợp chỉ xác minh đường code, không chứng minh model thật gọi tool đúng. Kết quả Kaggle thực tế, nếu có, được ghi riêng trong `kaggle-run-report.md` cùng URL phiên và log tải về.
+
+## Đo nơi mất bằng chứng (RQ b)
+
+[`analyze-evidence-loss.py`](analyze-evidence-loss.py) tính, cho từng lượt chạy, chỉ báo I0 đến I5 theo giai đoạn của chuỗi bằng chứng, chỉ từ `events.jsonl` trong ZIP kết quả; không gọi model, không Kaggle, không đọc test split. Test: `runtime/harness-env/Scripts/python.exe -X utf8 test-analyze-evidence-loss.py` ([`test-analyze-evidence-loss.py`](test-analyze-evidence-loss.py)).
+
+```
+analyze-evidence-loss.py OUT_DIR PACKAGE ZIP MANIFEST [PACKAGE ZIP MANIFEST ...] [--label NAME] [--runs FILE] [--structure-only]
+```
+
+- `--label` ghi tên corpus vào `summary.json`; `--runs FILE` chỉ giữ các run id liệt kê trong file (mỗi dòng một id); `--structure-only` chỉ đếm span, span của dịch vụ lỗi và độ sâu cây theo case, không ghi chỉ báo hay nhãn.
+- Analyzer từ chối ghi vào thư mục đã có `summary.json`; đầu ra nằm ở `runtime/analysis-evidence-loss-*` và không được ghi đè.
+- Luật ở [codebook đóng băng](../../reports/prereg-261031-2311-rclagent-evidence-loss-codebook.md). [`evidence-loss-prereg.json`](evidence-loss-prereg.json) giữ SHA256 của codebook, của analyzer và của bốn module nó nạp; hash tính trên byte file sau khi đổi mọi CRLF thành LF. `summary.json` ghi `prereg.codebook_sha_matches`, `analyzer_sha_matches` và `imports_sha_match`; ba cờ phải cùng `true`, nếu không đo này không còn dưới luật đóng băng. Không sửa analyzer, codebook hay module nạp sau đóng băng; thay đổi đi qua [nhật ký deviation](../../261031-2311-rclagent-evidence-loss-analysis/deviation-log.md).
+- [`decide-evidence-loss-outcomes.py`](decide-evidence-loss-outcomes.py) dựng ba CSV quyết định `outcome-sentences.csv`, `x-direction-ranking.csv` và `predictions.csv` từ `runs.csv` và `spans.csv` của analyzer (vị từ câu kết cục, ngưỡng n >= 3 và xếp hạng theo mục 9, dự đoán theo mục 10 của codebook); không model, không Kaggle, tệp đã có trong thư mục đích bị thay. Lệnh: `decide-evidence-loss-outcomes.py [--analysis DIR] [--analysis-r2 DIR] [--out DIR]`, mặc định `runtime/analysis-evidence-loss-s1-v2`, `runtime/analysis-evidence-loss-r2` và `runtime/analysis-evidence-loss-decision`. Test: `runtime/harness-env/Scripts/python.exe -X utf8 test-decide-evidence-loss-outcomes.py` ([`test-decide-evidence-loss-outcomes.py`](test-decide-evidence-loss-outcomes.py)); bước cuối dựng lại ba CSV từ analysis thật và so từng byte với file trong `runtime/`, thiếu đầu vào thì lỗi trừ khi đặt `EVIDENCE_LOSS_ALLOW_NO_ZIP=1`. Script không phải analyzer đóng băng và không nằm trong biên nhận.
+- Kết quả và cách đọc: [báo cáo kết quả](../../reports/analysis-261101-1023-rclagent-evidence-loss-results.md).
