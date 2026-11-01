@@ -98,6 +98,8 @@ S1 v3 cùng prompt và seed với S1 v2, chỉ khác thứ tự hint (hash seed 
 4. `join` `runs.csv` của S1 v3 với S1 v2 như so vòng 2 với S1 v2. Báo số cặp trùng ở I0 đến I3, I4, I5 và danh sách cặp lệch. I0 đến I3 trùng là một giả thuyết đo được, không phải bất biến, vì thay đổi tool-call rejection của S1 v3 có thể đổi luồng; lệch nhiều là một phát hiện về tính tất định.
 5. Thêm mục "S1 v3 như bản sao" vào báo cáo kết quả.
 
+Trạng thái 2026-11-01: đã chạy S1 v3. Thứ tự hint đúng seed 0 ở 70/70 prompt, `runs.csv` trùng từng byte với S1 v2 (72/72 cặp, 0 lệch), biên nhận khớp, câu kết cục không đổi; báo cáo ở [analysis-261101-s1-v3-hashseed-and-evidence-loss-check.md](analysis-261101-s1-v3-hashseed-and-evidence-loss-check.md).
+
 ## Ràng buộc
 
 - Codebook, analyzer và bốn module nạp bị đóng băng; một vấn đề luật đóng băng thì dừng và báo, không sửa im lặng.
