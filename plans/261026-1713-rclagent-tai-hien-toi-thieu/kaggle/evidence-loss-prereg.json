@@ -1,0 +1,17 @@
+{
+  "codebook_version": "v1",
+  "codebook_path": "plans/reports/prereg-261031-2311-rclagent-evidence-loss-codebook.md",
+  "codebook_sha256": "f06077a1a3eb2ab0301f605edbe7e48ef5d94a80b7a99fcd0f5fb3a6f73fc769",
+  "analyzer_path": "analyze-evidence-loss.py",
+  "analyzer_sha256": "0460964ae37a4210e277ac31070b2c67979606794a58274a3a2258d7eb70d978",
+  "imports_sha256": {
+    "check-hash-seed-order.py": "a64bd1eb2d59e284074bbb7c0c21c74dca0169f527987f39ce28e21b60e0f457",
+    "compare-run-outputs.py": "060f928c6453a99070f7396e2c2026d2ff1559cd821cbf10400920639032c6bf",
+    "analyze-missing-source-results.py": "dfc89d2830fa1d46839a700111818c687340e911e625806c69e0e7f962e3bee3",
+    "analyze-completion-and-budget-stops.py": "360e168f99229a9897f0df1c8e9459d116a694932db106331fdbe98c3ed305e6"
+  },
+  "hash_rule": "file bytes with every CRLF turned into LF, UTF-8, SHA256 (hex, lower case)",
+  "frozen_at_asia_saigon": "2026-11-01T03:50:04+07:00",
+  "seed": 20261031,
+  "order_evidence": "local freeze only, no independent timestamp: no commit was made at freeze time"
+}

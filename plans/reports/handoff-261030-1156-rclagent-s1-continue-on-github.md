@@ -1,5 +1,7 @@
 # Bàn giao để tiếp tục trên GitHub: RCLAgent, kiểm độ nhạy trần S1 — 2026-10-30
 
+> Phân tích đo nơi mất bằng chứng (RQ b) trên S1 v2 có bàn giao riêng: [handoff-261101-1045](handoff-261101-1045-rclagent-evidence-loss.md).
+
 Tài liệu này viết cho người tiếp quản, hoặc cho AI của người đó, khi bắt đầu từ một bản clone mới của nhánh `feat/rclagent-harness-budget-guard`. Đọc file này trước, rồi mới đọc các report được dẫn.
 
 ## Đang ở đâu
