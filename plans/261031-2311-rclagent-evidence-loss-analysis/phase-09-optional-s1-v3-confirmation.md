@@ -35,3 +35,11 @@ Hash zip khớp `.sha256`, `check-hash-seed-order.py` báo đúng thứ tự see
 
 ## Rollback
 Xóa các thư mục đầu ra `analysis-evidence-loss-s1-v3*` và mục S1 v3 trong báo cáo.
+
+## Kết quả
+
+Đã chạy 2026-11-01. Báo cáo: [analysis-261101-s1-v3-hashseed-and-evidence-loss-check.md](../reports/analysis-261101-s1-v3-hashseed-and-evidence-loss-check.md).
+- Zip khớp `.sha256`; `check-hash-seed-order.py` thoát 0: 70/70 prompt cuối đúng thứ tự seed 0 (S1 v2: 54/70), 62 `identical`, 10 `order_only`, 0 `unexplained`, `same_order_different_output` rỗng.
+- Analyzer đóng băng: ba cờ prereg `true`, `integrity_problems` rỗng. `runs.csv` của S1 v3 trùng từng byte với S1 v2, nên I0 đến I5, `rank`, `first_loss_linear`, `final_residual`, D1, D2 trùng 72/72, không có cặp lệch; câu kết cục k/n ở bảng chính không đổi.
+- Hai trace B thất bại `H_parse`, giống hệt S1 v2; không có `H_cap` hay `H_infra`, không có server chết.
+- Vẫn là bản sao, không thêm bằng chứng độc lập.
