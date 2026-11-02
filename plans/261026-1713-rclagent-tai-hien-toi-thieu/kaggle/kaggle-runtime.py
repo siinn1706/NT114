@@ -95,7 +95,10 @@ def environment():
     context = 16384 if chosen['total_mib'] < 22000 else 32768
     # One prefill step for the whole prompt: on T4, chunked prefill (2.048) made an 8.4k-token
     # synthesis prompt take ~230 s against the upstream 180 s client timeout.
-    settings = {'gpu': chosen, 'context': context,
+    # A bundle sharded across slots runs one model server per device, each a single-GPU copy of this setting.
+    settings = {'gpu': chosen, 'gpus': [g for g in eligible if g['name'] == chosen['name']
+                                        and (g['total_mib'] < 22000) == (chosen['total_mib'] < 22000)],
+                'context': context,
                 'dtype': 'half', 'tensor_parallel_size': 1, 'max_num_seqs': 1,
                 'vllm_engine': 'V0',
                 'enable_chunked_prefill': False, 'max_num_batched_tokens': context,
@@ -244,19 +247,19 @@ class Processes:
         self.children = []
         self.files = []
 
-    def start(self, name, argv, env):
+    def start(self, name, argv, env, port=None):
         log = (self.result / (name + '.log')).open('wb')
         self.files.append(log)
         child = subprocess.Popen(argv, env=env, cwd=self.result,
                                  stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
-        self.children.append({'name': name, 'process': child, 'argv': argv})
+        self.children.append({'name': name, 'process': child, 'argv': argv, 'port': port})
         self.record()
         return child
 
     def record(self):
         dump(self.result / 'processes.json', [{'name': item['name'], 'pid': item['process'].pid,
-            'port': 8000 if item['name'] == 'vllm' else 5000 if item['name'].startswith('tools-') else None,
-            'cwd': str(self.result), 'argv': item['argv'], 'exit': item['process'].poll()} for item in self.children])
+            'port': item['port'], 'cwd': str(self.result), 'argv': item['argv'], 'exit': item['process'].poll()}
+            for item in self.children])
 
     def stop(self, child):
         # Only process groups created by start_new_session=True in this run.
@@ -340,10 +343,10 @@ def assert_unserved(port):
             raise RuntimeError(f'Port {port} still held by another process; refusing to start a tool server')
 
 
-def start_tool_server(proc, name, argv, env, probe_url, timeout):
-    """Start a tool server on port 5000; one that never becomes ready is stopped before the error propagates."""
-    assert_unserved(5000)
-    child = proc.start(name, argv, env)
+def start_tool_server(proc, name, argv, env, probe_url, timeout, port=5000):
+    """Start a tool server on its slot's port; one that never becomes ready is stopped before the error propagates."""
+    assert_unserved(port)
+    child = proc.start(name, argv, env, port)
     try:
         wait_ready(child, probe_url, timeout)
     except BaseException:
@@ -352,11 +355,11 @@ def start_tool_server(proc, name, argv, env, probe_url, timeout):
     return child
 
 
-def score_runs(package, result, progress, python, env):
+def score_runs(package, result, progress, python, env, shard=None):
     """Score each passed run with the author's evaluate.py on its own; return the run_ids whose scoring failed."""
     shutil.rmtree(result / 'scoring', ignore_errors=True)
     failed = []
-    for entry in run_entries(package):
+    for entry in run_entries(package, shard):
         if progress['traces'][entry['run_id']]['status'] != 'passed':
             continue
         trace_dir, scoring = package / entry['dir'], result / 'scoring' / entry['run_id']
@@ -450,8 +453,12 @@ def synthetic_data(path):
         (path / 'metric' / name).write_bytes(b'\x80\x04}\x94.')
 
 
-def export_results(result):
-    archive = ROOT / 'rclagent-smoke-results.zip'
+def shard_label(shard):
+    return '' if shard is None else '-' + shard.replace(':', '-').replace('/', '-of-')
+
+
+def export_results(result, shard=None):
+    archive = ROOT / f'rclagent-smoke-results{shard_label(shard)}.zip'
     allowed_extra = ('environment-before.json', 'settings.json', 'environment-isolated.json',
                      'pip-freeze.txt', 'pip-check.txt', 'install.log', 'input-verification.json')
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zipped:
@@ -464,15 +471,16 @@ def export_results(result):
         for path in sorted((ROOT / 'compatibility').rglob('*')):
             if path.is_file():
                 zipped.write(path, 'compatibility/' + path.relative_to(ROOT / 'compatibility').as_posix())
-    (ROOT / 'rclagent-smoke-results.zip.sha256').write_text(digest(archive) + '  ' + archive.name + '\n')
+    archive.with_name(archive.name + '.sha256').write_text(digest(archive) + '  ' + archive.name + '\n')
     print('Results:', archive, 'SHA256:', digest(archive))
     return archive
 
 
-def run_entries(package):
-    """The manifest's runs (a trace under one seed and source condition), or one author-condition run per trace."""
+def run_entries(package, shard=None):
+    """The manifest's runs (a trace under one seed and source condition), or one author-condition run per trace;
+    a bundle that assigns runs to sites runs one shard per worker slot."""
     manifest = json.loads((package / 'manifest.json').read_text())
-    return manifest.get('runs') or [dict(t, run_id=t['trace_id']) for t in manifest['traces']]
+    return shard_runs(manifest.get('runs') or [dict(t, run_id=t['trace_id']) for t in manifest['traces']], shard)
 
 
 def harness_limits(manifest):
@@ -491,13 +499,44 @@ def limit_options(limits):
     return [part for key, flag in LIMIT_FLAGS.items() for part in (flag, str(limits[key]))]
 
 
+COMPONENT_FLAGS = {'gap_aware': '--gap-aware', 'trace_kpi': '--trace-kpi', 'trace_expand': '--trace-expand'}
+
+
 def worker_options(entry):
     """Worker flags of one run; a run without them keeps the author's tools and the frozen seed."""
     options = []
     for flag in ('seed', 'logs', 'metric'):
         if flag in entry:
             options += ['--' + flag, str(entry[flag])]
+    for key, flag in COMPONENT_FLAGS.items():
+        if entry.get(key) is True:
+            options.append(flag)
+        elif key in entry and entry[key] is not False:
+            raise ValueError(f'Run {entry["run_id"]}: {key} must be true or false')
     return options
+
+
+def parse_shard(shard):
+    """'SITE:K/N' -> (site, k, n): the k-th of n slices of the runs whose site is SITE."""
+    site, _, part = shard.partition(':')
+    k, _, n = part.partition('/')
+    k, n = int(k), int(n)
+    if not site or not 0 <= k < n:
+        raise ValueError('Shard must look like SITE:K/N with 0 <= K < N: ' + shard)
+    return site, k, n
+
+
+def shard_runs(runs, shard):
+    """Runs of one shard: within its site, in package order, every n-th run starting at k."""
+    if shard is None:
+        if any('site' in run for run in runs):
+            raise ValueError('This bundle assigns runs to sites; name a shard')
+        return runs
+    site, k, n = parse_shard(shard)
+    mine = [run for run in runs if run.get('site') == site]
+    if not mine:
+        raise ValueError('No run of this bundle belongs to site ' + site)
+    return mine[k::n]
 
 
 def set_aside(path):
@@ -518,7 +557,7 @@ def load_progress(path, bundle_sha256):
     return progress
 
 
-def run_traces(package, result, bundle_sha256, run_trace, model_alive):
+def run_traces(package, result, bundle_sha256, run_trace, model_alive, shard=None):
     """Run every packaged run once, in package order, recording progress after each state change.
 
     A run is a trace under one seed and source condition; progress, outputs and scores are keyed by its run_id
@@ -534,7 +573,7 @@ def run_traces(package, result, bundle_sha256, run_trace, model_alive):
     """
     path = result / 'progress.json'
     progress = load_progress(path, bundle_sha256)
-    for entry in run_entries(package):
+    for entry in run_entries(package, shard):
         state = progress['traces'].setdefault(entry['run_id'], {'case': entry['case'], 'attempts': []})
         if state.get('status') in ('passed', 'failed'):
             continue
@@ -607,48 +646,81 @@ def preparation_failure(stage):
     return export_results(output)
 
 
-def run_once(expected_sha256, expected_manifest_sha256):
-    kaggle_only()
-    package = unpack(find_archive(), expected_sha256, expected_manifest_sha256)
+_SHARED = threading.Lock()  # Slots of one session share settings, the run marker and the model cache.
+
+
+def run_slots(expected_sha256, expected_manifest_sha256, shards):
+    """Run several shards at once, shard i on eligible GPU i with its own model and tool ports; return archives."""
     settings = json.loads((ROOT / 'settings.json').read_text())
-    limits = harness_limits(json.loads((package / 'manifest.json').read_text()))
-    settings.update(limits)  # Record the limits this bundle's traces run under.
-    dump(ROOT / 'settings.json', settings)
-    if json.loads((ROOT / 'compatibility/status.json').read_text())['status'] != 'passed':
-        raise RuntimeError('Run the synthetic GPU kernel compatibility check before starting the model')
-    marker = ROOT / 'run-once.json'
-    if marker.exists():
-        state = json.loads(marker.read_text())
-        if state['bundle_sha256'] != expected_sha256:
-            raise RuntimeError('A run of another bundle exists here; stop without altering it')
-        state['resumed'] = state.get('resumed', []) + [time.time()]
-    else:
-        state = {'started': time.time(), 'bundle_sha256': expected_sha256,
-                 'policy': 'One pass over the packaged traces. A resumed run continues pending traces only; a '
-                           'finished trace, passed or failed, never runs again. A new pass needs a new user decision.'}
-    dump(marker, state)
-    result = ROOT / 'run'
+    if len(shards) > len(settings.get('gpus', [settings['gpu']])):
+        raise RuntimeError(f'{len(shards)} shards need as many eligible GPUs; this session has fewer')
+    outcomes = [None] * len(shards)
+
+    def slot(index):
+        try:
+            outcomes[index] = run_once(expected_sha256, expected_manifest_sha256, shards[index], index)
+        except BaseException as exc:
+            outcomes[index] = exc
+    threads = [threading.Thread(target=slot, args=(i,)) for i in range(len(shards))]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    failed = [f'{shard}: {outcome!r}' for shard, outcome in zip(shards, outcomes) if isinstance(outcome, BaseException)]
+    if failed:
+        raise RuntimeError('Slots stopped; download every partial ZIP. ' + ' | '.join(failed))
+    return outcomes
+
+
+def run_once(expected_sha256, expected_manifest_sha256, shard=None, slot=0):
+    kaggle_only()
+    with _SHARED:
+        package = unpack(find_archive(), expected_sha256, expected_manifest_sha256)
+        settings = json.loads((ROOT / 'settings.json').read_text())
+        limits = harness_limits(json.loads((package / 'manifest.json').read_text()))
+        settings.update(limits)  # Record the limits this bundle's traces run under.
+        dump(ROOT / 'settings.json', settings)
+        if json.loads((ROOT / 'compatibility/status.json').read_text())['status'] != 'passed':
+            raise RuntimeError('Run the synthetic GPU kernel compatibility check before starting the model')
+        marker = ROOT / 'run-once.json'
+        if marker.exists():
+            state = json.loads(marker.read_text())
+            if state['bundle_sha256'] != expected_sha256:
+                raise RuntimeError('A run of another bundle exists here; stop without altering it')
+            state['resumed'] = state.get('resumed', []) + [time.time()]
+        else:
+            state = {'started': time.time(), 'bundle_sha256': expected_sha256,
+                     'policy': 'One pass over the packaged traces. A resumed run continues pending traces only; a '
+                               'finished trace, passed or failed, never runs again. A new pass needs a new user '
+                               'decision.'}
+        if shard is not None:
+            state.setdefault('shards', {})[shard] = {'slot': slot, 'started': time.time()}
+        dump(marker, state)
+    gpu = settings.get('gpus', [settings['gpu']])[slot]
+    model_port, tool_port = 8000 + slot, 5000 + slot
+    result = ROOT / ('run' + shard_label(shard))
     result.mkdir(exist_ok=True)
-    imported = import_prior(result, expected_sha256)
+    imported = import_prior(result, expected_sha256) if shard is None else False
     proc = Processes(result)
     monitor = Resources(proc, result)
     atexit.register(proc.cleanup)
     status = {'status': 'failed', 'stage': 'C', 'started': time.time(), 'score': 'not-run',
-              'resumed_from_attached_results': imported}
+              'resumed_from_attached_results': imported, 'shard': shard, 'slot': slot, 'gpu': gpu,
+              'platform': os.environ.get('RCL_PLATFORM', 'kaggle')}
     env = clean_env()
-    env.update(CUDA_VISIBLE_DEVICES=str(settings['gpu']['index']), LLM_MODEL=MODEL,
-               LLM_API_URL='http://127.0.0.1:8000/v1/chat/completions',
+    env.update(CUDA_VISIBLE_DEVICES=str(gpu['index']), LLM_MODEL=MODEL,
+               LLM_API_URL=f'http://127.0.0.1:{model_port}/v1/chat/completions',
                LLM_API_KEY='local-placeholder', MAX_AGENT_PARALLEL='1', DATASET_TYPE='re2ob',
-               TOOL_SERVER_HOST='127.0.0.1', TOOL_SERVER_PORT='5000', LLM_FORCE_STREAM='false',
+               TOOL_SERVER_HOST='127.0.0.1', TOOL_SERVER_PORT=str(tool_port), LLM_FORCE_STREAM='false',
                VLLM_USE_V1='0', VLLM_NO_USAGE_STATS='1', VLLM_DO_NOT_TRACK='1')
     monitor.thread.start()
     progress = None
     try:
-        for port in (8000, 5000):
+        for port in (model_port, tool_port):
             assert_free_port(port)  # Never kill another session or increment ports.
-        # Downloads weights/config only from the public, non-gated official repo.
+        # Downloads weights/config only from the public, non-gated official repo; slots share one cache.
         download = 'from huggingface_hub import snapshot_download; print(snapshot_download(repo_id=' + repr(MODEL) + ',revision=' + repr(REVISION) + ',token=False))'
-        with (result / 'model-download.log').open('w', encoding='utf-8') as log:
+        with _SHARED, (result / 'model-download.log').open('w', encoding='utf-8') as log:
             subprocess.run([str(PYTHON), '-c', download], env=env, stdout=log,
                            stderr=subprocess.STDOUT, check=True, timeout=1200)
         snapshot = TEMP / 'huggingface/hub' / ('models--' + MODEL.replace('/', '--')) / 'snapshots' / REVISION
@@ -659,13 +731,13 @@ def run_once(expected_sha256, expected_manifest_sha256):
         server = proc.start('vllm', [str(PYTHON), '-m', 'vllm.entrypoints.openai.api_server',
             '--model', str(snapshot), '--tokenizer', str(snapshot), '--served-model-name', MODEL,
             '--revision', REVISION, '--tokenizer-revision', REVISION,
-            '--host', '127.0.0.1', '--port', '8000', '--dtype', 'half',
+            '--host', '127.0.0.1', '--port', str(model_port), '--dtype', 'half',
             '--tensor-parallel-size', '1', '--max-num-seqs', '1',
             '--max-model-len', str(settings['context']), '--gpu-memory-utilization', '0.85',
             '--max-num-batched-tokens', str(settings['max_num_batched_tokens']), '--enforce-eager',
             '--enable-auto-tool-choice', '--tool-call-parser', 'hermes',
-            '--generation-config', 'vllm', '--disable-log-requests'], env)
-        wait_ready(server, 'http://127.0.0.1:8000/health', 600)
+            '--generation-config', 'vllm', '--disable-log-requests'], env, model_port)
+        wait_ready(server, f'http://127.0.0.1:{model_port}/health', 600)
         if 'Chunked prefill is enabled' in (result / 'vllm.log').read_text(encoding='utf-8', errors='replace'):
             raise RuntimeError('vLLM turned chunked prefill on; each prompt must be prefilled in one step')
         print('C: pinned local model server ready; single GPU, FP16, context', settings['context'])
@@ -675,7 +747,8 @@ def run_once(expected_sha256, expected_manifest_sha256):
         synthetic_data(synth)
         def start_tools(name, data):
             return start_tool_server(proc, name, [str(PYTHON), str(package / 'upstream/tool_server.py')],
-                                     dict(env, DATA_ROOT=str(data)), 'http://127.0.0.1:5000/search_span?span_id=probe', 90)
+                                     dict(env, DATA_ROOT=str(data)),
+                                     f'http://127.0.0.1:{tool_port}/search_span?span_id=probe', 90, tool_port)
         tools = start_tools('tools-synthetic', synth)
         def worker(phase, data, out, timeout, trace_dir=None, options=()):
             out.mkdir(parents=True)
@@ -711,13 +784,14 @@ def run_once(expected_sha256, expected_manifest_sha256):
                 proc.stop(tools)
             print('E:', out.name, 'completed in', round(time.monotonic()-started), 's')
         progress = run_traces(package, result, expected_sha256, run_trace,
-                              lambda: server_healthy(server, 'http://127.0.0.1:8000/v1/completions', MODEL))
+                              lambda: server_healthy(server, f'http://127.0.0.1:{model_port}/v1/completions', MODEL),
+                              shard)
         print('E: every packaged trace has a final status; failed traces are recorded, not retried')
         status['stage'] = 'F'
         monitor.phase = 'scoring'
         # Stop model inference before opening any groundtruth file.
         proc.stop(server)
-        failed = score_runs(package, result, progress, PYTHON, env)
+        failed = score_runs(package, result, progress, PYTHON, env, shard)
         if failed:
             raise RuntimeError('Author scorer failed for: ' + ', '.join(failed))
         status.update(status='passed', score='author scorer per passed trace; descriptive pilot result, not an accuracy estimate')
@@ -746,7 +820,7 @@ def run_once(expected_sha256, expected_manifest_sha256):
                         continue
                 status['observed_requests'][events.parent.relative_to(result).as_posix()] = count
             dump(result / 'status.json', status)
-            archive = export_results(result)
+            archive = export_results(result, shard)
             atexit.unregister(proc.cleanup)
     if status['status'] != 'passed':
         raise RuntimeError('Run stopped; download partial results, then resume with them attached: ' + str(archive))

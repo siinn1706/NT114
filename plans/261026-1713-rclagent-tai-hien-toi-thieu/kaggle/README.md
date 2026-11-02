@@ -98,3 +98,32 @@ analyze-evidence-loss.py OUT_DIR PACKAGE ZIP MANIFEST [PACKAGE ZIP MANIFEST ...]
 - Luật ở [codebook đóng băng](../../reports/prereg-261031-2311-rclagent-evidence-loss-codebook.md). [`evidence-loss-prereg.json`](evidence-loss-prereg.json) giữ SHA256 của codebook, của analyzer và của bốn module nó nạp; hash tính trên byte file sau khi đổi mọi CRLF thành LF. `summary.json` ghi `prereg.codebook_sha_matches`, `analyzer_sha_matches` và `imports_sha_match`; ba cờ phải cùng `true`, nếu không đo này không còn dưới luật đóng băng. Không sửa analyzer, codebook hay module nạp sau đóng băng; thay đổi đi qua [nhật ký deviation](../../261031-2311-rclagent-evidence-loss-analysis/deviation-log.md).
 - [`decide-evidence-loss-outcomes.py`](decide-evidence-loss-outcomes.py) dựng ba CSV quyết định `outcome-sentences.csv`, `x-direction-ranking.csv` và `predictions.csv` từ `runs.csv` và `spans.csv` của analyzer (vị từ câu kết cục, ngưỡng n >= 3 và xếp hạng theo mục 9, dự đoán theo mục 10 của codebook); không model, không Kaggle, tệp đã có trong thư mục đích bị thay. Lệnh: `decide-evidence-loss-outcomes.py [--analysis DIR] [--analysis-r2 DIR] [--out DIR]`, mặc định `runtime/analysis-evidence-loss-s1-v2`, `runtime/analysis-evidence-loss-r2` và `runtime/analysis-evidence-loss-decision`. Test: `runtime/harness-env/Scripts/python.exe -X utf8 test-decide-evidence-loss-outcomes.py` ([`test-decide-evidence-loss-outcomes.py`](test-decide-evidence-loss-outcomes.py)); bước cuối dựng lại ba CSV từ analysis thật và so từng byte với file trong `runtime/`, thiếu đầu vào thì lỗi trừ khi đặt `EVIDENCE_LOSS_ALLOW_NO_ZIP=1`. Script không phải analyzer đóng băng và không nằm trong biên nhận.
 - Kết quả và cách đọc: [báo cáo kết quả](../../reports/analysis-261101-1023-rclagent-evidence-loss-results.md).
+
+## Tín hiệu thay thế khi bỏ metric (RQ c bước 1)
+
+[`analyze-metric-substitutes.py`](analyze-metric-substitutes.py) tính, cho từng run `no_metric`, tín hiệu không phải metric về dịch vụ lỗi có trong bundle (độ trễ theo thời gian tự thân và theo mốc train, `status_code`, log), self-state có hỏi và có đánh bất thường span liên quan không, và vị trí mất đầu tiên; `I2`, `I3`, `rank` được nối từ `runs.csv` của `analyze-evidence-loss.py`. Mốc độ trễ đọc file trace thô RE2-OB nhưng chỉ tổng hợp dòng thuộc đúng một cửa sổ của case train. Không model, không Kaggle. Test: `runtime/harness-env/Scripts/python.exe -X utf8 test-analyze-metric-substitutes.py` ([`test-analyze-metric-substitutes.py`](test-analyze-metric-substitutes.py)).
+
+```
+analyze-metric-substitutes.py OUT_DIR PACKAGE ZIP MANIFEST [PACKAGE ZIP MANIFEST ...] --evidence-runs FILE [--raw-traces FILE] [--roles FILE] [--label NAME]
+```
+
+- Ghi `pairs.csv`, `cases.csv`, `baseline.csv`, `summary.json`; từ chối ghi vào thư mục đã có `summary.json`.
+- Luật ở [codebook đóng băng](../../reports/prereg-261102-rclagent-metric-substitute-codebook.md); [`metric-substitute-prereg.json`](metric-substitute-prereg.json) giữ SHA256 (CRLF thành LF) của codebook, script và các module nó nạp. Thay đổi sau đóng băng đi qua [nhật ký deviation](../../261102-0035-rclagent-rq-c-metric-drop-substitutes/deviation-log.md).
+
+## Lượt dev telemetry-gap (hướng A)
+
+Bảy điều kiện trên 25 truy vấn train ([prereg](../../reports/prereg-261102-rclagent-telemetry-gap-method.md)); M1, M2, M3 ở [`telemetry-gap.py`](telemetry-gap.py), bật bằng cờ `--gap-aware`, `--trace-kpi`, `--trace-expand` của `smoke-worker.py`; khi tắt cả ba, request giống từng byte với S1 v3 (test [`test-telemetry-gap.py`](test-telemetry-gap.py)).
+
+```
+select-dev-set.py                       # runtime/dev-set.json: tập dev và site của từng truy vấn
+build-window-kpi.py                     # runtime/window-kpi.json: KPI cửa sổ 300 s, mốc train bỏ chính case
+prepare-bundle.py telemetry-gap-dev TRACE_ID...
+add-condition-runs.py runtime/package-telemetry-gap-dev runtime/dev-set.json --telemetry-gap runtime/window-kpi.json
+refresh-package.py runtime/package-telemetry-gap-dev; build-notebook.py; verify-package.py
+modal run --detach modal-run.py --shards 10 --only 0     # rồi --skip 0
+decide-telemetry-gap-outcomes.py OUT_DIR manifest.json runtime/dev-set.json runtime/window-kpi.json RESULTS_ZIP...
+```
+
+- Mỗi run có `site`. Notebook Kaggle chạy các run `kaggle` trên hai T4 của "GPU T4 x2" (`kaggle:0/2`, `kaggle:1/2`, mỗi GPU một model server, cổng 8000+slot và 5000+slot). [`modal-run.py`](modal-run.py) chạy các run `modal` trên Modal T4, mỗi container một shard `modal:K/N`, kết quả vào volume `rclagent-telemetry-gap-results`. Runtime khi chạy theo shard không nối tiếp kết quả cũ; run dở phải gom thành gói mới.
+- Cửa sổ metric ±1200 s của một trace có thể chạm case train kế bên; `prepare-bundle.py` giữ các dòng đó (dữ liệu gộp cũng trả chúng) và dừng nếu chạm case val hoặc test.
+- [`decide-telemetry-gap-outcomes.py`](decide-telemetry-gap-outcomes.py) gộp ZIP của cả hai site và tính luật go/no-go; test [`test-decide-telemetry-gap-outcomes.py`](test-decide-telemetry-gap-outcomes.py). Hash đóng băng ở [`telemetry-gap-prereg.json`](telemetry-gap-prereg.json); hướng tiếp theo từng kết cục ở [phụ lục dự phòng](../../reports/prereg-261102-rclagent-telemetry-gap-fallback-addendum.md), hash ở [`telemetry-gap-fallback-prereg.json`](telemetry-gap-fallback-prereg.json).

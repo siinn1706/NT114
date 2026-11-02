@@ -1,0 +1,26 @@
+{
+ "frozen": "2026-11-02",
+ "normalisation": "CRLF -> LF before SHA256",
+ "files": {
+  "prereg": "145ed4a5c56f4e717289d6b1d19af9d149fd694be08d7a79096bbeaeec3cf2ea",
+  "telemetry-gap.py": "d008e752aabf6fb93bf4c5e2a2059f3c58872df2e4ae004eb5e54d7e9dd79b65",
+  "smoke-worker.py": "0db4b5b3b33c14db48b6c4f64548cedc82c4e6967488acf8d052b665d21fdbca",
+  "kaggle-runtime.py": "fefd99fcac1ad34091364bb3f6837212e4798586a31f5a35c669cdce7b9f339d",
+  "add-condition-runs.py": "d79016510c97317cc5b971c276880506f0040824059de9dbc118073b4dcf6484",
+  "select-dev-set.py": "0362105f8f2737dac40681da460efba7f5967c990a81dedfc5e4df8f6e0842b1",
+  "build-window-kpi.py": "0bf290ed07e2d6633cba1660e47d07f780f9bef9f455baf7e4ac475101daca24",
+  "decide-telemetry-gap-outcomes.py": "34baa80e4a24b501a024e288b15f51636bb916feb80f2f5145adb98bb528b2f5",
+  "test-decide-telemetry-gap-outcomes.py": "86ab6b2aaa30b5fe269c5209822930e4fc034bb1b104fb99b9d5b39ab21e18f9",
+  "test-telemetry-gap.py": "b6814b4f9beb492a455dfecbf240f8779db8d575e719a3d469c74a7ea7a92040",
+  "modal-run.py": "b16d26e109de756fa59fcd5daa2cbbbe569ce268e09467533b24d9f20ece53f9",
+  "prepare-bundle.py": "e714748757b043d34c23558cd5d715dd2bff213b90fcaa0dd5b3cef76cdbca45",
+  "runtime/dev-set.json": "c559958736ea548871723341d33e77cdef1166cb0e692c5a24b24e62ff6f44cc",
+  "runtime/dev-set-preview.json": "b526e326d283b8d25bb9409b0017a7dbe75c3cc4730774785551222463196a65",
+  "runtime/window-kpi.json": "6cf54cad480e0861e7cfe2f6bc96a67cc105f9042c7210e051e9452b73f5176e",
+  "runtime/gap-context-check.json": "8504365d7c624a809e822e57bd26a9be528e9cd192b111c50a002dcfdada247c"
+ },
+ "package_raw_sha256": {
+  "rclagent-kaggle-bundle.zip": "612ac95130b66c2c7a74801ff9bbc1dfc57d0e5102cd407d983161038004483d",
+  "manifest.json": "c3da845ebc66724f5139223ae448096a29815e6184b17b1c0ea3da606697e5ab"
+ }
+}

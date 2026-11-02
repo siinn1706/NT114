@@ -71,6 +71,8 @@ def check_runs(manifest):
     if not runs:
         return None
     design = manifest['condition_design']
+    if design.get('design') == 'telemetry-gap dev grid':
+        return check_gap_runs(manifest, design)
     selection = HERE.parent / 'work/pilot-trace-analysis' / design['selection_file']
     assert sha(selection.read_bytes()) == design['selection_sha256'], 'Trace selection changed after the runs were made'
     traces = {e['trace_id']: e for e in manifest['traces']}
@@ -86,6 +88,29 @@ def check_runs(manifest):
     assert 'metric-repair.py' in manifest['files']
     return {'runs': len(runs), 'conditions': sorted(design['conditions']), 'seeds': design['seeds'],
             'selection_sha256': design['selection_sha256']}
+
+
+def check_gap_runs(manifest, design):
+    """Telemetry-gap grid: every dev query under every condition on its own site, with the setting of its condition,
+    its window KPI packaged, and the dev set and window KPI files unchanged since the runs were made."""
+    runs = manifest['runs']
+    dev_path, kpi_path = HERE / 'runtime' / design['dev_set_file'], HERE / 'runtime' / design['window_kpi_file']
+    assert sha(dev_path.read_bytes()) == design['dev_set_sha256'], 'Dev set changed after the runs were made'
+    assert sha(kpi_path.read_bytes()) == design['window_kpi_sha256'], 'Window KPI changed after the runs were made'
+    sites = {q['trace_id']: q['site'] for q in json.loads(dev_path.read_text(encoding='utf-8'))['queries']}
+    traces = {e['trace_id']: e for e in manifest['traces']}
+    assert set(traces) == set(sites)
+    assert len({r['run_id'] for r in runs}) == len(runs)
+    for run in runs:
+        assert {k: run[k] for k in traces[run['trace_id']]} == traces[run['trace_id']], run['run_id']
+        assert {k: run[k] for k in design['conditions'][run['condition']]} == design['conditions'][run['condition']]
+        assert run['site'] == sites[run['trace_id']], run['run_id']
+    assert {(r['trace_id'], r['condition']) for r in runs} == {(t, c) for t in traces for c in design['conditions']}
+    for entry in manifest['traces']:
+        assert entry['dir'] + '/window-kpi.json' in manifest['files'], entry['trace_id']
+    assert {'metric-repair.py', 'telemetry-gap.py'} <= set(manifest['files'])
+    return {'runs': len(runs), 'conditions': list(design['conditions']), 'sites': design['sites'],
+            'dev_set_sha256': design['dev_set_sha256'], 'window_kpi_sha256': design['window_kpi_sha256']}
 
 
 def main():
