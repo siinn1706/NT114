@@ -35,7 +35,7 @@ UPSTREAM_FILES = ('config.py', 'llm.py', 'coordinator.py', 'tool_server.py',
                   'tools_gpt.py', 'evaluate.py', 'LICENSE', 'README.md',
                   'requirements.txt', 'preprocess/preprocess_re2ob.py')
 WRAPPERS = ('kaggle-runtime.py', 'smoke-worker.py', 'tool-result-budget.py', 'metric-repair.py', 'vllm-t4-compat.py',
-            'verify-t4-prefix-kernel.py')
+            'verify-t4-prefix-kernel.py', 'telemetry-gap.py')
 
 
 def upstream_known_services(code=CODE):
@@ -129,6 +129,20 @@ def select_traces(trace_ids):
         chosen.append({'trace_id': trace_id, 'root_span': tokens[3], 'case': owners[0]['case_id'], 'tokens': tokens})
     assert len({c['trace_id'] for c in chosen}) == len(chosen)
     return lines[0], chosen
+
+
+def metric_window_cases(case, window):
+    """Other cases whose raw metric time range meets the metric window; each must be a train case."""
+    lo, hi = window
+    found = []
+    for other in csv.DictReader(ROLES.open(encoding='utf-8')):
+        if other['case_id'] == case or abs(int(other['inject_ts']) - lo) > 4 * 3600:
+            continue
+        seconds = pd.read_csv(raw_dir(other['case_id']) / 'simple_metrics.csv', usecols=['time'])['time']
+        if int(seconds.min()) <= hi and int(seconds.max()) >= lo:
+            assert other['role'] == 'train', (case, other['case_id'], other['role'])
+            found.append(other['case_id'])
+    return found
 
 
 PILOT_RULE = ('Train traces stratified by span count, one per case, excluding the trace of versions 1-8: the largest, '
@@ -241,7 +255,12 @@ def build(name, trace_ids, rule):
         gt = gt_all[gt_all.timestamp == int((raw / 'inject_time.txt').read_text())]
         assert len(gt) == 1
         for item in items:
-            entries.append(build_trace(item, case, header, lines, raw, raw_hashes, case_metric, case_log, gt,
+            # A window that reaches into a neighbouring train case serves that case's rows too, as the full data does.
+            item['metric_cases'] = [case] + metric_window_cases(case, item['metric_window'])
+            window_metric = pd.concat([case_metric] + [
+                pp._convert_one_metric_simple(str(raw_dir(other)), other).drop(columns='_case_id')
+                for other in item['metric_cases'][1:]], ignore_index=True)
+            entries.append(build_trace(item, case, header, lines, raw, raw_hashes, window_metric, case_log, gt,
                                        trace_scan, full_metric, log_scan, full_range, ns, client, noise))
             entries[-1]['dir'] = item['dir'].relative_to(stage).as_posix()
             print(json.dumps(entries[-1]), flush=True)
@@ -311,13 +330,17 @@ def build_trace(item, case, header, lines, raw, raw_hashes, case_metric, case_lo
     def metric_mask(frame):
         return frame.timestamp.between(metric_lo, metric_hi)
 
-    expected_case_rows = case_metric[metric_mask(case_metric)].reset_index(drop=True)
+    expected_case_rows = case_metric[metric_mask(case_metric)].copy()
     expected_case_rows['node_id'] = expected_case_rows['node_id'].replace('', float('nan'))
-    # Provenance: the full merged rows in the window are exactly this case's rows, so no other case
-    # (and no val/test case) overlaps it. Independent raw conversion can differ in the final bit across
-    # pandas versions; actual package rows are copied VERBATIM from the author CSV.
-    pd.testing.assert_frame_equal(full_metric.loc[metric_mask(full_metric)].reset_index(drop=True),
-                                  expected_case_rows, check_dtype=False, check_exact=False, rtol=1e-14, atol=0)
+
+    def ordered(frame):
+        return frame.sort_values(list(frame.columns), na_position='last', kind='stable').reset_index(drop=True)
+
+    # Provenance: the full merged rows in the window are exactly the rows of item['metric_cases'] (this case and
+    # any neighbouring train case), so no val/test case overlaps it. Independent raw conversion can differ in the
+    # final bit across pandas versions; actual package rows are copied VERBATIM from the author CSV.
+    pd.testing.assert_frame_equal(ordered(full_metric.loc[metric_mask(full_metric)]), ordered(expected_case_rows),
+                                  check_dtype=False, check_exact=False, rtol=1e-14, atol=0)
     small_metric = pd.read_csv(data / 'metric/all/metrics.csv', low_memory=False)
     # Stronger than response equality: the complete window rows must be identical.
     pd.testing.assert_frame_equal(full_metric.loc[metric_mask(full_metric)].reset_index(drop=True),
@@ -364,7 +387,7 @@ def build_trace(item, case, header, lines, raw, raw_hashes, case_metric, case_lo
     write_json(target / 'selection.json', {'trace_id': trace_id, 'root_span_id': item['root_span'], 'span_count': span_count,
                'query_window': {'start_second': lo, 'end_second': hi, 'service_name': 'any',
                                 'metric_rows_seconds': [metric_lo, metric_hi], 'log_rows_seconds': [log_lo, log_hi],
-                                'full_data_seconds': full_range}})
+                                'full_data_seconds': full_range, 'metric_rows_cases': item['metric_cases']}})
     (target / 'scoring').mkdir()
     gt.to_csv(target / 'scoring/groundtruth.csv', index=False)
     report = {'status': 'pass', 'method': 'Unchanged upstream Flask endpoint bodies; byte-for-byte HTTP responses. Full merged CSV scans, complete metric dataframe, exact window row equality.',

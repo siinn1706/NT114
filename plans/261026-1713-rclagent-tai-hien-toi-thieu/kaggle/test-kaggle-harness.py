@@ -770,7 +770,7 @@ class ServerHealth(unittest.TestCase):
 
     def test_batch_uses_the_health_probe(self):
         source = (HERE / 'kaggle-runtime.py').read_text(encoding='utf-8')
-        self.assertIn("server_healthy(server, 'http://127.0.0.1:8000/v1/completions', MODEL)", source)
+        self.assertIn("server_healthy(server, f'http://127.0.0.1:{model_port}/v1/completions', MODEL)", source)
         self.assertNotIn('server.poll() is None', source)
 
 
@@ -780,7 +780,7 @@ class ToolServerAndScoring(unittest.TestCase):
         def __init__(self, child=None):
             self.calls, self.child = [], child
 
-        def start(self, name, argv, env):
+        def start(self, name, argv, env, port=None):
             self.calls.append(('start', name))
             return self.child
 

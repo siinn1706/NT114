@@ -1,25 +1,59 @@
 {
   "status": "pass",
-  "files_in_bundle": 53,
+  "files_in_bundle": 268,
   "traces": [
     {
-      "trace_id": "ad1c27da086fee80da27cbdf90e7b6e8",
-      "case": "currencyservice_disk_3",
+      "trace_id": "72d5fb736b693f9ef7f727c881717946",
+      "case": "checkoutservice_cpu_2",
+      "trace_rows": 37,
+      "metric_rows": 66846,
+      "log_rows": 1738,
+      "cpu_endpoint_comparisons": 851,
+      "query_window": {
+        "start_second": 1708475382,
+        "end_second": 1708475382,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1708474182,
+          1708476582
+        ],
+        "log_rows_seconds": [
+          1708475322,
+          1708475442
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "checkoutservice_cpu_2"
+        ]
+      }
+    },
+    {
+      "trace_id": "00ea068b86c5d28344634e59e7a528da",
+      "case": "recommendationservice_delay_2",
       "trace_rows": 25,
-      "metric_rows": 109510,
-      "log_rows": 1713,
+      "metric_rows": 106634,
+      "log_rows": 1683,
       "cpu_endpoint_comparisons": 677,
       "query_window": {
-        "start_second": 1705694870,
-        "end_second": 1705694872,
+        "start_second": 1705545310,
+        "end_second": 1705545312,
         "service_name": "any",
         "metric_rows_seconds": [
-          1705693670,
-          1705696072
+          1705544110,
+          1705546512
         ],
         "log_rows_seconds": [
-          1705694810,
-          1705694932
+          1705545250,
+          1705545372
         ],
         "full_data_seconds": {
           "metric": [
@@ -30,27 +64,30 @@
             1705339822,
             1708489860
           ]
-        }
+        },
+        "metric_rows_cases": [
+          "recommendationservice_delay_2"
+        ]
       }
     },
     {
-      "trace_id": "7bbfa6060d6e01eed1ac0ec2ceead992",
-      "case": "recommendationservice_socket_1",
+      "trace_id": "56daf16467cbd67fac7525edd224faf6",
+      "case": "emailservice_socket_2",
       "trace_rows": 23,
-      "metric_rows": 102308,
-      "log_rows": 1667,
-      "cpu_endpoint_comparisons": 540,
+      "metric_rows": 106630,
+      "log_rows": 1772,
+      "cpu_endpoint_comparisons": 559,
       "query_window": {
-        "start_second": 1705398303,
-        "end_second": 1705398306,
+        "start_second": 1705728604,
+        "end_second": 1705728605,
         "service_name": "any",
         "metric_rows_seconds": [
-          1705397103,
-          1705399506
+          1705727404,
+          1705729805
         ],
         "log_rows_seconds": [
-          1705398243,
-          1705398366
+          1705728544,
+          1705728665
         ],
         "full_data_seconds": {
           "metric": [
@@ -61,27 +98,132 @@
             1705339822,
             1708489860
           ]
-        }
+        },
+        "metric_rows_cases": [
+          "emailservice_socket_2"
+        ]
       }
     },
     {
-      "trace_id": "272a47c21e51eefb241d43403e3b2c26",
-      "case": "recommendationservice_cpu_2",
+      "trace_id": "a4827710f750885e82b27eda5c48ce36",
+      "case": "emailservice_delay_2",
       "trace_rows": 25,
-      "metric_rows": 106632,
-      "log_rows": 1771,
+      "metric_rows": 106622,
+      "log_rows": 1726,
+      "cpu_endpoint_comparisons": 601,
+      "query_window": {
+        "start_second": 1705735974,
+        "end_second": 1705735975,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705734774,
+          1705737175
+        ],
+        "log_rows_seconds": [
+          1705735914,
+          1705736035
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "emailservice_delay_2"
+        ]
+      }
+    },
+    {
+      "trace_id": "ca7486ba1391a8cd17ca415350d80044",
+      "case": "recommendationservice_delay_1",
+      "trace_rows": 37,
+      "metric_rows": 102311,
+      "log_rows": 1723,
+      "cpu_endpoint_comparisons": 853,
+      "query_window": {
+        "start_second": 1705400415,
+        "end_second": 1705400416,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705399215,
+          1705401616
+        ],
+        "log_rows_seconds": [
+          1705400355,
+          1705400476
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "recommendationservice_delay_1"
+        ]
+      }
+    },
+    {
+      "trace_id": "0db29b5a3202f3405bd730c6a650c6a3",
+      "case": "currencyservice_mem_2",
+      "trace_rows": 25,
+      "metric_rows": 108073,
+      "log_rows": 1580,
+      "cpu_endpoint_comparisons": 753,
+      "query_window": {
+        "start_second": 1705750045,
+        "end_second": 1705750048,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705748845,
+          1705751248
+        ],
+        "log_rows_seconds": [
+          1705749985,
+          1705750108
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "currencyservice_mem_2"
+        ]
+      }
+    },
+    {
+      "trace_id": "ee90717adfba8b0d102490ab171b9cf8",
+      "case": "checkoutservice_cpu_3",
+      "trace_rows": 25,
+      "metric_rows": 106634,
+      "log_rows": 1740,
       "cpu_endpoint_comparisons": 620,
       "query_window": {
-        "start_second": 1705525961,
-        "end_second": 1705525962,
+        "start_second": 1705623747,
+        "end_second": 1705623748,
         "service_name": "any",
         "metric_rows_seconds": [
-          1705524761,
-          1705527162
+          1705622547,
+          1705624948
         ],
         "log_rows_seconds": [
-          1705525901,
-          1705526022
+          1705623687,
+          1705623808
         ],
         "full_data_seconds": {
           "metric": [
@@ -92,27 +234,30 @@
             1705339822,
             1708489860
           ]
-        }
+        },
+        "metric_rows_cases": [
+          "checkoutservice_cpu_3"
+        ]
       }
     },
     {
-      "trace_id": "29583dc604a5ce5fdd4daab6bf3144c4",
-      "case": "emailservice_delay_1",
-      "trace_rows": 31,
-      "metric_rows": 106634,
-      "log_rows": 1770,
-      "cpu_endpoint_comparisons": 765,
+      "trace_id": "84935ab6b9480a64a053f994ff026f48",
+      "case": "currencyservice_loss_2",
+      "trace_rows": 33,
+      "metric_rows": 109512,
+      "log_rows": 1511,
+      "cpu_endpoint_comparisons": 788,
       "query_window": {
-        "start_second": 1705733538,
-        "end_second": 1705733540,
+        "start_second": 1705709170,
+        "end_second": 1705709197,
         "service_name": "any",
         "metric_rows_seconds": [
-          1705732338,
-          1705734740
+          1705707970,
+          1705710397
         ],
         "log_rows_seconds": [
-          1705733478,
-          1705733600
+          1705709110,
+          1705709257
         ],
         "full_data_seconds": {
           "metric": [
@@ -123,23 +268,610 @@
             1705339822,
             1708489860
           ]
-        }
+        },
+        "metric_rows_cases": [
+          "currencyservice_loss_2"
+        ]
+      }
+    },
+    {
+      "trace_id": "df1a6aa1fd074b18a7f2f9d9cb2a4234",
+      "case": "recommendationservice_loss_3",
+      "trace_rows": 25,
+      "metric_rows": 97644,
+      "log_rows": 1731,
+      "cpu_endpoint_comparisons": 677,
+      "query_window": {
+        "start_second": 1705757370,
+        "end_second": 1705757383,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705756170,
+          1705758583
+        ],
+        "log_rows_seconds": [
+          1705757310,
+          1705757443
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "recommendationservice_loss_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "d896c60f27f2e22c276a793e928c5f89",
+      "case": "recommendationservice_cpu_1",
+      "trace_rows": 25,
+      "metric_rows": 137736,
+      "log_rows": 1675,
+      "cpu_endpoint_comparisons": 677,
+      "query_window": {
+        "start_second": 1705345780,
+        "end_second": 1705345782,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705344580,
+          1705346982
+        ],
+        "log_rows_seconds": [
+          1705345720,
+          1705345842
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "recommendationservice_cpu_1",
+          "recommendationservice_loss_1"
+        ]
+      }
+    },
+    {
+      "trace_id": "0be1a511a8fe281a34699064fd3fa519",
+      "case": "checkoutservice_disk_3",
+      "trace_rows": 25,
+      "metric_rows": 100866,
+      "log_rows": 1704,
+      "cpu_endpoint_comparisons": 572,
+      "query_window": {
+        "start_second": 1705767970,
+        "end_second": 1705767971,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705766770,
+          1705769171
+        ],
+        "log_rows_seconds": [
+          1705767910,
+          1705768031
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "checkoutservice_disk_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "8101bd604281679e0ae6c31e96833d50",
+      "case": "emailservice_socket_1",
+      "trace_rows": 23,
+      "metric_rows": 106130,
+      "log_rows": 1741,
+      "cpu_endpoint_comparisons": 559,
+      "query_window": {
+        "start_second": 1705726463,
+        "end_second": 1705726464,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705725263,
+          1705727664
+        ],
+        "log_rows_seconds": [
+          1705726403,
+          1705726524
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "emailservice_socket_1"
+        ]
+      }
+    },
+    {
+      "trace_id": "08926fcc53e5d68cee17f14d85d3f0e8",
+      "case": "productcatalogservice_delay_1",
+      "trace_rows": 39,
+      "metric_rows": 102304,
+      "log_rows": 1502,
+      "cpu_endpoint_comparisons": 933,
+      "query_window": {
+        "start_second": 1705394602,
+        "end_second": 1705394604,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705393402,
+          1705395804
+        ],
+        "log_rows_seconds": [
+          1705394542,
+          1705394664
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "productcatalogservice_delay_1"
+        ]
+      }
+    },
+    {
+      "trace_id": "bafdd3efa42e71c5ed71049b4baf6687",
+      "case": "recommendationservice_delay_3",
+      "trace_rows": 4,
+      "metric_rows": 106629,
+      "log_rows": 1669,
+      "cpu_endpoint_comparisons": 122,
+      "query_window": {
+        "start_second": 1705547959,
+        "end_second": 1705547959,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705546759,
+          1705549159
+        ],
+        "log_rows_seconds": [
+          1705547899,
+          1705548019
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "recommendationservice_delay_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "71544adfe584e9bbe433eda675fd55bd",
+      "case": "productcatalogservice_disk_2",
+      "trace_rows": 29,
+      "metric_rows": 102996,
+      "log_rows": 1676,
+      "cpu_endpoint_comparisons": 685,
+      "query_window": {
+        "start_second": 1705496222,
+        "end_second": 1705496223,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705495022,
+          1705497423
+        ],
+        "log_rows_seconds": [
+          1705496162,
+          1705496283
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "productcatalogservice_disk_2"
+        ]
+      }
+    },
+    {
+      "trace_id": "7d25d412d07d794e3823686ccd4de3a1",
+      "case": "currencyservice_mem_1",
+      "trace_rows": 25,
+      "metric_rows": 100866,
+      "log_rows": 1651,
+      "cpu_endpoint_comparisons": 791,
+      "query_window": {
+        "start_second": 1705464524,
+        "end_second": 1705464528,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705463324,
+          1705465728
+        ],
+        "log_rows_seconds": [
+          1705464464,
+          1705464588
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "currencyservice_mem_1"
+        ]
+      }
+    },
+    {
+      "trace_id": "c0b67f23638ea23cbd3d3cd26fbba3cc",
+      "case": "productcatalogservice_delay_3",
+      "trace_rows": 37,
+      "metric_rows": 104317,
+      "log_rows": 1380,
+      "cpu_endpoint_comparisons": 891,
+      "query_window": {
+        "start_second": 1705516889,
+        "end_second": 1705516891,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705515689,
+          1705518091
+        ],
+        "log_rows_seconds": [
+          1705516829,
+          1705516951
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "productcatalogservice_delay_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "f6d1e7feedada2963169f60023fd23fb",
+      "case": "checkoutservice_disk_2",
+      "trace_rows": 23,
+      "metric_rows": 98528,
+      "log_rows": 1698,
+      "cpu_endpoint_comparisons": 532,
+      "query_window": {
+        "start_second": 1705765785,
+        "end_second": 1705765786,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705764585,
+          1705766986
+        ],
+        "log_rows_seconds": [
+          1705765725,
+          1705765846
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "checkoutservice_disk_2"
+        ]
+      }
+    },
+    {
+      "trace_id": "00f6d77b7c0d290fadf61bebfd4683a0",
+      "case": "recommendationservice_cpu_3",
+      "trace_rows": 25,
+      "metric_rows": 106632,
+      "log_rows": 1766,
+      "cpu_endpoint_comparisons": 620,
+      "query_window": {
+        "start_second": 1705528208,
+        "end_second": 1705528209,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705527008,
+          1705529409
+        ],
+        "log_rows_seconds": [
+          1705528148,
+          1705528269
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "recommendationservice_cpu_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "5f4c1e613f650a3c04c5949ece5fd280",
+      "case": "checkoutservice_mem_2",
+      "trace_rows": 29,
+      "metric_rows": 96570,
+      "log_rows": 1794,
+      "cpu_endpoint_comparisons": 742,
+      "query_window": {
+        "start_second": 1705626233,
+        "end_second": 1705626235,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705625033,
+          1705627435
+        ],
+        "log_rows_seconds": [
+          1705626173,
+          1705626295
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "checkoutservice_mem_2",
+          "checkoutservice_mem_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "9e495c0d6e0a910394c7bf3d898d1699",
+      "case": "recommendationservice_socket_2",
+      "trace_rows": 23,
+      "metric_rows": 106615,
+      "log_rows": 1735,
+      "cpu_endpoint_comparisons": 616,
+      "query_window": {
+        "start_second": 1705540401,
+        "end_second": 1705540403,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705539201,
+          1705541603
+        ],
+        "log_rows_seconds": [
+          1705540341,
+          1705540463
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "recommendationservice_socket_2"
+        ]
+      }
+    },
+    {
+      "trace_id": "3753f2a8b337506fffccb4eb515f7530",
+      "case": "recommendationservice_socket_3",
+      "trace_rows": 4,
+      "metric_rows": 106630,
+      "log_rows": 1700,
+      "cpu_endpoint_comparisons": 122,
+      "query_window": {
+        "start_second": 1705542979,
+        "end_second": 1705542979,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705541779,
+          1705544179
+        ],
+        "log_rows_seconds": [
+          1705542919,
+          1705543039
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "recommendationservice_socket_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "4848c5185405d8a288e8af18ef56fac2",
+      "case": "checkoutservice_disk_1",
+      "trace_rows": 25,
+      "metric_rows": 105886,
+      "log_rows": 1649,
+      "cpu_endpoint_comparisons": 677,
+      "query_window": {
+        "start_second": 1705373974,
+        "end_second": 1705373976,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705372774,
+          1705375176
+        ],
+        "log_rows_seconds": [
+          1705373914,
+          1705374036
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "checkoutservice_disk_1"
+        ]
+      }
+    },
+    {
+      "trace_id": "f315c392fdadd84d1141a661c7ae27a0",
+      "case": "checkoutservice_mem_3",
+      "trace_rows": 29,
+      "metric_rows": 108075,
+      "log_rows": 1750,
+      "cpu_endpoint_comparisons": 780,
+      "query_window": {
+        "start_second": 1705627920,
+        "end_second": 1705627923,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705626720,
+          1705629123
+        ],
+        "log_rows_seconds": [
+          1705627860,
+          1705627983
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "checkoutservice_mem_3"
+        ]
+      }
+    },
+    {
+      "trace_id": "32c882d5a904e4911ad5acf524632c2a",
+      "case": "currencyservice_disk_1",
+      "trace_rows": 25,
+      "metric_rows": 105890,
+      "log_rows": 1397,
+      "cpu_endpoint_comparisons": 962,
+      "query_window": {
+        "start_second": 1705386765,
+        "end_second": 1705386772,
+        "service_name": "any",
+        "metric_rows_seconds": [
+          1705385565,
+          1705387972
+        ],
+        "log_rows_seconds": [
+          1705386705,
+          1705386832
+        ],
+        "full_data_seconds": {
+          "metric": [
+            1705339822,
+            1708489861
+          ],
+          "log": [
+            1705339822,
+            1708489860
+          ]
+        },
+        "metric_rows_cases": [
+          "currencyservice_disk_1"
+        ]
       }
     }
   ],
   "condition_runs": {
-    "runs": 36,
+    "runs": 175,
     "conditions": [
-      "metric",
-      "metric_no_log",
-      "no_metric"
+      "base_nometric",
+      "base_nometric_s2",
+      "a_nometric",
+      "base_metric",
+      "a_metric",
+      "m2_nometric",
+      "m1m3_nometric"
     ],
-    "seeds": [
-      20261026,
-      20261027,
-      20261028
-    ],
-    "selection_sha256": "87b505ca56bcdaa0fc2e429a72afb29f1359afb10177ac3c515578e2008727c8"
+    "sites": {
+      "kaggle": 70,
+      "modal": 105
+    },
+    "dev_set_sha256": "c559958736ea548871723341d33e77cdef1166cb0e692c5a24b24e62ff6f44cc",
+    "window_kpi_sha256": "6cf54cad480e0861e7cfe2f6bc96a67cc105f9042c7210e051e9452b73f5176e"
   },
   "harness_limits": {
     "max_model_requests_including_retry": 320,
@@ -147,9 +879,9 @@
     "max_tool_rounds_per_span": 8
   },
   "notebook_code_cells": 4,
-  "bundle_sha256": "a0d0e1ee2e07a6bee4092f6079854f2df5ce9b7aebf7b29d8a7e83136c996e34",
-  "bundle_bytes": 1966076,
-  "notebook_sha256": "ddcdd38795a052799dc4fab6d0035ccaf4cbab767b9c46b370f5bebe74610525",
+  "bundle_sha256": "612ac95130b66c2c7a74801ff9bbc1dfc57d0e5102cd407d983161038004483d",
+  "bundle_bytes": 11866993,
+  "notebook_sha256": "7702c3110e2bfa3b6ca89afda40d97f91c23e84d2180f7b2ba6d80224a982899",
   "code_cells_identical_to_native_version_3": false,
   "latest_downloaded_native_version": 9,
   "code_cells_identical_to_latest_downloaded_native": false,

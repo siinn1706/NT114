@@ -28,13 +28,21 @@ def main():
     runtime = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(runtime)
     limits = runtime.harness_limits(manifest)
+    # A bundle that assigns runs to sites runs its Kaggle runs on both T4s of a "GPU T4 x2" session.
+    shards = ['kaggle:0/2', 'kaggle:1/2'] if any('site' in r for r in manifest.get('runs', [])) else []
     traces = manifest['traces']
     listed = '\n'.join(f"- `{t['trace_id']}` ({t['case']}, {t['span_count']} span)" for t in traces)
     if manifest.get('runs'):
         design = manifest['condition_design']
+        seeds = design.get('seeds') or sorted({r['seed'] for r in manifest['runs']})
         listed += (f"\n\nGói có {len(manifest['runs'])} lượt chạy: mỗi trace chạy một lần cho mỗi điều kiện "
-                   f"({', '.join(design['conditions'])}) và mỗi seed ({', '.join(map(str, design['seeds']))}). "
+                   f"({', '.join(design['conditions'])}) và mỗi seed ({', '.join(map(str, seeds))}). "
                    'Mỗi lượt là một đơn vị chạy đúng một lần, khóa theo `run_id`.')
+        if shards:
+            kaggle_runs = sum(r['site'] == 'kaggle' for r in manifest['runs'])
+            listed += (f"\n\nNotebook này chạy {kaggle_runs} lượt có `site` = kaggle, chia đều cho hai T4 của phiên "
+                       '"GPU T4 x2" (`kaggle:0/2` và `kaggle:1/2`, mỗi GPU một model server riêng). Các lượt còn '
+                       'lại chạy trên Modal bằng `modal-run.py`.')
     if limits != runtime.HARNESS_LIMITS:
         listed += (f"\n\n**Cấu hình kiểm độ nhạy về trần:** {limits['max_tool_rounds_per_span']} vòng tool mỗi span, "
                    f"{limits['max_model_requests_including_retry']} model request tính cả retry, deadline "
@@ -272,7 +280,18 @@ RAM/VRAM đỉnh lấy mẫu (~1 giây). Chỉ sau khi E kết thúc và đã t�
 mở nhãn của từng trace đã qua rồi chạy scorer tác giả cho trace đó. File ZIP được xuất cả khi thất bại.
 SIGKILL/khởi động lại kernel không cho Python thực hiện finally; lỗi và Interrupt thông thường có cleanup.
 ''')
-    code('''from IPython.display import display, FileLink
+    if shards:
+        code('''from IPython.display import display, FileLink
+SHARDS = ''' + repr(shards) + '''
+try:
+    result_zips = rcl.run_slots(EXPECTED_BUNDLE_SHA256, EXPECTED_MANIFEST_SHA256, SHARDS)
+finally:
+    for archive in sorted(rcl.ROOT.glob('rclagent-smoke-results-*.zip')):
+        display(FileLink('rclagent-smoke/' + archive.name))
+    print('Tải mọi file ZIP này trong Output/Files; mỗi GPU một file, chứa cả phần đã hoàn thành khi lỗi.')
+''')
+    else:
+        code('''from IPython.display import display, FileLink
 try:
     result_zip = rcl.run_once(EXPECTED_BUNDLE_SHA256, EXPECTED_MANIFEST_SHA256)
 except BaseException:

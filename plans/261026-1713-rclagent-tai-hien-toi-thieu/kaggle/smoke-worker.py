@@ -33,6 +33,9 @@ _spec.loader.exec_module(budget)
 _spec = importlib.util.spec_from_file_location('metric_repair', Path(__file__).with_name('metric-repair.py'))
 metric_repair = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(metric_repair)
+_spec = importlib.util.spec_from_file_location('telemetry_gap', Path(__file__).with_name('telemetry-gap.py'))
+gap = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(gap)
 
 DEFAULT_SEED = 20261026
 # A response whose tool calls fail validation (leaked textual syntax, schema, identifiers) is asked again, never
@@ -121,9 +124,15 @@ def adapt_payload(payload, max_output, seed=DEFAULT_SEED):
 
 class Guard:
     def __init__(self, output, selection, tokenizer, context, phase, deadline, max_requests=160,
-                 seed=DEFAULT_SEED, sources=None, data_root=None, tool_rounds=4, deadline_seconds=1800):
+                 seed=DEFAULT_SEED, sources=None, data_root=None, tool_rounds=4, deadline_seconds=1800,
+                 components=None, window_kpi=None):
         import requests
         self.seed = seed
+        # Telemetry-gap components (telemetry-gap.py); all off keeps every request byte-identical.
+        self.components = dict.fromkeys(('gap_aware', 'trace_kpi', 'trace_expand'), False)
+        self.components.update(components or {})
+        self.window_kpi = window_kpi
+        self.model_url = os.environ.get('LLM_API_URL', 'http://127.0.0.1:8000/v1/chat/completions')
         self.sources = sources or {'logs': 'author', 'metric': 'author'}
         self.data_root = Path(data_root) if data_root else None
         self.metric_data = None
@@ -155,6 +164,10 @@ class Guard:
     def source_response(self, name, params):
         """The harness's answer for a query whose source is not 'author'; the tool server is not asked."""
         if self.sources[SOURCE_OF[name]] == 'absent':
+            if name == 'search_fluctuating_metrics' and self.components['trace_kpi']:
+                return gap.kpi_response(self.window_kpi, params['service_name'])
+            if self.components['gap_aware']:
+                return gap.unavailable(SOURCE_OF[name])
             return ABSENT_RESPONSE[name]
         if self.metric_data is None:  # 'repaired' exists for metric only; load the same files the server reads.
             import pandas as pd
@@ -179,9 +192,15 @@ class Guard:
     def post(self, url, **kwargs):
         import requests
         self.check()
-        if url != 'http://127.0.0.1:8000/v1/chat/completions':
+        if url != self.model_url or not url.startswith('http://127.0.0.1:') or not url.endswith('/v1/chat/completions'):
             self.stop('Refusing any non-local or unexpected model endpoint')
         payload = kwargs['json']
+        if self.phase == 'trace' and any(self.components.values()):
+            try:
+                payload = dict(payload, messages=gap.edit_messages(payload['messages'], kpi=self.window_kpi,
+                                                                   **self.components))
+            except Exception as exc:
+                self.stop('Telemetry-gap prompt edit failed: ' + str(exc))
         maximum = 1024 if any(t['function']['name'] == 'print_results' for t in payload.get('tools', [])) else 512
         try:
             adapted = adapt_payload(payload, maximum, self.seed)
@@ -284,7 +303,7 @@ def install_guards(guard, upstream):
     def local_get(url, **kwargs):
         guard.check()
         parsed = urlparse(url)
-        if parsed.scheme != 'http' or parsed.netloc != '127.0.0.1:5000':
+        if parsed.scheme != 'http' or parsed.netloc != '127.0.0.1:' + os.environ.get('TOOL_SERVER_PORT', '5000'):
             guard.stop('Refusing non-local telemetry endpoint')
         if guard.phase == 'trace' and parsed.path in ('/search_logs', '/search_fluctuating_metrics'):
             # Upstream joins arguments without URL encoding; check what the server will actually read.
@@ -457,17 +476,31 @@ def main():
     parser.add_argument('--tool-rounds', type=int, default=4, help='Tool rounds per span (trace phase)')
     parser.add_argument('--max-requests', type=int, default=160, help='Model requests incl. retries (trace phase)')
     parser.add_argument('--deadline-seconds', type=int, default=1800, help='RCLAgent deadline (trace phase)')
+    parser.add_argument('--gap-aware', action='store_true', help='M1: missing-source notice')
+    parser.add_argument('--trace-kpi', action='store_true', help='M2: trace-derived latency KPI for absent metrics')
+    parser.add_argument('--trace-expand', action='store_true', help='M3: window evidence table in the final prompt')
     args = parser.parse_args()
+    components = {'gap_aware': args.gap_aware, 'trace_kpi': args.trace_kpi, 'trace_expand': args.trace_expand}
+    if args.trace_kpi and args.metric != 'absent':
+        parser.error('--trace-kpi replaces absent metrics only')
+    if any(components.values()) and args.phase != 'trace':
+        parser.error('Telemetry-gap components apply to the trace phase only')
     from transformers import AutoTokenizer
     package, output = Path(args.package), Path(args.output)
     selection = json.loads((Path(args.trace_dir) / 'selection.json').read_text()) if args.phase == 'trace' else {}
+    window_kpi = None
+    if args.trace_kpi or args.trace_expand:
+        window_kpi = json.loads((Path(args.trace_dir) / 'window-kpi.json').read_text(encoding='utf-8'))
+        if window_kpi['trace_id'] != selection['trace_id']:
+            parser.error('window-kpi.json belongs to another trace')
     tokenizer = AutoTokenizer.from_pretrained(args.model_path, local_files_only=True, trust_remote_code=False)
     guard = Guard(output, selection, tokenizer, args.context, args.phase,
                   time.monotonic() + (args.deadline_seconds if args.phase == 'trace' else 480),
                   max_requests=args.max_requests if args.phase == 'trace' else 8, seed=args.seed,
                   tool_rounds=args.tool_rounds, deadline_seconds=args.deadline_seconds,
                   sources={'logs': args.logs, 'metric': args.metric},
-                  data_root=Path(args.trace_dir) / 'input' if args.trace_dir else None)
+                  data_root=Path(args.trace_dir) / 'input' if args.trace_dir else None,
+                  components=components, window_kpi=window_kpi)
     status = 'failed'
     error = None
     try:
@@ -492,6 +525,7 @@ def main():
             pool._executor.shutdown(wait=True, cancel_futures=True)
         (output / 'worker-status.json').write_text(json.dumps({
             'status': status, 'phase': args.phase, 'seed': guard.seed, 'sources': guard.sources,
+            'components': guard.components,
             'model_requests_including_retries': guard.count,
             'token_usage': guard.tokens if guard.tokens['responses_with_usage'] else None,
             'error': error, 'fatal': guard.fatal}, indent=2), encoding='utf-8')
